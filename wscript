@@ -46,3 +46,9 @@ def build(bld):
     bld(rule='cp ${SRC} ${TGT}', source=bld.env.COCOSET, target='coco.set')
     bld.recurse('tem')
     bld.recurse('mus')
+
+#clean build directory and coco completely to create the build from scratch
+def cleanall(ctx):
+    from waflib import Options
+    Options.commands = ['distclean'] + Options.commands
+    ctx.exec_command('rm coco')
