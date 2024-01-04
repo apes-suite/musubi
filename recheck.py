@@ -63,7 +63,7 @@ except ModuleNotFoundError as error:
             clone_build_out = clone_build_out,
             clone_build_err = clone_build_err         )
 
-musubi_test = os.path.join(apesFolder, 'musubi', 'examples') + '/'
+musubi_test = os.path.join(apesFolder, 'musubi', 'mus', 'examples') + '/'
 loris_clone_url = os.path.join(apesFolder, 'loris') + '/'
 
 shepherd_jobs = []
