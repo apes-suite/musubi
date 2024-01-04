@@ -57,7 +57,7 @@ except ModuleNotFoundError as error:
     # Use the latest seeder revision
     seeder_exe = clone_build(
             solver          = 'seeder',
-            revision        = 'default',
+            revision        = 'main',
             git_clone_source = git_clone_source+'seeder.git',
             solver_dir      = 'seeder',
             clone_build_out = clone_build_out,
