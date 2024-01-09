@@ -30,9 +30,9 @@ loglevel = 'INFO'
 
 git_clone_source = 'https://github.com/apes-suite/'
 
-from recheck import notify_list
+from recheck import notify_list, mail_server
 mail_address = notify_list
-smtp_server = { 'tunnel' : {'host':'robin.inf.tu-dresden.de'} }
+smtp_server = mail_server
 
 # name of the shepherd log file
 shepherd_out = 'shepherd.log'
