@@ -1729,8 +1729,8 @@ shepherd_jobs.append(dict(executable = musubi_exe,
     attachment = True,
     validation = True,
     val_method = 'difference',
-    val_ref_path = testcase_path+'reference/channel_Cp_p00000_t7.500E+00.res',
-    val_output_filename = 'tracking/channel_Cp_p00000_t7.500E+00.res',
+    val_ref_path = testcase_path+'reference/channel_cyl_force_p00000.res',
+    val_output_filename = 'tracking/channel_cyl_force_p00000.res',
     ))
 ### end Channel 2D with cylinder single level
 #------------------------------------------------------------------------------#
