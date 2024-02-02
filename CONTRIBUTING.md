@@ -35,4 +35,8 @@ merges here that update references to the submodules
 are always squashed.
 For the pull request in the parent directory, use the
 `?template=sub_pr.md` query parameter in the URL for
-the pull request.
+the pull request, that is:
+
+```
+https://github.com/apes-suite/musubi/compare/<branch>?template=sub_pr.md
+```
