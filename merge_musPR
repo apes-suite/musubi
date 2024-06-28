@@ -1,0 +1,104 @@
+#!/bin/bash
+#
+# merge_musPR
+# ===========
+#
+# Small script to merge an open pull request from the mus subdirectory.
+#
+# Pre-Requisite: have github cli installed (https://cli.github.com/)
+#
+# This script is intended as counterpart to the mus/request script.
+# Once the opened pull request in musubi-source has been merged back,
+# this script is meant to be used to close the accompanying PR that
+# was created for this change.
+# After the PR in mus has been closed update the repository on the
+# main branch there.
+# Then merge_musPR in the musubi directory while on the branch of
+# the pull request.
+#
+# *************************************************************************** #
+#
+# Copyright (c) 2024 Harald Klimach <harald.klimach@dlr.de>
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice,
+# this list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+# this list of conditions and the following disclaimer in the documentation
+# and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHORS “AS IS” AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+# IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY
+# DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+# ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# **************************************************************************** #
+
+musubidir=$(git rev-parse --show-toplevel)
+musdir=$musubidir/mus
+owd=$(pwd)
+
+if [ -d $musdir ]; then
+    if gh --version &>/dev/null; then
+        cd $musdir
+        musbranch=$(git branch --show-current)
+        musmsg=$(git show --pretty=format:%s -s HEAD)
+
+        if [ "$musbranch" = "main" ]; then
+            cd $musubidir
+            musubibranch=$(git branch --show-current)
+            echo "Working on $musubibranch in $musubidir"
+            PRnum=$(gh pr status --json number,headRefName --jq '.currentBranch.number')
+            if [ -z "$PRnum" ]; then
+                echo "ERROR: There doesn't seem to be a PR for the current branch!"
+            else
+                echo "This is going to close PR #$PRnum:"
+                echo ""
+                gh pr view
+                echo ""
+                echo "Do you want to proceed (y/n)? "
+                read proceed
+                echo ""
+                if [ "$proceed" != "${proceed#[Yy]}" ]; then
+                    git submodule set-branch -d
+                    git diff --quiet || git add mus .gitmodules
+                    git diff --cached --quiet || git commit -m "$musmsg"
+                    gh pr ready
+                    gh pr merge --auto -s -t "$musmsg (#$PRnum)"
+                else
+                    echo ""
+                    echo "Nothing done. Bye."
+                    echo ""
+                fi
+            fi
+        else
+            echo ""
+            echo "The mus subdirectory has to be on the main branch!"
+            echo "But I found:"
+            echo "$musbranch in $musdir"
+            echo "@: $musmsg"
+            echo ""
+            echo "Can not close the merge request in this state."
+            echo ""
+        fi
+        musmsg=$(git show --pretty=format:%s -s HEAD)
+    else
+        echo ""
+        echo "Need to install github cli (https://cli.github.com/) to close"
+        echo "Pull Request!"
+        echo ""
+    fi
+else
+    echo "merge_muspr only works in the musubi repository that contains"
+    echo "the mus subdirectory."
+fi
+cd $owd

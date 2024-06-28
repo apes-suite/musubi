@@ -33,3 +33,12 @@ Documentation
 
 See the [documentation](https://geb.inf.tu-dresden.de/doxy/musubi/index.html)
 for more details.
+
+Developing Musubi
+-----------------
+
+The actual sources of musubi are found in the mus subdirectory, which is a git
+submodule and thus has a repository (musubi-source) on its own.
+To ease the work with this setup there is a `request` script that is meant to
+take care of dealing with the tight coupling between this repository and
+musubi-source.
