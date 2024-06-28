@@ -69,7 +69,7 @@ if [ -d $musdir ]; then
                 read proceed
                 echo ""
                 if [ "$proceed" != "${proceed#[Yy]}" ]; then
-                    git submodule set-branch -d
+                    git submodule set-branch --default
                     git diff --quiet || git add mus .gitmodules
                     git diff --cached --quiet || git commit -m "$musmsg"
                     gh pr ready
