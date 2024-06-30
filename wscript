@@ -33,7 +33,6 @@ def configure(conf):
         conf.env.COCOFLAGS = ['-s', '-ad']
     conf.recurse('tem')
     conf.recurse('mus')
-    conf.recurse('bin', 'postconfigure')
 
 
 def build(bld):
