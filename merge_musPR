@@ -58,6 +58,7 @@ if [ -d $musdir ]; then
             musubibranch=$(git branch --show-current)
             echo "Working on $musubibranch in $musubidir"
             PRnum=$(gh pr status --json number,headRefName --jq '.currentBranch.number')
+            PRtitle=$(gh pr status --json title --jq '.currentBranch.title')
             if [ -z "$PRnum" ]; then
                 echo "ERROR: There doesn't seem to be a PR for the current branch!"
             else
@@ -73,7 +74,7 @@ if [ -d $musdir ]; then
                     git diff --quiet || git add mus .gitmodules
                     git diff --cached --quiet || git commit -m "$musmsg"
                     git push && gh pr ready
-                    gh pr merge --auto -s -t "$musmsg (#$PRnum)"
+                    gh pr merge --auto -s -t "$PRtitle (#$PRnum)"
                 else
                     echo ""
                     echo "Nothing done. Bye."
