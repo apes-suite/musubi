@@ -576,7 +576,7 @@ fluid_bench_C3D_Sphere = fluid_bench+'Channel3D/C3D_Sphere_MultiLevel_LES/'
 #==============================================================================#
 fluid_bench_C3D_Sphere_QX = fluid_bench_C3D_Sphere + 'D3Q19' + '/'
 label_prefix = 'C3D_Sph_ML_LES_' + 'D19_'
-    
+
 #------------------------------------------------------------------------------#
 ### start C3D_Sph_ML_LES_D19_DRT_BGK
 my_collision = 'DRT_BGK'
@@ -786,7 +786,7 @@ shepherd_jobs.append(dict(executable = musubi_exe,
     ))
 ### end CUM17
 #------------------------------------------------------------------------------#
-    
+
 #------------------------------------------------------------------------------#
 ### start C3D_Sph_ML_LES_D27_DRT_BGK
 my_collision = 'DRT_BGK'
@@ -2096,6 +2096,55 @@ shepherd_jobs.append(dict(executable = musubi_exe,
     ))
 ### end split pipe fluid_incompressible model
 #------------------------------------------------------------------------------#
+
+
+#==============================================================================#
+#              Testcases tree: passive_scalar/benchmark                        #
+#==============================================================================#
+### Path to passive scalar benchmark testcases
+ps_bench = musubi_test+'passive_scalar/benchmark/'
+
+#------------------------------------------------------------------------------#
+### start passive scalar cylinder2d testcase
+testcase_path = ps_bench+'cylinder2d/'
+shepherd_jobs.append(dict(executable=None,
+    template=testcase_path+'args.template',
+    additional_params = dict(stl_path = testcase_path),
+    extension='lua',
+    run_exec = False,
+    run_command = '',
+    prefix = 'ps_cyl2d',
+    label = 'ps_cyl2d_args',
+    ))
+shepherd_jobs.append(dict(executable = seeder_exe,
+    template=testcase_path+'seeder.lua',
+    extension='lua',
+    run_exec = True,
+    depend = ['ps_cyl2d_args'],
+    create_dir = False,
+    create_subdir = ['mesh'],
+    label = 'ps_cyl2d_seeder',
+    attachment = True,
+    ))
+shepherd_jobs.append(dict(executable = musubi_exe,
+    solver_name = 'musubi',
+    template=testcase_path+'musubi.lua',
+    extension='lua',
+    run_exec = True,
+    run_command = 'mpirun --oversubscribe -np 1',
+    create_subdir = ['tracking','restart'],
+    depend = ['ps_cyl2d_seeder'],
+    create_dir=False,
+    label = 'ps_cyl2d_musubi',
+    attachment = True,
+    validation = True,
+    val_method = 'difference',
+    val_ref_path = testcase_path+'resource/simulation_spc1_p00000_t10.000E+00.res',
+    val_output_filename = 'tracking/simulation_spc1_p00000_t10.000E+00.res',
+    ))
+### end passive scalar cylinder2d testcase
+#------------------------------------------------------------------------------#
+
 
 ################################################################################
 #                                                                              #
