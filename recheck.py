@@ -77,14 +77,19 @@ musubi_exe = clone_build( solver          = 'musubi',
         clone_build_out = clone_build_out,
         clone_build_err = clone_build_err         )
 
-musubi_omp = clone_build( solver          = 'musubi',
-        git_clone_source = git_clone_source+'musubi.git',
-        revision        = mus_rev,
-        variant         = mus_buildvar,
-        solver_dir      = 'musubi',
-        confopts        = '--openmp',
-        clone_build_out = clone_build_out,
-        clone_build_err = clone_build_err         )
+# Do not compile with openmp, it is not used right now anyway, and
+# the compiler flags yield an error for it due to conflicting settings:
+# 
+#  Flag ‘-fmax-stack-var-size=131072’ overwrites ‘-frecursive’ implied by ‘-fopenmp’
+# 
+#musubi_omp = clone_build( solver          = 'musubi',
+#        git_clone_source = git_clone_source+'musubi.git',
+#        revision        = mus_rev,
+#        variant         = mus_buildvar,
+#        solver_dir      = 'musubi',
+#        confopts        = '--openmp',
+#        clone_build_out = clone_build_out,
+#        clone_build_err = clone_build_err         )
 
 ################################################################################
 #                                                                              #
