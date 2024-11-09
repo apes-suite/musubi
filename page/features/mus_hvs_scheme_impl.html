@@ -1,0 +1,453 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../../favicon.png">
+
+    <title>Musubi-Harvesting &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../../css/pygments.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/local.css" rel="stylesheet">
+      <link  href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Musubi-Harvesting</h1>
+    <div class="container p-2 mb-4 bg-light border rounded-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col">
+          <ul class="list-inline" style="margin-bottom:0px; display:inline">
+          </ul>
+        </div>
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../index.html'>Documentation</a></li>
+                <li class="breadcrumb-item"><a href='index.html'>Feature Overview</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Musubi-Harvesting</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-3">
+        <div class="card card-body bg-light" id="sidebar-toc">
+          <ul class="nav flex-column align-items">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Documentation</a>
+            </li>
+          </ul>
+          <hr>
+          <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="../bibliography.html">Bibliography</a>
+              <a class="nav-link" href="../examples/index.html">Examples</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/index.html">Weakly compressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/application/index.html">Applications</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/application/Nonreflecting_BC/index.html">Nonreflecting Boundary Conditions</a>
+              <a class="nav-link" href="../examples/fluid/application/Nozzle/index.html">Nozzle</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/application/Nozzle/NOZ_FlowInAndAround/index.html">Nozzle flow inside an around</a>
+              <a class="nav-link" href="../examples/fluid/application/Nozzle/NOZ_FlowInside/index.html">Nozzle flow inside</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/index.html">Channel 2D Boundary Conditions</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrBB_PressExpol/index.html">Channel 2D MfrBB PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrEq_PressEq/index.html">Channel 2D MfrEq PressEq</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_PressExpol_PressExpol/index.html">Channel 2D PressExpol PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBB_PressExpol/index.html">Channel 2D VelBB PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBFL_PressExpol/index.html">Channel 2D VelBFL PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelEq_PressEq/index.html">Channel 2D VelEq PressEq</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelNonEqExpol_PressNonEqExpol/index.html">Channel 2D VelNonEqExpol PressNonEqExpol</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/index.html">Poisueille flow in a channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_BGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_drtBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_hrrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_prrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rrBGK/index.html">Poisueille flow in a channel 2D</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel3D/index.html">Channel 3D test cases</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel3D/C3D_Cylinder_MultiLevel_LES/index.html">Turbulent flow around the cylinder in a channel 3D at Re=3900</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel3D/C3D_Sphere_MultiLevel_LES/index.html">Turbulent flow around the sphere in a channel 3D</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/index.html">Turbulent channel</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/index.html">Turbulent channel wall model validation</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerFixedPoint/index.html">Turbulent channel wall model Musker</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerNewton/index.html">Turbulent channel wall model Musker (Newton)</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_PowerLaw/index.html">Turbulent channel wall model Power-Law</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_ReichardtFixedPoint/index.html">Turbulent channel wall model Reichardt</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/Vortex_convection/index.html">Convected vortex in a domain with a coarser grid at the center</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/index.html">Absorbing layers</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticCylinder2D/index.html">Acoustic Line Source</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticLineSource2D/index.html">Acoustic Line Source 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/index.html">Acoustic pulse 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerBox/index.html">Acoustic pulse 2D with absorbing layer box 2d</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerPlane/index.html">Acoustic pulse 2D with absorbing layer plane</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerRadial/index.html">Acoustic pulse 2D with absorbing layer radial</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/trackOutside/index.html">Tracking point outside the domain</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/index.html">Incompressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/application/index.html">Applications</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_MultiLevel/index.html">Flow around the cylinder 2D single level</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_SingleLevel/index.html">Flow around the cylinder 2D single level</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel3D/index.html">Channel 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel3D/C3D_Simple/index.html">Simple Flow in a 3D Channel</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/ConcentricCylinders/index.html">Concentric Cylinders</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow/index.html">Concentric Cylinders</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow_MultiLevel/index.html">Concentric Cylinders</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/LidDrivenCavity/index.html">Lid driven cavity</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/LidDrivenCavity/LDC_MultiLevel/index.html">Lid driven cavity</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/LidDrivenCavity/LDC_Simple/index.html">Lid driven cavity</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/index.html">Pipe 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_Force/index.html">Pipe Force</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_LES/index.html">Pipe LES</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_MultiLevel/index.html">Pipe 3D</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_Simple/index.html">Pipe Simple</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_Split/index.html">Pipe Split</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/index.html">Taylor Green Vortex</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/index.html">Taylor-Green Vortex with LES Turbulence Models at Re = 1600</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagGradU/index.html">Taylor-Green Vortex with WALE Smagorinsky (GradU) model at Re = 1600</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagPDF/index.html">Taylor-Green Vortex with WALE Smagorinsky (PDF) model at Re = 1600</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_Vreman/index.html">Taylor-Green Vortex with Vreman LES model at Re = 1600</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_WALE/index.html">Taylor-Green Vortex with WALE LES model at Re = 1600</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/tutorials/index.html">Tutorials</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/tutorials/tut_00_prerequisites.html">Prerequisites</a>
+              <a class="nav-link" href="../examples/tutorials/tut_01_mus_config.html">Configuration</a>
+              <a class="nav-link" href="../examples/tutorials/tut_02_mus_toolchain.html">Toolchain</a>
+              <a class="nav-link" href="../examples/tutorials/tut_03_tracking.html">Tracking</a>
+              <a class="nav-link" href="../examples/tutorials/tut_04_boundaries.html">Boundary Conditions</a>
+              <a class="nav-link" href="../examples/tutorials/tut_05_restart.html">Restart</a>
+              <a class="nav-link" href="../examples/tutorials/tut_06_initial.html">Initial Conditions</a>
+              <a class="nav-link" href="../examples/tutorials/tut_07_convergence.html">Abort Criteria</a>
+              <a class="nav-link" href="../examples/tutorials/tut_08_source.html">Source Terms</a>
+              <a class="nav-link" href="../examples/tutorials/tut_09_mus_multilevel.html">Multilevel Simulations</a>
+              <a class="nav-link" href="../examples/tutorials/tut_10_Musubi2.html">Prerequisites</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="index.html">Feature Overview</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="comp_proc.html">Description of the Multi-Level Algorithm</a>
+              <a class="nav-link" href="data_struc.html">Data Structures</a>
+              <a class="nav-link" href="intp_methods.html">Interpolation Methods</a>
+              <a class="nav-link" href="multispecies.html">Multispecies</a>
+              <a class="nav-link active disabled" href="mus_hvs_scheme_impl.html">Musubi-Harvesting</a>
+              <a class="nav-link" href="mus_nonNewtonianTheory.html">Non-Newtonian Fluid Simulations</a>
+              <a class="nav-link" href="mus_vectorization.html">Vectorization</a>
+              <a class="nav-link" href="scheme.html">Scheme Implementation</a>
+
+                </nav>
+              <a class="nav-link" href="../usage/index.html">Build and run Musubi</a>
+          </nav>
+        </div>
+      </div>
+
+    <div class="col-9" id='text'>
+      <p>The former <em>Harvester</em> as a post-processing tool is not existing anymore.
+Instead, there is a new implementation of its functions inside <em>Musubi</em> itself.
+This one is called <em>Musubi-Harvesting</em> or shortly mus_harvesting.</p>
+<p>This is why a few things in the handling of post-processing have changed. Inside
+the <em>Musubi</em> main folder is a sample script that can be used as a template. One
+can find it normally here: <code>~/apes/musubi/harvester.lua</code>.</p>
+<p>In the following, the usage of this tool will be explained.</p>
+<p>At first, one can define the name of the simulation that will be a part of the
+filename of the produced files.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">simulation_name</span> <span class="o">=</span> <span class="s1">&#39;channel2D&#39;</span>
+</code></pre></div>
+
+<p>This basic information is read with the subroutine <a href="../../https:/apes-suite.github.io/treelm/proc/tem_load_general.html">tem_load_general</a>.
+It is stored inside <code>params%solver%simName</code>. The subroutine is called from
+<a href="../../proc/mus_hvs_config_load.html">mus_hvs_config_load</a>.</p>
+<p>After that, one provide the restart file that one would like to visualize:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">restart</span> <span class="o">=</span> <span class="p">{</span><span class="n">read</span> <span class="o">=</span> <span class="s1">&#39;restart/channel2D_lastHeader.lua&#39;</span><span class="p">}</span>
+</code></pre></div>
+
+<p>This character is stored inside <a href="../../https:/apes-suite.github.io/treelm/type/tem_restartcontrol_type.html">tem_restartControl_type</a> as 'readFileName'.</p>
+<p>Then, one defines the verbosity of logging. <a href="../../https:/apes-suite.github.io/treelm/proc/tem_logging_load_primary.html">tem_logging_load_primary</a> is
+looking for the 'level'. Default is <code>level = 1</code> in this case.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">logging</span> <span class="o">=</span> <span class="p">{</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">}</span>
+</code></pre></div>
+
+<p>Then one defines what shall be post-processed with mus_harvesting.
+Therefore the <code>tracking</code> table is needed.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">tracking</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="c1">-- opens sub table for one tracking element</span>
+</code></pre></div>
+
+<p>To give the resulting files a useful name one can use the <code>label</code>. Moreover one
+can provide a special output <code>folder</code>. For both there are default values.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;useful_name&#39;</span><span class="p">,</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;here_is_your_output/&#39;</span><span class="p">,</span>
+</code></pre></div>
+
+<p>But one must provide the output format of the files. There, one can choose
+between <code>vtk</code>, <code>ascii</code> and <code>ascii_spatial</code>. To visualize the data with
+Paraview one needs <code>vtk</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">output</span> <span class="o">=</span> <span class="p">{</span> <span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;vtk&#39;</span> <span class="p">},</span>
+</code></pre></div>
+
+<p>Then one can post-process every variable that is defined in the variable
+system as a default variable or 'special' ones like a difference that is
+used in the <code>variable</code> table of the <em>Musubi</em> config file. For more information
+one can have a look at <a href="https://apes-suite.github.io/treelm//page/features/variables/index.html">this page</a>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;treeid&#39;</span><span class="p">,</span><span class="s1">&#39;solidsphere&#39;</span><span class="p">,</span><span class="s1">&#39;density&#39;</span><span class="p">,</span><span class="s1">&#39;momentum&#39;</span><span class="p">},</span>
+</code></pre></div>
+
+<p>It is possible to define a region from where one can get the data. Therefore
+the <code>shape</code> table is used. In this example one gets the data for the whole
+domain.
+Another example of defining the shape can be found in <a href="../../https:/apes-suite.github.io/treelm/proc/tem_load_shape_single.html">tem_load_shape_single</a>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">shape</span> <span class="o">=</span> <span class="p">{</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span> <span class="p">},</span>
+<span class="p">}</span> <span class="c1">-- close tracking sub table</span>
+<span class="p">}</span> <span class="c1">-- close tracking table</span>
+</code></pre></div>
+
+<p>One should not forget to close the tracking table. But after that the required
+setting is done. One can run the post-processor from the location of the config
+file:</p>
+<div class="codehilite"><pre><span></span><code>~/apes/musubi/build/mus_harvesting<span class="w"> </span>harvester.lua
+</code></pre></div>
+
+<p>After that, one can visualise the output with Paraview. There is a tutorial for
+this software that one can find easily at Youtube.</p>
+<p>The next part will be the tutorial for creating a dataset over all time steps.</p>
+<p>Therefore one needs two files, the config file template <code>harvest_series.template</code>
+and the config file for the python script <code>series.config</code>.</p>
+<p>The template file looks quite similar to the previously introduced
+<code>harvester.lua</code>.
+The first step is to make the use of data from the <em>Musubi</em> config file possible.
+With <code>require</code> one can provide the lua config file. Remember that the filename
+without the lua extension is needed here.</p>
+<p>Next, one needs the restart input files. Here one makes use of the <code>$!...!$</code>
+writing that indicates a placeholder that is configured inside the python
+script. <code>$!file!$</code> is the placeholder for the input files.</p>
+<p>After that, one defines the tracking in the same way like mentioned before.
+But for the output <code>folder</code> one can use the placeholder <code>$!out!$</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">require</span> <span class="s1">&#39;musubi&#39;</span>
+
+<span class="n">restart</span><span class="p">.</span><span class="n">read</span> <span class="o">=</span> <span class="s1">&#39;$!file!$&#39;</span>
+<span class="n">tracking</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;useful_name&#39;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;density&#39;</span><span class="p">},</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span> <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span> <span class="p">},</span> <span class="c1">-- same as: shape = { kind = &#39;global&#39; }</span>
+    <span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;$!out!$&#39;</span><span class="p">,</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{</span> <span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;vtk&#39;</span> <span class="p">},</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>After that, one configures the python input file that is called <code>series.config</code>.
+In this case one must define the input files, the output folder, the path to
+post-processor executable, the location of the template file, and the path to
+the lua executable.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># input files:</span>
+<span class="n">files</span><span class="p">:</span> <span class="o">*</span><span class="n">_header_</span><span class="o">*.</span><span class="n">lua</span> <span class="c1"># for all header files</span>
+<span class="c1"># Lua path:</span>
+<span class="n">lua</span><span class="p">:</span> <span class="o">~/</span><span class="n">apes</span><span class="o">/</span><span class="n">musubi</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">treelm</span><span class="o">/</span><span class="n">aotus</span><span class="o">/</span><span class="n">lua</span>
+<span class="c1"># post processor:</span>
+<span class="n">harvester</span><span class="p">:</span> <span class="o">~/</span><span class="n">apes</span><span class="o">/</span><span class="n">musubi</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">mus_harvesting</span>
+<span class="c1"># template file:</span>
+<span class="n">template</span><span class="p">:</span> <span class="n">harvest_series</span><span class="o">.</span><span class="n">template</span>
+<span class="c1"># output folder:</span>
+<span class="n">out</span><span class="p">:</span> <span class="o">./</span><span class="n">output</span><span class="o">/</span>
+</code></pre></div>
+
+<p>One can run this script with:</p>
+<div class="codehilite"><pre><span></span><code>~/apes/musubi/treelm/peons/harvest_series.py<span class="w"> </span>-c<span class="w"> </span>series.config
+</code></pre></div>
+
+<p>Another example of how to configure the harvester.lua file:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velX&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;operation&#39;</span><span class="p">,</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="p">{</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;extract&#39;</span><span class="p">,</span>
+                 <span class="n">input_varname</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;velocity&#39;</span><span class="p">},</span>
+                 <span class="n">input_varindex</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">},</span>
+<span class="n">tracking</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;vtk&#39;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;velX&#39;</span><span class="p">},</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span><span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span><span class="p">},</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;vtk&#39;</span><span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+    </div>
+  </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1457 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_species_module.f90 &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_species_module.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.4% of total for source files.">165 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_species_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">mus_species_module.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_species_module.html">mus_species_module</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/mus_species_module.f90.html#src">mus_species_module.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_species_module.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_species_modulef90EfferentGraph" width="335pt" height="32pt"
+ viewBox="0.00 0.00 335.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_species_module.f90~~EfferentGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>sourcefile~~mus_species_module.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 331,-28 331,4 -4,4"/>
+<!-- sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~mus_species_module.f90</title>
+<polygon fill="none" stroke="black" points="327,-24 181,-24 181,0 327,0 327,-24"/>
+<text text-anchor="middle" x="254" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_species_module.f90</text>
+</g>
+<!-- sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~mus_physics_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/mus_physics_module.f90.html" xlink:title="mus_physics_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="145,-24 0,-24 0,0 145,0 145,-24"/>
+<text text-anchor="middle" x="72.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_species_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_species_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M180.77,-12C172.29,-12 163.6,-12 155.02,-12"/>
+<polygon fill="#000000" stroke="#000000" points="155,-8.5 145,-12 155,-15.5 155,-8.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_species_module.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_species_modulef90AfferentGraph" width="641pt" height="204pt"
+ viewBox="0.00 0.00 641.00 203.90" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph" class="graph" transform="scale(0.3 0.3) rotate(0) translate(4 676.1)">
+<title>sourcefile~~mus_species_module.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-676.1 2134,-676.1 2134,4 -4,4"/>
+<!-- sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~mus_species_module.f90</title>
+<polygon fill="none" stroke="black" points="146,-278.55 0,-278.55 0,-254.55 146,-254.55 146,-278.55"/>
+<text text-anchor="middle" x="73" y="-264.15" font-family="Helvetica,sans-Serif" font-size="10.50">mus_species_module.f90</text>
+</g>
+<!-- sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~mus_field_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/mus_field_module.f90.html" xlink:title="mus_field_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="546,-236.55 416,-236.55 416,-212.55 546,-212.55 546,-236.55"/>
+<text text-anchor="middle" x="481" y="-222.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_species_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M415.67,-231.21C345.48,-238.47 232.93,-250.11 156.34,-258.03"/>
+<polygon fill="#000000" stroke="#000000" points="155.84,-254.57 146.25,-259.08 156.56,-261.53 155.84,-254.57"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~mus_field_prop_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/mus_field_prop_module.f90.html" xlink:title="mus_field_prop_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="341,-299.55 182,-299.55 182,-275.55 341,-275.55 341,-299.55"/>
+<text text-anchor="middle" x="261.5" y="-285.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_prop_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M415.78,-235.64C402.82,-238.44 389.39,-241.75 377,-245.55 360.43,-250.64 357.2,-254.4 341,-260.55 330.58,-264.51 319.29,-268.54 308.61,-272.24"/>
+<polygon fill="#000000" stroke="#000000" points="307.34,-268.97 299.02,-275.53 309.61,-275.59 307.34,-268.97"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_species_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M181.95,-278.71C173.43,-277.75 164.75,-276.77 156.19,-275.81"/>
+<polygon fill="#000000" stroke="#000000" points="156.55,-272.33 146.23,-274.68 155.77,-279.28 156.55,-272.33"/>
+</g>
+<!-- sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~mus_aux_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/mus_aux_module.f90.html" xlink:title="mus_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1821.5,-278.55 1695.5,-278.55 1695.5,-254.55 1821.5,-254.55 1821.5,-278.55"/>
+<text text-anchor="middle" x="1758.5" y="-264.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1697.28,-254.52C1528.62,-221.46 1053.76,-132.98 897.5,-152.55"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~mus_scheme_type_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node12"><a xlink:href="../sourcefile/mus_scheme_type_module.f90.html" xlink:title="mus_scheme_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="985,-402.55 808,-402.55 808,-378.55 985,-378.55 985,-402.55"/>
+<text text-anchor="middle" x="896.5" y="-388.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge31" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1745.04,-278.63C1724.13,-298.47 1680.15,-338.45 1638,-365.55 1608.61,-384.44 1387.7,-490.24 1355,-502.55"/>
+</g>
+<!-- sourcefile~mus_source_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~mus_source_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node13"><a xlink:href="../sourcefile/mus_source_module.f90.html" xlink:title="mus_source_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1634,-107.55 1492,-107.55 1492,-83.55 1634,-83.55 1634,-107.55"/>
+<text text-anchor="middle" x="1563" y="-93.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_source_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_source_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge52" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_source_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1718.38,-254.42C1703.44,-248.52 1686.9,-240.32 1674,-229.55 1652.14,-211.3 1655.65,-198.9 1638,-176.55 1620.55,-154.46 1598.58,-130.87 1583.13,-114.89"/>
+<polygon fill="#000000" stroke="#000000" points="1585.6,-112.41 1576.11,-107.69 1580.59,-117.29 1585.6,-112.41"/>
+</g>
+<!-- sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node29" class="node">
+<title>sourcefile~mus_restart_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node29"><a xlink:href="../sourcefile/mus_restart_module.f90.html" xlink:title="mus_restart_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1633.5,-554.55 1492.5,-554.55 1492.5,-530.55 1633.5,-530.55 1633.5,-554.55"/>
+<text text-anchor="middle" x="1563" y="-540.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_restart_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge61" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_restart_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1750.14,-278.93C1735.32,-303.95 1701.02,-362.43 1674,-412.55 1657.21,-443.7 1660.34,-456.12 1638,-483.55 1624.99,-499.53 1606.97,-514.01 1591.97,-524.62"/>
+<polygon fill="#000000" stroke="#000000" points="1589.81,-521.86 1583.55,-530.41 1593.77,-527.63 1589.81,-521.86"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node30" class="node">
+<title>sourcefile~mus_tools_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node30"><a xlink:href="../sourcefile/mus_tools_module.f90.html" xlink:title="mus_tools_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1420,-395.55 1288,-395.55 1288,-371.55 1420,-371.55 1420,-395.55"/>
+<text text-anchor="middle" x="1354" y="-381.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tools_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge63" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1695.26,-256.52C1656.48,-252.68 1606.13,-252.18 1564,-266.55"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node31" class="node">
+<title>sourcefile~mus_tracking_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node31"><a xlink:href="../sourcefile/mus_tracking_module.f90.html" xlink:title="mus_tracking_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1638,-356.55 1488,-356.55 1488,-332.55 1638,-332.55 1638,-356.55"/>
+<text text-anchor="middle" x="1563" y="-342.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tracking_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge68" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1727.69,-278.57C1694.31,-292.02 1640.08,-313.88 1603.27,-328.72"/>
+<polygon fill="#000000" stroke="#000000" points="1601.81,-325.54 1593.84,-332.52 1604.43,-332.03 1601.81,-325.54"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~mus_auxfield_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/mus_auxfield_module.f90.html" xlink:title="mus_auxField_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="772,-284.55 621,-284.55 621,-260.55 772,-260.55 772,-284.55"/>
+<text text-anchor="middle" x="696.5" y="-270.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_auxField_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M648,-260.52C628.52,-255.7 605.72,-250.19 585,-245.55 574.64,-243.23 563.66,-240.88 552.89,-238.63"/>
+<polygon fill="#000000" stroke="#000000" points="553.58,-235.2 543.08,-236.6 552.17,-242.06 553.58,-235.2"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~mus_interpolate_header_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/mus_interpolate_header_module.f90.html" xlink:title="mus_interpolate_header_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="585,-362.55 377,-362.55 377,-338.55 585,-338.55 585,-362.55"/>
+<text text-anchor="middle" x="481" y="-348.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_header_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M676.27,-284.55C654.79,-297.46 618.59,-317.72 585,-329.55 578.2,-331.95 571.04,-334.11 563.79,-336.04"/>
+<polygon fill="#000000" stroke="#000000" points="562.73,-332.7 553.89,-338.54 564.45,-339.49 562.73,-332.7"/>
+</g>
+<!-- sourcefile~mus_bc_nernstplanck_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~mus_bc_nernstplanck_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/mus_bc_nernstplanck_module.f90.html" xlink:title="mus_bc_nernstPlanck_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="577.5,-320.55 384.5,-320.55 384.5,-296.55 577.5,-296.55 577.5,-320.55"/>
+<text text-anchor="middle" x="481" y="-306.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_nernstPlanck_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_nernstplanck_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~mus_bc_nernstplanck_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M384.28,-299.31C373.4,-298.26 362.34,-297.19 351.55,-296.15"/>
+<polygon fill="#000000" stroke="#000000" points="351.59,-292.64 341.3,-295.16 350.92,-299.6 351.59,-292.64"/>
+</g>
+<!-- sourcefile~mus_bc_poisson_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~mus_bc_poisson_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/mus_bc_poisson_module.f90.html" xlink:title="mus_bc_poisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="563.5,-278.55 398.5,-278.55 398.5,-254.55 563.5,-254.55 563.5,-278.55"/>
+<text text-anchor="middle" x="481" y="-264.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_poisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_poisson_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~mus_bc_poisson_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M398.39,-274.43C383.07,-275.91 366.97,-277.46 351.43,-278.96"/>
+<polygon fill="#000000" stroke="#000000" points="350.94,-275.5 341.32,-279.94 351.61,-282.46 350.94,-275.5"/>
+</g>
+<!-- sourcefile~mus_bc_var_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~mus_bc_var_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/mus_bc_var_module.f90.html" xlink:title="mus_bc_var_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="767.5,-204.55 625.5,-204.55 625.5,-180.55 767.5,-180.55 767.5,-204.55"/>
+<text text-anchor="middle" x="696.5" y="-190.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_var_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_var_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~mus_bc_var_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M625.3,-203.07C603.16,-206.39 578.65,-210.07 556.24,-213.42"/>
+<polygon fill="#000000" stroke="#000000" points="555.48,-210 546.11,-214.94 556.52,-216.92 555.48,-210"/>
+</g>
+<!-- sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~mus_control_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/mus_control_module.f90.html" xlink:title="mus_control_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="2022,-221.55 1879,-221.55 1879,-197.55 2022,-197.55 2022,-221.55"/>
+<text text-anchor="middle" x="1950.5" y="-207.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1943.5,-197.19C1929.78,-170.33 1893.35,-106.57 1843,-75.55 1735.17,-9.13 1690.64,-15.89 1564,-17.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-17.55C1469.86,-11.97 1447.19,-5.19 1355,-0.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1353,-0.55C1309.13,1.65 1298.42,-8.14 1256,-19.55 1149.31,-48.24 1124.19,-61.09 1021,-100.55 965.37,-121.82 956.67,-145.77 897.5,-152.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M895.5,-152.55C807.81,-159.94 784.95,-142.77 697.5,-152.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M695.5,-152.55C629.46,-159.94 557.05,-189.23 515.81,-208.1"/>
+<polygon fill="#000000" stroke="#000000" points="514.1,-205.03 506.51,-212.42 517.05,-211.38 514.1,-205.03"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1909.21,-221.64C1880.11,-230.37 1840.63,-242.21 1809.52,-251.55"/>
+<polygon fill="#000000" stroke="#000000" points="1808.31,-248.25 1799.74,-254.48 1810.32,-254.96 1808.31,-248.25"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-17.55C1361.53,-18.51 1312.95,-55.11 1121.5,-114.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1119.5,-114.55C1076.16,-127.66 1056.05,-111.89 1021,-140.55 992.99,-163.45 1013.63,-191.44 985,-213.55 927.31,-258.09 844.34,-271.28 782.34,-274.24"/>
+<polygon fill="#000000" stroke="#000000" points="782.04,-270.75 772.19,-274.65 782.32,-277.75 782.04,-270.75"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge33" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1757.5,-152.55C1597.18,-117.26 1148.82,-106.55 1021,-209.55 979.3,-243.16 1015.86,-280.78 985,-324.55 970.68,-344.87 948.19,-361.63 929.6,-373.18"/>
+<polygon fill="#000000" stroke="#000000" points="927.62,-370.29 920.84,-378.43 931.22,-376.3 927.62,-370.29"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_source_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge53" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_source_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1914.89,-197.46C1877.12,-184.67 1814.66,-164.69 1759.5,-152.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1757.5,-152.55C1706.01,-141.22 1648.16,-123.5 1609.24,-110.83"/>
+<polygon fill="#000000" stroke="#000000" points="1609.87,-107.35 1599.28,-107.56 1607.69,-114 1609.87,-107.35"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M413.43,-338.51C401.24,-335.87 388.68,-332.86 377,-329.55 351.27,-322.25 323.06,-311.93 301.07,-303.35"/>
+<polygon fill="#000000" stroke="#000000" points="302.34,-300.09 291.75,-299.67 299.77,-306.6 302.34,-300.09"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~mus_scheme_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node11"><a xlink:href="../sourcefile/mus_scheme_module.f90.html" xlink:title="mus_scheme_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1194.5,-242.55 1046.5,-242.55 1046.5,-218.55 1194.5,-218.55 1194.5,-242.55"/>
+<text text-anchor="middle" x="1120.5" y="-228.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1067.92,-242.57C1052.67,-246.55 1036.03,-251.32 1021,-256.55 964.43,-276.25 956.95,-303.13 897.5,-310.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M895.5,-310.55C835.14,-318.08 830.64,-267.73 772,-251.55 700.46,-231.81 615.64,-225.83 556.27,-224.32"/>
+<polygon fill="#000000" stroke="#000000" points="556.31,-220.82 546.23,-224.1 556.15,-227.82 556.31,-220.82"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M895.5,-310.55C794.17,-324.09 678.29,-334.9 595.04,-341.85"/>
+<polygon fill="#000000" stroke="#000000" points="594.72,-338.36 585.05,-342.68 595.3,-345.34 594.72,-338.36"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge48" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1046.27,-242.48C1037.19,-246.02 1028.48,-250.61 1021,-256.55 994.22,-277.81 1007.18,-298.52 985,-324.55 968.46,-343.97 945.24,-361.15 926.88,-373.11"/>
+<polygon fill="#000000" stroke="#000000" points="924.88,-370.24 918.31,-378.55 928.63,-376.15 924.88,-370.24"/>
+</g>
+<!-- sourcefile~mus_variable_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node14" class="node">
+<title>sourcefile~mus_variable_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node14"><a xlink:href="../sourcefile/mus_variable_module.f90.html" xlink:title="mus_variable_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="971.5,-204.55 821.5,-204.55 821.5,-180.55 971.5,-180.55 971.5,-204.55"/>
+<text text-anchor="middle" x="896.5" y="-190.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_variable_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_variable_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge55" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_variable_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1049.26,-218.53C1026.47,-214.63 1001.03,-210.27 977.58,-206.26"/>
+<polygon fill="#000000" stroke="#000000" points="978.11,-202.8 967.67,-204.56 976.93,-209.7 978.11,-202.8"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M829.08,-378.51C770.05,-365.29 683.63,-339.55 621,-293.55 599.51,-277.77 607.53,-259.81 585,-245.55 576.18,-239.97 566.15,-235.83 555.9,-232.77"/>
+<polygon fill="#000000" stroke="#000000" points="556.61,-229.34 546.04,-230.16 554.81,-236.1 556.61,-229.34"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M695.5,-390.55C553.84,-383.99 510.39,-419.68 377,-371.55 338.96,-357.83 302.65,-327.2 281.48,-306.97"/>
+<polygon fill="#000000" stroke="#000000" points="283.73,-304.27 274.14,-299.78 278.84,-309.27 283.73,-304.27"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M879.28,-378.27C847.11,-353.92 777.79,-301.62 772,-298.55 764.77,-294.72 756.87,-291.25 748.99,-288.2"/>
+<polygon fill="#000000" stroke="#000000" points="750.03,-284.86 739.44,-284.68 747.61,-291.43 750.03,-284.86"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M807.74,-392.29C773.34,-392.52 733.56,-392.22 697.5,-390.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M695.5,-390.55C640.75,-388.02 579.34,-375.47 536.49,-365.09"/>
+<polygon fill="#000000" stroke="#000000" points="537.1,-361.64 526.56,-362.64 535.43,-368.43 537.1,-361.64"/>
+</g>
+<!-- sourcefile~mus_source_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_source_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1546.48,-83.36C1513.44,-58.61 1432.8,-4.46 1355,-0.55"/>
+</g>
+<!-- sourcefile~mus_variable_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_variable_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M851.77,-180.46C802.9,-167.53 726.78,-149.28 697.5,-152.55"/>
+</g>
+<!-- sourcefile~mus_variable_module.f90&#45;&gt;sourcefile~mus_bc_var_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~mus_variable_module.f90&#45;&gt;sourcefile~mus_bc_var_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M821.49,-192.55C807.35,-192.55 792.48,-192.55 778.14,-192.55"/>
+<polygon fill="#000000" stroke="#000000" points="777.81,-189.05 767.81,-192.55 777.81,-196.05 777.81,-189.05"/>
+</g>
+<!-- sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node15" class="node">
+<title>sourcefile~mus_config_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node15"><a xlink:href="../sourcefile/mus_config_module.f90.html" xlink:title="mus_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1632.5,-474.55 1493.5,-474.55 1493.5,-450.55 1632.5,-450.55 1632.5,-474.55"/>
+<text text-anchor="middle" x="1563" y="-460.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1493.4,-468.44C1424.97,-470.43 1320.92,-462.34 1256,-404.55 1216,-368.94 1253.14,-331.62 1220,-289.55 1205.2,-270.76 1182.63,-256.62 1162.83,-246.91"/>
+<polygon fill="#000000" stroke="#000000" points="1164.21,-243.69 1153.67,-242.62 1161.25,-250.03 1164.21,-243.69"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge32" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1493.4,-470.2C1452.37,-476.14 1399.69,-486.2 1355,-502.55"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge64" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1526.88,-450.55C1514.55,-446.24 1500.62,-441.28 1488,-436.55 1455.97,-424.55 1419.95,-410.14 1393.48,-399.37"/>
+<polygon fill="#000000" stroke="#000000" points="1394.77,-396.12 1384.18,-395.58 1392.12,-402.6 1394.77,-396.12"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node16" class="node">
+<title>sourcefile~mus_dynloadbal_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node16"><a xlink:href="../sourcefile/mus_dynloadbal_module.f90.html" xlink:title="mus_dynLoadBal_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1843,-220.55 1674,-220.55 1674,-196.55 1843,-196.55 1843,-220.55"/>
+<text text-anchor="middle" x="1758.5" y="-206.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1673.76,-199.77C1639.74,-196.46 1600.02,-192.93 1564,-190.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-190.55C1363.76,-177.48 1309.89,-51.47 1121.5,-114.55"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-190.55C1437.06,-188.6 1292.97,-205.29 1204.56,-217.71"/>
+<polygon fill="#000000" stroke="#000000" points="1203.99,-214.26 1194.59,-219.13 1204.98,-221.19 1203.99,-214.26"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge34" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-190.55C1511.87,-190.2 1501.17,-205.75 1452,-215.55 1428.17,-220.3 1042.65,-278.53 1021,-289.55 1001.11,-299.67 1001.94,-310.03 985,-324.55 964.89,-341.79 940.77,-359.8 922.96,-372.64"/>
+<polygon fill="#000000" stroke="#000000" points="920.86,-369.84 914.76,-378.51 924.93,-375.53 920.86,-369.84"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_source_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge54" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_source_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1731.54,-196.38C1714.87,-188.35 1692.87,-177.35 1674,-166.55 1644.52,-149.69 1611.98,-128.32 1590,-113.46"/>
+<polygon fill="#000000" stroke="#000000" points="1591.78,-110.44 1581.55,-107.71 1587.85,-116.23 1591.78,-110.44"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge65" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1713.78,-220.64C1674.37,-231.78 1614.95,-249.17 1564,-266.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-266.55C1491.29,-290.68 1417.1,-339.17 1379.69,-365.52"/>
+<polygon fill="#000000" stroke="#000000" points="1377.54,-362.75 1371.42,-371.4 1381.6,-368.45 1377.54,-362.75"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge69" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1723.16,-220.57C1707.49,-226.84 1689.11,-235.34 1674,-245.55 1655.51,-258.04 1654.45,-265.47 1638,-280.55 1620.89,-296.24 1600.95,-313.42 1586.09,-326.03"/>
+<polygon fill="#000000" stroke="#000000" points="1583.78,-323.4 1578.4,-332.52 1588.3,-328.74 1583.78,-323.4"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node17" class="node">
+<title>sourcefile~mus_harvesting.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node17"><a xlink:href="../sourcefile/mus_harvesting.f90.html" xlink:title="mus_harvesting.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="2009,-466.55 1892,-466.55 1892,-442.55 2009,-442.55 2009,-466.55"/>
+<text text-anchor="middle" x="1950.5" y="-452.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1933.69,-442.47C1917.13,-428.86 1891.8,-405.15 1879,-378.55 1832.24,-281.35 1913.19,-220.45 1843,-138.55 1780.89,-66.08 1732.36,-88.94 1638,-74.55 1572.09,-64.5 1553.32,-61.23 1488,-74.55 1355.19,-101.64 1210.89,-178.7 1150.56,-213.33"/>
+<polygon fill="#000000" stroke="#000000" points="1148.52,-210.47 1141.62,-218.51 1152.02,-216.53 1148.52,-210.47"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge35" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-620.55C1469.39,-621.44 1447.61,-643.44 1355,-644.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1353,-644.55C1250.12,-645.78 1222.28,-665.25 1121.5,-644.55"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node18" class="node">
+<title>sourcefile~mus_hvs_aux_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node18"><a xlink:href="../sourcefile/mus_hvs_aux_module.f90.html" xlink:title="mus_hvs_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1833,-487.55 1684,-487.55 1684,-463.55 1833,-463.55 1833,-487.55"/>
+<text text-anchor="middle" x="1758.5" y="-473.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge58" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1891.98,-460.91C1876.6,-462.61 1859.67,-464.48 1843.19,-466.3"/>
+<polygon fill="#000000" stroke="#000000" points="1842.56,-462.85 1833.01,-467.43 1843.33,-469.81 1842.56,-462.85"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node19" class="node">
+<title>sourcefile~mus_hvs_config_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node19"><a xlink:href="../sourcefile/mus_hvs_config_module.f90.html" xlink:title="mus_hvs_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1840,-445.55 1677,-445.55 1677,-421.55 1840,-421.55 1840,-445.55"/>
+<text text-anchor="middle" x="1758.5" y="-431.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge59" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1891.98,-448.19C1878.88,-446.75 1864.66,-445.17 1850.54,-443.61"/>
+<polygon fill="#000000" stroke="#000000" points="1850.63,-440.1 1840.31,-442.48 1849.86,-447.06 1850.63,-440.1"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node20" class="node">
+<title>sourcefile~mus_hvs_construction_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node20"><a xlink:href="../sourcefile/mus_hvs_construction_module.f90.html" xlink:title="mus_hvs_construction_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1452,-616.55 1256,-616.55 1256,-592.55 1452,-592.55 1452,-616.55"/>
+<text text-anchor="middle" x="1354" y="-602.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_construction_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge60" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1757.5,-620.55C1674.35,-642.49 1650,-619.73 1564,-620.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1562,-620.55C1529.56,-620.86 1494.34,-618.98 1462.31,-616.4"/>
+<polygon fill="#000000" stroke="#000000" points="1462.28,-612.89 1452.03,-615.54 1461.7,-619.86 1462.28,-612.89"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge62" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_restart_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1941.59,-466.92C1918.64,-501.33 1848.02,-597.19 1759.5,-620.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1757.5,-620.55C1692.93,-637.59 1621,-589.63 1585.8,-561.45"/>
+<polygon fill="#000000" stroke="#000000" points="1587.62,-558.42 1577.67,-554.77 1583.17,-563.82 1587.62,-558.42"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge36" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1746.43,-487.68C1726.89,-508.06 1684.02,-548.44 1638,-563.55 1574.66,-584.36 1553.13,-577.78 1488,-563.55 1424.47,-549.68 1415.98,-479.95 1355,-502.55"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge66" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1706.05,-463.47C1695.4,-460.73 1684.29,-457.7 1674,-454.55 1657.73,-449.58 1654.38,-446.16 1638,-441.55 1568.55,-422 1487.78,-406.11 1430.35,-395.94"/>
+<polygon fill="#000000" stroke="#000000" points="1430.72,-392.45 1420.27,-394.17 1429.51,-399.34 1430.72,-392.45"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge70" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1691.47,-463.41C1685.32,-460.97 1679.39,-458.06 1674,-454.55 1652.24,-440.4 1655.9,-427.35 1638,-408.55 1622.29,-392.05 1602.72,-375.27 1587.65,-363.03"/>
+<polygon fill="#000000" stroke="#000000" points="1589.79,-360.26 1579.8,-356.73 1585.41,-365.72 1589.79,-360.26"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1748.21,-421.24C1729.91,-397.99 1686.74,-347.77 1638,-323.55 1563.22,-286.4 1330.76,-254.78 1204.74,-239.81"/>
+<polygon fill="#000000" stroke="#000000" points="1205.08,-236.32 1194.74,-238.63 1204.26,-243.27 1205.08,-236.32"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge37" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1696.63,-445.56C1688.82,-448.05 1681.09,-451.02 1674,-454.55 1655.61,-463.71 1657.14,-476.07 1638,-483.55 1520.59,-529.44 1473.39,-459.24 1355,-502.55"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge56" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1677.4,-445.56C1665.9,-447.28 1654.08,-449.05 1642.61,-450.77"/>
+<polygon fill="#000000" stroke="#000000" points="1642.01,-447.32 1632.64,-452.27 1643.04,-454.24 1642.01,-447.32"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge38" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1307.17,-616.55C1250.17,-630.77 1156.16,-651.67 1121.5,-644.55"/>
+</g>
+<!-- sourcefile~mus_initfluid_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node21" class="node">
+<title>sourcefile~mus_initfluid_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node21"><a xlink:href="../sourcefile/mus_initfluid_module.f90.html" xlink:title="mus_initFluid_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1194.5,-616.55 1046.5,-616.55 1046.5,-592.55 1194.5,-592.55 1194.5,-616.55"/>
+<text text-anchor="middle" x="1120.5" y="-602.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluid_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initfluid_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge39" class="edge">
+<title>sourcefile~mus_initfluid_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1046.29,-595.83C1037.3,-592.82 1028.62,-588.83 1021,-583.55 958.13,-540 920.03,-453 904.96,-412.39"/>
+<polygon fill="#000000" stroke="#000000" points="908.23,-411.12 901.55,-402.89 901.64,-413.49 908.23,-411.12"/>
+</g>
+<!-- sourcefile~mus_initfluidincomp_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node22" class="node">
+<title>sourcefile~mus_initfluidincomp_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node22"><a xlink:href="../sourcefile/mus_initfluidincomp_module.f90.html" xlink:title="mus_initFluidIncomp_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1214.5,-574.55 1026.5,-574.55 1026.5,-550.55 1214.5,-550.55 1214.5,-574.55"/>
+<text text-anchor="middle" x="1120.5" y="-560.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluidIncomp_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initfluidincomp_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge40" class="edge">
+<title>sourcefile~mus_initfluidincomp_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1039.71,-550.52C1033.16,-548.06 1026.82,-545.1 1021,-541.55 967.58,-508.97 926.94,-444.76 908.46,-411.55"/>
+<polygon fill="#000000" stroke="#000000" points="911.49,-409.8 903.64,-402.69 905.34,-413.14 911.49,-409.8"/>
+</g>
+<!-- sourcefile~mus_initisothermaceq_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node23" class="node">
+<title>sourcefile~mus_initisothermaceq_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node23"><a xlink:href="../sourcefile/mus_initisothermaceq_module.f90.html" xlink:title="mus_initIsothermAcEq_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1218.5,-532.55 1022.5,-532.55 1022.5,-508.55 1218.5,-508.55 1218.5,-532.55"/>
+<text text-anchor="middle" x="1120.5" y="-518.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initIsothermAcEq_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initisothermaceq_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge41" class="edge">
+<title>sourcefile~mus_initisothermaceq_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1043.38,-508.48C1035.63,-506.03 1028.03,-503.09 1021,-499.55 976.71,-477.25 935.76,-435.15 913.94,-410.31"/>
+<polygon fill="#000000" stroke="#000000" points="916.48,-407.89 907.3,-402.6 911.18,-412.46 916.48,-407.89"/>
+</g>
+<!-- sourcefile~mus_initlbmps_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node24" class="node">
+<title>sourcefile~mus_initlbmps_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node24"><a xlink:href="../sourcefile/mus_initlbmps_module.f90.html" xlink:title="mus_initLBMPS_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1199.5,-490.55 1041.5,-490.55 1041.5,-466.55 1199.5,-466.55 1199.5,-490.55"/>
+<text text-anchor="middle" x="1120.5" y="-476.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initLBMPS_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initlbmps_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge42" class="edge">
+<title>sourcefile~mus_initlbmps_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1050.69,-466.53C1040.6,-464.01 1030.43,-461.03 1021,-457.55 986.1,-444.67 948.95,-423.36 924.62,-408.23"/>
+<polygon fill="#000000" stroke="#000000" points="926.28,-405.14 915.95,-402.77 922.54,-411.06 926.28,-405.14"/>
+</g>
+<!-- sourcefile~mus_initmultispecies_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node25" class="node">
+<title>sourcefile~mus_initmultispecies_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node25"><a xlink:href="../sourcefile/mus_initmultispecies_module.f90.html" xlink:title="mus_initMultispecies_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1214.5,-448.55 1026.5,-448.55 1026.5,-424.55 1214.5,-424.55 1214.5,-448.55"/>
+<text text-anchor="middle" x="1120.5" y="-434.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initMultispecies_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initmultispecies_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge43" class="edge">
+<title>sourcefile~mus_initmultispecies_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.46,-424.53C1032.14,-418.45 996.39,-411.04 965.76,-404.7"/>
+<polygon fill="#000000" stroke="#000000" points="966.09,-401.19 955.58,-402.59 964.67,-408.04 966.09,-401.19"/>
+</g>
+<!-- sourcefile~mus_initnernstplanck_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node26" class="node">
+<title>sourcefile~mus_initnernstplanck_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node26"><a xlink:href="../sourcefile/mus_initnernstplanck_module.f90.html" xlink:title="mus_initNernstPlanck_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1216.5,-406.55 1024.5,-406.55 1024.5,-382.55 1216.5,-382.55 1216.5,-406.55"/>
+<text text-anchor="middle" x="1120.5" y="-392.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initNernstPlanck_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initnernstplanck_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge44" class="edge">
+<title>sourcefile~mus_initnernstplanck_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1024.39,-392.84C1014.69,-392.66 1004.83,-392.49 995.11,-392.31"/>
+<polygon fill="#000000" stroke="#000000" points="995.1,-388.81 985.04,-392.13 994.98,-395.81 995.1,-388.81"/>
+</g>
+<!-- sourcefile~mus_initpoisson_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node27" class="node">
+<title>sourcefile~mus_initpoisson_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node27"><a xlink:href="../sourcefile/mus_initpoisson_module.f90.html" xlink:title="mus_initPoisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1202,-364.55 1039,-364.55 1039,-340.55 1202,-340.55 1202,-364.55"/>
+<text text-anchor="middle" x="1120.5" y="-350.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initPoisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initpoisson_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge45" class="edge">
+<title>sourcefile~mus_initpoisson_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1049.26,-364.57C1026.47,-368.48 1001.03,-372.83 977.58,-376.84"/>
+<polygon fill="#000000" stroke="#000000" points="976.93,-373.4 967.67,-378.54 978.11,-380.3 976.93,-373.4"/>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node28" class="node">
+<title>sourcefile~mus_mesh_adaptation_module.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node28"><a xlink:href="../sourcefile/mus_mesh_adaptation_module.f90.html" xlink:title="mus_mesh_adaptation_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1220,-322.55 1021,-322.55 1021,-298.55 1220,-298.55 1220,-322.55"/>
+<text text-anchor="middle" x="1120.5" y="-308.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mesh_adaptation_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge46" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1052.69,-322.56C1041.98,-325.13 1031.1,-328.12 1021,-331.55 987.89,-342.81 952.02,-360.63 927.52,-373.74"/>
+<polygon fill="#000000" stroke="#000000" points="925.84,-370.67 918.71,-378.51 929.17,-376.83 925.84,-370.67"/>
+</g>
+<!-- sourcefile~mus_restart_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge47" class="edge">
+<title>sourcefile~mus_restart_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1524.15,-530.43C1473.22,-514.94 1385.51,-491.39 1355,-502.55"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1336.48,-371.27C1311.61,-352.91 1262.88,-317.49 1220,-289.55 1197.51,-274.9 1171.42,-259.33 1151.75,-247.87"/>
+<polygon fill="#000000" stroke="#000000" points="1153.33,-244.74 1142.92,-242.76 1149.82,-250.8 1153.33,-244.74"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge49" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1337.75,-395.76C1316.27,-413.78 1277.35,-449.6 1256,-488.55 1225.74,-543.76 1265.97,-582.54 1220,-625.55 1187.44,-656.01 1165.17,-653.52 1121.5,-644.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1119.5,-644.55C1075.83,-635.58 1056.79,-652.13 1021,-625.55 947.54,-571 913.74,-459.72 902.27,-412.51"/>
+<polygon fill="#000000" stroke="#000000" points="905.66,-411.65 899.99,-402.7 898.85,-413.24 905.66,-411.65"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge50" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1517.48,-356.6C1507.39,-360.3 1497,-364.91 1488,-370.55 1452.71,-392.66 1394.11,-488.24 1355,-502.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1353,-502.55C1300.25,-521.85 1295.97,-544.09 1256,-583.55 1238.5,-600.82 1241.26,-613.2 1220,-625.55 1181.45,-647.95 1165.17,-653.52 1121.5,-644.55"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge67" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1498.2,-356.57C1476.27,-360.7 1451.52,-365.37 1428.85,-369.64"/>
+<polygon fill="#000000" stroke="#000000" points="1428.12,-366.21 1418.94,-371.5 1429.42,-373.09 1428.12,-366.21"/>
+</g>
+<!-- sourcefile~musubi.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_node32" class="node">
+<title>sourcefile~musubi.f90</title>
+<g id="a_sourcefile~~mus_species_module.f90~~AfferentGraph_node32"><a xlink:href="../sourcefile/musubi.f90.html" xlink:title="musubi.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="2130,-376.55 2058,-376.55 2058,-352.55 2130,-352.55 2130,-376.55"/>
+<text text-anchor="middle" x="2094" y="-362.15" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2057.96,-366.97C2029.23,-368.37 1987.57,-369.08 1951.5,-364.55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1949.5,-364.55C1883.24,-356.23 1816.27,-311.2 1782.31,-285.17"/>
+<polygon fill="#000000" stroke="#000000" points="1784.06,-282.09 1774.02,-278.68 1779.74,-287.6 1784.06,-282.09"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2081.9,-352.39C2057.51,-325.68 1999.1,-261.69 1969.43,-229.2"/>
+<polygon fill="#000000" stroke="#000000" points="1971.88,-226.68 1962.55,-221.66 1966.71,-231.4 1971.88,-226.68"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge51" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2087.01,-376.64C2063.61,-422.21 1973.26,-583.52 1843,-634.55 1641.01,-713.68 1571.92,-641.96 1355,-644.55"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_species_module.f90~~AfferentGraph_edge57" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1949.5,-364.55C1815.3,-347.7 1660.79,-414 1595.6,-446.08"/>
+<polygon fill="#000000" stroke="#000000" points="1594.03,-442.95 1586.65,-450.55 1597.16,-449.22 1594.03,-442.95"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_species_modulef90AfferentGraph = svgPanZoom('#sourcefilemus_species_modulef90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">! Copyright (c) 2012-2016, 2018, 2020 Kannan Masilamani &lt;kannan.masilamani@uni-siegen.de&gt;</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">! Copyright (c) 2012-2014 Simon Zimny &lt;s.zimny@grs-sim.de&gt;</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">! Copyright (c) 2012-2013 Harald Klimach &lt;harald.klimach@uni-siegen.de&gt;</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="c">! Copyright (c) 2012-2013 Manuel Hasert &lt;m.hasert@grs-sim.de&gt;</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="c">! Copyright (c) 2015-2016 Jiaxing Qi &lt;jiaxing.qi@uni-siegen.de&gt;</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="c">! Copyright (c) 2016 Tobias Schneider &lt;tobias1.schneider@student.uni-siegen.de&gt;</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="c">! Copyright (c) 2019 Seyfettin Bilgi &lt;seyfettin.bilgi@student.uni-siegen.de&gt;</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="c">!</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="c">! Redistribution and use in source and binary forms, with or without</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="c">! modification, are permitted provided that the following conditions are met:</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="c">!</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="c">! 1. Redistributions of source code must retain the above copyright notice,</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="c">! this list of conditions and the following disclaimer.</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="c">!</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="c">! 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="c">! this list of conditions and the following disclaimer in the documentation</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="c">! and/or other materials provided with the distribution.</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="c">!</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="c">! THIS SOFTWARE IS PROVIDED BY THE UNIVERSITY OF SIEGEN “AS IS” AND ANY EXPRESS</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="c">! OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="c">! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="c">! IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="c">! DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">! (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">! LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="c">! ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">! (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="c">!&gt; author: Kannan Masilmani</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="c">!! This module contains mus_species_type and routines to load species table</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="c">!! from config file.</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="c">!!</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="k">module </span><span class="n">mus_species_module</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">  </span><span class="c">! include treelm modules</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">  </span><span class="k">use </span><span class="n">env_module</span><span class="p">,</span><span class="w">         </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">rk</span><span class="p">,</span><span class="w"> </span><span class="n">globalMaxLevels</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_aux_module</span><span class="p">,</span><span class="w">     </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_abort</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_tools_module</span><span class="p">,</span><span class="w">   </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_horizontalSpacer</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_param_module</span><span class="p">,</span><span class="w">   </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">cs2</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_logging_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">logUnit</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="w">  </span><span class="c">! include aotus modules</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">  </span><span class="k">use </span><span class="n">aotus_module</span><span class="p">,</span><span class="w">     </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">flu_State</span><span class="p">,</span><span class="w"> </span><span class="n">aot_get_val</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_NonExistent</span><span class="p">,</span><span class="w">      </span><span class="p">&amp;</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                         </span><span class="n">aoterr_Fatal</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_WrongType</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">  </span><span class="k">use </span><span class="n">aot_table_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">aot_table_open</span><span class="p">,</span><span class="w"> </span><span class="n">aot_table_close</span><span class="p">,</span><span class="w"> </span><span class="n">aot_table_length</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="w">  </span><span class="k">use </span><span class="n">aot_out_module</span><span class="p">,</span><span class="w">   </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">aot_out_type</span><span class="p">,</span><span class="w"> </span><span class="n">aot_out_val</span><span class="p">,</span><span class="w"> </span><span class="n">aot_out_open_table</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                         </span><span class="n">aot_out_close_table</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">  </span><span class="c">! include musubi modules</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_physics_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_physics_type</span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="w">  </span><span class="k">implicit none</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="k">  private</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="k">  public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_species_type</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_load_species</span><span class="p">,</span><span class="w"> </span><span class="n">compute_molWeightRatio</span><span class="p">,</span><span class="w"> </span><span class="n">compute_bulkViscOmega</span>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_species_out</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="w">  </span><span class="c">!&gt; MRT species type</span>
+<a id="ln-62" name="ln-62" href="#ln-62"></a><span class="w">  </span><span class="k">type </span><span class="n">mrt_species_type</span>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="w">    </span><span class="c">!&gt; relaxation matrix for mrt</span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="w">    </span><span class="c">!! size of this matrix is (layout%QQ, layout%QQ)</span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s_mrt</span><span class="p">(:,:)</span>
+<a id="ln-66" name="ln-66" href="#ln-66"></a><span class="w">    </span><span class="c">!&gt; transformed relaxation matrix-moments factor</span>
+<a id="ln-67" name="ln-67" href="#ln-67"></a><span class="w">    </span><span class="c">!! omegaMoments = (Moments^-1.s_mrt.Moments)</span>
+<a id="ln-68" name="ln-68" href="#ln-68"></a><span class="w">    </span><span class="c">!!               .(I+(Moments^-1.s_mrt.Moments)/2.0)^-1</span>
+<a id="ln-69" name="ln-69" href="#ln-69"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omegaMoments</span><span class="p">(:,:)</span>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">    </span><span class="c">!&gt; Omega factor for 2nd order force term</span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a><span class="w">    </span><span class="c">!! omegaMomForce = (I+(Moments^-1.s_mrt.Moments)/2.0)^-1</span>
+<a id="ln-72" name="ln-72" href="#ln-72"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omegaMomForce</span><span class="p">(:,:)</span>
+<a id="ln-73" name="ln-73" href="#ln-73"></a><span class="w">  </span><span class="k">end type </span><span class="n">mrt_species_type</span>
+<a id="ln-74" name="ln-74" href="#ln-74"></a>
+<a id="ln-75" name="ln-75" href="#ln-75"></a><span class="w">  </span><span class="c">!&gt; this type contains species parameters</span>
+<a id="ln-76" name="ln-76" href="#ln-76"></a><span class="w">  </span><span class="c">!! @todo KM: extent level dependent parameter for multilevel</span>
+<a id="ln-77" name="ln-77" href="#ln-77"></a><span class="w">  </span><span class="k">type </span><span class="n">mus_species_type</span>
+<a id="ln-78" name="ln-78" href="#ln-78"></a><span class="w">    </span><span class="c">!&gt; molecular weight of the species</span>
+<a id="ln-79" name="ln-79" href="#ln-79"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">molWeight</span>
+<a id="ln-80" name="ln-80" href="#ln-80"></a><span class="w">    </span><span class="c">!&gt; Inverse of molecular weight of the species.</span>
+<a id="ln-81" name="ln-81" href="#ln-81"></a><span class="w">    </span><span class="c">!! This parameter is required to convert mass density to mole density</span>
+<a id="ln-82" name="ln-82" href="#ln-82"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">molWeightInv</span>
+<a id="ln-83" name="ln-83" href="#ln-83"></a><span class="w">    </span><span class="c">!&gt; ratio of molecular weight  \f$ \phi_\sigma = min(M)/M_\sigma i \f$</span>
+<a id="ln-84" name="ln-84" href="#ln-84"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">molWeigRatio</span>
+<a id="ln-85" name="ln-85" href="#ln-85"></a><span class="w">    </span><span class="c">!&gt; coefficient of diffusivity  of the species (size of nspecies)</span>
+<a id="ln-86" name="ln-86" href="#ln-86"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">diff_coeff</span><span class="p">(:)</span>
+<a id="ln-87" name="ln-87" href="#ln-87"></a><span class="w">    </span><span class="c">!&gt; coefficient of resisivity of species which is</span>
+<a id="ln-88" name="ln-88" href="#ln-88"></a><span class="w">    </span><span class="c">!! reciprocal of diffusivity of the species</span>
+<a id="ln-89" name="ln-89" href="#ln-89"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">resi_coeff</span><span class="p">(:)</span>
+<a id="ln-90" name="ln-90" href="#ln-90"></a><span class="w">    </span><span class="c">!! KM:@todo set diffusivity and resistivity for multilevel</span>
+<a id="ln-91" name="ln-91" href="#ln-91"></a><span class="w">    </span><span class="c">!&gt; molar fraction of this species in the mixture</span>
+<a id="ln-92" name="ln-92" href="#ln-92"></a><span class="c">!    real(kind=rk) :: molarFrac</span>
+<a id="ln-93" name="ln-93" href="#ln-93"></a><span class="w">    </span><span class="c">!&gt; Volume fraction of is species in the mixture</span>
+<a id="ln-94" name="ln-94" href="#ln-94"></a><span class="c">!    real(kind=rk) :: volFrac</span>
+<a id="ln-95" name="ln-95" href="#ln-95"></a><span class="w">    </span><span class="c">!&gt; mrt relaxation for each level</span>
+<a id="ln-96" name="ln-96" href="#ln-96"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mrt_species_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mrt</span><span class="p">(</span><span class="n">globalMaxLevels</span><span class="p">)</span>
+<a id="ln-97" name="ln-97" href="#ln-97"></a><span class="w">    </span><span class="c">!&gt; bulk relaxation parameter</span>
+<a id="ln-98" name="ln-98" href="#ln-98"></a><span class="w">    </span><span class="c">!! omBulk_k = (2-phi_k)/3*bulkViscosity</span>
+<a id="ln-99" name="ln-99" href="#ln-99"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omBulk</span>
+<a id="ln-100" name="ln-100" href="#ln-100"></a><span class="w">    </span><span class="c">!&gt; bulk relaxation parameter for each level</span>
+<a id="ln-101" name="ln-101" href="#ln-101"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ombulkLvl</span><span class="p">(</span><span class="n">globalMaxLevels</span><span class="p">)</span>
+<a id="ln-102" name="ln-102" href="#ln-102"></a><span class="w">    </span><span class="c">!&gt; relaxation parameter for Nernst-Planck equation</span>
+<a id="ln-103" name="ln-103" href="#ln-103"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omega</span>
+<a id="ln-104" name="ln-104" href="#ln-104"></a><span class="w">    </span><span class="c">!&gt; relaxation parameter for trt scheme</span>
+<a id="ln-105" name="ln-105" href="#ln-105"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lambda</span>
+<a id="ln-106" name="ln-106" href="#ln-106"></a><span class="w">    </span><span class="c">!&gt; charge number of the species</span>
+<a id="ln-107" name="ln-107" href="#ln-107"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">chargeNr</span>
+<a id="ln-108" name="ln-108" href="#ln-108"></a><span class="w">  </span><span class="k">end type </span><span class="n">mus_species_type</span>
+<a id="ln-109" name="ln-109" href="#ln-109"></a>
+<a id="ln-110" name="ln-110" href="#ln-110"></a>
+<a id="ln-111" name="ln-111" href="#ln-111"></a><span class="k">contains</span>
+<a id="ln-112" name="ln-112" href="#ln-112"></a>
+<a id="ln-113" name="ln-113" href="#ln-113"></a>
+<a id="ln-114" name="ln-114" href="#ln-114"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-115" name="ln-115" href="#ln-115"></a><span class="w">  </span><span class="c">!&gt; this routines load species table from config file</span>
+<a id="ln-116" name="ln-116" href="#ln-116"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-117" name="ln-117" href="#ln-117"></a><span class="w">  </span><span class="c">!!```</span>
+<a id="ln-118" name="ln-118" href="#ln-118"></a><span class="w">  </span><span class="c">!! species = { molweight = 1.0, diff_coeff = { 0.5,0.3,0.1 } }</span>
+<a id="ln-119" name="ln-119" href="#ln-119"></a><span class="w">  </span><span class="c">!!```</span>
+<a id="ln-120" name="ln-120" href="#ln-120"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_load_species</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="n">minLevel</span><span class="p">,</span><span class="w"> </span><span class="n">nFields</span><span class="p">,</span><span class="w"> </span><span class="n">physics</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-121" name="ln-121" href="#ln-121"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                          </span><span class="n">cs_lattice</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-122" name="ln-122" href="#ln-122"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-123" name="ln-123" href="#ln-123"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_species_type</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span><span class="w"> </span><span class="c">!&lt; contains species information</span>
+<a id="ln-124" name="ln-124" href="#ln-124"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">flu_State</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">conf</span><span class="w"> </span><span class="c">!&lt; flu state</span>
+<a id="ln-125" name="ln-125" href="#ln-125"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="c">!&lt; parent lua handle</span>
+<a id="ln-126" name="ln-126" href="#ln-126"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">minLevel</span>
+<a id="ln-127" name="ln-127" href="#ln-127"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nFields</span><span class="w"> </span><span class="c">!&lt; number of fields defined in lua file</span>
+<a id="ln-128" name="ln-128" href="#ln-128"></a><span class="w">    </span><span class="c">!&gt; physics type to convert physics to lattice unit or vice versa</span>
+<a id="ln-129" name="ln-129" href="#ln-129"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_physics_type</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">physics</span>
+<a id="ln-130" name="ln-130" href="#ln-130"></a><span class="w">    </span><span class="c">!&gt; lattice speed of sound calculated for defined stencil layout</span>
+<a id="ln-131" name="ln-131" href="#ln-131"></a><span class="w">    </span><span class="c">!! required to compute omega from potential diffusivity</span>
+<a id="ln-132" name="ln-132" href="#ln-132"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cs_lattice</span>
+<a id="ln-133" name="ln-133" href="#ln-133"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-134" name="ln-134" href="#ln-134"></a><span class="w">    </span><span class="c">!local variables</span>
+<a id="ln-135" name="ln-135" href="#ln-135"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w"> </span><span class="n">sub_handle</span>
+<a id="ln-136" name="ln-136" href="#ln-136"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iError</span>
+<a id="ln-137" name="ln-137" href="#ln-137"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vError</span><span class="p">(:),</span><span class="w"> </span><span class="n">errFatal</span><span class="p">(:)</span>
+<a id="ln-138" name="ln-138" href="#ln-138"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nCoeff</span>
+<a id="ln-139" name="ln-139" href="#ln-139"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-140" name="ln-140" href="#ln-140"></a>
+<a id="ln-141" name="ln-141" href="#ln-141"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_table_open</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                             </span><span class="p">&amp;</span>
+<a id="ln-142" name="ln-142" href="#ln-142"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                  </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">,</span><span class="w">                                      </span><span class="p">&amp;</span>
+<a id="ln-143" name="ln-143" href="#ln-143"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                  </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w">                                 </span><span class="p">&amp;</span>
+<a id="ln-144" name="ln-144" href="#ln-144"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                  </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;species&#39;</span><span class="p">)</span>
+<a id="ln-145" name="ln-145" href="#ln-145"></a><span class="w">    </span><span class="c">!&gt; if species handle is not defined</span>
+<a id="ln-146" name="ln-146" href="#ln-146"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">spc_handle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-147" name="ln-147" href="#ln-147"></a><span class="k">      write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39; No species table defined&#39;</span>
+<a id="ln-148" name="ln-148" href="#ln-148"></a><span class="w">      </span><span class="k">call </span><span class="n">tem_abort</span><span class="p">()</span>
+<a id="ln-149" name="ln-149" href="#ln-149"></a><span class="w">    </span><span class="k">endif</span>
+<a id="ln-150" name="ln-150" href="#ln-150"></a>
+<a id="ln-151" name="ln-151" href="#ln-151"></a><span class="k">    call </span><span class="n">tem_horizontalSpacer</span><span class="p">(</span><span class="n">fUnit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="ln-152" name="ln-152" href="#ln-152"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39; Loading species information&#39;</span>
+<a id="ln-153" name="ln-153" href="#ln-153"></a>
+<a id="ln-154" name="ln-154" href="#ln-154"></a><span class="w">    </span><span class="c">!get molecular weight</span>
+<a id="ln-155" name="ln-155" href="#ln-155"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                          </span><span class="p">&amp;</span>
+<a id="ln-156" name="ln-156" href="#ln-156"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w">                                    </span><span class="p">&amp;</span>
+<a id="ln-157" name="ln-157" href="#ln-157"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;molweight&#39;</span><span class="p">,</span><span class="w">                                   </span><span class="p">&amp;</span>
+<a id="ln-158" name="ln-158" href="#ln-158"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">molWeight</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-159" name="ln-159" href="#ln-159"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iError</span><span class="p">,</span><span class="w">                                        </span><span class="p">&amp;</span>
+<a id="ln-160" name="ln-160" href="#ln-160"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_rk</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-161" name="ln-161" href="#ln-161"></a><span class="w">    </span><span class="n">me</span><span class="p">%</span><span class="n">molWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">molWeight</span><span class="o">/</span><span class="n">physics</span><span class="p">%</span><span class="n">molWeight0</span>
+<a id="ln-162" name="ln-162" href="#ln-162"></a><span class="w">    </span><span class="n">me</span><span class="p">%</span><span class="n">molWeightInv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_rk</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">molWeight</span>
+<a id="ln-163" name="ln-163" href="#ln-163"></a>
+<a id="ln-164" name="ln-164" href="#ln-164"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_Fatal</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-165" name="ln-165" href="#ln-165"></a><span class="k">      write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;FATAL Error occured, while retrieving molecular &#39;</span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-166" name="ln-166" href="#ln-166"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">             </span><span class="s1">&#39;weight of species :&#39;</span>
+<a id="ln-167" name="ln-167" href="#ln-167"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">btest</span><span class="p">(</span><span class="w"> </span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aotErr_NonExistent</span><span class="w"> </span><span class="p">))</span><span class="w">                                </span><span class="p">&amp;</span>
+<a id="ln-168" name="ln-168" href="#ln-168"></a><span class="w">        </span><span class="p">&amp;</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Variable not existent!&#39;</span>
+<a id="ln-169" name="ln-169" href="#ln-169"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_WrongType</span><span class="p">))</span><span class="w">                                     </span><span class="p">&amp;</span>
+<a id="ln-170" name="ln-170" href="#ln-170"></a><span class="w">        </span><span class="p">&amp;</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Variable has wrong type!&#39;</span>
+<a id="ln-171" name="ln-171" href="#ln-171"></a><span class="w">    </span><span class="k">end if</span>
+<a id="ln-172" name="ln-172" href="#ln-172"></a>
+<a id="ln-173" name="ln-173" href="#ln-173"></a><span class="w">    </span><span class="c">!get trt relaxation parameter</span>
+<a id="ln-174" name="ln-174" href="#ln-174"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                          </span><span class="p">&amp;</span>
+<a id="ln-175" name="ln-175" href="#ln-175"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w">                                    </span><span class="p">&amp;</span>
+<a id="ln-176" name="ln-176" href="#ln-176"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lambda&#39;</span><span class="p">,</span><span class="w">                                      </span><span class="p">&amp;</span>
+<a id="ln-177" name="ln-177" href="#ln-177"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">lambda</span><span class="p">,</span><span class="w">                                     </span><span class="p">&amp;</span>
+<a id="ln-178" name="ln-178" href="#ln-178"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iError</span><span class="p">,</span><span class="w">                                        </span><span class="p">&amp;</span>
+<a id="ln-179" name="ln-179" href="#ln-179"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25_rk</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-180" name="ln-180" href="#ln-180"></a>
+<a id="ln-181" name="ln-181" href="#ln-181"></a><span class="w">    </span><span class="c">!get specific charge</span>
+<a id="ln-182" name="ln-182" href="#ln-182"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;charge_nr&#39;</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span>
+<a id="ln-183" name="ln-183" href="#ln-183"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">chargeNr</span><span class="p">,</span><span class="w"> </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iError</span><span class="p">,</span><span class="w">                     </span><span class="p">&amp;</span>
+<a id="ln-184" name="ln-184" href="#ln-184"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-185" name="ln-185" href="#ln-185"></a>
+<a id="ln-186" name="ln-186" href="#ln-186"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_Fatal</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-187" name="ln-187" href="#ln-187"></a><span class="k">      write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;FATAL Error occured, while retrieving charge_nr &#39;</span><span class="o">//</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-188" name="ln-188" href="#ln-188"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">             </span><span class="s1">&#39;of species :&#39;</span>
+<a id="ln-189" name="ln-189" href="#ln-189"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">btest</span><span class="p">(</span><span class="w"> </span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aotErr_NonExistent</span><span class="w"> </span><span class="p">))</span><span class="w">                                </span><span class="p">&amp;</span>
+<a id="ln-190" name="ln-190" href="#ln-190"></a><span class="w">        </span><span class="p">&amp;</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Variable not existent!&#39;</span>
+<a id="ln-191" name="ln-191" href="#ln-191"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_WrongType</span><span class="p">))</span><span class="w">                                     </span><span class="p">&amp;</span>
+<a id="ln-192" name="ln-192" href="#ln-192"></a><span class="w">        </span><span class="p">&amp;</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Variable has wrong type!&#39;</span>
+<a id="ln-193" name="ln-193" href="#ln-193"></a><span class="w">    </span><span class="k">end if</span>
+<a id="ln-194" name="ln-194" href="#ln-194"></a>
+<a id="ln-195" name="ln-195" href="#ln-195"></a><span class="w">    </span><span class="c">!get diffusivities</span>
+<a id="ln-196" name="ln-196" href="#ln-196"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_table_open</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                             </span><span class="p">&amp;</span>
+<a id="ln-197" name="ln-197" href="#ln-197"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                  </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-198" name="ln-198" href="#ln-198"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                  </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_handle</span><span class="p">,</span><span class="w">                                 </span><span class="p">&amp;</span>
+<a id="ln-199" name="ln-199" href="#ln-199"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                  </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;diff_coeff&#39;</span><span class="p">)</span>
+<a id="ln-200" name="ln-200" href="#ln-200"></a>
+<a id="ln-201" name="ln-201" href="#ln-201"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">sub_handle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-202" name="ln-202" href="#ln-202"></a><span class="k">      </span><span class="n">nCoeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<a id="ln-203" name="ln-203" href="#ln-203"></a><span class="w">      </span><span class="c">!check whether resistivity table is defined</span>
+<a id="ln-204" name="ln-204" href="#ln-204"></a><span class="w">      </span><span class="k">call </span><span class="n">aot_table_open</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_handle</span><span class="p">,&amp;</span>
+<a id="ln-205" name="ln-205" href="#ln-205"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                 </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;resi_coeff&#39;</span><span class="p">)</span>
+<a id="ln-206" name="ln-206" href="#ln-206"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">sub_handle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-207" name="ln-207" href="#ln-207"></a><span class="w">        </span><span class="c">! coefficients are not defined as a table. try to load single constant</span>
+<a id="ln-208" name="ln-208" href="#ln-208"></a><span class="w">        </span><span class="c">! value</span>
+<a id="ln-209" name="ln-209" href="#ln-209"></a><span class="w">        </span><span class="k">allocate</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="p">(</span><span class="n">nCoeff</span><span class="p">))</span>
+<a id="ln-210" name="ln-210" href="#ln-210"></a><span class="w">        </span><span class="k">allocate</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="p">(</span><span class="n">nCoeff</span><span class="p">))</span>
+<a id="ln-211" name="ln-211" href="#ln-211"></a><span class="w">        </span><span class="c">! diff_coeff may be single constant value</span>
+<a id="ln-212" name="ln-212" href="#ln-212"></a><span class="w">        </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;diff_coeff&#39;</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-213" name="ln-213" href="#ln-213"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">              </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iError</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-214" name="ln-214" href="#ln-214"></a>
+<a id="ln-215" name="ln-215" href="#ln-215"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_Fatal</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-216" name="ln-216" href="#ln-216"></a><span class="w">          </span><span class="c">! check whether resi_coeff is defined</span>
+<a id="ln-217" name="ln-217" href="#ln-217"></a><span class="w">          </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;resi_coeff&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-218" name="ln-218" href="#ln-218"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">              </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iError</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-219" name="ln-219" href="#ln-219"></a><span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_Fatal</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-220" name="ln-220" href="#ln-220"></a><span class="k">            write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;FATAL Error occured, while retrieving &#39;</span><span class="o">//</span><span class="w">     </span><span class="p">&amp;</span>
+<a id="ln-221" name="ln-221" href="#ln-221"></a><span class="w">              </span><span class="p">&amp;</span><span class="w">             </span><span class="s1">&#39;diff_coeff/resi_coeff of species :&#39;</span>
+<a id="ln-222" name="ln-222" href="#ln-222"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">btest</span><span class="p">(</span><span class="w"> </span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aotErr_NonExistent</span><span class="w"> </span><span class="p">))</span><span class="w">                          </span><span class="p">&amp;</span>
+<a id="ln-223" name="ln-223" href="#ln-223"></a><span class="w">              </span><span class="p">&amp;</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Variable not existent!&#39;</span>
+<a id="ln-224" name="ln-224" href="#ln-224"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">iError</span><span class="p">,</span><span class="w"> </span><span class="n">aoterr_WrongType</span><span class="p">))</span><span class="w">                               </span><span class="p">&amp;</span>
+<a id="ln-225" name="ln-225" href="#ln-225"></a><span class="w">              </span><span class="p">&amp;</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Variable has wrong type!&#39;</span>
+<a id="ln-226" name="ln-226" href="#ln-226"></a><span class="w">            </span><span class="k">call </span><span class="n">tem_abort</span><span class="p">()</span>
+<a id="ln-227" name="ln-227" href="#ln-227"></a><span class="w">          </span><span class="k">endif</span>
+<a id="ln-228" name="ln-228" href="#ln-228"></a><span class="k">          </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1._rk</span><span class="o">/</span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span>
+<a id="ln-229" name="ln-229" href="#ln-229"></a><span class="w">        </span><span class="k">endif</span>
+<a id="ln-230" name="ln-230" href="#ln-230"></a><span class="k">        </span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1._rk</span><span class="o">/</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span>
+<a id="ln-231" name="ln-231" href="#ln-231"></a><span class="w">      </span><span class="k">else</span>
+<a id="ln-232" name="ln-232" href="#ln-232"></a><span class="w">        </span><span class="c">! resisivity coeff is defined as table</span>
+<a id="ln-233" name="ln-233" href="#ln-233"></a><span class="w">        </span><span class="n">nCoeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aot_table_length</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_handle</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-234" name="ln-234" href="#ln-234"></a><span class="w">        </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">errFatal</span><span class="p">(</span><span class="n">nCoeff</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-235" name="ln-235" href="#ln-235"></a><span class="w">        </span><span class="n">errFatal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aotErr_Fatal</span>
+<a id="ln-236" name="ln-236" href="#ln-236"></a><span class="w">        </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                            </span><span class="p">&amp;</span>
+<a id="ln-237" name="ln-237" href="#ln-237"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">               </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w">                                </span><span class="p">&amp;</span>
+<a id="ln-238" name="ln-238" href="#ln-238"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">               </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;resi_coeff&#39;</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-239" name="ln-239" href="#ln-239"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="p">,</span><span class="w">                                 </span><span class="p">&amp;</span>
+<a id="ln-240" name="ln-240" href="#ln-240"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">               </span><span class="n">maxlength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nCoeff</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-241" name="ln-241" href="#ln-241"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">               </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vError</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-242" name="ln-242" href="#ln-242"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">any</span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">vError</span><span class="p">,</span><span class="w"> </span><span class="n">errFatal</span><span class="p">))</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-243" name="ln-243" href="#ln-243"></a><span class="k">           write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;FATAL Error occured, while retrieving &#39;</span><span class="o">//</span><span class="w">      </span><span class="p">&amp;</span>
+<a id="ln-244" name="ln-244" href="#ln-244"></a><span class="w">              </span><span class="p">&amp;</span><span class="w">            </span><span class="s1">&#39;resi_coeff table&#39;</span>
+<a id="ln-245" name="ln-245" href="#ln-245"></a><span class="w">           </span><span class="k">call </span><span class="n">tem_abort</span><span class="p">()</span>
+<a id="ln-246" name="ln-246" href="#ln-246"></a><span class="w">        </span><span class="k">endif</span>
+<a id="ln-247" name="ln-247" href="#ln-247"></a><span class="k">        allocate</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="p">(</span><span class="n">nCoeff</span><span class="p">))</span>
+<a id="ln-248" name="ln-248" href="#ln-248"></a><span class="w">        </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1._rk</span><span class="o">/</span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span>
+<a id="ln-249" name="ln-249" href="#ln-249"></a><span class="w">      </span><span class="k">endif</span>
+<a id="ln-250" name="ln-250" href="#ln-250"></a><span class="k">      call </span><span class="n">aot_table_close</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_handle</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-251" name="ln-251" href="#ln-251"></a><span class="w">    </span><span class="k">else</span>
+<a id="ln-252" name="ln-252" href="#ln-252"></a><span class="w">    </span><span class="c">! diff_coeff is defined as a table</span>
+<a id="ln-253" name="ln-253" href="#ln-253"></a><span class="w">      </span><span class="n">nCoeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aot_table_length</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_handle</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-254" name="ln-254" href="#ln-254"></a><span class="w">      </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">errFatal</span><span class="p">(</span><span class="n">nCoeff</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-255" name="ln-255" href="#ln-255"></a><span class="w">      </span><span class="n">errFatal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aotErr_Fatal</span>
+<a id="ln-256" name="ln-256" href="#ln-256"></a><span class="w">      </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                              </span><span class="p">&amp;</span>
+<a id="ln-257" name="ln-257" href="#ln-257"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">               </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-258" name="ln-258" href="#ln-258"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">               </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;diff_coeff&#39;</span><span class="p">,</span><span class="w">                                    </span><span class="p">&amp;</span>
+<a id="ln-259" name="ln-259" href="#ln-259"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="p">,</span><span class="w">                                   </span><span class="p">&amp;</span>
+<a id="ln-260" name="ln-260" href="#ln-260"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">               </span><span class="n">maxlength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nCoeff</span><span class="p">,</span><span class="w">                                    </span><span class="p">&amp;</span>
+<a id="ln-261" name="ln-261" href="#ln-261"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">               </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vError</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-262" name="ln-262" href="#ln-262"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">any</span><span class="p">(</span><span class="nb">btest</span><span class="p">(</span><span class="n">vError</span><span class="p">,</span><span class="w"> </span><span class="n">errFatal</span><span class="p">))</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-263" name="ln-263" href="#ln-263"></a><span class="k">         write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;FATAL Error occured, while retrieving &#39;</span><span class="o">//</span><span class="w">        </span><span class="p">&amp;</span>
+<a id="ln-264" name="ln-264" href="#ln-264"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">                </span><span class="s1">&#39;diff_coeff table&#39;</span>
+<a id="ln-265" name="ln-265" href="#ln-265"></a><span class="w">         </span><span class="k">call </span><span class="n">tem_abort</span><span class="p">()</span>
+<a id="ln-266" name="ln-266" href="#ln-266"></a><span class="w">      </span><span class="k">endif</span>
+<a id="ln-267" name="ln-267" href="#ln-267"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="p">(</span><span class="n">nCoeff</span><span class="p">))</span>
+<a id="ln-268" name="ln-268" href="#ln-268"></a><span class="w">      </span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1._rk</span><span class="o">/</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span>
+<a id="ln-269" name="ln-269" href="#ln-269"></a><span class="w">    </span><span class="k">endif</span>
+<a id="ln-270" name="ln-270" href="#ln-270"></a><span class="k">    call </span><span class="n">aot_table_close</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_handle</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-271" name="ln-271" href="#ln-271"></a>
+<a id="ln-272" name="ln-272" href="#ln-272"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">nCoeff</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">nFields</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-273" name="ln-273" href="#ln-273"></a><span class="k">      write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;ERROR: In loading diff_coeff or resi_coeff&#39;</span>
+<a id="ln-274" name="ln-274" href="#ln-274"></a><span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;       nCoeff does not match nFields&#39;</span>
+<a id="ln-275" name="ln-275" href="#ln-275"></a><span class="w">      </span><span class="k">call </span><span class="n">tem_abort</span><span class="p">()</span>
+<a id="ln-276" name="ln-276" href="#ln-276"></a><span class="w">    </span><span class="k">endif</span>
+<a id="ln-277" name="ln-277" href="#ln-277"></a>
+<a id="ln-278" name="ln-278" href="#ln-278"></a><span class="w">    </span><span class="c">!&gt; convert physics to lattice unit</span>
+<a id="ln-279" name="ln-279" href="#ln-279"></a><span class="w">    </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="o">/</span><span class="n">physics</span><span class="p">%</span><span class="n">fac</span><span class="p">(</span><span class="n">minLevel</span><span class="p">)%</span><span class="n">diffusivity</span>
+<a id="ln-280" name="ln-280" href="#ln-280"></a><span class="w">    </span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_rk</span><span class="o">/</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span>
+<a id="ln-281" name="ln-281" href="#ln-281"></a>
+<a id="ln-282" name="ln-282" href="#ln-282"></a><span class="w">    </span><span class="c">! Relaxation parameter omega is compted from diffusivity coefficient.</span>
+<a id="ln-283" name="ln-283" href="#ln-283"></a><span class="w">    </span><span class="c">! Used for Nernst-Planck equation</span>
+<a id="ln-284" name="ln-284" href="#ln-284"></a><span class="w">    </span><span class="c">!&gt; \todo KM: Compute omega for each level</span>
+<a id="ln-285" name="ln-285" href="#ln-285"></a><span class="w">    </span><span class="n">me</span><span class="p">%</span><span class="n">omega</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_rk</span><span class="o">/</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">cs_lattice</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5_rk</span><span class="p">)</span>
+<a id="ln-286" name="ln-286" href="#ln-286"></a>
+<a id="ln-287" name="ln-287" href="#ln-287"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39; Species properties          &#39;</span>
+<a id="ln-288" name="ln-288" href="#ln-288"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Molecular weight:         &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">molWeight</span><span class="p">)</span>
+<a id="ln-289" name="ln-289" href="#ln-289"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Inverse molecular weight: &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">molWeightInv</span><span class="p">)</span>
+<a id="ln-290" name="ln-290" href="#ln-290"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Charge number:            &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">chargeNr</span><span class="p">)</span>
+<a id="ln-291" name="ln-291" href="#ln-291"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Diffusivity coefficients: &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="p">)</span>
+<a id="ln-292" name="ln-292" href="#ln-292"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Resitivity coefficients:  &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="p">)</span>
+<a id="ln-293" name="ln-293" href="#ln-293"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Relaxation parameter:  &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">omega</span><span class="p">)</span>
+<a id="ln-294" name="ln-294" href="#ln-294"></a>
+<a id="ln-295" name="ln-295" href="#ln-295"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_table_close</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="o">=</span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spc_handle</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-296" name="ln-296" href="#ln-296"></a><span class="w">    </span><span class="k">call </span><span class="n">tem_horizontalSpacer</span><span class="p">(</span><span class="n">fUnit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="ln-297" name="ln-297" href="#ln-297"></a>
+<a id="ln-298" name="ln-298" href="#ln-298"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">mus_load_species</span>
+<a id="ln-299" name="ln-299" href="#ln-299"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-300" name="ln-300" href="#ln-300"></a>
+<a id="ln-301" name="ln-301" href="#ln-301"></a>
+<a id="ln-302" name="ln-302" href="#ln-302"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-303" name="ln-303" href="#ln-303"></a><span class="w">  </span><span class="c">!&gt; This routine computes the molecular weight ratio for all species</span>
+<a id="ln-304" name="ln-304" href="#ln-304"></a><span class="w">  </span><span class="c">!! based asinari model</span>
+<a id="ln-305" name="ln-305" href="#ln-305"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-306" name="ln-306" href="#ln-306"></a><span class="w">  </span><span class="c">!! &quot;Lattice Boltzmann scheme for mixture modeling: Analysis of the continuum</span>
+<a id="ln-307" name="ln-307" href="#ln-307"></a><span class="w">  </span><span class="c">!! diffusion regimes recovering Maxwell-Stefan model and incompressible</span>
+<a id="ln-308" name="ln-308" href="#ln-308"></a><span class="w">  </span><span class="c">!! Navier-Stokes equations. Pietro Asinari(2009)&quot;</span>
+<a id="ln-309" name="ln-309" href="#ln-309"></a><span class="w">  </span><span class="c">!! \f$ m_\sigma = \frac{min_\varsigma(m_\varsigma)}{m_\sigma} \le 1 \f$</span>
+<a id="ln-310" name="ln-310" href="#ln-310"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">compute_molWeightRatio</span><span class="p">(</span><span class="w"> </span><span class="n">molWeights</span><span class="p">,</span><span class="w"> </span><span class="n">molWeigRatios</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-311" name="ln-311" href="#ln-311"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-312" name="ln-312" href="#ln-312"></a><span class="w">    </span><span class="c">!&gt; molecular weight of the species</span>
+<a id="ln-313" name="ln-313" href="#ln-313"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">molWeights</span><span class="p">(:)</span>
+<a id="ln-314" name="ln-314" href="#ln-314"></a><span class="w">    </span><span class="c">!&gt; ratio of molecular weight  \f$ \phi_\sigma = min(M)/M_\sigma \f$</span>
+<a id="ln-315" name="ln-315" href="#ln-315"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">molWeigRatios</span><span class="p">(:)</span>
+<a id="ln-316" name="ln-316" href="#ln-316"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-317" name="ln-317" href="#ln-317"></a><span class="w">    </span><span class="k">call </span><span class="n">tem_horizontalSpacer</span><span class="p">(</span><span class="n">fUnit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="ln-318" name="ln-318" href="#ln-318"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39; Compute species molecular weight ratio&#39;</span>
+<a id="ln-319" name="ln-319" href="#ln-319"></a><span class="w">    </span><span class="n">molWeigRatios</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">minval</span><span class="p">(</span><span class="n">MolWeights</span><span class="p">)</span><span class="o">/</span><span class="n">molWeights</span><span class="p">(:)</span>
+<a id="ln-320" name="ln-320" href="#ln-320"></a>
+<a id="ln-321" name="ln-321" href="#ln-321"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;  Molecular weight ratio:&#39;</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">molWeigRatios</span><span class="p">(:))</span>
+<a id="ln-322" name="ln-322" href="#ln-322"></a><span class="w">    </span><span class="k">call </span><span class="n">tem_horizontalSpacer</span><span class="p">(</span><span class="n">fUnit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="ln-323" name="ln-323" href="#ln-323"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">compute_molWeightRatio</span>
+<a id="ln-324" name="ln-324" href="#ln-324"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-325" name="ln-325" href="#ln-325"></a>
+<a id="ln-326" name="ln-326" href="#ln-326"></a>
+<a id="ln-327" name="ln-327" href="#ln-327"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-328" name="ln-328" href="#ln-328"></a><span class="w">  </span><span class="c">!&gt; This routine compute bulk viscosity omega for species for all levels</span>
+<a id="ln-329" name="ln-329" href="#ln-329"></a><span class="w">  </span><span class="c">!! omega_bulk = (2-molWeigRatio_k)/(3*bulk_visc)</span>
+<a id="ln-330" name="ln-330" href="#ln-330"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">compute_bulkViscOmega</span><span class="p">(</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">bulkVisc</span><span class="p">,</span><span class="w"> </span><span class="n">bulkViscLvl</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-331" name="ln-331" href="#ln-331"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                               </span><span class="n">minLevel</span><span class="p">,</span><span class="w"> </span><span class="n">maxLevel</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-332" name="ln-332" href="#ln-332"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-333" name="ln-333" href="#ln-333"></a><span class="w">    </span><span class="c">!&gt; contains species information</span>
+<a id="ln-334" name="ln-334" href="#ln-334"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_species_type</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">species</span>
+<a id="ln-335" name="ln-335" href="#ln-335"></a><span class="w">    </span><span class="c">!&gt; bulk viscosity of the mixture</span>
+<a id="ln-336" name="ln-336" href="#ln-336"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bulkvisc</span>
+<a id="ln-337" name="ln-337" href="#ln-337"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bulkviscLvl</span><span class="p">(</span><span class="n">globalMaxLevels</span><span class="p">)</span>
+<a id="ln-338" name="ln-338" href="#ln-338"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w">       </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">minLevel</span><span class="p">,</span><span class="w"> </span><span class="n">maxLevel</span>
+<a id="ln-339" name="ln-339" href="#ln-339"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-340" name="ln-340" href="#ln-340"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iLevel</span>
+<a id="ln-341" name="ln-341" href="#ln-341"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-342" name="ln-342" href="#ln-342"></a><span class="w">    </span><span class="n">species</span><span class="p">%</span><span class="n">omBulk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0_rk</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">species</span><span class="p">%</span><span class="n">molWeigRatio</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cs2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bulkvisc</span>
+<a id="ln-343" name="ln-343" href="#ln-343"></a><span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Bulk omega: &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">species</span><span class="p">%</span><span class="n">omBulk</span><span class="p">)</span>
+<a id="ln-344" name="ln-344" href="#ln-344"></a>
+<a id="ln-345" name="ln-345" href="#ln-345"></a><span class="w">    </span><span class="k">do </span><span class="n">iLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minLevel</span><span class="p">,</span><span class="w"> </span><span class="n">maxLevel</span>
+<a id="ln-346" name="ln-346" href="#ln-346"></a><span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;    level &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">iLevel</span>
+<a id="ln-347" name="ln-347" href="#ln-347"></a><span class="w">      </span><span class="n">species</span><span class="p">%</span><span class="n">omBulkLvl</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">2.0_rk</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">species</span><span class="p">%</span><span class="n">molWeigRatio</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cs2</span><span class="w">      </span><span class="p">&amp;</span>
+<a id="ln-348" name="ln-348" href="#ln-348"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                       </span><span class="o">/</span><span class="w"> </span><span class="n">bulkViscLvl</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)</span>
+<a id="ln-349" name="ln-349" href="#ln-349"></a><span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;   Bulk omega &#39;</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">species</span><span class="p">%</span><span class="n">omBulkLvl</span><span class="p">(</span><span class="n">iLevel</span><span class="p">))</span>
+<a id="ln-350" name="ln-350" href="#ln-350"></a><span class="w">    </span><span class="k">end do</span>
+<a id="ln-351" name="ln-351" href="#ln-351"></a><span class="k">  end subroutine </span><span class="n">compute_bulkViscOmega</span>
+<a id="ln-352" name="ln-352" href="#ln-352"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-353" name="ln-353" href="#ln-353"></a>
+<a id="ln-354" name="ln-354" href="#ln-354"></a><span class="w">  </span><span class="c">!&gt; writes species propertries into a lua file</span>
+<a id="ln-355" name="ln-355" href="#ln-355"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-356" name="ln-356" href="#ln-356"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_species_out</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">conf</span><span class="p">)</span>
+<a id="ln-357" name="ln-357" href="#ln-357"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-358" name="ln-358" href="#ln-358"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_species_type</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span>
+<a id="ln-359" name="ln-359" href="#ln-359"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">aot_out_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">conf</span>
+<a id="ln-360" name="ln-360" href="#ln-360"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-361" name="ln-361" href="#ln-361"></a>
+<a id="ln-362" name="ln-362" href="#ln-362"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_out_open_table</span><span class="p">(</span><span class="w"> </span><span class="n">put_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">tname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;species&#39;</span><span class="p">)</span>
+<a id="ln-363" name="ln-363" href="#ln-363"></a>
+<a id="ln-364" name="ln-364" href="#ln-364"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_out_val</span><span class="p">(</span><span class="w"> </span><span class="n">put_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                         </span><span class="p">&amp;</span>
+<a id="ln-365" name="ln-365" href="#ln-365"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">vname</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;molweight&#39;</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-366" name="ln-366" href="#ln-366"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">molWeight</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-367" name="ln-367" href="#ln-367"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_out_val</span><span class="p">(</span><span class="w"> </span><span class="n">put_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                         </span><span class="p">&amp;</span>
+<a id="ln-368" name="ln-368" href="#ln-368"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">vname</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;diff_coeff&#39;</span><span class="p">,</span><span class="w">                                 </span><span class="p">&amp;</span>
+<a id="ln-369" name="ln-369" href="#ln-369"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">diff_coeff</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-370" name="ln-370" href="#ln-370"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_out_val</span><span class="p">(</span><span class="w"> </span><span class="n">put_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                         </span><span class="p">&amp;</span>
+<a id="ln-371" name="ln-371" href="#ln-371"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">vname</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;resi_coeff&#39;</span><span class="p">,</span><span class="w">                                 </span><span class="p">&amp;</span>
+<a id="ln-372" name="ln-372" href="#ln-372"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">resi_coeff</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-373" name="ln-373" href="#ln-373"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_out_val</span><span class="p">(</span><span class="w"> </span><span class="n">put_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">                                         </span><span class="p">&amp;</span>
+<a id="ln-374" name="ln-374" href="#ln-374"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">vname</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;charge_nr&#39;</span><span class="p">,</span><span class="w">                                  </span><span class="p">&amp;</span>
+<a id="ln-375" name="ln-375" href="#ln-375"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">chargeNr</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-376" name="ln-376" href="#ln-376"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_out_close_table</span><span class="p">(</span><span class="w"> </span><span class="n">put_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-377" name="ln-377" href="#ln-377"></a>
+<a id="ln-378" name="ln-378" href="#ln-378"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">mus_species_out</span>
+<a id="ln-379" name="ln-379" href="#ln-379"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-380" name="ln-380" href="#ln-380"></a>
+<a id="ln-381" name="ln-381" href="#ln-381"></a>
+<a id="ln-382" name="ln-382" href="#ln-382"></a><span class="k">end module </span><span class="n">mus_species_module</span>
+<a id="ln-383" name="ln-383" href="#ln-383"></a><span class="c">! **************************************************************************** !</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+# set terminal postscript eps size 6,4 enhanced color \
+#     font 'Helvetica,25' linewidth 3
+set terminal pdfcairo enhanced color \
+    font 'Helvetica,20' \
+    lw 4 \
+    size 6,4.5
+
+# set file names
+ke_file = "`echo $ke_file`"
+ke_pic  = "`echo $ke_pic`"
+# ke_file = 'tracking/L7_Re1600_single_level_ke.res'
+# ke_pic  = 'pictures/L7_Re1600_single_level_ke.pdf'
+
+Re = "`echo $Re`"
+# Re = 1600
+plot_title = 'Global average kinetic energy over time Re = '.Re
+volume = ( 2.0 * pi ) ** 3
+
+# velocity at probe point over time
+set output ke_pic
+set grid
+unset key
+set title plot_title
+set xlabel 'time (s)'
+set ylabel 'kinetic energy'
+# set format y '%g %%'
+set xrange [0:10]
+plot ke_file u 1:($2/volume) t 'sim' w l ls 1

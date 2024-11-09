@@ -1,0 +1,1082 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_mesh_adaptation_module.f90 &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_mesh_adaptation_module.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Kartik Jain</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.2% of total for source files.">20 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_mesh_adaptation_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">mus_mesh_adaptation_module.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_mesh_adaptation_module.html">mus_mesh_adaptation_module</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/mus_mesh_adaptation_module.f90.html#src">mus_mesh_adaptation_module.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_mesh_adaptation_modulef90EfferentGraph" width="641pt" height="309pt"
+ viewBox="0.00 0.00 641.00 309.50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph" class="graph" transform="scale(0.31 0.31) rotate(0) translate(4 996.43)">
+<title>sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-996.43 2068,-996.43 2068,4 -4,4"/>
+<!-- sourcefile~mus_mesh_adaptation_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~mus_mesh_adaptation_module.f90</title>
+<polygon fill="none" stroke="black" points="2064,-369.39 1865,-369.39 1865,-345.39 2064,-345.39 2064,-369.39"/>
+<text text-anchor="middle" x="1964.5" y="-354.99" font-family="Helvetica,sans-Serif" font-size="10.50">mus_mesh_adaptation_module.f90</text>
+</g>
+<!-- sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~mus_geom_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/mus_geom_module.f90.html" xlink:title="mus_geom_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1809,-567.39 1672,-567.39 1672,-543.39 1809,-543.39 1809,-567.39"/>
+<text text-anchor="middle" x="1740.5" y="-552.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geom_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1949.95,-369.48C1912.64,-402.76 1808.19,-495.92 1762.9,-536.31"/>
+<polygon fill="#000000" stroke="#000000" points="1760.29,-533.94 1755.16,-543.21 1764.95,-539.17 1760.29,-533.94"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~mus_scheme_type_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/mus_scheme_type_module.f90.html" xlink:title="mus_scheme_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1829,-348.39 1652,-348.39 1652,-324.39 1829,-324.39 1829,-348.39"/>
+<text text-anchor="middle" x="1740.5" y="-333.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1864.83,-348.06C1856.26,-347.25 1847.59,-346.43 1839.03,-345.62"/>
+<polygon fill="#000000" stroke="#000000" points="1839.32,-342.13 1829.03,-344.67 1838.66,-349.1 1839.32,-342.13"/>
+</g>
+<!-- sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node8" class="node">
+<title>sourcefile~mus_geomincrhead_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node8"><a xlink:href="../sourcefile/mus_geomincrhead_module.f90.html" xlink:title="mus_geomIncrHead_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1616,-724.39 1430,-724.39 1430,-700.39 1616,-700.39 1616,-724.39"/>
+<text text-anchor="middle" x="1523" y="-709.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geomIncrHead_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_geom_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_geom_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1728.13,-567.58C1707.37,-589.35 1661.27,-635.56 1616,-666.39 1599.19,-677.84 1579.12,-688.21 1562.03,-696.19"/>
+<polygon fill="#000000" stroke="#000000" points="1560.52,-693.04 1552.88,-700.37 1563.43,-699.4 1560.52,-693.04"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~mus_auxfield_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/mus_auxfield_module.f90.html" xlink:title="mus_auxField_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1598.5,-348.39 1447.5,-348.39 1447.5,-324.39 1598.5,-324.39 1598.5,-348.39"/>
+<text text-anchor="middle" x="1523" y="-333.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_auxField_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1651.85,-336.39C1637.69,-336.39 1623.05,-336.39 1608.96,-336.39"/>
+<polygon fill="#000000" stroke="#000000" points="1608.8,-332.89 1598.8,-336.39 1608.8,-339.89 1608.8,-332.89"/>
+</g>
+<!-- sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~mus_dervarpos_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/mus_dervarpos_module.f90.html" xlink:title="mus_derVarPos_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="716,-118.39 556,-118.39 556,-94.39 716,-94.39 716,-118.39"/>
+<text text-anchor="middle" x="636" y="-103.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derVarPos_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge5" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1734.36,-324.29C1714.82,-280.05 1640.36,-126.71 1524,-68.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-68.39C1467.1,-40.88 1454.26,-28.17 1394,-16.39 1127.06,35.76 800.86,-53.82 682.57,-91.19"/>
+<polygon fill="#000000" stroke="#000000" points="681.23,-87.94 672.77,-94.32 683.36,-94.61 681.23,-87.94"/>
+</g>
+<!-- sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node6" class="node">
+<title>sourcefile~mus_field_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node6"><a xlink:href="../sourcefile/mus_field_module.f90.html" xlink:title="mus_field_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1355,-506.39 1225,-506.39 1225,-482.39 1355,-482.39 1355,-506.39"/>
+<text text-anchor="middle" x="1290" y="-491.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1736.08,-348.69C1721.29,-399.14 1657.43,-590.5 1524,-652.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-652.39C1458.45,-681.88 1451.96,-599.75 1394,-560.39 1369.05,-543.45 1340.09,-525 1319.25,-511.93"/>
+<polygon fill="#000000" stroke="#000000" points="1320.9,-508.83 1310.56,-506.5 1317.19,-514.77 1320.9,-508.83"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node7" class="node">
+<title>sourcefile~mus_field_prop_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node7"><a xlink:href="../sourcefile/mus_field_prop_module.f90.html" xlink:title="mus_field_prop_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1142,-586.39 983,-586.39 983,-562.39 1142,-562.39 1142,-586.39"/>
+<text text-anchor="middle" x="1062.5" y="-571.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_prop_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1289,-574.39C1244.92,-563.21 1194.41,-562.17 1152.38,-564.38"/>
+<polygon fill="#000000" stroke="#000000" points="1151.94,-560.9 1142.17,-564.99 1152.36,-567.89 1151.94,-560.9"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node9" class="node">
+<title>sourcefile~mus_interpolate_header_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node9"><a xlink:href="../sourcefile/mus_interpolate_header_module.f90.html" xlink:title="mus_interpolate_header_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1394,-664.39 1186,-664.39 1186,-640.39 1394,-640.39 1394,-664.39"/>
+<text text-anchor="middle" x="1290" y="-649.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_header_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-652.39C1469.02,-676.97 1401.55,-673.59 1353.23,-666.1"/>
+<polygon fill="#000000" stroke="#000000" points="1353.66,-662.62 1343.23,-664.45 1352.52,-669.53 1353.66,-662.62"/>
+</g>
+<!-- sourcefile~mus_mixture_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node10" class="node">
+<title>sourcefile~mus_mixture_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node10"><a xlink:href="../sourcefile/mus_mixture_module.f90.html" xlink:title="mus_mixture_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1136,-506.39 989,-506.39 989,-482.39 1136,-482.39 1136,-506.39"/>
+<text text-anchor="middle" x="1062.5" y="-491.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mixture_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-652.39C1423.7,-698 1396.03,-601.05 1291,-574.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1289,-574.39C1221.62,-557.29 1145.97,-528.37 1101.66,-510.38"/>
+<polygon fill="#000000" stroke="#000000" points="1102.74,-507.04 1092.16,-506.5 1100.09,-513.52 1102.74,-507.04"/>
+</g>
+<!-- sourcefile~mus_nernstplanck_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node11" class="node">
+<title>sourcefile~mus_nernstplanck_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node11"><a xlink:href="../sourcefile/mus_nernstplanck_module.f90.html" xlink:title="mus_nernstPlanck_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1150,-744.39 975,-744.39 975,-720.39 1150,-720.39 1150,-744.39"/>
+<text text-anchor="middle" x="1062.5" y="-729.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_nernstPlanck_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_nernstplanck_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_nernstplanck_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-652.39C1519.85,-653.39 1273.96,-696 1143.21,-718.62"/>
+<polygon fill="#000000" stroke="#000000" points="1142.49,-715.19 1133.23,-720.34 1143.68,-722.09 1142.49,-715.19"/>
+</g>
+<!-- sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node12" class="node">
+<title>sourcefile~mus_param_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node12"><a xlink:href="../sourcefile/mus_param_module.f90.html" xlink:title="mus_param_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1361,-744.39 1219,-744.39 1219,-720.39 1361,-720.39 1361,-744.39"/>
+<text text-anchor="middle" x="1290" y="-729.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge11" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-652.39C1518.5,-654.02 1397.66,-705.17 1394,-706.39 1381.53,-710.57 1368.01,-714.44 1355,-717.85"/>
+<polygon fill="#000000" stroke="#000000" points="1353.99,-714.49 1345.17,-720.36 1355.73,-721.27 1353.99,-714.49"/>
+</g>
+<!-- sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node13" class="node">
+<title>sourcefile~mus_pdf_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node13"><a xlink:href="../sourcefile/mus_pdf_module.f90.html" xlink:title="mus_pdf_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="698,-212.39 574,-212.39 574,-188.39 698,-188.39 698,-212.39"/>
+<text text-anchor="middle" x="636" y="-197.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_pdf_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge12" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-68.39C1387.94,-2.17 1330.89,-48.44 1186,-85.39 1127.44,-100.33 1123.92,-143.13 1063.5,-144.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-144.39C936.37,-148.1 792.17,-171.17 708.14,-186.51"/>
+<polygon fill="#000000" stroke="#000000" points="707.4,-183.09 698.19,-188.35 708.66,-189.98 707.4,-183.09"/>
+</g>
+<!-- sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node14" class="node">
+<title>sourcefile~mus_scheme_header_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node14"><a xlink:href="../sourcefile/mus_scheme_header_module.f90.html" xlink:title="mus_scheme_header_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="732,-348.39 540,-348.39 540,-324.39 732,-324.39 732,-348.39"/>
+<text text-anchor="middle" x="636" y="-333.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_header_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1698.49,-324.38C1620.07,-302.5 1443.14,-258.39 1291,-258.39 1291,-258.39 1291,-258.39 1061.5,-258.39 931.23,-258.39 886.94,-222.07 769,-277.39 747.94,-287.27 753.26,-303.96 733,-315.39 729.59,-317.32 726.01,-319.07 722.34,-320.66"/>
+<polygon fill="#000000" stroke="#000000" points="721.06,-317.4 713.01,-324.29 723.6,-323.92 721.06,-317.4"/>
+</g>
+<!-- sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node15" class="node">
+<title>sourcefile~mus_scheme_layout_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node15"><a xlink:href="../sourcefile/mus_scheme_layout_module.f90.html" xlink:title="mus_scheme_layout_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="503,-253.39 316,-253.39 316,-229.39 503,-229.39 503,-253.39"/>
+<text text-anchor="middle" x="409.5" y="-238.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_layout_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge14" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1732.92,-348.51C1716.69,-378.88 1674.48,-461.1 1652,-534.39 1625.65,-620.32 1676,-666.47 1616,-733.39 1324.64,-1058.36 988.41,-1069.25 637,-810.39"/>
+</g>
+<!-- sourcefile~mus_source_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node16" class="node">
+<title>sourcefile~mus_source_type_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node16"><a xlink:href="../sourcefile/mus_source_type_module.f90.html" xlink:title="mus_source_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="939,-310.39 769,-310.39 769,-286.39 939,-286.39 939,-310.39"/>
+<text text-anchor="middle" x="854" y="-295.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_source_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1522,-68.39C1461.92,-39.78 1023.21,-225.48 891.98,-282.26"/>
+<polygon fill="#000000" stroke="#000000" points="890.5,-279.09 882.72,-286.28 893.28,-285.51 890.5,-279.09"/>
+</g>
+<!-- sourcefile~mus_transport_var_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node17" class="node">
+<title>sourcefile~mus_transport_var_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node17"><a xlink:href="../sourcefile/mus_transport_var_module.f90.html" xlink:title="mus_transport_var_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1612,-230.39 1434,-230.39 1434,-206.39 1612,-206.39 1612,-230.39"/>
+<text text-anchor="middle" x="1523" y="-215.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_transport_var_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_transport_var_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge16" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_transport_var_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1726.51,-324.13C1705.11,-304.57 1660.37,-266.26 1616,-244.39 1607.49,-240.2 1598.2,-236.59 1588.89,-233.5"/>
+<polygon fill="#000000" stroke="#000000" points="1589.81,-230.12 1579.22,-230.47 1587.72,-236.8 1589.81,-230.12"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge17" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1507.62,-324.16C1488.01,-306.88 1452.73,-273.61 1430,-239.39 1407.98,-206.24 1426.08,-180.96 1394,-157.39 1375.64,-143.9 880.65,-110.13 855,-106.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M853,-106.39C811.81,-99.62 765.61,-98.74 726.54,-99.9"/>
+<polygon fill="#000000" stroke="#000000" points="726.12,-96.41 716.24,-100.26 726.36,-103.41 726.12,-96.41"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_field_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge18" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_field_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1504.26,-348.53C1463.86,-376.16 1364.87,-443.87 1317.32,-476.39"/>
+<polygon fill="#000000" stroke="#000000" points="1315.08,-473.68 1308.8,-482.22 1319.03,-479.46 1315.08,-473.68"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge19" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1520.44,-348.55C1514.03,-393.12 1485.67,-549 1394,-626.39 1389.68,-630.04 1384.93,-633.18 1379.9,-635.89"/>
+<polygon fill="#000000" stroke="#000000" points="1378.11,-632.87 1370.58,-640.32 1381.11,-639.19 1378.11,-632.87"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge20" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1506.73,-324.14C1450.87,-280.64 1251.04,-136.58 1063.5,-144.39"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge23" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-336.39C969.83,-331.84 944.93,-356.74 855,-338.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M853,-338.39C817.47,-331.15 777.96,-329.09 742.54,-329.33"/>
+<polygon fill="#000000" stroke="#000000" points="742.14,-325.84 732.18,-329.47 742.23,-332.84 742.14,-325.84"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge24" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1447.31,-338.37C1356.52,-340.31 1198.7,-342.22 1063.5,-336.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-336.39C1009.87,-333.83 952.08,-322.45 910.79,-312.8"/>
+<polygon fill="#000000" stroke="#000000" points="911.46,-309.36 900.93,-310.46 909.85,-316.17 911.46,-309.36"/>
+</g>
+<!-- sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node24" class="node">
+<title>sourcefile~mus_physics_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node24"><a xlink:href="../sourcefile/mus_physics_module.f90.html" xlink:title="mus_physics_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="708.5,-626.39 563.5,-626.39 563.5,-602.39 708.5,-602.39 708.5,-626.39"/>
+<text text-anchor="middle" x="636" y="-611.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge21" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1519.76,-348.56C1511.48,-389.76 1478.62,-524.98 1394,-588.39 1379.05,-599.6 1081.69,-646.12 1063.5,-650.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-650.39C1023.22,-659.57 1008.32,-648.44 975,-669.39 953.02,-683.22 960.93,-701.5 939,-715.39 906.66,-735.88 892.85,-740.11 855,-734.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M853,-734.39C815.15,-728.68 803.67,-731.62 769,-715.39 724.39,-694.51 680.58,-656.57 656.34,-633.61"/>
+<polygon fill="#000000" stroke="#000000" points="658.53,-630.85 648.9,-626.44 653.67,-635.9 658.53,-630.85"/>
+</g>
+<!-- sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node26" class="node">
+<title>sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node26"><a xlink:href="../sourcefile/mus_scheme_derived_quantities_type_module.f90.html" xlink:title="mus_scheme_derived_quantities_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="280,-194.39 0,-194.39 0,-170.39 280,-170.39 280,-194.39"/>
+<text text-anchor="middle" x="140" y="-179.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_derived_quantities_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge22" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1506.8,-324.17C1486.59,-307.15 1450.97,-274.45 1430,-239.39 1403.81,-195.61 1430.53,-166.01 1394,-130.39 1284.13,-23.25 1216.97,-30.39 1063.5,-30.39 1063.5,-30.39 1063.5,-30.39 853,-30.39 656.33,-30.39 604.21,3.59 410.5,-30.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408.5,-30.39C306.33,-49.34 204.97,-127.26 162.19,-163.59"/>
+<polygon fill="#000000" stroke="#000000" points="159.73,-161.09 154.43,-170.27 164.29,-166.4 159.73,-161.09"/>
+</g>
+<!-- sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge26" class="edge">
+<title>sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M614.68,-118.61C574.61,-142.71 485.3,-196.42 439.22,-224.12"/>
+<polygon fill="#000000" stroke="#000000" points="437.38,-221.15 430.61,-229.3 440.98,-227.15 437.38,-221.15"/>
+</g>
+<!-- sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge25" class="edge">
+<title>sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M618.01,-94.29C581.16,-69.48 490.75,-16.32 410.5,-30.39"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge27" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1259.96,-506.44C1232.01,-517.86 1188.44,-535.17 1150,-548.39 1138.99,-552.18 1127.09,-555.96 1115.74,-559.41"/>
+<polygon fill="#000000" stroke="#000000" points="1114.52,-556.13 1105.95,-562.36 1116.53,-562.83 1114.52,-556.13"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge29" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1224.98,-494.39C1200.5,-494.39 1172.22,-494.39 1146.23,-494.39"/>
+<polygon fill="#000000" stroke="#000000" points="1146.02,-490.89 1136.02,-494.39 1146.02,-497.89 1146.02,-490.89"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_nernstplanck_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge30" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_nernstplanck_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1258.24,-506.48C1234.93,-517.2 1203.95,-535.11 1186,-560.39 1146.05,-616.65 1198.68,-662.51 1150,-711.39 1148.91,-712.49 1147.77,-713.53 1146.59,-714.52"/>
+<polygon fill="#000000" stroke="#000000" points="1144.46,-711.74 1138.27,-720.34 1148.47,-717.48 1144.46,-711.74"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge32" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1224.83,-483.11C1179.7,-475.15 1117.89,-464.2 1063.5,-454.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-454.39C1022.76,-447.41 1005.99,-459.66 975,-435.39 946.52,-413.09 966.77,-385.57 939,-362.39 909.19,-337.52 893.04,-346.15 855,-338.39"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge33" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-454.39C1046.97,-451.78 552.23,-363.93 539,-357.39 491.59,-333.97 448.65,-287.94 426.43,-261.45"/>
+<polygon fill="#000000" stroke="#000000" points="429.02,-259.09 419.96,-253.59 423.61,-263.54 429.02,-259.09"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge34" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1275.93,-482.14C1252.53,-460.87 1201.14,-417.13 1150,-393.39 1077.36,-359.67 1047.69,-384.02 975,-350.39 957.09,-342.11 956.66,-333.21 939,-324.39 930.87,-320.34 921.99,-316.77 913.14,-313.67"/>
+<polygon fill="#000000" stroke="#000000" points="914.18,-310.32 903.58,-310.49 911.97,-316.97 914.18,-310.32"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node22" class="node">
+<title>sourcefile~mus_fluid_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node22"><a xlink:href="../sourcefile/mus_fluid_module.f90.html" xlink:title="mus_fluid_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="919,-466.39 789,-466.39 789,-442.39 919,-442.39 919,-466.39"/>
+<text text-anchor="middle" x="854" y="-451.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_fluid_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_fluid_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge28" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_fluid_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-454.39C1018.17,-446.58 968.89,-446.27 929.34,-448.05"/>
+<polygon fill="#000000" stroke="#000000" points="929.05,-444.56 919.24,-448.56 929.41,-451.55 929.05,-444.56"/>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge31" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1061.5,-454.39C1050,-452.32 865.8,-489.93 855,-494.39"/>
+</g>
+<!-- sourcefile~mus_source_var_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node27" class="node">
+<title>sourcefile~mus_source_var_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node27"><a xlink:href="../sourcefile/mus_source_var_module.f90.html" xlink:title="mus_source_var_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1144.5,-426.39 980.5,-426.39 980.5,-402.39 1144.5,-402.39 1144.5,-426.39"/>
+<text text-anchor="middle" x="1062.5" y="-411.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_source_var_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_source_var_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge35" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_source_var_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1259.96,-482.34C1232.01,-470.93 1188.44,-453.61 1150,-440.39 1138.99,-436.61 1127.09,-432.83 1115.74,-429.38"/>
+<polygon fill="#000000" stroke="#000000" points="1116.53,-425.96 1105.95,-426.43 1114.52,-432.66 1116.53,-425.96"/>
+</g>
+<!-- sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node28" class="node">
+<title>sourcefile~mus_species_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node28"><a xlink:href="../sourcefile/mus_species_module.f90.html" xlink:title="mus_species_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="927,-626.39 781,-626.39 781,-602.39 927,-602.39 927,-626.39"/>
+<text text-anchor="middle" x="854" y="-611.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_species_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge36" class="edge">
+<title>sourcefile~mus_field_module.f90&#45;&gt;sourcefile~mus_species_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1224.7,-504.44C1139.35,-518.08 996.85,-542.06 975,-553.39 955.19,-563.67 958.19,-577 939,-588.39 932.26,-592.39 924.85,-595.84 917.3,-598.78"/>
+<polygon fill="#000000" stroke="#000000" points="915.93,-595.56 907.71,-602.25 918.31,-602.14 915.93,-595.56"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge40" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1036.7,-562.39C1017.7,-552.13 991.95,-535.81 975,-515.39 949.57,-484.77 968.55,-460.05 939,-433.39 884.85,-384.55 805.92,-360.29 742.33,-348.24"/>
+<polygon fill="#000000" stroke="#000000" points="742.73,-344.75 732.27,-346.41 741.48,-351.64 742.73,-344.75"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_fluid_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge37" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_fluid_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041.57,-562.19C1023.58,-550.86 996.68,-533.1 975,-515.39 957.72,-501.28 958.19,-491.79 939,-480.39 932.26,-476.39 924.85,-472.95 917.3,-470.01"/>
+<polygon fill="#000000" stroke="#000000" points="918.31,-466.65 907.71,-466.54 915.93,-473.23 918.31,-466.65"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge38" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1043.84,-586.51C1020.89,-601.43 979.01,-625.98 939,-635.39 855.76,-654.97 756.35,-641.18 694.94,-628.53"/>
+<polygon fill="#000000" stroke="#000000" points="695.56,-625.08 685.05,-626.44 694.1,-631.93 695.56,-625.08"/>
+</g>
+<!-- sourcefile~mus_poisson_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node25" class="node">
+<title>sourcefile~mus_poisson_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node25"><a xlink:href="../sourcefile/mus_poisson_module.f90.html" xlink:title="mus_poisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="927.5,-706.39 780.5,-706.39 780.5,-682.39 927.5,-682.39 927.5,-706.39"/>
+<text text-anchor="middle" x="854" y="-691.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_poisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_poisson_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge39" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_poisson_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1043.54,-586.45C1025.76,-598.58 997.95,-618.05 975,-636.39 958.28,-649.76 957.65,-657.88 939,-668.39 931.74,-672.49 923.75,-676.02 915.67,-679.04"/>
+<polygon fill="#000000" stroke="#000000" points="914.48,-675.75 906.2,-682.36 916.79,-682.36 914.48,-675.75"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge41" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_species_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M999.54,-586.4C976.78,-590.81 950.81,-595.84 927.22,-600.41"/>
+<polygon fill="#000000" stroke="#000000" points="926.42,-596.99 917.27,-602.33 927.75,-603.87 926.42,-596.99"/>
+</g>
+<!-- sourcefile~mus_geomincrhead_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge42" class="edge">
+<title>sourcefile~mus_geomincrhead_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1429.71,-720.38C1410.32,-722.06 1390.02,-723.82 1371.12,-725.46"/>
+<polygon fill="#000000" stroke="#000000" points="1370.74,-721.98 1361.08,-726.33 1371.35,-728.95 1370.74,-721.98"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge43" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1255.09,-640.34C1231.74,-630.19 1202.14,-613.31 1186,-588.39 1121.15,-488.26 1209.36,-425.88 1150,-322.39 1069.14,-181.44 1016.06,-128.01 855,-106.39"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge45" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1254.26,-640.38C1214.95,-626.78 1150.81,-604.6 1107.9,-589.75"/>
+<polygon fill="#000000" stroke="#000000" points="1108.87,-586.39 1098.28,-586.42 1106.59,-593 1108.87,-586.39"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge47" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1262.46,-664.44C1240.67,-675.05 1209.66,-691.82 1186,-711.39 1167.06,-727.07 1171.73,-741.9 1150,-753.39 1099.3,-780.2 684.46,-842.59 637,-810.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M635,-810.39C447.01,-671.92 416.33,-351.6 411.42,-263.93"/>
+<polygon fill="#000000" stroke="#000000" points="414.91,-263.59 410.91,-253.78 407.92,-263.94 414.91,-263.59"/>
+</g>
+<!-- sourcefile~mus_directions_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node20" class="node">
+<title>sourcefile~mus_directions_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node20"><a xlink:href="../sourcefile/mus_directions_module.f90.html" xlink:title="mus_directions_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1141.5,-702.39 983.5,-702.39 983.5,-678.39 1141.5,-678.39 1141.5,-702.39"/>
+<text text-anchor="middle" x="1062.5" y="-687.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_directions_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_directions_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge44" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_directions_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1217.65,-664.42C1194.51,-668.32 1168.66,-672.67 1144.84,-676.69"/>
+<polygon fill="#000000" stroke="#000000" points="1144.05,-673.27 1134.77,-678.38 1145.21,-680.17 1144.05,-673.27"/>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge46" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1185.98,-641.22C1147.14,-639.68 1102.85,-641.14 1063.5,-650.39"/>
+</g>
+<!-- sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge50" class="edge">
+<title>sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M999.36,-482.34C990.6,-478.82 982.15,-474.27 975,-468.39 948.58,-446.68 961.31,-426.31 939,-400.39 908.72,-365.23 900.47,-347.67 855,-338.39"/>
+</g>
+<!-- sourcefile~mus_enrtl_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node21" class="node">
+<title>sourcefile~mus_enrtl_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node21"><a xlink:href="../sourcefile/mus_enrtl_module.f90.html" xlink:title="mus_eNRTL_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="924,-546.39 784,-546.39 784,-522.39 924,-522.39 924,-546.39"/>
+<text text-anchor="middle" x="854" y="-531.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_eNRTL_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_enrtl_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge48" class="edge">
+<title>sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_enrtl_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M999.54,-506.4C976.78,-510.81 950.81,-515.84 927.22,-520.41"/>
+<polygon fill="#000000" stroke="#000000" points="926.42,-516.99 917.27,-522.33 927.75,-523.87 926.42,-516.99"/>
+</g>
+<!-- sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge49" class="edge">
+<title>sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M989.29,-506.42C984.31,-508.4 979.49,-510.71 975,-513.39 953.9,-526.02 960.24,-543.02 939,-555.39 920.07,-566.43 801.34,-587.55 718.52,-601.3"/>
+<polygon fill="#000000" stroke="#000000" points="717.91,-597.86 708.61,-602.94 719.05,-604.76 717.91,-597.86"/>
+</g>
+<!-- sourcefile~mus_nernstplanck_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge51" class="edge">
+<title>sourcefile~mus_nernstplanck_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M974.92,-739.34C937.8,-740.75 894.08,-740.3 855,-734.39"/>
+</g>
+<!-- sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node18" class="node">
+<title>sourcefile~mus_abortcriteria_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node18"><a xlink:href="../sourcefile/mus_abortcriteria_module.f90.html" xlink:title="mus_abortCriteria_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1150,-862.39 975,-862.39 975,-838.39 1150,-838.39 1150,-862.39"/>
+<text text-anchor="middle" x="1062.5" y="-847.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_abortCriteria_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge52" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1274.04,-744.46C1249.48,-763.74 1198.48,-801.67 1150,-824.39 1141.25,-828.49 1131.71,-832.13 1122.25,-835.28"/>
+<polygon fill="#000000" stroke="#000000" points="1120.94,-832.02 1112.47,-838.39 1123.06,-838.69 1120.94,-832.02"/>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge53" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1249.71,-744.47C1160.03,-769.78 935.19,-820.35 769,-748.39 714.18,-724.66 670.3,-666.42 649.72,-635.11"/>
+<polygon fill="#000000" stroke="#000000" points="652.66,-633.21 644.32,-626.68 646.77,-636.99 652.66,-633.21"/>
+</g>
+<!-- sourcefile~mus_moments_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node23" class="node">
+<title>sourcefile~mus_moments_type_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node23"><a xlink:href="../sourcefile/mus_moments_type_module.f90.html" xlink:title="mus_moments_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="232.5,-253.39 47.5,-253.39 47.5,-229.39 232.5,-229.39 232.5,-253.39"/>
+<text text-anchor="middle" x="140" y="-238.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_moments_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_moments_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge54" class="edge">
+<title>sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_moments_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315.69,-241.39C292.19,-241.39 266.82,-241.39 242.9,-241.39"/>
+<polygon fill="#000000" stroke="#000000" points="242.74,-237.89 232.74,-241.39 242.74,-244.89 242.74,-237.89"/>
+</g>
+<!-- sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge55" class="edge">
+<title>sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M354.04,-229.38C311.16,-219.92 251.24,-206.71 205.87,-196.7"/>
+<polygon fill="#000000" stroke="#000000" points="206.36,-193.23 195.84,-194.49 204.85,-200.06 206.36,-193.23"/>
+</g>
+<!-- sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge57" class="edge">
+<title>sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M833.48,-286.31C815.42,-274.51 788.49,-255.33 769,-234.39 749.09,-213.01 752.92,-200.77 733,-179.39 712.73,-157.64 685.42,-137.56 665.1,-123.99"/>
+<polygon fill="#000000" stroke="#000000" points="666.87,-120.97 656.59,-118.41 663.03,-126.82 666.87,-120.97"/>
+</g>
+<!-- sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge59" class="edge">
+<title>sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M784.66,-310.42C762.59,-314.3 737.95,-318.63 715.22,-322.63"/>
+<polygon fill="#000000" stroke="#000000" points="714.51,-319.2 705.27,-324.38 715.72,-326.1 714.51,-319.2"/>
+</g>
+<!-- sourcefile~mus_absorblayer_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node19" class="node">
+<title>sourcefile~mus_absorblayer_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node19"><a xlink:href="../sourcefile/mus_absorblayer_module.f90.html" xlink:title="mus_absorbLayer_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="722.5,-306.39 549.5,-306.39 549.5,-282.39 722.5,-282.39 722.5,-306.39"/>
+<text text-anchor="middle" x="636" y="-291.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_absorbLayer_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_absorblayer_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge56" class="edge">
+<title>sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_absorblayer_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M768.87,-296.84C757.02,-296.62 744.78,-296.39 732.73,-296.17"/>
+<polygon fill="#000000" stroke="#000000" points="732.74,-292.67 722.68,-295.98 732.61,-299.67 732.74,-292.67"/>
+</g>
+<!-- sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge58" class="edge">
+<title>sourcefile~mus_source_type_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M843.6,-310.75C826.51,-333.73 790.18,-385.11 769,-433.39 744.92,-488.3 770.53,-516.64 733,-563.39 720.64,-578.79 702.35,-590.12 685.04,-598.14"/>
+<polygon fill="#000000" stroke="#000000" points="683.34,-595.06 675.57,-602.26 686.13,-601.48 683.34,-595.06"/>
+</g>
+<!-- sourcefile~mus_transport_var_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge60" class="edge">
+<title>sourcefile~mus_transport_var_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1433.77,-210.54C1259.09,-196.72 876.78,-175.61 769,-244.39 739.18,-263.43 760.98,-293.75 733,-315.39 731.19,-316.79 729.31,-318.1 727.36,-319.33"/>
+<polygon fill="#000000" stroke="#000000" points="725.58,-316.32 718.49,-324.19 728.94,-322.46 725.58,-316.32"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge62" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M845.7,-442.27C824.08,-406.56 760.2,-302.41 733,-273.39 712.67,-251.7 685.36,-231.62 665.07,-218.03"/>
+<polygon fill="#000000" stroke="#000000" points="666.84,-215.01 656.56,-212.44 663,-220.86 666.84,-215.01"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge65" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M801.3,-442.33C790.25,-438.69 778.93,-434.09 769,-428.39 750.18,-417.59 750.32,-408.47 733,-395.39 712.47,-379.9 687.7,-364.76 668.47,-353.69"/>
+<polygon fill="#000000" stroke="#000000" points="669.94,-350.5 659.51,-348.61 666.48,-356.59 669.94,-350.5"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge63" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M791.38,-466.57C783.24,-470.08 775.48,-474.59 769,-480.39 739.06,-507.23 760.29,-533.86 733,-563.39 719.17,-578.37 699.92,-589.78 682.29,-597.98"/>
+<polygon fill="#000000" stroke="#000000" points="680.44,-594.97 672.71,-602.2 683.27,-601.37 680.44,-594.97"/>
+</g>
+<!-- sourcefile~mus_cumulantinit_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node29" class="node">
+<title>sourcefile~mus_cumulantinit_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node29"><a xlink:href="../sourcefile/mus_cumulantinit_module.f90.html" xlink:title="mus_cumulantInit_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="722.5,-470.39 549.5,-470.39 549.5,-446.39 722.5,-446.39 722.5,-470.39"/>
+<text text-anchor="middle" x="636" y="-455.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_cumulantInit_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_cumulantinit_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge61" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_cumulantinit_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M788.78,-455.58C771.17,-455.91 751.7,-456.27 732.74,-456.62"/>
+<polygon fill="#000000" stroke="#000000" points="732.51,-453.12 722.58,-456.81 732.64,-460.12 732.51,-453.12"/>
+</g>
+<!-- sourcefile~mus_relaxationparam_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node30" class="node">
+<title>sourcefile~mus_relaxationparam_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node30"><a xlink:href="../sourcefile/mus_relaxationparam_module.f90.html" xlink:title="mus_relaxationParam_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="733,-428.39 539,-428.39 539,-404.39 733,-404.39 733,-428.39"/>
+<text text-anchor="middle" x="636" y="-413.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_relaxationParam_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_relaxationparam_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge64" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_relaxationparam_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M788.78,-443.1C765.82,-439.06 739.68,-434.46 715.64,-430.23"/>
+<polygon fill="#000000" stroke="#000000" points="715.94,-426.73 705.49,-428.44 714.73,-433.62 715.94,-426.73"/>
+</g>
+<!-- sourcefile~mus_turb_viscosity_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node31" class="node">
+<title>sourcefile~mus_turb_viscosity_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node31"><a xlink:href="../sourcefile/mus_turb_viscosity_module.f90.html" xlink:title="mus_turb_viscosity_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="725,-554.39 547,-554.39 547,-530.39 725,-530.39 725,-554.39"/>
+<text text-anchor="middle" x="636" y="-539.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turb_viscosity_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turb_viscosity_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge66" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turb_viscosity_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M798.61,-466.42C788.31,-470 777.97,-474.58 769,-480.39 748.65,-493.59 753.89,-509.08 733,-521.39 729.8,-523.28 726.45,-525 723,-526.56"/>
+<polygon fill="#000000" stroke="#000000" points="721.6,-523.35 713.65,-530.36 724.23,-529.84 721.6,-523.35"/>
+</g>
+<!-- sourcefile~mus_turbulence_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node32" class="node">
+<title>sourcefile~mus_turbulence_module.f90</title>
+<g id="a_sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_node32"><a xlink:href="../sourcefile/mus_turbulence_module.f90.html" xlink:title="mus_turbulence_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="718,-512.39 554,-512.39 554,-488.39 718,-488.39 718,-512.39"/>
+<text text-anchor="middle" x="636" y="-497.99" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turbulence_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turbulence_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge67" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turbulence_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M796.53,-466.42C768.01,-472.49 733.22,-479.9 703.41,-486.25"/>
+<polygon fill="#000000" stroke="#000000" points="702.57,-482.85 693.51,-488.36 704.02,-489.7 702.57,-482.85"/>
+</g>
+<!-- sourcefile~mus_poisson_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge68" class="edge">
+<title>sourcefile~mus_poisson_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M811.32,-682.29C797.74,-678.13 782.65,-673.29 769,-668.39 736.41,-656.71 700.04,-641.68 673.74,-630.44"/>
+<polygon fill="#000000" stroke="#000000" points="675.11,-627.22 664.54,-626.49 672.34,-633.65 675.11,-627.22"/>
+</g>
+<!-- sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge69" class="edge">
+<title>sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1039.66,-402.3C1020.64,-390.9 993.32,-372.33 975,-350.39 951.81,-322.63 963.84,-303.69 939,-277.39 864.82,-198.86 746.41,-146.45 682.11,-122.1"/>
+<polygon fill="#000000" stroke="#000000" points="683.24,-118.78 672.65,-118.57 680.8,-125.34 683.24,-118.78"/>
+</g>
+<!-- sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge71" class="edge">
+<title>sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1011.01,-402.3C998.91,-398.57 986.25,-393.95 975,-388.39 957.3,-379.65 956.76,-371.01 939,-362.39 904.07,-345.44 893.04,-346.15 855,-338.39"/>
+</g>
+<!-- sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge72" class="edge">
+<title>sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_source_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M999.94,-402.35C991,-398.83 982.34,-394.28 975,-388.39 949.53,-368 964.39,-344.9 939,-324.39 934.36,-320.65 929.18,-317.44 923.73,-314.69"/>
+<polygon fill="#000000" stroke="#000000" points="924.91,-311.38 914.35,-310.49 922.05,-317.77 924.91,-311.38"/>
+</g>
+<!-- sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge70" class="edge">
+<title>sourcefile~mus_source_var_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1006.76,-426.51C995.83,-430.11 984.73,-434.67 975,-440.39 955.76,-451.71 958.62,-464.76 939,-475.39 905.35,-493.64 890.38,-479.78 855,-494.39"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M853,-494.39C817.62,-509.01 800.92,-492.27 769,-513.39 746.16,-528.51 753.63,-545.39 733,-563.39 716.65,-577.66 695.63,-589.4 677.42,-598"/>
+<polygon fill="#000000" stroke="#000000" points="675.84,-594.88 668.2,-602.21 678.75,-601.24 675.84,-594.88"/>
+</g>
+<!-- sourcefile~mus_species_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_mesh_adaptation_module.f90~~EfferentGraph_edge73" class="edge">
+<title>sourcefile~mus_species_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M780.77,-614.39C760.95,-614.39 739.3,-614.39 718.97,-614.39"/>
+<polygon fill="#000000" stroke="#000000" points="718.79,-610.89 708.79,-614.39 718.79,-617.89 718.79,-610.89"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_mesh_adaptation_modulef90EfferentGraph = svgPanZoom('#sourcefilemus_mesh_adaptation_modulef90EfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">! Copyright (c) 2014 Kartik Jain &lt;kartik.jain@uni-siegen.de&gt;</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">! Copyright (c) 2014 Julia Moos &lt;julia.moos@student.uni-siegen.de&gt;</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">! Copyright (c) 2015-2016 Jiaxing Qi &lt;jiaxing.qi@uni-siegen.de&gt;</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="c">! Copyright (c) 2016 Tobias Schneider &lt;tobias1.schneider@student.uni-siegen.de&gt;</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="c">!</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="c">! Redistribution and use in source and binary forms, with or without</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="c">! modification, are permitted provided that the following conditions are met:</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="c">!</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="c">! 1. Redistributions of source code must retain the above copyright notice,</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="c">! this list of conditions and the following disclaimer.</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="c">!</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="c">! 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="c">! this list of conditions and the following disclaimer in the documentation</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="c">! and/or other materials provided with the distribution.</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="c">!</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="c">! THIS SOFTWARE IS PROVIDED BY THE UNIVERSITY OF SIEGEN “AS IS” AND ANY EXPRESS</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="c">! OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="c">! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="c">! IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="c">! DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="c">! (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="c">! LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="c">! ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">! (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">!! author: Kartik Jain</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">!&gt; This module contains the code responsible for adaptively refining the mesh</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="c">!! during run time.</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="c">!!</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="k">module </span><span class="n">mus_mesh_adaptation_module</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="w">  </span><span class="c">! include treelm modules</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="w">  </span><span class="k">use </span><span class="n">mpi</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="w">  </span><span class="k">use </span><span class="n">env_module</span><span class="p">,</span><span class="w">               </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">rk</span><span class="p">,</span><span class="w"> </span><span class="n">long_k</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_adaptation_module</span><span class="p">,</span><span class="w">    </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_adapt_dump_newMesh</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_comm_env_module</span><span class="p">,</span><span class="w">      </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_comm_env_type</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_adaptation_config_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_adapt_type</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">  </span><span class="c">! include musubi modules</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_scheme_type_module</span><span class="p">,</span><span class="w">   </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_scheme_type</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_geom_module</span><span class="p">,</span><span class="w">          </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_geom_type</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">  </span><span class="k">implicit none</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="k">  private</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="k">  public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_adapt_refine</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a>
+<a id="ln-50" name="ln-50" href="#ln-50"></a>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="k">contains</span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a>
+<a id="ln-53" name="ln-53" href="#ln-53"></a>
+<a id="ln-54" name="ln-54" href="#ln-54"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">  </span><span class="c">!&gt; Wrap up the routines required for dynamic load balancing</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_adapt_refine</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">scheme</span><span class="p">,</span><span class="w"> </span><span class="n">proc</span><span class="p">,</span><span class="w"> </span><span class="n">adapt</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a><span class="w">    </span><span class="c">!&gt; Treelmesh data</span>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_geom_type</span><span class="w"> </span><span class="p">)</span><span class="w">       </span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">geometry</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a><span class="w">    </span><span class="c">!&gt; scheme type</span>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_scheme_type</span><span class="w"> </span><span class="p">)</span><span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">scheme</span>
+<a id="ln-62" name="ln-62" href="#ln-62"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_comm_env_type</span><span class="p">)</span><span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">proc</span>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="w">    </span><span class="c">!&gt; mesh adaptation</span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_adapt_type</span><span class="p">)</span><span class="w">        </span><span class="p">,</span><span class="w">  </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">adapt</span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-66" name="ln-66" href="#ln-66"></a>
+<a id="ln-67" name="ln-67" href="#ln-67"></a><span class="w">    </span><span class="c">! Now you get the adaptively refined mesh back</span>
+<a id="ln-68" name="ln-68" href="#ln-68"></a><span class="w">    </span><span class="c">! Dump it to the disk at the current moment</span>
+<a id="ln-69" name="ln-69" href="#ln-69"></a><span class="w">    </span><span class="k">call </span><span class="n">tem_adapt_dump_newMesh</span><span class="p">(</span><span class="w"> </span><span class="n">levelDesc</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">scheme</span><span class="p">%</span><span class="n">levelDesc</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                          </span><span class="n">tree</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">,</span><span class="w">    </span><span class="p">&amp;</span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                          </span><span class="n">proc</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="w">              </span><span class="p">)</span>
+<a id="ln-72" name="ln-72" href="#ln-72"></a>
+<a id="ln-73" name="ln-73" href="#ln-73"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">mus_adapt_refine</span>
+<a id="ln-74" name="ln-74" href="#ln-74"></a>
+<a id="ln-75" name="ln-75" href="#ln-75"></a><span class="k">end module </span><span class="n">mus_mesh_adaptation_module</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

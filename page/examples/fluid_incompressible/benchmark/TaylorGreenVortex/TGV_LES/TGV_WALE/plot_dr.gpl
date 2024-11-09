@@ -1,0 +1,35 @@
+# set terminal postscript eps size 6,4 enhanced color \
+#     font 'Helvetica,25' linewidth 3
+set terminal pdfcairo enhanced color \
+    font 'Helvetica,20' \
+    lw 4 \
+    size 6,4.5
+
+# set line style
+set style line 1 lt 1 lc rgb 'black' pt 7 ps 2 # red solid point
+set style line 2 lt -1 lw 1 # analytica style
+set style line 3 lt 0 lw 2
+set style line 4 lt 1 pt 6 ps 2 # red empty circle
+set style line 5 lt 3 pt 4 ps 2 # blue empty rectangle
+
+# set file names
+dr_file = "`echo $dr_file`"
+dr_pic  = "`echo $dr_pic`"
+# dr_file = 'tracking/L7_Re1600_single_level_dr.res'
+# dr_pic  = 'pictures/L7_Re1600_single_level_dr.pdf'
+
+Re = "`echo $Re`"
+# Re = 1600
+plot_title = 'Evolution of kinetic energy dissipation rate Re = '.Re
+volume = ( 2.0 * pi ) ** 3
+
+# velocity at probe point over time
+set output dr_pic
+set grid
+unset key
+set title plot_title
+set xlabel 'time (s)'
+set ylabel 'dissipation rate'
+# set format y '%g %%'
+set xrange [0:10]
+plot dr_file u 1:($2/volume) t 'sim' w l ls 1, "../Re1600_Brachet.inp" u 1:2 t 'DNS' w l

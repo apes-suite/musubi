@@ -1,0 +1,414 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../../favicon.png">
+
+    <title>Vectorization &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../../css/pygments.css" rel="stylesheet">
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/local.css" rel="stylesheet">
+      <link  href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Vectorization</h1>
+    <div class="container p-2 mb-4 bg-light border rounded-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col">
+          <ul class="list-inline" style="margin-bottom:0px; display:inline">
+              <li class="list-inline-item" id="author"><i class="fa fa-pencil"></i> Jiaxing Qi</li>
+              <li class="list-inline-item" id="date"><i class="fa fa-calendar-o"></i> Feb 26, 2016</li>
+          </ul>
+        </div>
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../index.html'>Documentation</a></li>
+                <li class="breadcrumb-item"><a href='index.html'>Feature Overview</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Vectorization</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-3">
+        <div class="card card-body bg-light" id="sidebar-toc">
+          <ul class="nav flex-column align-items">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Documentation</a>
+            </li>
+          </ul>
+          <hr>
+          <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="../bibliography.html">Bibliography</a>
+              <a class="nav-link" href="../examples/index.html">Examples</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/index.html">Weakly compressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/application/index.html">Applications</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/application/Nonreflecting_BC/index.html">Nonreflecting Boundary Conditions</a>
+              <a class="nav-link" href="../examples/fluid/application/Nozzle/index.html">Nozzle</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/application/Nozzle/NOZ_FlowInAndAround/index.html">Nozzle flow inside an around</a>
+              <a class="nav-link" href="../examples/fluid/application/Nozzle/NOZ_FlowInside/index.html">Nozzle flow inside</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/index.html">Channel 2D Boundary Conditions</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrBB_PressExpol/index.html">Channel 2D MfrBB PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrEq_PressEq/index.html">Channel 2D MfrEq PressEq</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_PressExpol_PressExpol/index.html">Channel 2D PressExpol PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBB_PressExpol/index.html">Channel 2D VelBB PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBFL_PressExpol/index.html">Channel 2D VelBFL PressExpol</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelEq_PressEq/index.html">Channel 2D VelEq PressEq</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelNonEqExpol_PressNonEqExpol/index.html">Channel 2D VelNonEqExpol PressNonEqExpol</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/index.html">Poisueille flow in a channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_BGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_drtBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_hrrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_prrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rrBGK/index.html">Poisueille flow in a channel 2D</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel3D/index.html">Channel 3D test cases</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/Channel3D/C3D_Cylinder_MultiLevel_LES/index.html">Turbulent flow around the cylinder in a channel 3D at Re=3900</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/Channel3D/C3D_Sphere_MultiLevel_LES/index.html">Turbulent flow around the sphere in a channel 3D</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/index.html">Turbulent channel</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/index.html">Turbulent channel wall model validation</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerFixedPoint/index.html">Turbulent channel wall model Musker</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerNewton/index.html">Turbulent channel wall model Musker (Newton)</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_PowerLaw/index.html">Turbulent channel wall model Power-Law</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_ReichardtFixedPoint/index.html">Turbulent channel wall model Reichardt</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/Vortex_convection/index.html">Convected vortex in a domain with a coarser grid at the center</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/index.html">Absorbing layers</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticCylinder2D/index.html">Acoustic Line Source</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticLineSource2D/index.html">Acoustic Line Source 2D</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/index.html">Acoustic pulse 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerBox/index.html">Acoustic pulse 2D with absorbing layer box 2d</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerPlane/index.html">Acoustic pulse 2D with absorbing layer plane</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerRadial/index.html">Acoustic pulse 2D with absorbing layer radial</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+              <a class="nav-link" href="../examples/fluid/benchmark/trackOutside/index.html">Tracking point outside the domain</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/index.html">Incompressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/application/index.html">Applications</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_MultiLevel/index.html">Flow around the cylinder 2D single level</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_SingleLevel/index.html">Flow around the cylinder 2D single level</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel3D/index.html">Channel 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Channel3D/C3D_Simple/index.html">Simple Flow in a 3D Channel</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/ConcentricCylinders/index.html">Concentric Cylinders</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow/index.html">Concentric Cylinders</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow_MultiLevel/index.html">Concentric Cylinders</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/LidDrivenCavity/index.html">Lid driven cavity</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/LidDrivenCavity/LDC_MultiLevel/index.html">Lid driven cavity</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/LidDrivenCavity/LDC_Simple/index.html">Lid driven cavity</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/index.html">Pipe 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_Force/index.html">Pipe Force</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_LES/index.html">Pipe LES</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_MultiLevel/index.html">Pipe 3D</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_Simple/index.html">Pipe Simple</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/Pipe/PIP_Split/index.html">Pipe Split</a>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/index.html">Taylor Green Vortex</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/index.html">Taylor-Green Vortex with LES Turbulence Models at Re = 1600</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagGradU/index.html">Taylor-Green Vortex with WALE Smagorinsky (GradU) model at Re = 1600</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagPDF/index.html">Taylor-Green Vortex with WALE Smagorinsky (PDF) model at Re = 1600</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_Vreman/index.html">Taylor-Green Vortex with Vreman LES model at Re = 1600</a>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_WALE/index.html">Taylor-Green Vortex with WALE LES model at Re = 1600</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/fluid_incompressible/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../examples/tutorials/index.html">Tutorials</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/tutorials/tut_00_prerequisites.html">Prerequisites</a>
+              <a class="nav-link" href="../examples/tutorials/tut_01_mus_config.html">Configuration</a>
+              <a class="nav-link" href="../examples/tutorials/tut_02_mus_toolchain.html">Toolchain</a>
+              <a class="nav-link" href="../examples/tutorials/tut_03_tracking.html">Tracking</a>
+              <a class="nav-link" href="../examples/tutorials/tut_04_boundaries.html">Boundary Conditions</a>
+              <a class="nav-link" href="../examples/tutorials/tut_05_restart.html">Restart</a>
+              <a class="nav-link" href="../examples/tutorials/tut_06_initial.html">Initial Conditions</a>
+              <a class="nav-link" href="../examples/tutorials/tut_07_convergence.html">Abort Criteria</a>
+              <a class="nav-link" href="../examples/tutorials/tut_08_source.html">Source Terms</a>
+              <a class="nav-link" href="../examples/tutorials/tut_09_mus_multilevel.html">Multilevel Simulations</a>
+              <a class="nav-link" href="../examples/tutorials/tut_10_Musubi2.html">Prerequisites</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="index.html">Feature Overview</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="comp_proc.html">Description of the Multi-Level Algorithm</a>
+              <a class="nav-link" href="data_struc.html">Data Structures</a>
+              <a class="nav-link" href="intp_methods.html">Interpolation Methods</a>
+              <a class="nav-link" href="multispecies.html">Multispecies</a>
+              <a class="nav-link" href="mus_hvs_scheme_impl.html">Musubi-Harvesting</a>
+              <a class="nav-link" href="mus_nonNewtonianTheory.html">Non-Newtonian Fluid Simulations</a>
+              <a class="nav-link active disabled" href="mus_vectorization.html">Vectorization</a>
+              <a class="nav-link" href="scheme.html">Scheme Implementation</a>
+
+                </nav>
+              <a class="nav-link" href="../usage/index.html">Build and run Musubi</a>
+          </nav>
+        </div>
+      </div>
+
+    <div class="col-9" id='text'>
+      <h1 id="vectorization">Vectorization</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Today’s CPUs are highly parallel processors with different levels of parallelism.
+We find parallelism everywhere from the parallel execution units in a CPU core,
+up to the SIMD (Single Instruction, Multiple Data) instruction set and the
+parallel execution of multiple threads. The use of the Intel SIMD instruction
+set (e.g. SSE, AVX), which is an extension to the x86 architecture, is called
+vectorization.</p>
+<p>An easy way to vectorize a Fortran code is to let compiler perform
+auto-vectorization. Afterwards, one can examine the compiler report and make
+sure that the compiler really does the correct vectorization.</p>
+<p>In <em>Musubi</em>, one must use the Structure of Array (SOA) data layout and the
+computer kernel must be implemented in a Block Loop pattern. Such an example can
+be found in <a>mus_d3q19_module</a>.</p>
+<p>Modern CPU often equipped with a cache structure. The data transfer between CPU
+and memory has to go through the cache. Normally, when the CPU wants to write
+data to the memory, if the data is not in the cache at that moment, the CPU will
+first load the data from memory to cache, then modify its value and finally
+transfer data from cache to memory back. During this writing process, data were 
+transfer through memory interface twice.</p>
+<p><strong>Non-temporal stores</strong> (also called "<strong>streaming stores</strong>")
+do not require a prior cache line read for ownership (RFO) but write to memory
+"directly". In this way the writing process requires data transfer only <strong>once</strong>!
+Under such situation, the memory transfer requirement per element in LBM becomes
+<script type="math/tex"> 8 \times 19 \times 2 + 4 \times 19 = 380 Bytes </script>, for the D3Q19 stencil.</p>
+<h2 id="how-to-enable-streaming-stores">How to Enable Streaming Stores</h2>
+<p>On machines with Intel CPU, one needs to use Intel Fortran compiler and fulfill
+the following key points:</p>
+<ol>
+<li>
+<p>Instruct the compiler to align the state array which can not reside with a
+    derived data type.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">real</span><span class="p">(</span><span class="n">kind</span><span class="p">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="n">allocatable</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">state</span><span class="p">(:,:)</span>
+<span class="sx">!IBM* align(32, state)</span>
+<span class="sx">!dir$ attributes align : 32 :: state</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>Padding is needed to insure the size of the array to be a factor of 4.</p>
+<div class="codehilite"><pre><span></span><code>remainder = mod( me%nElems_local, 4 )
+me%nSize  = me%nElems_local + mod(4 - remainder, 4)
+allocate( state( me%nSize, 2 ) )
+</code></pre></div>
+
+</li>
+<li>
+<p>Use compiler directive before the loop to perform streaming store.</p>
+<div class="codehilite"><pre><span></span><code><span class="sx">!DIR$ IVDEP</span>
+<span class="sx">!DIR$ VECTOR aligned nontemporal (outState)</span>
+<span class="n">do</span><span class="w"> </span><span class="s">iLink</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">  </span><span class="n">outState</span><span class="p">(</span><span class="n">iLink</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">...</span>
+<span class="k">end</span><span class="w"> </span><span class="n">do</span>
+</code></pre></div>
+
+</li>
+</ol>
+<p>Finally, one has to check the compiler report to make sure that the compiler
+really generate streaming stores.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">LOOP</span><span class="w"> </span><span class="n">BEGIN</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="o">/</span><span class="n">zhome</span><span class="o">/</span><span class="n">academic</span><span class="o">/</span><span class="n">HLRS</span><span class="o">/</span><span class="n">pri</span><span class="o">/</span><span class="n">iprjiaqi</span><span class="o">/</span><span class="n">apes</span><span class="o">/</span><span class="n">musubi</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">compute</span><span class="o">/</span><span class="n">mus_compute_d3q19_module</span><span class="o">.</span><span class="n">f90</span><span class="p">(</span><span class="mi">213</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference outstate has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference f000 has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference usqn_o1 has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15412: vectorization support: streaming store was generated for outstate</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15300: LOOP WAS VECTORIZED remark #15448: unmasked aligned unit stride loads: 2</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15449: unmasked aligned unit stride stores: 1</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15467: unmasked aligned streaming stores: 1</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15475: --- begin vector loop cost summary ---</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15476: scalar loop cost: 10</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15477: vector loop cost: 2.250</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15478: estimated potential speedup: 4.430</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15479: lightweight vector operations: 9</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15488: --- end vector loop cost summary ---</span>
+<span class="n">LOOP</span><span class="w"> </span><span class="n">END</span>
+
+<span class="n">LOOP</span><span class="w"> </span><span class="n">BEGIN</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="o">/</span><span class="n">zhome</span><span class="o">/</span><span class="n">academic</span><span class="o">/</span><span class="n">HLRS</span><span class="o">/</span><span class="n">pri</span><span class="o">/</span><span class="n">iprjiaqi</span><span class="o">/</span><span class="n">apes</span><span class="o">/</span><span class="n">musubi</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">compute</span><span class="o">/</span><span class="n">mus_compute_d3q19_module</span><span class="o">.</span><span class="n">f90</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference u_x has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference u_y has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference rho has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference outstate has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference f110 has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15388: vectorization support: reference usqn_o1 has aligned access</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15412: vectorization support: streaming store was generated for outstate</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15300: LOOP WAS VECTORIZED remark #15448: unmasked aligned unit stride loads: 5</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15449: unmasked aligned unit stride stores: 1</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15467: unmasked aligned streaming stores: 1</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15475: --- begin vector loop cost summary ---</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15476: scalar loop cost: 28</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15477: vector loop cost: 6.750</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15478: estimated potential speedup: 4.130</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15479: lightweight vector operations: 27</span>
+<span class="w">  </span><span class="n">remark</span><span class="w"> </span><span class="c1">#15488: --- end vector loop cost summary ---</span>
+<span class="n">LOOP</span><span class="w"> </span><span class="n">END</span>
+</code></pre></div>
+    </div>
+  </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

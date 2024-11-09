@@ -1,0 +1,871 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_directions_module.f90 &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_directions_module.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.4% of total for source files.">46 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_directions_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">mus_directions_module.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_directions_module.html">mus_directions_module</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/mus_directions_module.f90.html#src">mus_directions_module.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_directions_module.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_directions_modulef90AfferentGraph" width="641pt" height="242pt"
+ viewBox="0.00 0.00 641.00 242.21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph" class="graph" transform="scale(0.33 0.33) rotate(0) translate(4 734.73)">
+<title>sourcefile~~mus_directions_module.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-734.73 1951,-734.73 1951,4 -4,4"/>
+<!-- sourcefile~mus_directions_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~mus_directions_module.f90</title>
+<polygon fill="none" stroke="black" points="158,-552.38 0,-552.38 0,-528.38 158,-528.38 158,-552.38"/>
+<text text-anchor="middle" x="79" y="-537.98" font-family="Helvetica,sans-Serif" font-size="10.50">mus_directions_module.f90</text>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~mus_interpolate_header_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/mus_interpolate_header_module.f90.html" xlink:title="mus_interpolate_header_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="402,-552.38 194,-552.38 194,-528.38 402,-528.38 402,-552.38"/>
+<text text-anchor="middle" x="298" y="-537.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_header_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_directions_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_interpolate_header_module.f90&#45;&gt;sourcefile~mus_directions_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M193.9,-540.38C185.35,-540.38 176.75,-540.38 168.32,-540.38"/>
+<polygon fill="#000000" stroke="#000000" points="168.14,-536.88 158.14,-540.38 168.14,-543.88 168.14,-536.88"/>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~mus_auxfield_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/mus_auxfield_module.f90.html" xlink:title="mus_auxField_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="589,-532.38 438,-532.38 438,-508.38 589,-508.38 589,-532.38"/>
+<text text-anchor="middle" x="513.5" y="-517.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_auxField_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_auxfield_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M437.83,-527.38C429.53,-528.16 420.95,-528.96 412.31,-529.77"/>
+<polygon fill="#000000" stroke="#000000" points="411.78,-526.3 402.15,-530.72 412.44,-533.27 411.78,-526.3"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~mus_scheme_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/mus_scheme_module.f90.html" xlink:title="mus_scheme_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1011.5,-565.38 863.5,-565.38 863.5,-541.38 1011.5,-541.38 1011.5,-565.38"/>
+<text text-anchor="middle" x="937.5" y="-550.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M875.29,-565.41C793.45,-580.97 643.68,-607.57 514.5,-620.38"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~mus_scheme_type_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/mus_scheme_type_module.f90.html" xlink:title="mus_scheme_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="802,-385.38 625,-385.38 625,-361.38 802,-361.38 802,-385.38"/>
+<text text-anchor="middle" x="713.5" y="-370.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M867.86,-541.35C857.37,-537.82 847.05,-533.26 838,-527.38 784.91,-492.87 744.12,-427.96 725.54,-394.51"/>
+<polygon fill="#000000" stroke="#000000" points="728.54,-392.7 720.69,-385.58 722.38,-396.04 728.54,-392.7"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_interpolate_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M709.09,-385.63C694.84,-433.82 635.09,-608.42 514.5,-620.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-620.38C440.66,-627.51 362.82,-583.88 323.99,-558.2"/>
+<polygon fill="#000000" stroke="#000000" points="325.67,-555.11 315.43,-552.4 321.75,-560.9 325.67,-555.11"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M696.3,-385.41C661.63,-411.15 580.11,-471.68 539.04,-502.16"/>
+<polygon fill="#000000" stroke="#000000" points="536.87,-499.42 530.93,-508.19 541.04,-505.04 536.87,-499.42"/>
+</g>
+<!-- sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~mus_aux_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/mus_aux_module.f90.html" xlink:title="mus_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1638.5,-285.38 1512.5,-285.38 1512.5,-261.38 1638.5,-261.38 1638.5,-285.38"/>
+<text text-anchor="middle" x="1575.5" y="-270.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1530.94,-261.28C1483.18,-248.56 1409.52,-230.73 1381,-233.38"/>
+</g>
+<!-- sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node22" class="node">
+<title>sourcefile~mus_restart_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node22"><a xlink:href="../sourcefile/mus_restart_module.f90.html" xlink:title="mus_restart_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1450.5,-285.38 1309.5,-285.38 1309.5,-261.38 1450.5,-261.38 1450.5,-285.38"/>
+<text text-anchor="middle" x="1380" y="-270.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_restart_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge42" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_restart_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1512.48,-273.38C1496.03,-273.38 1478.04,-273.38 1460.79,-273.38"/>
+<polygon fill="#000000" stroke="#000000" points="1460.73,-269.88 1450.73,-273.38 1460.73,-276.88 1460.73,-269.88"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node23" class="node">
+<title>sourcefile~mus_tools_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node23"><a xlink:href="../sourcefile/mus_tools_module.f90.html" xlink:title="mus_tools_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1237,-485.38 1105,-485.38 1105,-461.38 1237,-461.38 1237,-485.38"/>
+<text text-anchor="middle" x="1171" y="-470.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tools_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge44" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1550.23,-285.44C1481.31,-319.69 1284.3,-417.58 1205.33,-456.82"/>
+<polygon fill="#000000" stroke="#000000" points="1203.7,-453.72 1196.3,-461.31 1206.82,-459.99 1203.7,-453.72"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node24" class="node">
+<title>sourcefile~mus_tracking_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node24"><a xlink:href="../sourcefile/mus_tracking_module.f90.html" xlink:title="mus_tracking_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1455,-447.38 1305,-447.38 1305,-423.38 1455,-423.38 1455,-447.38"/>
+<text text-anchor="middle" x="1380" y="-432.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tracking_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge49" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1558.62,-285.57C1541.68,-298.64 1514.17,-320.14 1491,-339.38 1459.54,-365.52 1424.03,-396.86 1402.08,-416.45"/>
+<polygon fill="#000000" stroke="#000000" points="1399.48,-414.07 1394.37,-423.35 1404.15,-419.29 1399.48,-414.07"/>
+</g>
+<!-- sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~mus_config_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/mus_config_module.f90.html" xlink:title="mus_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1449.5,-603.38 1310.5,-603.38 1310.5,-579.38 1449.5,-579.38 1449.5,-603.38"/>
+<text text-anchor="middle" x="1380" y="-588.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1310.45,-593.68C1270.12,-594.63 1218.15,-595.14 1172,-593.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1170,-593.38C1110.01,-591.11 1042.47,-578.22 995.89,-567.68"/>
+<polygon fill="#000000" stroke="#000000" points="996.52,-564.24 985.99,-565.41 994.95,-571.06 996.52,-564.24"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1170,-593.38C1067.19,-589.48 1028.4,-643.42 938.5,-593.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M936.5,-593.38C897.54,-571.7 874.67,-599.75 838,-574.38 772.64,-529.17 735.4,-437.01 721.21,-395.05"/>
+<polygon fill="#000000" stroke="#000000" points="724.53,-393.94 718.1,-385.53 717.88,-396.12 724.53,-393.94"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge45" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1328.53,-579.3C1320.08,-575.75 1311.85,-571.21 1305,-565.38 1279.54,-543.74 1295.26,-520.05 1269,-499.38 1262.3,-494.11 1254.63,-489.91 1246.59,-486.55"/>
+<polygon fill="#000000" stroke="#000000" points="1247.62,-483.2 1237.03,-482.99 1245.18,-489.76 1247.62,-483.2"/>
+</g>
+<!-- sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~mus_control_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/mus_control_module.f90.html" xlink:title="mus_control_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1839,-247.38 1696,-247.38 1696,-223.38 1839,-223.38 1839,-247.38"/>
+<text text-anchor="middle" x="1767.5" y="-232.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1695.93,-237.84C1660.07,-238.28 1615.86,-237.58 1576.5,-233.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1574.5,-233.38C1238.46,-197.59 1137.3,112.53 838,-44.38 645.3,-145.41 546.36,-418.98 521.1,-498.45"/>
+<polygon fill="#000000" stroke="#000000" points="517.65,-497.75 518.02,-508.34 524.34,-499.83 517.65,-497.75"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1574.5,-233.38C1488.98,-224.28 1466.63,-225.41 1381,-233.38"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge34" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1706.38,-247.41C1687.32,-251.22 1666.07,-255.47 1646.38,-259.41"/>
+<polygon fill="#000000" stroke="#000000" points="1645.67,-255.98 1636.55,-261.37 1647.04,-262.84 1645.67,-255.98"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~mus_dynloadbal_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/mus_dynloadbal_module.f90.html" xlink:title="mus_dynLoadBal_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1660,-521.38 1491,-521.38 1491,-497.38 1660,-497.38 1660,-521.38"/>
+<text text-anchor="middle" x="1575.5" y="-506.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_auxfield_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1504.59,-521.56C1499.71,-524 1495.11,-526.91 1491,-530.38 1460.6,-556.08 1488.32,-590.62 1455,-612.38 1419.61,-635.5 1307.45,-671.97 838,-607.38 735.39,-593.27 618.99,-556.69 557.64,-535.73"/>
+<polygon fill="#000000" stroke="#000000" points="558.52,-532.33 547.92,-532.38 556.24,-538.95 558.52,-532.33"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-513.38C1285.47,-514.19 1265.42,-546.75 1172,-551.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1170,-551.38C1120.84,-553.83 1065.74,-554.39 1021.63,-554.31"/>
+<polygon fill="#000000" stroke="#000000" points="1021.54,-550.81 1011.53,-554.28 1021.52,-557.81 1021.54,-550.81"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-513.38C1287,-514.18 1264,-513.38 1172,-513.38"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge46" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1490.69,-511.56C1456.65,-512.32 1416.95,-513.07 1381,-513.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-513.38C1351.03,-513.63 1282.7,-499.33 1232.15,-487.76"/>
+<polygon fill="#000000" stroke="#000000" points="1232.83,-484.32 1222.3,-485.49 1231.25,-491.14 1232.83,-484.32"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge50" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1514.19,-497.28C1506.21,-494.8 1498.29,-491.86 1491,-488.38 1472.95,-479.78 1472.64,-470.81 1455,-461.38 1447.74,-457.51 1439.79,-454.01 1431.87,-450.93"/>
+<polygon fill="#000000" stroke="#000000" points="1432.87,-447.57 1422.28,-447.39 1430.44,-454.14 1432.87,-447.57"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~mus_harvesting.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/mus_harvesting.f90.html" xlink:title="mus_harvesting.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1826,-521.38 1709,-521.38 1709,-497.38 1826,-497.38 1826,-521.38"/>
+<text text-anchor="middle" x="1767.5" y="-506.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1757.51,-521.39C1732.86,-553.14 1660.44,-639 1576.5,-669.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1574.5,-669.38C1468.91,-707.61 1176.77,-650.29 1073,-607.38 1054.27,-599.64 1055.17,-588.37 1037,-579.38 1028.26,-575.06 1018.72,-571.39 1009.13,-568.3"/>
+<polygon fill="#000000" stroke="#000000" points="1010.13,-564.95 999.54,-565.39 1008.1,-571.64 1010.13,-564.95"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1574.5,-669.38C1312.39,-780.47 1187.24,-731.84 938.5,-593.38"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~mus_hvs_aux_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node11"><a xlink:href="../sourcefile/mus_hvs_aux_module.f90.html" xlink:title="mus_hvs_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1650,-479.38 1501,-479.38 1501,-455.38 1650,-455.38 1650,-479.38"/>
+<text text-anchor="middle" x="1575.5" y="-464.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge39" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1712.05,-497.35C1689.89,-492.45 1664.11,-486.75 1641.01,-481.64"/>
+<polygon fill="#000000" stroke="#000000" points="1641.47,-478.16 1630.95,-479.42 1639.96,-485 1641.47,-478.16"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~mus_hvs_config_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node12"><a xlink:href="../sourcefile/mus_hvs_config_module.f90.html" xlink:title="mus_hvs_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1657,-563.38 1494,-563.38 1494,-539.38 1657,-539.38 1657,-563.38"/>
+<text text-anchor="middle" x="1575.5" y="-548.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge40" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1712.05,-521.42C1689.89,-526.32 1664.11,-532.02 1641.01,-537.12"/>
+<polygon fill="#000000" stroke="#000000" points="1639.96,-533.77 1630.95,-539.35 1641.47,-540.61 1639.96,-533.77"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~mus_hvs_construction_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node13"><a xlink:href="../sourcefile/mus_hvs_construction_module.f90.html" xlink:title="mus_hvs_construction_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1269,-365.38 1073,-365.38 1073,-341.38 1269,-341.38 1269,-365.38"/>
+<text text-anchor="middle" x="1171" y="-350.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_construction_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge41" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1574.5,-353.38C1460.93,-299.63 1308.33,-321.39 1227.56,-339.1"/>
+<polygon fill="#000000" stroke="#000000" points="1226.58,-335.73 1217.6,-341.34 1228.12,-342.56 1226.58,-335.73"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge43" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_restart_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1755.91,-497.3C1729.12,-467.58 1655.2,-390.63 1576.5,-353.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1574.5,-353.38C1523.01,-329.01 1462.04,-304.5 1422.5,-289.15"/>
+<polygon fill="#000000" stroke="#000000" points="1423.52,-285.79 1412.93,-285.45 1421,-292.32 1423.52,-285.79"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-475.38C1285.65,-481.31 1265.54,-513.38 1172,-513.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1170,-513.38C1067.11,-513.38 1038.52,-537.5 938.5,-513.38"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge47" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1500.95,-469.66C1464.8,-470.97 1420.59,-472.87 1381,-475.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-475.38C1335.45,-478.15 1286.64,-477.84 1247.36,-476.75"/>
+<polygon fill="#000000" stroke="#000000" points="1247.43,-473.25 1237.33,-476.45 1247.22,-480.25 1247.43,-473.25"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge51" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1501.9,-455.38C1489.46,-453.32 1476.45,-451.17 1463.77,-449.07"/>
+<polygon fill="#000000" stroke="#000000" points="1464.12,-445.58 1453.69,-447.4 1462.98,-452.49 1464.12,-445.58"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-551.38C1287.09,-547.22 1263.89,-546.82 1172,-551.38"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1493.97,-553.01C1459.2,-553.3 1418.08,-553.07 1381,-551.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-551.38C1285.56,-547.15 1265.54,-513.38 1172,-513.38"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge36" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1516.44,-563.39C1495.3,-567.76 1471.21,-572.74 1449.26,-577.27"/>
+<polygon fill="#000000" stroke="#000000" points="1448.43,-573.87 1439.35,-579.32 1449.85,-580.73 1448.43,-573.87"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1072.84,-357.65C996.08,-361.02 889.41,-365.7 812.44,-369.08"/>
+<polygon fill="#000000" stroke="#000000" points="812.1,-365.6 802.26,-369.53 812.4,-372.59 812.1,-365.6"/>
+</g>
+<!-- sourcefile~mus_initfluid_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node14" class="node">
+<title>sourcefile~mus_initfluid_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node14"><a xlink:href="../sourcefile/mus_initfluid_module.f90.html" xlink:title="mus_initFluid_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1011.5,-245.38 863.5,-245.38 863.5,-221.38 1011.5,-221.38 1011.5,-245.38"/>
+<text text-anchor="middle" x="937.5" y="-230.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluid_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initfluid_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~mus_initfluid_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M872.48,-245.42C860.61,-248.99 848.62,-253.56 838,-259.38 793.41,-283.84 752.29,-327.84 730.58,-353.44"/>
+<polygon fill="#000000" stroke="#000000" points="727.7,-351.43 723.99,-361.35 733.08,-355.91 727.7,-351.43"/>
+</g>
+<!-- sourcefile~mus_initfluidincomp_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node15" class="node">
+<title>sourcefile~mus_initfluidincomp_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node15"><a xlink:href="../sourcefile/mus_initfluidincomp_module.f90.html" xlink:title="mus_initFluidIncomp_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1031.5,-203.38 843.5,-203.38 843.5,-179.38 1031.5,-179.38 1031.5,-203.38"/>
+<text text-anchor="middle" x="937.5" y="-188.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluidIncomp_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initfluidincomp_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~mus_initfluidincomp_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M856.09,-203.42C849.74,-205.88 843.62,-208.84 838,-212.38 782.42,-247.48 742.26,-316.94 724.56,-352.03"/>
+<polygon fill="#000000" stroke="#000000" points="721.25,-350.83 719.98,-361.35 727.53,-353.92 721.25,-350.83"/>
+</g>
+<!-- sourcefile~mus_initisothermaceq_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node16" class="node">
+<title>sourcefile~mus_initisothermaceq_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node16"><a xlink:href="../sourcefile/mus_initisothermaceq_module.f90.html" xlink:title="mus_initIsothermAcEq_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1035.5,-161.38 839.5,-161.38 839.5,-137.38 1035.5,-137.38 1035.5,-161.38"/>
+<text text-anchor="middle" x="937.5" y="-146.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initIsothermAcEq_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initisothermaceq_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~mus_initisothermaceq_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M854.18,-161.4C848.46,-163.88 842.99,-166.84 838,-170.38 772.71,-216.71 735.44,-309.45 721.23,-351.62"/>
+<polygon fill="#000000" stroke="#000000" points="717.88,-350.6 718.11,-361.19 724.53,-352.77 717.88,-350.6"/>
+</g>
+<!-- sourcefile~mus_initlbmps_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node17" class="node">
+<title>sourcefile~mus_initlbmps_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node17"><a xlink:href="../sourcefile/mus_initlbmps_module.f90.html" xlink:title="mus_initLBMPS_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1016.5,-119.38 858.5,-119.38 858.5,-95.38 1016.5,-95.38 1016.5,-119.38"/>
+<text text-anchor="middle" x="937.5" y="-104.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initLBMPS_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initlbmps_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~mus_initlbmps_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M858.26,-117.07C851,-119.98 844.09,-123.69 838,-128.38 762.77,-186.41 729.8,-302.75 718.9,-351.3"/>
+<polygon fill="#000000" stroke="#000000" points="715.42,-350.85 716.75,-361.36 722.27,-352.31 715.42,-350.85"/>
+</g>
+<!-- sourcefile~mus_initmultispecies_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node18" class="node">
+<title>sourcefile~mus_initmultispecies_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node18"><a xlink:href="../sourcefile/mus_initmultispecies_module.f90.html" xlink:title="mus_initMultispecies_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1031.5,-77.38 843.5,-77.38 843.5,-53.38 1031.5,-53.38 1031.5,-77.38"/>
+<text text-anchor="middle" x="937.5" y="-62.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initMultispecies_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initmultispecies_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~mus_initmultispecies_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M851.69,-77.57C846.81,-80.03 842.19,-82.95 838,-86.38 752.48,-156.57 724.84,-297.08 717.13,-351.32"/>
+<polygon fill="#000000" stroke="#000000" points="713.66,-350.88 715.81,-361.25 720.6,-351.8 713.66,-350.88"/>
+</g>
+<!-- sourcefile~mus_initnernstplanck_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node19" class="node">
+<title>sourcefile~mus_initnernstplanck_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node19"><a xlink:href="../sourcefile/mus_initnernstplanck_module.f90.html" xlink:title="mus_initNernstPlanck_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1033.5,-485.38 841.5,-485.38 841.5,-461.38 1033.5,-461.38 1033.5,-485.38"/>
+<text text-anchor="middle" x="937.5" y="-470.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initNernstPlanck_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initnernstplanck_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~mus_initnernstplanck_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M879.85,-461.35C865.91,-457.6 851.2,-452.95 838,-447.38 801.9,-432.16 763.7,-407.84 739.52,-391.27"/>
+<polygon fill="#000000" stroke="#000000" points="741.48,-388.37 731.27,-385.54 737.49,-394.12 741.48,-388.37"/>
+</g>
+<!-- sourcefile~mus_initpoisson_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node20" class="node">
+<title>sourcefile~mus_initpoisson_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node20"><a xlink:href="../sourcefile/mus_initpoisson_module.f90.html" xlink:title="mus_initPoisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1019,-405.38 856,-405.38 856,-381.38 1019,-381.38 1019,-405.38"/>
+<text text-anchor="middle" x="937.5" y="-390.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initPoisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initpoisson_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~mus_initpoisson_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M855.72,-386.11C841.62,-384.84 826.82,-383.5 812.31,-382.2"/>
+<polygon fill="#000000" stroke="#000000" points="812.61,-378.71 802.33,-381.3 811.98,-385.68 812.61,-378.71"/>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node21" class="node">
+<title>sourcefile~mus_mesh_adaptation_module.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node21"><a xlink:href="../sourcefile/mus_mesh_adaptation_module.f90.html" xlink:title="mus_mesh_adaptation_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1037,-325.38 838,-325.38 838,-301.38 1037,-301.38 1037,-325.38"/>
+<text text-anchor="middle" x="937.5" y="-310.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mesh_adaptation_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M890.37,-325.45C873.84,-329.81 855.08,-334.78 838,-339.38 814.91,-345.61 789.43,-352.6 767.64,-358.62"/>
+<polygon fill="#000000" stroke="#000000" points="766.61,-355.27 757.91,-361.31 768.48,-362.02 766.61,-355.27"/>
+</g>
+<!-- sourcefile~mus_restart_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~mus_restart_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1309.49,-271.73C1269.29,-271.19 1217.77,-271.2 1172,-273.38"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1143.12,-485.48C1116.53,-497.17 1074.47,-514.89 1037,-527.38 1024.82,-531.45 1011.63,-535.29 998.98,-538.72"/>
+<polygon fill="#000000" stroke="#000000" points="997.74,-535.43 988.97,-541.38 999.54,-542.2 997.74,-535.43"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge31" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1125.07,-485.5C1068.09,-500.11 973.1,-521.72 938.5,-513.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M936.5,-513.38C893.16,-502.93 877.49,-515.09 838,-494.38 790.98,-469.73 749.98,-421.39 729.13,-393.86"/>
+<polygon fill="#000000" stroke="#000000" points="731.85,-391.65 723.09,-385.71 726.23,-395.82 731.85,-391.65"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge32" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1304.78,-439.05C1199.86,-442.76 1002.62,-444.28 838,-414.38 808.7,-409.06 776.82,-398.35 752.79,-389.21"/>
+<polygon fill="#000000" stroke="#000000" points="753.93,-385.89 743.34,-385.54 751.39,-392.42 753.93,-385.89"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge48" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1313.5,-447.41C1292.34,-451.29 1268.72,-455.63 1246.94,-459.63"/>
+<polygon fill="#000000" stroke="#000000" points="1246.27,-456.19 1237.07,-461.44 1247.54,-463.08 1246.27,-456.19"/>
+</g>
+<!-- sourcefile~musubi.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_node25" class="node">
+<title>sourcefile~musubi.f90</title>
+<g id="a_sourcefile~~mus_directions_module.f90~~AfferentGraph_node25"><a xlink:href="../sourcefile/musubi.f90.html" xlink:title="musubi.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1947,-267.38 1875,-267.38 1875,-243.38 1947,-243.38 1947,-267.38"/>
+<text text-anchor="middle" x="1911" y="-252.98" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge33" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1894.71,-243.36C1881.01,-233.39 1859.9,-219.98 1839,-214.38 1642.21,-161.65 1583.85,-214.5 1381,-233.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1379,-233.38C1285.63,-241.28 1265.6,-268.92 1172,-273.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1170,-273.38C1022.37,-280.43 978.35,-246.06 838,-292.38 798.1,-305.56 758.67,-335.06 735.47,-354.58"/>
+<polygon fill="#000000" stroke="#000000" points="732.98,-352.1 727.68,-361.28 737.55,-357.41 732.98,-352.1"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge35" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1874.94,-257.28C1821.54,-260.16 1718.68,-265.71 1648.81,-269.48"/>
+<polygon fill="#000000" stroke="#000000" points="1648.55,-265.99 1638.75,-270.02 1648.93,-272.98 1648.55,-265.99"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge37" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1908.52,-267.59C1902.45,-315.82 1877.86,-492.37 1839,-530.38 1735.46,-631.65 1550.16,-620.42 1449.92,-605"/>
+<polygon fill="#000000" stroke="#000000" points="1450.33,-601.52 1439.9,-603.4 1449.22,-608.43 1450.33,-601.52"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_directions_module.f90~~AfferentGraph_edge38" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1874.66,-250.39C1866.81,-249.28 1858.17,-248.06 1849.32,-246.81"/>
+<polygon fill="#000000" stroke="#000000" points="1849.66,-243.32 1839.27,-245.39 1848.68,-250.25 1849.66,-243.32"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_directions_modulef90AfferentGraph = svgPanZoom('#sourcefilemus_directions_modulef90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">!&gt; This module contains parameters to address the stencil directions. These</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">!! parameters are valid for all stencils, however, the direction `q00` and</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">!! `q000` needs to be set on each use according to `QQ`.</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="k">module </span><span class="n">mus_directions_module</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="w">  </span><span class="k">implicit none</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="k">  private</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN00</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c">!&lt; west    x-</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q0N0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="c">!&lt; south   y-</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q00N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="c">!&lt; bottom  z-</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q100</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w">  </span><span class="c">!&lt; east    x+</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q010</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="c">!&lt; north   y+</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q001</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w">  </span><span class="c">!&lt; top     z+</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q0NN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="w">  </span><span class="c">!&lt;         z-,y-</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q0N1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w">  </span><span class="c">!&lt;         z+,y-</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q01N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="w">  </span><span class="c">!&lt;         z-,y+</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q011</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="c">!&lt;         z+,y+</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN0N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="c">!&lt;         x-,z-</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q10N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="c">!&lt;         x+,z-</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="c">!&lt;         x-,z+</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q101</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">14</span><span class="w"> </span><span class="c">!&lt;         x+,z+</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qNN0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="c">!&lt;         y-,x-</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="c">!&lt;         y+,x-</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q1N0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="c">!&lt;         y-,x+</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q110</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="c">!&lt;         y+,x+</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qNNN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="c">!&lt;         x-,y-,z-</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qNN1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="c">!&lt;         x-,y-,z+</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN1N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="w"> </span><span class="c">!&lt;         x-,y+,z-</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="c">!&lt;         x-,y+,z+</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q1NN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">23</span><span class="w"> </span><span class="c">!&lt;         x+,y-,z-</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q1N1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="c">!&lt;         x+,y-,z+</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q11N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="c">!&lt;         x+,y+,z-</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q111</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">26</span><span class="w"> </span><span class="c">!&lt;         x+,y+,z+</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c">!&lt; west   x-</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q0N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c">!&lt; south  y-</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q10</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c">!&lt; east   x+</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c">!&lt; north  y+</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qNN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="c">!&lt;        y-,x-</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">qN1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="c">!&lt;        y+,x-</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q1N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="c">!&lt;        y-,x+</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="c">!&lt;        y+,x+</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q__W</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c">!&lt; west   x-</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q__S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="c">!&lt; south  y-</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q__E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="c">!&lt; east   x+</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q__N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="c">!&lt; north  y+</span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q_SW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="c">!&lt;        y-,x-</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q_NW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="c">!&lt;        y+,x-</span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q_SE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="c">!&lt;        y-,x+</span>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q_NE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="c">!&lt;        y+,x+</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">  </span><span class="c">! QQ, q00 and q000 cannot be exported, as they are different for different</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a><span class="w">  </span><span class="c">! stencils. They need to be defined in using modules.</span>
+<a id="ln-57" name="ln-57" href="#ln-57"></a>
+<a id="ln-58" name="ln-58" href="#ln-58"></a><span class="k">end module</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

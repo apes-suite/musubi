@@ -1,0 +1,953 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../../../favicon.png">
+
+    <title>Configuration &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../../../css/pygments.css" rel="stylesheet">
+    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../css/local.css" rel="stylesheet">
+      <link  href="../../../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../../../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../../index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../../../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Configuration</h1>
+    <div class="container p-2 mb-4 bg-light border rounded-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col">
+          <ul class="list-inline" style="margin-bottom:0px; display:inline">
+          </ul>
+        </div>
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../../index.html'>Documentation</a></li>
+                <li class="breadcrumb-item"><a href='../index.html'>Examples</a></li>
+                <li class="breadcrumb-item"><a href='index.html'>Tutorials</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Configuration</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-3">
+        <div class="card card-body bg-light" id="sidebar-toc">
+          <ul class="nav flex-column align-items">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Documentation</a>
+            </li>
+          </ul>
+          <hr>
+          <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="../../bibliography.html">Bibliography</a>
+              <a class="nav-link" href="../index.html">Examples</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/index.html">Weakly compressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/index.html">Applications</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nonreflecting_BC/index.html">Nonreflecting Boundary Conditions</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/index.html">Nozzle</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInAndAround/index.html">Nozzle flow inside an around</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInside/index.html">Nozzle flow inside</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/index.html">Channel 2D Boundary Conditions</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrBB_PressExpol/index.html">Channel 2D MfrBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrEq_PressEq/index.html">Channel 2D MfrEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_PressExpol_PressExpol/index.html">Channel 2D PressExpol PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBB_PressExpol/index.html">Channel 2D VelBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBFL_PressExpol/index.html">Channel 2D VelBFL PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelEq_PressEq/index.html">Channel 2D VelEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelNonEqExpol_PressNonEqExpol/index.html">Channel 2D VelNonEqExpol PressNonEqExpol</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/index.html">Poisueille flow in a channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_BGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_drtBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_hrrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_prrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rrBGK/index.html">Poisueille flow in a channel 2D</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/index.html">Channel 3D test cases</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Cylinder_MultiLevel_LES/index.html">Turbulent flow around the cylinder in a channel 3D at Re=3900</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Sphere_MultiLevel_LES/index.html">Turbulent flow around the sphere in a channel 3D</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/index.html">Turbulent channel</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/index.html">Turbulent channel wall model validation</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerFixedPoint/index.html">Turbulent channel wall model Musker</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerNewton/index.html">Turbulent channel wall model Musker (Newton)</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_PowerLaw/index.html">Turbulent channel wall model Power-Law</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_ReichardtFixedPoint/index.html">Turbulent channel wall model Reichardt</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Vortex_convection/index.html">Convected vortex in a domain with a coarser grid at the center</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/index.html">Absorbing layers</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticCylinder2D/index.html">Acoustic Line Source</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticLineSource2D/index.html">Acoustic Line Source 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/index.html">Acoustic pulse 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerBox/index.html">Acoustic pulse 2D with absorbing layer box 2d</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerPlane/index.html">Acoustic pulse 2D with absorbing layer plane</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerRadial/index.html">Acoustic pulse 2D with absorbing layer radial</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+              <a class="nav-link" href="../fluid/benchmark/trackOutside/index.html">Tracking point outside the domain</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/index.html">Incompressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/application/index.html">Applications</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_MultiLevel/index.html">Flow around the cylinder 2D single level</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_SingleLevel/index.html">Flow around the cylinder 2D single level</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/index.html">Channel 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/C3D_Simple/index.html">Simple Flow in a 3D Channel</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/index.html">Concentric Cylinders</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow/index.html">Concentric Cylinders</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow_MultiLevel/index.html">Concentric Cylinders</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/index.html">Lid driven cavity</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_MultiLevel/index.html">Lid driven cavity</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_Simple/index.html">Lid driven cavity</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/index.html">Pipe 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Force/index.html">Pipe Force</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_LES/index.html">Pipe LES</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_MultiLevel/index.html">Pipe 3D</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Simple/index.html">Pipe Simple</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Split/index.html">Pipe Split</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/index.html">Taylor Green Vortex</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/index.html">Taylor-Green Vortex with LES Turbulence Models at Re = 1600</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagGradU/index.html">Taylor-Green Vortex with WALE Smagorinsky (GradU) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagPDF/index.html">Taylor-Green Vortex with WALE Smagorinsky (PDF) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_Vreman/index.html">Taylor-Green Vortex with Vreman LES model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_WALE/index.html">Taylor-Green Vortex with WALE LES model at Re = 1600</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="index.html">Tutorials</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="tut_00_prerequisites.html">Prerequisites</a>
+              <a class="nav-link active disabled" href="tut_01_mus_config.html">Configuration</a>
+              <a class="nav-link" href="tut_02_mus_toolchain.html">Toolchain</a>
+              <a class="nav-link" href="tut_03_tracking.html">Tracking</a>
+              <a class="nav-link" href="tut_04_boundaries.html">Boundary Conditions</a>
+              <a class="nav-link" href="tut_05_restart.html">Restart</a>
+              <a class="nav-link" href="tut_06_initial.html">Initial Conditions</a>
+              <a class="nav-link" href="tut_07_convergence.html">Abort Criteria</a>
+              <a class="nav-link" href="tut_08_source.html">Source Terms</a>
+              <a class="nav-link" href="tut_09_mus_multilevel.html">Multilevel Simulations</a>
+              <a class="nav-link" href="tut_10_Musubi2.html">Prerequisites</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../../features/index.html">Feature Overview</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../../features/comp_proc.html">Description of the Multi-Level Algorithm</a>
+              <a class="nav-link" href="../../features/data_struc.html">Data Structures</a>
+              <a class="nav-link" href="../../features/intp_methods.html">Interpolation Methods</a>
+              <a class="nav-link" href="../../features/multispecies.html">Multispecies</a>
+              <a class="nav-link" href="../../features/mus_hvs_scheme_impl.html">Musubi-Harvesting</a>
+              <a class="nav-link" href="../../features/mus_nonNewtonianTheory.html">Non-Newtonian Fluid Simulations</a>
+              <a class="nav-link" href="../../features/mus_vectorization.html">Vectorization</a>
+              <a class="nav-link" href="../../features/scheme.html">Scheme Implementation</a>
+
+                </nav>
+              <a class="nav-link" href="../../usage/index.html">Build and run Musubi</a>
+          </nav>
+        </div>
+      </div>
+
+    <div class="col-9" id='text'>
+      <div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>WORK IN PROGRESS</p>
+</div>
+<p>Navigate: <a href="tut_00_prerequisites.html">&larr; Prerequisites</a>
+| <a href="index.html">Overview</a>
+| <a href="tut_02_mus_toolchain.html">Toolchain &rarr;</a></p>
+<h1 id="configuration">Configuration</h1>
+<p>Set up your first simulation with <em>Musubi</em>.</p>
+<p>This tutorial is using a 1D gaussian_pulse in pressure computed in a 3D domain.
+The necessary configuration file to run this case will be generated from
+scratch within this tutorial.
+The final config-file for this case can be found in
+<code>examples/tutorials/tutorial_cases/tutorial_gaussian_pulse/</code>.</p>
+<h2 id="the-musubilua-file">The musubi.lua File</h2>
+<p>We communicate with <em>Musubi</em> via a Lua-Script that tells <em>Musubi</em> what we
+want to simulate and which options we want to set.
+The Lua-syntax is fairly easy, and for this tutorial, we will use only a
+small subset of it, so don't be afraid if you hear of Lua for the first time.</p>
+<p>By default, <em>Musubi</em> looks for a file called <code>musubi.lua</code> inside your current
+working directory. If you want, you can use different names (for example if
+you want to keep more than one script e.g. <code>musubi_test.lua</code>) and pass the name
+of the script you want the application to use as a command-line argument.
+(e.g.<code>~/apes/musubi/build/musubi musubi_test.lua</code>)</p>
+<p>We are now going to build a working, almost-minimal <code>musubi.lua</code> file
+step-by-step.
+Please navigate to your simulation directory, and create a new file called
+<code>musubi.lua</code> with your favorite text editor.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>Most configuration options have some sane defaults, which allows you to
+leave them alone if they are not relevant to you.</p>
+</div>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>Before you run the following simulation setup, make sure that you have
+created the subdirectories <code>restart</code> and <code>tracking</code> in the same path where
+<code>musubi.lua</code> is located.</p>
+</div>
+<h3 id="lua-concepts-for-the-configuration">Lua concepts for the configuration</h3>
+<p>Lua provides a convenient data structure called
+<a href="http://www.lua.org/pil/2.5.html">tables</a>, that we use extensively in the
+configuration to structure it.
+Tables allow us to gather relevant settings together.
+They are indicated by curly brackets <code>{}</code>.
+Thus, we can define a table like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">atable</span> <span class="o">=</span> <span class="p">{</span> <span class="n">somevalue</span> <span class="o">=</span> <span class="mi">123</span> <span class="p">}</span>
+</code></pre></div>
+
+<p>Note that tables can be nested and values inside the table can be themselves
+be tables again.
+We can have an arbitrary amount of values in the table definition and individual
+settings are separated by comma (<code>,</code>), like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">atable</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">somevalue</span> <span class="o">=</span> <span class="mi">123</span><span class="p">,</span>
+  <span class="n">anothervalue</span> <span class="o">=</span> <span class="s2">&quot;abc&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>A superfluous comma at the end of the last entry is also valid syntax here.</p>
+<p>Alternatively, we can also modify or add values to an existing table via the
+dot operator:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">atable</span><span class="p">.</span><span class="n">somevalue</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">atable</span><span class="p">.</span><span class="n">third</span> <span class="o">=</span> <span class="mf">1.23</span>
+</code></pre></div>
+
+<p>Here we modify <code>somvalue</code> in the <code>atable</code> table and add a <code>third</code> entry
+with the value <code>1.23</code> to the table.</p>
+<p>Comments in Lua are introduced by two dashes (<code>--</code>). We also make use of
+these to offer explanations to the settings in the configuration scripts.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>The complete configuration file is executed and the status of the various
+settings "at the end" of that execution is what Musubi will obtain.</p>
+</div>
+<h2 id="general-simulation-name">General Simulation Name</h2>
+<p>Every simulation should have a name, which is specified by the variable
+<code>simulation_name</code> in the Lua script.</p>
+<p>In this example, we will simulate a
+<a href="http://en.wikipedia.org/wiki/Gaussian_function" title="Wikipedia: Gaussian Pulse">Gaussian pulse</a>
+in pressure, hence the name <em>Gausspulse</em> seems adequate.
+You can use just anything as a simulation name, just make it clear and
+descriptive, as it will help you to identify produced results from the
+simulation.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>The simulation name will appear in all output files, so if you use good
+and unique names, you always know where a particular output came from.</p>
+</div>
+<div class="codehilite"><pre><span></span><code><span class="n">simulation_name</span> <span class="o">=</span> <span class="s1">&#39;Gausspulse&#39;</span>
+</code></pre></div>
+
+<h2 id="fluid-table">Fluid table</h2>
+<p>Musubi requires us to define the properties of the fluid to simulate in
+a <code>fluid</code> table.
+In that table we define the kinematic viscosity in the variable
+<code>kinematic_viscosity</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="mf">1.2e-6</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In the incompressible model this is already enough to define the fluid.
+For weakly compressible models, we also need to provide the bulk viscosity
+in the variable <code>bulk_viscosity</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="mf">1.2e-6</span>
+<span class="p">}</span>
+<span class="n">fluid</span><span class="p">.</span><span class="n">bulk_viscosity</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">fluid</span><span class="p">.</span><span class="n">kinematic_viscosity</span><span class="o">/</span><span class="mi">3</span>
+</code></pre></div>
+
+<p>Notice how we defined the second entry here in dependency of the first.
+This is not possible when defining all entries in the table directly, thus
+we are using a separate line after the first definition of the table
+to set the bulk viscosity.</p>
+<p>One question that arises in setting the values in the fluid table, but
+also in other settings like the initial conditions, boundary conditions or source
+terms, is in what units those values are to be provided.</p>
+<p>The solver works on so called lattice units, which are tied to the discretization.
+However, that often is a little cumbersome to work with and it also provides
+the possibility to instead translate the given quantities from physical
+units.
+To that end the user has to provide a <code>physics</code> table.
+When provided by the user that table will be used by Musubi to convert
+given fluid property settings to the internal lattice units for the computation.
+It will also be used to translate results back to physical units in variable
+names that have a <code>_phy</code> suffix.
+Thus, when you want to refer obtain the resulting velocity field from the
+computation you would access the <code>velocity_phy</code> variable, which provides the
+velocity converted with the help of the settings in the <code>physics</code> table.</p>
+<h2 id="physics-table">Physics table</h2>
+<p>The <code>physics</code> table provides the necessary quantities to transform physical units
+to the lattice units used by the solver internally.
+Specifically it applies to the <code>fluid.kinematic_viscosity</code> setting and macroscopic
+variables like <code>pressure</code> and <code>velocity</code> used in the definition of boundary and
+initial conditions.</p>
+<p>As described above, these parameters/variables can be defined either in physical units
+or lattice (non-dimensional) units.
+But they can not be mixed i.e. some in physical and others in lattice units.
+It is important that they are consistent. </p>
+<p>Two settings describe space and time: the edge length of the coarsest elements in the
+grid (<code>dx</code>) and the step length of the time steps of those elements (<code>dt</code>).
+While <code>dx</code> is given by the mesh definition, the time step length has to be provided in
+the physics table for the conversion between lattice and physical units.
+Additionally we need to define either the mean density <code>rho0</code> of the fluid or the 
+fluid mass <code>mass0</code> in the coarsest elements. 
+Providing the mass is more natural when simulating multiple species, as we can work
+with the respective mass fractions in that case.
+Otherwise, we normally describe the mean density.
+Both, <code>dt</code> and a measure for the mass have to be provided in the <code>physics</code> table.
+Thus, a minimal <code>physics</code> table should look like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">physics</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="mf">1.0e-3</span><span class="p">,</span>
+  <span class="n">rho0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In Musubi, the following reference values are used to convert
+parameters/variables in physical units to lattice units and vice-versa: </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Measure</th>
+<th style="text-align: center;">Unit</th>
+<th style="text-align: center;">Reference</th>
+<th style="text-align: center;">Notation.</th>
+<th style="text-align: center;">Name in physics table</th>
+<th style="text-align: center;">Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Mass</td>
+<td style="text-align: center;">$kg$</td>
+<td style="text-align: center;">fluid mass</td>
+<td style="text-align: center;">$m_{ref}$</td>
+<td style="text-align: center;"><code>mass0</code></td>
+<td style="text-align: center;">$rho0\times dx^3$</td>
+</tr>
+<tr>
+<td style="text-align: center;">Density</td>
+<td style="text-align: center;">$kg/m^3$</td>
+<td style="text-align: center;">mean fluid density</td>
+<td style="text-align: center;">$\rho_{ref}$</td>
+<td style="text-align: center;"><code>rho0</code></td>
+<td style="text-align: center;">$mass0/dx^3$</td>
+</tr>
+<tr>
+<td style="text-align: center;">Length</td>
+<td style="text-align: center;">$m$</td>
+<td style="text-align: center;">coarsest element</td>
+<td style="text-align: center;">$dx_{ref}$</td>
+<td style="text-align: center;">Not required</td>
+<td style="text-align: center;">is taken from mesh</td>
+</tr>
+<tr>
+<td style="text-align: center;">Time</td>
+<td style="text-align: center;">$s$</td>
+<td style="text-align: center;">coarsest time step size</td>
+<td style="text-align: center;">$dt_{ref}$</td>
+<td style="text-align: center;"><code>dt</code></td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">Amount of substance</td>
+<td style="text-align: center;">$mol$</td>
+<td style="text-align: center;">Inverse of Avagadro's number</td>
+<td style="text-align: center;">$N_A$</td>
+<td style="text-align: center;"><code>mole0</code></td>
+<td style="text-align: center;">$1/6.02214129e^{-23}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">Mole density</td>
+<td style="text-align: center;">$mol/m^3$</td>
+<td style="text-align: center;">mean mole density</td>
+<td style="text-align: center;">$c_{ref}$</td>
+<td style="text-align: center;"><code>moleDens0</code></td>
+<td style="text-align: center;">$1/(N_A dx^3)$</td>
+</tr>
+<tr>
+<td style="text-align: center;">Molecular weight</td>
+<td style="text-align: center;">$kg/mol$</td>
+<td style="text-align: center;">Largest molecular weight of species</td>
+<td style="text-align: center;">$M_{ref}$</td>
+<td style="text-align: center;"><code>molWeight0</code></td>
+<td style="text-align: center;">$mass0/mole0$</td>
+</tr>
+<tr>
+<td style="text-align: center;">Temperature</td>
+<td style="text-align: center;">$K$</td>
+<td style="text-align: center;">fluid temperature</td>
+<td style="text-align: center;">$T_{ref}$</td>
+<td style="text-align: center;"><code>temp0</code></td>
+<td style="text-align: center;">1.0</td>
+</tr>
+<tr>
+<td style="text-align: center;">Electric charge</td>
+<td style="text-align: center;">$C$</td>
+<td style="text-align: center;">fundamental electric charge</td>
+<td style="text-align: center;">$q_{ref}$</td>
+<td style="text-align: center;"><code>coulomb0</code></td>
+<td style="text-align: center;">$1.60217657e^{-19}$</td>
+</tr>
+</tbody>
+</table>
+<p>As shown in the table most of them have default values and the coarsest element size (<code>dx</code>)
+is taken from the mesh.
+Thus the physics table provided above offers the minimal, but also usual
+setting for most cases.</p>
+<p>The non-dimensional lattice units (subscript l) are scaled to one for the computation
+by choosing the provided physical units (subscript p) provided in the physics table also
+as the reference values (subscript ref):</p>
+<ul>
+<li>Lattice density, $\rho_{l} = \frac{\rho_{p}}{\rho_{ref}} = 1.0$</li>
+<li>Lattice element size, $dx_{l} = \frac{dx_p}{dx_{ref}} = 1.0$</li>
+<li>Lattice time step, $dt_{l} = \frac{dt_p}{dt_{ref}} = 1.0$ and so on.</li>
+</ul>
+<p>All other derived variables in lattice units are converted to physical units
+using the reference variables in physical units. 
+For simplicity, the subscript 'ref' is dropped in the equations below for the reference values:</p>
+<ul>
+<li>Lattice pressure $p_l$ to physical pressure, $p_p = p_l * \frac{\rho \cdot dx^2}{dt^2}$ $[kg/m/s^2]$</li>
+<li>Lattice velocity $u_l$ to physical velocity, $u_p = u_l * \frac{dx}{dt}$ $[m/s]$</li>
+<li>Lattice kinematic viscosity to physical kinematic viscosity, $\nu_p = \nu_l * \frac{dx^2}{dt}$ $[m^2/s]$</li>
+<li>Lattice force $f_l$ to physical force, $f_p = f_l * \frac{\rho \cdot dx^4}{dt^2}$ $[kg m/s^2]$</li>
+<li>Lattice current $I_l$ to physical current, $I_p = I_l * \frac{q}{dt}$ $[C/s]$</li>
+<li>Lattice potential $\phi_l$ to physical potential, $\phi_p = \phi_l * \frac{\rho \cdot  dx^5}{q \cdot dt^2}$ $[kg m^2 /(C s^2)=V]$</li>
+</ul>
+<p>For more on the unit conversion for other derived variables refer to 
+[mus_physics_module(module)].</p>
+<p>All physical quantities set in the configuration are affected by these
+conversions.
+This includes the settings in the <code>fluid</code>, <code>species</code> and <code>mixture</code> tables,
+aswell as the macroscopic variables in the <code>initial_condition</code>, <code>boundary_condition</code> and <code>source</code>
+tables.</p>
+<p>Now, usually we do not really care about the timestep width, but rather
+want to compute this from the other fluid properties.
+By using a Lua script for the configuration, we can easily define those
+relations by defining appropiate variables and compute the needed variables
+for the Musubi settings.</p>
+<p>For example like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- Flow parameters</span>
+<span class="c1">-- Mach number</span>
+<span class="n">Ma</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="c1">-- Reynolds number of the flow</span>
+<span class="n">Re</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="c1">-- speed of sound in air [m/s]</span>
+<span class="n">cs_phy</span> <span class="o">=</span> <span class="mi">343</span>
+<span class="c1">-- Density of the fluid [kg/m^3]</span>
+<span class="n">rho0_phy</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1">-- Ambient pressure [kg/(m s^2)]</span>
+<span class="n">press_ambient_phy</span> <span class="o">=</span> <span class="n">rho0_phy</span><span class="o">*</span><span class="n">cs_phy</span><span class="o">^</span><span class="mi">2</span>
+</code></pre></div>
+
+<p>For convenience, a suffix '_phy' and '_lat' are used to represent variables in 
+physical and lattice units respectively.
+In Musubi, the flow is considered to be isothermal. For a perfect ideal gas,
+the pressure is related to the speed of sound as i.e. $p = \rho c^2_s$.</p>
+<p>The lattice speed of sound is fixed to $c_{s,lat} = \sqrt{(1/3)}$</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- Lattice speed of sound</span>
+<span class="n">cs_lat</span> <span class="o">=</span> <span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Finally, the physical time step size $dt$ required in the <code>physics</code> table.
+It is computed either by acoustic or diffusive scaling.
+In acoustic scaling, the time step $dt$ is computed from the speed of sound or 
+velocity so that the Mach ($Ma$) number is fixed across different element sizes. 
+Thus, when conducting grid convergence studies with 
+acoustic scaling, the Mach number, lattice speed of sound and lattice velocity 
+remains constant while lattice viscosity <code>nu_lat``and relaxation parameter</code>omega` ($\omega$) changes.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- Inflow velocity computed from Ma number [m/s]</span>
+<span class="n">vel_phy</span> <span class="o">=</span> <span class="n">Ma</span> <span class="o">*</span> <span class="n">cs_phy</span>
+<span class="c1">-- Kinematic viscosity of the fluid calculated from Re [m^2/s]</span>
+<span class="n">nu_phy</span> <span class="o">=</span> <span class="n">vel_phy</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="n">Re</span>
+<span class="c1">-- Lattice velocity</span>
+<span class="n">vel_lat</span> <span class="o">=</span> <span class="n">Ma</span> <span class="o">*</span> <span class="n">cs_lat</span>
+<span class="c1">-- Physical timestep computed from physical and lattice speed of sound</span>
+<span class="n">dt</span>  <span class="o">=</span> <span class="n">cs_lat</span> <span class="o">/</span> <span class="n">cs_phy</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="c1">-- Lattice viscosity</span>
+<span class="n">nu_lat</span>  <span class="o">=</span> <span class="n">nu_phy</span><span class="o">*</span><span class="n">dt</span> <span class="o">/</span><span class="n">dx</span><span class="o">^</span><span class="mi">2</span>
+<span class="c1">-- Relaxation parameter</span>
+<span class="n">omega</span>   <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">nu_lat</span><span class="o">/</span><span class="n">cs_lat</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+
+<p>On the other hand, in diffuive scaling, the time step $dt$ is computed from 
+the kinematic viscosity so that the lattice kinematic viscosity <code>nu_lat</code> 
+and the relaxation parameter <code>omega</code> ($\omega$) are fixed across the element 
+sizes while the Mach number $Ma$ and lattice velocity $vel_lat$ changes. </p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- In diffusive scaling, Kinematic viscosity and omega are fixed by user</span>
+<span class="c1">-- Kinematic viscosity of the fluid [m^2/s]</span>
+<span class="n">nu_phy</span> <span class="o">=</span> <span class="mf">0.285</span>
+<span class="c1">-- Inflow velocity is computed from Re and viscosity [m/s]</span>
+<span class="n">vel_phy</span> <span class="o">=</span> <span class="n">Re</span> <span class="o">*</span> <span class="n">nu_phy</span> <span class="o">/</span> <span class="n">height</span>
+<span class="c1">-- Relaxation parameter</span>
+<span class="n">omega</span>   <span class="o">=</span> <span class="mf">1.7</span>
+<span class="c1">-- Lattice viscosity</span>
+<span class="n">nu_lat</span>  <span class="o">=</span> <span class="p">(</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">omega</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
+<span class="c1">-- Physical timestep computed from physical and lattice velocity</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">nu_lat</span><span class="o">/</span><span class="n">nu_phy</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span>
+<span class="c1">-- Lattice velocity</span>
+<span class="n">vel_lat</span> <span class="o">=</span> <span class="n">vel_phy</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span>
+<span class="c1">-- Mach number</span>
+<span class="n">Ma</span> <span class="o">=</span> <span class="n">vel_lat</span> <span class="o">*</span> <span class="n">cs_lat</span>
+</code></pre></div>
+
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>Most of the variables mentioned above are local variables.
+we need <code>rho0_phy</code> and <code>dt</code> to define variables in physical units in the <code>physics</code> 
+table, <code>nu_phy</code> to define the fluid property in the <code>fluid</code> table,
+and <code>press_ambient_phy</code> and <code>vel_phy</code> to define initial and boundary conditions
+in <code>initial_condition</code> and <code>boundary_condition</code> tables.</p>
+</div>
+<p>In simple words, with acoustic scaling, the time step size $dt$ is reduced by 
+half when the element size $dx$ is reduced by half i.e. $dt \propto dx$ but 
+with diffusive scaling, the time step size $dt$ is reduced to one-fourth i.e.
+$dt \propto dx^2$.</p>
+<p>With those definitions in place you can then define the physics table with
+the help of those variables:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">physics</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span>
+  <span class="n">rho0</span> <span class="o">=</span> <span class="n">rho0_phy</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>And of course also the fluid table:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="n">nu_phy</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>When physical units are not of interest and you would like to just run a simulation
+by defining lattice units, remove the <code>physics</code> table from the Musubi
+configuration file. In this case, the variables are then defined in lattice units</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- Relaxation parameter</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="mf">1.8</span>
+<span class="c1">-- Background density in lattice unit</span>
+<span class="n">rho0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1">-- Lattice speed of sound</span>
+<span class="n">cs</span> <span class="o">=</span> <span class="nb">math.sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="c1">-- Background pressure in lattice unit</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">rho0</span><span class="o">*</span><span class="n">cs</span><span class="o">^</span><span class="mi">2</span>
+<span class="c1">-- Kinematic viscosity in lattice unit</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="p">(</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">omega</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
+</code></pre></div>
+
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>Musubi can dump output variables in physical units. 
+It just requires a suffix '_phy' to the variable name in tracking table.</p>
+</div>
+<h2 id="time-settings">Time Settings</h2>
+<p>Now we should specify the number of timesteps for our simulation.
+We do this by opening a <code>time</code> section with at least the variable <code>max</code>
+given to specify the maximal number of timesteps you want to simulate.
+Additionally, you might provide the <code>interval</code>-setting, that controls the
+debug output: after a predefinded number of iterations, the total density of
+the system is calculated and written to the console, this defaults to 1.
+The number of iterations can be set by using <code>{iter=#}</code> to set the number of
+iterations. Alternative one can use <code>{sim=#}</code> to trigger the check after certain
+timesteps in your simulation or use <code>{clock=#}</code> to trigger the check after a
+certain runtime. Since we have conservation of mass, the total density should
+not change much, so if it does, it is a hint for the user that the results of
+the simulation are probably wrong. Setting the interval to something around
+<code>[max/10]</code> is reasonable.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sim_control</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">50</span><span class="p">},</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">5</span><span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="identification">Identification</h2>
+<p>It should be followed by a part that identifies the nature of the simulation.
+To this part belong the following aspects: the <code>layout</code>, the <code>kind</code> and the
+<code>relaxation</code>. For now, it is not necessary to know these settings in detail.
+you can choose between some values that you can look up in the
+<a href="../../../module/mus_scheme_header_module.html">mus_scheme_header_module</a>.
+If these settings are not defined, <em>Musubi</em> will use default values.
+As a first example, you can set up the identify table as:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">identify</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;fluid&#39;</span><span class="p">,</span>
+  <span class="n">layout</span> <span class="o">=</span> <span class="s1">&#39;d3q19&#39;</span><span class="p">,</span>
+  <span class="n">relaxation</span> <span class="o">=</span> <span class="s1">&#39;bgk&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="geometry">Geometry</h2>
+<p>The geometry is usually a more complicated thing to define. For anything
+but the simplest case, we need <em>Seeder</em>, a tool that will be dealt with
+in the <a href="tut_02_mus_toolchain.html">next tutorial chapter</a>.
+For now, we will use a pre-defined geometry, which is just a simple cube
+with periodic boundaries and no obstacles. We can specify the <code>length</code>
+and position (<code>origin</code>) of that cube. The position of the cube is only
+relevant if you specify positions of other objects, too, such as
+initial conditions or <em>trackers</em> (we will explain what that is in
+<a href="tut_03_tracking.html">chapter_03</a>).</p>
+<p>Last but not least, the <code>refinementLevel</code> tells <em>Musubi</em> how fine the
+initial <code>cube</code> (with a length of 10 here) needs to be discretized. A refinement
+level of <code>4</code> means that our initial cube is cut into <script type="math/tex"> 2^4 </script> portions in
+each dimension, which leaves us with <script type="math/tex"> 2^{3\cdot4} </script> cells in <code>3</code> dimensions.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mesh</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">predefined</span> <span class="o">=</span> <span class="s1">&#39;cube&#39;</span><span class="p">,</span>
+  <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
+  <span class="n">refinementLevel</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>Lua is case-sensitve, and some <em>Musubi</em> options (like <code>refinementLevel</code>)
+have to be written in camelCase.</p>
+</div>
+<h2 id="tracking">Tracking</h2>
+<p>Of course you do not only want to simulate, you also want to see results.
+The <code>tracking</code> section is your way to control some subset output from <em>Musubi</em>.
+The idea behind it is that for any real-life scale problem, you just
+cannot save all the information of every point at every timestep,
+since the shear amount of data would be too much to handle. Thus, we
+tell <em>Musubi</em> what we want to see (like pressure, velocity...), at what
+time, and in what position.</p>
+<p>Each output is handled by a <em>tracker</em>. Let us define a <em>tracker</em> now, step
+by step.
+First, a <em>tracker</em> has a name (specified in <code>label</code>) that will appear in
+every output file created by this <em>tracker</em>. Anything that is precise and
+meaningful will do.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">tracking</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;track_pressure&#39;</span><span class="p">,</span>
+</code></pre></div>
+
+<p>Next, we should tell the <em>tracker</em> what we are interested in. The <code>variable</code>
+section will do just that for us. In this example, we will ask the <em>tracker</em>
+to store density and velocity information for us.</p>
+<p>The output will be stored on your hard drive, in the location you specify
+in <code>folder</code>.</p>
+<div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>You have to create the folder yourself <em>before</em> you start the
+simulation. If it doesn't exist, <em>Musubi</em> will crash with a Fortran runtime error.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>  <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;velocity&#39;</span> <span class="p">},</span>
+  <span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;./tracking/&#39;</span><span class="p">,</span>
+</code></pre></div>
+
+<p>The most complicated part is the <a href="../../../https:/apes-suite.github.io/treelm/module/tem_shape_module.html">tem_shape_module</a> variable.
+It defines <em>where</em> inside
+the simulation domain (which is a cube in our example) you want to observe the
+variables. You can take samples at a point, along a line, everywhere on a plane,
+or even everywhere inside a given box. These options will be discussed in more
+depth in <a href="tut_03_tracking.html">chapter_03</a>.
+For now, we are happy with a point at position <code>(1,1,1)</code>:</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+    <span class="n">object</span> <span class="o">=</span> <span class="p">{</span><span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">}</span> <span class="p">}</span>
+  <span class="p">},</span>
+</code></pre></div>
+
+<p>The <code>format</code> option lets you choose the file format in which the data
+should be stored. The options you have are <code>ascii</code>, <code>asciiSpatial</code> and <code>vtk</code>.
+<code>Ascii</code> is only really usable for point <em>trackers</em>. For anything more
+sophisticated (starting in the next chapter), we will use the build-in tool
+<code>mus_harvesting</code> for post-processing the data.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">output</span> <span class="o">=</span> <span class="p">{</span><span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;ascii&#39;</span><span class="p">},</span>
+</code></pre></div>
+
+<p>Finally, we have to specify at which timesteps we want to save data.
+Inside the <code>time</code> section, you can specify the first (<code>min</code>) and last
+(<code>max</code>) timestep that is of interest to you. If <code>[max]</code> is negative,
+every timestep till the end will be considered. In <code>interval</code>, you can
+choose if you want to save every timestep (set it to <code>1</code> then) or only
+every <code>[n]</code>-th timestep (set <code>interval</code> to <code>n</code> in this case).</p>
+<!-- anchor to jump up here from result -->
+<div id="track_control"></div>
+
+<div class="codehilite"><pre><span></span><code>  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span> <span class="n">min</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">},</span> <span class="n">max</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">50</span><span class="p">},</span> <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Don't forget to close the <code>tracking</code> section with another curly brace.</p>
+<h2 id="restart">Restart</h2>
+<p>In the <code>restart</code> part of your <code>musubi.lua</code> file you can create so-called restart
+files in order to save the results of your simulation. With these restart files
+you can create vtk files with <code>mus_harvesting</code> to view them in Paraview. In
+addition to that, you can also read the restart files to go on with your
+simulation beginning at the saved point written in the restart files. In the
+"restart" section you are also able to use <code>time_control</code> to define the <code>min</code>,
+<code>max</code> and the <code>interval</code> time, when <em>Musubi</em> writes a restart file to the
+<code>restart/</code> folder. Be sure that you set up useful definitions for that. For
+example, you can set up the restart settings like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">restart</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">write</span> <span class="o">=</span> <span class="s1">&#39;restart/&#39;</span><span class="p">,</span>   <span class="c1">-- prefix to write the files to</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span> <span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">10</span><span class="p">}</span>  <span class="c1">-- timing definitions (either iterations or simulation time)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>You have to create the <code>restart</code> folder within your simulation folder at
+first.
+So far, these are only basic information about <code>restart</code>.
+Further information about the restart are explained in
+<a href="tut_05_restart.html">Tutorial 5: Restart</a>.</p>
+</div>
+<h2 id="initial-conditions">Initial Conditions</h2>
+<p>Initial conditions can be specified in the <code>initial_condition</code> table.
+First, let us define that the velocity at <code>t=0</code> should be <code>0</code> everywhere.</p>
+<p>But if every point is equal, not much is going to happen. So for the
+initial pressure, we will do something more fancy: We will define a function
+<code>gausspulse</code> that will set the initial pressure such that it has a peak
+in the middle of the domain, and decreases quickly towards the sides.
+With this, we will create two waves running from the center towards both
+sides. The <code>initial_condition</code>-table will point to this function for the
+density:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">initial_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">velocityX</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+  <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+  <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+  <span class="n">pressure</span>  <span class="o">=</span> <span class="n">gausspulse</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The function can be defined like this in the Lua script:</p>
+<div class="codehilite"><pre><span></span><code><span class="kr">function</span> <span class="nf">gausspulse</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+  <span class="n">originX</span> <span class="o">=</span>  <span class="mf">5.0</span>
+  <span class="n">halfwidth</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="n">amplitude</span> <span class="o">=</span> <span class="mf">0.01</span>
+  <span class="kr">return</span> <span class="n">p0</span><span class="o">+</span><span class="n">amplitude</span><span class="o">*</span><span class="nb">math.exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">/</span><span class="p">(</span><span class="n">halfwidth</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">x</span> <span class="o">-</span> <span class="n">originX</span> <span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="kr">end</span>
+</code></pre></div>
+
+<div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>Define the function before the <code>initial_condition</code> table or you will receive an error whilst
+running <em>Musubi</em>.</p>
+</div>
+<p>Moreover,define the <code>p0</code> as global variable in the function.
+So that it will return the function like <code>p0+amplitude*math.exp(-0.5/halfwidth^2)*(x-originX)^2</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">rho0</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">cs2</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">rho0</span><span class="o">*</span><span class="n">cs2</span>
+</code></pre></div>
+
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>A last short remark on variables: If you do something more complicated
+in your <code>musubi.lua</code> script, you are of course free to use functions,
+variables, loops, branches, whatever you want.
+The only thing that counts is what is defined after running your script.
+Be careful, however, when using your own variables, as you might set <em>Musubi</em>
+options that you are not aware of.
+It might be wise to use variables only inside your own functions,
+or at least give them some prefix so you don't confuse your own variables
+with <em>Musubi</em> options.</p>
+</div>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>An important remark on the pressure variable. It is a total pressure irrespective 
+of <code>fluid</code> and <code>fluid_incompressible</code>. So if pressure flucations are required
+to compute the acoustic waves then they can be obtained by calculating a
+difference between numerical pressure computed from simulation and 
+ambient pressure defined in initial/boundary condition.</p>
+</div>
+<h2 id="result">Result</h2>
+<p>If you did all steps correct you're now able to run the test case. If something
+is not working you can compare your config file with our template you can find
+under: <code>examples/tutorials/tutorial_cases/tutorial_gaussian_pulse/musubi.lua</code>.
+After finishing your run, you will find an output file called
+<code>Gausspulse_track_pressure_p00000.res</code> in your <code>tracking</code>-folder.
+If you open it, you will find densities and velocities for every iteration.
+If you choose an other <code>interval</code> in <a href="#track_control">tracking-table</a>
+(for example <code>iter=5</code>), the values for every choosen iteration
+(e.g. every 5th iteration) will be listed here.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>The Ascii output is used only in this first tutorial. You can visualize
+this data with any program you like, for example with
+<a href="http://www.gnuplot.info">Gnuplot</a>, if you
+have it installed. If not, wait for the next chapter, as we are going to
+introduce different tools there, anyway.
+Simply run Gnuplot with:</p>
+</div>
+<div class="codehilite"><pre><span></span><code>gnuplot<span class="w"> </span>-p<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;plot \&quot;tracking/Gausspulse_track_pressure_p00000.res\&quot; using 1:2&quot;</span>
+</code></pre></div>
+
+<p>to get a plot of the pressure similar to this one:</p>
+<p><img alt="pulse_point" src="images/pulse_point.png" title="Several pressure pulses hitting the point tracker"></p>
+<p>The picture shows the pulse running through your point <em>tracker</em> several
+times. This happens because of the periodic boundaries. The intensity of
+the pulse decreases due to dissipation.</p>
+<p>In the next chapter, we will learn to define more complex geometries, and
+to create more sophisticated outputs.</p>
+<p>Next chapter: <a href="tut_02_mus_toolchain.html">Toolchain &rarr;</a></p>
+    </div>
+  </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../../../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../../../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../../../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

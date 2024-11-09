@@ -1,0 +1,28 @@
+require "musubi"
+
+simulation_name = 'nozzle'
+logging = {level=5}
+restart = {
+  read = '$!file!$'
+}
+
+-- define the output
+tracking = {
+  label = 'hvs',
+  folder = '$!out!$',  -- Output location
+  variable = {
+    'normalized_pressure',
+    'velocity_phy',
+    'shear_stress_phy',
+    'vorticity_phy',
+    'mach_nr'
+  },
+  shape = {kind = 'all'},
+  time_control = {
+    min = 0,
+    max= tmax_phy,
+    interval=1.0/100,
+  },
+  output = {format = 'vtk',write_pvd=false}
+}
+

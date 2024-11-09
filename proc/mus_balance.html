@@ -1,0 +1,1008 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_balance &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_balance
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.2% of total for procedures.">22 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_dynLoadBal_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_dynloadbal_module.f90.html'>mus_dynLoadBal_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_dynloadbal_module.html'>mus_dynLoadBal_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_balance</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  subroutine mus_balance(tree, minLevel, maxLevel, levelDesc, nBCs, globBC, general, sparta)  
+</h2>
+    
+
+    <p>This routine performs the load balancing for multilevel simulations. The
+weights are calculated on the basis of levelwise run time, which are then
+fed to sparta for calculation of splitting positions. Restart files are
+saved and the simulation is restarted with the newly distributed mesh</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tree~14"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tree</strong></td>
+            <td>
+                <p>geometry infomation</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-minlevel~14"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>minLevel</strong></td>
+            <td>
+                <p>min level and max level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-maxlevel~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>maxLevel</strong></td>
+            <td>
+                <p>min level and max level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~4"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong>(minLevel:maxLevel)</td>
+            <td>
+                <p>Level descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nbcs~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nBCs</strong></td>
+            <td>
+                <p>global IBM type
+Number of boundary conditions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-globbc~2"></span>
+              type(glob_boundary_type),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>globBC</strong>(nBCs)</td>
+            <td>
+                <p>BC elements information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general~3"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_general_type.html'>tem_general_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>general</strong></td>
+            <td>
+                <p>global parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sparta~2"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_sparta_type.html'>tem_sparta_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sparta</strong></td>
+            <td>
+                <p>Sparta data type</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_balance~~CallsGraph Pages: 1 -->
+<svg id="procmus_balanceCallsGraph" width="641pt" height="426pt"
+ viewBox="0.00 0.00 641.00 425.74" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_balance~~CallsGraph" class="graph" transform="scale(0.79 0.79) rotate(0) translate(4 532)">
+<title>proc~~mus_balance~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-532 803,-532 803,4 -4,4"/>
+<!-- proc~mus_balance -->
+<g id="proc~~mus_balance~~CallsGraph_node1" class="node">
+<title>proc~mus_balance</title>
+<polygon fill="none" stroke="black" points="83,-192 0,-192 0,-168 83,-168 83,-192"/>
+<text text-anchor="middle" x="41.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_balance</text>
+</g>
+<!-- proc~mus_dumpweights -->
+<g id="proc~~mus_balance~~CallsGraph_node2" class="node">
+<title>proc~mus_dumpweights</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node2"><a xlink:href="../proc/mus_dumpweights.html" xlink:title="mus_dumpWeights">
+<polygon fill="#d9534f" stroke="#d9534f" points="238,-486 125,-486 125,-462 238,-462 238,-486"/>
+<text text-anchor="middle" x="181.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dumpWeights</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_balance&#45;&gt;proc~mus_dumpweights -->
+<g id="proc~~mus_balance~~CallsGraph_edge1" class="edge">
+<title>proc~mus_balance&#45;&gt;proc~mus_dumpweights</title>
+<path fill="none" stroke="#000000" d="M48.25,-192.26C69.43,-237.37 143.19,-394.51 170.35,-452.38"/>
+<polygon fill="#000000" stroke="#000000" points="167.3,-454.12 174.72,-461.69 173.64,-451.15 167.3,-454.12"/>
+</g>
+<!-- proc~mus_getweights -->
+<g id="proc~~mus_balance~~CallsGraph_node3" class="node">
+<title>proc~mus_getweights</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node3"><a xlink:href="../proc/mus_getweights.html" xlink:title="mus_getWeights">
+<polygon fill="#d9534f" stroke="#d9534f" points="231.5,-213 131.5,-213 131.5,-189 231.5,-189 231.5,-213"/>
+<text text-anchor="middle" x="181.5" y="-198.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_getWeights</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_balance&#45;&gt;proc~mus_getweights -->
+<g id="proc~~mus_balance~~CallsGraph_edge2" class="edge">
+<title>proc~mus_balance&#45;&gt;proc~mus_getweights</title>
+<path fill="none" stroke="#000000" d="M83.16,-186.19C95.08,-188 108.36,-190.02 121.19,-191.97"/>
+<polygon fill="#000000" stroke="#000000" points="120.94,-195.48 131.35,-193.52 121.99,-188.56 120.94,-195.48"/>
+</g>
+<!-- tem_balance_sparta -->
+<g id="proc~~mus_balance~~CallsGraph_node4" class="node">
+<title>tem_balance_sparta</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node4"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_balance_sparta.html" xlink:title="tem_balance_sparta">
+<polygon fill="#d9534f" stroke="#d9534f" points="242,-171 121,-171 121,-147 242,-147 242,-171"/>
+<text text-anchor="middle" x="181.5" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_balance_sparta</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_balance&#45;&gt;tem_balance_sparta -->
+<g id="proc~~mus_balance~~CallsGraph_edge3" class="edge">
+<title>proc~mus_balance&#45;&gt;tem_balance_sparta</title>
+<path fill="none" stroke="#000000" d="M83.16,-173.81C91.95,-172.47 101.49,-171.02 111.03,-169.57"/>
+<polygon fill="#000000" stroke="#000000" points="111.6,-173.03 120.96,-168.06 110.54,-166.11 111.6,-173.03"/>
+</g>
+<!-- tem_time_sim_stamp -->
+<g id="proc~~mus_balance~~CallsGraph_node5" class="node">
+<title>tem_time_sim_stamp</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node5"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_time_sim_stamp.html" xlink:title="tem_time_sim_stamp">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="244,-129 119,-129 119,-105 244,-105 244,-129"/>
+<text text-anchor="middle" x="181.5" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_time_sim_stamp</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_balance&#45;&gt;tem_time_sim_stamp -->
+<g id="proc~~mus_balance~~CallsGraph_edge4" class="edge">
+<title>proc~mus_balance&#45;&gt;tem_time_sim_stamp</title>
+<path fill="none" stroke="#000000" d="M62.15,-167.97C77.33,-159 99.04,-146.81 119,-138 123.18,-136.16 127.57,-134.37 132.01,-132.67"/>
+<polygon fill="#000000" stroke="#000000" points="133.55,-135.84 141.72,-129.1 131.13,-129.27 133.55,-135.84"/>
+</g>
+<!-- tem_create_EndianSuffix -->
+<g id="proc~~mus_balance~~CallsGraph_node14" class="node">
+<title>tem_create_EndianSuffix</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node14"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_create_endiansuffix.html" xlink:title="tem_create_EndianSuffix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="427.5,-528 282.5,-528 282.5,-504 427.5,-504 427.5,-528"/>
+<text text-anchor="middle" x="355" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_create_EndianSuffix</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_dumpweights&#45;&gt;tem_create_EndianSuffix -->
+<g id="proc~~mus_balance~~CallsGraph_edge5" class="edge">
+<title>proc~mus_dumpweights&#45;&gt;tem_create_EndianSuffix</title>
+<path fill="none" stroke="#000000" d="M231.65,-486.04C251.38,-490.87 274.3,-496.48 294.93,-501.53"/>
+<polygon fill="#000000" stroke="#000000" points="294.3,-504.98 304.85,-503.96 295.97,-498.18 294.3,-504.98"/>
+</g>
+<!-- tem_dump_weights -->
+<g id="proc~~mus_balance~~CallsGraph_node15" class="node">
+<title>tem_dump_weights</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node15"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_dump_weights.html" xlink:title="tem_dump_weights">
+<polygon fill="#d9534f" stroke="#d9534f" points="412.5,-486 297.5,-486 297.5,-462 412.5,-462 412.5,-486"/>
+<text text-anchor="middle" x="355" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_dump_weights</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_dumpweights&#45;&gt;tem_dump_weights -->
+<g id="proc~~mus_balance~~CallsGraph_edge6" class="edge">
+<title>proc~mus_dumpweights&#45;&gt;tem_dump_weights</title>
+<path fill="none" stroke="#000000" d="M238.18,-474C253.75,-474 270.82,-474 286.97,-474"/>
+<polygon fill="#000000" stroke="#000000" points="287.42,-477.5 297.42,-474 287.42,-470.5 287.42,-477.5"/>
+</g>
+<!-- interface~get_bcbuffertime -->
+<g id="proc~~mus_balance~~CallsGraph_node6" class="node">
+<title>interface~get_bcbuffertime</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node6"><a xlink:href="../interface/get_bcbuffertime.html" xlink:title="get_bcBufferTime">
+<polygon fill="#a7506f" stroke="#a7506f" points="408.5,-444 301.5,-444 301.5,-420 408.5,-420 408.5,-444"/>
+<text text-anchor="middle" x="355" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_bcBufferTime</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;interface~get_bcbuffertime -->
+<g id="proc~~mus_balance~~CallsGraph_edge7" class="edge">
+<title>proc~mus_getweights&#45;&gt;interface~get_bcbuffertime</title>
+<path fill="none" stroke="#000000" d="M187.86,-213.29C200.88,-242.34 236.34,-316.71 280,-369 294.23,-386.05 313.39,-402.22 328.65,-413.91"/>
+<polygon fill="#000000" stroke="#000000" points="326.57,-416.72 336.67,-419.92 330.77,-411.12 326.57,-416.72"/>
+</g>
+<!-- interface~get_boundarytime -->
+<g id="proc~~mus_balance~~CallsGraph_node7" class="node">
+<title>interface~get_boundarytime</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node7"><a xlink:href="../interface/get_boundarytime.html" xlink:title="get_boundaryTime">
+<polygon fill="#a7506f" stroke="#a7506f" points="411,-360 299,-360 299,-336 411,-336 411,-360"/>
+<text text-anchor="middle" x="355" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_boundaryTime</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;interface~get_boundarytime -->
+<g id="proc~~mus_balance~~CallsGraph_edge8" class="edge">
+<title>proc~mus_getweights&#45;&gt;interface~get_boundarytime</title>
+<path fill="none" stroke="#000000" d="M196.69,-213.27C215.65,-229.65 250.3,-259.57 280,-285 297.35,-299.86 317.06,-316.63 331.76,-329.13"/>
+<polygon fill="#000000" stroke="#000000" points="329.9,-332.14 339.79,-335.95 334.44,-326.81 329.9,-332.14"/>
+</g>
+<!-- interface~get_computetime -->
+<g id="proc~~mus_balance~~CallsGraph_node8" class="node">
+<title>interface~get_computetime</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node8"><a xlink:href="../interface/get_computetime.html" xlink:title="get_computeTime">
+<polygon fill="#a7506f" stroke="#a7506f" points="409.5,-276 300.5,-276 300.5,-252 409.5,-252 409.5,-276"/>
+<text text-anchor="middle" x="355" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_computeTime</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;interface~get_computetime -->
+<g id="proc~~mus_balance~~CallsGraph_edge9" class="edge">
+<title>proc~mus_getweights&#45;&gt;interface~get_computetime</title>
+<path fill="none" stroke="#000000" d="M208.2,-213.16C227.65,-222.1 255.17,-234.17 280,-243 285.86,-245.08 292.04,-247.11 298.23,-249.02"/>
+<polygon fill="#000000" stroke="#000000" points="297.33,-252.4 307.92,-251.93 299.34,-245.7 297.33,-252.4"/>
+</g>
+<!-- interface~get_intpfromcoarsertime -->
+<g id="proc~~mus_balance~~CallsGraph_node9" class="node">
+<title>interface~get_intpfromcoarsertime</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node9"><a xlink:href="../interface/get_intpfromcoarsertime.html" xlink:title="get_intpFromCoarserTime">
+<polygon fill="#a7506f" stroke="#a7506f" points="430,-234 280,-234 280,-210 430,-210 430,-234"/>
+<text text-anchor="middle" x="355" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserTime</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~mus_balance~~CallsGraph_edge10" class="edge">
+<title>proc~mus_getweights&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M231.65,-207.02C243.63,-208.49 256.8,-210.1 269.91,-211.7"/>
+<polygon fill="#000000" stroke="#000000" points="269.56,-215.19 279.91,-212.93 270.41,-208.24 269.56,-215.19"/>
+</g>
+<!-- interface~get_intpfromfinertime -->
+<g id="proc~~mus_balance~~CallsGraph_node10" class="node">
+<title>interface~get_intpfromfinertime</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node10"><a xlink:href="../interface/get_intpfromfinertime.html" xlink:title="get_intpFromFinerTime">
+<polygon fill="#a7506f" stroke="#a7506f" points="422,-192 288,-192 288,-168 422,-168 422,-192"/>
+<text text-anchor="middle" x="355" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromFinerTime</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;interface~get_intpfromfinertime -->
+<g id="proc~~mus_balance~~CallsGraph_edge11" class="edge">
+<title>proc~mus_getweights&#45;&gt;interface~get_intpfromfinertime</title>
+<path fill="none" stroke="#000000" d="M231.65,-194.98C246.02,-193.22 262.08,-191.26 277.71,-189.34"/>
+<polygon fill="#000000" stroke="#000000" points="278.4,-192.78 287.9,-188.09 277.55,-185.83 278.4,-192.78"/>
+</g>
+<!-- nelems -->
+<g id="proc~~mus_balance~~CallsGraph_node11" class="node">
+<title>nelems</title>
+<polygon fill="#777777" stroke="#777777" points="382,-150 328,-150 328,-126 382,-126 382,-150"/>
+<text text-anchor="middle" x="355" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nelems</text>
+</g>
+<!-- proc~mus_getweights&#45;&gt;nelems -->
+<g id="proc~~mus_balance~~CallsGraph_edge12" class="edge">
+<title>proc~mus_getweights&#45;&gt;nelems</title>
+<path fill="none" stroke="#000000" d="M221.67,-188.93C229.19,-186.25 236.92,-183.24 244,-180 260.85,-172.3 262.96,-166.25 280,-159 292,-153.89 305.61,-149.63 317.86,-146.3"/>
+<polygon fill="#000000" stroke="#000000" points="318.97,-149.63 327.77,-143.73 317.21,-142.86 318.97,-149.63"/>
+</g>
+<!-- nelems_fluid -->
+<g id="proc~~mus_balance~~CallsGraph_node12" class="node">
+<title>nelems_fluid</title>
+<polygon fill="#777777" stroke="#777777" points="395,-108 315,-108 315,-84 395,-84 395,-108"/>
+<text text-anchor="middle" x="355" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nelems_fluid</text>
+</g>
+<!-- proc~mus_getweights&#45;&gt;nelems_fluid -->
+<g id="proc~~mus_balance~~CallsGraph_edge13" class="edge">
+<title>proc~mus_getweights&#45;&gt;nelems_fluid</title>
+<path fill="none" stroke="#000000" d="M229.74,-188.92C234.85,-186.46 239.74,-183.52 244,-180 268.86,-159.46 254.6,-136.88 280,-117 287.34,-111.26 296.17,-107.09 305.14,-104.05"/>
+<polygon fill="#000000" stroke="#000000" points="306.26,-107.37 314.86,-101.19 304.28,-100.66 306.26,-107.37"/>
+</g>
+<!-- tem_LevelOf -->
+<g id="proc~~mus_balance~~CallsGraph_node13" class="node">
+<title>tem_LevelOf</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node13"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_levelof.html" xlink:title="tem_LevelOf">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="394.5,-66 315.5,-66 315.5,-42 394.5,-42 394.5,-66"/>
+<text text-anchor="middle" x="355" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_LevelOf</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;tem_LevelOf -->
+<g id="proc~~mus_balance~~CallsGraph_edge14" class="edge">
+<title>proc~mus_getweights&#45;&gt;tem_LevelOf</title>
+<path fill="none" stroke="#000000" d="M231.65,-189.03C236.18,-186.56 240.41,-183.59 244,-180 278.91,-145.14 244.19,-108.93 280,-75 287.12,-68.25 296.25,-63.65 305.65,-60.51"/>
+<polygon fill="#000000" stroke="#000000" points="306.79,-63.83 315.47,-57.75 304.89,-57.09 306.79,-63.83"/>
+</g>
+<!-- val -->
+<g id="proc~~mus_balance~~CallsGraph_node16" class="node">
+<title>val</title>
+<polygon fill="#777777" stroke="#777777" points="382,-24 328,-24 328,0 382,0 382,-24"/>
+<text text-anchor="middle" x="355" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">val</text>
+</g>
+<!-- proc~mus_getweights&#45;&gt;val -->
+<g id="proc~~mus_balance~~CallsGraph_edge15" class="edge">
+<title>proc~mus_getweights&#45;&gt;val</title>
+<path fill="none" stroke="#000000" d="M231.68,-189.52C236.27,-186.96 240.5,-183.83 244,-180 289.4,-130.37 233.31,-81.42 280,-33 289.82,-22.81 304.2,-17.46 317.67,-14.69"/>
+<polygon fill="#000000" stroke="#000000" points="318.41,-18.11 327.71,-13.03 317.27,-11.21 318.41,-18.11"/>
+</g>
+<!-- proc~get_bcbuffertime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_node17" class="node">
+<title>proc~get_bcbuffertime_atlevel</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node17"><a xlink:href="../proc/get_bcbuffertime_atlevel.html" xlink:title="get_bcBufferTime_atLevel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="638.5,-486 487.5,-486 487.5,-462 638.5,-462 638.5,-486"/>
+<text text-anchor="middle" x="563" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_bcBufferTime_atLevel</text>
+</a>
+</g>
+</g>
+<!-- interface~get_bcbuffertime&#45;&gt;proc~get_bcbuffertime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_edge16" class="edge">
+<title>interface~get_bcbuffertime&#45;&gt;proc~get_bcbuffertime_atlevel</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408.52,-442.71C434.21,-447.95 465.47,-454.32 493.06,-459.94"/>
+<polygon fill="#000000" stroke="#000000" points="492.54,-463.41 503.04,-461.98 493.94,-456.55 492.54,-463.41"/>
+</g>
+<!-- proc~get_bcbuffertime_total -->
+<g id="proc~~mus_balance~~CallsGraph_node18" class="node">
+<title>proc~get_bcbuffertime_total</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node18"><a xlink:href="../proc/get_bcbuffertime_total.html" xlink:title="get_bcBufferTime_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="631,-444 495,-444 495,-420 631,-420 631,-444"/>
+<text text-anchor="middle" x="563" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_bcBufferTime_total</text>
+</a>
+</g>
+</g>
+<!-- interface~get_bcbuffertime&#45;&gt;proc~get_bcbuffertime_total -->
+<g id="proc~~mus_balance~~CallsGraph_edge17" class="edge">
+<title>interface~get_bcbuffertime&#45;&gt;proc~get_bcbuffertime_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408.52,-426.03C431.56,-425.26 459.1,-425.06 484.43,-425.44"/>
+<polygon fill="#000000" stroke="#000000" points="484.7,-428.94 494.77,-425.63 484.83,-421.94 484.7,-428.94"/>
+</g>
+<!-- proc~get_boundarytime_byid -->
+<g id="proc~~mus_balance~~CallsGraph_node19" class="node">
+<title>proc~get_boundarytime_byid</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node19"><a xlink:href="../proc/get_boundarytime_byid.html" xlink:title="get_boundaryTime_byID">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="634,-402 492,-402 492,-378 634,-378 634,-402"/>
+<text text-anchor="middle" x="563" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_boundaryTime_byID</text>
+</a>
+</g>
+</g>
+<!-- interface~get_boundarytime&#45;&gt;proc~get_boundarytime_byid -->
+<g id="proc~~mus_balance~~CallsGraph_edge18" class="edge">
+<title>interface~get_boundarytime&#45;&gt;proc~get_boundarytime_byid</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M411.2,-359.26C436.36,-364.38 466.39,-370.51 493.01,-375.94"/>
+<polygon fill="#000000" stroke="#000000" points="492.54,-379.41 503.03,-377.98 493.93,-372.55 492.54,-379.41"/>
+</g>
+<!-- proc~get_boundarytime_total -->
+<g id="proc~~mus_balance~~CallsGraph_node20" class="node">
+<title>proc~get_boundarytime_total</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node20"><a xlink:href="../proc/get_boundarytime_total.html" xlink:title="get_boundaryTime_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="634,-360 492,-360 492,-336 634,-336 634,-360"/>
+<text text-anchor="middle" x="563" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_boundaryTime_total</text>
+</a>
+</g>
+</g>
+<!-- interface~get_boundarytime&#45;&gt;proc~get_boundarytime_total -->
+<g id="proc~~mus_balance~~CallsGraph_edge19" class="edge">
+<title>interface~get_boundarytime&#45;&gt;proc~get_boundarytime_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M411.2,-341.94C432.89,-341.27 458.22,-341.09 481.85,-341.4"/>
+<polygon fill="#000000" stroke="#000000" points="481.81,-344.9 491.86,-341.57 481.92,-337.9 481.81,-344.9"/>
+</g>
+<!-- proc~get_computetime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_node21" class="node">
+<title>proc~get_computetime_atlevel</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node21"><a xlink:href="../proc/get_computetime_atlevel.html" xlink:title="get_computeTime_atLevel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="639.5,-318 486.5,-318 486.5,-294 639.5,-294 639.5,-318"/>
+<text text-anchor="middle" x="563" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_computeTime_atLevel</text>
+</a>
+</g>
+</g>
+<!-- interface~get_computetime&#45;&gt;proc~get_computetime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_edge20" class="edge">
+<title>interface~get_computetime&#45;&gt;proc~get_computetime_atlevel</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M409.59,-274.93C435.07,-280.12 465.84,-286.39 493.04,-291.94"/>
+<polygon fill="#000000" stroke="#000000" points="492.38,-295.38 502.88,-293.95 493.78,-288.52 492.38,-295.38"/>
+</g>
+<!-- proc~get_computetime_total -->
+<g id="proc~~mus_balance~~CallsGraph_node22" class="node">
+<title>proc~get_computetime_total</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node22"><a xlink:href="../proc/get_computetime_total.html" xlink:title="get_computeTime_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="632,-276 494,-276 494,-252 632,-252 632,-276"/>
+<text text-anchor="middle" x="563" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_computeTime_total</text>
+</a>
+</g>
+</g>
+<!-- interface~get_computetime&#45;&gt;proc~get_computetime_total -->
+<g id="proc~~mus_balance~~CallsGraph_edge21" class="edge">
+<title>interface~get_computetime&#45;&gt;proc~get_computetime_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M409.59,-257.99C432.22,-257.26 459.02,-257.07 483.79,-257.43"/>
+<polygon fill="#000000" stroke="#000000" points="483.84,-260.93 493.9,-257.61 483.96,-253.93 483.84,-260.93"/>
+</g>
+<!-- proc~get_intpfromcoarsertime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_node23" class="node">
+<title>proc~get_intpfromcoarsertime_atlevel</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node23"><a xlink:href="../proc/get_intpfromcoarsertime_atlevel.html" xlink:title="get_intpFromCoarserTime_atLevel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="660,-234 466,-234 466,-210 660,-210 660,-234"/>
+<text text-anchor="middle" x="563" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserTime_atLevel</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_edge22" class="edge">
+<title>interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_atlevel</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M430.08,-222C438.45,-222 447.1,-222 455.79,-222"/>
+<polygon fill="#000000" stroke="#000000" points="455.98,-225.5 465.98,-222 455.98,-218.5 455.98,-225.5"/>
+</g>
+<!-- proc~get_intpfromcoarsertime_total -->
+<g id="proc~~mus_balance~~CallsGraph_node24" class="node">
+<title>proc~get_intpfromcoarsertime_total</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node24"><a xlink:href="../proc/get_intpfromcoarsertime_total.html" xlink:title="get_intpFromCoarserTime_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="652.5,-192 473.5,-192 473.5,-168 652.5,-168 652.5,-192"/>
+<text text-anchor="middle" x="563" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserTime_total</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_total -->
+<g id="proc~~mus_balance~~CallsGraph_edge23" class="edge">
+<title>interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M390.02,-209.9C410.18,-204.67 436.88,-198.7 463.2,-193.4"/>
+<polygon fill="#000000" stroke="#000000" points="464.13,-196.78 473.26,-191.4 462.77,-189.92 464.13,-196.78"/>
+</g>
+<!-- proc~get_intpfromfinertime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_node25" class="node">
+<title>proc~get_intpfromfinertime_atlevel</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node25"><a xlink:href="../proc/get_intpfromfinertime_atlevel.html" xlink:title="get_intpFromFinerTime_atLevel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="652,-150 474,-150 474,-126 652,-126 652,-150"/>
+<text text-anchor="middle" x="563" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromFinerTime_atLevel</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromfinertime&#45;&gt;proc~get_intpfromfinertime_atlevel -->
+<g id="proc~~mus_balance~~CallsGraph_edge24" class="edge">
+<title>interface~get_intpfromfinertime&#45;&gt;proc~get_intpfromfinertime_atlevel</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M415.03,-167.96C439.38,-163 467.77,-157.21 493.07,-152.05"/>
+<polygon fill="#000000" stroke="#000000" points="493.86,-155.46 502.96,-150.04 492.46,-148.61 493.86,-155.46"/>
+</g>
+<!-- proc~get_intpfromfinertime_total -->
+<g id="proc~~mus_balance~~CallsGraph_node26" class="node">
+<title>proc~get_intpfromfinertime_total</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node26"><a xlink:href="../proc/get_intpfromfinertime_total.html" xlink:title="get_intpFromFinerTime_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="644.5,-108 481.5,-108 481.5,-84 644.5,-84 644.5,-108"/>
+<text text-anchor="middle" x="563" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromFinerTime_total</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromfinertime&#45;&gt;proc~get_intpfromfinertime_total -->
+<g id="proc~~mus_balance~~CallsGraph_edge25" class="edge">
+<title>interface~get_intpfromfinertime&#45;&gt;proc~get_intpfromfinertime_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M412.09,-167.93C418.38,-165.47 424.49,-162.53 430,-159 450.71,-145.75 444.9,-129.61 466,-117 469.02,-115.19 472.18,-113.54 475.43,-112.03"/>
+<polygon fill="#000000" stroke="#000000" points="476.91,-115.21 484.81,-108.14 474.23,-108.74 476.91,-115.21"/>
+</g>
+<!-- tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_node27" class="node">
+<title>tem_getTimerVal</title>
+<g id="a_proc~~mus_balance~~CallsGraph_node27"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_gettimerval.html" xlink:title="tem_getTimerVal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="799,-276 696,-276 696,-252 799,-252 799,-276"/>
+<text text-anchor="middle" x="747.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_getTimerVal</text>
+</a>
+</g>
+</g>
+<!-- proc~get_bcbuffertime_atlevel&#45;&gt;tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_edge26" class="edge">
+<title>proc~get_bcbuffertime_atlevel&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M638.51,-465.12C646.26,-462.09 653.62,-458.14 660,-453 713.41,-409.94 735.2,-326.59 742.88,-286.55"/>
+<polygon fill="#000000" stroke="#000000" points="746.36,-286.93 744.68,-276.47 739.47,-285.7 746.36,-286.93"/>
+</g>
+<!-- proc~get_bcbuffertime_total&#45;&gt;interface~get_bcbuffertime -->
+<g id="proc~~mus_balance~~CallsGraph_edge27" class="edge">
+<title>proc~get_bcbuffertime_total&#45;&gt;interface~get_bcbuffertime</title>
+<path fill="none" stroke="#000000" d="M494.77,-438.37C470.27,-438.91 442.68,-438.87 418.6,-438.27"/>
+<polygon fill="#000000" stroke="#000000" points="418.61,-434.76 408.52,-437.97 418.41,-441.76 418.61,-434.76"/>
+</g>
+<!-- proc~get_boundarytime_byid&#45;&gt;tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_edge28" class="edge">
+<title>proc~get_boundarytime_byid&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M634.05,-380.46C643.16,-377.58 652.07,-373.85 660,-369 693.98,-348.23 720.73,-309.27 735.02,-285.09"/>
+<polygon fill="#000000" stroke="#000000" points="738.11,-286.74 740.05,-276.32 732.04,-283.26 738.11,-286.74"/>
+</g>
+<!-- proc~get_boundarytime_total&#45;&gt;interface~get_boundarytime -->
+<g id="proc~~mus_balance~~CallsGraph_edge29" class="edge">
+<title>proc~get_boundarytime_total&#45;&gt;interface~get_boundarytime</title>
+<path fill="none" stroke="#000000" d="M491.86,-354.43C469.03,-354.89 443.78,-354.85 421.31,-354.33"/>
+<polygon fill="#000000" stroke="#000000" points="421.3,-350.83 411.2,-354.06 421.11,-357.83 421.3,-350.83"/>
+</g>
+<!-- proc~get_computetime_atlevel&#45;&gt;tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_edge30" class="edge">
+<title>proc~get_computetime_atlevel&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M619.89,-294C633.06,-291.11 647.03,-287.99 660,-285 668.96,-282.93 678.42,-280.69 687.67,-278.47"/>
+<polygon fill="#000000" stroke="#000000" points="688.7,-281.83 697.6,-276.08 687.06,-275.02 688.7,-281.83"/>
+</g>
+<!-- proc~get_computetime_total&#45;&gt;interface~get_computetime -->
+<g id="proc~~mus_balance~~CallsGraph_edge31" class="edge">
+<title>proc~get_computetime_total&#45;&gt;interface~get_computetime</title>
+<path fill="none" stroke="#000000" d="M493.9,-270.39C470.02,-270.9 443.3,-270.87 419.79,-270.3"/>
+<polygon fill="#000000" stroke="#000000" points="419.68,-266.79 409.59,-270.01 419.48,-273.79 419.68,-266.79"/>
+</g>
+<!-- proc~get_intpfromcoarsertime_atlevel&#45;&gt;tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_edge32" class="edge">
+<title>proc~get_intpfromcoarsertime_atlevel&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M619.89,-234C633.06,-236.89 647.03,-240.01 660,-243 668.96,-245.07 678.42,-247.31 687.67,-249.53"/>
+<polygon fill="#000000" stroke="#000000" points="687.06,-252.98 697.6,-251.92 688.7,-246.17 687.06,-252.98"/>
+</g>
+<!-- proc~get_intpfromcoarsertime_total&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~mus_balance~~CallsGraph_edge33" class="edge">
+<title>proc~get_intpfromcoarsertime_total&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M528.24,-192.03C504.27,-198.26 470.96,-205.55 440.03,-211.52"/>
+<polygon fill="#000000" stroke="#000000" points="439.25,-208.1 430.08,-213.4 440.56,-214.98 439.25,-208.1"/>
+</g>
+<!-- proc~get_intpfromfinertime_atlevel&#45;&gt;tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_edge34" class="edge">
+<title>proc~get_intpfromfinertime_atlevel&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M641.26,-150.02C647.83,-152.48 654.18,-155.44 660,-159 693.98,-179.77 720.73,-218.73 735.02,-242.91"/>
+<polygon fill="#000000" stroke="#000000" points="732.04,-244.74 740.05,-251.68 738.11,-241.26 732.04,-244.74"/>
+</g>
+<!-- proc~get_intpfromfinertime_total&#45;&gt;tem_getTimerVal -->
+<g id="proc~~mus_balance~~CallsGraph_edge35" class="edge">
+<title>proc~get_intpfromfinertime_total&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M644.3,-108.1C649.86,-110.56 655.17,-113.5 660,-117 703.51,-148.54 728.8,-209.24 739.84,-241.9"/>
+<polygon fill="#000000" stroke="#000000" points="736.64,-243.38 743.04,-251.82 743.3,-241.23 736.64,-243.38"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocmus_balanceCallsGraph = svgPanZoom('#procmus_balanceCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_balance~~CalledByGraph Pages: 1 -->
+<svg id="procmus_balanceCalledByGraph" width="279pt" height="32pt"
+ viewBox="0.00 0.00 279.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_balance~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~mus_balance~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 275,-28 275,4 -4,4"/>
+<!-- proc~mus_balance -->
+<g id="proc~~mus_balance~~CalledByGraph_node1" class="node">
+<title>proc~mus_balance</title>
+<polygon fill="none" stroke="black" points="271,-24 188,-24 188,0 271,0 271,-24"/>
+<text text-anchor="middle" x="229.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_balance</text>
+</g>
+<!-- proc~mus_perform_dynloadbal -->
+<g id="proc~~mus_balance~~CalledByGraph_node2" class="node">
+<title>proc~mus_perform_dynloadbal</title>
+<g id="a_proc~~mus_balance~~CalledByGraph_node2"><a xlink:href="../proc/mus_perform_dynloadbal.html" xlink:title="mus_perform_dynLoadBal">
+<polygon fill="#d9534f" stroke="#d9534f" points="152,-24 0,-24 0,0 152,0 152,-24"/>
+<text text-anchor="middle" x="76" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_perform_dynLoadBal</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_perform_dynloadbal&#45;&gt;proc~mus_balance -->
+<g id="proc~~mus_balance~~CalledByGraph_edge1" class="edge">
+<title>proc~mus_perform_dynloadbal&#45;&gt;proc~mus_balance</title>
+<path fill="none" stroke="#000000" d="M152.31,-12C160.87,-12 169.44,-12 177.58,-12"/>
+<polygon fill="#000000" stroke="#000000" points="177.63,-15.5 187.63,-12 177.63,-8.5 177.63,-15.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1100 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_abortCriteria_module.f90 &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_abortCriteria_module.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.2% of total for source files.">20 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_abortCriteria_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">mus_abortCriteria_module.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_abortcriteria_module.html">mus_abortCriteria_module</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/mus_abortcriteria_module.f90.html#src">mus_abortCriteria_module.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_abortcriteria_modulef90AfferentGraph" width="641pt" height="360pt"
+ viewBox="0.00 0.00 641.00 360.30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph" class="graph" transform="scale(0.34 0.34) rotate(0) translate(4 1054.97)">
+<title>sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1054.97 1880,-1054.97 1880,4 -4,4"/>
+<!-- sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~mus_abortcriteria_module.f90</title>
+<polygon fill="none" stroke="black" points="175,-490.97 0,-490.97 0,-466.97 175,-466.97 175,-490.97"/>
+<text text-anchor="middle" x="87.5" y="-476.57" font-family="Helvetica,sans-Serif" font-size="10.50">mus_abortCriteria_module.f90</text>
+</g>
+<!-- sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~mus_aux_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/mus_aux_module.f90.html" xlink:title="mus_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1567.5,-295.97 1441.5,-295.97 1441.5,-271.97 1567.5,-271.97 1567.5,-295.97"/>
+<text text-anchor="middle" x="1504.5" y="-281.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1494.94,-271.71C1470.25,-237.19 1395.18,-138.19 1310,-83.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-83.97C1261.72,-54.51 1250.83,-42.76 1198,-27.97 1083.62,4.04 1050.28,-7.97 931.5,-7.97 931.5,-7.97 931.5,-7.97 705.5,-7.97 514.71,-7.97 431.56,35.73 283,-83.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M281,-83.97C155.12,-185.16 105.79,-389.14 92.49,-456.69"/>
+<polygon fill="#000000" stroke="#000000" points="89.02,-456.18 90.59,-466.66 95.9,-457.48 89.02,-456.18"/>
+</g>
+<!-- sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~mus_param_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/mus_param_module.f90.html" xlink:title="mus_param_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="353,-905.97 211,-905.97 211,-881.97 353,-881.97 353,-905.97"/>
+<text text-anchor="middle" x="282" y="-891.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-83.97C1160.74,-2.73 1099.5,-38.07 931.5,-45.97"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~mus_tools_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/mus_tools_module.f90.html" xlink:title="mus_tools_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1198,-583.97 1066,-583.97 1066,-559.97 1198,-559.97 1198,-583.97"/>
+<text text-anchor="middle" x="1132" y="-569.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tools_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-178.97C1147.13,-200.53 1133.27,-468.68 1132.76,-549.24"/>
+<polygon fill="#000000" stroke="#000000" points="1129.26,-549.71 1132.77,-559.71 1136.26,-549.71 1129.26,-549.71"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node16" class="node">
+<title>sourcefile~mus_scheme_type_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node16"><a xlink:href="../sourcefile/mus_scheme_type_module.f90.html" xlink:title="mus_scheme_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="795,-514.97 618,-514.97 618,-490.97 795,-490.97 795,-514.97"/>
+<text text-anchor="middle" x="706.5" y="-500.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge40" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1492.77,-271.89C1465.02,-242.16 1387.66,-168.57 1310,-178.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-178.97C1140.26,-201.45 1069.94,-24.63 931.5,-121.97"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node17" class="node">
+<title>sourcefile~mus_tracking_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node17"><a xlink:href="../sourcefile/mus_tracking_module.f90.html" xlink:title="mus_tracking_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1384,-413.97 1234,-413.97 1234,-389.97 1384,-389.97 1384,-413.97"/>
+<text text-anchor="middle" x="1309" y="-399.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tracking_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge61" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1453.61,-295.98C1442.21,-299.68 1430.4,-304.3 1420,-309.97 1384.14,-329.52 1349.07,-361.8 1328.5,-382.46"/>
+<polygon fill="#000000" stroke="#000000" points="1325.85,-380.16 1321.36,-389.76 1330.86,-385.06 1325.85,-380.16"/>
+</g>
+<!-- sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node19" class="node">
+<title>sourcefile~mus_geom_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node19"><a xlink:href="../sourcefile/mus_geom_module.f90.html" xlink:title="mus_geom_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="775,-869.97 638,-869.97 638,-845.97 775,-845.97 775,-869.97"/>
+<text text-anchor="middle" x="706.5" y="-855.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geom_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge64" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1441.18,-294.02C1433.02,-297.81 1425.58,-302.97 1420,-309.97 1354.47,-392.26 1449.05,-699.3 1384,-781.97 1362.62,-809.15 1341.13,-790.93 1310,-805.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-805.97C1272.17,-823.29 1172.68,-840.94 1133,-843.97"/>
+</g>
+<!-- sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node28" class="node">
+<title>sourcefile~mus_restart_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node28"><a xlink:href="../sourcefile/mus_restart_module.f90.html" xlink:title="mus_restart_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1379.5,-295.97 1238.5,-295.97 1238.5,-271.97 1379.5,-271.97 1379.5,-295.97"/>
+<text text-anchor="middle" x="1309" y="-281.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_restart_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge76" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_restart_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1441.48,-283.97C1425.03,-283.97 1407.04,-283.97 1389.79,-283.97"/>
+<polygon fill="#000000" stroke="#000000" points="1389.73,-280.47 1379.73,-283.97 1389.73,-287.47 1389.73,-280.47"/>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M275.24,-881.55C248.17,-823.2 133.51,-576 98.62,-500.78"/>
+<polygon fill="#000000" stroke="#000000" points="101.62,-498.94 94.24,-491.35 95.27,-501.89 101.62,-498.94"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1130.29,-559.59C1126.12,-492 1102.54,-168.37 1030,-107.97 966.18,-54.84 349.16,-33.79 283,-83.97"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1097.79,-584.01C1087.45,-588.09 1076.11,-592.91 1066,-597.97 1049.24,-606.37 1047.32,-612.78 1030,-619.97 988.39,-637.26 973.53,-627.73 931.5,-643.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-643.97C916.47,-649.01 721.22,-764.6 707.5,-761.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M705.5,-761.97C596.7,-741.14 571.56,-572.02 486.5,-642.97"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node15" class="node">
+<title>sourcefile~mus_scheme_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node15"><a xlink:href="../sourcefile/mus_scheme_module.f90.html" xlink:title="mus_scheme_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1004.5,-813.97 856.5,-813.97 856.5,-789.97 1004.5,-789.97 1004.5,-813.97"/>
+<text text-anchor="middle" x="930.5" y="-799.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge39" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1122.85,-584.01C1110.18,-602.88 1085.23,-640.7 1066,-673.97 1048.69,-703.92 1053.73,-717.81 1030,-742.97 1013,-761 989.28,-775.43 969.38,-785.51"/>
+<polygon fill="#000000" stroke="#000000" points="967.71,-782.44 960.26,-789.97 970.78,-788.73 967.71,-782.44"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge58" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1087.77,-584C1047.6,-594.06 985.95,-606.67 931.5,-605.97"/>
+</g>
+<!-- sourcefile~mus_bc_nernstplanck_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~mus_bc_nernstplanck_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/mus_bc_nernstplanck_module.f90.html" xlink:title="mus_bc_nernstPlanck_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="582,-1007.97 389,-1007.97 389,-983.97 582,-983.97 582,-1007.97"/>
+<text text-anchor="middle" x="485.5" y="-993.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_nernstPlanck_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_nernstplanck_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~mus_bc_nernstplanck_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M413.21,-983.93C404.87,-981.46 396.62,-978.51 389,-974.97 355.43,-959.4 322.47,-931.71 302.44,-913.1"/>
+<polygon fill="#000000" stroke="#000000" points="304.84,-910.55 295.17,-906.21 300.02,-915.63 304.84,-910.55"/>
+</g>
+<!-- sourcefile~mus_bc_poisson_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~mus_bc_poisson_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/mus_bc_poisson_module.f90.html" xlink:title="mus_bc_poisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="568,-965.97 403,-965.97 403,-941.97 568,-941.97 568,-965.97"/>
+<text text-anchor="middle" x="485.5" y="-951.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_poisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_poisson_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_bc_poisson_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M438.72,-941.95C422.92,-937.69 405.15,-932.76 389,-927.97 369.21,-922.11 347.48,-915.22 328.88,-909.18"/>
+<polygon fill="#000000" stroke="#000000" points="329.77,-905.79 319.18,-906.02 327.6,-912.45 329.77,-905.79"/>
+</g>
+<!-- sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~mus_config_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/mus_config_module.f90.html" xlink:title="mus_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1378.5,-739.97 1239.5,-739.97 1239.5,-715.97 1378.5,-715.97 1378.5,-739.97"/>
+<text text-anchor="middle" x="1309" y="-725.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1131,-763.97C942.97,-772.47 892.37,-797.37 707.5,-761.97"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1294.27,-715.73C1263.85,-688.62 1190.64,-623.35 1154.26,-590.92"/>
+<polygon fill="#000000" stroke="#000000" points="1156.46,-588.2 1146.67,-584.16 1151.8,-593.42 1156.46,-588.2"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge35" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1131,-763.97C1081.69,-767.05 1026.59,-778.15 986.81,-787.56"/>
+<polygon fill="#000000" stroke="#000000" points="985.94,-784.17 977.04,-789.91 987.58,-790.97 985.94,-784.17"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge41" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1266.37,-739.98C1231.19,-749.29 1179.28,-761.08 1133,-763.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1131,-763.97C1078.2,-767.27 1077.12,-725.03 1030,-700.97 944.96,-657.55 911.27,-671.7 831,-619.97 787.95,-592.23 746.56,-548.39 724.33,-522.99"/>
+<polygon fill="#000000" stroke="#000000" points="726.73,-520.42 717.55,-515.13 721.43,-524.99 726.73,-520.42"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge65" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1293.86,-740.04C1259.19,-769.16 1170.07,-841.14 1133,-843.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1131,-843.97C1042.59,-850.73 1018.84,-826.67 931.5,-841.97"/>
+</g>
+<!-- sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~mus_control_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/mus_control_module.f90.html" xlink:title="mus_control_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1768,-435.97 1625,-435.97 1625,-411.97 1768,-411.97 1768,-435.97"/>
+<text text-anchor="middle" x="1696.5" y="-421.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1687.37,-411.71C1671.32,-388.45 1633.27,-337.77 1589,-309.97 1582.72,-306.03 1575.8,-302.65 1568.72,-299.75"/>
+<polygon fill="#000000" stroke="#000000" points="1569.58,-296.34 1558.99,-296.1 1567.12,-302.89 1569.58,-296.34"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1690.61,-411.83C1672.65,-368.66 1606.03,-220.88 1505.5,-140.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-140.97C1455.14,-102.53 1441.39,-92.84 1384,-69.97 1251.56,-17.22 1208.25,-18.5 1066,-27.97 1005.82,-31.98 991.48,-39.65 931.5,-45.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-45.97C501.69,-61.87 319.24,-741 287.96,-872.17"/>
+<polygon fill="#000000" stroke="#000000" points="284.56,-871.37 285.68,-881.91 291.37,-872.97 284.56,-871.37"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge42" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-140.97C1420.04,-74.48 1133.94,-196.82 1030,-220.97 942.29,-241.35 902.93,-204.81 831,-258.97 811.32,-273.79 742.38,-424.95 716.99,-481.65"/>
+<polygon fill="#000000" stroke="#000000" points="713.79,-480.23 712.9,-490.79 720.18,-483.08 713.79,-480.23"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge66" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1693.78,-436.23C1685.39,-494.27 1646.73,-740.6 1589,-786.97 1492.1,-864.81 1421.9,-751.89 1310,-805.97"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~mus_dynloadbal_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/mus_dynloadbal_module.f90.html" xlink:title="mus_dynLoadBal_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1589,-735.97 1420,-735.97 1420,-711.97 1589,-711.97 1589,-735.97"/>
+<text text-anchor="middle" x="1504.5" y="-721.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1502.49,-711.73C1497.94,-663.66 1475.32,-485.41 1384,-380.97 1334.8,-324.71 1284.15,-360.39 1234,-304.97 1204.26,-272.11 1231.96,-240.45 1198,-211.97 1105.52,-134.44 1051.62,-148.38 931.5,-159.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-159.97C885.2,-165.03 868.74,-155.24 831,-178.97 613.57,-315.7 683.73,-478.45 486.5,-642.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M484.5,-642.97C397.12,-712.84 323.17,-826.94 295.09,-873.36"/>
+<polygon fill="#000000" stroke="#000000" points="292.08,-871.57 289.95,-881.95 298.09,-875.17 292.08,-871.57"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1496.37,-711.96C1480.18,-685.91 1437.82,-624.48 1384,-597.97 1329.47,-571.12 1260.31,-565.74 1208.41,-566.44"/>
+<polygon fill="#000000" stroke="#000000" points="1208.19,-562.95 1198.27,-566.66 1208.34,-569.94 1208.19,-562.95"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge36" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1430.68,-711.94C1415.31,-709.87 1399.15,-708.05 1384,-706.97 1241.74,-696.9 1201.83,-706.5 1066,-749.97 1032.77,-760.61 995.85,-775.08 969.11,-786.05"/>
+<polygon fill="#000000" stroke="#000000" points="967.65,-782.87 959.75,-789.93 970.33,-789.34 967.65,-782.87"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge43" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1500.45,-711.96C1490.62,-675.81 1456.05,-567.52 1384,-517.97 1180.41,-377.97 1074.77,-420.66 831,-460.97 800.95,-465.94 768.4,-477.28 744.26,-486.92"/>
+<polygon fill="#000000" stroke="#000000" points="742.72,-483.77 734.79,-490.79 745.37,-490.25 742.72,-483.77"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge62" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1502.16,-711.86C1496.59,-667.39 1471.36,-511.42 1384,-427.97 1380.28,-424.42 1376.05,-421.35 1371.53,-418.7"/>
+<polygon fill="#000000" stroke="#000000" points="1373.06,-415.54 1362.56,-414.09 1369.86,-421.77 1373.06,-415.54"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge67" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1439.58,-736.1C1432.75,-738.54 1426.09,-741.47 1420,-744.97 1400.12,-756.43 1403.48,-769.86 1384,-781.97 1354.64,-800.23 1341.13,-790.93 1310,-805.97"/>
+</g>
+<!-- sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~mus_geomincrhead_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/mus_geomincrhead_module.f90.html" xlink:title="mus_geomIncrHead_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="578.5,-885.97 392.5,-885.97 392.5,-861.97 578.5,-861.97 578.5,-885.97"/>
+<text text-anchor="middle" x="485.5" y="-871.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geomIncrHead_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_geomincrhead_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~mus_geomincrhead_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M392.3,-883.12C382.64,-884.08 372.87,-885.05 363.35,-886"/>
+<polygon fill="#000000" stroke="#000000" points="362.74,-882.54 353.14,-887.01 363.43,-889.51 362.74,-882.54"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~mus_harvesting.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node11"><a xlink:href="../sourcefile/mus_harvesting.f90.html" xlink:title="mus_harvesting.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1755,-895.97 1638,-895.97 1638,-871.97 1755,-871.97 1755,-895.97"/>
+<text text-anchor="middle" x="1696.5" y="-881.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-961.97C1413.45,-981.17 1401.67,-1027.37 1310,-1035.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-1035.97C1141.4,-1051.6 1098.83,-1035.97 931.5,-1035.97 931.5,-1035.97 931.5,-1035.97 705.5,-1035.97 564.58,-1035.97 515.29,-1079.5 389,-1016.97 344.06,-994.72 310.39,-944 294.03,-915.12"/>
+<polygon fill="#000000" stroke="#000000" points="297.03,-913.32 289.15,-906.24 290.9,-916.69 297.03,-913.32"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~mus_hvs_aux_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node12"><a xlink:href="../sourcefile/mus_hvs_aux_module.f90.html" xlink:title="mus_hvs_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1579,-777.97 1430,-777.97 1430,-753.97 1579,-753.97 1579,-777.97"/>
+<text text-anchor="middle" x="1504.5" y="-763.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge32" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1656.15,-871.85C1645.74,-868 1634.71,-863.34 1625,-857.97 1587.44,-837.23 1549,-805.34 1526.2,-785.08"/>
+<polygon fill="#000000" stroke="#000000" points="1528.31,-782.27 1518.53,-778.18 1523.63,-787.47 1528.31,-782.27"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~mus_hvs_config_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node13"><a xlink:href="../sourcefile/mus_hvs_config_module.f90.html" xlink:title="mus_hvs_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1586,-933.97 1423,-933.97 1423,-909.97 1586,-909.97 1586,-933.97"/>
+<text text-anchor="middle" x="1504.5" y="-919.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge33" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1637.98,-895.48C1618.36,-899.4 1596.2,-903.83 1575.7,-907.93"/>
+<polygon fill="#000000" stroke="#000000" points="1574.91,-904.52 1565.79,-909.92 1576.28,-911.39 1574.91,-904.52"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node14" class="node">
+<title>sourcefile~mus_hvs_construction_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node14"><a xlink:href="../sourcefile/mus_hvs_construction_module.f90.html" xlink:title="mus_hvs_construction_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1028.5,-893.97 832.5,-893.97 832.5,-869.97 1028.5,-869.97 1028.5,-893.97"/>
+<text text-anchor="middle" x="930.5" y="-879.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_construction_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge34" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-961.97C1306.73,-999.03 1068.91,-929.6 973.8,-897.26"/>
+<polygon fill="#000000" stroke="#000000" points="974.84,-893.92 964.24,-893.98 972.56,-900.54 974.84,-893.92"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge37" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1637.83,-880.94C1579.87,-875.87 1489.4,-862.29 1420,-825.97 1400.5,-815.77 1402.93,-803.2 1384,-791.97 1354.26,-774.34 1343.85,-775.03 1310,-767.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-767.97C1259.67,-759.35 1246.89,-773.55 1198,-777.97 1136.73,-783.52 1067.54,-789.75 1015.02,-794.47"/>
+<polygon fill="#000000" stroke="#000000" points="1014.39,-791.01 1004.74,-795.39 1015.02,-797.98 1014.39,-791.01"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge44" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-323.97C1455.57,-285.9 1289.5,-355.16 1234,-380.97 1148.15,-420.9 1125.39,-438.23 1066,-511.97 1042.81,-540.77 1059.28,-564.39 1030,-586.97 994.69,-614.2 976.08,-606.08 931.5,-605.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-605.97C885.04,-602.67 872.17,-604.09 831,-586.97 791.97,-570.75 752.58,-541.14 729.11,-521.76"/>
+<polygon fill="#000000" stroke="#000000" points="731.12,-518.88 721.21,-515.13 726.62,-524.24 731.12,-518.88"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge68" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1677.42,-896.08C1656.83,-909.36 1621.78,-930.45 1589,-942.97 1553.45,-956.55 1542.87,-954.74 1505.5,-961.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-961.97C1333.83,-994.82 1305.31,-830.81 1133,-843.97"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_restart_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge77" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_restart_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1643.87,-871.95C1636.77,-868.42 1630.15,-863.86 1625,-857.97 1614.99,-846.53 1517.4,-333.43 1505.5,-323.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-323.97C1500.99,-321.98 1435.47,-308.68 1381.36,-297.96"/>
+<polygon fill="#000000" stroke="#000000" points="1381.89,-294.5 1371.4,-295.99 1380.53,-301.36 1381.89,-294.5"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-611.97C1269.17,-596.02 970.66,-628.84 931.5,-643.97"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1432.42,-753.79C1427.93,-751.35 1423.72,-748.43 1420,-744.97 1382.64,-710.23 1420.17,-671.95 1384,-635.97 1359.49,-611.59 1341.98,-625.11 1310,-611.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-611.97C1276.96,-599.22 1266.74,-604.34 1234,-596.97 1219.61,-593.74 1204.12,-590.02 1189.7,-586.46"/>
+<polygon fill="#000000" stroke="#000000" points="1190.47,-583.04 1179.92,-584.03 1188.78,-589.84 1190.47,-583.04"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge45" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1431.72,-753.9C1427.45,-751.42 1423.48,-748.47 1420,-744.97 1372.59,-697.26 1431.39,-645.71 1384,-597.97 1283.35,-496.58 1197.99,-496.3 1066,-550.97 1045.09,-559.63 1049.99,-576.36 1030,-586.97 990.62,-607.88 976.08,-606.54 931.5,-605.97"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge63" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1430.62,-753.75C1426.72,-751.29 1423.13,-748.39 1420,-744.97 1351.06,-669.6 1420.23,-613.48 1384,-517.97 1370.16,-481.5 1343.86,-444.35 1326.63,-422.23"/>
+<polygon fill="#000000" stroke="#000000" points="1329.26,-419.91 1320.3,-414.26 1323.78,-424.27 1329.26,-419.91"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge69" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1429.65,-777.41C1384.3,-785.17 1331,-795.82 1310,-805.97"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1422.77,-928.67C1279.05,-939.96 969.33,-961.42 707.5,-959.97"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1481.03,-909.79C1462.29,-898.59 1436.14,-880.34 1420,-857.97 1391.38,-818.31 1418.51,-788.64 1384,-753.97 1380.52,-750.48 1376.54,-747.45 1372.28,-744.83"/>
+<polygon fill="#000000" stroke="#000000" points="1373.67,-741.6 1363.2,-740 1370.38,-747.79 1373.67,-741.6"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge31" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-843.97C1245.06,-838.84 1092.81,-896.38 1030,-902.97 942.04,-912.2 919.37,-906.69 831,-902.97 749.58,-899.55 657.61,-891.6 589.2,-884.89"/>
+<polygon fill="#000000" stroke="#000000" points="589.15,-881.37 578.85,-883.87 588.46,-888.33 589.15,-881.37"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge38" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1441,-909.81C1433.27,-906.3 1426,-901.78 1420,-895.97 1384.87,-861.93 1418.92,-826.22 1384,-791.97 1359.31,-767.77 1343.85,-775.03 1310,-767.97"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge46" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1495.11,-909.64C1479.38,-886.27 1444.83,-833.7 1420,-786.97 1401.71,-752.54 1414.22,-731.6 1384,-706.97 1304.13,-641.89 1034.52,-607.4 931.5,-605.97"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge70" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1454.19,-909.84C1442.65,-906.13 1430.63,-901.53 1420,-895.97 1402.03,-886.59 1401.91,-877.47 1384,-867.97 1353.45,-851.78 1344.46,-846.78 1310,-843.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1308,-843.97C1230.48,-837.65 1210.55,-838.05 1133,-843.97"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M910.11,-894.06C872.48,-916.28 786.33,-961.27 707.5,-959.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M705.5,-959.97C649.32,-959.05 637.35,-942.62 582,-932.97 508.26,-920.13 423.62,-909.47 363.26,-902.56"/>
+<polygon fill="#000000" stroke="#000000" points="363.37,-899.04 353.03,-901.39 362.58,-906 363.37,-899.04"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge47" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M898.69,-869.97C877.14,-860.19 849.1,-844.48 831,-822.97 810.57,-798.7 738.58,-593.1 715.02,-524.88"/>
+<polygon fill="#000000" stroke="#000000" points="718.24,-523.47 711.67,-515.15 711.62,-525.75 718.24,-523.47"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge71" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M832.45,-871.48C816.71,-869.78 800.6,-868.04 785.39,-866.39"/>
+<polygon fill="#000000" stroke="#000000" points="785.35,-862.87 775.03,-865.27 784.6,-869.83 785.35,-862.87"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M860.43,-789.93C816.58,-782.18 758.66,-771.77 707.5,-761.97"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge57" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M900.26,-789.79C878.95,-779.74 850.5,-763.77 831,-742.97 767.95,-675.72 728.87,-570.1 714.16,-524.8"/>
+<polygon fill="#000000" stroke="#000000" points="717.44,-523.59 711.09,-515.11 710.77,-525.71 717.44,-523.59"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge73" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M881.88,-813.99C847.75,-822.59 801.62,-834.23 765.37,-843.38"/>
+<polygon fill="#000000" stroke="#000000" points="764.27,-840.04 755.43,-845.88 765.98,-846.83 764.27,-840.04"/>
+</g>
+<!-- sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~mus_scheme_type_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M682.47,-515.14C641.08,-537.54 552.34,-588.05 486.5,-642.97"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1263.53,-389.83C1253.44,-386.14 1243.04,-381.55 1234,-375.97 1227.3,-371.84 1036.99,-182.61 1030,-178.97 990.44,-158.41 975.86,-155.5 931.5,-159.97"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1295.41,-414.2C1265.4,-443.36 1189.39,-517.19 1153.01,-552.54"/>
+<polygon fill="#000000" stroke="#000000" points="1150.21,-550.38 1145.47,-559.86 1155.08,-555.4 1150.21,-550.38"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge59" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1256.08,-389.92C1166.71,-370.24 987.97,-335.91 931.5,-361.97"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge74" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1302,-414.04C1286.46,-444.89 1242.99,-528.71 1198,-592.97 1145.71,-667.65 1115.86,-673.65 1066,-749.97 1046.22,-780.26 1058.76,-801.03 1030,-822.97 994.55,-850.01 975.42,-834.28 931.5,-841.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-841.97C882.51,-853.13 828.49,-857.21 785.5,-858.46"/>
+<polygon fill="#000000" stroke="#000000" points="785.3,-854.96 775.39,-858.71 785.47,-861.96 785.3,-854.96"/>
+</g>
+<!-- sourcefile~musubi.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node18" class="node">
+<title>sourcefile~musubi.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node18"><a xlink:href="../sourcefile/musubi.f90.html" xlink:title="musubi.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1876,-715.97 1804,-715.97 1804,-691.97 1876,-691.97 1876,-715.97"/>
+<text text-anchor="middle" x="1840" y="-701.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1834.15,-716.09C1819.14,-751.38 1770.06,-851.13 1697.5,-843.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1695.5,-843.97C1575.08,-832.09 1669.95,-399.91 1589,-309.97 1585.41,-305.99 1581.22,-302.6 1576.66,-299.73"/>
+<polygon fill="#000000" stroke="#000000" points="1577.98,-296.47 1567.51,-294.83 1574.67,-302.64 1577.98,-296.47"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-1035.97C1418.38,-1048.24 1395.5,-1026.73 1310,-1035.97"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1695.5,-843.97C1571.07,-831.7 1531.31,-843.93 1420,-786.97 1400.68,-777.09 1402.62,-765.13 1384,-753.97 1377.58,-750.12 1370.5,-746.73 1363.34,-743.77"/>
+<polygon fill="#000000" stroke="#000000" points="1364.18,-740.34 1353.59,-740 1361.66,-746.87 1364.18,-740.34"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1832.92,-691.94C1811.06,-648.69 1736.29,-500.73 1708.24,-445.23"/>
+<polygon fill="#000000" stroke="#000000" points="1711.35,-443.62 1703.72,-436.28 1705.1,-446.78 1711.35,-443.62"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge60" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1838.72,-691.71C1835.97,-601.63 1806.79,-45.97 1505.5,-45.97 1505.5,-45.97 1505.5,-45.97 1308,-45.97 1137.29,-45.97 1072.66,-25.98 931.5,-121.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-121.97C887.54,-150.21 863.78,-140.46 831,-178.97 750.89,-273.09 719.84,-424.64 710.69,-480.97"/>
+<polygon fill="#000000" stroke="#000000" points="707.22,-480.5 709.14,-490.92 714.13,-481.57 707.22,-480.5"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge75" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1837.82,-716.44C1833.99,-750.65 1818.97,-847.29 1768,-904.97 1681.66,-1002.68 1635.73,-1042.29 1505.5,-1035.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1503.5,-1035.97C1465.76,-1041.12 867.59,-913.56 831,-902.97 802.29,-894.67 770.64,-883.09 746.56,-873.75"/>
+<polygon fill="#000000" stroke="#000000" points="747.66,-870.42 737.07,-870.03 745.11,-876.94 747.66,-870.42"/>
+</g>
+<!-- sourcefile~mus_geom_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~mus_geom_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M637.71,-862.93C622.21,-864.06 605.39,-865.29 588.8,-866.5"/>
+<polygon fill="#000000" stroke="#000000" points="588.24,-863.03 578.52,-867.25 588.75,-870.01 588.24,-863.03"/>
+</g>
+<!-- sourcefile~mus_initfluid_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node20" class="node">
+<title>sourcefile~mus_initfluid_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node20"><a xlink:href="../sourcefile/mus_initfluid_module.f90.html" xlink:title="mus_initFluid_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1004.5,-211.97 856.5,-211.97 856.5,-187.97 1004.5,-187.97 1004.5,-211.97"/>
+<text text-anchor="middle" x="930.5" y="-197.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluid_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initfluid_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge48" class="edge">
+<title>sourcefile~mus_initfluid_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M856.43,-210.9C847.17,-214.59 838.37,-219.48 831,-225.97 798.98,-254.18 812.01,-275.84 795,-314.97 768.49,-375.98 734.67,-446.85 717.9,-481.57"/>
+<polygon fill="#000000" stroke="#000000" points="714.66,-480.23 713.45,-490.75 720.96,-483.28 714.66,-480.23"/>
+</g>
+<!-- sourcefile~mus_initfluidincomp_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node21" class="node">
+<title>sourcefile~mus_initfluidincomp_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node21"><a xlink:href="../sourcefile/mus_initfluidincomp_module.f90.html" xlink:title="mus_initFluidIncomp_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1024.5,-577.97 836.5,-577.97 836.5,-553.97 1024.5,-553.97 1024.5,-577.97"/>
+<text text-anchor="middle" x="930.5" y="-563.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluidIncomp_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initfluidincomp_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge49" class="edge">
+<title>sourcefile~mus_initfluidincomp_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M867.49,-553.92C855.33,-551.23 842.72,-548.2 831,-544.97 803.27,-537.33 772.66,-526.93 748.85,-518.4"/>
+<polygon fill="#000000" stroke="#000000" points="750.02,-515.1 739.42,-514.99 747.63,-521.68 750.02,-515.1"/>
+</g>
+<!-- sourcefile~mus_initisothermaceq_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node22" class="node">
+<title>sourcefile~mus_initisothermaceq_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node22"><a xlink:href="../sourcefile/mus_initisothermaceq_module.f90.html" xlink:title="mus_initIsothermAcEq_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1028.5,-535.97 832.5,-535.97 832.5,-511.97 1028.5,-511.97 1028.5,-535.97"/>
+<text text-anchor="middle" x="930.5" y="-521.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initIsothermAcEq_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initisothermaceq_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge50" class="edge">
+<title>sourcefile~mus_initisothermaceq_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M832.45,-514.79C823.46,-513.94 814.36,-513.08 805.36,-512.23"/>
+<polygon fill="#000000" stroke="#000000" points="805.56,-508.73 795.27,-511.28 804.9,-515.7 805.56,-508.73"/>
+</g>
+<!-- sourcefile~mus_initlbmps_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node23" class="node">
+<title>sourcefile~mus_initlbmps_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node23"><a xlink:href="../sourcefile/mus_initlbmps_module.f90.html" xlink:title="mus_initLBMPS_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1009.5,-493.97 851.5,-493.97 851.5,-469.97 1009.5,-469.97 1009.5,-493.97"/>
+<text text-anchor="middle" x="930.5" y="-479.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initLBMPS_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initlbmps_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge51" class="edge">
+<title>sourcefile~mus_initlbmps_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M851.23,-489.38C836.38,-490.78 820.68,-492.27 805.31,-493.72"/>
+<polygon fill="#000000" stroke="#000000" points="804.9,-490.24 795.28,-494.67 805.56,-497.21 804.9,-490.24"/>
+</g>
+<!-- sourcefile~mus_initmultispecies_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node24" class="node">
+<title>sourcefile~mus_initmultispecies_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node24"><a xlink:href="../sourcefile/mus_initmultispecies_module.f90.html" xlink:title="mus_initMultispecies_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1024.5,-413.97 836.5,-413.97 836.5,-389.97 1024.5,-389.97 1024.5,-413.97"/>
+<text text-anchor="middle" x="930.5" y="-399.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initMultispecies_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initmultispecies_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge52" class="edge">
+<title>sourcefile~mus_initmultispecies_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M872.57,-414.03C858.71,-417.77 844.1,-422.4 831,-427.97 794.61,-443.44 756.2,-468.3 732.07,-485.12"/>
+<polygon fill="#000000" stroke="#000000" points="730,-482.29 723.85,-490.92 734.04,-488.01 730,-482.29"/>
+</g>
+<!-- sourcefile~mus_initnernstplanck_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node25" class="node">
+<title>sourcefile~mus_initnernstplanck_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node25"><a xlink:href="../sourcefile/mus_initnernstplanck_module.f90.html" xlink:title="mus_initNernstPlanck_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1026.5,-333.97 834.5,-333.97 834.5,-309.97 1026.5,-309.97 1026.5,-333.97"/>
+<text text-anchor="middle" x="930.5" y="-319.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initNernstPlanck_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initnernstplanck_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge53" class="edge">
+<title>sourcefile~mus_initnernstplanck_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M860.84,-333.99C850.36,-337.52 840.04,-342.08 831,-347.97 777.76,-382.71 737.04,-448.04 718.5,-481.71"/>
+<polygon fill="#000000" stroke="#000000" points="715.32,-480.24 713.67,-490.7 721.49,-483.55 715.32,-480.24"/>
+</g>
+<!-- sourcefile~mus_initpoisson_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node26" class="node">
+<title>sourcefile~mus_initpoisson_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node26"><a xlink:href="../sourcefile/mus_initpoisson_module.f90.html" xlink:title="mus_initPoisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1012,-291.97 849,-291.97 849,-267.97 1012,-267.97 1012,-291.97"/>
+<text text-anchor="middle" x="930.5" y="-277.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initPoisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_initpoisson_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge54" class="edge">
+<title>sourcefile~mus_initpoisson_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M848.66,-291.37C842.41,-293.97 836.42,-297.13 831,-300.97 765.9,-347.06 728.53,-439.35 714.26,-481.31"/>
+<polygon fill="#000000" stroke="#000000" points="710.93,-480.24 711.12,-490.84 717.57,-482.43 710.93,-480.24"/>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node27" class="node">
+<title>sourcefile~mus_mesh_adaptation_module.f90</title>
+<g id="a_sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_node27"><a xlink:href="../sourcefile/mus_mesh_adaptation_module.f90.html" xlink:title="mus_mesh_adaptation_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1030,-733.97 831,-733.97 831,-709.97 1030,-709.97 1030,-733.97"/>
+<text text-anchor="middle" x="930.5" y="-719.57" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mesh_adaptation_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge55" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M857.99,-709.94C848.38,-706.41 839.08,-701.86 831,-695.97 769.19,-650.93 730.56,-564.68 715.16,-524.53"/>
+<polygon fill="#000000" stroke="#000000" points="718.44,-523.3 711.67,-515.15 711.88,-525.74 718.44,-523.3"/>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge72" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M909.06,-734.07C889.1,-745.92 857.87,-764.55 831,-780.97 797.97,-801.16 760.25,-824.76 735.28,-840.46"/>
+<polygon fill="#000000" stroke="#000000" points="733.29,-837.58 726.69,-845.86 737.01,-843.5 733.29,-837.58"/>
+</g>
+<!-- sourcefile~mus_restart_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90 -->
+<g id="sourcefile~~mus_abortcriteria_module.f90~~AfferentGraph_edge56" class="edge">
+<title>sourcefile~mus_restart_module.f90&#45;&gt;sourcefile~mus_scheme_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1238.24,-280.14C1188.19,-280.04 1120.29,-285.43 1066,-309.97 1046.22,-318.91 1049.39,-333.22 1030,-342.97 990.17,-363.02 972.11,-343.57 931.5,-361.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M929.5,-361.97C887.69,-377.46 870.44,-360.19 831,-380.97 783.6,-405.95 742.48,-455.06 721.77,-482.75"/>
+<polygon fill="#000000" stroke="#000000" points="718.87,-480.79 715.79,-490.93 724.52,-484.93 718.87,-480.79"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_abortcriteria_modulef90AfferentGraph = svgPanZoom('#sourcefilemus_abortcriteria_modulef90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">! Copyright (c) 2021 Harald Klimach &lt;harald.klimach@uni-siegen.de&gt;</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">!</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">! Redistribution and use in source and binary forms, with or without</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="c">! modification, are permitted provided that the following conditions are met:</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="c">!</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="c">! 1. Redistributions of source code must retain the above copyright notice,</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="c">! this list of conditions and the following disclaimer.</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="c">!</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="c">! 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="c">! this list of conditions and the following disclaimer in the documentation</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="c">! and/or other materials provided with the distribution.</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="c">!</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="c">! THIS SOFTWARE IS PROVIDED BY THE UNIVERSITY OF SIEGEN “AS IS” AND ANY EXPRESS</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="c">! OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="c">! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="c">! IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="c">! DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="c">! (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="c">! LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="c">! ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="c">! (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="c">! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="c">! **************************************************************************** !</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">!</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">!&gt; Musubi specific criteria to abort the simulation.</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="c">!&gt;</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">!! This module provies the [[mus_abortCriteria_type]] that holds parameters for</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">!! simulation aborts.</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="c">!! The configuration parameters are read from the `abort_criteria` table in</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="c">!! `sim_control`, see also [[tem_simControl_module]].</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="c">!!</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="c">!! Additional parameters for Musubi in the `abort_criteria` table:</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="c">!!</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="c">!! * velocity_lat_max: The maximal lattice velocity that may appear in the</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="c">!!                     domain. Defaults to 0.15.</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="c">!!                     Lattice velocities larger than 0.1 are considered to</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="c">!!                     produce large errors.</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="c">!!</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="c">!! A simple complete example for the Musubi `abort_criteria` table within the</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="c">!! `sim_control` table is:</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="c">!!</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="c">!!```lua</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="c">!!    abort_criteria = {</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="c">!!      stop_file = &#39;stop&#39;,</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="c">!!      velocity_lat_max = 0.15 -- Maximum lattice velocity for Musubi</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="c">!!    }</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="c">!!```</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="c">!!</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="k">module </span><span class="n">mus_abortCriteria_module</span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">  </span><span class="k">use </span><span class="n">aotus_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">flu_state</span><span class="p">,</span><span class="w"> </span><span class="n">aot_get_val</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a>
+<a id="ln-52" name="ln-52" href="#ln-52"></a><span class="w">  </span><span class="k">use </span><span class="n">env_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">rk</span>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_abortCriteria_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_solverAborts_type</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">  </span><span class="k">implicit none</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="k">  private</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="w">  </span><span class="c">!&gt; Musubi specific abort criteria.</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a><span class="w">  </span><span class="k">type</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="p">,</span><span class="w"> </span><span class="k">extends</span><span class="p">(</span><span class="n">tem_solverAborts_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_abortCriteria_type</span>
+<a id="ln-61" name="ln-61" href="#ln-61"></a>
+<a id="ln-62" name="ln-62" href="#ln-62"></a><span class="w">    </span><span class="c">!&gt; Maximal lattice velocity that will be tolerated in the simulation.</span>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="w">    </span><span class="c">!! The lattice velocity should usually be smaller than 0.1.</span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">velLat_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.15_rk</span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a>
+<a id="ln-66" name="ln-66" href="#ln-66"></a><span class="w">  </span><span class="k">contains</span>
+<a id="ln-67" name="ln-67" href="#ln-67"></a>
+<a id="ln-68" name="ln-68" href="#ln-68"></a><span class="k">    procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">load</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">mus_abortCriteria_load</span>
+<a id="ln-69" name="ln-69" href="#ln-69"></a>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">  </span><span class="k">end type </span><span class="n">mus_abortCriteria_type</span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a>
+<a id="ln-72" name="ln-72" href="#ln-72"></a>
+<a id="ln-73" name="ln-73" href="#ln-73"></a><span class="k">contains</span>
+<a id="ln-74" name="ln-74" href="#ln-74"></a>
+<a id="ln-75" name="ln-75" href="#ln-75"></a>
+<a id="ln-76" name="ln-76" href="#ln-76"></a><span class="w">  </span><span class="c">! ------------------------------------------------------------------------ !</span>
+<a id="ln-77" name="ln-77" href="#ln-77"></a><span class="w">  </span><span class="c">!&gt; Loading Musubi specific abort criteria from the `abort_criteria` table.</span>
+<a id="ln-78" name="ln-78" href="#ln-78"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-79" name="ln-79" href="#ln-79"></a><span class="w">  </span><span class="c">!! This routine is passed to the loading of abort criteria in</span>
+<a id="ln-80" name="ln-80" href="#ln-80"></a><span class="w">  </span><span class="c">!! [[tem_abortcriteria_module:tem_abortcriteria_load]].</span>
+<a id="ln-81" name="ln-81" href="#ln-81"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_abortCriteria_load</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"> </span><span class="n">abort_table</span><span class="p">)</span>
+<a id="ln-82" name="ln-82" href="#ln-82"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-83" name="ln-83" href="#ln-83"></a><span class="w">    </span><span class="c">!&gt; Object to hold the solver specific configuration parameters.</span>
+<a id="ln-84" name="ln-84" href="#ln-84"></a><span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">mus_abortCriteria_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span>
+<a id="ln-85" name="ln-85" href="#ln-85"></a>
+<a id="ln-86" name="ln-86" href="#ln-86"></a><span class="w">    </span><span class="c">!&gt; Handle to the Lua script with the configuration.</span>
+<a id="ln-87" name="ln-87" href="#ln-87"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">flu_state</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">conf</span>
+<a id="ln-88" name="ln-88" href="#ln-88"></a>
+<a id="ln-89" name="ln-89" href="#ln-89"></a><span class="w">    </span><span class="c">!&gt; Handle to the opened `abort_criteria` table that holds the</span>
+<a id="ln-90" name="ln-90" href="#ln-90"></a><span class="w">    </span><span class="c">!! abort parameters to load.</span>
+<a id="ln-91" name="ln-91" href="#ln-91"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">abort_table</span>
+<a id="ln-92" name="ln-92" href="#ln-92"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-93" name="ln-93" href="#ln-93"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iErr</span>
+<a id="ln-94" name="ln-94" href="#ln-94"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-95" name="ln-95" href="#ln-95"></a>
+<a id="ln-96" name="ln-96" href="#ln-96"></a><span class="w">    </span><span class="k">call </span><span class="n">aot_get_val</span><span class="p">(</span><span class="w"> </span><span class="n">L</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w">               </span><span class="p">&amp;</span>
+<a id="ln-97" name="ln-97" href="#ln-97"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">thandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abort_table</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span>
+<a id="ln-98" name="ln-98" href="#ln-98"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">val</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">velLat_max</span><span class="p">,</span><span class="w">      </span><span class="p">&amp;</span>
+<a id="ln-99" name="ln-99" href="#ln-99"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">key</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velocity_lat_max&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-100" name="ln-100" href="#ln-100"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.15_rk</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-101" name="ln-101" href="#ln-101"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">               </span><span class="n">ErrCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iErr</span><span class="w">                </span><span class="p">)</span>
+<a id="ln-102" name="ln-102" href="#ln-102"></a>
+<a id="ln-103" name="ln-103" href="#ln-103"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">mus_abortCriteria_load</span>
+<a id="ln-104" name="ln-104" href="#ln-104"></a><span class="w">  </span><span class="c">! ------------------------------------------------------------------------ !</span>
+<a id="ln-105" name="ln-105" href="#ln-105"></a><span class="w">  </span><span class="c">! ------------------------------------------------------------------------ !</span>
+<a id="ln-106" name="ln-106" href="#ln-106"></a>
+<a id="ln-107" name="ln-107" href="#ln-107"></a><span class="k">end module </span><span class="n">mus_abortCriteria_module</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

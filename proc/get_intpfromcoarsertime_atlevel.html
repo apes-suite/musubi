@@ -1,0 +1,647 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>get_intpFromCoarserTime_atLevel &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>get_intpFromCoarserTime_atLevel
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.1% of total for procedures.">5 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_timer_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_timer_module.f90.html'>mus_timer_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_timer_module.html'>mus_timer_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">get_intpFromCoarserTime_atLevel</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  function get_intpFromCoarserTime_atLevel(level) result(time)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~6"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-time~19"></span>
+          real(kind=rk)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~get_intpfromcoarsertime_atlevel~~CallsGraph Pages: 1 -->
+<svg id="procget_intpfromcoarsertime_atlevelCallsGraph" width="341pt" height="32pt"
+ viewBox="0.00 0.00 341.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~get_intpfromcoarsertime_atlevel~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 337,-28 337,4 -4,4"/>
+<!-- proc~get_intpfromcoarsertime_atlevel -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CallsGraph_node1" class="node">
+<title>proc~get_intpfromcoarsertime_atlevel</title>
+<polygon fill="none" stroke="black" points="194,-24 0,-24 0,0 194,0 194,-24"/>
+<text text-anchor="middle" x="97" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">get_intpFromCoarserTime_atLevel</text>
+</g>
+<!-- tem_getTimerVal -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CallsGraph_node2" class="node">
+<title>tem_getTimerVal</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CallsGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_gettimerval.html" xlink:title="tem_getTimerVal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="333,-24 230,-24 230,0 333,0 333,-24"/>
+<text text-anchor="middle" x="281.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_getTimerVal</text>
+</a>
+</g>
+</g>
+<!-- proc~get_intpfromcoarsertime_atlevel&#45;&gt;tem_getTimerVal -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CallsGraph_edge1" class="edge">
+<title>proc~get_intpfromcoarsertime_atlevel&#45;&gt;tem_getTimerVal</title>
+<path fill="none" stroke="#000000" d="M194.06,-12C202.75,-12 211.39,-12 219.65,-12"/>
+<polygon fill="#000000" stroke="#000000" points="219.89,-15.5 229.89,-12 219.89,-8.5 219.89,-15.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph Pages: 1 -->
+<svg id="procget_intpfromcoarsertime_atlevelCalledByGraph" width="641pt" height="102pt"
+ viewBox="0.00 0.00 641.00 101.89" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph" class="graph" transform="scale(0.64 0.64) rotate(0) translate(4 154)">
+<title>proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 990,-154 990,4 -4,4"/>
+<!-- proc~get_intpfromcoarsertime_atlevel -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node1" class="node">
+<title>proc~get_intpfromcoarsertime_atlevel</title>
+<polygon fill="none" stroke="black" points="986,-129 792,-129 792,-105 986,-105 986,-129"/>
+<text text-anchor="middle" x="889" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">get_intpFromCoarserTime_atLevel</text>
+</g>
+<!-- interface~get_intpfromcoarsertime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node2" class="node">
+<title>interface~get_intpfromcoarsertime</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node2"><a xlink:href="../interface/get_intpfromcoarsertime.html" xlink:title="get_intpFromCoarserTime">
+<polygon fill="#a7506f" stroke="#a7506f" points="756,-87 606,-87 606,-63 756,-63 756,-87"/>
+<text text-anchor="middle" x="681" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserTime</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_atlevel -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge1" class="edge">
+<title>interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_atlevel</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M741.03,-87.04C765.38,-92 793.77,-97.79 819.07,-102.95"/>
+<polygon fill="#000000" stroke="#000000" points="818.46,-106.39 828.96,-104.96 819.86,-99.54 818.46,-106.39"/>
+</g>
+<!-- proc~get_intpfromcoarsertime_total -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node5" class="node">
+<title>proc~get_intpfromcoarsertime_total</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node5"><a xlink:href="../proc/get_intpfromcoarsertime_total.html" xlink:title="get_intpFromCoarserTime_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="978.5,-87 799.5,-87 799.5,-63 978.5,-63 978.5,-87"/>
+<text text-anchor="middle" x="889" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserTime_total</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_total -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge9" class="edge">
+<title>interface~get_intpfromcoarsertime&#45;&gt;proc~get_intpfromcoarsertime_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M756.08,-68.49C766.85,-68.31 778.09,-68.23 789.25,-68.26"/>
+<polygon fill="#000000" stroke="#000000" points="789.46,-71.76 799.48,-68.31 789.49,-64.76 789.46,-71.76"/>
+</g>
+<!-- proc~get_intpfromcoarserratio_atlevel -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node3" class="node">
+<title>proc~get_intpfromcoarserratio_atlevel</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node3"><a xlink:href="../proc/get_intpfromcoarserratio_atlevel.html" xlink:title="get_intpFromCoarserRatio_atLevel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="570,-150 375,-150 375,-126 570,-126 570,-150"/>
+<text text-anchor="middle" x="472.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserRatio_atLevel</text>
+</a>
+</g>
+</g>
+<!-- proc~get_intpfromcoarserratio_atlevel&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge2" class="edge">
+<title>proc~get_intpfromcoarserratio_atlevel&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M535.37,-125.98C546.96,-123.33 558.91,-120.3 570,-117 594.52,-109.7 621.36,-99.49 642.39,-90.97"/>
+<polygon fill="#000000" stroke="#000000" points="643.99,-94.1 651.91,-87.07 641.33,-87.62 643.99,-94.1"/>
+</g>
+<!-- proc~get_intpfromcoarserratio_total -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node4" class="node">
+<title>proc~get_intpfromcoarserratio_total</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node4"><a xlink:href="../proc/get_intpfromcoarserratio_total.html" xlink:title="get_intpFromCoarserRatio_total">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="562.5,-108 382.5,-108 382.5,-84 562.5,-84 562.5,-108"/>
+<text text-anchor="middle" x="472.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserRatio_total</text>
+</a>
+</g>
+</g>
+<!-- proc~get_intpfromcoarserratio_total&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge3" class="edge">
+<title>proc~get_intpfromcoarserratio_total&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M562.57,-86.94C573.6,-85.82 584.86,-84.68 595.81,-83.56"/>
+<polygon fill="#000000" stroke="#000000" points="596.18,-87.04 605.77,-82.55 595.47,-80.08 596.18,-87.04"/>
+</g>
+<!-- proc~get_intpfromcoarsertime_total&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge4" class="edge">
+<title>proc~get_intpfromcoarsertime_total&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M799.48,-81.69C788.4,-81.78 777.09,-81.77 766.09,-81.65"/>
+<polygon fill="#000000" stroke="#000000" points="766.13,-78.15 756.08,-81.51 766.03,-85.15 766.13,-78.15"/>
+</g>
+<!-- proc~get_intptime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node6" class="node">
+<title>proc~get_intptime</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node6"><a xlink:href="../proc/get_intptime.html" xlink:title="get_intpTime">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="513.5,-66 431.5,-66 431.5,-42 513.5,-42 513.5,-66"/>
+<text text-anchor="middle" x="472.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpTime</text>
+</a>
+</g>
+</g>
+<!-- proc~get_intptime&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge5" class="edge">
+<title>proc~get_intptime&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M513.81,-58.1C537.12,-60.47 567.35,-63.54 595.63,-66.42"/>
+<polygon fill="#000000" stroke="#000000" points="595.64,-69.94 605.94,-67.47 596.35,-62.97 595.64,-69.94"/>
+</g>
+<!-- proc~mus_getweights -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node7" class="node">
+<title>proc~mus_getweights</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node7"><a xlink:href="../proc/mus_getweights.html" xlink:title="mus_getWeights">
+<polygon fill="#d9534f" stroke="#d9534f" points="522.5,-24 422.5,-24 422.5,0 522.5,0 522.5,-24"/>
+<text text-anchor="middle" x="472.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_getWeights</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_getweights&#45;&gt;interface~get_intpfromcoarsertime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge6" class="edge">
+<title>proc~mus_getweights&#45;&gt;interface~get_intpfromcoarsertime</title>
+<path fill="none" stroke="#000000" d="M522.96,-21.27C538.17,-24.52 554.88,-28.5 570,-33 594.52,-40.3 621.36,-50.51 642.39,-59.03"/>
+<polygon fill="#000000" stroke="#000000" points="641.33,-62.38 651.91,-62.93 643.99,-55.9 641.33,-62.38"/>
+</g>
+<!-- interface~get_intpfromcoarserratio -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node8" class="node">
+<title>interface~get_intpfromcoarserratio</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node8"><a xlink:href="../interface/get_intpfromcoarserratio.html" xlink:title="get_intpFromCoarserRatio">
+<polygon fill="#a7506f" stroke="#a7506f" points="339,-129 188,-129 188,-105 339,-105 339,-129"/>
+<text text-anchor="middle" x="263.5" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpFromCoarserRatio</text>
+</a>
+</g>
+</g>
+<!-- interface~get_intpfromcoarserratio&#45;&gt;proc~get_intpfromcoarserratio_atlevel -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge7" class="edge">
+<title>interface~get_intpfromcoarserratio&#45;&gt;proc~get_intpfromcoarserratio_atlevel</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M339.23,-124.58C347.56,-125.43 356.15,-126.3 364.77,-127.17"/>
+<polygon fill="#000000" stroke="#000000" points="364.59,-130.67 374.89,-128.2 365.3,-123.71 364.59,-130.67"/>
+</g>
+<!-- interface~get_intpfromcoarserratio&#45;&gt;proc~get_intpfromcoarserratio_total -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge8" class="edge">
+<title>interface~get_intpfromcoarserratio&#45;&gt;proc~get_intpfromcoarserratio_total</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M339.23,-109.42C349.96,-108.33 361.14,-107.2 372.25,-106.07"/>
+<polygon fill="#000000" stroke="#000000" points="372.82,-109.53 382.42,-105.04 372.12,-102.56 372.82,-109.53"/>
+</g>
+<!-- proc~get_intpratio -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node9" class="node">
+<title>proc~get_intpratio</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node9"><a xlink:href="../proc/get_intpratio.html" xlink:title="get_intpRatio">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="304.5,-66 222.5,-66 222.5,-42 304.5,-42 304.5,-66"/>
+<text text-anchor="middle" x="263.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_intpRatio</text>
+</a>
+</g>
+</g>
+<!-- proc~get_intpratio&#45;&gt;proc~get_intptime -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge10" class="edge">
+<title>proc~get_intpratio&#45;&gt;proc~get_intptime</title>
+<path fill="none" stroke="#000000" d="M304.9,-54C338.1,-54 385.3,-54 420.99,-54"/>
+<polygon fill="#000000" stroke="#000000" points="421.2,-57.5 431.2,-54 421.2,-50.5 421.2,-57.5"/>
+</g>
+<!-- proc~mus_balance -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node10" class="node">
+<title>proc~mus_balance</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node10"><a xlink:href="../proc/mus_balance.html" xlink:title="mus_balance">
+<polygon fill="#d9534f" stroke="#d9534f" points="305,-24 222,-24 222,0 305,0 305,-24"/>
+<text text-anchor="middle" x="263.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_balance</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_balance&#45;&gt;proc~mus_getweights -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge11" class="edge">
+<title>proc~mus_balance&#45;&gt;proc~mus_getweights</title>
+<path fill="none" stroke="#000000" d="M305.4,-12C335.83,-12 377.83,-12 411.98,-12"/>
+<polygon fill="#000000" stroke="#000000" points="412.3,-15.5 422.3,-12 412.3,-8.5 412.3,-15.5"/>
+</g>
+<!-- proc~dump_timing -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node11" class="node">
+<title>proc~dump_timing</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node11"><a xlink:href="../proc/dump_timing.html" xlink:title="dump_timing">
+<polygon fill="#d9534f" stroke="#d9534f" points="117,-66 35,-66 35,-42 117,-42 117,-66"/>
+<text text-anchor="middle" x="76" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dump_timing</text>
+</a>
+</g>
+</g>
+<!-- proc~dump_timing&#45;&gt;proc~get_intpratio -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge12" class="edge">
+<title>proc~dump_timing&#45;&gt;proc~get_intpratio</title>
+<path fill="none" stroke="#000000" d="M117.25,-54C145.08,-54 182.32,-54 212.12,-54"/>
+<polygon fill="#000000" stroke="#000000" points="212.33,-57.5 222.33,-54 212.33,-50.5 212.33,-57.5"/>
+</g>
+<!-- proc~mus_perform_dynloadbal -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node12" class="node">
+<title>proc~mus_perform_dynloadbal</title>
+<g id="a_proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_node12"><a xlink:href="../proc/mus_perform_dynloadbal.html" xlink:title="mus_perform_dynLoadBal">
+<polygon fill="#d9534f" stroke="#d9534f" points="152,-24 0,-24 0,0 152,0 152,-24"/>
+<text text-anchor="middle" x="76" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_perform_dynLoadBal</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_perform_dynloadbal&#45;&gt;proc~mus_balance -->
+<g id="proc~~get_intpfromcoarsertime_atlevel~~CalledByGraph_edge13" class="edge">
+<title>proc~mus_perform_dynloadbal&#45;&gt;proc~mus_balance</title>
+<path fill="none" stroke="#000000" d="M152.18,-12C172.17,-12 193.29,-12 211.64,-12"/>
+<polygon fill="#000000" stroke="#000000" points="211.81,-15.5 221.81,-12 211.81,-8.5 211.81,-15.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocget_intpfromcoarsertime_atlevelCalledByGraph = svgPanZoom('#procget_intpfromcoarsertime_atlevelCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

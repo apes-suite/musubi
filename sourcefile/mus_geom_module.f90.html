@@ -1,0 +1,1138 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_geom_module.f90 &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_geom_module.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.0% of total for source files.">123 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_geom_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">mus_geom_module.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_geom_module.html">mus_geom_module</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/mus_geom_module.f90.html#src">mus_geom_module.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_geom_module.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_geom_modulef90EfferentGraph" width="641pt" height="63pt"
+ viewBox="0.00 0.00 641.00 62.74" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph" class="graph" transform="scale(0.85 0.85) rotate(0) translate(4 70)">
+<title>sourcefile~~mus_geom_module.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 752,-70 752,4 -4,4"/>
+<!-- sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~mus_geom_module.f90</title>
+<polygon fill="none" stroke="black" points="748,-45 611,-45 611,-21 748,-21 748,-45"/>
+<text text-anchor="middle" x="679.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_geom_module.f90</text>
+</g>
+<!-- sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~mus_geomincrhead_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/mus_geomincrhead_module.f90.html" xlink:title="mus_geomIncrHead_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="575,-45 389,-45 389,-21 575,-21 575,-45"/>
+<text text-anchor="middle" x="482" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geomIncrHead_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_geom_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_geom_module.f90&#45;&gt;sourcefile~mus_geomincrhead_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M610.95,-33C602.62,-33 593.96,-33 585.26,-33"/>
+<polygon fill="#000000" stroke="#000000" points="585.04,-29.5 575.04,-33 585.04,-36.5 585.04,-29.5"/>
+</g>
+<!-- sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~mus_param_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/mus_param_module.f90.html" xlink:title="mus_param_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="353,-45 211,-45 211,-21 353,-21 353,-45"/>
+<text text-anchor="middle" x="282" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_geomincrhead_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_geomincrhead_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M388.96,-33C380.41,-33 371.8,-33 363.37,-33"/>
+<polygon fill="#000000" stroke="#000000" points="363.2,-29.5 353.2,-33 363.2,-36.5 363.2,-29.5"/>
+</g>
+<!-- sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~mus_abortcriteria_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/mus_abortcriteria_module.f90.html" xlink:title="mus_abortCriteria_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="175,-66 0,-66 0,-42 175,-42 175,-66"/>
+<text text-anchor="middle" x="87.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_abortCriteria_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M210.96,-40.64C202.61,-41.55 193.98,-42.49 185.35,-43.43"/>
+<polygon fill="#000000" stroke="#000000" points="184.79,-39.98 175.22,-44.54 185.55,-46.93 184.79,-39.98"/>
+</g>
+<!-- sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~mus_physics_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/mus_physics_module.f90.html" xlink:title="mus_physics_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="160,-24 15,-24 15,0 160,0 160,-24"/>
+<text text-anchor="middle" x="87.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M210.96,-25.36C197.77,-23.92 183.86,-22.4 170.35,-20.93"/>
+<polygon fill="#000000" stroke="#000000" points="170.43,-17.42 160.11,-19.81 169.67,-24.38 170.43,-17.42"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_geom_modulef90EfferentGraph = svgPanZoom('#sourcefilemus_geom_modulef90EfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_geom_module.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_geom_modulef90AfferentGraph" width="641pt" height="210pt"
+ viewBox="0.00 0.00 641.00 209.70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph" class="graph" transform="scale(0.5 0.5) rotate(0) translate(4 418.03)">
+<title>sourcefile~~mus_geom_module.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-418.03 1286,-418.03 1286,4 -4,4"/>
+<!-- sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~mus_geom_module.f90</title>
+<polygon fill="none" stroke="black" points="137,-257.51 0,-257.51 0,-233.51 137,-233.51 137,-257.51"/>
+<text text-anchor="middle" x="68.5" y="-243.11" font-family="Helvetica,sans-Serif" font-size="10.50">mus_geom_module.f90</text>
+</g>
+<!-- sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~mus_aux_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/mus_aux_module.f90.html" xlink:title="mus_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="973.5,-79.51 847.5,-79.51 847.5,-55.51 973.5,-55.51 973.5,-79.51"/>
+<text text-anchor="middle" x="910.5" y="-65.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M847.14,-61.97C808.97,-59.95 759.32,-59.76 716,-67.51"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~mus_tracking_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node12"><a xlink:href="../sourcefile/mus_tracking_module.f90.html" xlink:title="mus_tracking_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="790,-157.51 640,-157.51 640,-133.51 790,-133.51 790,-157.51"/>
+<text text-anchor="middle" x="715" y="-143.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tracking_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M847.64,-79.59C840.15,-82.05 832.77,-85 826,-88.51 807.26,-98.23 808.28,-108.94 790,-119.51 783.29,-123.39 775.9,-126.83 768.47,-129.84"/>
+<polygon fill="#000000" stroke="#000000" points="767.18,-126.58 759.08,-133.41 769.67,-133.13 767.18,-126.58"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node14" class="node">
+<title>sourcefile~mus_tools_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node14"><a xlink:href="../sourcefile/mus_tools_module.f90.html" xlink:title="mus_tools_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="572,-197.51 440,-197.51 440,-173.51 572,-173.51 572,-197.51"/>
+<text text-anchor="middle" x="506" y="-183.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tools_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~mus_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M847.21,-76.57C779.19,-87.19 675.24,-105.72 640,-124.51 620.31,-135.01 623.4,-148.49 604,-159.51 596.65,-163.69 588.59,-167.21 580.38,-170.19"/>
+<polygon fill="#000000" stroke="#000000" points="579.05,-166.94 570.68,-173.43 581.28,-173.58 579.05,-166.94"/>
+</g>
+<!-- sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~mus_config_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/mus_config_module.f90.html" xlink:title="mus_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="784.5,-237.51 645.5,-237.51 645.5,-213.51 784.5,-213.51 784.5,-237.51"/>
+<text text-anchor="middle" x="715" y="-223.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M645.44,-224.04C605.11,-223.54 553.14,-223.54 507,-225.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M505,-225.51C402.2,-229.9 375.47,-211.79 273.5,-225.51"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~mus_scheme_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node11"><a xlink:href="../sourcefile/mus_scheme_module.f90.html" xlink:title="mus_scheme_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="346.5,-277.51 198.5,-277.51 198.5,-253.51 346.5,-253.51 346.5,-277.51"/>
+<text text-anchor="middle" x="272.5" y="-263.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M505,-225.51C445.4,-228.06 378.33,-240.75 331.79,-251.17"/>
+<polygon fill="#000000" stroke="#000000" points="330.86,-247.79 321.88,-253.42 332.41,-254.61 330.86,-247.79"/>
+</g>
+<!-- sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~mus_config_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M651.89,-213.51C629.07,-209.1 603.04,-204.07 579.39,-199.5"/>
+<polygon fill="#000000" stroke="#000000" points="579.9,-196.03 569.42,-197.57 578.57,-202.9 579.9,-196.03"/>
+</g>
+<!-- sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~mus_control_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/mus_control_module.f90.html" xlink:title="mus_control_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1174,-39.51 1031,-39.51 1031,-15.51 1174,-15.51 1174,-39.51"/>
+<text text-anchor="middle" x="1102.5" y="-25.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1030.73,-22.41C994.82,-21.11 950.62,-21.48 911.5,-27.51"/>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1044.49,-39.51C1023.83,-43.86 1000.29,-48.82 978.82,-53.34"/>
+<polygon fill="#000000" stroke="#000000" points="977.86,-49.96 968.79,-55.45 979.3,-56.81 977.86,-49.96"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~mus_dynloadbal_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/mus_dynloadbal_module.f90.html" xlink:title="mus_dynLoadBal_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="995,-121.51 826,-121.51 826,-97.51 995,-97.51 995,-121.51"/>
+<text text-anchor="middle" x="910.5" y="-107.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M858.65,-97.47C803.74,-84.61 723.09,-66.24 716,-67.51"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M886.05,-121.58C867.74,-131.97 842.69,-148.45 826,-168.51 801.58,-197.86 819.33,-222.06 790,-246.51 763.92,-268.25 749.59,-260.55 716,-265.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-265.51C590.7,-283.71 445.87,-278.74 356.89,-272.72"/>
+<polygon fill="#000000" stroke="#000000" points="357.07,-269.22 346.86,-272.02 356.59,-276.21 357.07,-269.22"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M844.8,-121.55C827.53,-124.76 808.73,-128.26 790.96,-131.56"/>
+<polygon fill="#000000" stroke="#000000" points="789.83,-128.21 780.64,-133.48 791.11,-135.09 789.83,-128.21"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge31" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M859.11,-121.55C847.85,-125.23 836.22,-129.84 826,-135.51 807.54,-145.75 808.72,-156.74 790,-166.51 759.9,-182.22 749.82,-182.42 716,-185.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-185.51C670.54,-189.48 621.74,-189.68 582.44,-188.8"/>
+<polygon fill="#000000" stroke="#000000" points="582.48,-185.3 572.4,-188.54 582.31,-192.3 582.48,-185.3"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~mus_harvesting.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/mus_harvesting.f90.html" xlink:title="mus_harvesting.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1161,-315.51 1044,-315.51 1044,-291.51 1161,-291.51 1161,-315.51"/>
+<text text-anchor="middle" x="1102.5" y="-301.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-381.51C664.32,-384.56 653.55,-397.82 604,-402.51 457.47,-416.37 414.37,-424.16 273.5,-381.51"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~mus_hvs_aux_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/mus_hvs_aux_module.f90.html" xlink:title="mus_hvs_aux_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="985,-201.51 836,-201.51 836,-177.51 985,-177.51 985,-201.51"/>
+<text text-anchor="middle" x="910.5" y="-187.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_aux_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1081.17,-291.31C1047.31,-271 979.28,-230.18 940.43,-206.87"/>
+<polygon fill="#000000" stroke="#000000" points="942.06,-203.76 931.69,-201.62 938.46,-209.77 942.06,-203.76"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~mus_hvs_config_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/mus_hvs_config_module.f90.html" xlink:title="mus_hvs_config_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="992,-315.51 829,-315.51 829,-291.51 992,-291.51 992,-315.51"/>
+<text text-anchor="middle" x="910.5" y="-301.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1043.98,-303.51C1030.88,-303.51 1016.66,-303.51 1002.54,-303.51"/>
+<polygon fill="#000000" stroke="#000000" points="1002.31,-300.01 992.31,-303.51 1002.31,-307.01 1002.31,-300.01"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~mus_hvs_construction_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/mus_hvs_construction_module.f90.html" xlink:title="mus_hvs_construction_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="604,-393.51 408,-393.51 408,-369.51 604,-369.51 604,-393.51"/>
+<text text-anchor="middle" x="506" y="-379.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_construction_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_hvs_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-381.51C681.65,-381.51 646.46,-381.51 614.43,-381.51"/>
+<polygon fill="#000000" stroke="#000000" points="614.14,-378.01 604.14,-381.51 614.14,-385.01 614.14,-378.01"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1066.37,-315.52C999.18,-337.4 847.45,-381.51 716,-381.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-381.51C674.73,-384.21 430.15,-312.56 323.33,-280.56"/>
+<polygon fill="#000000" stroke="#000000" points="324.01,-277.12 313.43,-277.59 322,-283.82 324.01,-277.12"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M896.52,-201.63C875.58,-220.61 832.4,-257.46 790,-279.51 759.32,-295.46 750.23,-298.62 716,-303.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-303.51C701.7,-305.27 285.49,-384.79 273.5,-381.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M271.5,-381.51C195.83,-358.6 122.92,-296.59 89.12,-264.83"/>
+<polygon fill="#000000" stroke="#000000" points="91.41,-262.18 81.76,-257.81 86.58,-267.24 91.41,-262.18"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tracking_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M856.63,-177.49C832.52,-172 803.81,-165.48 778.63,-159.75"/>
+<polygon fill="#000000" stroke="#000000" points="779.34,-156.32 768.81,-157.52 777.79,-163.15 779.34,-156.32"/>
+</g>
+<!-- sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge32" class="edge">
+<title>sourcefile~mus_hvs_aux_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M835.86,-184.13C799.68,-182.47 755.48,-181.9 716,-185.51"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M828.99,-295.28C793.86,-293.8 752.46,-294.9 716,-303.51"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M883.15,-291.39C859.09,-280.47 822.43,-264.24 790,-251.51 780.87,-247.93 771.03,-244.3 761.59,-240.94"/>
+<polygon fill="#000000" stroke="#000000" points="762.54,-237.57 751.95,-237.55 760.22,-244.17 762.54,-237.57"/>
+</g>
+<!-- sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~mus_hvs_config_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M880.15,-291.39C842.36,-277.25 774.59,-256.86 716,-265.51"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M407.74,-392.83C365.77,-394.84 316.53,-393.27 273.5,-381.51"/>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~mus_mesh_adaptation_module.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/mus_mesh_adaptation_module.f90.html" xlink:title="mus_mesh_adaptation_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="372,-197.51 173,-197.51 173,-173.51 372,-173.51 372,-197.51"/>
+<text text-anchor="middle" x="272.5" y="-183.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mesh_adaptation_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_mesh_adaptation_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M223.25,-197.64C207.2,-201.83 189.28,-206.69 173,-211.51 153.48,-217.29 132.07,-224.22 113.82,-230.31"/>
+<polygon fill="#000000" stroke="#000000" points="112.68,-227 104.31,-233.5 114.9,-233.64 112.68,-227"/>
+</g>
+<!-- sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_scheme_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M198.29,-258.26C181.74,-256.62 164.11,-254.88 147.37,-253.22"/>
+<polygon fill="#000000" stroke="#000000" points="147.38,-249.7 137.09,-252.2 146.69,-256.67 147.38,-249.7"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M639.54,-136.43C599.61,-133.82 549.92,-134.22 507,-145.51"/>
+</g>
+<!-- sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge33" class="edge">
+<title>sourcefile~mus_tracking_module.f90&#45;&gt;sourcefile~mus_tools_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M651.89,-157.51C629.07,-161.92 603.04,-166.95 579.39,-171.52"/>
+<polygon fill="#000000" stroke="#000000" points="578.57,-168.11 569.42,-173.45 579.9,-174.99 578.57,-168.11"/>
+</g>
+<!-- sourcefile~musubi.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~musubi.f90</title>
+<g id="a_sourcefile~~mus_geom_module.f90~~AfferentGraph_node13"><a xlink:href="../sourcefile/musubi.f90.html" xlink:title="musubi.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1282,-39.51 1210,-39.51 1210,-15.51 1282,-15.51 1282,-39.51"/>
+<text text-anchor="middle" x="1246" y="-25.11" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_geom_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_geom_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1211.5,-15.45C1199.79,-11.81 1186.47,-8.31 1174,-6.51 1058.17,10.26 1027.18,-9.69 911.5,-27.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M909.5,-27.51C822.45,-39.08 802.45,-52.05 716,-67.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M714,-67.51C680.97,-73.41 671.84,-71.91 640,-82.51 577.94,-103.16 570.25,-128.87 507,-145.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M505,-145.51C462.52,-156.69 445.95,-142.38 408,-164.51 386.76,-176.89 393.26,-194.16 372,-206.51 333.45,-228.91 317.69,-219.57 273.5,-225.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M271.5,-225.51C230.8,-230.98 185.29,-235.62 147.79,-239.04"/>
+<polygon fill="#000000" stroke="#000000" points="147.08,-235.59 137.43,-239.98 147.71,-242.56 147.08,-235.59"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_aux_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1236.97,-39.77C1217.89,-67.45 1166.72,-133.56 1103.5,-149.51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1101.5,-149.51C1048.61,-162.85 1045.59,-108.91 995,-88.51 989.58,-86.32 983.87,-84.32 978.09,-82.48"/>
+<polygon fill="#000000" stroke="#000000" points="978.9,-79.07 968.32,-79.56 976.9,-85.78 978.9,-79.07"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_config_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1101.5,-149.51C982.49,-179.53 939.52,-121.86 826,-168.51 806.47,-176.53 808.28,-188.94 790,-199.51 783.29,-203.39 775.9,-206.83 768.47,-209.84"/>
+<polygon fill="#000000" stroke="#000000" points="767.18,-206.58 759.08,-213.41 769.67,-213.13 767.18,-206.58"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge17" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1209.66,-27.51C1201.81,-27.51 1193.17,-27.51 1184.32,-27.51"/>
+<polygon fill="#000000" stroke="#000000" points="1184.27,-24.01 1174.27,-27.51 1184.27,-31.01 1184.27,-24.01"/>
+</g>
+<!-- sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90 -->
+<g id="sourcefile~~mus_geom_module.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~mus_tools_module.f90&#45;&gt;sourcefile~mus_scheme_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M445.15,-197.54C432.53,-201.17 419.55,-205.76 408,-211.51 389.85,-220.53 390.17,-230.52 372,-239.51 363.26,-243.83 353.72,-247.5 344.13,-250.59"/>
+<polygon fill="#000000" stroke="#000000" points="343.1,-247.25 334.54,-253.5 345.13,-253.95 343.1,-247.25"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_geom_modulef90AfferentGraph = svgPanZoom('#sourcefilemus_geom_modulef90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">! Copyright (c) 2012-2014 Kartik Jain &lt;kartik.jain@uni-siegen.de&gt;</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">! Copyright (c) 2012-2013 Manuel Hasert &lt;m.hasert@grs-sim.de&gt;</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">! Copyright (c) 2012, 2014 Harald Klimach &lt;harald.klimach@uni-siegen.de&gt;</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="c">! Copyright (c) 2013-2014 Simon Zimny &lt;s.zimny@grs-sim.de&gt;</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="c">! Copyright (c) 2013-2016, 2020 Kannan Masilamani &lt;kannan.masilamani@uni-siegen.de&gt;</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="c">! Copyright (c) 2013 Monika Harlacher &lt;monika.harlacher@uni-siegen.de&gt;</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="c">! Copyright (c) 2014-2016 Jiaxing Qi &lt;jiaxing.qi@uni-siegen.de&gt;</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="c">! Copyright (c) 2016 Tobias Schneider &lt;tobias1.schneider@student.uni-siegen.de&gt;</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="c">! Copyright (c) 2016 Peter Vitt &lt;peter.vitt2@uni-siegen.de&gt;</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="c">!</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="c">! Redistribution and use in source and binary forms, with or without</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="c">! modification, are permitted provided that the following conditions are met:</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="c">!</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="c">! 1. Redistributions of source code must retain the above copyright notice,</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="c">! this list of conditions and the following disclaimer.</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="c">!</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="c">! 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="c">! this list of conditions and the following disclaimer in the documentation</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="c">! and/or other materials provided with the distribution.</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="c">!</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="c">! THIS SOFTWARE IS PROVIDED BY THE UNIVERSITY OF SIEGEN “AS IS” AND ANY EXPRESS</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="c">! OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="c">! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">! IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">! DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="c">! (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">! LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">! ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="c">! (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="c">! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="c">!&gt; This module contains the definition of geometry type and routines to</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="c">!! geometry information like mesh, boundary, immersed_boundary and restart</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="k">module </span><span class="n">mus_geom_module</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="w">  </span><span class="c">! include treelm modules</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="w">  </span><span class="k">use </span><span class="n">env_module</span><span class="p">,</span><span class="w">              </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">rk</span><span class="p">,</span><span class="w"> </span><span class="n">long_k</span><span class="p">,</span><span class="w"> </span><span class="n">globalMaxLevels</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_global_module</span><span class="p">,</span><span class="w">       </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_global_mesh_read</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_property_module</span><span class="p">,</span><span class="w">     </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">prp_hasBnd</span><span class="p">,</span><span class="w"> </span><span class="n">prp_hasQVal</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="w">  </span><span class="k">use </span><span class="n">treelmesh_module</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">treelmesh_type</span><span class="p">,</span><span class="w"> </span><span class="n">load_tem</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_bc_prop_module</span><span class="p">,</span><span class="w">      </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_bc_prop_type</span><span class="p">,</span><span class="w"> </span><span class="n">init_tem_bc_prop</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                                </span><span class="n">load_tem_bc_qVal</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_geometry_module</span><span class="p">,</span><span class="w">     </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_build_treeToProp_pointer</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_solveHead_module</span><span class="p">,</span><span class="w">    </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_solveHead_type</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_timeControl_module</span><span class="p">,</span><span class="w">  </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_timeControl_start_at_sim</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_restart_module</span><span class="p">,</span><span class="w">      </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_restart_type</span><span class="p">,</span><span class="w"> </span><span class="n">tem_load_restart</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_comm_env_module</span><span class="p">,</span><span class="w">     </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_comm_env_type</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_simControl_module</span><span class="p">,</span><span class="w">   </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_simControl_type</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_tools_module</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_horizontalSpacer</span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_logging_module</span><span class="p">,</span><span class="w">      </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">logUnit</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a>
+<a id="ln-52" name="ln-52" href="#ln-52"></a><span class="w">  </span><span class="c">! include musubi modules</span>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_geomIncrHead_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_geomIncrHead_type</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                                </span><span class="n">mus_geomIncrHead_load</span>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_IBM_module</span><span class="p">,</span><span class="w">          </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_IBM_globType</span><span class="p">,</span><span class="w"> </span><span class="n">mus_load_IBM</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="w">  </span><span class="k">implicit none</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="k">  private</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="k">  public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_geom_type</span>
+<a id="ln-62" name="ln-62" href="#ln-62"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_build_posInProp</span>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_load_geom</span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mus_load_bc_data</span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a>
+<a id="ln-66" name="ln-66" href="#ln-66"></a><span class="w">  </span><span class="c">!&gt; Geometric information and definitions</span>
+<a id="ln-67" name="ln-67" href="#ln-67"></a><span class="w">  </span><span class="k">type </span><span class="n">mus_geom_type</span>
+<a id="ln-68" name="ln-68" href="#ln-68"></a>
+<a id="ln-69" name="ln-69" href="#ln-69"></a><span class="w">    </span><span class="c">!&gt; tree data type</span>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">treelmesh_type</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tree</span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a>
+<a id="ln-72" name="ln-72" href="#ln-72"></a><span class="w">    </span><span class="c">!&gt; boundary information as stored on disk</span>
+<a id="ln-73" name="ln-73" href="#ln-73"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">tem_bc_prop_type</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">boundary</span>
+<a id="ln-74" name="ln-74" href="#ln-74"></a>
+<a id="ln-75" name="ln-75" href="#ln-75"></a><span class="w">    </span><span class="c">!&gt; The header type containing all the geometry increase information</span>
+<a id="ln-76" name="ln-76" href="#ln-76"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_geomIncrHead_type</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">geomIncr</span><span class="p">(:)</span>
+<a id="ln-77" name="ln-77" href="#ln-77"></a>
+<a id="ln-78" name="ln-78" href="#ln-78"></a><span class="w">    </span><span class="c">!&gt; Logical to define whether geometry increase is active or not</span>
+<a id="ln-79" name="ln-79" href="#ln-79"></a><span class="w">    </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dynamicGeom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a id="ln-80" name="ln-80" href="#ln-80"></a>
+<a id="ln-81" name="ln-81" href="#ln-81"></a><span class="w">    </span><span class="c">!&gt; Tree element position in the boundary_ID( nDir, nElems) in bc_prop_type</span>
+<a id="ln-82" name="ln-82" href="#ln-82"></a><span class="w">    </span><span class="c">!! it has a size of tree%nElems</span>
+<a id="ln-83" name="ln-83" href="#ln-83"></a><span class="w">    </span><span class="c">!! How to use:</span>
+<a id="ln-84" name="ln-84" href="#ln-84"></a><span class="w">    </span><span class="c">!! do iElem = 1, tree%nElems</span>
+<a id="ln-85" name="ln-85" href="#ln-85"></a><span class="w">    </span><span class="c">!!   posInBndID = posInBndID( iElem )</span>
+<a id="ln-86" name="ln-86" href="#ln-86"></a><span class="w">    </span><span class="c">!!   ! current element has boundary only if posInBndID&gt;0</span>
+<a id="ln-87" name="ln-87" href="#ln-87"></a><span class="w">    </span><span class="c">!!   ! else posInBndID = -1</span>
+<a id="ln-88" name="ln-88" href="#ln-88"></a><span class="w">    </span><span class="c">!!   if (posInBnd &gt; 0 )</span>
+<a id="ln-89" name="ln-89" href="#ln-89"></a><span class="w">    </span><span class="c">!!     bnd_ID(1:nDir) = bc_prop%boundary_ID( 1:nDir, posInBndID )</span>
+<a id="ln-90" name="ln-90" href="#ln-90"></a><span class="w">    </span><span class="c">!!   end if</span>
+<a id="ln-91" name="ln-91" href="#ln-91"></a><span class="w">    </span><span class="c">!! end do</span>
+<a id="ln-92" name="ln-92" href="#ln-92"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">posInBndID</span><span class="p">(:)</span>
+<a id="ln-93" name="ln-93" href="#ln-93"></a>
+<a id="ln-94" name="ln-94" href="#ln-94"></a><span class="w">    </span><span class="c">!&gt; Tree element position in the qVal( nDir, nElems) in bc_prop_type</span>
+<a id="ln-95" name="ln-95" href="#ln-95"></a><span class="w">    </span><span class="c">!! it has a size of tree%nElems</span>
+<a id="ln-96" name="ln-96" href="#ln-96"></a><span class="w">    </span><span class="c">!! How to use:</span>
+<a id="ln-97" name="ln-97" href="#ln-97"></a><span class="w">    </span><span class="c">!! do iElem = 1, tree%nElems</span>
+<a id="ln-98" name="ln-98" href="#ln-98"></a><span class="w">    </span><span class="c">!!   posInQVal = posInQVal( iElem )</span>
+<a id="ln-99" name="ln-99" href="#ln-99"></a><span class="w">    </span><span class="c">!!   ! current element has qVal if posInQVal&gt;0 else posInQVal = -1</span>
+<a id="ln-100" name="ln-100" href="#ln-100"></a><span class="w">    </span><span class="c">!!   if (posInQVal &gt; 0 )</span>
+<a id="ln-101" name="ln-101" href="#ln-101"></a><span class="w">    </span><span class="c">!!     qVal(1:nDir) = bc_prop%qVal( 1:nDir, posInQVal )</span>
+<a id="ln-102" name="ln-102" href="#ln-102"></a><span class="w">    </span><span class="c">!!   end if</span>
+<a id="ln-103" name="ln-103" href="#ln-103"></a><span class="w">    </span><span class="c">!! end do</span>
+<a id="ln-104" name="ln-104" href="#ln-104"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">posInQVal</span><span class="p">(:)</span>
+<a id="ln-105" name="ln-105" href="#ln-105"></a>
+<a id="ln-106" name="ln-106" href="#ln-106"></a><span class="w">    </span><span class="c">!&gt; tree element position in level descriptor total list</span>
+<a id="ln-107" name="ln-107" href="#ln-107"></a><span class="w">    </span><span class="c">!! it has a size of tree%nElems</span>
+<a id="ln-108" name="ln-108" href="#ln-108"></a><span class="w">    </span><span class="c">!! How to use:</span>
+<a id="ln-109" name="ln-109" href="#ln-109"></a><span class="w">    </span><span class="c">!! do iElem = 1, tree%nElems</span>
+<a id="ln-110" name="ln-110" href="#ln-110"></a><span class="w">    </span><span class="c">!!   treeID = tree%treeID( iElem )</span>
+<a id="ln-111" name="ln-111" href="#ln-111"></a><span class="w">    </span><span class="c">!!   level = tem_levelOf( treeID )</span>
+<a id="ln-112" name="ln-112" href="#ln-112"></a><span class="w">    </span><span class="c">!!   posInTotal = levelPointer( iElem )</span>
+<a id="ln-113" name="ln-113" href="#ln-113"></a><span class="w">    </span><span class="c">!!   treeID = LevelDesc( iLevel )%total( posInTotal )</span>
+<a id="ln-114" name="ln-114" href="#ln-114"></a><span class="w">    </span><span class="c">!! end do</span>
+<a id="ln-115" name="ln-115" href="#ln-115"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">levelPointer</span><span class="p">(:)</span>
+<a id="ln-116" name="ln-116" href="#ln-116"></a>
+<a id="ln-117" name="ln-117" href="#ln-117"></a><span class="w">    </span><span class="c">!&gt; Boundary element poisition in the levelwise globBC%elemLvl(:)%elem%val</span>
+<a id="ln-118" name="ln-118" href="#ln-118"></a><span class="w">    </span><span class="c">!! It has a size of geometry%boundary%property%nElems.</span>
+<a id="ln-119" name="ln-119" href="#ln-119"></a><span class="w">    </span><span class="c">!! It is used in tracking to extract value stored in boundary types.</span>
+<a id="ln-120" name="ln-120" href="#ln-120"></a><span class="w">    </span><span class="c">!! Hot to use this access normal direction of boundary element:</span>
+<a id="ln-121" name="ln-121" href="#ln-121"></a><span class="w">    </span><span class="c">!! do iElem = 1, tree%nElems</span>
+<a id="ln-122" name="ln-122" href="#ln-122"></a><span class="w">    </span><span class="c">!!   level = tem_levelOf( treeID )</span>
+<a id="ln-123" name="ln-123" href="#ln-123"></a><span class="w">    </span><span class="c">!!   posInBndID = posInBndID(iElem)</span>
+<a id="ln-124" name="ln-124" href="#ln-124"></a><span class="w">    </span><span class="c">!!   if (posInBndID &gt; 0) then</span>
+<a id="ln-125" name="ln-125" href="#ln-125"></a><span class="w">    </span><span class="c">!!     BCIDs = bc_prop%boundary_ID(:, posInBndID)</span>
+<a id="ln-126" name="ln-126" href="#ln-126"></a><span class="w">    </span><span class="c">!!     minBCID = minval(BCIDs, BCIDs &gt; 0)</span>
+<a id="ln-127" name="ln-127" href="#ln-127"></a><span class="w">    </span><span class="c">!!     posInBcElem = bcLevelPointer(posInBndID)</span>
+<a id="ln-128" name="ln-128" href="#ln-128"></a><span class="w">    </span><span class="c">!!     normal = globBC%elemLvl(iLevel)%normal(posInBcElem)</span>
+<a id="ln-129" name="ln-129" href="#ln-129"></a><span class="w">    </span><span class="c">!!   end if</span>
+<a id="ln-130" name="ln-130" href="#ln-130"></a><span class="w">    </span><span class="c">!! end do</span>
+<a id="ln-131" name="ln-131" href="#ln-131"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bcLevelPointer</span><span class="p">(:)</span>
+<a id="ln-132" name="ln-132" href="#ln-132"></a>
+<a id="ln-133" name="ln-133" href="#ln-133"></a><span class="w">    </span><span class="c">!&gt; Minimum bcID for each boundary element.</span>
+<a id="ln-134" name="ln-134" href="#ln-134"></a><span class="w">    </span><span class="c">!! if a element has more than one boundary then use minBcID which depends</span>
+<a id="ln-135" name="ln-135" href="#ln-135"></a><span class="w">    </span><span class="c">!! on boundary order in seeder configuration.</span>
+<a id="ln-136" name="ln-136" href="#ln-136"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">minBcID</span><span class="p">(:)</span>
+<a id="ln-137" name="ln-137" href="#ln-137"></a>
+<a id="ln-138" name="ln-138" href="#ln-138"></a><span class="w">    </span><span class="c">!&gt; immersed boundary data</span>
+<a id="ln-139" name="ln-139" href="#ln-139"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_IBM_globType</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">globIBM</span>
+<a id="ln-140" name="ln-140" href="#ln-140"></a>
+<a id="ln-141" name="ln-141" href="#ln-141"></a><span class="w">    </span><span class="c">!&gt; Contains Forces on boundary elements computed using momentum exchange</span>
+<a id="ln-142" name="ln-142" href="#ln-142"></a><span class="w">    </span><span class="c">!! method. This will be used to derive_bndForce routine to compute force</span>
+<a id="ln-143" name="ln-143" href="#ln-143"></a><span class="w">    </span><span class="c">!! of certain boundaries.</span>
+<a id="ln-144" name="ln-144" href="#ln-144"></a><span class="w">    </span><span class="c">!! Forces are stored in level-independent fashion as geometry%boundaryID</span>
+<a id="ln-145" name="ln-145" href="#ln-145"></a><span class="w">    </span><span class="c">!! loaded from mesh files.</span>
+<a id="ln-146" name="ln-146" href="#ln-146"></a><span class="w">    </span><span class="c">!! Dim1: geometry%boundaryi%property%nElems</span>
+<a id="ln-147" name="ln-147" href="#ln-147"></a><span class="w">    </span><span class="c">!! Dim2: 3</span>
+<a id="ln-148" name="ln-148" href="#ln-148"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bndForce</span><span class="p">(:,:)</span>
+<a id="ln-149" name="ln-149" href="#ln-149"></a>
+<a id="ln-150" name="ln-150" href="#ln-150"></a><span class="w">    </span><span class="c">!&gt; Contains Moments on boundary elements computed using momentum exchange</span>
+<a id="ln-151" name="ln-151" href="#ln-151"></a><span class="w">    </span><span class="c">!! method. This will be used to derive_bndMoment routine to compute moment</span>
+<a id="ln-152" name="ln-152" href="#ln-152"></a><span class="w">    </span><span class="c">!! of certain boundaries.</span>
+<a id="ln-153" name="ln-153" href="#ln-153"></a><span class="w">    </span><span class="c">!! Forces are stored in level-independent fashion as geometry%boundaryID</span>
+<a id="ln-154" name="ln-154" href="#ln-154"></a><span class="w">    </span><span class="c">!! loaded from mesh files.</span>
+<a id="ln-155" name="ln-155" href="#ln-155"></a><span class="w">    </span><span class="c">!! Dim1: geometry%boundaryi%property%nElems</span>
+<a id="ln-156" name="ln-156" href="#ln-156"></a><span class="w">    </span><span class="c">!! Dim2: 3</span>
+<a id="ln-157" name="ln-157" href="#ln-157"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bndMoment</span><span class="p">(:,:)</span>
+<a id="ln-158" name="ln-158" href="#ln-158"></a><span class="w">  </span><span class="k">end type </span><span class="n">mus_geom_type</span>
+<a id="ln-159" name="ln-159" href="#ln-159"></a>
+<a id="ln-160" name="ln-160" href="#ln-160"></a><span class="k">contains</span>
+<a id="ln-161" name="ln-161" href="#ln-161"></a>
+<a id="ln-162" name="ln-162" href="#ln-162"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-163" name="ln-163" href="#ln-163"></a><span class="w">  </span><span class="c">!&gt; This routine load all geometry related datas like mesh, boundary</span>
+<a id="ln-164" name="ln-164" href="#ln-164"></a><span class="w">  </span><span class="c">!! and immersed_boundary. Restart is also loaded here because mesh is loaded</span>
+<a id="ln-165" name="ln-165" href="#ln-165"></a><span class="w">  </span><span class="c">!! in tem_load_restart if restart read is defined.</span>
+<a id="ln-166" name="ln-166" href="#ln-166"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_load_geom</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">restart</span><span class="p">,</span><span class="w"> </span><span class="n">solverHead</span><span class="p">,</span><span class="w"> </span><span class="n">simControl</span><span class="p">,</span><span class="w"> </span><span class="n">proc</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-167" name="ln-167" href="#ln-167"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                      </span><span class="n">scaleFactor</span><span class="p">,</span><span class="w"> </span><span class="n">initial_balance</span><span class="p">)</span>
+<a id="ln-168" name="ln-168" href="#ln-168"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-169" name="ln-169" href="#ln-169"></a><span class="w">    </span><span class="c">!&lt; contains geometry information which are loaded in this routine</span>
+<a id="ln-170" name="ln-170" href="#ln-170"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_geom_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span>
+<a id="ln-171" name="ln-171" href="#ln-171"></a><span class="w">    </span><span class="c">!&gt; contains restart information</span>
+<a id="ln-172" name="ln-172" href="#ln-172"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_restart_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">restart</span>
+<a id="ln-173" name="ln-173" href="#ln-173"></a><span class="w">    </span><span class="c">!&gt; contains general description of the solver including flu_state</span>
+<a id="ln-174" name="ln-174" href="#ln-174"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_solveHead_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">solverHead</span>
+<a id="ln-175" name="ln-175" href="#ln-175"></a><span class="w">    </span><span class="c">!&gt; contains simulation time control information</span>
+<a id="ln-176" name="ln-176" href="#ln-176"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_simControl_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">simControl</span>
+<a id="ln-177" name="ln-177" href="#ln-177"></a><span class="w">    </span><span class="c">!&gt; contains MPI communication environment</span>
+<a id="ln-178" name="ln-178" href="#ln-178"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_comm_env_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">proc</span>
+<a id="ln-179" name="ln-179" href="#ln-179"></a><span class="w">    </span><span class="c">!&gt; Temporal scaling factor for multilevel mesh</span>
+<a id="ln-180" name="ln-180" href="#ln-180"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">scaleFactor</span>
+<a id="ln-181" name="ln-181" href="#ln-181"></a><span class="w">    </span><span class="c">!&gt; If true, do initial balancing using level_weights</span>
+<a id="ln-182" name="ln-182" href="#ln-182"></a><span class="w">    </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">initial_balance</span>
+<a id="ln-183" name="ln-183" href="#ln-183"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-184" name="ln-184" href="#ln-184"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iLevel</span><span class="p">,</span><span class="w"> </span><span class="n">minLevel</span><span class="p">,</span><span class="w"> </span><span class="n">maxLevel</span>
+<a id="ln-185" name="ln-185" href="#ln-185"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">level_weights</span><span class="p">(</span><span class="n">globalMaxLevels</span><span class="p">)</span>
+<a id="ln-186" name="ln-186" href="#ln-186"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-187" name="ln-187" href="#ln-187"></a>
+<a id="ln-188" name="ln-188" href="#ln-188"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------------</span>
+<a id="ln-189" name="ln-189" href="#ln-189"></a><span class="w">    </span><span class="c">!  Load mesh                                                             !</span>
+<a id="ln-190" name="ln-190" href="#ln-190"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------------</span>
+<a id="ln-191" name="ln-191" href="#ln-191"></a><span class="w">    </span><span class="c">! First check, if we are starting from a restart</span>
+<a id="ln-192" name="ln-192" href="#ln-192"></a><span class="w">    </span><span class="c">! KJ: Now the restart is read from initial conditions, which are loaded</span>
+<a id="ln-193" name="ln-193" href="#ln-193"></a><span class="w">    </span><span class="c">! much later than the config in the process flow</span>
+<a id="ln-194" name="ln-194" href="#ln-194"></a><span class="w">    </span><span class="k">call </span><span class="n">tem_load_restart</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">restart</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-195" name="ln-195" href="#ln-195"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">conf</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">conf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-196" name="ln-196" href="#ln-196"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">tree</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-197" name="ln-197" href="#ln-197"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">timing</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">simControl</span><span class="p">%</span><span class="n">now</span><span class="p">,</span><span class="w">     </span><span class="p">&amp;</span>
+<a id="ln-198" name="ln-198" href="#ln-198"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">globProc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="w">                </span><span class="p">)</span>
+<a id="ln-199" name="ln-199" href="#ln-199"></a>
+<a id="ln-200" name="ln-200" href="#ln-200"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="n">restart</span><span class="p">%</span><span class="n">controller</span><span class="p">%</span><span class="n">readRestart</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-201" name="ln-201" href="#ln-201"></a><span class="w">      </span><span class="c">! If there is a restart, the timings in the params type have to be</span>
+<a id="ln-202" name="ln-202" href="#ln-202"></a><span class="w">      </span><span class="c">! updated to those read from the restart</span>
+<a id="ln-203" name="ln-203" href="#ln-203"></a><span class="w">      </span><span class="k">call </span><span class="n">tem_timeControl_start_at_sim</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">simControl</span><span class="p">%</span><span class="n">timeControl</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-204" name="ln-204" href="#ln-204"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                                </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simControl</span><span class="p">%</span><span class="n">now</span><span class="w">          </span><span class="p">)</span>
+<a id="ln-205" name="ln-205" href="#ln-205"></a><span class="w">    </span><span class="k">else</span>
+<a id="ln-206" name="ln-206" href="#ln-206"></a>
+<a id="ln-207" name="ln-207" href="#ln-207"></a><span class="k">      write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;No read restart given. Loading mesh file&#39;</span>
+<a id="ln-208" name="ln-208" href="#ln-208"></a>
+<a id="ln-209" name="ln-209" href="#ln-209"></a><span class="w">      </span><span class="c">! First load global info</span>
+<a id="ln-210" name="ln-210" href="#ln-210"></a><span class="w">      </span><span class="k">call </span><span class="n">tem_global_mesh_read</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">,</span><span class="w">     </span><span class="p">&amp;</span>
+<a id="ln-211" name="ln-211" href="#ln-211"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">conf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">conf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-212" name="ln-212" href="#ln-212"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">myPart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">rank</span><span class="p">,</span><span class="w">          </span><span class="p">&amp;</span>
+<a id="ln-213" name="ln-213" href="#ln-213"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">nParts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm_size</span><span class="p">,</span><span class="w">     </span><span class="p">&amp;</span>
+<a id="ln-214" name="ln-214" href="#ln-214"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">comm</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm</span><span class="w">           </span><span class="p">)</span>
+<a id="ln-215" name="ln-215" href="#ln-215"></a>
+<a id="ln-216" name="ln-216" href="#ln-216"></a><span class="w">      </span><span class="n">minLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">minLevel</span>
+<a id="ln-217" name="ln-217" href="#ln-217"></a><span class="w">      </span><span class="n">maxLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">maxLevel</span>
+<a id="ln-218" name="ln-218" href="#ln-218"></a>
+<a id="ln-219" name="ln-219" href="#ln-219"></a><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">minLevel</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">maxLevel</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">initial_balance</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-220" name="ln-220" href="#ln-220"></a>
+<a id="ln-221" name="ln-221" href="#ln-221"></a><span class="k">        call </span><span class="n">tem_horizontalSpacer</span><span class="p">(</span><span class="n">fUnit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a id="ln-222" name="ln-222" href="#ln-222"></a><span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="s2">&quot;(A)&quot;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Do initial level-wise load balancing.&#39;</span>
+<a id="ln-223" name="ln-223" href="#ln-223"></a>
+<a id="ln-224" name="ln-224" href="#ln-224"></a><span class="w">        </span><span class="c">! Calculate level wise weights to scaleFactor^( level - minlevel )</span>
+<a id="ln-225" name="ln-225" href="#ln-225"></a><span class="w">        </span><span class="c">!                 acoustic      diffusive</span>
+<a id="ln-226" name="ln-226" href="#ln-226"></a><span class="w">        </span><span class="c">!  ------------------------------------------------</span>
+<a id="ln-227" name="ln-227" href="#ln-227"></a><span class="w">        </span><span class="c">!  fac =         |   2              4</span>
+<a id="ln-228" name="ln-228" href="#ln-228"></a><span class="w">        </span><span class="c">!  ------------------------------------------------</span>
+<a id="ln-229" name="ln-229" href="#ln-229"></a><span class="w">        </span><span class="c">!  minLevel      |   1              1</span>
+<a id="ln-230" name="ln-230" href="#ln-230"></a><span class="w">        </span><span class="c">!  minLevel + 1  |   2              4</span>
+<a id="ln-231" name="ln-231" href="#ln-231"></a><span class="w">        </span><span class="c">!  minLevel + 2  |   4              16</span>
+<a id="ln-232" name="ln-232" href="#ln-232"></a><span class="w">        </span><span class="c">!  ...</span>
+<a id="ln-233" name="ln-233" href="#ln-233"></a><span class="w">        </span><span class="c">!  ------------------------------------------------</span>
+<a id="ln-234" name="ln-234" href="#ln-234"></a><span class="w">        </span><span class="k">do </span><span class="n">iLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minLevel</span><span class="p">,</span><span class="w"> </span><span class="n">maxLevel</span>
+<a id="ln-235" name="ln-235" href="#ln-235"></a><span class="w">          </span><span class="n">level_weights</span><span class="p">(</span><span class="w"> </span><span class="n">iLevel</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dble</span><span class="p">(</span><span class="w"> </span><span class="n">scaleFactor</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="n">iLevel</span><span class="o">-</span><span class="n">minLevel</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-236" name="ln-236" href="#ln-236"></a><span class="w">        </span><span class="k">end do</span>
+<a id="ln-237" name="ln-237" href="#ln-237"></a>
+<a id="ln-238" name="ln-238" href="#ln-238"></a><span class="k">        call </span><span class="n">load_tem</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">,</span><span class="w">              </span><span class="p">&amp;</span>
+<a id="ln-239" name="ln-239" href="#ln-239"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">conf</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">conf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-240" name="ln-240" href="#ln-240"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">myPart</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">rank</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-241" name="ln-241" href="#ln-241"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">nParts</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm_size</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span>
+<a id="ln-242" name="ln-242" href="#ln-242"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">comm</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-243" name="ln-243" href="#ln-243"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">levelWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">level_weights</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span>
+<a id="ln-244" name="ln-244" href="#ln-244"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">meshDir</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">meshFolder</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-245" name="ln-245" href="#ln-245"></a><span class="w">      </span><span class="k">else</span>
+<a id="ln-246" name="ln-246" href="#ln-246"></a><span class="w">        </span><span class="c">! load the tree from the mesh = &#39;&#39; definition in case no restartRead is</span>
+<a id="ln-247" name="ln-247" href="#ln-247"></a><span class="w">        </span><span class="c">! given in this case the mesh from the restart header is read</span>
+<a id="ln-248" name="ln-248" href="#ln-248"></a><span class="w">        </span><span class="c">! (in tem_load_restart)</span>
+<a id="ln-249" name="ln-249" href="#ln-249"></a><span class="w">        </span><span class="k">call </span><span class="n">load_tem</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">,</span><span class="w">              </span><span class="p">&amp;</span>
+<a id="ln-250" name="ln-250" href="#ln-250"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">conf</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">conf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-251" name="ln-251" href="#ln-251"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">myPart</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">rank</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-252" name="ln-252" href="#ln-252"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">nParts</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm_size</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span>
+<a id="ln-253" name="ln-253" href="#ln-253"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">comm</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm</span><span class="p">,</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-254" name="ln-254" href="#ln-254"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">            </span><span class="n">meshDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">meshFolder</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-255" name="ln-255" href="#ln-255"></a><span class="w">      </span><span class="k">end if</span><span class="w"> </span><span class="c">! minLevel /= maxLevel .and. initial_balance</span>
+<a id="ln-256" name="ln-256" href="#ln-256"></a><span class="w">    </span><span class="k">end if</span><span class="w"> </span><span class="c">! readRestart</span>
+<a id="ln-257" name="ln-257" href="#ln-257"></a><span class="w">    </span><span class="c">! ---------------------------------------------------------------------------</span>
+<a id="ln-258" name="ln-258" href="#ln-258"></a><span class="w">    </span><span class="c">! Done loading mesh.                                                       !</span>
+<a id="ln-259" name="ln-259" href="#ln-259"></a><span class="w">    </span><span class="c">! ---------------------------------------------------------------------------</span>
+<a id="ln-260" name="ln-260" href="#ln-260"></a>
+<a id="ln-261" name="ln-261" href="#ln-261"></a><span class="w">    </span><span class="c">! Load boundary and qval</span>
+<a id="ln-262" name="ln-262" href="#ln-262"></a><span class="w">    </span><span class="k">call </span><span class="n">mus_load_bc_data</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span>
+<a id="ln-263" name="ln-263" href="#ln-263"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">rank</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-264" name="ln-264" href="#ln-264"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">comm</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">comm</span><span class="w">  </span><span class="p">)</span>
+<a id="ln-265" name="ln-265" href="#ln-265"></a>
+<a id="ln-266" name="ln-266" href="#ln-266"></a><span class="w">    </span><span class="c">! Load solidification/fluidification settings</span>
+<a id="ln-267" name="ln-267" href="#ln-267"></a><span class="w">    </span><span class="k">call </span><span class="n">mus_geomIncrHead_load</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">geomIncr</span><span class="p">,</span><span class="w">        </span><span class="p">&amp;</span>
+<a id="ln-268" name="ln-268" href="#ln-268"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                         </span><span class="n">conf</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">conf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-269" name="ln-269" href="#ln-269"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                         </span><span class="n">dynamicGeom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">dynamicGeom</span><span class="w">      </span><span class="p">)</span>
+<a id="ln-270" name="ln-270" href="#ln-270"></a>
+<a id="ln-271" name="ln-271" href="#ln-271"></a><span class="w">    </span><span class="c">! load IBM data</span>
+<a id="ln-272" name="ln-272" href="#ln-272"></a><span class="w">    </span><span class="k">call </span><span class="n">mus_load_IBM</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">globIBM</span><span class="p">,</span><span class="w">         </span><span class="p">&amp;</span>
+<a id="ln-273" name="ln-273" href="#ln-273"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                </span><span class="n">conf</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">solverHead</span><span class="p">%</span><span class="n">conf</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-274" name="ln-274" href="#ln-274"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                </span><span class="n">rank</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">%</span><span class="n">rank</span><span class="w">           </span><span class="p">)</span>
+<a id="ln-275" name="ln-275" href="#ln-275"></a>
+<a id="ln-276" name="ln-276" href="#ln-276"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">mus_load_geom</span>
+<a id="ln-277" name="ln-277" href="#ln-277"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-278" name="ln-278" href="#ln-278"></a>
+<a id="ln-279" name="ln-279" href="#ln-279"></a>
+<a id="ln-280" name="ln-280" href="#ln-280"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-281" name="ln-281" href="#ln-281"></a><span class="w">  </span><span class="c">!&gt; This routine invokes the treelm routines to load the boundary conditions</span>
+<a id="ln-282" name="ln-282" href="#ln-282"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-283" name="ln-283" href="#ln-283"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_load_bc_data</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-284" name="ln-284" href="#ln-284"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-285" name="ln-285" href="#ln-285"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_geom_type</span><span class="w"> </span><span class="p">),</span><span class="w">  </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">geometry</span><span class="w"> </span><span class="c">!&lt; Treelmesh data</span>
+<a id="ln-286" name="ln-286" href="#ln-286"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">comm</span>
+<a id="ln-287" name="ln-287" href="#ln-287"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-288" name="ln-288" href="#ln-288"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iProp</span>
+<a id="ln-289" name="ln-289" href="#ln-289"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-290" name="ln-290" href="#ln-290"></a>
+<a id="ln-291" name="ln-291" href="#ln-291"></a><span class="w">    </span><span class="c">! ----------------------Load the boundary conditions------------------------</span>
+<a id="ln-292" name="ln-292" href="#ln-292"></a><span class="w">    </span><span class="c">! Boundary conditions are loaded even in the case of dynamic load balancing</span>
+<a id="ln-293" name="ln-293" href="#ln-293"></a><span class="w">    </span><span class="c">! when the restart is done at requisite load balancing intervals</span>
+<a id="ln-294" name="ln-294" href="#ln-294"></a><span class="w">    </span><span class="k">call </span><span class="n">init_tem_bc_prop</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-295" name="ln-295" href="#ln-295"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">                    </span><span class="n">comm</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">boundary</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-296" name="ln-296" href="#ln-296"></a>
+<a id="ln-297" name="ln-297" href="#ln-297"></a><span class="w">    </span><span class="k">do </span><span class="n">iProp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">nProperties</span>
+<a id="ln-298" name="ln-298" href="#ln-298"></a><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">property</span><span class="p">(</span><span class="w"> </span><span class="n">iProp</span><span class="w"> </span><span class="p">)%</span><span class="n">nElems</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-299" name="ln-299" href="#ln-299"></a><span class="k">        select case</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">property</span><span class="p">(</span><span class="w"> </span><span class="n">iProp</span><span class="w"> </span><span class="p">)%</span><span class="n">bitpos</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-300" name="ln-300" href="#ln-300"></a><span class="w">        </span><span class="k">case</span><span class="p">(</span><span class="w"> </span><span class="n">prp_hasBnd</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-301" name="ln-301" href="#ln-301"></a><span class="w">          </span><span class="c">! Already loaded</span>
+<a id="ln-302" name="ln-302" href="#ln-302"></a><span class="w">        </span><span class="k">case</span><span class="p">(</span><span class="w"> </span><span class="n">prp_hasQVal</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-303" name="ln-303" href="#ln-303"></a><span class="w">          </span><span class="c">! Load qVal from disk</span>
+<a id="ln-304" name="ln-304" href="#ln-304"></a><span class="w">          </span><span class="c">! prp_hasQVal is the 2nd property in mesh</span>
+<a id="ln-305" name="ln-305" href="#ln-305"></a><span class="w">          </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="s2">&quot;(A)&quot;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Loading qVal data from directory: &#39;</span><span class="p">&amp;</span>
+<a id="ln-306" name="ln-306" href="#ln-306"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">                     </span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">dirname</span><span class="p">)</span>
+<a id="ln-307" name="ln-307" href="#ln-307"></a><span class="w">          </span><span class="k">call </span><span class="n">load_tem_BC_qVal</span><span class="p">(</span><span class="w">                                               </span><span class="p">&amp;</span>
+<a id="ln-308" name="ln-308" href="#ln-308"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">           </span><span class="n">me</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">boundary</span><span class="p">,</span><span class="w">                          </span><span class="p">&amp;</span>
+<a id="ln-309" name="ln-309" href="#ln-309"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">           </span><span class="n">offset</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">Property</span><span class="p">(</span><span class="n">iProp</span><span class="p">)%</span><span class="n">Offset</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span>
+<a id="ln-310" name="ln-310" href="#ln-310"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">           </span><span class="n">nElems</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">Property</span><span class="p">(</span><span class="n">iProp</span><span class="p">)%</span><span class="n">nElems</span><span class="p">,</span><span class="w">       </span><span class="p">&amp;</span>
+<a id="ln-311" name="ln-311" href="#ln-311"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">           </span><span class="n">basename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">geometry</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">dirname</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;qval&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-312" name="ln-312" href="#ln-312"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">           </span><span class="n">mypart</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w">                   </span><span class="p">&amp;</span>
+<a id="ln-313" name="ln-313" href="#ln-313"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">           </span><span class="n">comm</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">comm</span><span class="w">                    </span><span class="p">)</span>
+<a id="ln-314" name="ln-314" href="#ln-314"></a><span class="w">          </span><span class="k">write</span><span class="p">(</span><span class="n">logUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Done, reading the qVal!&#39;</span>
+<a id="ln-315" name="ln-315" href="#ln-315"></a>
+<a id="ln-316" name="ln-316" href="#ln-316"></a><span class="w">        </span><span class="k">end select</span><span class="w"> </span><span class="c">! property( iProp )%bitpos</span>
+<a id="ln-317" name="ln-317" href="#ln-317"></a><span class="w">      </span><span class="k">endif</span><span class="w"> </span><span class="c">! property( iProp )%nElems &gt; 0</span>
+<a id="ln-318" name="ln-318" href="#ln-318"></a><span class="w">    </span><span class="k">enddo</span><span class="w"> </span><span class="c">! iProp</span>
+<a id="ln-319" name="ln-319" href="#ln-319"></a>
+<a id="ln-320" name="ln-320" href="#ln-320"></a><span class="w">    </span><span class="k">call </span><span class="n">mus_build_posInProp</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-321" name="ln-321" href="#ln-321"></a>
+<a id="ln-322" name="ln-322" href="#ln-322"></a><span class="w">    </span><span class="c">! when qVal exist, it is allocated inside load_tem_BC_qVal</span>
+<a id="ln-323" name="ln-323" href="#ln-323"></a><span class="w">    </span><span class="c">! otherwise allocate it with size 0</span>
+<a id="ln-324" name="ln-324" href="#ln-324"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">.</span><span class="nb">not</span><span class="p">.</span><span class="w"> </span><span class="nb">allocated</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">boundary</span><span class="p">%</span><span class="n">qVal</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-325" name="ln-325" href="#ln-325"></a><span class="k">      allocate</span><span class="p">(</span><span class="w"> </span><span class="n">geometry</span><span class="p">%</span><span class="n">boundary</span><span class="p">%</span><span class="n">qVAl</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-326" name="ln-326" href="#ln-326"></a><span class="w">    </span><span class="k">end if</span>
+<a id="ln-327" name="ln-327" href="#ln-327"></a>
+<a id="ln-328" name="ln-328" href="#ln-328"></a><span class="k">  end subroutine </span><span class="n">mus_load_bc_data</span>
+<a id="ln-329" name="ln-329" href="#ln-329"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-330" name="ln-330" href="#ln-330"></a>
+<a id="ln-331" name="ln-331" href="#ln-331"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-332" name="ln-332" href="#ln-332"></a><span class="w">  </span><span class="c">!&gt; This routine builds mapping between elements in tree to to propery list</span>
+<a id="ln-333" name="ln-333" href="#ln-333"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_build_posInProp</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-334" name="ln-334" href="#ln-334"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-335" name="ln-335" href="#ln-335"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="w"> </span><span class="n">mus_geom_type</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span><span class="w"> </span><span class="c">!&lt; Treelmesh data</span>
+<a id="ln-336" name="ln-336" href="#ln-336"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-337" name="ln-337" href="#ln-337"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iProp</span>
+<a id="ln-338" name="ln-338" href="#ln-338"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-339" name="ln-339" href="#ln-339"></a>
+<a id="ln-340" name="ln-340" href="#ln-340"></a><span class="w">    </span><span class="k">do </span><span class="n">iProp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">nProperties</span>
+<a id="ln-341" name="ln-341" href="#ln-341"></a><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">property</span><span class="p">(</span><span class="w"> </span><span class="n">iProp</span><span class="w"> </span><span class="p">)%</span><span class="n">nElems</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-342" name="ln-342" href="#ln-342"></a><span class="k">        select case</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">global</span><span class="p">%</span><span class="n">property</span><span class="p">(</span><span class="w"> </span><span class="n">iProp</span><span class="w"> </span><span class="p">)%</span><span class="n">bitpos</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-343" name="ln-343" href="#ln-343"></a><span class="w">        </span><span class="k">case</span><span class="p">(</span><span class="w"> </span><span class="n">prp_hasBnd</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-344" name="ln-344" href="#ln-344"></a><span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w">  </span><span class="nb">allocated</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInBndID</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInBndID</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-345" name="ln-345" href="#ln-345"></a><span class="w">          </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInBndID</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">nElems</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-346" name="ln-346" href="#ln-346"></a><span class="w">          </span><span class="c">! build me%posInBnd which maps tree to boundary%boundary_ID</span>
+<a id="ln-347" name="ln-347" href="#ln-347"></a><span class="w">          </span><span class="k">call </span><span class="n">tem_build_treeToProp_pointer</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-348" name="ln-348" href="#ln-348"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">treeToProp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInBndID</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-349" name="ln-349" href="#ln-349"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">nElems</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">nElems</span><span class="p">,&amp;</span>
+<a id="ln-350" name="ln-350" href="#ln-350"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">ElemPropertyBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">ElemPropertyBits</span><span class="p">,&amp;</span>
+<a id="ln-351" name="ln-351" href="#ln-351"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">prp_bit</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">prp_hasBnd</span><span class="w">           </span><span class="p">)</span>
+<a id="ln-352" name="ln-352" href="#ln-352"></a>
+<a id="ln-353" name="ln-353" href="#ln-353"></a><span class="w">          </span><span class="k">call </span><span class="n">mus_build_minBcID</span><span class="p">(</span><span class="w"> </span><span class="n">minBcID</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">minBcID</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-354" name="ln-354" href="#ln-354"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">                     </span><span class="n">bc_prop</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">boundary</span><span class="p">,</span><span class="w">  </span><span class="p">&amp;</span>
+<a id="ln-355" name="ln-355" href="#ln-355"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">                     </span><span class="n">posInBndID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInBndID</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-356" name="ln-356" href="#ln-356"></a>
+<a id="ln-357" name="ln-357" href="#ln-357"></a><span class="w">        </span><span class="k">case</span><span class="p">(</span><span class="w"> </span><span class="n">prp_hasQVal</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-358" name="ln-358" href="#ln-358"></a><span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">allocated</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInQval</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInQval</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-359" name="ln-359" href="#ln-359"></a><span class="w">          </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInQval</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">nElems</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-360" name="ln-360" href="#ln-360"></a><span class="w">          </span><span class="c">! build me%posInQVal which maps tree to boundary%qVal</span>
+<a id="ln-361" name="ln-361" href="#ln-361"></a><span class="w">          </span><span class="k">call </span><span class="n">tem_build_treeToProp_pointer</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-362" name="ln-362" href="#ln-362"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">treeToProp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">posInQVal</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-363" name="ln-363" href="#ln-363"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">nElems</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">nElems</span><span class="p">,&amp;</span>
+<a id="ln-364" name="ln-364" href="#ln-364"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">ElemPropertyBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">tree</span><span class="p">%</span><span class="n">ElemPropertyBits</span><span class="p">,&amp;</span>
+<a id="ln-365" name="ln-365" href="#ln-365"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">        </span><span class="n">prp_bit</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">prp_hasQVal</span><span class="w">         </span><span class="p">)</span>
+<a id="ln-366" name="ln-366" href="#ln-366"></a>
+<a id="ln-367" name="ln-367" href="#ln-367"></a><span class="w">        </span><span class="k">end select</span><span class="w"> </span><span class="c">! property( iProp )%bitpos</span>
+<a id="ln-368" name="ln-368" href="#ln-368"></a><span class="w">      </span><span class="k">endif</span><span class="w"> </span><span class="c">! property( iProp )%nElems &gt; 0</span>
+<a id="ln-369" name="ln-369" href="#ln-369"></a><span class="w">    </span><span class="k">enddo</span><span class="w"> </span><span class="c">! iProp</span>
+<a id="ln-370" name="ln-370" href="#ln-370"></a>
+<a id="ln-371" name="ln-371" href="#ln-371"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">mus_build_posInProp</span>
+<a id="ln-372" name="ln-372" href="#ln-372"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-373" name="ln-373" href="#ln-373"></a>
+<a id="ln-374" name="ln-374" href="#ln-374"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-375" name="ln-375" href="#ln-375"></a><span class="w">  </span><span class="c">!&gt; This routine build minBcID for boundary elements, it is required if a</span>
+<a id="ln-376" name="ln-376" href="#ln-376"></a><span class="w">  </span><span class="c">!! element has more than one boundary in its directions.</span>
+<a id="ln-377" name="ln-377" href="#ln-377"></a><span class="w">  </span><span class="c">!! if a element has more than one boundary then use minBcID which depends</span>
+<a id="ln-378" name="ln-378" href="#ln-378"></a><span class="w">  </span><span class="c">!! on boundary order in seeder configuration</span>
+<a id="ln-379" name="ln-379" href="#ln-379"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">mus_build_minBcID</span><span class="p">(</span><span class="n">minBcID</span><span class="p">,</span><span class="w"> </span><span class="n">bc_prop</span><span class="p">,</span><span class="w"> </span><span class="n">posInBndID</span><span class="p">)</span>
+<a id="ln-380" name="ln-380" href="#ln-380"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-381" name="ln-381" href="#ln-381"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">minBcID</span><span class="p">(:)</span>
+<a id="ln-382" name="ln-382" href="#ln-382"></a><span class="w">    </span><span class="c">!&gt; boundary information from mesh</span>
+<a id="ln-383" name="ln-383" href="#ln-383"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_bc_prop_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bc_prop</span>
+<a id="ln-384" name="ln-384" href="#ln-384"></a><span class="w">    </span><span class="c">!&gt; tree element position in boundaryID</span>
+<a id="ln-385" name="ln-385" href="#ln-385"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">posInBndID</span><span class="p">(:)</span>
+<a id="ln-386" name="ln-386" href="#ln-386"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-387" name="ln-387" href="#ln-387"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iElem</span>
+<a id="ln-388" name="ln-388" href="#ln-388"></a><span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">long_k</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bcIDs</span><span class="p">(</span><span class="n">bc_prop</span><span class="p">%</span><span class="n">nSides</span><span class="p">)</span>
+<a id="ln-389" name="ln-389" href="#ln-389"></a><span class="w">    </span><span class="c">! --------------------------------------------------------------------------</span>
+<a id="ln-390" name="ln-390" href="#ln-390"></a><span class="w">    </span><span class="k">allocate</span><span class="p">(</span><span class="n">minBcID</span><span class="p">(</span><span class="n">bc_prop</span><span class="p">%</span><span class="n">property</span><span class="p">%</span><span class="n">nElems</span><span class="p">))</span>
+<a id="ln-391" name="ln-391" href="#ln-391"></a>
+<a id="ln-392" name="ln-392" href="#ln-392"></a><span class="w">    </span><span class="k">do </span><span class="n">iElem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">bc_prop</span><span class="p">%</span><span class="n">property</span><span class="p">%</span><span class="n">nElems</span>
+<a id="ln-393" name="ln-393" href="#ln-393"></a><span class="w">      </span><span class="n">bcIDs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bc_prop</span><span class="p">%</span><span class="n">boundary_ID</span><span class="p">(:,</span><span class="w"> </span><span class="n">iElem</span><span class="p">)</span>
+<a id="ln-394" name="ln-394" href="#ln-394"></a><span class="w">      </span><span class="n">minBcID</span><span class="p">(</span><span class="n">iElem</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nb">minval</span><span class="p">(</span><span class="n">bcIDs</span><span class="p">,</span><span class="w"> </span><span class="n">bcIDs</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0_long_k</span><span class="p">))</span>
+<a id="ln-395" name="ln-395" href="#ln-395"></a><span class="w">    </span><span class="k">end do</span>
+<a id="ln-396" name="ln-396" href="#ln-396"></a><span class="k">  end subroutine </span><span class="n">mus_build_minBcID</span>
+<a id="ln-397" name="ln-397" href="#ln-397"></a><span class="w">  </span><span class="c">! ************************************************************************** !</span>
+<a id="ln-398" name="ln-398" href="#ln-398"></a>
+<a id="ln-399" name="ln-399" href="#ln-399"></a><span class="k">end module </span><span class="n">mus_geom_module</span>
+<a id="ln-400" name="ln-400" href="#ln-400"></a><span class="c">! ****************************************************************************** !</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

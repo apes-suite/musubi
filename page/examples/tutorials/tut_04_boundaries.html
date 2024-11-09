@@ -1,0 +1,833 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../../../favicon.png">
+
+    <title>Boundary Conditions &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../../../css/pygments.css" rel="stylesheet">
+    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../css/local.css" rel="stylesheet">
+      <link  href="../../../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../../../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../../index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../../../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Boundary Conditions</h1>
+    <div class="container p-2 mb-4 bg-light border rounded-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col">
+          <ul class="list-inline" style="margin-bottom:0px; display:inline">
+          </ul>
+        </div>
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../../index.html'>Documentation</a></li>
+                <li class="breadcrumb-item"><a href='../index.html'>Examples</a></li>
+                <li class="breadcrumb-item"><a href='index.html'>Tutorials</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Boundary Conditions</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-3">
+        <div class="card card-body bg-light" id="sidebar-toc">
+          <ul class="nav flex-column align-items">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Documentation</a>
+            </li>
+          </ul>
+          <hr>
+          <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="../../bibliography.html">Bibliography</a>
+              <a class="nav-link" href="../index.html">Examples</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/index.html">Weakly compressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/index.html">Applications</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nonreflecting_BC/index.html">Nonreflecting Boundary Conditions</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/index.html">Nozzle</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInAndAround/index.html">Nozzle flow inside an around</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInside/index.html">Nozzle flow inside</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/index.html">Channel 2D Boundary Conditions</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrBB_PressExpol/index.html">Channel 2D MfrBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrEq_PressEq/index.html">Channel 2D MfrEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_PressExpol_PressExpol/index.html">Channel 2D PressExpol PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBB_PressExpol/index.html">Channel 2D VelBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBFL_PressExpol/index.html">Channel 2D VelBFL PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelEq_PressEq/index.html">Channel 2D VelEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelNonEqExpol_PressNonEqExpol/index.html">Channel 2D VelNonEqExpol PressNonEqExpol</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/index.html">Poisueille flow in a channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_BGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_drtBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_hrrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_prrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rrBGK/index.html">Poisueille flow in a channel 2D</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/index.html">Channel 3D test cases</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Cylinder_MultiLevel_LES/index.html">Turbulent flow around the cylinder in a channel 3D at Re=3900</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Sphere_MultiLevel_LES/index.html">Turbulent flow around the sphere in a channel 3D</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/index.html">Turbulent channel</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/index.html">Turbulent channel wall model validation</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerFixedPoint/index.html">Turbulent channel wall model Musker</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerNewton/index.html">Turbulent channel wall model Musker (Newton)</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_PowerLaw/index.html">Turbulent channel wall model Power-Law</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_ReichardtFixedPoint/index.html">Turbulent channel wall model Reichardt</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Vortex_convection/index.html">Convected vortex in a domain with a coarser grid at the center</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/index.html">Absorbing layers</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticCylinder2D/index.html">Acoustic Line Source</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticLineSource2D/index.html">Acoustic Line Source 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/index.html">Acoustic pulse 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerBox/index.html">Acoustic pulse 2D with absorbing layer box 2d</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerPlane/index.html">Acoustic pulse 2D with absorbing layer plane</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerRadial/index.html">Acoustic pulse 2D with absorbing layer radial</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+              <a class="nav-link" href="../fluid/benchmark/trackOutside/index.html">Tracking point outside the domain</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/index.html">Incompressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/application/index.html">Applications</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_MultiLevel/index.html">Flow around the cylinder 2D single level</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_SingleLevel/index.html">Flow around the cylinder 2D single level</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/index.html">Channel 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/C3D_Simple/index.html">Simple Flow in a 3D Channel</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/index.html">Concentric Cylinders</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow/index.html">Concentric Cylinders</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow_MultiLevel/index.html">Concentric Cylinders</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/index.html">Lid driven cavity</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_MultiLevel/index.html">Lid driven cavity</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_Simple/index.html">Lid driven cavity</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/index.html">Pipe 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Force/index.html">Pipe Force</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_LES/index.html">Pipe LES</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_MultiLevel/index.html">Pipe 3D</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Simple/index.html">Pipe Simple</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Split/index.html">Pipe Split</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/index.html">Taylor Green Vortex</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/index.html">Taylor-Green Vortex with LES Turbulence Models at Re = 1600</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagGradU/index.html">Taylor-Green Vortex with WALE Smagorinsky (GradU) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagPDF/index.html">Taylor-Green Vortex with WALE Smagorinsky (PDF) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_Vreman/index.html">Taylor-Green Vortex with Vreman LES model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_WALE/index.html">Taylor-Green Vortex with WALE LES model at Re = 1600</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="index.html">Tutorials</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="tut_00_prerequisites.html">Prerequisites</a>
+              <a class="nav-link" href="tut_01_mus_config.html">Configuration</a>
+              <a class="nav-link" href="tut_02_mus_toolchain.html">Toolchain</a>
+              <a class="nav-link" href="tut_03_tracking.html">Tracking</a>
+              <a class="nav-link active disabled" href="tut_04_boundaries.html">Boundary Conditions</a>
+              <a class="nav-link" href="tut_05_restart.html">Restart</a>
+              <a class="nav-link" href="tut_06_initial.html">Initial Conditions</a>
+              <a class="nav-link" href="tut_07_convergence.html">Abort Criteria</a>
+              <a class="nav-link" href="tut_08_source.html">Source Terms</a>
+              <a class="nav-link" href="tut_09_mus_multilevel.html">Multilevel Simulations</a>
+              <a class="nav-link" href="tut_10_Musubi2.html">Prerequisites</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../../features/index.html">Feature Overview</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../../features/comp_proc.html">Description of the Multi-Level Algorithm</a>
+              <a class="nav-link" href="../../features/data_struc.html">Data Structures</a>
+              <a class="nav-link" href="../../features/intp_methods.html">Interpolation Methods</a>
+              <a class="nav-link" href="../../features/multispecies.html">Multispecies</a>
+              <a class="nav-link" href="../../features/mus_hvs_scheme_impl.html">Musubi-Harvesting</a>
+              <a class="nav-link" href="../../features/mus_nonNewtonianTheory.html">Non-Newtonian Fluid Simulations</a>
+              <a class="nav-link" href="../../features/mus_vectorization.html">Vectorization</a>
+              <a class="nav-link" href="../../features/scheme.html">Scheme Implementation</a>
+
+                </nav>
+              <a class="nav-link" href="../../usage/index.html">Build and run Musubi</a>
+          </nav>
+        </div>
+      </div>
+
+    <div class="col-9" id='text'>
+      <div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>WORK IN PROGRESS</p>
+</div>
+<p>Navigate: <a href="tut_03_tracking.html">&larr; Tracking</a>
+| <a href="index.html">Overview</a>
+| <a href="tut_05_restart.html">Restart &rarr;</a></p>
+<h1 id="boundary-conditions">Boundary Conditions</h1>
+<p>In this tutorial we use the 2D channel case to explain how to define boundary
+conditions that are needed for the simulation run.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>To run this case use the generic channel test case and set in
+<code>seeder.lua</code>:
+<code>lua
+case2d = true
+usePeriodic = true
+qValues = false
+useObstacle = false
+fixHeight = true
+useRefine = true</code></p>
+</div>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>Multi-level meshes at boundaries lead to fluctuation in the boundary layer.
+Also avoid single refinement layers since they could lead to crashes.
+At least four refined elements are recommended.</p>
+</div>
+<h2 id="where-the-information-for-the-boundaries-are-taken-from">Where the Information for the Boundaries are Taken From</h2>
+<p>In <em>Seeder</em>, boundaries are defined by <code>spatial_object</code> attribute kind "boundary".
+The output of <em>Seeder</em> is normally placed in the <code>./mesh</code> folder. There you can
+find files called <code>bnd.lua</code> and <code>bnd.lsb</code>.
+<code>bnd.lua</code> file contains basic information about boundaries like number of
+boundaries in a mesh and list of boundary labels in ascii format.
+<code>bnd.lsb</code> file contains boundary IDs for 26 directions for each fluid element
+which has boundary neighbor in binary format.
+These two files are important for <em>Musubi</em> in case of defining the boundary
+conditions.</p>
+<p>If you open <code>bnd.lua</code> file, you will probably find something like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">nSides</span> <span class="o">=</span> <span class="mi">26</span>
+<span class="n">nBCtypes</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">bclabel</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;north&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;west&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>In the example, there are four different boundaries we have set up with <em>Seeder</em>.
+In this case they have the labels <code>north</code>, <code>south</code>, <code>east</code> and <code>west</code>. This
+gives you a feeling of how to view this channel.</p>
+<p>These boundaries are defined in the mesh, but it is not clear which function
+each boundary has at the moment. So this is the part you have to do in <em>Musubi</em>.
+As an example, we want to simulate a channel. A channel in 2D needs two walls,
+one inlet and one outlet.</p>
+<blockquote>
+<p>If you would like to know in detail how the boundaries are defined you might
+have a look at <a href="../../../https:/apes-suite.github.io/treelm/module/tem_bc_module.html">tem_bc_module</a> and <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_load_bc_state.html">tem_load_bc_state</a>.</p>
+</blockquote>
+<h2 id="how-to-define-boundary-conditions-in-musubi">How to Define Boundary Conditions in Musubi?</h2>
+<p>Now, we will have a look on the <code>boundary_conditions</code> table in <em>Musubi</em> for the
+channel test case.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
+   <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span> <span class="p">},</span>
+<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+   <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span> <span class="p">},</span>
+<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
+   <span class="n">kind</span> <span class="o">=</span> <span class="n">inlet_kind</span><span class="p">,</span> <span class="c1">-- local variable inlet_kind</span>
+   <span class="n">pressure</span><span class="o">=</span> <span class="s1">&#39;pressureIn&#39;</span><span class="p">},</span> <span class="c1">-- refers to pressure defined in variable table</span>
+                            <span class="c1">-- (see last tutorial)</span>
+<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+   <span class="n">kind</span> <span class="o">=</span> <span class="n">outlet_kind</span><span class="p">,</span> <span class="c1">-- local variable outlet_kind</span>
+   <span class="n">pressure</span><span class="o">=</span> <span class="s1">&#39;pressureOut&#39;</span><span class="p">}}</span> <span class="c1">-- local variable from variable table</span>
+</code></pre></div>
+
+<p>In this basic example you can see the function of each boundary as outlined
+above.</p>
+<h3 id="boundary_condition-table">boundary_condition Table</h3>
+<p>In <code>boundary_condition</code> table, for each boundary label from <em>Seeder</em>, a kind
+must be defined in <em>Musubi</em> which defines what to do with that boundary. The
+order of boundary definition in <em>Musubi</em> does not depend on the order in
+<em>Seeder</em> (bnd.lua). It just has to exist in both files.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<h3 id="label">Label</h3>
+<p>For every boundary which you have created in <em>Seeder</em>, you have to set its status.
+Therefore, you call the boundary with the exact name (<code>label = ...</code>) that you
+can see in the bnd.lua file and give it a certain <strong>kind</strong> that is explained in
+the next section.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<h3 id="kind">Kind</h3>
+<p>You can choose between some basic boundary kinds. They define the use of the
+boundary in the simulation run. Some of these kinds are described below.</p>
+<ul>
+<li><strong>wall</strong></li>
+</ul>
+<p>A wall means that the fluid is not able to penetrate through this boundary.
+  It has to regard the wall as an obstacle. Moreover, the wall is seen as a
+  <strong>no-slip</strong> boundary. If you would like to observe slip as well you have to
+  use the separate kind <code>slip_wall</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>slip_wall</strong></li>
+</ul>
+<p>If slip shall be defined as well, you will have to set <code>kind</code> to
+  <code>kind = slip_wall</code>. Slip means that the normal and the tangential velocity in
+  normal direction equal zero. The pressure gradient along the normal direction
+  is equal to zero as well. The degree of slip can be defined by the
+  multiplication of a slip-factor called <code>fac</code> and the velocity. Special cases
+  are on the one hand <code>fac = 1</code> which means that there is free-slip or full-slip
+  and on the other hand, there is <code>fac = 0</code> which is used for no-slip. This case
+  is the default case for the <code>kind = wall</code> which is mentioned above.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
+  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;slip_wall&#39;</span><span class="p">,</span>
+  <span class="n">fac</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>More information can be found in the <a>mus_bc_fluid_wall_module</a>.</p>
+</blockquote>
+<ul>
+<li><strong>wall_libb</strong></li>
+</ul>
+<p>There is a possibility to make your simulation more efficient: Instead of
+making use of a higher refinement level, you could use linear interpolation.
+The obstacle in the fluid will have a higher resolution if the distance
+between the barycentric centre position of the fluid element to the obstacle
+is calculated which is "q". The total distance between the center positions of
+each, the fluid element's and the obstacle's is <code>q=1</code>. There is a case
+differentiation between <code>q&lt;0.5</code> and <code>q&gt;=0.5</code>.</p>
+<p>For <script type="math/tex">q<\frac{1}{2}</script> this formula is used:
+    <script type="math/tex; mode=display">
+    {\displaystyle f_{i^{\prime}}(\mathbf{r}_{l},t+1)}
+    {\displaystyle =2qf_{i}^{c}(\mathbf{r}_{l},t)+(1-2q)f_{i}^{c}(\mathbf{r}_{l}-\mathbf{c}_i{i},t)}
+    </script>
+  For <script type="math/tex">q\geq\frac{1}{2}</script> this formula is used:
+    <script type="math/tex; mode=display">
+    {\displaystyle f_{i^{\prime}}(\mathbf{r}_{l},t+1)}
+    {\displaystyle =\frac{1}{2q}f_{i}^{c}(\mathbf{r}_{l},t)+\frac{2q-1}{2q}f_{i^{'}}^{c}(\mathbf{r}_{i},t)}
+    </script>
+</p>
+<p>Therefore, <em>Seeder</em> has to be configured. For each spatial_object which has
+boundary kind, <code>calc_dist = true</code> has to be added to the attributes right
+behind kind and label. Here is the <code>seeder.lua</code> block before the changes:</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+      <span class="n">label</span><span class="o">=</span><span class="s1">&#39;north&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">height</span><span class="o">*</span><span class="mf">0.5</span><span class="o">+</span><span class="n">dxDash</span><span class="p">,</span> <span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{{</span><span class="n">length</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},</span>
+              <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">length</span><span class="p">}}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+      <span class="n">label</span><span class="o">=</span><span class="s1">&#39;south&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="n">height</span><span class="o">*</span><span class="mf">0.5</span><span class="o">-</span><span class="n">dxDash</span><span class="p">,</span> <span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{{</span><span class="n">length</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},</span>
+              <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">length</span><span class="p">}}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+</code></pre></div>
+
+<blockquote>
+<p>In the <code>spatial_object</code> tables for the boundaries, you have to add to the
+ attributes <code>calc_dist = true</code>.</p>
+</blockquote>
+<p>Then there should be written as an example for one boundary:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>  <span class="p">{</span>
+        <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+          <span class="n">level</span> <span class="o">=</span> <span class="n">maxLevel</span><span class="p">,</span> <span class="c1">--local variable</span>
+          <span class="n">label</span> <span class="o">=</span> <span class="n">stlLabel</span><span class="p">,</span> <span class="c1">--local variable</span>
+          <span class="n">calc_dist</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;stl&#39;</span><span class="p">,</span>
+          <span class="n">object</span> <span class="o">=</span> <span class="p">{</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">stlfile</span> <span class="c1">--local variable</span>
+  <span class="c1">--          { origin = {-length*0.3,-0.01*height,0.},</span>
+  <span class="c1">--            radius = radius }</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+       <span class="n">transformation</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">deformation</span> <span class="o">=</span>  <span class="mf">2.0</span><span class="p">,</span>
+          <span class="n">translation</span> <span class="o">=</span>  <span class="p">{</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="p">})</span>
+</code></pre></div>
+
+<p>After that, you are able to set the kind of the boundary in <code>musubi.lua</code> to
+  <code>wall_libb</code> instead of <code>wall</code>. You have to use the same syntax
+  as shown above, otherwise it will not work.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall_libb&#39;</span><span class="p">,</span>
+  <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>The information about linear interpolation are taken from M. Bouzidi,
+M. Firdaouss, and P. Lallemand, "Momentum transfer of a Boltzmann-lattice
+fluid with boundaries," Physics of Fluids, vol. 13, no. 11,
+pp. 3452–3459, Nov. 2001 Equations 5 (linear interpolation).
+More information about no-slip wall linear interpolation can be found in
+<a>mus_bc_fluid_wall_module</a>.</p>
+</blockquote>
+<h3 id="velocity-boundary-conditions">Velocity Boundary Conditions</h3>
+<ul>
+<li><strong>velocity_eq</strong></li>
+</ul>
+<p><code>kind = velocity_eq</code> makes use of the equilibrium function concerning
+the Lattice Boltzmann Method (LBM). This function gets the density (rho) from
+the fluid. The velocity (u) has to be defined for each coordinate x, y and z.
+Therefore you can place the definition of the velocity after the kind of the
+boundary. Example:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
+  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;velocity_eq&#39;</span><span class="p">,</span>
+  <span class="n">velocity</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel&#39;</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>You can get more information about the equilibrium function currently in
+the documentation for the subroutine <a>velocity_eq</a>.</p>
+</blockquote>
+<ul>
+<li><strong>velocity_bounceback</strong></li>
+</ul>
+<p>In addition to that you can set <code>kind = velocity_bounceback</code>. You can imagine
+bounceback like this: A fluid particle gets near the boundary. If it reaches the
+boundary, the particle will bounce back in the same angle as it gets there.
+For this kind, you have to set the velocity values, too.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;velocity_bounceback&#39;</span><span class="p">,</span>
+    <span class="n">velocity</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel&#39;</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>More details can be found in the documentation for subroutine <a>velocity_bounceback</a>.</p>
+</blockquote>
+<ul>
+<li><strong>mfr_bounceback</strong></li>
+</ul>
+<p>Like for <code>velocity_bounceback</code> there is an "Inlet Velocity Bounce Back" boundary
+condition. But in this case, <code>mass flow rate</code> (<code>mfr</code>) is used as an input
+argumet as well. It is used like that:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;mfr_bounceback&#39;</span><span class="p">,</span>
+    <span class="n">massflowrate</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>For more information visit <a>mfr_bounceback</a>.</p>
+</blockquote>
+<ul>
+<li><strong>mfr_eq</strong></li>
+</ul>
+<p>In this case, the mass flow rate is used for the equilibrium boundary condition
+and the velocity is taken from the configuration file.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;mfr_eq&#39;</span><span class="p">,</span>
+    <span class="n">massflowrate</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>The corresponding Documentation can be found in <a>mfr_eq</a>.</p>
+</blockquote>
+<h3 id="pressure-boundary-conditions">Pressure Boundary Conditions</h3>
+<ul>
+<li><strong>pressure_expol</strong></li>
+</ul>
+<p>The variable values are extrapolated during the simulation.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+    <span class="n">pressure</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>Detail information can be found in <a>pressure_expol</a>.</p>
+</blockquote>
+<ul>
+<li><strong>pressure_antiBounceBack</strong></li>
+</ul>
+<p>This is the outlet pressure anti-bounce back boundary condition kind. The
+velocity is extrapolated by two of its neighbors. The pressure has to be given
+as well.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;pressure_antiBounceBack&#39;</span><span class="p">,</span>
+    <span class="n">pressure</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>More information <a>pressure_antiBounceBack</a>.</p>
+</blockquote>
+<ul>
+<li><strong>pressure_eq</strong></li>
+</ul>
+<p>The incoming densities are set to the equilibrium distribution with macroscopic
+velocity and pressure.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;pressure_eq&#39;</span><span class="p">,</span>
+    <span class="n">pressure</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>Detail information in the <a>pressure_eq</a>.</p>
+</blockquote>
+<ul>
+<li><strong>symmetry</strong></li>
+</ul>
+<p>For symmetric test cases this boundary condition can be used to mirror the
+flow-parameters at this border. This allows to reduce the computational effort.
+The missing part can be easily mirrored when post-processing.</p>
+<div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>Be aware: The symmetric boundary has to be the last boundary created
+by <em>Seeder</em>!
+@end warning</p>
+</div>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;symmetry&#39;</span>
+  <span class="p">}</span>
+</code></pre></div>
+
+<h3 id="physical-conditions">Physical Conditions</h3>
+<p>If you define the inlet and the outlet boundary for the shape, you will have to
+give <em>Musubi</em> further information about the variable values. This depends on the
+used test case. They are defined in the <a>bc_states_type</a>. You can use the
+following:</p>
+<ul>
+<li>
+<p>velocity</p>
+</li>
+<li>
+<p>massflowrate</p>
+</li>
+<li>
+<p>pressure</p>
+</li>
+<li>
+<p>molefrac</p>
+</li>
+<li>
+<p>moleflux</p>
+</li>
+<li>
+<p>moleDens</p>
+</li>
+<li>
+<p>molediff_flux</p>
+</li>
+<li>
+<p>pdf</p>
+</li>
+<li>
+<p>potential</p>
+</li>
+<li>
+<p>surChargeDens</p>
+</li>
+</ul>
+<p>For example, to simulate the channel, you are free to give information about the
+variable values with <strong>space time functions</strong>.</p>
+<h3 id="space-time-functions">Space Time Functions</h3>
+<blockquote>
+<p>The documentation for these functions can be found in the
+<a href="../../../https:/apes-suite.github.io/treelm/module/tem_spacetime_fun_module.html">tem_spacetime_fun_module</a> in subroutine <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_load_spacetime_single.html">tem_load_spacetime_single</a>.</p>
+</blockquote>
+<p>Variable values like <code>pressure</code> and <code>velocity</code> are defined as
+<strong>space time functions</strong>. Space time functions contain the x-, y- and
+z-coordinates and the time as arguments. There are some different ways to get
+to a value for i.e. pressure and velocity at different timesteps that are
+described shortly in the following.</p>
+<p>Before they are used in the <code>boundary_condition</code> table they are defined in the
+<code>variable</code> table.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>See this <a href="https://apes-suite.github.io/treelm//page/features/variables/index.html">documentation</a>
+for more information.</p>
+</div>
+<blockquote>
+<p>Inside the <code>variable = {..}</code> table space time functions can be defined as a
+constant, a lua function, a predefined fortran function or a combination of
+spatial and transient functions that are themselves defined as a constant, a
+lua function or a predefined fortran function.</p>
+</blockquote>
+<p>Here are a few examples on how to implement space time functions as a boundary
+condition.</p>
+<ul>
+<li><strong>lua function</strong></li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kr">function</span> <span class="nf">lua_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+  <span class="p">...</span>
+  <span class="kr">return</span>
+<span class="kr">end</span>
+
+<span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;var_label&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">lua_function</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bc_label&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bc_kind&#39;</span>
+    <span class="n">bc_variable</span> <span class="o">=</span> <span class="s1">&#39;var_label&#39;</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>constant</strong></li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bc_label&#39;</span><span class="p">,</span>
+  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bc_kind&#39;</span><span class="p">,</span>
+  <span class="n">bc_variable</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>variables with more than one component</strong></li>
+</ul>
+<p>Do not forget to give combination variables to make a vector out of each
+velocity, moleflux and molediff_flux component.</p>
+<p>Here is an example on how to implement velocity as a boundary variable:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1">-- example for a predefined space time function</span>
+  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">predefined</span> <span class="o">=</span> <span class="s1">&#39;combined&#39;</span><span class="p">,</span>
+      <span class="n">temporal</span>  <span class="o">=</span> <span class="p">{</span>
+        <span class="n">predefined</span> <span class="o">=</span> <span class="s1">&#39;smooth&#39;</span><span class="p">,</span>
+        <span class="n">min_factor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_factor</span> <span class="o">=</span> <span class="n">u_in_L</span><span class="p">,</span>
+        <span class="n">from_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">to_time</span> <span class="o">=</span> <span class="n">tmax</span><span class="o">/</span><span class="mi">4</span>
+      <span class="p">},</span>
+      <span class="n">spatial</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">const</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="c1">-- example for a combination of 3 functions</span>
+  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velX&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">lua_function</span>
+  <span class="p">},</span>
+  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velY&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="p">},</span>
+  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velZ&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="mf">0.0</span>
+  <span class="p">},</span>
+  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel2&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;operation&#39;</span><span class="p">,</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;combine&#39;</span><span class="p">,</span>
+      <span class="n">input_varname</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;velX&#39;</span><span class="p">,</span><span class="s1">&#39;velY&#39;</span><span class="p">,</span><span class="s1">&#39;velZ&#39;</span><span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p>You can find more examples in the subroutine <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_load_bc_state.html">tem_load_bc_state</a> and on
+<a href="https://apes-suite.github.io/treelm//page/features/variables/index.html">variable system page</a>.</p>
+</blockquote>
+<p>Next chapter: <a href="tut_05_restart.html">Restart &rarr;</a></p>
+    </div>
+  </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../../../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../../../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../../../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

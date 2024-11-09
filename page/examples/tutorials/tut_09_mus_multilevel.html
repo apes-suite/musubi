@@ -1,0 +1,849 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../../../favicon.png">
+
+    <title>Multilevel Simulations &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../../../css/pygments.css" rel="stylesheet">
+    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../css/local.css" rel="stylesheet">
+      <link  href="../../../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../../../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../../index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../../../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Multilevel Simulations</h1>
+    <div class="container p-2 mb-4 bg-light border rounded-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col">
+          <ul class="list-inline" style="margin-bottom:0px; display:inline">
+          </ul>
+        </div>
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../../index.html'>Documentation</a></li>
+                <li class="breadcrumb-item"><a href='../index.html'>Examples</a></li>
+                <li class="breadcrumb-item"><a href='index.html'>Tutorials</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Multilevel Simulations</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-3">
+        <div class="card card-body bg-light" id="sidebar-toc">
+          <ul class="nav flex-column align-items">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Documentation</a>
+            </li>
+          </ul>
+          <hr>
+          <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="../../bibliography.html">Bibliography</a>
+              <a class="nav-link" href="../index.html">Examples</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/index.html">Weakly compressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/index.html">Applications</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nonreflecting_BC/index.html">Nonreflecting Boundary Conditions</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/index.html">Nozzle</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInAndAround/index.html">Nozzle flow inside an around</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInside/index.html">Nozzle flow inside</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/index.html">Channel 2D Boundary Conditions</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrBB_PressExpol/index.html">Channel 2D MfrBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrEq_PressEq/index.html">Channel 2D MfrEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_PressExpol_PressExpol/index.html">Channel 2D PressExpol PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBB_PressExpol/index.html">Channel 2D VelBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBFL_PressExpol/index.html">Channel 2D VelBFL PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelEq_PressEq/index.html">Channel 2D VelEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelNonEqExpol_PressNonEqExpol/index.html">Channel 2D VelNonEqExpol PressNonEqExpol</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/index.html">Poisueille flow in a channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_BGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_drtBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_hrrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_prrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rrBGK/index.html">Poisueille flow in a channel 2D</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/index.html">Channel 3D test cases</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Cylinder_MultiLevel_LES/index.html">Turbulent flow around the cylinder in a channel 3D at Re=3900</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Sphere_MultiLevel_LES/index.html">Turbulent flow around the sphere in a channel 3D</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/index.html">Turbulent channel</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/index.html">Turbulent channel wall model validation</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerFixedPoint/index.html">Turbulent channel wall model Musker</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerNewton/index.html">Turbulent channel wall model Musker (Newton)</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_PowerLaw/index.html">Turbulent channel wall model Power-Law</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_ReichardtFixedPoint/index.html">Turbulent channel wall model Reichardt</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Vortex_convection/index.html">Convected vortex in a domain with a coarser grid at the center</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/index.html">Absorbing layers</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticCylinder2D/index.html">Acoustic Line Source</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticLineSource2D/index.html">Acoustic Line Source 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/index.html">Acoustic pulse 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerBox/index.html">Acoustic pulse 2D with absorbing layer box 2d</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerPlane/index.html">Acoustic pulse 2D with absorbing layer plane</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerRadial/index.html">Acoustic pulse 2D with absorbing layer radial</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+              <a class="nav-link" href="../fluid/benchmark/trackOutside/index.html">Tracking point outside the domain</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/index.html">Incompressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/application/index.html">Applications</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_MultiLevel/index.html">Flow around the cylinder 2D single level</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_SingleLevel/index.html">Flow around the cylinder 2D single level</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/index.html">Channel 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/C3D_Simple/index.html">Simple Flow in a 3D Channel</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/index.html">Concentric Cylinders</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow/index.html">Concentric Cylinders</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow_MultiLevel/index.html">Concentric Cylinders</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/index.html">Lid driven cavity</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_MultiLevel/index.html">Lid driven cavity</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_Simple/index.html">Lid driven cavity</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/index.html">Pipe 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Force/index.html">Pipe Force</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_LES/index.html">Pipe LES</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_MultiLevel/index.html">Pipe 3D</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Simple/index.html">Pipe Simple</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Split/index.html">Pipe Split</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/index.html">Taylor Green Vortex</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/index.html">Taylor-Green Vortex with LES Turbulence Models at Re = 1600</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagGradU/index.html">Taylor-Green Vortex with WALE Smagorinsky (GradU) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagPDF/index.html">Taylor-Green Vortex with WALE Smagorinsky (PDF) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_Vreman/index.html">Taylor-Green Vortex with Vreman LES model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_WALE/index.html">Taylor-Green Vortex with WALE LES model at Re = 1600</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="index.html">Tutorials</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="tut_00_prerequisites.html">Prerequisites</a>
+              <a class="nav-link" href="tut_01_mus_config.html">Configuration</a>
+              <a class="nav-link" href="tut_02_mus_toolchain.html">Toolchain</a>
+              <a class="nav-link" href="tut_03_tracking.html">Tracking</a>
+              <a class="nav-link" href="tut_04_boundaries.html">Boundary Conditions</a>
+              <a class="nav-link" href="tut_05_restart.html">Restart</a>
+              <a class="nav-link" href="tut_06_initial.html">Initial Conditions</a>
+              <a class="nav-link" href="tut_07_convergence.html">Abort Criteria</a>
+              <a class="nav-link" href="tut_08_source.html">Source Terms</a>
+              <a class="nav-link active disabled" href="tut_09_mus_multilevel.html">Multilevel Simulations</a>
+              <a class="nav-link" href="tut_10_Musubi2.html">Prerequisites</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../../features/index.html">Feature Overview</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../../features/comp_proc.html">Description of the Multi-Level Algorithm</a>
+              <a class="nav-link" href="../../features/data_struc.html">Data Structures</a>
+              <a class="nav-link" href="../../features/intp_methods.html">Interpolation Methods</a>
+              <a class="nav-link" href="../../features/multispecies.html">Multispecies</a>
+              <a class="nav-link" href="../../features/mus_hvs_scheme_impl.html">Musubi-Harvesting</a>
+              <a class="nav-link" href="../../features/mus_nonNewtonianTheory.html">Non-Newtonian Fluid Simulations</a>
+              <a class="nav-link" href="../../features/mus_vectorization.html">Vectorization</a>
+              <a class="nav-link" href="../../features/scheme.html">Scheme Implementation</a>
+
+                </nav>
+              <a class="nav-link" href="../../usage/index.html">Build and run Musubi</a>
+          </nav>
+        </div>
+      </div>
+
+    <div class="col-9" id='text'>
+      <div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>WORK IN PROGRESS</p>
+</div>
+<p>Navigate: <a href="tut_08_source.html">&larr; Source Terms</a>
+| <a href="index.html">Overview</a></p>
+<h1 id="multi-level-simulations">Multi-level Simulations</h1>
+<p>In some simulations there are regions of special interest. In these regions
+strong gradients might occur, so that a higher resolution is required.
+You then have basically two possibilities to resolve this problem:</p>
+<ol>
+<li>Increase the global resolution of your simulation. This is generally
+   not a good idea because you very quickly might run into memory problems.
+   A high number of fluid cells also means long computation times.</li>
+<li>Locally refine the mesh in regions of high interest.
+   You can refine the mesh in regions where it is desired.
+   This focuses the computation cost and memory expenses on the regions
+   where it actually is required. Why waste computation time on flow regions
+   where very little happens? A general problem are the interfaces between
+   grid levels. You can easily get reflections or non-discontinuities there
+   which is why you usually place interfaces in regions where the flow does
+   not fluctuate considerably.</li>
+</ol>
+<blockquote>
+<p>In <a>mus_interpolate_module</a> you can get some background information on the
+implemented interpolation methods and the general workflow.</p>
+</blockquote>
+<h2 id="test-case-description">Test Case Description</h2>
+<p>In this tutorial we cover a channel test case with a cylinder inside.
+The area around and behind the cylinder is refined by a refinement
+patch with a higher resolution.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>To run this case use the generic channel test case and set in
+<code>seeder.lua</code>:
+<code>lua
+case2d = false
+usePeriodic = false
+qValues = true
+useObstacle = true
+fixHeight = true
+useRefine = true</code></p>
+</div>
+<h2 id="mesh-generation">Mesh Generation</h2>
+<p>Before starting your simulation you have to set up a mesh again.
+Again we involve <em>Seeder</em> to generate the required data structures for the
+solver.
+It is very advisable to define a variable for the most important variables.
+Later on you will be able to easily change the resolution of your simulation
+or some aspect ratio.
+One very important parameter for setting the resolution of the simulation
+is a reference tree level that is done in <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_levelof.html">tem_LevelOf</a>.</p>
+<p>In our case this will be the tree level of the channel region. Let's name it
+<code>level</code> and set it based on the computed <code>dx</code>. In our default setting this
+results in a level of 8. In addition to that, we define the folder (create it
+via <code>mkdir mesh</code>), the refinement level and the resulting level for the
+refinement box.</p>
+<p>The region around and behind the cylinder is defined by a refinement box.
+Let's define first, by how many levels we want to refine the elements
+inside this refined area. For simplicity, let's say that all elements should
+be on one level higher than the rest of the channel (<code>refinementLevel</code>).</p>
+<p>It is also good to have the information about the maximum level in your
+simulation available as a parameter (<code>maxlevel</code>). You will later on see why.</p>
+<div class="codehilite"><pre><span></span><code><span class="kr">if</span> <span class="n">useRefine</span> <span class="kr">then</span>
+  <span class="n">refinementLevel</span>  <span class="o">=</span> <span class="n">refinementLevel</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="c1">-- Refinement level 2 can only be one larger than 1, otherwise level jump is</span>
+  <span class="c1">-- too big.</span>
+  <span class="n">refinementLevel2</span> <span class="o">=</span> <span class="n">refinementLevel</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="kr">end</span>
+<span class="p">[...]</span>
+<span class="n">maxLevel</span> <span class="o">=</span> <span class="n">level</span><span class="o">+</span><span class="nb">math.max</span><span class="p">(</span><span class="n">refinementLevel</span><span class="p">,</span> <span class="n">refinementLevel2</span><span class="p">)</span>
+<span class="p">[...]</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;mesh/&#39;</span>
+</code></pre></div>
+
+<blockquote>
+<p>Note: For a description of levels and the layout of the tree have
+a look at the <a href="https://apes-suite.github.io/treelm//page/octree.html">octree page</a>.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="n">height</span> <span class="o">=</span> <span class="mf">1.0</span>         <span class="c1">-- Height of the channel [m]</span>
+<span class="n">l_h</span> <span class="o">=</span> <span class="mf">8.0</span>            <span class="c1">-- Length to height ratio</span>
+<span class="n">length</span> <span class="o">=</span> <span class="n">l_h</span><span class="o">*</span><span class="n">height</span>  <span class="c1">-- Length of the channel [m]</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">length</span>       <span class="c1">-- Depth of the channel [m]</span>
+<span class="n">level</span> <span class="o">=</span>  <span class="mi">8</span>           <span class="c1">-- General level of mesh refinement</span>
+</code></pre></div>
+
+<p>The bounding box, which is the universe in which all elements of the tree will live in,
+is defined as</p>
+<div class="codehilite"><pre><span></span><code><span class="n">bounding_cube</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length_bnd</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length_bnd</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length_bnd</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="n">dx</span><span class="p">},</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="n">length_bnd</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The region around the channel is set to the desired tree level of 9 and 10.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">spatial_object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[...]</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="n">refinementLevel</span><span class="o">+</span><span class="n">level</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;box1&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">,</span> <span class="n">start_z</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="n">size_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size_z</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="n">refinementLevel2</span><span class="o">+</span><span class="n">level</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;box2&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="n">start2_x</span><span class="p">,</span> <span class="n">start2_y</span><span class="p">,</span> <span class="n">start2_z</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="n">size2_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span><span class="n">size2_y</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size2_z</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">[....]</span>
+<span class="p">}</span>
+<span class="c1">--! [Refinement box 1 &amp; 2]</span>
+</code></pre></div>
+
+<p>The rest of the bounding cubic domain is not of interest and hence the
+discretization level is not of interest.</p>
+<h3 id="defining-geometry">Defining Geometry</h3>
+<p>We need to specify the walls, the inlet, outlet and the cylinder.
+Let's start with the walls at the north, south position.
+The walls at east and west direction will later on become the in- and outlet.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[...]</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;north&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">+</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+          <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;south&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+          <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">[...]</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;east&#39;</span> <span class="c1">-- outlet</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">+</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;west&#39;</span> <span class="c1">-- inlet</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+</code></pre></div>
+
+<p>For defining the cylinder or sphere, we use an STL file. This file was before
+generated by Blender, but you can basically use any software you like for
+generating such geometry data. The files are located in the test case directory:
+<code>stl/*.stl</code>.
+Let's include the sphere STL file with:</p>
+<div class="codehilite"><pre><span></span><code>   <span class="n">stlfile</span>  <span class="o">=</span> <span class="s1">&#39;stl/sphere.stl&#39;</span>
+   <span class="n">stlLabel</span> <span class="o">=</span> <span class="s1">&#39;sphere&#39;</span>
+</code></pre></div>
+
+<p>then add is to <code>spatiatl_object</code> tabel.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">maxLevel</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">stlLabel</span><span class="p">,</span>
+        <span class="n">calc_dist</span> <span class="o">=</span> <span class="n">qValues</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;stl&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">filename</span> <span class="o">=</span> <span class="n">stlfile</span><span class="p">,</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="n">transformation</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">-- Deformation factor to scale the obstacle. Here: 1 --&gt; remains the same.</span>
+        <span class="n">deformation</span> <span class="o">=</span>  <span class="mi">1</span><span class="p">,</span>
+        <span class="c1">-- In this case, we do not have to move the geometry.</span>
+        <span class="n">translation</span> <span class="o">=</span>  <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+</code></pre></div>
+
+<p>One very important action is the placement of the seed.
+The seed determines the contiguous flow domain. It basically
+defines for the shapes, what is inside and what is outside.
+We palce it right in the middle of the channel, which is simply</p>
+<div class="codehilite"><pre><span></span><code><span class="n">spatial_object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;seed&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">dx_half</span><span class="o">*</span><span class="mf">0.5</span> <span class="p">},</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">[...]</span>
+</code></pre></div>
+
+<p>Ok. Now we have defined all geometric constraints.
+Let's continue with refining some parts of the simulation domain.</p>
+<h3 id="defining-refined-regions">Defining Refined Regions</h3>
+<p>You first need to specify the origin of this box and its extents.
+Again, we use some variables depending on the total bounding cube.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Refinement box 1]</span>
+<span class="c1">-- Size of refinement box 1 in x-direction</span>
+<span class="n">size_x</span> <span class="o">=</span> <span class="mf">0.75</span><span class="o">*</span><span class="n">length</span>
+<span class="c1">-- Start of refinement box 1 (x)  based on length</span>
+<span class="n">start_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.425</span><span class="o">*</span><span class="n">length</span>
+<span class="c1">-- Size of refinement box 1 in y-direction</span>
+<span class="n">size_y</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">height</span>
+<span class="c1">-- Start of refinement box 1 (y)  based on height</span>
+<span class="n">start_y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">height</span>
+<span class="c1">-- Size of refinement box 1 in y-direction</span>
+<span class="n">size_z</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">height</span>
+<span class="c1">-- Start of refinement box 1 (z)  based on height</span>
+<span class="n">start_z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">height</span>
+<span class="c1">--! [Refinement box 1]</span>
+
+
+<span class="c1">--! [Refinement box 2]</span>
+<span class="c1">-- Size of refinement box 2 in x-direction and start of it</span>
+<span class="n">start2_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.375</span><span class="o">*</span><span class="n">length</span>
+<span class="n">size2_x</span>  <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">size_x</span>
+<span class="c1">-- Size of refinement box 2 in y-direction and start of it</span>
+<span class="n">size2_y</span>  <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">size_y</span>
+<span class="n">start2_y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span> <span class="n">size2_y</span>
+<span class="c1">-- Size of refinement box 2 in z-direction and start of it</span>
+<span class="n">size2_z</span>  <span class="o">=</span> <span class="n">size2_y</span> <span class="o">-</span> <span class="n">dx_half</span>
+<span class="n">start2_z</span> <span class="o">=</span> <span class="n">start2_y</span> <span class="o">+</span> <span class="n">dx_half</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="c1">--! [Refinement box 2]</span>
+</code></pre></div>
+
+<p>The patch will then lie around and behind the cylinder.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">spatial_object</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">[...]</span>
+<span class="c1">--! [Refinement box 1 &amp; 2]</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="n">refinementLevel</span><span class="o">+</span><span class="n">level</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;box1&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">,</span> <span class="n">start_z</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="n">size_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size_z</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="n">refinementLevel2</span><span class="o">+</span><span class="n">level</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;box2&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="n">start2_x</span><span class="p">,</span> <span class="n">start2_y</span><span class="p">,</span> <span class="n">start2_z</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="n">size2_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span><span class="n">size2_y</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size2_z</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="c1">--! [Refinement box 1 &amp; 2]</span>
+<span class="p">[...]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Once you followed through the above explanations, you can visualize the
+generated mesh. Therefore use <em>Seeder Harvesting</em>.</p>
+<p>First, we prepare the config file, defining the folder of the mesh files,
+the output folder for the vtk file (create the folder first) and the output
+itself. We name the file <code>sdr_harvester.lua</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mesh</span>          <span class="o">=</span> <span class="s1">&#39;mesh/&#39;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="s1">&#39;mesh/&#39;</span>
+<span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">format</span>   <span class="o">=</span> <span class="s1">&#39;vtk&#39;</span><span class="p">,</span>
+   <span class="n">dataform</span> <span class="o">=</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span>
+   <span class="n">write_pvd</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Then we can run <em>Seeder Harvesting</em> with:
+<code>~/apes/seeder/build/sdr_harvesting harvester.lua</code></p>
+<h2 id="setting-up-the-musubi-configuration">Setting up the Musubi Configuration</h2>
+<p>After generating the mesh above, we need to tell <em>Musubi</em> that it
+should use the above generated mesh. The mesh was stored in the
+folder <code>mesh</code>. Let's define that along with a name for the simulation</p>
+<div class="codehilite"><pre><span></span><code><span class="n">mesh</span> <span class="o">=</span> <span class="s1">&#39;./mesh/&#39;</span> <span class="c1">-- Mesh information</span>
+<span class="n">simulation_name</span> <span class="o">=</span> <span class="s1">&#39;channelRefine&#39;</span>
+</code></pre></div>
+
+<h3 id="initial-and-boundary-conditions">Initial and Boundary Conditions</h3>
+<p>Initial conditions are set to a medium with constant pressure and velocity
+<code>ic_velX</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Initial conditions]</span>
+<span class="n">initial_condition</span> <span class="o">=</span> <span class="p">{</span> <span class="n">pressure</span>  <span class="o">=</span> <span class="n">ic_pressure</span><span class="p">,</span>
+                      <span class="n">velocityX</span> <span class="o">=</span> <span class="n">ic_velX</span><span class="p">,</span>
+                      <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                      <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                      <span class="n">Sxx</span> <span class="o">=</span> <span class="n">ic_Sxx</span><span class="p">,</span>
+                      <span class="n">Syy</span> <span class="o">=</span> <span class="n">ic_Syy</span><span class="p">,</span>
+                      <span class="n">Sxy</span> <span class="o">=</span> <span class="n">ic_Sxy</span>
+                      <span class="p">}</span>
+<span class="c1">--! [Initial conditions]</span>
+</code></pre></div>
+
+<p>Next, we define the variable table for the boundary conditions:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [User defined variables]</span>
+<span class="c1">-- Mainly used for tracking.</span>
+<span class="c1">-- This variable can be refered to as variable in boundary condition and source</span>
+<span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">-- Reference pressure dependent on physicsModel</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressureRef&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">pressureRef</span>
+  <span class="p">},</span>
+  <span class="c1">-- Pressure at inlet</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressureIn&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">pressureIn</span>
+  <span class="p">},</span>
+  <span class="c1">-- Pressure at outlet</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressureOut&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">pressureOut</span>
+  <span class="p">},</span>
+  <span class="c1">-- Reference shear stress</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;stressRef&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">stressRef</span> <span class="p">},</span>
+  <span class="c1">-- Difference between numerical pressure and reference pressure</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;press_diff&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;operation&#39;</span><span class="p">,</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;difference&#39;</span><span class="p">,</span>
+      <span class="n">input_varname</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;pressure_phy&#39;</span><span class="p">,</span> <span class="s1">&#39;pressureRef&#39;</span><span class="p">,},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+<span class="c1">--! [User defined variables]</span>
+</code></pre></div>
+
+<p>The boundary conditions are a little bit more complex, as we have
+solid walls, the cylinder, and also an inlet and an outlet.
+Let's start with the wall boundaries. These include among the walls, which we named
+according to the directions and the cylinder, which we simply called <code>obs</code>.
+They all get the property of a simple wall.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Boundary conditions]</span>
+<span class="c1">-- Label is a boundary identifier and it should be same as in seeder</span>
+<span class="c1">-- configuration.</span>
+<span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">},</span>
+  <span class="p">[...]</span>
+</code></pre></div>
+
+<p>For the outlet, we would like to have a
+<a>mus_bc_fluid_module</a> "simple pressure" boundary
+condition, with pressure set to <code>pressureOut</code> a variable we defined in
+the variable table above.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[...]</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+     <span class="n">pressure</span> <span class="o">=</span> <span class="s1">&#39;pressureOut&#39;</span>
+  <span class="p">}</span>
+<span class="p">[...]</span>
+</code></pre></div>
+
+<p>For the inlet we also use <code>pressure_expol</code> boundary condition.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">[...]</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+     <span class="n">pressure</span> <span class="o">=</span> <span class="s1">&#39;pressureIn&#39;</span>
+  <span class="p">},</span>
+<span class="p">[...]</span>
+</code></pre></div>
+
+<p>If we set <code>usePeriodic=false</code> we need to define <code>top</code> and <code>bottom</code> as wall.
+If we use periodic <em>Seeder</em> will handle the periodic relationship for these
+planes.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- If we deactivated usePeriodic in seeder.lua, we have to add boundaries for</span>
+<span class="c1">-- top and bottom.</span>
+<span class="kr">if</span> <span class="n">usePeriodic</span> <span class="o">==</span><span class="kc">false</span> <span class="kr">then</span>
+  <span class="nb">table.insert</span><span class="p">(</span> <span class="n">boundary_condition</span><span class="p">,</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span>
+     <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="nb">table.insert</span><span class="p">(</span> <span class="n">boundary_condition</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">}</span>
+<span class="kr">end</span>
+</code></pre></div>
+
+<h3 id="other-simulation-parameters">Other Simulation Parameters</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">tmax_phy</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">tmax_iter</span> <span class="o">=</span>  <span class="nb">math.ceil</span><span class="p">(</span><span class="n">tmax_phy</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+<span class="n">interval_phy</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="o">/</span><span class="mf">10.0</span>
+<span class="n">trac_start</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">rest_start</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="o">/</span><span class="mf">4.0</span>
+<span class="n">sim_control</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="p">{</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">tmax_phy</span> <span class="p">},</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">interval_phy</span> <span class="p">},</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="mi">3600</span> <span class="c1">--s</span>
+   <span class="p">},</span>
+  <span class="p">[...]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="tracking">Tracking</h3>
+<p>We have several different trackers defined. These can be found inside the
+<code>tracking</code> table. Tracking has been explained in <a href="tut_03_tracking.html">[chapter 03]</a></p>
+<div class="codehilite"><pre><span></span><code><span class="n">tracking</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">-- Track pressure at the center of the channel over time.</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;probeAtCenter&#39;</span><span class="p">,</span>
+    <span class="c1">--label = &#39;probePressure&#39;,</span>
+    <span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;tracking/&#39;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span> <span class="n">min</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">},</span> <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{</span> <span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;ascii&#39;</span> <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="p">[...]</span>
+</code></pre></div>
+
+<h3 id="visualize-the-results">Visualize the Results</h3>
+<p>For visualisation of ascii or ascii-spatial format files you can use for example
+Gnuplot or matplotlib module of python. An example script for postprocessing
+(<code>plot_track.py</code>) can be found inside the example directory.</p>
+<p>Navigate: <a href="index.html">Overview</a></p>
+    </div>
+  </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../../../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../../../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../../../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

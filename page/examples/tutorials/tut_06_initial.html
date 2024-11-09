@@ -1,0 +1,484 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../../../favicon.png">
+
+    <title>Initial Conditions &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../../../css/pygments.css" rel="stylesheet">
+    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../css/local.css" rel="stylesheet">
+      <link  href="../../../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../../../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../../../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../../index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../../../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../../../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../../../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>Initial Conditions</h1>
+    <div class="container p-2 mb-4 bg-light border rounded-3">
+      <div class="row align-items-center justify-content-between">
+        <div class="col">
+          <ul class="list-inline" style="margin-bottom:0px; display:inline">
+          </ul>
+        </div>
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../../index.html'>Documentation</a></li>
+                <li class="breadcrumb-item"><a href='../index.html'>Examples</a></li>
+                <li class="breadcrumb-item"><a href='index.html'>Tutorials</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Initial Conditions</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-3">
+        <div class="card card-body bg-light" id="sidebar-toc">
+          <ul class="nav flex-column align-items">
+            <li class="nav-item">
+              <a class="nav-link" href="../../index.html">Documentation</a>
+            </li>
+          </ul>
+          <hr>
+          <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="../../bibliography.html">Bibliography</a>
+              <a class="nav-link" href="../index.html">Examples</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/index.html">Weakly compressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/index.html">Applications</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nonreflecting_BC/index.html">Nonreflecting Boundary Conditions</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/index.html">Nozzle</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInAndAround/index.html">Nozzle flow inside an around</a>
+              <a class="nav-link" href="../fluid/application/Nozzle/NOZ_FlowInside/index.html">Nozzle flow inside</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/index.html">Channel 2D Boundary Conditions</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrBB_PressExpol/index.html">Channel 2D MfrBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_MfrEq_PressEq/index.html">Channel 2D MfrEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_PressExpol_PressExpol/index.html">Channel 2D PressExpol PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBB_PressExpol/index.html">Channel 2D VelBB PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelBFL_PressExpol/index.html">Channel 2D VelBFL PressExpol</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelEq_PressEq/index.html">Channel 2D VelEq PressEq</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_BoundaryConditions/C2D_BC_VelNonEqExpol_PressNonEqExpol/index.html">Channel 2D VelNonEqExpol PressNonEqExpol</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/index.html">Poisueille flow in a channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_BGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_drtBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_hrrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_prrBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rBGK/index.html">Poisueille flow in a channel 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel2D/C2D_Simple/C2D_Simple_rrBGK/index.html">Poisueille flow in a channel 2D</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/index.html">Channel 3D test cases</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Cylinder_MultiLevel_LES/index.html">Turbulent flow around the cylinder in a channel 3D at Re=3900</a>
+              <a class="nav-link" href="../fluid/benchmark/Channel3D/C3D_Sphere_MultiLevel_LES/index.html">Turbulent flow around the sphere in a channel 3D</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/index.html">Turbulent channel</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/index.html">Turbulent channel wall model validation</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerFixedPoint/index.html">Turbulent channel wall model Musker</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_MuskerNewton/index.html">Turbulent channel wall model Musker (Newton)</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_PowerLaw/index.html">Turbulent channel wall model Power-Law</a>
+              <a class="nav-link" href="../fluid/benchmark/TurbulentChannel/TC_SingleLevel/TC_SL_ReichardtFixedPoint/index.html">Turbulent channel wall model Reichardt</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/Vortex_convection/index.html">Convected vortex in a domain with a coarser grid at the center</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/index.html">Absorbing layers</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticCylinder2D/index.html">Acoustic Line Source</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticLineSource2D/index.html">Acoustic Line Source 2D</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/index.html">Acoustic pulse 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerBox/index.html">Acoustic pulse 2D with absorbing layer box 2d</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerPlane/index.html">Acoustic pulse 2D with absorbing layer plane</a>
+              <a class="nav-link" href="../fluid/benchmark/absorbingLayer/acousticPulse2D/absLayerRadial/index.html">Acoustic pulse 2D with absorbing layer radial</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+              <a class="nav-link" href="../fluid/benchmark/trackOutside/index.html">Tracking point outside the domain</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/index.html">Incompressible flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/application/index.html">Applications</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/index.html">Benchmarks</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_MultiLevel/index.html">Flow around the cylinder 2D single level</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel2D/C2D_Cylinder_SingleLevel/index.html">Flow around the cylinder 2D single level</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/index.html">Channel 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Channel3D/C3D_Simple/index.html">Simple Flow in a 3D Channel</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/index.html">Concentric Cylinders</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow/index.html">Concentric Cylinders</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/ConcentricCylinders/COC_CoeutteFlow_MultiLevel/index.html">Concentric Cylinders</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/index.html">Lid driven cavity</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_MultiLevel/index.html">Lid driven cavity</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/LidDrivenCavity/LDC_Simple/index.html">Lid driven cavity</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/index.html">Pipe 3D</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Force/index.html">Pipe Force</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_LES/index.html">Pipe LES</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_MultiLevel/index.html">Pipe 3D</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Simple/index.html">Pipe Simple</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/Pipe/PIP_Split/index.html">Pipe Split</a>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/index.html">Taylor Green Vortex</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/index.html">Taylor-Green Vortex with LES Turbulence Models at Re = 1600</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagGradU/index.html">Taylor-Green Vortex with WALE Smagorinsky (GradU) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_SmagPDF/index.html">Taylor-Green Vortex with WALE Smagorinsky (PDF) model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_Vreman/index.html">Taylor-Green Vortex with Vreman LES model at Re = 1600</a>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/TaylorGreenVortex/TGV_LES/TGV_WALE/index.html">Taylor-Green Vortex with WALE LES model at Re = 1600</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../fluid_incompressible/benchmark/gaussianPulse/index.html">Gaussian Pulse in Pressure in a Cube</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="index.html">Tutorials</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="tut_00_prerequisites.html">Prerequisites</a>
+              <a class="nav-link" href="tut_01_mus_config.html">Configuration</a>
+              <a class="nav-link" href="tut_02_mus_toolchain.html">Toolchain</a>
+              <a class="nav-link" href="tut_03_tracking.html">Tracking</a>
+              <a class="nav-link" href="tut_04_boundaries.html">Boundary Conditions</a>
+              <a class="nav-link" href="tut_05_restart.html">Restart</a>
+              <a class="nav-link active disabled" href="tut_06_initial.html">Initial Conditions</a>
+              <a class="nav-link" href="tut_07_convergence.html">Abort Criteria</a>
+              <a class="nav-link" href="tut_08_source.html">Source Terms</a>
+              <a class="nav-link" href="tut_09_mus_multilevel.html">Multilevel Simulations</a>
+              <a class="nav-link" href="tut_10_Musubi2.html">Prerequisites</a>
+
+                </nav>
+
+                </nav>
+              <a class="nav-link" href="../../features/index.html">Feature Overview</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../../features/comp_proc.html">Description of the Multi-Level Algorithm</a>
+              <a class="nav-link" href="../../features/data_struc.html">Data Structures</a>
+              <a class="nav-link" href="../../features/intp_methods.html">Interpolation Methods</a>
+              <a class="nav-link" href="../../features/multispecies.html">Multispecies</a>
+              <a class="nav-link" href="../../features/mus_hvs_scheme_impl.html">Musubi-Harvesting</a>
+              <a class="nav-link" href="../../features/mus_nonNewtonianTheory.html">Non-Newtonian Fluid Simulations</a>
+              <a class="nav-link" href="../../features/mus_vectorization.html">Vectorization</a>
+              <a class="nav-link" href="../../features/scheme.html">Scheme Implementation</a>
+
+                </nav>
+              <a class="nav-link" href="../../usage/index.html">Build and run Musubi</a>
+          </nav>
+        </div>
+      </div>
+
+    <div class="col-9" id='text'>
+      <div class="alert alert-warning">
+<p class="alert-title h4">Warning</p>
+<p>WORK IN PROGRESS</p>
+</div>
+<p>Navigate: <a href="tut_05_restart.html">&larr; Restart</a>
+| <a href="index.html">Overview</a>
+| <a href="tut_07_convergence.html">Abort Criteria &rarr;</a></p>
+<h1 id="initial-conditions">Initial Conditions</h1>
+<p>Definition of Initial Conditions</p>
+<p>In this tutorial, we cover the definition of initial conditions.
+They can be defined either in lattice units or in physical units.
+Lattice units can be confusing, especially to people just starting in this field.
+The relationships between lattice and physical units can be found in this paper:</p>
+<blockquote>
+<p><a href="http://wiki.palabos.org/_media/howtos:lbunits.pdf">unit conversion by Jonas Latt</a>.</p>
+</blockquote>
+<p>In this tutorial, a two-dimensional plain channel is set up.
+Not only are the boundaries specified to obtain a defined pressure drop over
+the channel length, but also are the initial conditions set in a consistent
+manner.</p>
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>To run this test case use the generic channel test case and set in
+<code>seeder.lua</code>:
+<code>lua
+case2d = true
+usePeriodic = false
+qValues = false
+useObstacle = false
+fixHeight = true
+useRefine = false</code></p>
+</div>
+<p>For the viscous, laminar two-dimensional plain channel flow, an analytical
+solution of the incompressible Navier-Stokes equation can be derived. From the
+analytical solution the pressure drop, the velocity profile and the shear stress
+distribution can be computed.</p>
+<p>Before starting, we need to define the flow regime and physical reference values.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- Density of the fluid [kg/m^3]</span>
+<span class="n">rho0_phy</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1">-- Reynolds number of the flow</span>
+<span class="n">Re</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="c1">-- Inflow velocity [m/s]</span>
+<span class="n">vel_phy</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1">-- Kinematic viscosity of the fluid calculated from Re [m^2/s]</span>
+<span class="n">nu_phy</span> <span class="o">=</span> <span class="n">vel_phy</span> <span class="o">*</span> <span class="n">height_phy</span> <span class="o">/</span> <span class="n">Re</span>
+</code></pre></div>
+
+<p>For the Lattice_Boltzmann simulation, basic simulation parameters such as a
+lattice velocity, the timestep and the lattice viscosity need to
+be specified.</p>
+<div class="codehilite"><pre><span></span><code><span class="kr">if</span> <span class="p">(</span><span class="n">scaling</span> <span class="o">==</span> <span class="s1">&#39;acoustic&#39;</span><span class="p">)</span> <span class="kr">then</span>
+  <span class="c1">-- Lattice Mach number</span>
+  <span class="n">Ma_lat</span> <span class="o">=</span> <span class="mf">0.05</span>
+  <span class="c1">-- Lattice velocity</span>
+  <span class="n">vel_lat</span> <span class="o">=</span> <span class="n">Ma_lat</span> <span class="o">*</span> <span class="n">cs_lat</span>
+  <span class="c1">-- Physical timestep computed from physical and lattice velocity</span>
+  <span class="n">dt</span>  <span class="o">=</span> <span class="n">vel_lat</span> <span class="o">/</span> <span class="n">vel_phy</span><span class="o">*</span><span class="n">dx</span>
+  <span class="c1">-- Lattice viscosity</span>
+  <span class="n">nu_lat</span>  <span class="o">=</span> <span class="n">nu_phy</span><span class="o">*</span><span class="n">dt</span> <span class="o">/</span><span class="n">dx</span> <span class="o">/</span><span class="n">dx</span>
+  <span class="c1">-- Relaxation parameter</span>
+  <span class="n">omega</span>   <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">nu_lat</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="kr">else</span>
+  <span class="c1">-- Diffusive scaling</span>
+  <span class="c1">-- Relaxation parameter</span>
+  <span class="n">omega</span>   <span class="o">=</span> <span class="mf">1.7</span>
+  <span class="c1">-- Lattice viscosity</span>
+  <span class="n">nu_lat</span>  <span class="o">=</span> <span class="p">(</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">omega</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
+  <span class="c1">-- Physical timestep computed from physical and lattice velocity</span>
+  <span class="n">dt</span>      <span class="o">=</span> <span class="n">nu_lat</span><span class="o">/</span><span class="n">nu_phy</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span>
+  <span class="c1">-- Lattice velocity</span>
+  <span class="n">vel_lat</span>     <span class="o">=</span> <span class="n">vel_phy</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span>
+  <span class="c1">-- Lattice Mach number</span>
+  <span class="n">Ma_lat</span> <span class="o">=</span> <span class="n">vel_lat</span> <span class="o">*</span> <span class="n">cs_lat</span>
+<span class="kr">end</span>
+<span class="c1">--------------------------------------------------------------------------------</span>
+
+<span class="c1">--! [Reference LB values]</span>
+<span class="c1">-- Square of lattice speed of sound</span>
+<span class="n">cs2</span>      <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span>
+<span class="c1">-- Lattice density</span>
+<span class="n">rho0_lat</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1">-- Zero lattice density</span>
+<span class="n">rho0_lat0</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="c1">--! [Reference LB values]</span>
+</code></pre></div>
+
+<p>Depending on the model used, the reference pressure differs. For the
+incompressible model, the reference pressure is 0, while for the compressible
+model the reference pressure is <code>rho0*cs2</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Reference pressure dependent on fluid kind]</span>
+<span class="kr">if</span> <span class="n">physicsModel</span> <span class="o">==</span> <span class="s1">&#39;fluid_incompressible&#39;</span> <span class="kr">then</span>
+  <span class="n">p0</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="kr">else</span>
+  <span class="n">p0</span> <span class="o">=</span> <span class="n">rho0_lat</span><span class="o">*</span><span class="n">cs2</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span><span class="o">/</span><span class="n">dt</span>
+<span class="kr">end</span>
+<span class="c1">--! [Reference pressure dependent on fluid kind]</span>
+</code></pre></div>
+
+<p>From the solution of the Navier-Stokes equation, the following relations for the
+velocity distribution across the channel height can be obtained</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Velocity function]</span>
+<span class="kr">function</span> <span class="nf">velX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">velX_phy</span> <span class="o">=</span> <span class="n">vel_phy</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="n">height_phy</span> <span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="p">)</span>
+  <span class="kr">return</span> <span class="n">velX_phy</span>
+<span class="kr">end</span>
+<span class="c1">--! [Velocity function]</span>
+</code></pre></div>
+
+<p>Similarly for the pressure drop along the channel length</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Pressure function]</span>
+<span class="kr">function</span> <span class="nf">pressureRef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">press_drop</span> <span class="o">=</span> <span class="n">vel_phy</span><span class="o">*</span><span class="mf">8.</span><span class="o">*</span><span class="n">nu_phy</span><span class="o">*</span><span class="n">rho0_phy</span><span class="o">/</span><span class="n">height_phy</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">length</span>
+  <span class="kr">return</span> <span class="n">p0</span> <span class="o">+</span> <span class="n">press_drop</span><span class="o">*</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">press_drop</span><span class="o">/</span><span class="n">length</span><span class="o">*</span><span class="n">x</span>
+<span class="kr">end</span>
+<span class="c1">--! [Pressure function]</span>
+</code></pre></div>
+
+<p>and the shear stress across the channel height</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Shear stress function]</span>
+<span class="kr">function</span> <span class="nf">Sxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">tauxy</span><span class="o">=</span> <span class="o">-</span><span class="n">nu_phy</span><span class="o">*</span><span class="n">rho0_phy</span><span class="o">*</span><span class="mf">8.</span><span class="o">/</span><span class="n">height_phy</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">vel_phy</span><span class="o">*</span><span class="n">y</span>
+  <span class="n">S_xy</span> <span class="o">=</span> <span class="n">tauxy</span><span class="o">/</span><span class="n">nu_phy</span><span class="o">/</span><span class="n">rho0_phy</span>
+  <span class="kr">return</span> <span class="n">S_xy</span>
+<span class="kr">end</span>
+<span class="c1">--! [Shear stress function]</span>
+</code></pre></div>
+
+<p>Now the physics table establishes the connection between the lattice reference
+values and the physical values and gives <em>Musubi</em> means of transferring between
+these two unit systems. See <a href="../../../module/mus_physics_module.html">mus_physics_module</a> for more information.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">physics</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span>
+  <span class="n">rho0</span> <span class="o">=</span> <span class="n">rho0_phy</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>For the Lattice_Boltzmann algorithm, a reference density and the kinematic
+viscosity (for compressible also the bulk viscosity) need to be defined.
+See <a href="../../../module/mus_fluid_module.html">mus_fluid_module</a> for more information.</p>
+<div class="codehilite"><pre><span></span><code>  <span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="n">nu_phy</span><span class="p">,</span>
+    <span class="n">bulk_viscosity</span> <span class="o">=</span> <span class="n">bulk_visc</span>
+  <span class="p">}</span>
+</code></pre></div>
+
+<p>Now the initial conditions for each element in the simulation domain is defined
+by setting each physical quantity and connecting it to a lua function, which we
+defined above.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">--! [Initial conditions]</span>
+<span class="n">initial_condition</span> <span class="o">=</span> <span class="p">{</span> <span class="n">pressure</span>  <span class="o">=</span> <span class="n">ic_pressure</span><span class="p">,</span>
+                      <span class="n">velocityX</span> <span class="o">=</span> <span class="n">ic_velX</span><span class="p">,</span>
+                      <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                      <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                      <span class="n">Sxx</span> <span class="o">=</span> <span class="n">ic_Sxx</span><span class="p">,</span>
+                      <span class="n">Syy</span> <span class="o">=</span> <span class="n">ic_Syy</span><span class="p">,</span>
+                      <span class="n">Sxy</span> <span class="o">=</span> <span class="n">ic_Sxy</span>
+                      <span class="p">}</span>
+<span class="c1">--! [Initial conditions]</span>
+</code></pre></div>
+
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>The whole code of musubi.lua is shown in the <a href="tut_02_mus_toolchain.html">chapter_02</a>.</p>
+</div>
+<p>Next chapter: <a href="tut_07_convergence.html">Abort Criteria &rarr;</a></p>
+    </div>
+  </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../../../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../../../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../../../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

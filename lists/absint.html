@@ -1,0 +1,294 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>All Abstract Interfaces &ndash; Musubi
+</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" id='text'>
+			 <h1>Abstract Interfaces</h1>
+			 <table class="table table-striped nostretched">
+			 <thead>
+			 <tr><th>Abstract Interface</th><th>Location</th><th>Description</th></tr>
+			 </thead><tbody>
+			   <tr>
+                 <td><a href='../interface/computation.html'>computation</a></td>
+                 <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
+                 <td><p>Interface describes the main control routine which does computation
+set boundary and check flow status</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_auxfromstate.html'>derive_auxFromState</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>Derive auxField from local state.
+\todo KM: pass external force to add to auxField</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_auxfromstatefunc.html'>derive_auxFromStateFunc</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>Derive auxField from state for single element</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_equilfromaux.html'>derive_equilFromAux</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>Derive equilibrium from auxField for given nelems</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_equilfromauxfunc.html'>derive_equilFromAuxFunc</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>Derive equilibrium from auxField for single element</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_frommacro.html'>derive_FromMacro</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>interface to derive equilibrium from macro.
+Mainly used in initial condition and boundary condition routines
+to avoid dublication of routines between different scheme kinds.
+In this interface, solver definition can be access via
+varSys%method%val(1)%method_data c_ptr</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_fromprecolstate.html'>derive_FromPreColState</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>Interface that takes state array as input
+calculate density, velocity or eq as output from FETCH state i.e.
+precollision state
+State should be AOS layout</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/derive_fromstate.html'>derive_FromState</a></td>
+                 <td><a href='../module/mus_dervarpos_module.html'>mus_derVarPos_module</a></td>
+                 <td><p>Interface that takes state array as input
+calculate density, velocity or eq as output
+State should be AOS layout</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_pdfeq.html'>get_pdfEq</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get pdf equilibrium from vel and density</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_pdfeq_idir.html'>get_pdfEq_iDir</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get pdf equilibrium from vel and density along a</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_rho0inv.html'>get_rho0Inv</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get 1/rho as a mask regardless incompressibility</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_scalar_from_vel_dens.html'>get_scalar_from_vel_dens</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get pdf equilibrium from vel and density</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_vector_from_vel_dens.html'>get_vector_from_vel_dens</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get pdf equilibrium from vel and density</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_vel_from_pdf.html'>get_vel_from_pdf</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get pdf equilibrium from vel and density</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/get_vel_from_pdf_vectorized.html'>get_vel_from_pdf_vectorized</a></td>
+                 <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
+                 <td><p>function pointer to get pdf equilibrium from vel and density VECTORIZED</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/intproutine.html'>intpRoutine</a></td>
+                 <td><a href='../module/mus_interpolate_header_module.html'>mus_interpolate_header_module</a></td>
+                 <td><p>This is the interface for all interpolation methods that</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/intproutine_arbitraryval.html'>intpRoutine_arbitraryVal</a></td>
+                 <td><a href='../module/mus_interpolate_header_module.html'>mus_interpolate_header_module</a></td>
+                 <td><p>This is the interface for all interpolation methods that</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/kernel.html'>kernel</a></td>
+                 <td><a href='../module/mus_scheme_type_module.html'>mus_scheme_type_module</a></td>
+                 <td><p>The common subroutine interface for compute kernels. All kernels have to
+implement this interface in order to be callable via
+mus_scheme_type%compute function pointer.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/mus_iterative_method_interface.html'>mus_iterative_method_interface</a></td>
+                 <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
+                 <td><p>This routine computes friction velocity from wall model profile
+using Newton iteration method</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/mus_proc_calcauxfield.html'>mus_proc_calcAuxField</a></td>
+                 <td><a href='../module/mus_auxfield_module.html'>mus_auxField_module</a></td>
+                 <td><p>Interface to compute auxField vars i.e. conserved macroscopic moments
+from pre-collision PDF for fluid and ghostFromCoarser.
+auxField on GhostFromFiner elements are interpolated and
+halo elements are exchanged
+For Multicomponent models: in calcAuxField function, the velocity
+is computed on transformed PDF such that force term can be added to it
+in addSrcToAuxField routine. The auxField is updated with correct
+velocity field in compute kernel
+i.e. velocity of original PDF is obtained by solving
+linear equation system  in compute kernel</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/mus_proc_calcfricvel.html'>mus_proc_calcFricVel</a></td>
+                 <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
+                 <td><p>This abstract interface defines the interface to calculate turbulent wall
+friction velocity from given velocity and distance to boundary.
+All inputs and output are in lattice units.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/mus_proc_calcstreamwisevel.html'>mus_proc_calcStreamWiseVel</a></td>
+                 <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
+                 <td><p>This abstract interface defines the interface to calculate stream-wise
+velocity component from friction velocity and distance to boundary.
+All inputs and output are in lattice units.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/proc_addsrctoauxfield.html'>proc_addSrcToAuxField</a></td>
+                 <td><a href='../module/mus_source_type_module.html'>mus_source_type_module</a></td>
+                 <td><p>Interface to add source to auxField vars in source_op_type for
+all nSolve elements (nFluids+nGhostFromCoarser+nGhostFromFiner).
+Halo elements are exchanged</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/proc_apply_source.html'>proc_apply_source</a></td>
+                 <td><a href='../module/mus_source_type_module.html'>mus_source_type_module</a></td>
+                 <td><p>Abstract interface to update state with source terms</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/proc_calc_turb_visc_fromgradu.html'>proc_calc_turb_visc_fromGradU</a></td>
+                 <td><a href='../module/mus_turbulence_module.html'>mus_turbulence_module</a></td>
+                 <td><p>This function computes turbulent viscosity from gradient U</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/proc_calc_turb_visc_fromprecolpdf.html'>proc_calc_turb_visc_fromPreColPDF</a></td>
+                 <td><a href='../module/mus_turbulence_module.html'>mus_turbulence_module</a></td>
+                 <td><p>This function compute turbulent viscosity from pre-collision PDF</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/proc_updatesourcevar.html'>proc_updateSourceVar</a></td>
+                 <td><a href='../module/mus_source_type_module.html'>mus_source_type_module</a></td>
+                 <td><p>Interface to update source variable which has dependency on auxField.
+Applied on all nSolve elements (nFluids+nGhostFromCoarser+nGhostFromFiner).
+Halo elements are exchanged
+This should be called after adding sorce term to state so that both
+auxField and apply_source uses same source value in one multilevel cycle.</p></td>
+               </tr>
+			 </tbody></table>
+        </div>
+      </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>7bd532844b66</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-09T17:41:02.857328             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>
