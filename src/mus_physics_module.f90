@@ -1,7 +1,7 @@
-! Copyright (c) 2013 Harald Klimach <harald.klimach@uni-siegen.de>
+! Copyright (c) 2013,2024 Harald Klimach <harald.klimach@dlr.de>
 ! Copyright (c) 2013 Manuel Hasert <m.hasert@grs-sim.de>
 ! Copyright (c) 2013-2016 Jiaxing Qi <jiaxing.qi@uni-siegen.de>
-! Copyright (c) 2013-2020 Kannan Masilamani <kannan.masilamani@uni-siegen.de>
+! Copyright (c) 2013-2020,2024 Kannan Masilamani <kannan.masilamani@dlr.de>
 ! Copyright (c) 2013-2014 Simon Zimny <s.zimny@grs-sim.de>
 ! Copyright (c) 2014 Kartik Jain <kartik.jain@uni-siegen.de>
 ! Copyright (c) 2016 Tobias Schneider <tobias1.schneider@student.uni-siegen.de>
@@ -55,6 +55,7 @@ module mus_physics_module
 
   ! include treelm modules
   use env_module,          only: rk
+  use tem_param_module,    only: cs
   use tem_aux_module,      only: tem_abort
   use treelmesh_module,    only: treelmesh_type
   use tem_geometry_module, only: tem_ElemSizeLevel
@@ -229,12 +230,11 @@ contains
   !> This routine loads the physics table from musubi config file
   !!
   !! If no physics table is provided, the conversion factors default to
-  !! 1, resulting in the lattice units being directly used.
-  !! dx_ref and dt_ref are set according to the provided arguments, or if
-  !! not provided default to 1.
+  !! 1, resulting in the lattice units being directly used i.e.
+  !! dx and dt are set default to 1.
   !! See the [mus_physics_type] for a description of the various factors that
   !! can be set here.
-  subroutine mus_load_physics( me, conf, tree, scaleFactor, dtRef, dxRef )
+  subroutine mus_load_physics( me, conf, tree, scaleFactor )
     ! --------------------------------------------------------------------------
     !> physics type
     type( mus_physics_type ), intent(out) :: me
@@ -244,27 +244,11 @@ contains
     type( treelmesh_type), intent(in) :: tree
     !> scaling factor: diffusive -> 4; acoustic -> 2
     integer, intent(in) :: scaleFactor
-    !> reference time step if none
-    real(kind=rk), optional, intent(in) :: dtRef
-    !> reference spacestep if none
-    real(kind=rk), optional, intent(in) :: dxRef
     ! --------------------------------------------------------------------------
     integer :: thandle
     integer :: iError
-    real(kind=rk) :: dt_Ref, dx_ref ! reference step if none
+    real(kind=rk) :: cs_phy ! physical speed of sound
     ! --------------------------------------------------------------------------
-    if( present( dtRef )) then
-      dt_ref = dtRef
-    else
-      dt_ref = 1._rk
-    end if
-
-    if (present(dxRef)) then
-      dx_ref = dxRef
-    else
-      dx_ref = 1._rk
-    end if
-
     call tem_horizontalSpacer(fUnit = logUnit(1))
     write(logUnit(1),*) ' Loading physics table ...'
     call aot_table_open( L=conf, thandle=thandle, key='physics' )
@@ -279,21 +263,57 @@ contains
       ! reference dx is always the coarsest level in the tree
       me%dx = tem_ElemSizeLevel( tree, tree%global%minLevel )
 
-      ! load dt
-      call aot_get_val( L = conf, thandle = thandle, key = 'dt', &
-        &               val = me%dt, ErrCode = iError            )
+      ! load cs
+      call aot_get_val( L = conf, thandle = thandle, key = 'cs', &
+        &               val = cs_phy, ErrCode = iError           )
       if (btest(iError, aoterr_Fatal)) then
-        write(logUnit(1),*)'FATAL Error occured, while retrieving dt.'
-        if (btest(iError, aoterr_NonExistent)) then
-          write(logUnit(1),*)'Time step definition not found. Setting to dt=1'
-          me%dt = dt_ref
-        end if
+        write(logUnit(7),*)'FATAL Error occured, while retrieving cs.'
         if (btest(iError, aoterr_WrongType)) then
           write(logUnit(1),*)'Variable has wrong type!'
           write(logUnit(1),*)'STOPPING'
           call tem_abort()
         endif
       end if
+
+      if (btest(iError, aoterr_NonExistent)) then
+        write(logUnit(1),*) 'Speed of sound (cs) is not defined.'
+        write(logUnit(1),*) 'Attempting to load time step dt on coarsest level:'
+
+        ! load dt
+        call aot_get_val( L = conf, thandle = thandle, key = 'dt', &
+          &               val = me%dt, ErrCode = iError            )
+        if (btest(iError, aoterr_Fatal)) then
+          write(logUnit(7),*)'FATAL Error occured, while retrieving dt.'
+          if (btest(iError, aoterr_WrongType)) then
+            write(logUnit(1),*)'Variable has wrong type!'
+            write(logUnit(1),*)'STOPPING'
+            call tem_abort()
+          endif
+        end if
+      
+        ! load time step size if speed of sound is not defined
+        if (btest(iError, aoterr_NonExistent)) then
+          write(logUnit(1),*) 'ERROR: Neither speed or sound (cs), nor'
+          write(logUnit(1),*) '       time step length (dt) is defined'
+          write(logUnit(1),*) "Solution: Provide speed of sound 'cs' " &
+            &               //"in m/s"
+          write(logUnit(1),*) "          or time step 'dt' in s"
+          call tem_abort()
+        end if
+        if (btest(iError, aoterr_Fatal)) then
+          write(logUnit(7),*) 'FATAL Error occured, while retrieving dt.'
+          if (btest(iError, aoterr_WrongType)) then
+            write(logUnit(1),*)'Variable has wrong type!'
+            call tem_abort()
+          endif
+        end if
+        cs_phy = me%dx*cs/me%dt
+      else
+        me%dt = me%dx * cs / cs_phy
+      end if
+
+      write(logUnit(1),*) '  cs = '//trim(tem_toStr(cs_phy))
+      write(logUnit(1),*) '  dt = '//trim(tem_toStr(me%dt))
 
       ! define mole before loading density because if molecular weight is
       ! defined to compute reference mass than we need reference mole.
@@ -411,7 +431,7 @@ contains
       call aot_get_val( L = conf, thandle = thandle, key = 'coulomb0', &
         &               val = me%coulomb0, ErrCode = iError            )
       if (btest(iError, aoterr_Fatal)) then
-        write(logUnit(3),*)'No value given for coulomb0'
+        write(logUnit(3),*)'WARNING: No value given for coulomb0'
         if (btest(iError, aoterr_WrongType)) then
           write(logUnit(1),*) 'coulomb0 has wrong type!'
           call tem_abort()
@@ -434,8 +454,8 @@ contains
       end if
     else
       ! No physics table defined.
-      me%dt         = dt_ref
-      me%dx         = dx_ref
+      me%dt         = 1._rk
+      me%dx         = 1._rk
       me%rho0       = 1._rk
       me%moleDens0  = 1._rk
       me%molWeight0 = 1._rk

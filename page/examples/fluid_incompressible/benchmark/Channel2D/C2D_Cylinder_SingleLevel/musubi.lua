@@ -39,13 +39,10 @@ force_coeff = 2 / (rho0_phy * vel_mean_phy * vel_mean_phy * dia_cyl * dx)
 -- pressure coefficient
 pressure_coeff = 2. / (rho0_phy * vel_mean_phy^2)
 
------------- Compute physical time step from lattice Mach number ---------------
+------------ Compute physical time step from speed of sound ---------------
 -- Lattice speed of sound
 cs_lat = math.sqrt(1.0/3.0)
--- Lattice maximum velocity
-vel_lat = Ma * cs_lat
--- Physical time step computed from physical and lattice velocity
-dt = dx * vel_lat / vel_max_phy
+dt = dx * cs_lat / cs_phy
 --------------------------------------------------------------------------------
 
 ----------------------------- Time settings ------------------------------------
@@ -137,7 +134,7 @@ sim_control = {
 --! [Physics parameters]
 -- Required to convert physical unit to lattice unit
 physics = {
-  dt = dt,
+  cs = cs_phy,
   rho0 = rho0_phy
 }
 --! [Physics parameters]
@@ -223,13 +220,6 @@ variable = {
     vartype = 'st_fun',
     st_fun = pressure_coeff
   },
-
-  {
-    name = 'ambntPressure',
-    ncomponents = 1,
-    vartype = 'st_fun',
-    st_fun = press_ambient
-  },
   -- Multiple force on boundary with coefficient factors
   {
     name  = 'coeff',
@@ -240,22 +230,13 @@ variable = {
       input_varname = { 'coeff_fac_force', 'bnd_force_phy' }
     }
   },
-	{
-    name  = 'press_diff',
-    ncomponents = 1,
-    vartype = 'operation',
-    operation = {
-      kind = 'difference',
-      input_varname = { 'pressure_phy', 'ambntPressure' }
-    }
-  },
   {
     name  = 'coeffPressure', --Cp static
     ncomponents = 1,
     vartype = 'operation',
     operation = {
       kind = 'multiplication',
-      input_varname = { 'coeff_fac_pressure', 'press_diff' }
+      input_varname = { 'coeff_fac_pressure', 'pressure_deviation_phy' }
     }
   },
   {
@@ -337,7 +318,7 @@ tracking = {
   {
     label = 'probeAtCenter',
     folder = 'tracking/',
-    variable = { 'pressure_phy', 'velocity_phy' },
+    variable = { 'pressure_phy', 'velocity_phy'},
     shape = {
       kind = 'canoND',
       object = {
