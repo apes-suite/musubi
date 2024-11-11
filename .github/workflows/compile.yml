@@ -1,0 +1,33 @@
+name: CheckCompilation
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  merge_group:
+    types: [checks_requested]
+
+jobs:
+  compilation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install gfortran
+        run: |
+          sudo apt install -y gfortran
+
+      - name: Install Open MPI
+        run: |
+          sudo apt install -y openmpi-bin openmpi-common libopenmpi-dev
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Build Musubi
+        run: |
+          FC=mpif90 bin/waf --mpicmd 'mpiexec --oversubscribe' distclean configure build debug
