@@ -31,7 +31,7 @@ Run `bin/waf --help` to see all options.
 Documentation
 -------------
 
-See the [documentation](https://geb.inf.tu-dresden.de/doxy/musubi/index.html)
+See the [documentation](https://apes-suite.github.io/musubi/index.html)
 for more details.
 
 Developing Musubi
