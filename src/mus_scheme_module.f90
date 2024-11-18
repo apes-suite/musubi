@@ -124,8 +124,8 @@ contains
   !!```
   !!
   !!
-  subroutine mus_load_scheme( me, solverData, geometry, conf, params,          &
-    &                         parent, isMusHvs )
+  subroutine mus_load_scheme( me, solverData, geometry, conf, params, &
+    &                         parent, isMusHvs                        )
     ! ---------------------------------------------------------------------------
     !> scheme type
     type( mus_scheme_type ), target, intent(inout) :: me
@@ -164,6 +164,30 @@ contains
       &                          conf    = conf,          &
       &                          parent  = parent,        &
       &                          scaling = params%scaling )
+
+    if (geometry%tree%global%minLevel /= geometry%tree%global%maxLevel) then
+      ! Ensure to have the proper scaling available for multi-level meshes!
+      if ('acoustic' == trim(params%scaling)) then
+        select case(trim(me%header%kind))
+        case ('fluid', 'fluid_incompressible', 'isotherm_acEq')
+          write(logUnit(1),*) 'Using ' // trim(params%scaling) &
+            &                 // ' scaling in multi-level mesh!'
+        case default
+            write(logUnit(1),*) 'Scaling is set to acoustic'
+            write(logUnit(1),*) 'But ' // trim(me%header%kind) // ' requires' &
+              &                 // ' diffusive scaling.'
+            write(logUnit(1),*) 'Sorry, can not proceed on a multi-level mesh!'
+            call tem_abort('ERROR: diffusive scaling not available for'    &
+              &            // ' multi-level with ' // trim(me%header%kind) )
+        end select
+      else
+        write(logUnit(1),*) 'Multi-level with diffusive scaling not' &
+          &                 // ' implemented!'
+        write(logUnit(1),*) 'Sorry, can not proceed on a multi-level mesh!'
+        call tem_abort('ERROR: diffusive scaling not available for' &
+          &            // ' multi-level'                            )
+      end if
+    end if
 
     ! initialize scheme layout here to append state variable to varSys
     ! call mus_init_layout( layout   = me%layout )
