@@ -81,7 +81,7 @@ contains
 
     !> yPlus
     real(kind=rk), intent(in) :: yPlus
-    !> output: uPlus
+    !> output uPlus
     real(kind=rk) :: uPlus
     ! ------------------------------------------------------------------------------
     !uPlus = oneOvervonKA * log( 1.0_rk + vonKA*yPlus )     &
@@ -104,7 +104,7 @@ contains
     real(kind=rk), intent(in) :: uTau
     !> dynamic viscosity
     real(kind=rk), intent(in) :: nu
-    !> output: derivative of uPlus with respect to uTau
+    !> output derivative of uPlus with respect to uTau
     real(kind=rk) :: d_uPlus_d_uTau
     ! ------------------------------------------------------------------------------
     real(kind=rk) :: inv_nu, yPlus, nu_sqr, y_inv_nu, A, B

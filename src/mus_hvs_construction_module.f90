@@ -62,23 +62,20 @@ contains
   !! This is achieved by a two-folded identification of elements.
   !!
   !! -# the theoretically required elements are collected based on
-  !! [[mus_scheme_layout_module:mus_scheme_layout_type]] "stencil information"
-  !! The [[tem_construction_module:tem_findneighbor]] "find neighbor routine"
+  !! [[mus_scheme_layout_module:mus_scheme_layout_type]] stencil information
+  !! The [[tem_construction_module:tem_find_allElements]] routine
   !! performs this task for compute fluid elements.
   !! For boundaries which require information from neighbor elements, these
   !! required [[tem_topology_module]] "treeIDs" are collected into the
   !! [[mus_bc_header_module]]
   !! "boundary element type"
-  !! -# All required elements are created in the
-  !! [[tem_construction_module:tem_createleveldescriptor]]
-  !! "Level Descriptor creation routine"
   !!
   !! # Additional Tasks
   !!
-  !! - receive [[tem_construction_module:tem_buildhorizontaldependencies]]
+  !! - receive [[tem_construction_module:tem_build_horizontaldependencies]]
   !! "horizontal"
   !! (within a level for the element updates)
-  !! - and [[tem_construction:tem_buildverticaldependencies]] "vertical"
+  !! - and [[tem_construction_module:tem_build_verticaldependencies]] "vertical"
   !! dependencies (between levels for ghost-interpolations).
   !! - The main state vector and the neighbor lists on which the kernel then
   !!    acts is created

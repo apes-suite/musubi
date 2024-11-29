@@ -1,0 +1,744 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>calcDensAndVelsFromPDF &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>calcDensAndVelsFromPDF
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.1% of total for procedures.">46 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_bc_species_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_bc_species_module.f90.html'>mus_bc_species_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_bc_species_module.html'>mus_bc_species_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">calcDensAndVelsFromPDF</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  subroutine calcDensAndVelsFromPDF(nFields, iField, mass_dens, num_dens, velAvg, eqVel, varSys, pdf, stencil, species, resi_coeff, omega_fac, paramBInv)  
+</h2>
+    
+
+    <p>This routine returns mass density of all species and mass averaged mixture
+velocity from given pdf of all species for single element.
+It is used in Nonequilbrium extrapolation based boundary conditions.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nfields~76"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nFields</strong></td>
+            <td>
+                <p>Number of fields</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ifield~168"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iField</strong></td>
+            <td>
+                <p>current field to compute eqVel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mass_dens~43"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mass_dens</strong>(nFields)</td>
+            <td>
+                <p>Mass density of all species</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-num_dens~23"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>num_dens</strong>(nFields)</td>
+            <td>
+                <p>Number density of all species</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velavg~16"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velAvg</strong>(3)</td>
+            <td>
+                <p>Mass averaged velocity</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-eqvel~15"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>eqVel</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~313"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+                <p>Variable system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pdf~56"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pdf</strong>(varSys%nScalars)</td>
+            <td>
+                <p>State array of single element for all species</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stencil~69"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stencil</strong></td>
+            <td>
+                <p>Stencil header</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-species~4"></span>
+              type(<a href='../type/mus_species_type.html'>mus_species_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>species</strong>(nFields)</td>
+            <td>
+                <p>Species information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-resi_coeff~35"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>resi_coeff</strong>(nFields,nFields)</td>
+            <td>
+                <p>Resisitivity coefficient matrix</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega_fac~19"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega_fac</strong></td>
+            <td>
+                <p>relaxation parameter, omega_diff*0.5_rk</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-parambinv~11"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>paramBInv</strong></td>
+            <td>
+                <p>inverse of free parameter B</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~calcdensandvelsfrompdf~~CallsGraph Pages: 1 -->
+<svg id="proccalcdensandvelsfrompdfCallsGraph" width="466pt" height="74pt"
+ viewBox="0.00 0.00 466.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~calcdensandvelsfrompdf~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 462,-70 462,4 -4,4"/>
+<!-- proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_node1" class="node">
+<title>proc~calcdensandvelsfrompdf</title>
+<polygon fill="none" stroke="black" points="150,-45 0,-45 0,-21 150,-21 150,-45"/>
+<text text-anchor="middle" x="75" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">calcDensAndVelsFromPDF</text>
+</g>
+<!-- proc~momentumfrommacrolse -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_node2" class="node">
+<title>proc~momentumfrommacrolse</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CallsGraph_node2"><a xlink:href="../proc/momentumfrommacrolse.html" xlink:title="momentumFromMacroLSE">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="339,-66 186,-66 186,-42 339,-42 339,-66"/>
+<text text-anchor="middle" x="262.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">momentumFromMacroLSE</text>
+</a>
+</g>
+</g>
+<!-- proc~calcdensandvelsfrompdf&#45;&gt;proc~momentumfrommacrolse -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_edge1" class="edge">
+<title>proc~calcdensandvelsfrompdf&#45;&gt;proc~momentumfrommacrolse</title>
+<path fill="none" stroke="#000000" d="M150.11,-41.39C158.6,-42.35 167.3,-43.34 175.92,-44.31"/>
+<polygon fill="#000000" stroke="#000000" points="175.66,-47.8 185.99,-45.45 176.45,-40.85 175.66,-47.8"/>
+</g>
+<!-- state_varpos -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_node3" class="node">
+<title>state_varpos</title>
+<polygon fill="#777777" stroke="#777777" points="302.5,-24 222.5,-24 222.5,0 302.5,0 302.5,-24"/>
+<text text-anchor="middle" x="262.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">state_varpos</text>
+</g>
+<!-- proc~calcdensandvelsfrompdf&#45;&gt;state_varpos -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_edge2" class="edge">
+<title>proc~calcdensandvelsfrompdf&#45;&gt;state_varpos</title>
+<path fill="none" stroke="#000000" d="M150.11,-24.61C171.07,-22.24 193.35,-19.71 212.44,-17.55"/>
+<polygon fill="#000000" stroke="#000000" points="212.85,-21.03 222.39,-16.43 212.06,-14.07 212.85,-21.03"/>
+</g>
+<!-- invert_matrix -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_node4" class="node">
+<title>invert_matrix</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CallsGraph_node4"><a xlink:href="https://apes-suite.github.io/treelm/proc/invert_matrix.html" xlink:title="invert_matrix">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="458,-66 375,-66 375,-42 458,-42 458,-66"/>
+<text text-anchor="middle" x="416.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">invert_matrix</text>
+</a>
+</g>
+</g>
+<!-- proc~momentumfrommacrolse&#45;&gt;invert_matrix -->
+<g id="proc~~calcdensandvelsfrompdf~~CallsGraph_edge3" class="edge">
+<title>proc~momentumfrommacrolse&#45;&gt;invert_matrix</title>
+<path fill="none" stroke="#000000" d="M339.05,-54C347.75,-54 356.46,-54 364.71,-54"/>
+<polygon fill="#000000" stroke="#000000" points="364.9,-57.5 374.9,-54 364.9,-50.5 364.9,-57.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~calcdensandvelsfrompdf~~CalledByGraph Pages: 1 -->
+<svg id="proccalcdensandvelsfrompdfCalledByGraph" width="376pt" height="200pt"
+ viewBox="0.00 0.00 376.00 200.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 196)">
+<title>proc~~calcdensandvelsfrompdf~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-196 372,-196 372,4 -4,4"/>
+<!-- proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_node1" class="node">
+<title>proc~calcdensandvelsfrompdf</title>
+<polygon fill="none" stroke="black" points="368,-108 218,-108 218,-84 368,-84 368,-108"/>
+<text text-anchor="middle" x="293" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50">calcDensAndVelsFromPDF</text>
+</g>
+<!-- proc~spc_mole_fraction_noneq_expol -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_node2" class="node">
+<title>proc~spc_mole_fraction_noneq_expol</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CalledByGraph_node2"><a xlink:href="../proc/spc_mole_fraction_noneq_expol.html" xlink:title="spc_mole_fraction_noneq_expol">
+<polygon fill="#d9534f" stroke="#d9534f" points="182,-192 0,-192 0,-168 182,-168 182,-192"/>
+<text text-anchor="middle" x="91" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">spc_mole_fraction_noneq_expol</text>
+</a>
+</g>
+</g>
+<!-- proc~spc_mole_fraction_noneq_expol&#45;&gt;proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_edge1" class="edge">
+<title>proc~spc_mole_fraction_noneq_expol&#45;&gt;proc~calcdensandvelsfrompdf</title>
+<path fill="none" stroke="#000000" d="M154.21,-167.99C163.66,-165.45 173.19,-162.46 182,-159 212.29,-147.09 244.29,-127.92 265.92,-113.85"/>
+<polygon fill="#000000" stroke="#000000" points="268.1,-116.6 274.51,-108.17 264.24,-110.76 268.1,-116.6"/>
+</g>
+<!-- proc~spc_outflow -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_node3" class="node">
+<title>proc~spc_outflow</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CalledByGraph_node3"><a xlink:href="../proc/spc_outflow.html" xlink:title="spc_outflow">
+<polygon fill="#d9534f" stroke="#d9534f" points="128.5,-150 53.5,-150 53.5,-126 128.5,-126 128.5,-150"/>
+<text text-anchor="middle" x="91" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">spc_outflow</text>
+</a>
+</g>
+</g>
+<!-- proc~spc_outflow&#45;&gt;proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_edge2" class="edge">
+<title>proc~spc_outflow&#45;&gt;proc~calcdensandvelsfrompdf</title>
+<path fill="none" stroke="#000000" d="M128.68,-130.3C155.56,-124.65 192.81,-116.83 224.94,-110.08"/>
+<polygon fill="#000000" stroke="#000000" points="225.67,-113.51 234.73,-108.03 224.23,-106.66 225.67,-113.51"/>
+</g>
+<!-- proc~spc_solvent_inflow -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_node4" class="node">
+<title>proc~spc_solvent_inflow</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CalledByGraph_node4"><a xlink:href="../proc/spc_solvent_inflow.html" xlink:title="spc_solvent_inflow">
+<polygon fill="#d9534f" stroke="#d9534f" points="146.5,-108 35.5,-108 35.5,-84 146.5,-84 146.5,-108"/>
+<text text-anchor="middle" x="91" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">spc_solvent_inflow</text>
+</a>
+</g>
+</g>
+<!-- proc~spc_solvent_inflow&#45;&gt;proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_edge3" class="edge">
+<title>proc~spc_solvent_inflow&#45;&gt;proc~calcdensandvelsfrompdf</title>
+<path fill="none" stroke="#000000" d="M146.65,-96C165.54,-96 187.16,-96 207.85,-96"/>
+<polygon fill="#000000" stroke="#000000" points="207.92,-99.5 217.92,-96 207.92,-92.5 207.92,-99.5"/>
+</g>
+<!-- proc~spc_solvent_outflow -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_node5" class="node">
+<title>proc~spc_solvent_outflow</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CalledByGraph_node5"><a xlink:href="../proc/spc_solvent_outflow.html" xlink:title="spc_solvent_outflow">
+<polygon fill="#d9534f" stroke="#d9534f" points="150,-66 32,-66 32,-42 150,-42 150,-66"/>
+<text text-anchor="middle" x="91" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">spc_solvent_outflow</text>
+</a>
+</g>
+</g>
+<!-- proc~spc_solvent_outflow&#45;&gt;proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_edge4" class="edge">
+<title>proc~spc_solvent_outflow&#45;&gt;proc~calcdensandvelsfrompdf</title>
+<path fill="none" stroke="#000000" d="M149.31,-66.04C172.85,-70.98 200.27,-76.74 224.75,-81.88"/>
+<polygon fill="#000000" stroke="#000000" points="224.17,-85.33 234.68,-83.96 225.61,-78.48 224.17,-85.33"/>
+</g>
+<!-- proc~spc_velocity_noneq_expol -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_node6" class="node">
+<title>proc~spc_velocity_noneq_expol</title>
+<g id="a_proc~~calcdensandvelsfrompdf~~CalledByGraph_node6"><a xlink:href="../proc/spc_velocity_noneq_expol.html" xlink:title="spc_velocity_noneq_expol">
+<polygon fill="#d9534f" stroke="#d9534f" points="166,-24 16,-24 16,0 166,0 166,-24"/>
+<text text-anchor="middle" x="91" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">spc_velocity_noneq_expol</text>
+</a>
+</g>
+</g>
+<!-- proc~spc_velocity_noneq_expol&#45;&gt;proc~calcdensandvelsfrompdf -->
+<g id="proc~~calcdensandvelsfrompdf~~CalledByGraph_edge5" class="edge">
+<title>proc~spc_velocity_noneq_expol&#45;&gt;proc~calcdensandvelsfrompdf</title>
+<path fill="none" stroke="#000000" d="M154.21,-24.01C163.66,-26.55 173.19,-29.54 182,-33 212.29,-44.91 244.29,-64.08 265.92,-78.15"/>
+<polygon fill="#000000" stroke="#000000" points="264.24,-81.24 274.51,-83.83 268.1,-75.4 264.24,-81.24"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

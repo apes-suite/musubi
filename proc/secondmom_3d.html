@@ -1,0 +1,590 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>secondMom_3D &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>secondMom_3D
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">12 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_derivedQuantities_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_derivedquantities_module.f90.html'>mus_derivedQuantities_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></li>
+            <li class="breadcrumb-item active" aria-current="page">secondMom_3D</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public pure function secondMom_3D(cxcx, f, QQ) result(m)  
+</h2>
+    
+
+    <p>Calculate second moments of some quantity <script type="math/tex"> f </script>
+<script type="math/tex; mode=display">
+   M_{\alpha\beta} = \sum_{i=1}^{Q} c_{i\alpha} c_{i\beta} f_i
+</script>
+where Q is number of discrete velocity.\n
+The output is 1 dimentional array which has 6 componenents.\n
+Specifically,
+<script type="math/tex; mode=display"> m_1 = \sum_{i=1}^{Q} c_{i1} c_{i1} f_i </script>
+<script type="math/tex; mode=display"> m_2 = \sum_{i=1}^{Q} c_{i2} c_{i2} f_i </script>
+<script type="math/tex; mode=display"> m_3 = \sum_{i=1}^{Q} c_{i3} c_{i3} f_i </script>
+<script type="math/tex; mode=display"> m_4 = \sum_{i=1}^{Q} c_{i1} c_{i2} f_i </script>
+<script type="math/tex; mode=display"> m_5 = \sum_{i=1}^{Q} c_{i2} c_{i3} f_i </script>
+<script type="math/tex; mode=display"> m_6 = \sum_{i=1}^{Q} c_{i3} c_{i1} f_i </script>
+This function is used by shear stress and strain rate.
+1=xx, 2=yy, 3=zz, 4=xy, 5=yz, 6=xz
+in 2D:
+1=xx, 2=yy, 3=xy</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cxcx~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>cxcx</strong>(6,QQ)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-f~7"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>f</strong>(QQ)</td>
+            <td>
+                <p>quantity to which second moment is applied</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-qq~44"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>QQ</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-m~2"></span>
+          real(kind=rk), (6)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~secondmom_3d~~CalledByGraph Pages: 1 -->
+<svg id="procsecondmom_3dCalledByGraph" width="448pt" height="536pt"
+ viewBox="0.00 0.00 448.00 536.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~secondmom_3d~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 532)">
+<title>proc~~secondmom_3d~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-532 444,-532 444,4 -4,4"/>
+<!-- proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node1" class="node">
+<title>proc~secondmom_3d</title>
+<polygon fill="none" stroke="black" points="440,-276 343,-276 343,-252 440,-252 440,-276"/>
+<text text-anchor="middle" x="391.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50">secondMom_3D</text>
+</g>
+<!-- proc~bgk_dualrelaxationtime_rr_d3q19 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node2" class="node">
+<title>proc~bgk_dualrelaxationtime_rr_d3q19</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node2"><a xlink:href="../proc/bgk_dualrelaxationtime_rr_d3q19.html" xlink:title="bgk_DualRelaxationTime_RR_d3q19">
+<polygon fill="#d9534f" stroke="#d9534f" points="255.5,-528 51.5,-528 51.5,-504 255.5,-504 255.5,-528"/>
+<text text-anchor="middle" x="153.5" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_DualRelaxationTime_RR_d3q19</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_dualrelaxationtime_rr_d3q19&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge1" class="edge">
+<title>proc~bgk_dualrelaxationtime_rr_d3q19&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M255.6,-517.57C274.21,-513.77 292.35,-506.85 307,-495 372.52,-441.98 386.64,-333.13 389.68,-286.26"/>
+<polygon fill="#000000" stroke="#000000" points="393.17,-286.42 390.21,-276.25 386.18,-286.05 393.17,-286.42"/>
+</g>
+<!-- proc~bgk_dualrelaxationtime_rr_d3q27 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node3" class="node">
+<title>proc~bgk_dualrelaxationtime_rr_d3q27</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node3"><a xlink:href="../proc/bgk_dualrelaxationtime_rr_d3q27.html" xlink:title="bgk_DualRelaxationTime_RR_d3q27">
+<polygon fill="#d9534f" stroke="#d9534f" points="255.5,-486 51.5,-486 51.5,-462 255.5,-462 255.5,-486"/>
+<text text-anchor="middle" x="153.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_DualRelaxationTime_RR_d3q27</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_dualrelaxationtime_rr_d3q27&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge2" class="edge">
+<title>proc~bgk_dualrelaxationtime_rr_d3q27&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M255.77,-474.6C274.15,-470.84 292.17,-464.18 307,-453 361.85,-411.67 381.36,-326.45 387.71,-286.11"/>
+<polygon fill="#000000" stroke="#000000" points="391.18,-286.61 389.14,-276.21 384.25,-285.61 391.18,-286.61"/>
+</g>
+<!-- proc~bgk_hybridrecursiveregularized_d3q19 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node4" class="node">
+<title>proc~bgk_hybridrecursiveregularized_d3q19</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node4"><a xlink:href="../proc/bgk_hybridrecursiveregularized_d3q19.html" xlink:title="bgk_HybridRecursiveRegularized_d3q19">
+<polygon fill="#d9534f" stroke="#d9534f" points="266.5,-444 40.5,-444 40.5,-420 266.5,-420 266.5,-444"/>
+<text text-anchor="middle" x="153.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_HybridRecursiveRegularized_d3q19</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_hybridrecursiveregularized_d3q19&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge3" class="edge">
+<title>proc~bgk_hybridrecursiveregularized_d3q19&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M266.8,-428.64C281.11,-424.81 294.94,-419.17 307,-411 351.29,-380.99 374.84,-319.19 384.73,-286.09"/>
+<polygon fill="#000000" stroke="#000000" points="388.11,-287 387.47,-276.42 381.38,-285.09 388.11,-287"/>
+</g>
+<!-- proc~bgk_hybridrecursiveregularized_d3q27 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node5" class="node">
+<title>proc~bgk_hybridrecursiveregularized_d3q27</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node5"><a xlink:href="../proc/bgk_hybridrecursiveregularized_d3q27.html" xlink:title="bgk_HybridRecursiveRegularized_d3q27">
+<polygon fill="#d9534f" stroke="#d9534f" points="266.5,-402 40.5,-402 40.5,-378 266.5,-378 266.5,-402"/>
+<text text-anchor="middle" x="153.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_HybridRecursiveRegularized_d3q27</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_hybridrecursiveregularized_d3q27&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge4" class="edge">
+<title>proc~bgk_hybridrecursiveregularized_d3q27&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M266.88,-384.56C280.95,-381.02 294.69,-376.01 307,-369 341.3,-349.46 366.79,-309.76 380.09,-285.17"/>
+<polygon fill="#000000" stroke="#000000" points="383.22,-286.74 384.74,-276.26 377.01,-283.5 383.22,-286.74"/>
+</g>
+<!-- proc~bgk_hybridrecursiveregularizedcorr_d3q19 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node6" class="node">
+<title>proc~bgk_hybridrecursiveregularizedcorr_d3q19</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node6"><a xlink:href="../proc/bgk_hybridrecursiveregularizedcorr_d3q19.html" xlink:title="bgk_HybridRecursiveRegularizedCorr_d3q19">
+<polygon fill="#d9534f" stroke="#d9534f" points="278.5,-360 28.5,-360 28.5,-336 278.5,-336 278.5,-360"/>
+<text text-anchor="middle" x="153.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_HybridRecursiveRegularizedCorr_d3q19</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_hybridrecursiveregularizedcorr_d3q19&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge5" class="edge">
+<title>proc~bgk_hybridrecursiveregularizedcorr_d3q19&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M278.7,-336.37C288.44,-333.81 297.98,-330.72 307,-327 331.58,-316.85 355.37,-297.69 371.22,-283.15"/>
+<polygon fill="#000000" stroke="#000000" points="373.89,-285.46 378.75,-276.05 369.08,-280.37 373.89,-285.46"/>
+</g>
+<!-- proc~bgk_hybridrecursiveregularizedcorr_d3q27 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node7" class="node">
+<title>proc~bgk_hybridrecursiveregularizedcorr_d3q27</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node7"><a xlink:href="../proc/bgk_hybridrecursiveregularizedcorr_d3q27.html" xlink:title="bgk_HybridRecursiveRegularizedCorr_d3q27">
+<polygon fill="#d9534f" stroke="#d9534f" points="278.5,-318 28.5,-318 28.5,-294 278.5,-294 278.5,-318"/>
+<text text-anchor="middle" x="153.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_HybridRecursiveRegularizedCorr_d3q27</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_hybridrecursiveregularizedcorr_d3q27&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge6" class="edge">
+<title>proc~bgk_hybridrecursiveregularizedcorr_d3q27&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M253.61,-293.96C271.44,-291.34 289.82,-288.33 307,-285 316.69,-283.12 326.93,-280.82 336.79,-278.43"/>
+<polygon fill="#000000" stroke="#000000" points="337.63,-281.82 346.5,-276.03 335.95,-275.03 337.63,-281.82"/>
+</g>
+<!-- proc~bgk_recursiveregularized_d3q19 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node8" class="node">
+<title>proc~bgk_recursiveregularized_d3q19</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node8"><a xlink:href="../proc/bgk_recursiveregularized_d3q19.html" xlink:title="bgk_RecursiveRegularized_d3q19">
+<polygon fill="#d9534f" stroke="#d9534f" points="249,-276 58,-276 58,-252 249,-252 249,-276"/>
+<text text-anchor="middle" x="153.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_RecursiveRegularized_d3q19</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_recursiveregularized_d3q19&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge7" class="edge">
+<title>proc~bgk_recursiveregularized_d3q19&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M249.13,-264C277.42,-264 307.58,-264 332.74,-264"/>
+<polygon fill="#000000" stroke="#000000" points="332.84,-267.5 342.84,-264 332.84,-260.5 332.84,-267.5"/>
+</g>
+<!-- proc~bgk_recursiveregularized_d3q27 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node9" class="node">
+<title>proc~bgk_recursiveregularized_d3q27</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node9"><a xlink:href="../proc/bgk_recursiveregularized_d3q27.html" xlink:title="bgk_RecursiveRegularized_d3q27">
+<polygon fill="#d9534f" stroke="#d9534f" points="249,-234 58,-234 58,-210 249,-210 249,-234"/>
+<text text-anchor="middle" x="153.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_RecursiveRegularized_d3q27</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_recursiveregularized_d3q27&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge8" class="edge">
+<title>proc~bgk_recursiveregularized_d3q27&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M249.13,-233.39C268.35,-236.16 288.37,-239.39 307,-243 316.69,-244.88 326.93,-247.18 336.79,-249.57"/>
+<polygon fill="#000000" stroke="#000000" points="335.95,-252.97 346.5,-251.97 337.63,-246.18 335.95,-252.97"/>
+</g>
+<!-- proc~bgk_regularized_d3q19 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node10" class="node">
+<title>proc~bgk_regularized_d3q19</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node10"><a xlink:href="../proc/bgk_regularized_d3q19.html" xlink:title="bgk_Regularized_d3q19">
+<polygon fill="#d9534f" stroke="#d9534f" points="223,-192 84,-192 84,-168 223,-168 223,-192"/>
+<text text-anchor="middle" x="153.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_Regularized_d3q19</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_regularized_d3q19&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge9" class="edge">
+<title>proc~bgk_regularized_d3q19&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M223.25,-182.04C250.17,-184.73 280.82,-190.19 307,-201 331.58,-211.15 355.37,-230.31 371.22,-244.85"/>
+<polygon fill="#000000" stroke="#000000" points="369.08,-247.63 378.75,-251.95 373.89,-242.54 369.08,-247.63"/>
+</g>
+<!-- proc~bgk_regularized_d3q27 -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node11" class="node">
+<title>proc~bgk_regularized_d3q27</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node11"><a xlink:href="../proc/bgk_regularized_d3q27.html" xlink:title="bgk_Regularized_d3q27">
+<polygon fill="#d9534f" stroke="#d9534f" points="223,-150 84,-150 84,-126 223,-126 223,-150"/>
+<text text-anchor="middle" x="153.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bgk_Regularized_d3q27</text>
+</a>
+</g>
+</g>
+<!-- proc~bgk_regularized_d3q27&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge10" class="edge">
+<title>proc~bgk_regularized_d3q27&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M223.33,-136.61C250.86,-138.74 281.92,-144.71 307,-159 341.3,-178.54 366.79,-218.24 380.09,-242.83"/>
+<polygon fill="#000000" stroke="#000000" points="377.01,-244.5 384.74,-251.74 383.22,-241.26 377.01,-244.5"/>
+</g>
+<!-- proc~deriveshearstress -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node12" class="node">
+<title>proc~deriveshearstress</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node12"><a xlink:href="../proc/deriveshearstress.html" xlink:title="deriveShearStress">
+<polygon fill="#d9534f" stroke="#d9534f" points="208,-108 99,-108 99,-84 208,-84 208,-108"/>
+<text text-anchor="middle" x="153.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">deriveShearStress</text>
+</a>
+</g>
+</g>
+<!-- proc~deriveshearstress&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge11" class="edge">
+<title>proc~deriveshearstress&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M208.06,-92.09C239.36,-92.4 278.24,-97.51 307,-117 351.29,-147.01 374.84,-208.81 384.73,-241.91"/>
+<polygon fill="#000000" stroke="#000000" points="381.38,-242.91 387.47,-251.58 388.11,-241 381.38,-242.91"/>
+</g>
+<!-- proc~mus_derivestrainrate -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node13" class="node">
+<title>proc~mus_derivestrainrate</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node13"><a xlink:href="../proc/mus_derivestrainrate.html" xlink:title="mus_deriveStrainRate">
+<polygon fill="#d9534f" stroke="#d9534f" points="218.5,-66 88.5,-66 88.5,-42 218.5,-42 218.5,-66"/>
+<text text-anchor="middle" x="153.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_deriveStrainRate</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_derivestrainrate&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge12" class="edge">
+<title>proc~mus_derivestrainrate&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M218.85,-49.22C248.32,-50.23 282.14,-56.26 307,-75 361.85,-116.33 381.36,-201.55 387.71,-241.89"/>
+<polygon fill="#000000" stroke="#000000" points="384.25,-242.39 389.14,-251.79 391.18,-241.39 384.25,-242.39"/>
+</g>
+<!-- proc~mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_node14" class="node">
+<title>proc~mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d</title>
+<g id="a_proc~~secondmom_3d~~CalledByGraph_node14"><a xlink:href="../proc/mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d.html" xlink:title="mus_turbVisc_Smagorinsky_fromPreColPDF_incomp_3D">
+<polygon fill="#d9534f" stroke="#d9534f" points="307,-24 0,-24 0,0 307,0 307,-24"/>
+<text text-anchor="middle" x="153.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turbVisc_Smagorinsky_fromPreColPDF_incomp_3D</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d&#45;&gt;proc~secondmom_3d -->
+<g id="proc~~secondmom_3d~~CalledByGraph_edge13" class="edge">
+<title>proc~mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d&#45;&gt;proc~secondmom_3d</title>
+<path fill="none" stroke="#000000" d="M293.76,-24.06C298.41,-26.67 302.85,-29.64 307,-33 372.52,-86.02 386.64,-194.87 389.68,-241.74"/>
+<polygon fill="#000000" stroke="#000000" points="386.18,-241.95 390.21,-251.75 393.17,-241.58 386.18,-241.95"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

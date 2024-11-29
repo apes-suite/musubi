@@ -153,7 +153,7 @@ contains
     type(flu_State) :: conf !< flu state
     !> parent handle if scheme table is defined
     integer, intent(in), optional :: parent
-    !> scaling: diffusive or acoustic?
+    !> scaling, diffusive or acoustic?
     character(len=*), intent(in) :: scaling
     ! --------------------------------------------------------------------------
     integer :: thandle !< handle for scheme identify table

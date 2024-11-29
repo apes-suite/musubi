@@ -193,7 +193,7 @@ module mus_turbulence_module
       & auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)
       import :: rk, mus_turbulence_config_type, mus_gradData_type, mus_Grad_type
 
-      !> output: turbulent viscosity
+      !> output is turbulent viscosity
       real(kind=rk), intent(out) :: turbVisc(:)
 
       !> turbulence config contains oefficients
@@ -231,7 +231,7 @@ module mus_turbulence_module
       & layout, dxL, dtL, viscKine)
       import :: rk, mus_turbulence_config_type, mus_scheme_layout_type
 
-      !> output: turbulent viscosity
+      !> output is turbulent viscosity
       real(kind=rk), intent(out) :: turbVisc(:)
 
       !> turbulence type is implicitly passed to access turbulence coefficients

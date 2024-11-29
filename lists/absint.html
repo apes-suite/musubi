@@ -77,6 +77,16 @@
 			 <tr><th>Abstract Interface</th><th>Location</th><th>Description</th></tr>
 			 </thead><tbody>
 			   <tr>
+                 <td><a href='../interface/boundaryroutine.html'>boundaryRoutine</a></td>
+                 <td><a href='../module/mus_bc_header_module.html'>mus_bc_header_module</a></td>
+                 <td><p>This abstract interface defines the interface for boundary routines. All
+boundary routines that need to be called via <a href="../type/boundary_type.html#variable-fnct">fnct</a>
+function pointer need to implement this interface.
+In case of new boundary routines, mark them with a comment reffering to
+<a href="../type/boundary_type.html#variable-fnct">fnct</a> in order to find the routine in case the interface
+needs to be changed.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../interface/computation.html'>computation</a></td>
                  <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
                  <td><p>Interface describes the main control routine which does computation
@@ -163,6 +173,29 @@ State should be AOS layout</p></td>
                  <td><p>function pointer to get pdf equilibrium from vel and density VECTORIZED</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../interface/getgradrhou3.html'>getGradRhoU3</a></td>
+                 <td><a href='../module/mus_graddata_module.html'>mus_gradData_module</a></td>
+                 <td><p>function pointers to obtain grad Rho * U^3 along main directions</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/getgradrhouvz.html'>getGradRhoUVZ</a></td>
+                 <td><a href='../module/mus_graddata_module.html'>mus_gradData_module</a></td>
+                 <td><p>function pointers to obtain grad Rho * u_x * u_y * u_z
+along main directions</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/getgradu.html'>getGradU</a></td>
+                 <td><a href='../module/mus_graddata_module.html'>mus_gradData_module</a></td>
+                 <td><p>function pointers to obtain full gradient of U along all
+directions</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/getgradxxu.html'>getGradXXU</a></td>
+                 <td><a href='../module/mus_graddata_module.html'>mus_gradData_module</a></td>
+                 <td><p>function pointers to obtain full gradient of U along main
+directions derived two times d^2U/dx^2</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../interface/intproutine.html'>intpRoutine</a></td>
                  <td><a href='../module/mus_interpolate_header_module.html'>mus_interpolate_header_module</a></td>
                  <td><p>This is the interface for all interpolation methods that</p></td>
@@ -178,6 +211,12 @@ State should be AOS layout</p></td>
                  <td><p>The common subroutine interface for compute kernels. All kernels have to
 implement this interface in order to be callable via
 mus_scheme_type%compute function pointer.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/mus_derive_frompdf.html'>mus_derive_fromPDF</a></td>
+                 <td><a href='../module/mus_varsys_module.html'>mus_varSys_module</a></td>
+                 <td><p>This interface describes the arguments to be used for routines that do
+the derivation of variables from the variable system.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/mus_iterative_method_interface.html'>mus_iterative_method_interface</a></td>
@@ -200,6 +239,13 @@ i.e. velocity of original PDF is obtained by solving
 linear equation system  in compute kernel</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../interface/mus_proc_calcbndforce.html'>mus_proc_calcBndForce</a></td>
+                 <td><a href='../module/mus_bc_header_module.html'>mus_bc_header_module</a></td>
+                 <td><p>This abstract interface defines the interface for bndForce calculation.
+<a href="../type/boundary_type.html#variable-calcbndforce">calcBndForce</a> in order to find the routine in case the
+interface needs to be changed.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../interface/mus_proc_calcfricvel.html'>mus_proc_calcFricVel</a></td>
                  <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
                  <td><p>This abstract interface defines the interface to calculate turbulent wall
@@ -214,6 +260,11 @@ velocity component from friction velocity and distance to boundary.
 All inputs and output are in lattice units.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../interface/mus_proc_mrt.html'>mus_proc_mrt</a></td>
+                 <td><a href='../module/mus_mrtrelaxation_module.html'>mus_mrtRelaxation_module</a></td>
+                 <td><p>function pointers to obtain relaxation matrix for MRT collision operator</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../interface/proc_addsrctoauxfield.html'>proc_addSrcToAuxField</a></td>
                  <td><a href='../module/mus_source_type_module.html'>mus_source_type_module</a></td>
                  <td><p>Interface to add source to auxField vars in source_op_type for
@@ -224,6 +275,11 @@ Halo elements are exchanged</p></td>
                  <td><a href='../interface/proc_apply_source.html'>proc_apply_source</a></td>
                  <td><a href='../module/mus_source_type_module.html'>mus_source_type_module</a></td>
                  <td><p>Abstract interface to update state with source terms</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/proc_calc_nnwtn_visc_fromprecolpdf.html'>proc_calc_nNwtn_visc_fromPreColPDF</a></td>
+                 <td><a href='../module/mus_nonnewtonian_module.html'>mus_nonNewtonian_module</a></td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/proc_calc_turb_visc_fromgradu.html'>proc_calc_turb_visc_fromGradU</a></td>
@@ -256,13 +312,13 @@ auxField and apply_source uses same source value in one multilevel cycle.</p></t
             <p>
               Musubi
  was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>9a0b7091c793</small></p>
+<br /><small>03d36e6f940c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-18T12:05:37.773838+0000             </p>
+ on 2024-11-29T18:19:33.949870+0000             </p>
           </div>
         </div>
         <br>

@@ -98,7 +98,7 @@ module mus_param_module
     character(len=labelLen) :: scaling
     !> Temporal scaling factor for the scaling. Acoustic = 2, Diffusive = 4
     integer :: scaleFactor
-    !> Nesting: 2: acoustic, 4: diffusive
+    !> Nesting is 2: acoustic, 4: diffusive
     !! To calculate turbulent viscosity, velocity on buffer ghost elements
     !! should be valid to nesting is set to same as scaling Factor
     integer :: nNesting = 2

@@ -82,7 +82,7 @@ contains
 
     !> yPlus
     real(kind=rk), intent(in) :: yPlus
-    !> output: uPlus
+    !> output is uPlus
     real(kind=rk) :: uPlus
     ! ------------------------------------------------------------------------------
     ! calculated with sympy
@@ -110,7 +110,7 @@ contains
     real(kind=rk), intent(in) :: uTau
     !> dynamic viscosity
     real(kind=rk), intent(in) :: nu
-    !> output: derivative of uPlus with respect to uTau
+    !> output is derivative of uPlus with respect to uTau
     real(kind=rk) :: d_uPlus_d_uTau
     ! ------------------------------------------------------------------------------
 

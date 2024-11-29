@@ -1,0 +1,815 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_IBM_buildSendRecv_Xk &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_IBM_buildSendRecv_Xk
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.3% of total for procedures.">111 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_IBM_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_ibm_module.f90.html'>mus_IBM_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_ibm_module.html'>mus_IBM_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_IBM_buildSendRecv_Xk</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  subroutine mus_IBM_buildSendRecv_Xk(me, IBMData, levelDesc, commPattern, globTree, iLevel, params)  
+</h2>
+    
+
+    <p>This subroutine builds the communication types for the lagrangian elements
+Xk.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~201"></span>
+              type(<a href='../type/mus_ibm_type.html'>mus_IBM_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+                <p>datatype to store the surface information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ibmdata~9"></span>
+              type(<a href='../type/mus_ibm_tmpdata_type.html'>mus_IBM_tmpData_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>IBMData</strong></td>
+            <td>
+                <p>tmp IBMData type to be filled</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~121"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong></td>
+            <td>
+                <p>the level descriptor incl. the global send and receive buffers</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-commpattern~5"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_commpattern_type.html'>tem_commPattern_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>commPattern</strong></td>
+            <td>
+                <p>communication pattern to be used</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-globtree~6"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>globTree</strong></td>
+            <td>
+                <p>global tree information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~345"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+                <p>current level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~83"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+                <p>global parameters</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_ibm_buildsendrecv_xk~~CallsGraph Pages: 1 -->
+<svg id="procmus_ibm_buildsendrecv_xkCallsGraph" width="488pt" height="499pt"
+ viewBox="0.00 0.00 488.00 499.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 495)">
+<title>proc~~mus_ibm_buildsendrecv_xk~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-495 484,-495 484,4 -4,4"/>
+<!-- proc~mus_ibm_buildsendrecv_xk -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node1" class="node">
+<title>proc~mus_ibm_buildsendrecv_xk</title>
+<polygon fill="none" stroke="black" points="163,-220 0,-220 0,-196 163,-196 163,-220"/>
+<text text-anchor="middle" x="81.5" y="-205.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_IBM_buildSendRecv_Xk</text>
+</g>
+<!-- append -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node2" class="node">
+<title>append</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/interface/append~29.html" xlink:title="append">
+<polygon fill="#a7506f" stroke="#a7506f" points="454,-491 400,-491 400,-467 454,-467 454,-491"/>
+<text text-anchor="middle" x="427" y="-476.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">append</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;append -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge1" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;append</title>
+<path fill="none" stroke="#000000" d="M86.66,-220.19C98.66,-253.55 136.51,-347.28 199,-398 256.06,-444.31 341.66,-465.2 389.79,-473.75"/>
+<polygon fill="#000000" stroke="#000000" points="389.31,-477.22 399.75,-475.44 390.48,-470.32 389.31,-477.22"/>
+</g>
+<!-- buf_int -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node3" class="node">
+<title>buf_int</title>
+<polygon fill="#777777" stroke="#777777" points="454,-449 400,-449 400,-425 454,-425 454,-449"/>
+<text text-anchor="middle" x="427" y="-434.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">buf_int</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;buf_int -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge2" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;buf_int</title>
+<path fill="none" stroke="#000000" d="M89.26,-220.36C104.97,-247.99 146.59,-315.25 199,-353 258.56,-395.9 342.53,-419.37 389.87,-429.94"/>
+<polygon fill="#000000" stroke="#000000" points="389.16,-433.37 399.67,-432.07 390.64,-426.53 389.16,-433.37"/>
+</g>
+<!-- elempos -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node4" class="node">
+<title>elempos</title>
+<polygon fill="#777777" stroke="#777777" points="456,-407 398,-407 398,-383 456,-383 456,-407"/>
+<text text-anchor="middle" x="427" y="-392.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">elempos</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;elempos -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge3" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;elempos</title>
+<path fill="none" stroke="#000000" d="M93.65,-220.13C113.22,-240.83 155.79,-283.2 199,-309 260.86,-345.93 341.33,-371.89 387.97,-385.06"/>
+<polygon fill="#000000" stroke="#000000" points="387.1,-388.45 397.67,-387.75 388.97,-381.7 387.1,-388.45"/>
+</g>
+<!-- nelems -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node5" class="node">
+<title>nelems</title>
+<polygon fill="#777777" stroke="#777777" points="454,-365 400,-365 400,-341 454,-341 454,-365"/>
+<text text-anchor="middle" x="427" y="-350.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nelems</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;nelems -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge4" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;nelems</title>
+<path fill="none" stroke="#000000" d="M103.57,-220.08C126.6,-233.03 164.79,-253.79 199,-269 265.04,-298.36 344.8,-326.19 390.04,-341.29"/>
+<polygon fill="#000000" stroke="#000000" points="389.1,-344.66 399.69,-344.49 391.31,-338.02 389.1,-344.66"/>
+</g>
+<!-- nelemsproc -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node6" class="node">
+<title>nelemsproc</title>
+<polygon fill="#777777" stroke="#777777" points="464.5,-155 389.5,-155 389.5,-131 464.5,-131 464.5,-155"/>
+<text text-anchor="middle" x="427" y="-140.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nelemsproc</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;nelemsproc -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge5" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;nelemsproc</title>
+<path fill="none" stroke="#000000" d="M163.28,-208.85C214.4,-207.35 281.29,-201.57 338,-184 355.48,-178.58 357.48,-171.89 374,-164 377.56,-162.3 381.29,-160.62 385.05,-158.98"/>
+<polygon fill="#000000" stroke="#000000" points="386.53,-162.16 394.38,-155.04 383.81,-155.71 386.53,-162.16"/>
+</g>
+<!-- proc -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node7" class="node">
+<title>proc</title>
+<polygon fill="#777777" stroke="#777777" points="454,-113 400,-113 400,-89 454,-89 454,-113"/>
+<text text-anchor="middle" x="427" y="-98.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">proc</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;proc -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge6" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;proc</title>
+<path fill="none" stroke="#000000" d="M142.46,-195.98C206.46,-182.7 303.35,-161.18 338,-146 355.61,-138.28 357,-130.98 374,-122 379.24,-119.23 384.93,-116.59 390.55,-114.18"/>
+<polygon fill="#000000" stroke="#000000" points="391.96,-117.39 399.87,-110.35 389.29,-110.91 391.96,-117.39"/>
+</g>
+<!-- proc~mus_ibm_commnewpos -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node8" class="node">
+<title>proc~mus_ibm_commnewpos</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node8"><a xlink:href="../proc/mus_ibm_commnewpos.html" xlink:title="mus_IBM_commNewPos">
+<polygon fill="#d9534f" stroke="#d9534f" points="338,-260 199,-260 199,-236 338,-236 338,-260"/>
+<text text-anchor="middle" x="268.5" y="-245.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_IBM_commNewPos</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;proc~mus_ibm_commnewpos -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge7" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;proc~mus_ibm_commnewpos</title>
+<path fill="none" stroke="#000000" d="M138.01,-220C158.04,-224.33 180.84,-229.26 201.67,-233.77"/>
+<polygon fill="#000000" stroke="#000000" points="201.2,-237.25 211.71,-235.94 202.68,-230.4 201.2,-237.25"/>
+</g>
+<!-- ptrs -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node9" class="node">
+<title>ptrs</title>
+<polygon fill="#777777" stroke="#777777" points="454,-71 400,-71 400,-47 454,-47 454,-71"/>
+<text text-anchor="middle" x="427" y="-56.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">ptrs</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;ptrs -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge8" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;ptrs</title>
+<path fill="none" stroke="#000000" d="M102.06,-195.85C124.7,-182.2 163.44,-160.12 199,-146 258.52,-122.37 280.73,-136.66 338,-108 356.13,-98.93 356.43,-90.11 374,-80 379.19,-77.01 384.89,-74.25 390.55,-71.77"/>
+<polygon fill="#000000" stroke="#000000" points="392.04,-74.94 399.95,-67.89 389.37,-68.47 392.04,-74.94"/>
+</g>
+<!-- tem_startTimer -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node10" class="node">
+<title>tem_startTimer</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node10"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_starttimer.html" xlink:title="tem_startTimer">
+<polygon fill="#d9534f" stroke="#d9534f" points="315.5,-66 221.5,-66 221.5,-42 315.5,-42 315.5,-66"/>
+<text text-anchor="middle" x="268.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_startTimer</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;tem_startTimer -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge9" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;tem_startTimer</title>
+<path fill="none" stroke="#000000" d="M90.68,-195.66C107.89,-170.56 150.31,-113.14 199,-80 204.51,-76.25 210.64,-72.94 216.89,-70.06"/>
+<polygon fill="#000000" stroke="#000000" points="218.27,-73.28 226.1,-66.13 215.53,-66.84 218.27,-73.28"/>
+</g>
+<!-- tem_stopTimer -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node11" class="node">
+<title>tem_stopTimer</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node11"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_stoptimer.html" xlink:title="tem_stopTimer">
+<polygon fill="#d9534f" stroke="#d9534f" points="314.5,-24 222.5,-24 222.5,0 314.5,0 314.5,-24"/>
+<text text-anchor="middle" x="268.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_stopTimer</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;tem_stopTimer -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge10" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;tem_stopTimer</title>
+<path fill="none" stroke="#000000" d="M87.2,-195.72C100.01,-163.87 138.71,-77.93 199,-33 203.19,-29.87 207.86,-27.21 212.72,-24.94"/>
+<polygon fill="#000000" stroke="#000000" points="214.33,-28.06 222.26,-21.04 211.68,-21.58 214.33,-28.06"/>
+</g>
+<!-- val -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node12" class="node">
+<title>val</title>
+<polygon fill="#777777" stroke="#777777" points="454,-29 400,-29 400,-5 454,-5 454,-29"/>
+<text text-anchor="middle" x="427" y="-14.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">val</text>
+</g>
+<!-- proc~mus_ibm_buildsendrecv_xk&#45;&gt;val -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge11" class="edge">
+<title>proc~mus_ibm_buildsendrecv_xk&#45;&gt;val</title>
+<path fill="none" stroke="#000000" d="M93.04,-195.74C112,-174.48 154.11,-130.87 199,-108 255.58,-79.18 282.78,-106.33 338,-75 357.96,-63.68 354.95,-50.79 374,-38 379.02,-34.63 384.67,-31.65 390.34,-29.09"/>
+<polygon fill="#000000" stroke="#000000" points="391.92,-32.22 399.81,-25.15 389.23,-25.76 391.92,-32.22"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;append -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge12" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;append</title>
+<path fill="none" stroke="#000000" d="M272.27,-260.03C280.98,-295.32 311.07,-399.79 374,-458 378.74,-462.38 384.51,-465.9 390.46,-468.71"/>
+<polygon fill="#000000" stroke="#000000" points="389.25,-472 399.83,-472.57 391.92,-465.53 389.25,-472"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;buf_int -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge13" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;buf_int</title>
+<path fill="none" stroke="#000000" d="M274.04,-260.4C285.85,-291 320.36,-370.91 374,-416 378.89,-420.11 384.69,-423.5 390.61,-426.25"/>
+<polygon fill="#000000" stroke="#000000" points="389.33,-429.51 399.91,-430.09 392,-423.04 389.33,-429.51"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;elempos -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge15" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;elempos</title>
+<path fill="none" stroke="#000000" d="M276.62,-260.1C291.66,-284.73 329.03,-341.13 374,-374 378.47,-377.27 383.52,-380.12 388.67,-382.58"/>
+<polygon fill="#000000" stroke="#000000" points="387.39,-385.84 397.96,-386.59 390.16,-379.41 387.39,-385.84"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;nelems -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge18" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;nelems</title>
+<path fill="none" stroke="#000000" d="M288.76,-260.19C302.86,-269.42 322.21,-282.74 338,-296 355.33,-310.55 355.13,-319.51 374,-332 379.05,-335.34 384.71,-338.29 390.38,-340.86"/>
+<polygon fill="#000000" stroke="#000000" points="389.28,-344.19 399.85,-344.79 391.96,-337.72 389.28,-344.19"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;nelemsproc -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge19" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;nelemsproc</title>
+<path fill="none" stroke="#000000" d="M314.19,-235.89C322.66,-232.3 331.03,-227.74 338,-222 361.42,-202.71 350.79,-183.54 374,-164 375.99,-162.33 378.13,-160.77 380.36,-159.34"/>
+<polygon fill="#000000" stroke="#000000" points="382.32,-162.25 389.36,-154.33 378.92,-156.13 382.32,-162.25"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;proc -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge20" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;proc</title>
+<path fill="none" stroke="#000000" d="M284.89,-235.89C299.64,-223.78 321.98,-204.11 338,-184 357.85,-159.08 349.92,-142.87 374,-122 378.83,-117.81 384.6,-114.39 390.51,-111.62"/>
+<polygon fill="#000000" stroke="#000000" points="391.89,-114.84 399.8,-107.79 389.22,-108.37 391.89,-114.84"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;ptrs -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge21" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;ptrs</title>
+<path fill="none" stroke="#000000" d="M278.09,-235.99C291.45,-217.16 317.75,-179.37 338,-146 355.33,-117.43 349.05,-102.22 374,-80 378.82,-75.71 384.63,-72.23 390.59,-69.43"/>
+<polygon fill="#000000" stroke="#000000" points="392.05,-72.62 399.97,-65.58 389.39,-66.14 392.05,-72.62"/>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;val -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge23" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;val</title>
+<path fill="none" stroke="#000000" d="M275.45,-235.74C297.01,-191.4 369.93,-41.77 374,-38 378.74,-33.62 384.51,-30.1 390.46,-27.29"/>
+<polygon fill="#000000" stroke="#000000" points="391.92,-30.47 399.83,-23.43 389.25,-24 391.92,-30.47"/>
+</g>
+<!-- buf_real -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node13" class="node">
+<title>buf_real</title>
+<polygon fill="#777777" stroke="#777777" points="454.5,-323 399.5,-323 399.5,-299 454.5,-299 454.5,-323"/>
+<text text-anchor="middle" x="427" y="-308.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">buf_real</text>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;buf_real -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge14" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;buf_real</title>
+<path fill="none" stroke="#000000" d="M299.67,-260.15C325.38,-270.5 362.4,-285.4 389.72,-296.4"/>
+<polygon fill="#000000" stroke="#000000" points="388.72,-299.77 399.31,-300.25 391.34,-293.27 388.72,-299.77"/>
+</g>
+<!-- empty -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node14" class="node">
+<title>empty</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node14"><a xlink:href="https://apes-suite.github.io/treelm/interface/empty~18.html" xlink:title="empty">
+<polygon fill="#a7506f" stroke="#a7506f" points="454,-281 400,-281 400,-257 454,-257 454,-281"/>
+<text text-anchor="middle" x="427" y="-266.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">empty</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;empty -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge16" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;empty</title>
+<path fill="none" stroke="#000000" d="M338.14,-257.21C355.89,-259.59 374.31,-262.06 389.67,-264.13"/>
+<polygon fill="#000000" stroke="#000000" points="389.4,-267.62 399.77,-265.48 390.33,-260.68 389.4,-267.62"/>
+</g>
+<!-- init -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node15" class="node">
+<title>init</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node15"><a xlink:href="https://apes-suite.github.io/treelm/interface/init~29.html" xlink:title="init">
+<polygon fill="#a7506f" stroke="#a7506f" points="454,-239 400,-239 400,-215 454,-215 454,-239"/>
+<text text-anchor="middle" x="427" y="-224.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">init</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;init -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge17" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;init</title>
+<path fill="none" stroke="#000000" d="M338.14,-238.79C355.89,-236.41 374.31,-233.94 389.67,-231.87"/>
+<polygon fill="#000000" stroke="#000000" points="390.33,-235.32 399.77,-230.52 389.4,-228.38 390.33,-235.32"/>
+</g>
+<!-- tem_init_surfData -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node16" class="node">
+<title>tem_init_surfData</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_node16"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_init_surfdata.html" xlink:title="tem_init_surfData">
+<polygon fill="#d9534f" stroke="#d9534f" points="480,-197 374,-197 374,-173 480,-173 480,-197"/>
+<text text-anchor="middle" x="427" y="-182.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_init_surfData</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibm_commnewpos&#45;&gt;tem_init_surfData -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CallsGraph_edge22" class="edge">
+<title>proc~mus_ibm_commnewpos&#45;&gt;tem_init_surfData</title>
+<path fill="none" stroke="#000000" d="M302.4,-235.94C313.73,-231.67 326.47,-226.75 338,-222 354.19,-215.34 357.88,-212.83 374,-206 377.93,-204.33 382.05,-202.62 386.16,-200.93"/>
+<polygon fill="#000000" stroke="#000000" points="387.75,-204.06 395.68,-197.04 385.1,-197.58 387.75,-204.06"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph Pages: 1 -->
+<svg id="procmus_ibm_buildsendrecv_xkCalledByGraph" width="467pt" height="32pt"
+ viewBox="0.00 0.00 467.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 463,-28 463,4 -4,4"/>
+<!-- proc~mus_ibm_buildsendrecv_xk -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_node1" class="node">
+<title>proc~mus_ibm_buildsendrecv_xk</title>
+<polygon fill="none" stroke="black" points="459,-24 296,-24 296,0 459,0 459,-24"/>
+<text text-anchor="middle" x="377.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_IBM_buildSendRecv_Xk</text>
+</g>
+<!-- proc~mus_buildbuffibm -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_node2" class="node">
+<title>proc~mus_buildbuffibm</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_node2"><a xlink:href="../proc/mus_buildbuffibm.html" xlink:title="mus_buildBuffIBM">
+<polygon fill="#d9534f" stroke="#d9534f" points="260,-24 152,-24 152,0 260,0 260,-24"/>
+<text text-anchor="middle" x="206" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_buildBuffIBM</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_buildbuffibm&#45;&gt;proc~mus_ibm_buildsendrecv_xk -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_edge1" class="edge">
+<title>proc~mus_buildbuffibm&#45;&gt;proc~mus_ibm_buildsendrecv_xk</title>
+<path fill="none" stroke="#000000" d="M260.17,-12C268.33,-12 276.95,-12 285.66,-12"/>
+<polygon fill="#000000" stroke="#000000" points="285.9,-15.5 295.9,-12 285.9,-8.5 285.9,-15.5"/>
+</g>
+<!-- proc~do_fast_singlelevel -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_node3" class="node">
+<title>proc~do_fast_singlelevel</title>
+<g id="a_proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_node3"><a xlink:href="../proc/do_fast_singlelevel.html" xlink:title="do_fast_singleLevel">
+<polygon fill="#d9534f" stroke="#d9534f" points="116,-24 0,-24 0,0 116,0 116,-24"/>
+<text text-anchor="middle" x="58" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">do_fast_singleLevel</text>
+</a>
+</g>
+</g>
+<!-- proc~do_fast_singlelevel&#45;&gt;proc~mus_buildbuffibm -->
+<g id="proc~~mus_ibm_buildsendrecv_xk~~CalledByGraph_edge2" class="edge">
+<title>proc~do_fast_singlelevel&#45;&gt;proc~mus_buildbuffibm</title>
+<path fill="none" stroke="#000000" d="M116.28,-12C124.58,-12 133.15,-12 141.56,-12"/>
+<polygon fill="#000000" stroke="#000000" points="141.69,-15.5 151.69,-12 141.69,-8.5 141.69,-15.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

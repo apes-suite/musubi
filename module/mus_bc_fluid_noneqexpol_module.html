@@ -1,0 +1,1736 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_bc_fluid_nonEqExpol_module &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_bc_fluid_nonEqExpol_module
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Kannan Masilamani</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.4% of total for modules and submodules.">173 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_bc_fluid_nonEqExpol_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_bc_fluid_noneqexpol_module.f90.html'>mus_bc_fluid_nonEqExpol_module.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_bc_fluid_nonEqExpol_module</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_bc_fluid_noneqexpol_module.html#proc-velocity_noneqexpol">velocity_nonEqExpol</a>
+            <a class="list-group-item" href="../module/mus_bc_fluid_noneqexpol_module.html#proc-velocity_noneqexpol_curved">velocity_nonEqExpol_curved</a>
+            <a class="list-group-item" href="../module/mus_bc_fluid_noneqexpol_module.html#proc-pressure_noneqexpol">pressure_nonEqExpol</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>Non-equilibrium extrapolatioon boundary condition treatment routines for
+fluid simulation. The boundary condition for straight boundary with qVal=0
+is based on: Guo, Z., &amp; Shi, B. (2002). "Non-equilibrium extrapolation method
+for velocity and pressure boundary conditions in the lattice Boltzmann
+method." Chinese Physics.
+The boundary condition for curved boundary is based on
+Guo, Z., Shi, B., &amp; Zheng, C. (2002). An extrapolation method for boundary
+conditions in lattice Boltzmann method. Physics of Fluids, 14(May), 10–14.</p>
+<p>Details on implementation can be found in <a href="../https:/apes-suite.github.io/treelm/module/tem_bc_module.html">tem_bc_module</a></p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='mus_field_prop_module.html'>mus_field_prop_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_varsys_module.html'>tem_varSys_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_construction_module.html'>tem_construction_module</a></li>
+                  <li class="list-inline-item"><a href='mus_bc_header_module.html'>mus_bc_header_module</a></li>
+                  <li class="list-inline-item"><a href='mus_mixture_module.html'>mus_mixture_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_time_module.html'>tem_time_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/treelmesh_module.html'>treelmesh_module</a></li>
+                  <li class="list-inline-item"><a href='mus_physics_module.html'>mus_physics_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
+                  <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_bc_fluid_noneqexpol_module~~UsesGraph Pages: 1 -->
+<svg id="modulemus_bc_fluid_noneqexpol_moduleUsesGraph" width="406pt" height="494pt"
+ viewBox="0.00 0.00 406.00 494.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 490)">
+<title>module~~mus_bc_fluid_noneqexpol_module~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-490 402,-490 402,4 -4,4"/>
+<!-- module~mus_bc_fluid_noneqexpol_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node1" class="node">
+<title>module~mus_bc_fluid_noneqexpol_module</title>
+<polygon fill="none" stroke="black" points="398,-255 202,-255 202,-231 398,-231 398,-255"/>
+<text text-anchor="middle" x="300" y="-240.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_bc_fluid_nonEqExpol_module</text>
+</g>
+<!-- env_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node2" class="node">
+<title>env_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="122,-486 44,-486 44,-462 122,-462 122,-486"/>
+<text text-anchor="middle" x="83" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;env_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge1" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M294.94,-255.22C282.25,-291.52 239.66,-399.47 166,-453 156.06,-460.22 143.87,-464.97 131.96,-468.08"/>
+<polygon fill="#000000" stroke="#000000" points="131.05,-464.7 122.07,-470.33 132.6,-471.53 131.05,-464.7"/>
+</g>
+<!-- module~mus_bc_header_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node3" class="node">
+<title>module~mus_bc_header_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node3"><a xlink:href="../module/mus_bc_header_module.html" xlink:title="mus_bc_header_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="154,-444 12,-444 12,-420 154,-420 154,-444"/>
+<text text-anchor="middle" x="83" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_header_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_bc_header_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge2" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_bc_header_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M292.88,-255.4C276.77,-286.72 229.96,-369.47 166,-411 163.37,-412.71 160.62,-414.27 157.77,-415.71"/>
+<polygon fill="#000000" stroke="#000000" points="156.11,-412.62 148.41,-419.89 158.97,-419.01 156.11,-412.62"/>
+</g>
+<!-- module~mus_dervarpos_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node4" class="node">
+<title>module~mus_dervarpos_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node4"><a xlink:href="../module/mus_dervarpos_module.html" xlink:title="mus_derVarPos_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="152.5,-402 13.5,-402 13.5,-378 152.5,-378 152.5,-402"/>
+<text text-anchor="middle" x="83" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derVarPos_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_dervarpos_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge3" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_dervarpos_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.8,-255.17C270.04,-280.42 220.85,-338.71 166,-369 162.48,-370.94 158.78,-372.71 154.97,-374.32"/>
+<polygon fill="#000000" stroke="#000000" points="153.44,-371.16 145.34,-377.99 155.93,-377.7 153.44,-371.16"/>
+</g>
+<!-- module~mus_field_prop_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node5" class="node">
+<title>module~mus_field_prop_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node5"><a xlink:href="../module/mus_field_prop_module.html" xlink:title="mus_field_prop_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="152.5,-360 13.5,-360 13.5,-336 152.5,-336 152.5,-360"/>
+<text text-anchor="middle" x="83" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_prop_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_field_prop_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge4" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_field_prop_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M283.53,-255.07C259.61,-273.17 211.64,-307.32 166,-327 161.02,-329.15 155.78,-331.11 150.45,-332.9"/>
+<polygon fill="#000000" stroke="#000000" points="149.29,-329.59 140.8,-335.93 151.39,-336.27 149.29,-329.59"/>
+</g>
+<!-- module~mus_mixture_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node6" class="node">
+<title>module~mus_mixture_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node6"><a xlink:href="../module/mus_mixture_module.html" xlink:title="mus_mixture_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="146.5,-318 19.5,-318 19.5,-294 146.5,-294 146.5,-318"/>
+<text text-anchor="middle" x="83" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mixture_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_mixture_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge5" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_mixture_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M262.75,-255.04C236.1,-263.75 198.94,-275.59 166,-285 158.55,-287.13 150.69,-289.27 142.9,-291.33"/>
+<polygon fill="#000000" stroke="#000000" points="141.91,-287.98 133.12,-293.89 143.68,-294.75 141.91,-287.98"/>
+</g>
+<!-- module~mus_physics_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node7" class="node">
+<title>module~mus_physics_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node7"><a xlink:href="../module/mus_physics_module.html" xlink:title="mus_physics_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="145.5,-276 20.5,-276 20.5,-252 145.5,-252 145.5,-276"/>
+<text text-anchor="middle" x="83" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_physics_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge6" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_physics_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M201.88,-252.49C186.33,-254.01 170.48,-255.55 155.66,-257"/>
+<polygon fill="#000000" stroke="#000000" points="155.2,-253.53 145.59,-257.98 155.88,-260.5 155.2,-253.53"/>
+</g>
+<!-- module~mus_scheme_layout_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node8" class="node">
+<title>module~mus_scheme_layout_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node8"><a xlink:href="../module/mus_scheme_layout_module.html" xlink:title="mus_scheme_layout_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="166,-234 0,-234 0,-210 166,-210 166,-234"/>
+<text text-anchor="middle" x="83" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_layout_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_scheme_layout_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge7" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;module~mus_scheme_layout_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M201.88,-233.51C193.41,-232.69 184.86,-231.85 176.44,-231.03"/>
+<polygon fill="#000000" stroke="#000000" points="176.53,-227.52 166.23,-230.03 175.85,-234.49 176.53,-227.52"/>
+</g>
+<!-- tem_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node9" class="node">
+<title>tem_construction_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node9"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_construction_module.html" xlink:title="tem_construction_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="158.5,-192 7.5,-192 7.5,-168 158.5,-168 158.5,-192"/>
+<text text-anchor="middle" x="83" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_construction_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge8" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_construction_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M262.75,-230.96C236.1,-222.25 198.94,-210.41 166,-201 158.55,-198.87 150.69,-196.73 142.9,-194.67"/>
+<polygon fill="#000000" stroke="#000000" points="143.68,-191.25 133.12,-192.11 141.91,-198.02 143.68,-191.25"/>
+</g>
+<!-- tem_param_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node10" class="node">
+<title>tem_param_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node10"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_param_module.html" xlink:title="tem_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143,-150 23,-150 23,-126 143,-126 143,-150"/>
+<text text-anchor="middle" x="83" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge9" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M283.53,-230.93C259.61,-212.83 211.64,-178.68 166,-159 161.02,-156.85 155.78,-154.89 150.45,-153.1"/>
+<polygon fill="#000000" stroke="#000000" points="151.39,-149.73 140.8,-150.07 149.29,-156.41 151.39,-149.73"/>
+</g>
+<!-- tem_time_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node11" class="node">
+<title>tem_time_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node11"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_time_module.html" xlink:title="tem_time_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="137.5,-108 28.5,-108 28.5,-84 137.5,-84 137.5,-108"/>
+<text text-anchor="middle" x="83" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_time_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_time_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge10" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_time_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M289.8,-230.83C270.04,-205.58 220.85,-147.29 166,-117 160.12,-113.75 153.73,-111 147.2,-108.66"/>
+<polygon fill="#000000" stroke="#000000" points="148.16,-105.29 137.56,-105.53 145.99,-111.95 148.16,-105.29"/>
+</g>
+<!-- tem_varSys_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node12" class="node">
+<title>tem_varSys_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node12"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_varsys_module.html" xlink:title="tem_varSys_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143,-66 23,-66 23,-42 143,-42 143,-66"/>
+<text text-anchor="middle" x="83" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_varSys_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_varSys_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge11" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;tem_varSys_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M292.88,-230.6C276.77,-199.28 229.96,-116.53 166,-75 161.9,-72.34 157.49,-70.01 152.9,-67.98"/>
+<polygon fill="#000000" stroke="#000000" points="153.89,-64.61 143.31,-64.22 151.34,-71.13 153.89,-64.61"/>
+</g>
+<!-- treelmesh_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node13" class="node">
+<title>treelmesh_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_node13"><a xlink:href="https://apes-suite.github.io/treelm/module/treelmesh_module.html" xlink:title="treelmesh_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="139,-24 27,-24 27,0 139,0 139,-24"/>
+<text text-anchor="middle" x="83" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">treelmesh_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_noneqexpol_module&#45;&gt;treelmesh_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsesGraph_edge12" class="edge">
+<title>module~mus_bc_fluid_noneqexpol_module&#45;&gt;treelmesh_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M294.94,-230.78C282.25,-194.48 239.66,-86.53 166,-33 160.77,-29.2 154.92,-26.09 148.82,-23.54"/>
+<polygon fill="#000000" stroke="#000000" points="149.66,-20.12 139.07,-19.97 147.26,-26.69 149.66,-20.12"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph Pages: 1 -->
+<svg id="modulemus_bc_fluid_noneqexpol_moduleUsedByGraph" width="641pt" height="100pt"
+ viewBox="0.00 0.00 641.00 99.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph" class="graph" transform="scale(0.54 0.54) rotate(0) translate(4 182.43)">
+<title>module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-182.43 1194,-182.43 1194,4 -4,4"/>
+<!-- module~mus_bc_fluid_noneqexpol_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node1" class="node">
+<title>module~mus_bc_fluid_noneqexpol_module</title>
+<polygon fill="none" stroke="black" points="196,-129.78 0,-129.78 0,-105.78 196,-105.78 196,-129.78"/>
+<text text-anchor="middle" x="98" y="-115.38" font-family="Helvetica,sans-Serif" font-size="10.50">mus_bc_fluid_nonEqExpol_module</text>
+</g>
+<!-- module~mus_bc_general_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node2" class="node">
+<title>module~mus_bc_general_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node2"><a xlink:href="../module/mus_bc_general_module.html" xlink:title="mus_bc_general_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="377,-129.78 232,-129.78 232,-105.78 377,-105.78 377,-129.78"/>
+<text text-anchor="middle" x="304.5" y="-115.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_general_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_general_module&#45;&gt;module~mus_bc_fluid_noneqexpol_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge1" class="edge">
+<title>module~mus_bc_general_module&#45;&gt;module~mus_bc_fluid_noneqexpol_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M231.98,-117.78C223.61,-117.78 214.95,-117.78 206.24,-117.78"/>
+<polygon fill="#000000" stroke="#000000" points="206.01,-114.28 196.01,-117.78 206.01,-121.28 206.01,-114.28"/>
+</g>
+<!-- module~mus_control_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node3" class="node">
+<title>module~mus_control_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node3"><a xlink:href="../module/mus_control_module.html" xlink:title="mus_control_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="706.5,-170.78 583.5,-170.78 583.5,-146.78 706.5,-146.78 706.5,-170.78"/>
+<text text-anchor="middle" x="645" y="-156.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_bc_general_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge2" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_bc_general_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M583.49,-155.31C536.77,-152.2 470.6,-146.88 413,-138.78 399.36,-136.86 384.84,-134.35 371.02,-131.73"/>
+<polygon fill="#000000" stroke="#000000" points="371.59,-128.28 361.1,-129.81 370.26,-135.15 371.59,-128.28"/>
+</g>
+<!-- module~mus_debug_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node4" class="node">
+<title>module~mus_debug_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node4"><a xlink:href="../module/mus_debug_module.html" xlink:title="mus_debug_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="533,-129.78 413,-129.78 413,-105.78 533,-105.78 533,-129.78"/>
+<text text-anchor="middle" x="473" y="-115.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_debug_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_debug_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge9" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_debug_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M593.91,-146.7C575.06,-142.15 553.44,-136.94 533.79,-132.2"/>
+<polygon fill="#000000" stroke="#000000" points="534.56,-128.79 524.02,-129.84 532.92,-135.59 534.56,-128.79"/>
+</g>
+<!-- module~mus_debug_module&#45;&gt;module~mus_bc_general_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge3" class="edge">
+<title>module~mus_debug_module&#45;&gt;module~mus_bc_general_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M412.83,-117.78C404.5,-117.78 395.82,-117.78 387.16,-117.78"/>
+<polygon fill="#000000" stroke="#000000" points="387.02,-114.28 377.02,-117.78 387.02,-121.28 387.02,-114.28"/>
+</g>
+<!-- module~mus_dynloadbal_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node5" class="node">
+<title>module~mus_dynloadbal_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node5"><a xlink:href="../module/mus_dynloadbal_module.html" xlink:title="mus_dynLoadBal_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="919,-46.78 770,-46.78 770,-22.78 919,-22.78 919,-46.78"/>
+<text text-anchor="middle" x="844.5" y="-32.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_dynloadbal_module&#45;&gt;module~mus_bc_general_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge4" class="edge">
+<title>module~mus_dynloadbal_module&#45;&gt;module~mus_bc_general_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M769.83,-33.03C732.68,-32.6 686.92,-32.73 646,-34.78"/>
+</g>
+<!-- module~mus_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node7" class="node">
+<title>module~mus_construction_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node7"><a xlink:href="../module/mus_construction_module.html" xlink:title="mus_construction_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="721,-128.78 569,-128.78 569,-104.78 721,-104.78 721,-128.78"/>
+<text text-anchor="middle" x="645" y="-114.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_construction_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_dynloadbal_module&#45;&gt;module~mus_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge12" class="edge">
+<title>module~mus_dynloadbal_module&#45;&gt;module~mus_construction_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M784.69,-46.83C775.3,-49.39 765.79,-52.37 757,-55.78 727.05,-67.41 695.12,-85.64 673.24,-99.14"/>
+<polygon fill="#000000" stroke="#000000" points="671.13,-96.33 664.51,-104.61 674.84,-102.27 671.13,-96.33"/>
+</g>
+<!-- module~mus_program_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node6" class="node">
+<title>module~mus_program_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node6"><a xlink:href="../module/mus_program_module.html" xlink:title="mus_program_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1100,-107.78 968,-107.78 968,-83.78 1100,-83.78 1100,-107.78"/>
+<text text-anchor="middle" x="1034" y="-93.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_program_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_bc_general_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge5" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_bc_general_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1023.09,-83.58C1006.59,-64.35 971.38,-27.75 932,-13.78 858.7,12.23 834.44,-6.52 757,-13.78 707.01,-18.47 696.15,-32.27 646,-34.78"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M644,-34.78C533.5,-38.51 408.29,-79.2 345.66,-102.19"/>
+<polygon fill="#000000" stroke="#000000" points="344.32,-98.96 336.16,-105.72 346.75,-105.52 344.32,-98.96"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge6" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M843.5,-158.78C801.75,-163.31 754.74,-163.5 717.06,-162.48"/>
+<polygon fill="#000000" stroke="#000000" points="716.79,-158.97 706.69,-162.16 716.58,-165.96 716.79,-158.97"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_dynloadbal_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge10" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_dynloadbal_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1005.51,-83.69C985.41,-75.15 957.34,-63.83 932,-55.78 924.93,-53.54 917.48,-51.39 910.03,-49.4"/>
+<polygon fill="#000000" stroke="#000000" points="910.83,-45.99 900.27,-46.86 909.06,-52.76 910.83,-45.99"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge14" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_construction_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1009.02,-107.81C988.88,-117.53 959.11,-130.99 932,-139.78 894.56,-151.92 884.63,-154.54 845.5,-158.78"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M843.5,-158.78C829.75,-160.27 757.89,-143.96 704.79,-131.23"/>
+<polygon fill="#000000" stroke="#000000" points="705.32,-127.76 694.78,-128.82 703.68,-134.56 705.32,-127.76"/>
+</g>
+<!-- module~mus_construction_module&#45;&gt;module~mus_debug_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge8" class="edge">
+<title>module~mus_construction_module&#45;&gt;module~mus_debug_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M568.94,-117.22C560.4,-117.27 551.73,-117.32 543.27,-117.37"/>
+<polygon fill="#000000" stroke="#000000" points="543.07,-113.87 533.09,-117.43 543.11,-120.87 543.07,-113.87"/>
+</g>
+<!-- program~musubi -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node8" class="node">
+<title>program~musubi</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node8"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1190,-127.78 1136,-127.78 1136,-103.78 1190,-103.78 1190,-127.78"/>
+<text text-anchor="middle" x="1163" y="-113.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge7" class="edge">
+<title>program~musubi&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1135.83,-124.48C1093.55,-138.04 1007.34,-163.58 932,-172.78 854.8,-182.2 834.62,-177.66 757,-172.78 743.95,-171.96 730.08,-170.6 716.73,-169.05"/>
+<polygon fill="#000000" stroke="#000000" points="717,-165.55 706.65,-167.83 716.15,-172.5 717,-165.55"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_program_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge11" class="edge">
+<title>program~musubi&#45;&gt;module~mus_program_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1135.99,-111.68C1128.27,-110.47 1119.38,-109.07 1110.16,-107.62"/>
+<polygon fill="#000000" stroke="#000000" points="1110.48,-104.12 1100.06,-106.03 1109.4,-111.04 1110.48,-104.12"/>
+</g>
+<!-- module~mus_hvs_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node9" class="node">
+<title>module~mus_hvs_construction_module</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node9"><a xlink:href="../module/mus_hvs_construction_module.html" xlink:title="mus_hvs_construction_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="932,-130.78 757,-130.78 757,-106.78 932,-106.78 932,-130.78"/>
+<text text-anchor="middle" x="844.5" y="-116.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_construction_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_hvs_construction_module&#45;&gt;module~mus_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge13" class="edge">
+<title>module~mus_hvs_construction_module&#45;&gt;module~mus_construction_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M756.87,-117.9C748.4,-117.82 739.81,-117.73 731.34,-117.64"/>
+<polygon fill="#000000" stroke="#000000" points="731.14,-114.14 721.11,-117.54 731.07,-121.14 731.14,-114.14"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node10" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_node10"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="893,-88.78 796,-88.78 796,-64.78 893,-64.78 893,-88.78"/>
+<text text-anchor="middle" x="844.5" y="-74.38" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;module~mus_construction_module -->
+<g id="module~~mus_bc_fluid_noneqexpol_module~~UsedByGraph_edge15" class="edge">
+<title>program~mus_harvesting&#45;&gt;module~mus_construction_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M795.94,-86.41C771.85,-91.29 742.15,-97.31 715.55,-102.69"/>
+<polygon fill="#000000" stroke="#000000" points="714.63,-99.31 705.53,-104.72 716.02,-106.17 714.63,-99.31"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_bc_fluid_noneqexpol_moduleUsedByGraph = svgPanZoom('#modulemus_bc_fluid_noneqexpol_moduleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-velocity_noneqexpol"></span> <h3>public  subroutine <a href='../proc/velocity_noneqexpol.html'>velocity_nonEqExpol</a>(me, state, bcBuffer, globBC, levelDesc, tree, nSize, iLevel, sim_time, neigh, layout, fieldProp, varPos, nScalars, varSys, derVarPos, physics, iField, mixture)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Element-wise Dirichlet velocity non-equilibrium boundary condition for
+ straight boundary to update all directions.
+ For straight wall, values are extrapolated along
+ boundary normal instead of along the link and qVal =0.0 for straight wall.</p><a href="../proc/velocity_noneqexpol.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~103"></span>
+              class(<a href='../type/boundary_type.html'>boundary_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~66"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>Current state vector of iLevel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bcbuffer~51"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bcBuffer</strong>(:)</td>
+            <td>
+<p>state values of boundary elements of all fields of iLevel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-globbc~61"></span>
+              type(<a href='../type/glob_boundary_type.html'>glob_boundary_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>globBC</strong></td>
+            <td>
+<p>scheme global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~68"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong></td>
+            <td>
+<p>iLevel descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tree~74"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tree</strong></td>
+            <td>
+<p>Treelm Mesh</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~68"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>size of state array ( in terms of elements )</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~120"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+<p>the level On which this boundary was invoked</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sim_time~48"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sim_time</strong></td>
+            <td>
+<p>global time information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~97"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>connectivity array corresponding to state vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~121"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>stencil layout information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fieldprop~83"></span>
+              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fieldProp</strong></td>
+            <td>
+<p>fluid parameters and properties</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varpos~71"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varPos</strong>(:)</td>
+            <td>
+<p>pointer to field variable in the state vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~94"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of Scalars in the scheme var system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~133"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+<p>scheme variable system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~97"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong></td>
+            <td>
+<p>position of derived quantities in varsys</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-physics~63"></span>
+              type(<a href='../type/mus_physics_type.html'>mus_physics_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>physics</strong></td>
+            <td>
+<p>scheme global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ifield~83"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iField</strong></td>
+            <td>
+<p>current field</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mixture~49"></span>
+              type(<a href='../type/mus_mixture_type.html'>mus_mixture_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mixture</strong></td>
+            <td>
+<p>mixture info</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-velocity_noneqexpol_curved"></span> <h3>public  subroutine <a href='../proc/velocity_noneqexpol_curved.html'>velocity_nonEqExpol_curved</a>(me, state, bcBuffer, globBC, levelDesc, tree, nSize, iLevel, sim_time, neigh, layout, fieldProp, varPos, nScalars, varSys, derVarPos, physics, iField, mixture)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Linkwise Dirichlet velocity non-equilibrium boundary condition for
+ curved using the subroutine "mus_set_nonEqExpol".
+ For curved wall, values are extrapolated along
+ element normal</p><a href="../proc/velocity_noneqexpol_curved.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~104"></span>
+              class(<a href='../type/boundary_type.html'>boundary_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~67"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>Current state vector of iLevel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bcbuffer~52"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bcBuffer</strong>(:)</td>
+            <td>
+<p>state values of boundary elements of all fields of iLevel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-globbc~62"></span>
+              type(<a href='../type/glob_boundary_type.html'>glob_boundary_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>globBC</strong></td>
+            <td>
+<p>scheme global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~69"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong></td>
+            <td>
+<p>iLevel descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tree~75"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tree</strong></td>
+            <td>
+<p>Treelm Mesh</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~69"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>size of state array ( in terms of elements )</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~121"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+<p>the level On which this boundary was invoked</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sim_time~49"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sim_time</strong></td>
+            <td>
+<p>global time information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~98"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>connectivity array corresponding to state vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~122"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>stencil layout information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fieldprop~84"></span>
+              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fieldProp</strong></td>
+            <td>
+<p>fluid parameters and properties</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varpos~72"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varPos</strong>(:)</td>
+            <td>
+<p>pointer to field variable in the state vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~95"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of Scalars in the scheme var system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~134"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+<p>scheme variable system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~98"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong></td>
+            <td>
+<p>position of derived quantities in varsys</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-physics~64"></span>
+              type(<a href='../type/mus_physics_type.html'>mus_physics_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>physics</strong></td>
+            <td>
+<p>scheme global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ifield~84"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iField</strong></td>
+            <td>
+<p>current field</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mixture~50"></span>
+              type(<a href='../type/mus_mixture_type.html'>mus_mixture_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mixture</strong></td>
+            <td>
+<p>mixture info</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-pressure_noneqexpol"></span> <h3>public  subroutine <a href='../proc/pressure_noneqexpol.html'>pressure_nonEqExpol</a>(me, state, bcBuffer, globBC, levelDesc, tree, nSize, iLevel, sim_time, neigh, layout, fieldProp, varPos, nScalars, varSys, derVarPos, physics, iField, mixture)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Element-wise Dirichlet pressure non-equilibrium boundary condition for
+ straight boundary and updates all directions.
+ For straight wall, values are extrapolated along
+ boundary normal instead of along the link and qVal=0.</p><a href="../proc/pressure_noneqexpol.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~105"></span>
+              class(<a href='../type/boundary_type.html'>boundary_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~68"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>Current state vector of iLevel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bcbuffer~53"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bcBuffer</strong>(:)</td>
+            <td>
+<p>state values of boundary elements of all fields of iLevel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-globbc~63"></span>
+              type(<a href='../type/glob_boundary_type.html'>glob_boundary_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>globBC</strong></td>
+            <td>
+<p>scheme global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~70"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong></td>
+            <td>
+<p>iLevel descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tree~76"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tree</strong></td>
+            <td>
+<p>Treelm Mesh</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~70"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>size of state array ( in terms of elements )</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~122"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+<p>the level On which this boundary was invoked</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sim_time~50"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sim_time</strong></td>
+            <td>
+<p>global time information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~99"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>connectivity array corresponding to state vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~123"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>stencil layout information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fieldprop~85"></span>
+              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fieldProp</strong></td>
+            <td>
+<p>fluid parameters and properties</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varpos~73"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varPos</strong>(:)</td>
+            <td>
+<p>pointer to field variable in the state vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~96"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of Scalars in the scheme var system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~135"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+<p>scheme variable system</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~99"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong></td>
+            <td>
+<p>position of derived quantities in varsys</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-physics~65"></span>
+              type(<a href='../type/mus_physics_type.html'>mus_physics_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>physics</strong></td>
+            <td>
+<p>scheme global boundary type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ifield~85"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iField</strong></td>
+            <td>
+<p>current field</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mixture~51"></span>
+              type(<a href='../type/mus_mixture_type.html'>mus_mixture_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mixture</strong></td>
+            <td>
+<p>mixture info</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

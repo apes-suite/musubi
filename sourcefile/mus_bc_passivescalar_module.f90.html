@@ -1,0 +1,1379 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_bc_passiveScalar_module.f90 &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_bc_passiveScalar_module.f90
+      <small>Source File</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.3% of total for source files.">125 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_bc_passiveScalar_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+            <li class="breadcrumb-item active" aria-current="page">mus_bc_passiveScalar_module.f90</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#mods-0"
+         aria-expanded="false" aria-controls="mods-0">
+         <h4 class="card-header bg-primary text-white">Modules</h4>
+      </a>
+      <div id="mods-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_bc_passivescalar_module.html">mus_bc_passiveScalar_module</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../sourcefile/mus_bc_passivescalar_module.f90.html#src">mus_bc_passiveScalar_module.f90</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    <div class="col-md-9" id='text'>
+      
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">This file depends on</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_bc_passivescalar_modulef90EfferentGraph" width="641pt" height="322pt"
+ viewBox="0.00 0.00 641.00 322.19" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph" class="graph" transform="scale(0.53 0.53) rotate(0) translate(4 599.67)">
+<title>sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-599.67 1197,-599.67 1197,4 -4,4"/>
+<!-- sourcefile~mus_bc_passivescalar_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node1" class="node">
+<title>sourcefile~mus_bc_passivescalar_module.f90</title>
+<polygon fill="none" stroke="black" points="1193,-129.67 995,-129.67 995,-105.67 1193,-105.67 1193,-129.67"/>
+<text text-anchor="middle" x="1094" y="-115.27" font-family="Helvetica,sans-Serif" font-size="10.50">mus_bc_passiveScalar_module.f90</text>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node2" class="node">
+<title>sourcefile~mus_bc_header_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/mus_bc_header_module.f90.html" xlink:title="mus_bc_header_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="959,-149.67 796,-149.67 796,-125.67 959,-125.67 959,-149.67"/>
+<text text-anchor="middle" x="877.5" y="-135.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_header_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_bc_header_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_bc_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M994.85,-126.82C986.38,-127.61 977.84,-128.4 969.43,-129.19"/>
+<polygon fill="#000000" stroke="#000000" points="968.88,-125.72 959.25,-130.14 969.53,-132.69 968.88,-125.72"/>
+</g>
+<!-- sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node3" class="node">
+<title>sourcefile~mus_dervarpos_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/mus_dervarpos_module.f90.html" xlink:title="mus_derVarPos_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="750.5,-593.67 590.5,-593.67 590.5,-569.67 750.5,-569.67 750.5,-593.67"/>
+<text text-anchor="middle" x="670.5" y="-579.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derVarPos_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M876.5,-541.67C842.79,-564.61 799.14,-575.11 760.79,-579.68"/>
+<polygon fill="#000000" stroke="#000000" points="760.21,-576.22 750.64,-580.77 760.96,-583.18 760.21,-576.22"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node4" class="node">
+<title>sourcefile~mus_field_prop_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/mus_field_prop_module.f90.html" xlink:title="mus_field_prop_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="750,-149.67 591,-149.67 591,-125.67 750,-125.67 750,-149.67"/>
+<text text-anchor="middle" x="670.5" y="-135.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_prop_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M876.5,-97.67C823.97,-100.34 765.16,-112.83 724.05,-123.15"/>
+<polygon fill="#000000" stroke="#000000" points="723.08,-119.78 714.25,-125.65 724.81,-126.56 723.08,-119.78"/>
+</g>
+<!-- sourcefile~mus_mixture_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~mus_mixture_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/mus_mixture_module.f90.html" xlink:title="mus_mixture_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="744,-191.67 597,-191.67 597,-167.67 744,-167.67 744,-191.67"/>
+<text text-anchor="middle" x="670.5" y="-177.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mixture_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M876.5,-97.67C839.79,-99.54 827.4,-97.55 796,-116.67 775,-129.45 780.99,-145.87 760,-158.67 757.01,-160.49 753.88,-162.15 750.64,-163.67"/>
+<polygon fill="#000000" stroke="#000000" points="749.18,-160.49 741.31,-167.59 751.88,-166.95 749.18,-160.49"/>
+</g>
+<!-- sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node6" class="node">
+<title>sourcefile~mus_param_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node6"><a xlink:href="../sourcefile/mus_param_module.f90.html" xlink:title="mus_param_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="948.5,-69.67 806.5,-69.67 806.5,-45.67 948.5,-45.67 948.5,-69.67"/>
+<text text-anchor="middle" x="877.5" y="-55.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_param_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge5" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_param_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1049.85,-105.6C1015.74,-96.06 967.98,-82.69 931.54,-72.5"/>
+<polygon fill="#000000" stroke="#000000" points="932.15,-69.04 921.58,-69.72 930.27,-75.78 932.15,-69.04"/>
+</g>
+<!-- sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node7" class="node">
+<title>sourcefile~mus_physics_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node7"><a xlink:href="../sourcefile/mus_physics_module.f90.html" xlink:title="mus_physics_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="212.5,-45.67 67.5,-45.67 67.5,-21.67 212.5,-21.67 212.5,-45.67"/>
+<text text-anchor="middle" x="140" y="-31.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1020.14,-105.64C978.68,-100.11 925.75,-95.26 878.5,-97.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M876.5,-97.67C785.51,-102.3 761.43,-112.26 671.5,-97.67"/>
+</g>
+<!-- sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node8" class="node">
+<title>sourcefile~mus_scheme_layout_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node8"><a xlink:href="../sourcefile/mus_scheme_layout_module.f90.html" xlink:title="mus_scheme_layout_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="524,-555.67 337,-555.67 337,-531.67 524,-531.67 524,-555.67"/>
+<text text-anchor="middle" x="430.5" y="-541.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_layout_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~mus_bc_passivescalar_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1091.14,-129.83C1081.58,-187.74 1032.29,-437.01 878.5,-541.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M876.5,-541.67C848.99,-560.39 656.97,-554.82 534.32,-549.17"/>
+<polygon fill="#000000" stroke="#000000" points="534.3,-545.67 524.14,-548.69 533.97,-552.66 534.3,-545.67"/>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_dervarpos_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M875.57,-149.74C871.19,-199.68 848.94,-393.37 760,-517.67 745.87,-537.41 723.74,-553.42 705.14,-564.48"/>
+<polygon fill="#000000" stroke="#000000" points="703.28,-561.51 696.34,-569.51 706.76,-567.59 703.28,-561.51"/>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_field_prop_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M795.77,-137.67C784.16,-137.67 772.16,-137.67 760.4,-137.67"/>
+<polygon fill="#000000" stroke="#000000" points="760.14,-134.17 750.14,-137.67 760.14,-141.17 760.14,-134.17"/>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_mixture_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M817.76,-149.7C793.52,-154.67 765.27,-160.45 740.1,-165.61"/>
+<polygon fill="#000000" stroke="#000000" points="739.35,-162.19 730.25,-167.63 740.75,-169.05 739.35,-162.19"/>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge12" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M820.11,-125.66C779.03,-117.16 721.97,-105.86 671.5,-97.67"/>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M669.5,-503.67C657.68,-511.24 593.03,-521.84 534.09,-530.23"/>
+<polygon fill="#000000" stroke="#000000" points="533.34,-526.8 523.93,-531.66 534.32,-533.73 533.34,-526.8"/>
+</g>
+<!-- sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node13" class="node">
+<title>sourcefile~mus_pdf_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node13"><a xlink:href="../sourcefile/mus_pdf_module.f90.html" xlink:title="mus_pdf_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="202,-446.67 78,-446.67 78,-422.67 202,-422.67 202,-446.67"/>
+<text text-anchor="middle" x="140" y="-432.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_pdf_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge11" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M873.98,-149.98C862.32,-203.36 808.27,-416.08 671.5,-503.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M669.5,-503.67C603.25,-546.09 393.59,-497.67 316,-484.67 270.33,-477.02 219.61,-461.74 184.58,-450.08"/>
+<polygon fill="#000000" stroke="#000000" points="185.28,-446.62 174.68,-446.74 183.04,-453.25 185.28,-446.62"/>
+</g>
+<!-- sourcefile~mus_turb_wallfunc_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node18" class="node">
+<title>sourcefile~mus_turb_wallfunc_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node18"><a xlink:href="../sourcefile/mus_turb_wallfunc_module.f90.html" xlink:title="mus_turb_wallFunc_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="760,-391.67 581,-391.67 581,-367.67 760,-367.67 760,-391.67"/>
+<text text-anchor="middle" x="670.5" y="-377.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turb_wallFunc_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_turb_wallfunc_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge14" class="edge">
+<title>sourcefile~mus_bc_header_module.f90&#45;&gt;sourcefile~mus_turb_wallfunc_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M866.33,-149.67C833.41,-188.53 729.46,-311.24 688.41,-359.7"/>
+<polygon fill="#000000" stroke="#000000" points="685.52,-357.7 681.73,-367.59 690.86,-362.22 685.52,-357.7"/>
+</g>
+<!-- sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge16" class="edge">
+<title>sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_layout_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M594.2,-569.64C569.55,-565.71 542,-561.31 516.68,-557.27"/>
+<polygon fill="#000000" stroke="#000000" points="517.15,-553.8 506.72,-555.68 516.05,-560.71 517.15,-553.8"/>
+</g>
+<!-- sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node15" class="node">
+<title>sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node15"><a xlink:href="../sourcefile/mus_scheme_derived_quantities_type_module.f90.html" xlink:title="mus_scheme_derived_quantities_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="280,-595.67 0,-595.67 0,-571.67 280,-571.67 280,-595.67"/>
+<text text-anchor="middle" x="140" y="-581.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_derived_quantities_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_dervarpos_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M590.38,-581.97C511.32,-582.26 387.85,-582.73 290.31,-583.1"/>
+<polygon fill="#000000" stroke="#000000" points="290.05,-579.6 280.06,-583.14 290.07,-586.6 290.05,-579.6"/>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge18" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M590.88,-146.05C544.06,-148.98 483.77,-149.11 431.5,-137.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M429.5,-137.67C379.54,-126.73 357.86,-148.06 316,-118.67 289.29,-99.91 306.86,-73.21 280,-54.67 263.33,-43.16 242.87,-36.91 222.81,-33.71"/>
+<polygon fill="#000000" stroke="#000000" points="223.09,-30.22 212.71,-32.34 222.15,-37.15 223.09,-30.22"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node11" class="node">
+<title>sourcefile~mus_fluid_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node11"><a xlink:href="../sourcefile/mus_fluid_module.f90.html" xlink:title="mus_fluid_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="495.5,-189.67 365.5,-189.67 365.5,-165.67 495.5,-165.67 495.5,-189.67"/>
+<text text-anchor="middle" x="430.5" y="-175.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_fluid_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_fluid_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge17" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_fluid_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M598.09,-149.67C568.94,-154.57 535.23,-160.23 505.79,-165.18"/>
+<polygon fill="#000000" stroke="#000000" points="504.85,-161.79 495.57,-166.9 506.01,-168.69 504.85,-161.79"/>
+</g>
+<!-- sourcefile~mus_poisson_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node14" class="node">
+<title>sourcefile~mus_poisson_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node14"><a xlink:href="../sourcefile/mus_poisson_module.f90.html" xlink:title="mus_poisson_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="504,-109.67 357,-109.67 357,-85.67 504,-85.67 504,-109.67"/>
+<text text-anchor="middle" x="430.5" y="-95.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_poisson_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_poisson_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge19" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_poisson_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M598.09,-125.66C571.39,-121.18 540.85,-116.04 513.28,-111.41"/>
+<polygon fill="#000000" stroke="#000000" points="513.71,-107.93 503.27,-109.73 512.55,-114.84 513.71,-107.93"/>
+</g>
+<!-- sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node16" class="node">
+<title>sourcefile~mus_scheme_header_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node16"><a xlink:href="../sourcefile/mus_scheme_header_module.f90.html" xlink:title="mus_scheme_header_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="236,-339.67 44,-339.67 44,-315.67 236,-315.67 236,-339.67"/>
+<text text-anchor="middle" x="140" y="-325.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_header_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge20" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M600.24,-149.72C593.51,-152.17 586.98,-155.12 581,-158.67 560.43,-170.87 565.98,-187.17 545,-198.67 454.52,-248.24 399.36,-175.87 316,-236.67 287.73,-257.28 308.41,-286.26 280,-306.67 269.83,-313.97 258.16,-319.19 245.99,-322.87"/>
+<polygon fill="#000000" stroke="#000000" points="244.91,-319.53 236.15,-325.49 246.71,-326.3 244.91,-319.53"/>
+</g>
+<!-- sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node17" class="node">
+<title>sourcefile~mus_species_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node17"><a xlink:href="../sourcefile/mus_species_module.f90.html" xlink:title="mus_species_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="503.5,-67.67 357.5,-67.67 357.5,-43.67 503.5,-43.67 503.5,-67.67"/>
+<text text-anchor="middle" x="430.5" y="-53.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_species_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_species_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge21" class="edge">
+<title>sourcefile~mus_field_prop_module.f90&#45;&gt;sourcefile~mus_species_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M613.03,-125.54C602,-121.95 590.82,-117.4 581,-111.67 561.73,-100.41 564.82,-86.91 545,-76.67 535.26,-71.63 524.49,-67.78 513.58,-64.86"/>
+<polygon fill="#000000" stroke="#000000" points="514.1,-61.38 503.55,-62.41 512.44,-68.18 514.1,-61.38"/>
+</g>
+<!-- sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge23" class="edge">
+<title>sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M605.56,-167.64C586.12,-164.04 564.7,-160.13 545,-156.67 494.63,-147.8 481.46,-148.6 431.5,-137.67"/>
+</g>
+<!-- sourcefile~mus_enrtl_dummy.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node10" class="node">
+<title>sourcefile~mus_enrtl_dummy.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node10"><a xlink:href="../sourcefile/mus_enrtl_dummy.f90.html" xlink:title="mus_eNRTL_dummy.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="500,-269.67 361,-269.67 361,-245.67 500,-245.67 500,-269.67"/>
+<text text-anchor="middle" x="430.5" y="-255.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_eNRTL_dummy.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_enrtl_dummy.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge22" class="edge">
+<title>sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_enrtl_dummy.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M644.23,-191.72C619.41,-203.2 580.24,-220.36 545,-231.67 531.39,-236.03 516.65,-239.97 502.43,-243.38"/>
+<polygon fill="#000000" stroke="#000000" points="501.63,-239.97 492.69,-245.66 503.22,-246.79 501.63,-239.97"/>
+</g>
+<!-- sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge24" class="edge">
+<title>sourcefile~mus_mixture_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M658.59,-191.98C638.54,-213.69 593.4,-258.42 545,-278.67 492.78,-300.52 347.63,-314.21 246.36,-321.4"/>
+<polygon fill="#000000" stroke="#000000" points="245.82,-317.93 236.09,-322.12 246.31,-324.91 245.82,-317.93"/>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge26" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M833.38,-69.77C782.8,-83.31 701.99,-102.73 671.5,-97.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M669.5,-97.67C629.81,-91.07 615.33,-99.63 581,-78.67 559.44,-65.5 567.82,-45.51 545,-34.67 431.25,19.41 278.3,-1.88 197.11,-19.42"/>
+<polygon fill="#000000" stroke="#000000" points="196.1,-16.06 187.1,-21.64 197.62,-22.89 196.1,-16.06"/>
+</g>
+<!-- sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node9" class="node">
+<title>sourcefile~mus_abortcriteria_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node9"><a xlink:href="../sourcefile/mus_abortcriteria_module.f90.html" xlink:title="mus_abortCriteria_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="758,-69.67 583,-69.67 583,-45.67 758,-45.67 758,-69.67"/>
+<text text-anchor="middle" x="670.5" y="-55.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_abortCriteria_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge25" class="edge">
+<title>sourcefile~mus_param_module.f90&#45;&gt;sourcefile~mus_abortcriteria_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M806.24,-57.67C794.07,-57.67 781.24,-57.67 768.51,-57.67"/>
+<polygon fill="#000000" stroke="#000000" points="768.35,-54.17 758.35,-57.67 768.34,-61.17 768.35,-54.17"/>
+</g>
+<!-- sourcefile~mus_moments_type_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node12" class="node">
+<title>sourcefile~mus_moments_type_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node12"><a xlink:href="../sourcefile/mus_moments_type_module.f90.html" xlink:title="mus_moments_type_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="232.5,-553.67 47.5,-553.67 47.5,-529.67 232.5,-529.67 232.5,-553.67"/>
+<text text-anchor="middle" x="140" y="-539.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_moments_type_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_moments_type_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge27" class="edge">
+<title>sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_moments_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M336.63,-543.02C306.73,-542.82 273.45,-542.58 242.94,-542.37"/>
+<polygon fill="#000000" stroke="#000000" points="242.73,-538.87 232.71,-542.3 242.69,-545.87 242.73,-538.87"/>
+</g>
+<!-- sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge28" class="edge">
+<title>sourcefile~mus_scheme_layout_module.f90&#45;&gt;sourcefile~mus_scheme_derived_quantities_type_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M342.94,-555.67C309.86,-560.25 271.93,-565.51 237.94,-570.23"/>
+<polygon fill="#000000" stroke="#000000" points="237.42,-566.76 228,-571.6 238.38,-573.7 237.42,-566.76"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge33" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.47,-174.19C347.76,-170.44 329.67,-163.67 316,-151.67 281.44,-121.33 315.68,-83.68 280,-54.67 263.89,-41.57 243.14,-34.85 222.6,-31.73"/>
+<polygon fill="#000000" stroke="#000000" points="222.92,-28.24 212.56,-30.47 222.05,-35.19 222.92,-28.24"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge32" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_pdf_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M389.54,-189.71C365.17,-198.94 335.13,-214.01 316,-236.67 282.27,-276.62 312.22,-307.48 280,-348.67 254.65,-381.07 213.42,-404.36 182.44,-418.46"/>
+<polygon fill="#000000" stroke="#000000" points="180.92,-415.31 173.18,-422.54 183.74,-421.71 180.92,-415.31"/>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge35" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_scheme_header_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.32,-180.98C347.61,-184.72 329.56,-191.54 316,-203.67 279.86,-236 317.33,-275.71 280,-306.67 270.14,-314.84 258.48,-320.55 246.18,-324.45"/>
+<polygon fill="#000000" stroke="#000000" points="244.9,-321.17 236.2,-327.21 246.77,-327.92 244.9,-321.17"/>
+</g>
+<!-- sourcefile~mus_cumulantinit_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node19" class="node">
+<title>sourcefile~mus_cumulantinit_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node19"><a xlink:href="../sourcefile/mus_cumulantinit_module.f90.html" xlink:title="mus_cumulantInit_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="226.5,-87.67 53.5,-87.67 53.5,-63.67 226.5,-63.67 226.5,-87.67"/>
+<text text-anchor="middle" x="140" y="-73.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_cumulantInit_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_cumulantinit_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge29" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_cumulantinit_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.29,-171.77C348.17,-167.94 330.43,-161.72 316,-151.67 292.02,-134.97 304.59,-112.45 280,-96.67 267.03,-88.34 251.99,-82.84 236.71,-79.29"/>
+<polygon fill="#000000" stroke="#000000" points="237.14,-75.8 226.64,-77.22 235.73,-82.66 237.14,-75.8"/>
+</g>
+<!-- sourcefile~mus_mrtrelaxation_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node20" class="node">
+<title>sourcefile~mus_mrtrelaxation_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node20"><a xlink:href="../sourcefile/mus_mrtrelaxation_module.f90.html" xlink:title="mus_mrtRelaxation_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="230.5,-297.67 49.5,-297.67 49.5,-273.67 230.5,-273.67 230.5,-297.67"/>
+<text text-anchor="middle" x="140" y="-283.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mrtRelaxation_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_mrtrelaxation_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge30" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_mrtrelaxation_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.27,-183.06C348.06,-186.88 330.28,-193.22 316,-203.67 290.59,-222.25 306.09,-247.05 280,-264.67 268.17,-272.65 254.48,-278.09 240.41,-281.72"/>
+<polygon fill="#000000" stroke="#000000" points="239.6,-278.31 230.63,-283.95 241.16,-285.14 239.6,-278.31"/>
+</g>
+<!-- sourcefile~mus_nonnewtonian_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node21" class="node">
+<title>sourcefile~mus_nonnewtonian_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node21"><a xlink:href="../sourcefile/mus_nonnewtonian_module.f90.html" xlink:title="mus_nonNewtonian_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="231.5,-255.67 48.5,-255.67 48.5,-231.67 231.5,-231.67 231.5,-255.67"/>
+<text text-anchor="middle" x="140" y="-241.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_nonNewtonian_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_nonnewtonian_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge31" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_nonnewtonian_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.31,-189.31C348.98,-193.1 331.64,-197.86 316,-203.67 299.04,-209.96 297.19,-217.01 280,-222.67 267.81,-226.68 254.76,-229.93 241.72,-232.56"/>
+<polygon fill="#000000" stroke="#000000" points="240.93,-229.14 231.76,-234.45 242.24,-236.02 240.93,-229.14"/>
+</g>
+<!-- sourcefile~mus_relaxationparam_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node22" class="node">
+<title>sourcefile~mus_relaxationparam_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node22"><a xlink:href="../sourcefile/mus_relaxationparam_module.f90.html" xlink:title="mus_relaxationParam_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="237,-213.67 43,-213.67 43,-189.67 237,-189.67 237,-213.67"/>
+<text text-anchor="middle" x="140" y="-199.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_relaxationParam_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_relaxationparam_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge34" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_relaxationparam_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.47,-182.99C330.73,-185.88 286.89,-189.53 247.19,-192.83"/>
+<polygon fill="#000000" stroke="#000000" points="246.87,-189.35 237.2,-193.66 247.45,-196.32 246.87,-189.35"/>
+</g>
+<!-- sourcefile~mus_turb_viscosity_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node23" class="node">
+<title>sourcefile~mus_turb_viscosity_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node23"><a xlink:href="../sourcefile/mus_turb_viscosity_module.f90.html" xlink:title="mus_turb_viscosity_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="229,-171.67 51,-171.67 51,-147.67 229,-147.67 229,-171.67"/>
+<text text-anchor="middle" x="140" y="-157.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turb_viscosity_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turb_viscosity_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge36" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turb_viscosity_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.47,-173.67C328.44,-171.36 281.05,-168.4 239.38,-165.8"/>
+<polygon fill="#000000" stroke="#000000" points="239.39,-162.3 229.19,-165.17 238.95,-169.28 239.39,-162.3"/>
+</g>
+<!-- sourcefile~mus_turbulence_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node24" class="node">
+<title>sourcefile~mus_turbulence_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node24"><a xlink:href="../sourcefile/mus_turbulence_module.f90.html" xlink:title="mus_turbulence_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="222,-129.67 58,-129.67 58,-105.67 222,-105.67 222,-129.67"/>
+<text text-anchor="middle" x="140" y="-115.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turbulence_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turbulence_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge37" class="edge">
+<title>sourcefile~mus_fluid_module.f90&#45;&gt;sourcefile~mus_turbulence_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M370.82,-165.65C353.09,-161.64 333.65,-156.85 316,-151.67 299.68,-146.87 296.49,-142.85 280,-138.67 264.62,-134.77 248.09,-131.5 231.98,-128.78"/>
+<polygon fill="#000000" stroke="#000000" points="232.45,-125.31 222.02,-127.16 231.33,-132.22 232.45,-125.31"/>
+</g>
+<!-- sourcefile~mus_poisson_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge38" class="edge">
+<title>sourcefile~mus_poisson_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M356.96,-88.34C343.11,-85.42 328.91,-81.61 316,-76.67 298.49,-69.96 297.62,-61.08 280,-54.67 261.94,-48.09 241.83,-43.57 222.65,-40.47"/>
+<polygon fill="#000000" stroke="#000000" points="223.12,-37 212.71,-38.97 222.08,-43.92 223.12,-37"/>
+</g>
+<!-- sourcefile~mus_species_module.f90&#45;&gt;sourcefile~mus_physics_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge39" class="edge">
+<title>sourcefile~mus_species_module.f90&#45;&gt;sourcefile~mus_physics_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M357.44,-50.17C316.5,-47.05 265.1,-43.13 222.66,-39.89"/>
+<polygon fill="#000000" stroke="#000000" points="222.87,-36.4 212.64,-39.13 222.34,-43.38 222.87,-36.4"/>
+</g>
+<!-- sourcefile~mus_wall_function_abstract_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node25" class="node">
+<title>sourcefile~mus_wall_function_abstract_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node25"><a xlink:href="../sourcefile/mus_wall_function_abstract_module.f90.html" xlink:title="mus_wall_function_abstract_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="543,-391.67 318,-391.67 318,-367.67 543,-367.67 543,-391.67"/>
+<text text-anchor="middle" x="430.5" y="-377.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_wall_function_abstract_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_abstract_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge40" class="edge">
+<title>sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_abstract_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M580.88,-379.67C571.85,-379.67 562.58,-379.67 553.28,-379.67"/>
+<polygon fill="#000000" stroke="#000000" points="553.19,-376.17 543.19,-379.67 553.19,-383.17 553.19,-376.17"/>
+</g>
+<!-- sourcefile~mus_wall_function_musker_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node26" class="node">
+<title>sourcefile~mus_wall_function_musker_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node26"><a xlink:href="../sourcefile/mus_wall_function_musker_module.f90.html" xlink:title="mus_wall_function_musker_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="541,-349.67 320,-349.67 320,-325.67 541,-325.67 541,-349.67"/>
+<text text-anchor="middle" x="430.5" y="-335.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_wall_function_musker_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_musker_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge41" class="edge">
+<title>sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_musker_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M601.3,-367.63C572.67,-362.58 539.21,-356.67 509.59,-351.45"/>
+<polygon fill="#000000" stroke="#000000" points="510.17,-347.99 499.71,-349.7 508.95,-354.89 510.17,-347.99"/>
+</g>
+<!-- sourcefile~mus_wall_function_reichardt_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node27" class="node">
+<title>sourcefile~mus_wall_function_reichardt_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node27"><a xlink:href="../sourcefile/mus_wall_function_reichardt_module.f90.html" xlink:title="mus_wall_function_reichardt_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="545,-475.67 316,-475.67 316,-451.67 545,-451.67 545,-475.67"/>
+<text text-anchor="middle" x="430.5" y="-461.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_wall_function_reichardt_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_reichardt_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge42" class="edge">
+<title>sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_reichardt_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M650,-391.76C626.12,-406.03 584.02,-429.49 545,-442.67 537.72,-445.12 530.08,-447.32 522.35,-449.27"/>
+<polygon fill="#000000" stroke="#000000" points="521.44,-445.89 512.53,-451.61 523.07,-452.69 521.44,-445.89"/>
+</g>
+<!-- sourcefile~mus_wall_function_schmitt_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node28" class="node">
+<title>sourcefile~mus_wall_function_schmitt_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_node28"><a xlink:href="../sourcefile/mus_wall_function_schmitt_module.f90.html" xlink:title="mus_wall_function_schmitt_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="540.5,-433.67 320.5,-433.67 320.5,-409.67 540.5,-409.67 540.5,-433.67"/>
+<text text-anchor="middle" x="430.5" y="-419.27" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_wall_function_schmitt_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_schmitt_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~EfferentGraph_edge43" class="edge">
+<title>sourcefile~mus_turb_wallfunc_module.f90&#45;&gt;sourcefile~mus_wall_function_schmitt_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M601.3,-391.7C572.67,-396.75 539.21,-402.66 509.59,-407.88"/>
+<polygon fill="#000000" stroke="#000000" points="508.95,-404.44 499.71,-409.63 510.17,-411.34 508.95,-404.44"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_bc_passivescalar_modulef90EfferentGraph = svgPanZoom('#sourcefilemus_bc_passivescalar_modulef90EfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#EfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="EfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Files dependent on this one</h3>
+          </div>
+          <div class="card-body">
+            <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph Pages: 1 -->
+<svg id="sourcefilemus_bc_passivescalar_modulef90AfferentGraph" width="641pt" height="91pt"
+ viewBox="0.00 0.00 641.00 90.85" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph" class="graph" transform="scale(0.49 0.49) rotate(0) translate(4 183.09)">
+<title>sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-183.09 1316,-183.09 1316,4 -4,4"/>
+<!-- sourcefile~mus_bc_passivescalar_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node1" class="node">
+<title>sourcefile~mus_bc_passivescalar_module.f90</title>
+<polygon fill="none" stroke="black" points="198,-130.41 0,-130.41 0,-106.41 198,-106.41 198,-130.41"/>
+<text text-anchor="middle" x="99" y="-116.01" font-family="Helvetica,sans-Serif" font-size="10.50">mus_bc_passiveScalar_module.f90</text>
+</g>
+<!-- sourcefile~mus_bc_general_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node2" class="node">
+<title>sourcefile~mus_bc_general_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node2"><a xlink:href="../sourcefile/mus_bc_general_module.f90.html" xlink:title="mus_bc_general_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="400,-130.41 234,-130.41 234,-106.41 400,-106.41 400,-130.41"/>
+<text text-anchor="middle" x="317" y="-116.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_general_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_bc_general_module.f90&#45;&gt;sourcefile~mus_bc_passivescalar_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~mus_bc_general_module.f90&#45;&gt;sourcefile~mus_bc_passivescalar_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M233.72,-118.41C225.41,-118.41 216.88,-118.41 208.35,-118.41"/>
+<polygon fill="#000000" stroke="#000000" points="208.35,-114.91 198.35,-118.41 208.35,-121.91 208.35,-114.91"/>
+</g>
+<!-- sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~mus_control_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node3"><a xlink:href="../sourcefile/mus_control_module.f90.html" xlink:title="mus_control_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="769.5,-171.41 626.5,-171.41 626.5,-147.41 769.5,-147.41 769.5,-171.41"/>
+<text text-anchor="middle" x="698" y="-157.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge2" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M626.46,-155.91C573.84,-152.84 500.24,-147.56 436,-139.41 420.68,-137.46 404.32,-134.88 388.81,-132.19"/>
+<polygon fill="#000000" stroke="#000000" points="389.22,-128.71 378.76,-130.42 388,-135.6 389.22,-128.71"/>
+</g>
+<!-- sourcefile~mus_debug_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node4" class="node">
+<title>sourcefile~mus_debug_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node4"><a xlink:href="../sourcefile/mus_debug_module.f90.html" xlink:title="mus_debug_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="576,-130.41 436,-130.41 436,-106.41 576,-106.41 576,-130.41"/>
+<text text-anchor="middle" x="506" y="-116.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_debug_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_debug_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~mus_control_module.f90&#45;&gt;sourcefile~mus_debug_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M641.28,-147.38C619.82,-142.75 595.11,-137.42 572.79,-132.6"/>
+<polygon fill="#000000" stroke="#000000" points="573.23,-129.12 562.72,-130.43 571.76,-135.96 573.23,-129.12"/>
+</g>
+<!-- sourcefile~mus_debug_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~mus_debug_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M435.9,-118.41C427.52,-118.41 418.87,-118.41 410.23,-118.41"/>
+<polygon fill="#000000" stroke="#000000" points="410.11,-114.91 400.11,-118.41 410.11,-121.91 410.11,-114.91"/>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~mus_dynloadbal_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node5"><a xlink:href="../sourcefile/mus_dynloadbal_module.f90.html" xlink:title="mus_dynLoadBal_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1002.5,-47.41 833.5,-47.41 833.5,-23.41 1002.5,-23.41 1002.5,-47.41"/>
+<text text-anchor="middle" x="918" y="-33.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M833.37,-33.64C792.78,-33.23 743.33,-33.4 699,-35.41"/>
+</g>
+<!-- sourcefile~mus_construction_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~mus_construction_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node7"><a xlink:href="../sourcefile/mus_construction_module.f90.html" xlink:title="mus_construction_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="784,-129.41 612,-129.41 612,-105.41 784,-105.41 784,-129.41"/>
+<text text-anchor="middle" x="698" y="-115.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_construction_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_construction_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge12" class="edge">
+<title>sourcefile~mus_dynloadbal_module.f90&#45;&gt;sourcefile~mus_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M850.63,-47.42C840.25,-49.97 829.75,-52.96 820,-56.41 787.3,-67.98 752.14,-86.45 728.19,-100.04"/>
+<polygon fill="#000000" stroke="#000000" points="726.2,-97.15 719.28,-105.17 729.69,-103.22 726.2,-97.15"/>
+</g>
+<!-- sourcefile~mus_program_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~mus_program_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node6"><a xlink:href="../sourcefile/mus_program_module.f90.html" xlink:title="mus_program_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1204,-108.41 1052,-108.41 1052,-84.41 1204,-84.41 1204,-108.41"/>
+<text text-anchor="middle" x="1128" y="-94.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_program_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_bc_general_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1115.84,-84.18C1097.32,-64.92 1058.1,-28.27 1016,-14.41 933.26,12.84 906.79,-6.93 820,-14.41 765.62,-19.09 753.53,-32.93 699,-35.41"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M697,-35.41C573.47,-39.19 432.33,-80.19 362.28,-103.11"/>
+<polygon fill="#000000" stroke="#000000" points="360.86,-99.89 352.47,-106.35 363.06,-106.54 360.86,-99.89"/>
+</g>
+<!-- sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_control_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M917,-159.41C871.86,-163.85 821.21,-164.14 780.1,-163.18"/>
+<polygon fill="#000000" stroke="#000000" points="779.95,-159.67 769.86,-162.91 779.77,-166.67 779.95,-159.67"/>
+</g>
+<!-- sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_dynloadbal_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_dynloadbal_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1096.73,-84.27C1074.61,-75.7 1043.76,-64.38 1016,-56.41 1007.76,-54.04 999.05,-51.8 990.38,-49.73"/>
+<polygon fill="#000000" stroke="#000000" points="991.16,-46.32 980.62,-47.46 989.57,-53.13 991.16,-46.32"/>
+</g>
+<!-- sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_construction_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~mus_program_module.f90&#45;&gt;sourcefile~mus_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1100.57,-108.48C1078.38,-118.23 1045.64,-131.71 1016,-140.41 973.85,-152.78 962.72,-155.1 919,-159.41"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M917,-159.41C901.77,-160.91 821.54,-144.38 762.82,-131.62"/>
+<polygon fill="#000000" stroke="#000000" points="763.37,-128.16 752.86,-129.45 761.88,-135 763.37,-128.16"/>
+</g>
+<!-- sourcefile~mus_construction_module.f90&#45;&gt;sourcefile~mus_debug_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~mus_construction_module.f90&#45;&gt;sourcefile~mus_debug_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M611.73,-117.86C603.24,-117.9 594.65,-117.95 586.23,-117.99"/>
+<polygon fill="#000000" stroke="#000000" points="586.04,-114.49 576.06,-118.04 586.08,-121.49 586.04,-114.49"/>
+</g>
+<!-- sourcefile~musubi.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~musubi.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node8"><a xlink:href="../sourcefile/musubi.f90.html" xlink:title="musubi.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1312,-128.41 1240,-128.41 1240,-104.41 1312,-104.41 1312,-128.41"/>
+<text text-anchor="middle" x="1276" y="-114.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_control_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1239.79,-126.71C1190.34,-140.59 1097.24,-164.57 1016,-173.41 929.4,-182.82 906.97,-178.42 820,-173.41 806.96,-172.66 793.17,-171.45 779.75,-170.06"/>
+<polygon fill="#000000" stroke="#000000" points="779.9,-166.55 769.58,-168.96 779.15,-173.51 779.9,-166.55"/>
+</g>
+<!-- sourcefile~musubi.f90&#45;&gt;sourcefile~mus_program_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~musubi.f90&#45;&gt;sourcefile~mus_program_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1239.66,-111.57C1231.81,-110.49 1223.16,-109.31 1214.26,-108.09"/>
+<polygon fill="#000000" stroke="#000000" points="1214.52,-104.59 1204.14,-106.7 1213.57,-111.53 1214.52,-104.59"/>
+</g>
+<!-- sourcefile~mus_harvesting.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~mus_harvesting.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node9"><a xlink:href="../sourcefile/mus_harvesting.f90.html" xlink:title="mus_harvesting.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="976.5,-131.41 859.5,-131.41 859.5,-107.41 976.5,-107.41 976.5,-131.41"/>
+<text text-anchor="middle" x="918" y="-117.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_construction_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~mus_harvesting.f90&#45;&gt;sourcefile~mus_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M859.44,-118.88C839.42,-118.7 816.4,-118.48 794.16,-118.28"/>
+<polygon fill="#000000" stroke="#000000" points="794.04,-114.78 784.01,-118.19 793.97,-121.78 794.04,-114.78"/>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~mus_hvs_construction_module.f90</title>
+<g id="a_sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_node10"><a xlink:href="../sourcefile/mus_hvs_construction_module.f90.html" xlink:title="mus_hvs_construction_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1016,-89.41 820,-89.41 820,-65.41 1016,-65.41 1016,-89.41"/>
+<text text-anchor="middle" x="918" y="-75.01" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_construction_module.f90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_construction_module.f90 -->
+<g id="sourcefile~~mus_bc_passivescalar_module.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~mus_hvs_construction_module.f90&#45;&gt;sourcefile~mus_construction_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M851.59,-89.41C827.45,-93.84 799.9,-98.89 774.91,-103.48"/>
+<polygon fill="#000000" stroke="#000000" points="773.94,-100.1 764.74,-105.35 775.2,-106.98 773.94,-100.1"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var pansourcefilemus_bc_passivescalar_modulef90AfferentGraph = svgPanZoom('#sourcefilemus_bc_passivescalar_modulef90AfferentGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#AfferentGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="AfferentGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="202pt" height="32pt"
+ viewBox="0.00 0.00 201.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 197.5,-28 197.5,4 -4,4"/>
+<!-- Source File -->
+<g id="node1" class="node">
+<title>Source File</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Source File</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node2" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="193.5,-24 88.5,-24 88.5,0 193.5,0 193.5,-24"/>
+<text text-anchor="middle" x="141" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a file to a file which it depends on. A file
+is dependent upon another if the latter must be compiled before the former
+can be.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+<br>
+      <section>
+        <h2><span class="anchor" id="src"></span>Source Code</h2>
+        <div class="hl codehilite"><pre><span></span><a id="ln-1" name="ln-1" href="#ln-1"></a><span class="c">! Copyright (c) 2012-2013 Manuel Hasert &lt;m.hasert@grs-sim.de&gt;</span>
+<a id="ln-2" name="ln-2" href="#ln-2"></a><span class="c">! Copyright (c) 2012-2013 Simon Zimny &lt;s.zimny@grs-sim.de&gt;</span>
+<a id="ln-3" name="ln-3" href="#ln-3"></a><span class="c">! Copyright (c) 2012-2015, 2020 Kannan Masilamani &lt;kannan.masilamani@uni-siegen.de&gt;</span>
+<a id="ln-4" name="ln-4" href="#ln-4"></a><span class="c">! Copyright (c) 2014-2016 Jiaxing Qi &lt;jiaxing.qi@uni-siegen.de&gt;</span>
+<a id="ln-5" name="ln-5" href="#ln-5"></a><span class="c">! Copyright (c) 2016 Tobias Schneider &lt;tobias1.schneider@student.uni-siegen.de&gt;</span>
+<a id="ln-6" name="ln-6" href="#ln-6"></a><span class="c">! Copyright (c) 2017 Raphael Haupt &lt;raphael.haupt@uni-siegen.de&gt;</span>
+<a id="ln-7" name="ln-7" href="#ln-7"></a><span class="c">! Copyright (c) 2020 Peter Vitt &lt;peter.vitt2@uni-siegen.de&gt;</span>
+<a id="ln-8" name="ln-8" href="#ln-8"></a><span class="c">!</span>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="c">! Redistribution and use in source and binary forms, with or without</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="c">! modification, are permitted provided that the following conditions are met:</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="c">!</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="c">! 1. Redistributions of source code must retain the above copyright notice,</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="c">! this list of conditions and the following disclaimer.</span>
+<a id="ln-14" name="ln-14" href="#ln-14"></a><span class="c">!</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="c">! 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<a id="ln-16" name="ln-16" href="#ln-16"></a><span class="c">! this list of conditions and the following disclaimer in the documentation</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="c">! and/or other materials provided with the distribution.</span>
+<a id="ln-18" name="ln-18" href="#ln-18"></a><span class="c">!</span>
+<a id="ln-19" name="ln-19" href="#ln-19"></a><span class="c">! THIS SOFTWARE IS PROVIDED BY THE UNIVERSITY OF SIEGEN “AS IS” AND ANY EXPRESS</span>
+<a id="ln-20" name="ln-20" href="#ln-20"></a><span class="c">! OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span>
+<a id="ln-21" name="ln-21" href="#ln-21"></a><span class="c">! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span>
+<a id="ln-22" name="ln-22" href="#ln-22"></a><span class="c">! IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY</span>
+<a id="ln-23" name="ln-23" href="#ln-23"></a><span class="c">! DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="c">! (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<a id="ln-25" name="ln-25" href="#ln-25"></a><span class="c">! LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span>
+<a id="ln-26" name="ln-26" href="#ln-26"></a><span class="c">! ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<a id="ln-27" name="ln-27" href="#ln-27"></a><span class="c">! (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<a id="ln-28" name="ln-28" href="#ln-28"></a><span class="c">! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<a id="ln-29" name="ln-29" href="#ln-29"></a><span class="c">! Copyright (c) 2011-2013 Manuel Hasert &lt;m.hasert@grs-sim.de&gt;</span>
+<a id="ln-30" name="ln-30" href="#ln-30"></a><span class="c">! Copyright (c) 2011 Harald Klimach &lt;harald.klimach@uni-siegen.de&gt;</span>
+<a id="ln-31" name="ln-31" href="#ln-31"></a><span class="c">! Copyright (c) 2011 Konstantin Kleinheinz &lt;k.kleinheinz@grs-sim.de&gt;</span>
+<a id="ln-32" name="ln-32" href="#ln-32"></a><span class="c">! Copyright (c) 2011-2012 Simon Zimny &lt;s.zimny@grs-sim.de&gt;</span>
+<a id="ln-33" name="ln-33" href="#ln-33"></a><span class="c">! Copyright (c) 2012, 2014-2016 Jiaxing Qi &lt;jiaxing.qi@uni-siegen.de&gt;</span>
+<a id="ln-34" name="ln-34" href="#ln-34"></a><span class="c">! Copyright (c) 2012 Kartik Jain &lt;kartik.jain@uni-siegen.de&gt;</span>
+<a id="ln-35" name="ln-35" href="#ln-35"></a><span class="c">! Copyright (c) 2013-2015, 2019 Kannan Masilamani &lt;kannan.masilamani@uni-siegen.de&gt;</span>
+<a id="ln-36" name="ln-36" href="#ln-36"></a><span class="c">! Copyright (c) 2016 Tobias Schneider &lt;tobias1.schneider@student.uni-siegen.de&gt;</span>
+<a id="ln-37" name="ln-37" href="#ln-37"></a><span class="c">!</span>
+<a id="ln-38" name="ln-38" href="#ln-38"></a><span class="c">! Redistribution and use in source and binary forms, with or without</span>
+<a id="ln-39" name="ln-39" href="#ln-39"></a><span class="c">! modification, are permitted provided that the following conditions are met:</span>
+<a id="ln-40" name="ln-40" href="#ln-40"></a><span class="c">!</span>
+<a id="ln-41" name="ln-41" href="#ln-41"></a><span class="c">! 1. Redistributions of source code must retain the above copyright notice,</span>
+<a id="ln-42" name="ln-42" href="#ln-42"></a><span class="c">! this list of conditions and the following disclaimer.</span>
+<a id="ln-43" name="ln-43" href="#ln-43"></a><span class="c">!</span>
+<a id="ln-44" name="ln-44" href="#ln-44"></a><span class="c">! 2. Redistributions in binary form must reproduce the above copyright notice,</span>
+<a id="ln-45" name="ln-45" href="#ln-45"></a><span class="c">! this list of conditions and the following disclaimer in the documentation</span>
+<a id="ln-46" name="ln-46" href="#ln-46"></a><span class="c">! and/or other materials provided with the distribution.</span>
+<a id="ln-47" name="ln-47" href="#ln-47"></a><span class="c">!</span>
+<a id="ln-48" name="ln-48" href="#ln-48"></a><span class="c">! THIS SOFTWARE IS PROVIDED BY THE UNIVERSITY OF SIEGEN “AS IS” AND ANY EXPRESS</span>
+<a id="ln-49" name="ln-49" href="#ln-49"></a><span class="c">! OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</span>
+<a id="ln-50" name="ln-50" href="#ln-50"></a><span class="c">! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</span>
+<a id="ln-51" name="ln-51" href="#ln-51"></a><span class="c">! IN NO EVENT SHALL UNIVERSITY OF SIEGEN OR CONTRIBUTORS BE LIABLE FOR ANY</span>
+<a id="ln-52" name="ln-52" href="#ln-52"></a><span class="c">! DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span>
+<a id="ln-53" name="ln-53" href="#ln-53"></a><span class="c">! (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span>
+<a id="ln-54" name="ln-54" href="#ln-54"></a><span class="c">! LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON</span>
+<a id="ln-55" name="ln-55" href="#ln-55"></a><span class="c">! ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span>
+<a id="ln-56" name="ln-56" href="#ln-56"></a><span class="c">! (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span>
+<a id="ln-57" name="ln-57" href="#ln-57"></a><span class="c">! SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+<a id="ln-58" name="ln-58" href="#ln-58"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-59" name="ln-59" href="#ln-59"></a><span class="c">!&gt; Boundary condition treatment routines for fluid simulation</span>
+<a id="ln-60" name="ln-60" href="#ln-60"></a><span class="c">!!</span>
+<a id="ln-61" name="ln-61" href="#ln-61"></a><span class="c">!! A detailed description on the implementation details are given in</span>
+<a id="ln-62" name="ln-62" href="#ln-62"></a><span class="c">!! boundary_implementation</span>
+<a id="ln-63" name="ln-63" href="#ln-63"></a><span class="c">!!</span>
+<a id="ln-64" name="ln-64" href="#ln-64"></a><span class="k">module </span><span class="n">mus_bc_passiveScalar_module</span>
+<a id="ln-65" name="ln-65" href="#ln-65"></a>
+<a id="ln-66" name="ln-66" href="#ln-66"></a><span class="w">  </span><span class="c">! include treelm modules</span>
+<a id="ln-67" name="ln-67" href="#ln-67"></a><span class="w">  </span><span class="k">use </span><span class="n">env_module</span><span class="p">,</span><span class="w">               </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">rk</span>
+<a id="ln-68" name="ln-68" href="#ln-68"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_time_module</span><span class="p">,</span><span class="w">          </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_time_type</span>
+<a id="ln-69" name="ln-69" href="#ln-69"></a><span class="w">  </span><span class="k">use </span><span class="n">treelmesh_module</span><span class="p">,</span><span class="w">         </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">treelmesh_type</span>
+<a id="ln-70" name="ln-70" href="#ln-70"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_varSys_module</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_varSys_type</span>
+<a id="ln-71" name="ln-71" href="#ln-71"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_construction_module</span><span class="p">,</span><span class="w">  </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">tem_levelDesc_type</span>
+<a id="ln-72" name="ln-72" href="#ln-72"></a><span class="w">  </span><span class="k">use </span><span class="n">tem_param_module</span><span class="p">,</span><span class="w">         </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">div1_3</span><span class="p">,</span><span class="w"> </span><span class="n">div4_3</span><span class="p">,</span><span class="w"> </span><span class="n">csInv</span><span class="p">,</span><span class="w"> </span><span class="n">cs</span><span class="p">,</span><span class="w"> </span><span class="n">cs2</span><span class="p">,</span><span class="w"> </span><span class="n">cs2inv</span>
+<a id="ln-73" name="ln-73" href="#ln-73"></a>
+<a id="ln-74" name="ln-74" href="#ln-74"></a><span class="w">  </span><span class="c">! include musubi modules</span>
+<a id="ln-75" name="ln-75" href="#ln-75"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_bc_header_module</span><span class="p">,</span><span class="w">      </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">boundary_type</span><span class="p">,</span><span class="w"> </span><span class="n">glob_boundary_type</span>
+<a id="ln-76" name="ln-76" href="#ln-76"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_scheme_layout_module</span><span class="p">,</span><span class="w">  </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_scheme_layout_type</span>
+<a id="ln-77" name="ln-77" href="#ln-77"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_field_prop_module</span><span class="p">,</span><span class="w">     </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_field_prop_type</span>
+<a id="ln-78" name="ln-78" href="#ln-78"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_derVarPos_module</span><span class="p">,</span><span class="w">      </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_derVarPos_type</span>
+<a id="ln-79" name="ln-79" href="#ln-79"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_param_module</span><span class="p">,</span><span class="w">          </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_param_type</span>
+<a id="ln-80" name="ln-80" href="#ln-80"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_physics_module</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_physics_type</span>
+<a id="ln-81" name="ln-81" href="#ln-81"></a><span class="w">  </span><span class="k">use </span><span class="n">mus_mixture_module</span><span class="p">,</span><span class="w">        </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">mus_mixture_type</span>
+<a id="ln-82" name="ln-82" href="#ln-82"></a>
+<a id="ln-83" name="ln-83" href="#ln-83"></a><span class="w">  </span><span class="k">implicit none</span>
+<a id="ln-84" name="ln-84" href="#ln-84"></a>
+<a id="ln-85" name="ln-85" href="#ln-85"></a><span class="k">  private</span>
+<a id="ln-86" name="ln-86" href="#ln-86"></a>
+<a id="ln-87" name="ln-87" href="#ln-87"></a><span class="k">  public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inlet_pasScal</span>
+<a id="ln-88" name="ln-88" href="#ln-88"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">outlet_pasScal</span>
+<a id="ln-89" name="ln-89" href="#ln-89"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pressure_antiBounceBack_pasScal</span>
+<a id="ln-90" name="ln-90" href="#ln-90"></a>
+<a id="ln-91" name="ln-91" href="#ln-91"></a><span class="k">contains</span>
+<a id="ln-92" name="ln-92" href="#ln-92"></a>
+<a id="ln-93" name="ln-93" href="#ln-93"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-94" name="ln-94" href="#ln-94"></a><span class="w">  </span><span class="c">!&gt; Inlet boundary conditions for passive scalar transport (Flekkoy).</span>
+<a id="ln-95" name="ln-95" href="#ln-95"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-96" name="ln-96" href="#ln-96"></a><span class="w">  </span><span class="c">!! All links of the inlet boundary elements are set to 0.0</span>
+<a id="ln-97" name="ln-97" href="#ln-97"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-98" name="ln-98" href="#ln-98"></a><span class="w">  </span><span class="c">!! This subroutine&#39;s interface must match the abstract interface definition</span>
+<a id="ln-99" name="ln-99" href="#ln-99"></a><span class="w">  </span><span class="c">!! [[boundaryRoutine]] in bc/[[mus_bc_header_module]].f90 in order to be</span>
+<a id="ln-100" name="ln-100" href="#ln-100"></a><span class="w">  </span><span class="c">!! callable via [[boundary_type:fnct]] function pointer.</span>
+<a id="ln-101" name="ln-101" href="#ln-101"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">inlet_pasScal</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">,</span><span class="w"> </span><span class="n">levelDesc</span><span class="p">,</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w">      </span><span class="p">&amp;</span>
+<a id="ln-102" name="ln-102" href="#ln-102"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                       </span><span class="n">nSize</span><span class="p">,</span><span class="w"> </span><span class="n">iLevel</span><span class="p">,</span><span class="w"> </span><span class="n">sim_time</span><span class="p">,</span><span class="w"> </span><span class="n">neigh</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w"> </span><span class="n">fieldProp</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-103" name="ln-103" href="#ln-103"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                       </span><span class="n">varPos</span><span class="p">,</span><span class="w"> </span><span class="n">nScalars</span><span class="p">,</span><span class="w"> </span><span class="n">varSys</span><span class="p">,</span><span class="w"> </span><span class="n">derVarPos</span><span class="p">,</span><span class="w"> </span><span class="n">physics</span><span class="p">,</span><span class="w">      </span><span class="p">&amp;</span>
+<a id="ln-104" name="ln-104" href="#ln-104"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                       </span><span class="n">iField</span><span class="p">,</span><span class="w"> </span><span class="n">mixture</span><span class="w">                                    </span><span class="p">)</span>
+<a id="ln-105" name="ln-105" href="#ln-105"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-106" name="ln-106" href="#ln-106"></a><span class="w">    </span><span class="c">!&gt; global boundary type</span>
+<a id="ln-107" name="ln-107" href="#ln-107"></a><span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">boundary_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span>
+<a id="ln-108" name="ln-108" href="#ln-108"></a><span class="w">    </span><span class="c">!&gt; Current state vector of iLevel</span>
+<a id="ln-109" name="ln-109" href="#ln-109"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">state</span><span class="p">(:)</span>
+<a id="ln-110" name="ln-110" href="#ln-110"></a><span class="w">    </span><span class="c">!&gt; size of state array ( in terms of elements )</span>
+<a id="ln-111" name="ln-111" href="#ln-111"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nSize</span>
+<a id="ln-112" name="ln-112" href="#ln-112"></a><span class="w">    </span><span class="c">!&gt; state values of boundary elements of all fields of iLevel</span>
+<a id="ln-113" name="ln-113" href="#ln-113"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">(:)</span>
+<a id="ln-114" name="ln-114" href="#ln-114"></a><span class="w">    </span><span class="c">!&gt; iLevel descriptor</span>
+<a id="ln-115" name="ln-115" href="#ln-115"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_levelDesc_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">levelDesc</span>
+<a id="ln-116" name="ln-116" href="#ln-116"></a><span class="w">    </span><span class="c">!&gt; Treelm Mesh</span>
+<a id="ln-117" name="ln-117" href="#ln-117"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">treelmesh_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tree</span>
+<a id="ln-118" name="ln-118" href="#ln-118"></a><span class="w">    </span><span class="c">!&gt; fluid parameters and properties</span>
+<a id="ln-119" name="ln-119" href="#ln-119"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_field_prop_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fieldProp</span>
+<a id="ln-120" name="ln-120" href="#ln-120"></a><span class="w">    </span><span class="c">!&gt; stencil layout information</span>
+<a id="ln-121" name="ln-121" href="#ln-121"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_scheme_layout_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">layout</span>
+<a id="ln-122" name="ln-122" href="#ln-122"></a><span class="w">    </span><span class="c">!&gt; the level On which this boundary was invoked</span>
+<a id="ln-123" name="ln-123" href="#ln-123"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iLevel</span>
+<a id="ln-124" name="ln-124" href="#ln-124"></a><span class="w">    </span><span class="c">!&gt; connectivity array corresponding to state vector</span>
+<a id="ln-125" name="ln-125" href="#ln-125"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">neigh</span><span class="p">(:)</span>
+<a id="ln-126" name="ln-126" href="#ln-126"></a><span class="w">    </span><span class="c">!&gt; global time information</span>
+<a id="ln-127" name="ln-127" href="#ln-127"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_time_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">sim_time</span>
+<a id="ln-128" name="ln-128" href="#ln-128"></a><span class="w">    </span><span class="c">!&gt; pointer to field variable in the state vector</span>
+<a id="ln-129" name="ln-129" href="#ln-129"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">varPos</span><span class="p">(:)</span>
+<a id="ln-130" name="ln-130" href="#ln-130"></a><span class="w">    </span><span class="c">!&gt; number of Scalars in the scheme var system</span>
+<a id="ln-131" name="ln-131" href="#ln-131"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nScalars</span>
+<a id="ln-132" name="ln-132" href="#ln-132"></a><span class="w">    </span><span class="c">!&gt; scheme variable system</span>
+<a id="ln-133" name="ln-133" href="#ln-133"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_varSys_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">varSys</span>
+<a id="ln-134" name="ln-134" href="#ln-134"></a><span class="w">    </span><span class="c">!&gt; position of derived quantities in varsys</span>
+<a id="ln-135" name="ln-135" href="#ln-135"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_derVarPos_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">derVarPos</span>
+<a id="ln-136" name="ln-136" href="#ln-136"></a><span class="w">    </span><span class="c">!&gt; scheme global boundary type</span>
+<a id="ln-137" name="ln-137" href="#ln-137"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">glob_boundary_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">globBC</span>
+<a id="ln-138" name="ln-138" href="#ln-138"></a><span class="w">    </span><span class="c">!&gt; scheme global boundary type</span>
+<a id="ln-139" name="ln-139" href="#ln-139"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_physics_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">physics</span>
+<a id="ln-140" name="ln-140" href="#ln-140"></a><span class="w">    </span><span class="c">!&gt; current field</span>
+<a id="ln-141" name="ln-141" href="#ln-141"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iField</span>
+<a id="ln-142" name="ln-142" href="#ln-142"></a><span class="w">    </span><span class="c">!&gt; mixture info</span>
+<a id="ln-143" name="ln-143" href="#ln-143"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_mixture_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mixture</span>
+<a id="ln-144" name="ln-144" href="#ln-144"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-145" name="ln-145" href="#ln-145"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iElem</span><span class="p">,</span><span class="w"> </span><span class="n">iDir</span><span class="p">,</span><span class="w"> </span><span class="n">QQ</span>
+<a id="ln-146" name="ln-146" href="#ln-146"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nElems</span>
+<a id="ln-147" name="ln-147" href="#ln-147"></a><span class="w">    </span><span class="c">! ---------------------------------------------------------------------------</span>
+<a id="ln-148" name="ln-148" href="#ln-148"></a><span class="w">    </span><span class="n">QQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">QQ</span>
+<a id="ln-149" name="ln-149" href="#ln-149"></a><span class="w">    </span><span class="n">nElems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="w"> </span><span class="n">neigh</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">QQ</span>
+<a id="ln-150" name="ln-150" href="#ln-150"></a>
+<a id="ln-151" name="ln-151" href="#ln-151"></a><span class="w">    </span><span class="k">do </span><span class="n">iElem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="w"> </span><span class="n">iLevel</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-152" name="ln-152" href="#ln-152"></a><span class="w">      </span><span class="k">do </span><span class="n">iDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">QQ</span>
+<a id="ln-153" name="ln-153" href="#ln-153"></a><span class="w">        </span><span class="n">state</span><span class="p">(</span><span class="w">                                                                 </span><span class="p">&amp;</span>
+<a id="ln-154" name="ln-154" href="#ln-154"></a><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">globbc</span><span class="p">%</span><span class="n">elemlvl</span><span class="p">(</span><span class="n">ilevel</span><span class="p">)%</span><span class="n">elem</span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="n">ielem</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">nscalars</span><span class="o">+</span><span class="n">idir</span><span class="o">+</span><span class="p">(</span><span class="w"> </span><span class="n">ifield</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">qq</span><span class="p">)&amp;</span>
+<a id="ln-155" name="ln-155" href="#ln-155"></a><span class="w">          </span><span class="p">&amp;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0._rk</span>
+<a id="ln-156" name="ln-156" href="#ln-156"></a><span class="w">      </span><span class="k">end do</span>
+<a id="ln-157" name="ln-157" href="#ln-157"></a><span class="k">    end do</span>
+<a id="ln-158" name="ln-158" href="#ln-158"></a>
+<a id="ln-159" name="ln-159" href="#ln-159"></a><span class="k">  end subroutine </span><span class="n">inlet_pasScal</span>
+<a id="ln-160" name="ln-160" href="#ln-160"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-161" name="ln-161" href="#ln-161"></a>
+<a id="ln-162" name="ln-162" href="#ln-162"></a>
+<a id="ln-163" name="ln-163" href="#ln-163"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-164" name="ln-164" href="#ln-164"></a><span class="w">  </span><span class="c">!&gt; Outlet boundary conditions for passive scalar transport (Flekkoy).</span>
+<a id="ln-165" name="ln-165" href="#ln-165"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-166" name="ln-166" href="#ln-166"></a><span class="w">  </span><span class="c">!!  currently no obstacles allowed lx-2 upstream fluid outlet nodes</span>
+<a id="ln-167" name="ln-167" href="#ln-167"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-168" name="ln-168" href="#ln-168"></a><span class="w">  </span><span class="c">!! This subroutine&#39;s interface must match the abstract interface definition</span>
+<a id="ln-169" name="ln-169" href="#ln-169"></a><span class="w">  </span><span class="c">!! [[boundaryRoutine]] in bc/[[mus_bc_header_module]].f90 in order to be</span>
+<a id="ln-170" name="ln-170" href="#ln-170"></a><span class="w">  </span><span class="c">!! callable via [[boundary_type:fnct]] function pointer.</span>
+<a id="ln-171" name="ln-171" href="#ln-171"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">outlet_pasScal</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">,</span><span class="w"> </span><span class="n">levelDesc</span><span class="p">,</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-172" name="ln-172" href="#ln-172"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">nSize</span><span class="p">,</span><span class="w"> </span><span class="n">iLevel</span><span class="p">,</span><span class="w"> </span><span class="n">sim_time</span><span class="p">,</span><span class="w"> </span><span class="n">neigh</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">         </span><span class="p">&amp;</span>
+<a id="ln-173" name="ln-173" href="#ln-173"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">fieldProp</span><span class="p">,</span><span class="w"> </span><span class="n">varPos</span><span class="p">,</span><span class="w"> </span><span class="n">nScalars</span><span class="p">,</span><span class="w"> </span><span class="n">varSys</span><span class="p">,</span><span class="w"> </span><span class="n">derVarPos</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-174" name="ln-174" href="#ln-174"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">physics</span><span class="p">,</span><span class="w"> </span><span class="n">iField</span><span class="p">,</span><span class="w"> </span><span class="n">mixture</span><span class="w">                        </span><span class="p">)</span>
+<a id="ln-175" name="ln-175" href="#ln-175"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-176" name="ln-176" href="#ln-176"></a><span class="w">    </span><span class="c">!&gt; global boundary type</span>
+<a id="ln-177" name="ln-177" href="#ln-177"></a><span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">boundary_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span>
+<a id="ln-178" name="ln-178" href="#ln-178"></a><span class="w">    </span><span class="c">!&gt; Current state vector of iLevel</span>
+<a id="ln-179" name="ln-179" href="#ln-179"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">state</span><span class="p">(:)</span>
+<a id="ln-180" name="ln-180" href="#ln-180"></a><span class="w">    </span><span class="c">!&gt; size of state array ( in terms of elements )</span>
+<a id="ln-181" name="ln-181" href="#ln-181"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nSize</span>
+<a id="ln-182" name="ln-182" href="#ln-182"></a><span class="w">    </span><span class="c">!&gt; state values of boundary elements of all fields of iLevel</span>
+<a id="ln-183" name="ln-183" href="#ln-183"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">(:)</span>
+<a id="ln-184" name="ln-184" href="#ln-184"></a><span class="w">    </span><span class="c">!&gt; iLevel descriptor</span>
+<a id="ln-185" name="ln-185" href="#ln-185"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_levelDesc_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">levelDesc</span>
+<a id="ln-186" name="ln-186" href="#ln-186"></a><span class="w">    </span><span class="c">!&gt; Treelm Mesh</span>
+<a id="ln-187" name="ln-187" href="#ln-187"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">treelmesh_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tree</span>
+<a id="ln-188" name="ln-188" href="#ln-188"></a><span class="w">    </span><span class="c">!&gt; fluid parameters and properties</span>
+<a id="ln-189" name="ln-189" href="#ln-189"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_field_prop_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fieldProp</span>
+<a id="ln-190" name="ln-190" href="#ln-190"></a><span class="w">    </span><span class="c">!&gt; stencil layout information</span>
+<a id="ln-191" name="ln-191" href="#ln-191"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_scheme_layout_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">layout</span>
+<a id="ln-192" name="ln-192" href="#ln-192"></a><span class="w">    </span><span class="c">!&gt; the level On which this boundary was invoked</span>
+<a id="ln-193" name="ln-193" href="#ln-193"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iLevel</span>
+<a id="ln-194" name="ln-194" href="#ln-194"></a><span class="w">    </span><span class="c">!&gt; connectivity array corresponding to state vector</span>
+<a id="ln-195" name="ln-195" href="#ln-195"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">neigh</span><span class="p">(:)</span>
+<a id="ln-196" name="ln-196" href="#ln-196"></a><span class="w">    </span><span class="c">!&gt; global time information</span>
+<a id="ln-197" name="ln-197" href="#ln-197"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_time_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">sim_time</span>
+<a id="ln-198" name="ln-198" href="#ln-198"></a><span class="w">    </span><span class="c">!&gt; pointer to field variable in the state vector</span>
+<a id="ln-199" name="ln-199" href="#ln-199"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">varPos</span><span class="p">(:)</span>
+<a id="ln-200" name="ln-200" href="#ln-200"></a><span class="w">    </span><span class="c">!&gt; number of Scalars in the scheme var system</span>
+<a id="ln-201" name="ln-201" href="#ln-201"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nScalars</span>
+<a id="ln-202" name="ln-202" href="#ln-202"></a><span class="w">    </span><span class="c">!&gt; scheme variable system</span>
+<a id="ln-203" name="ln-203" href="#ln-203"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_varSys_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">varSys</span>
+<a id="ln-204" name="ln-204" href="#ln-204"></a><span class="w">    </span><span class="c">!&gt; position of derived quantities in varsys</span>
+<a id="ln-205" name="ln-205" href="#ln-205"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_derVarPos_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">derVarPos</span>
+<a id="ln-206" name="ln-206" href="#ln-206"></a><span class="w">    </span><span class="c">!&gt; scheme global boundary type</span>
+<a id="ln-207" name="ln-207" href="#ln-207"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">glob_boundary_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">globBC</span>
+<a id="ln-208" name="ln-208" href="#ln-208"></a><span class="w">    </span><span class="c">!&gt; scheme global boundary type</span>
+<a id="ln-209" name="ln-209" href="#ln-209"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_physics_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">physics</span>
+<a id="ln-210" name="ln-210" href="#ln-210"></a><span class="w">    </span><span class="c">!&gt; current field</span>
+<a id="ln-211" name="ln-211" href="#ln-211"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iField</span>
+<a id="ln-212" name="ln-212" href="#ln-212"></a><span class="w">    </span><span class="c">!&gt; mixture info</span>
+<a id="ln-213" name="ln-213" href="#ln-213"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_mixture_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mixture</span>
+<a id="ln-214" name="ln-214" href="#ln-214"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-215" name="ln-215" href="#ln-215"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iElem</span><span class="p">,</span><span class="w"> </span><span class="n">iDir</span><span class="p">,</span><span class="w"> </span><span class="n">QQ</span>
+<a id="ln-216" name="ln-216" href="#ln-216"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nElems</span>
+<a id="ln-217" name="ln-217" href="#ln-217"></a><span class="w">    </span><span class="c">! ---------------------------------------------------------------------------</span>
+<a id="ln-218" name="ln-218" href="#ln-218"></a><span class="w">    </span><span class="n">QQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">QQ</span>
+<a id="ln-219" name="ln-219" href="#ln-219"></a><span class="w">    </span><span class="n">nElems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="w"> </span><span class="n">neigh</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">QQ</span>
+<a id="ln-220" name="ln-220" href="#ln-220"></a>
+<a id="ln-221" name="ln-221" href="#ln-221"></a><span class="w">    </span><span class="k">do </span><span class="n">iElem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="w"> </span><span class="n">iLevel</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-222" name="ln-222" href="#ln-222"></a><span class="w">      </span><span class="k">do </span><span class="n">iDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">QQ</span>
+<a id="ln-223" name="ln-223" href="#ln-223"></a><span class="w">        </span><span class="n">state</span><span class="p">(</span><span class="w">                                                                 </span><span class="p">&amp;</span>
+<a id="ln-224" name="ln-224" href="#ln-224"></a><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">globbc</span><span class="p">%</span><span class="n">elemlvl</span><span class="p">(</span><span class="w"> </span><span class="n">ilevel</span><span class="w"> </span><span class="p">)%</span><span class="n">elem</span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="w"> </span><span class="n">ielem</span><span class="w"> </span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">nscalars</span><span class="o">+</span><span class="w"> </span><span class="n">idir</span><span class="o">+</span><span class="p">(</span><span class="w"> </span><span class="n">ifield</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">qq</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-225" name="ln-225" href="#ln-225"></a><span class="w">          </span><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">state</span><span class="p">(</span><span class="w">                                                           </span><span class="p">&amp;</span>
+<a id="ln-226" name="ln-226" href="#ln-226"></a><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">neigh</span><span class="p">(</span><span class="w"> </span><span class="n">ilevel</span><span class="w"> </span><span class="p">)%</span><span class="n">posinstate</span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ielem</span><span class="w"> </span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">nscalars</span><span class="o">+</span><span class="w"> </span><span class="n">idir</span><span class="o">+</span><span class="p">(</span><span class="w"> </span><span class="n">ifield</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">qq</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-227" name="ln-227" href="#ln-227"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">   </span><span class="n">state</span><span class="p">(</span><span class="w">                                                           </span><span class="p">&amp;</span>
+<a id="ln-228" name="ln-228" href="#ln-228"></a><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">neigh</span><span class="p">(</span><span class="w"> </span><span class="n">ilevel</span><span class="w"> </span><span class="p">)%</span><span class="n">posinstate</span><span class="p">(</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">ielem</span><span class="w"> </span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">nscalars</span><span class="o">+</span><span class="w"> </span><span class="n">idir</span><span class="o">+</span><span class="p">(</span><span class="w"> </span><span class="n">ifield</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">qq</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-229" name="ln-229" href="#ln-229"></a><span class="w">          </span><span class="p">&amp;</span><span class="w">   </span><span class="mf">2.0_rk</span>
+<a id="ln-230" name="ln-230" href="#ln-230"></a><span class="w">      </span><span class="k">end do</span>
+<a id="ln-231" name="ln-231" href="#ln-231"></a><span class="k">    end do</span>
+<a id="ln-232" name="ln-232" href="#ln-232"></a>
+<a id="ln-233" name="ln-233" href="#ln-233"></a><span class="k">  end subroutine </span><span class="n">outlet_pasScal</span>
+<a id="ln-234" name="ln-234" href="#ln-234"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-235" name="ln-235" href="#ln-235"></a>
+<a id="ln-236" name="ln-236" href="#ln-236"></a><span class="w">  </span><span class="c">! ****************************************************************************** !</span>
+<a id="ln-237" name="ln-237" href="#ln-237"></a><span class="w">  </span><span class="c">!&gt; Dirichlet stationary boundary conditions for passive scalar transport in</span>
+<a id="ln-238" name="ln-238" href="#ln-238"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-239" name="ln-239" href="#ln-239"></a><span class="w">  </span><span class="c">!! Irina Ginzburg (2005), &quot;Generic boundary conditions for lattice Boltzmann</span>
+<a id="ln-240" name="ln-240" href="#ln-240"></a><span class="w">  </span><span class="c">!! models and their application to advection and anisotropic dispersion</span>
+<a id="ln-241" name="ln-241" href="#ln-241"></a><span class="w">  </span><span class="c">!! equations.&quot;, Advances in Water Resources, Volume 28, Issue 11</span>
+<a id="ln-242" name="ln-242" href="#ln-242"></a><span class="w">  </span><span class="c">!!</span>
+<a id="ln-243" name="ln-243" href="#ln-243"></a><span class="w">  </span><span class="c">!! This subroutine&#39;s interface must match the abstract interface definition</span>
+<a id="ln-244" name="ln-244" href="#ln-244"></a><span class="w">  </span><span class="c">!! [[boundaryRoutine]] in bc/[[mus_bc_header_module]].f90 in order to be</span>
+<a id="ln-245" name="ln-245" href="#ln-245"></a><span class="w">  </span><span class="c">!! callable via [[boundary_type:fnct]] function pointer.</span>
+<a id="ln-246" name="ln-246" href="#ln-246"></a><span class="w">  </span><span class="k">subroutine </span><span class="n">pressure_antiBounceBack_pasScal</span><span class="p">(</span><span class="w"> </span><span class="n">me</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">,</span><span class="w"> </span><span class="n">levelDesc</span><span class="p">,</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w">   </span><span class="p">&amp;</span>
+<a id="ln-247" name="ln-247" href="#ln-247"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">nSize</span><span class="p">,</span><span class="w"> </span><span class="n">iLevel</span><span class="p">,</span><span class="w"> </span><span class="n">sim_time</span><span class="p">,</span><span class="w"> </span><span class="n">neigh</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">         </span><span class="p">&amp;</span>
+<a id="ln-248" name="ln-248" href="#ln-248"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">fieldProp</span><span class="p">,</span><span class="w"> </span><span class="n">varPos</span><span class="p">,</span><span class="w"> </span><span class="n">nScalars</span><span class="p">,</span><span class="w"> </span><span class="n">varSys</span><span class="p">,</span><span class="w"> </span><span class="n">derVarPos</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-249" name="ln-249" href="#ln-249"></a><span class="w">    </span><span class="p">&amp;</span><span class="w">                        </span><span class="n">physics</span><span class="p">,</span><span class="w"> </span><span class="n">iField</span><span class="p">,</span><span class="w"> </span><span class="n">mixture</span><span class="w">                        </span><span class="p">)</span>
+<a id="ln-250" name="ln-250" href="#ln-250"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-251" name="ln-251" href="#ln-251"></a><span class="w">    </span><span class="c">!&gt; global boundary type</span>
+<a id="ln-252" name="ln-252" href="#ln-252"></a><span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">boundary_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">me</span>
+<a id="ln-253" name="ln-253" href="#ln-253"></a><span class="w">    </span><span class="c">!&gt; Current state vector of iLevel</span>
+<a id="ln-254" name="ln-254" href="#ln-254"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">state</span><span class="p">(:)</span>
+<a id="ln-255" name="ln-255" href="#ln-255"></a><span class="w">    </span><span class="c">!&gt; size of state array ( in terms of elements )</span>
+<a id="ln-256" name="ln-256" href="#ln-256"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nSize</span>
+<a id="ln-257" name="ln-257" href="#ln-257"></a><span class="w">    </span><span class="c">!&gt; state values of boundary elements of all fields of iLevel</span>
+<a id="ln-258" name="ln-258" href="#ln-258"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">(:)</span>
+<a id="ln-259" name="ln-259" href="#ln-259"></a><span class="w">    </span><span class="c">!&gt; iLevel descriptor</span>
+<a id="ln-260" name="ln-260" href="#ln-260"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_levelDesc_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">levelDesc</span>
+<a id="ln-261" name="ln-261" href="#ln-261"></a><span class="w">    </span><span class="c">!&gt; Treelm Mesh</span>
+<a id="ln-262" name="ln-262" href="#ln-262"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">treelmesh_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">tree</span>
+<a id="ln-263" name="ln-263" href="#ln-263"></a><span class="w">    </span><span class="c">!&gt; fluid parameters and properties</span>
+<a id="ln-264" name="ln-264" href="#ln-264"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_field_prop_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fieldProp</span>
+<a id="ln-265" name="ln-265" href="#ln-265"></a><span class="w">    </span><span class="c">!&gt; stencil layout information</span>
+<a id="ln-266" name="ln-266" href="#ln-266"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_scheme_layout_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">layout</span>
+<a id="ln-267" name="ln-267" href="#ln-267"></a><span class="w">    </span><span class="c">!&gt; the level On which this boundary was invoked</span>
+<a id="ln-268" name="ln-268" href="#ln-268"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iLevel</span>
+<a id="ln-269" name="ln-269" href="#ln-269"></a><span class="w">    </span><span class="c">!&gt; connectivity array corresponding to state vector</span>
+<a id="ln-270" name="ln-270" href="#ln-270"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">neigh</span><span class="p">(:)</span>
+<a id="ln-271" name="ln-271" href="#ln-271"></a><span class="w">    </span><span class="c">!&gt; global time information</span>
+<a id="ln-272" name="ln-272" href="#ln-272"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_time_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">sim_time</span>
+<a id="ln-273" name="ln-273" href="#ln-273"></a><span class="w">    </span><span class="c">!&gt; pointer to field variable in the state vector</span>
+<a id="ln-274" name="ln-274" href="#ln-274"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">varPos</span><span class="p">(:)</span>
+<a id="ln-275" name="ln-275" href="#ln-275"></a><span class="w">    </span><span class="c">!&gt; number of Scalars in the scheme var system</span>
+<a id="ln-276" name="ln-276" href="#ln-276"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nScalars</span>
+<a id="ln-277" name="ln-277" href="#ln-277"></a><span class="w">    </span><span class="c">!&gt; scheme variable system</span>
+<a id="ln-278" name="ln-278" href="#ln-278"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">tem_varSys_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">varSys</span>
+<a id="ln-279" name="ln-279" href="#ln-279"></a><span class="w">    </span><span class="c">!&gt; position of derived quantities in varsys</span>
+<a id="ln-280" name="ln-280" href="#ln-280"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_derVarPos_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">derVarPos</span>
+<a id="ln-281" name="ln-281" href="#ln-281"></a><span class="w">    </span><span class="c">!&gt; scheme global boundary type</span>
+<a id="ln-282" name="ln-282" href="#ln-282"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">glob_boundary_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">globBC</span>
+<a id="ln-283" name="ln-283" href="#ln-283"></a><span class="w">    </span><span class="c">!&gt; scheme global boundary type</span>
+<a id="ln-284" name="ln-284" href="#ln-284"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_physics_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">physics</span>
+<a id="ln-285" name="ln-285" href="#ln-285"></a><span class="w">    </span><span class="c">!&gt; current field</span>
+<a id="ln-286" name="ln-286" href="#ln-286"></a><span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iField</span>
+<a id="ln-287" name="ln-287" href="#ln-287"></a><span class="w">    </span><span class="c">!&gt; mixture info</span>
+<a id="ln-288" name="ln-288" href="#ln-288"></a><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">mus_mixture_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mixture</span>
+<a id="ln-289" name="ln-289" href="#ln-289"></a><span class="w">    </span><span class="c">! -------------------------------------------------------------------- !</span>
+<a id="ln-290" name="ln-290" href="#ln-290"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iElem</span><span class="p">,</span><span class="w"> </span><span class="n">iDir</span><span class="p">,</span><span class="w"> </span><span class="n">QQ</span><span class="p">,</span><span class="w"> </span><span class="n">invDir</span><span class="p">,</span><span class="w"> </span><span class="n">elemPos</span>
+<a id="ln-291" name="ln-291" href="#ln-291"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rhoDef</span><span class="p">(</span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="n">iLevel</span><span class="p">))</span><span class="w"> </span><span class="c">! Density on boundary element</span>
+<a id="ln-292" name="ln-292" href="#ln-292"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inv_rho_phy</span>
+<a id="ln-293" name="ln-293" href="#ln-293"></a><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fTmp</span><span class="p">(</span><span class="w"> </span><span class="n">nScalars</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-294" name="ln-294" href="#ln-294"></a><span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">posInBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">bcPress_pos</span>
+<a id="ln-295" name="ln-295" href="#ln-295"></a><span class="w">    </span><span class="c">! ---------------------------------------------------------------------------</span>
+<a id="ln-296" name="ln-296" href="#ln-296"></a>
+<a id="ln-297" name="ln-297" href="#ln-297"></a><span class="w">    </span><span class="n">QQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">QQ</span>
+<a id="ln-298" name="ln-298" href="#ln-298"></a><span class="w">    </span><span class="n">inv_rho_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_rk</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">physics</span><span class="p">%</span><span class="n">fac</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)%</span><span class="n">press</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cs2inv</span>
+<a id="ln-299" name="ln-299" href="#ln-299"></a>
+<a id="ln-300" name="ln-300" href="#ln-300"></a><span class="w">    </span><span class="c">! position of boundary pressure in varSys</span>
+<a id="ln-301" name="ln-301" href="#ln-301"></a><span class="w">    </span><span class="n">bcPress_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">bc_states</span><span class="p">%</span><span class="n">pressure</span><span class="p">%</span><span class="n">varPos</span>
+<a id="ln-302" name="ln-302" href="#ln-302"></a><span class="w">    </span><span class="c">! get pressure variable from spacetime function</span>
+<a id="ln-303" name="ln-303" href="#ln-303"></a><span class="w">    </span><span class="k">call </span><span class="n">varSys</span><span class="p">%</span><span class="n">method</span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="n">bcPress_pos</span><span class="p">)%</span><span class="n">get_valOfIndex</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-304" name="ln-304" href="#ln-304"></a><span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">varSys</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">varSys</span><span class="p">,</span><span class="w">                               </span><span class="p">&amp;</span>
+<a id="ln-305" name="ln-305" href="#ln-305"></a><span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="nb">time</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">sim_time</span><span class="p">,</span><span class="w">                             </span><span class="p">&amp;</span>
+<a id="ln-306" name="ln-306" href="#ln-306"></a><span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">iLevel</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">iLevel</span><span class="p">,</span><span class="w">                               </span><span class="p">&amp;</span>
+<a id="ln-307" name="ln-307" href="#ln-307"></a><span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">idx</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">me</span><span class="p">%</span><span class="n">bc_states</span><span class="p">%</span><span class="n">pressure</span><span class="w">                 </span><span class="p">&amp;</span>
+<a id="ln-308" name="ln-308" href="#ln-308"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">           </span><span class="p">%</span><span class="n">pntIndex</span><span class="p">%</span><span class="n">indexLvl</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)</span><span class="w">            </span><span class="p">&amp;</span>
+<a id="ln-309" name="ln-309" href="#ln-309"></a><span class="w">      </span><span class="p">&amp;</span><span class="w">           </span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)),</span><span class="w">        </span><span class="p">&amp;</span>
+<a id="ln-310" name="ln-310" href="#ln-310"></a><span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">nVals</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="n">iLevel</span><span class="p">),</span><span class="w">                </span><span class="p">&amp;</span>
+<a id="ln-311" name="ln-311" href="#ln-311"></a><span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">res</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">rhoDef</span><span class="w">                                </span><span class="p">)</span>
+<a id="ln-312" name="ln-312" href="#ln-312"></a>
+<a id="ln-313" name="ln-313" href="#ln-313"></a><span class="w">    </span><span class="c">! convert physical pressure into LB density</span>
+<a id="ln-314" name="ln-314" href="#ln-314"></a><span class="w">    </span><span class="n">rhoDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhoDef</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">inv_rho_phy</span>
+<a id="ln-315" name="ln-315" href="#ln-315"></a>
+<a id="ln-316" name="ln-316" href="#ln-316"></a><span class="w">    </span><span class="k">do </span><span class="n">iElem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="w"> </span><span class="n">iLevel</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-317" name="ln-317" href="#ln-317"></a><span class="w">      </span><span class="n">posInBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">elemLvl</span><span class="p">(</span><span class="w"> </span><span class="n">iLevel</span><span class="w"> </span><span class="p">)%</span><span class="n">posInBcElemBuf</span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="w"> </span><span class="n">iElem</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-318" name="ln-318" href="#ln-318"></a><span class="w">      </span><span class="n">fTmp</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">iElem</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">nScalars</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">iElem</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">nScalars</span><span class="o">+</span><span class="n">QQ</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-319" name="ln-319" href="#ln-319"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">bcBuffer</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">posInBuffer</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">nScalars</span><span class="o">+</span><span class="n">varPos</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-320" name="ln-320" href="#ln-320"></a><span class="w">        </span><span class="p">&amp;</span><span class="w">                   </span><span class="p">(</span><span class="n">posInBuffer</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">nScalars</span><span class="o">+</span><span class="n">varPos</span><span class="p">(</span><span class="n">QQ</span><span class="p">)</span><span class="w">  </span><span class="p">)</span>
+<a id="ln-321" name="ln-321" href="#ln-321"></a><span class="w">    </span><span class="k">end do</span>
+<a id="ln-322" name="ln-322" href="#ln-322"></a>
+<a id="ln-323" name="ln-323" href="#ln-323"></a><span class="k">    do </span><span class="n">iElem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">nElems</span><span class="p">(</span><span class="w"> </span><span class="n">iLevel</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-324" name="ln-324" href="#ln-324"></a><span class="w">      </span><span class="n">elemPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">elemLvl</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)%</span><span class="n">elem</span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="w"> </span><span class="n">iElem</span><span class="w"> </span><span class="p">)</span>
+<a id="ln-325" name="ln-325" href="#ln-325"></a><span class="w">      </span><span class="k">do </span><span class="n">iDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">QQN</span>
+<a id="ln-326" name="ln-326" href="#ln-326"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="n">globBC</span><span class="p">%</span><span class="n">elemLvl</span><span class="p">(</span><span class="n">iLevel</span><span class="p">)%</span><span class="n">bitmask</span><span class="p">%</span><span class="n">val</span><span class="p">(</span><span class="n">iDir</span><span class="p">,</span><span class="w"> </span><span class="n">iElem</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<a id="ln-327" name="ln-327" href="#ln-327"></a><span class="k">          </span><span class="n">invDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">%</span><span class="n">fStencil</span><span class="p">%</span><span class="n">cxDirInv</span><span class="p">(</span><span class="n">iDir</span><span class="p">)</span>
+<a id="ln-328" name="ln-328" href="#ln-328"></a>
+<a id="ln-329" name="ln-329" href="#ln-329"></a><span class="w">          </span><span class="n">state</span><span class="p">(</span><span class="w"> </span><span class="n">neigh</span><span class="w"> </span><span class="p">((</span><span class="w"> </span><span class="n">idir</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">nsize</span><span class="o">+</span><span class="w"> </span><span class="n">elempos</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="w"> </span><span class="n">ifield</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">qq</span><span class="o">+</span><span class="w"> </span><span class="n">nscalars</span><span class="o">*</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-330" name="ln-330" href="#ln-330"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">fTmp</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">iElem</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">nScalars</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">invDir</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="ln-331" name="ln-331" href="#ln-331"></a><span class="w">            </span><span class="p">&amp;</span><span class="w">   </span><span class="o">+</span><span class="w"> </span><span class="mf">2._rk</span><span class="o">*</span><span class="n">layout</span><span class="p">%</span><span class="n">weight</span><span class="p">(</span><span class="w"> </span><span class="n">invDir</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rhoDef</span><span class="p">(</span><span class="n">iElem</span><span class="p">)</span>
+<a id="ln-332" name="ln-332" href="#ln-332"></a>
+<a id="ln-333" name="ln-333" href="#ln-333"></a><span class="w">        </span><span class="k">end if</span><span class="w"> </span><span class="c">! bitMask</span>
+<a id="ln-334" name="ln-334" href="#ln-334"></a><span class="w">      </span><span class="k">end do</span><span class="w"> </span><span class="c">! iDir</span>
+<a id="ln-335" name="ln-335" href="#ln-335"></a><span class="w">    </span><span class="k">end do</span><span class="w"> </span><span class="c">! iElem</span>
+<a id="ln-336" name="ln-336" href="#ln-336"></a>
+<a id="ln-337" name="ln-337" href="#ln-337"></a><span class="w">  </span><span class="k">end subroutine </span><span class="n">pressure_antiBounceBack_pasScal</span>
+<a id="ln-338" name="ln-338" href="#ln-338"></a><span class="c">! ****************************************************************************** !</span>
+<a id="ln-339" name="ln-339" href="#ln-339"></a>
+<a id="ln-340" name="ln-340" href="#ln-340"></a>
+<a id="ln-341" name="ln-341" href="#ln-341"></a><span class="k">end module </span><span class="n">mus_bc_passiveScalar_module</span>
+<a id="ln-342" name="ln-342" href="#ln-342"></a><span class="c">! ****************************************************************************** !</span>
+</pre></div>
+
+      </section>
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,889 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_get_new_solver_ptr &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_get_new_solver_ptr
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">8 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_varSys_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_varsys_module.f90.html'>mus_varSys_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_varsys_module.html'>mus_varSys_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_get_new_solver_ptr</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  function mus_get_new_solver_ptr(solver) result(resPtr)  
+</h2>
+    
+
+    <p>Routine to get a pointer to a new instance of mus_varSys_solverData_type
+ to be used as method data for a variable in the variable system.</p>
+<p>A new instance is allocated and a c_ptr to this type is returned.
+ Be aware that local pointer are not automatically deallocated when leaving
+ the routine</p>
+<p>TODO init the point arrays</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-solver"></span>
+              type(<a href='../type/mus_varsys_solverdata_type.html'>mus_varSys_solverData_type</a>),
+            </td>
+<td>intent(in),</td>
+              <td>optional,</td>            <td>
+              target
+            </td>
+            <td>::</td>
+            <td><strong>solver</strong></td>
+            <td>
+                <p>The prototype is used to initialize the new instance.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-resptr"></span>
+          type(c_ptr)
+        </small>
+      </h3>
+      <p>Pointer to the newly created instance.</p>
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_get_new_solver_ptr~~CalledByGraph Pages: 1 -->
+<svg id="procmus_get_new_solver_ptrCalledByGraph" width="641pt" height="418pt"
+ viewBox="0.00 0.00 641.00 418.43" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph" class="graph" transform="scale(0.56 0.56) rotate(0) translate(4 748)">
+<title>proc~~mus_get_new_solver_ptr~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-748 1148,-748 1148,4 -4,4"/>
+<!-- proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node1" class="node">
+<title>proc~mus_get_new_solver_ptr</title>
+<polygon fill="none" stroke="black" points="1144,-382 1002,-382 1002,-358 1144,-358 1144,-382"/>
+<text text-anchor="middle" x="1073" y="-367.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_get_new_solver_ptr</text>
+</g>
+<!-- proc~mus_append_auxfield -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node2" class="node">
+<title>proc~mus_append_auxfield</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node2"><a xlink:href="../proc/mus_append_auxfield.html" xlink:title="mus_append_auxField">
+<polygon fill="#d9534f" stroke="#d9534f" points="936,-744 806,-744 806,-720 936,-720 936,-744"/>
+<text text-anchor="middle" x="871" y="-729.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_auxField</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_auxfield&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge1" class="edge">
+<title>proc~mus_append_auxfield&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M936.1,-727.13C947.09,-723.8 957.64,-718.71 966,-711 1060.85,-623.59 1071.54,-453.03 1072.22,-392.21"/>
+<polygon fill="#000000" stroke="#000000" points="1075.72,-392.18 1072.25,-382.17 1068.72,-392.16 1075.72,-392.18"/>
+</g>
+<!-- proc~mus_append_bcvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node3" class="node">
+<title>proc~mus_append_bcvar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node3"><a xlink:href="../proc/mus_append_bcvar.html" xlink:title="mus_append_bcVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="929,-702 813,-702 813,-678 929,-678 929,-702"/>
+<text text-anchor="middle" x="871" y="-687.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_bcVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_bcvar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge2" class="edge">
+<title>proc~mus_append_bcvar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M929.02,-686.68C942.4,-683.51 955.74,-678.09 966,-669 1050.27,-594.35 1067.55,-448.27 1071.09,-392.43"/>
+<polygon fill="#000000" stroke="#000000" points="1074.59,-392.41 1071.64,-382.23 1067.6,-392.03 1074.59,-392.41"/>
+</g>
+<!-- proc~mus_append_derliquidmixvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node4" class="node">
+<title>proc~mus_append_derliquidmixvar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node4"><a xlink:href="../proc/mus_append_derliquidmixvar.html" xlink:title="mus_append_derLiquidMixVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="957,-382 785,-382 785,-358 957,-358 957,-382"/>
+<text text-anchor="middle" x="871" y="-367.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derLiquidMixVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_derliquidmixvar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge3" class="edge">
+<title>proc~mus_append_derliquidmixvar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M957.11,-370C968.5,-370 980.16,-370 991.48,-370"/>
+<polygon fill="#000000" stroke="#000000" points="991.75,-373.5 1001.75,-370 991.75,-366.5 991.75,-373.5"/>
+</g>
+<!-- proc~mus_append_dermixvar_ms -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node5" class="node">
+<title>proc~mus_append_dermixvar_ms</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node5"><a xlink:href="../proc/mus_append_dermixvar_ms.html" xlink:title="mus_append_derMixVar_MS">
+<polygon fill="#d9534f" stroke="#d9534f" points="951,-462 791,-462 791,-438 951,-438 951,-462"/>
+<text text-anchor="middle" x="871" y="-447.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derMixVar_MS</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dermixvar_ms&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge4" class="edge">
+<title>proc~mus_append_dermixvar_ms&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M922.86,-437.94C937.01,-434.05 952.27,-429.33 966,-424 992.71,-413.62 1021.61,-398.63 1042.47,-387.08"/>
+<polygon fill="#000000" stroke="#000000" points="1044.45,-389.98 1051.46,-382.04 1041.02,-383.88 1044.45,-389.98"/>
+</g>
+<!-- proc~mus_append_dervar_fluid -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node6" class="node">
+<title>proc~mus_append_dervar_fluid</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node6"><a xlink:href="../proc/mus_append_dervar_fluid.html" xlink:title="mus_append_derVar_fluid">
+<polygon fill="#d9534f" stroke="#d9534f" points="946,-660 796,-660 796,-636 946,-636 946,-660"/>
+<text text-anchor="middle" x="871" y="-645.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_fluid</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_fluid&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge5" class="edge">
+<title>proc~mus_append_dervar_fluid&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M946.11,-638.79C953.31,-635.8 960.12,-631.95 966,-627 1039.98,-564.73 1063.09,-442.52 1069.64,-392.33"/>
+<polygon fill="#000000" stroke="#000000" points="1073.13,-392.58 1070.86,-382.23 1066.18,-391.74 1073.13,-392.58"/>
+</g>
+<!-- proc~mus_append_dervar_fluidincomp -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node7" class="node">
+<title>proc~mus_append_dervar_fluidincomp</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node7"><a xlink:href="../proc/mus_append_dervar_fluidincomp.html" xlink:title="mus_append_derVar_fluidIncomp">
+<polygon fill="#d9534f" stroke="#d9534f" points="966,-618 776,-618 776,-594 966,-594 966,-618"/>
+<text text-anchor="middle" x="871" y="-603.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_fluidIncomp</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_fluidincomp&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge6" class="edge">
+<title>proc~mus_append_dervar_fluidincomp&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M942.01,-593.81C950.66,-590.3 958.93,-585.8 966,-580 1027.31,-529.75 1056.59,-434.97 1067.16,-392.08"/>
+<polygon fill="#000000" stroke="#000000" points="1070.62,-392.66 1069.5,-382.12 1063.8,-391.05 1070.62,-392.66"/>
+</g>
+<!-- proc~mus_append_dervar_isotherm_aceq -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node8" class="node">
+<title>proc~mus_append_dervar_isotherm_aceq</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node8"><a xlink:href="../proc/mus_append_dervar_isotherm_aceq.html" xlink:title="mus_append_derVar_isotherm_acEq">
+<polygon fill="#d9534f" stroke="#d9534f" points="740,-576 535,-576 535,-552 740,-552 740,-576"/>
+<text text-anchor="middle" x="637.5" y="-561.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_isotherm_acEq</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_isotherm_aceq&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge7" class="edge">
+<title>proc~mus_append_dervar_isotherm_aceq&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M740.08,-574.61C808.61,-576.86 898.51,-569.88 966,-529 1018.94,-496.93 1051.02,-427.15 1064.52,-391.66"/>
+<polygon fill="#000000" stroke="#000000" points="1067.83,-392.82 1067.98,-382.22 1061.25,-390.41 1067.83,-392.82"/>
+</g>
+<!-- proc~mus_append_dervar_lbmps -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node9" class="node">
+<title>proc~mus_append_dervar_lbmps</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node9"><a xlink:href="../proc/mus_append_dervar_lbmps.html" xlink:title="mus_append_derVar_lbmPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="717.5,-532 557.5,-532 557.5,-508 717.5,-508 717.5,-532"/>
+<text text-anchor="middle" x="637.5" y="-517.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_lbmPS</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_lbmps&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge8" class="edge">
+<title>proc~mus_append_dervar_lbmps&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M717.52,-531.14C786.87,-537.16 888.48,-536.64 966,-497 1011.72,-473.62 1045.28,-420.95 1061.37,-391.31"/>
+<polygon fill="#000000" stroke="#000000" points="1064.59,-392.7 1066.14,-382.21 1058.39,-389.44 1064.59,-392.7"/>
+</g>
+<!-- proc~mus_append_dervar_msgas -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node10" class="node">
+<title>proc~mus_append_dervar_msgas</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node10"><a xlink:href="../proc/mus_append_dervar_msgas.html" xlink:title="mus_append_derVar_MSGas">
+<polygon fill="#d9534f" stroke="#d9534f" points="719,-486 556,-486 556,-462 719,-462 719,-486"/>
+<text text-anchor="middle" x="637.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_MSGas</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_msgas&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge9" class="edge">
+<title>proc~mus_append_dervar_msgas&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M697.21,-486C764.77,-497.03 877.74,-506.79 966,-471 1006.28,-454.67 1040.04,-415.09 1058.02,-390.61"/>
+<polygon fill="#000000" stroke="#000000" points="1060.96,-392.52 1063.92,-382.34 1055.26,-388.45 1060.96,-392.52"/>
+</g>
+<!-- proc~mus_append_dervar_msgas&#45;&gt;proc~mus_append_dermixvar_ms -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge23" class="edge">
+<title>proc~mus_append_dervar_msgas&#45;&gt;proc~mus_append_dermixvar_ms</title>
+<path fill="none" stroke="#000000" d="M719.14,-465.64C739.01,-463.58 760.41,-461.36 780.66,-459.26"/>
+<polygon fill="#000000" stroke="#000000" points="781.23,-462.72 790.82,-458.21 780.51,-455.76 781.23,-462.72"/>
+</g>
+<!-- proc~mus_append_dervar_msliquid -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node11" class="node">
+<title>proc~mus_append_dervar_msliquid</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node11"><a xlink:href="../proc/mus_append_dervar_msliquid.html" xlink:title="mus_append_derVar_MSLiquid">
+<polygon fill="#d9534f" stroke="#d9534f" points="725,-437 550,-437 550,-413 725,-413 725,-437"/>
+<text text-anchor="middle" x="637.5" y="-422.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_MSLiquid</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_msliquid&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge10" class="edge">
+<title>proc~mus_append_dervar_msliquid&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M725.31,-418.18C791.48,-412.45 884.74,-403.24 966,-391 979.08,-389.03 993,-386.55 1006.3,-383.99"/>
+<polygon fill="#000000" stroke="#000000" points="1007.19,-387.39 1016.33,-382.03 1005.84,-380.52 1007.19,-387.39"/>
+</g>
+<!-- proc~mus_append_dervar_msliquid&#45;&gt;proc~mus_append_derliquidmixvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge22" class="edge">
+<title>proc~mus_append_dervar_msliquid&#45;&gt;proc~mus_append_derliquidmixvar</title>
+<path fill="none" stroke="#000000" d="M695.75,-412.96C710.21,-409.82 725.7,-406.36 740,-403 764.38,-397.26 791.23,-390.52 814.17,-384.63"/>
+<polygon fill="#000000" stroke="#000000" points="815.26,-387.96 824.07,-382.08 813.51,-381.19 815.26,-387.96"/>
+</g>
+<!-- proc~mus_append_dervar_msliquid&#45;&gt;proc~mus_append_dermixvar_ms -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge24" class="edge">
+<title>proc~mus_append_dervar_msliquid&#45;&gt;proc~mus_append_dermixvar_ms</title>
+<path fill="none" stroke="#000000" d="M725.03,-434.34C743.24,-436.31 762.47,-438.39 780.77,-440.36"/>
+<polygon fill="#000000" stroke="#000000" points="780.51,-443.86 790.83,-441.45 781.27,-436.9 780.51,-443.86"/>
+</g>
+<!-- proc~mus_append_dervar_physics -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node12" class="node">
+<title>proc~mus_append_dervar_physics</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node12"><a xlink:href="../proc/mus_append_dervar_physics.html" xlink:title="mus_append_derVar_physics">
+<polygon fill="#d9534f" stroke="#d9534f" points="720.5,-394 554.5,-394 554.5,-370 720.5,-370 720.5,-394"/>
+<text text-anchor="middle" x="637.5" y="-379.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_physics</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_physics&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge11" class="edge">
+<title>proc~mus_append_dervar_physics&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M698,-369.97C711.84,-366.93 726.48,-363.52 740,-360 756.19,-355.78 759.45,-351.47 776,-349 859.52,-336.53 881.96,-340.76 966,-349 980.94,-350.47 996.9,-353.07 1011.78,-355.95"/>
+<polygon fill="#000000" stroke="#000000" points="1011.39,-359.44 1021.89,-357.98 1012.77,-352.58 1011.39,-359.44"/>
+</g>
+<!-- proc~mus_append_dervar_poisson -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node13" class="node">
+<title>proc~mus_append_dervar_poisson</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node13"><a xlink:href="../proc/mus_append_dervar_poisson.html" xlink:title="mus_append_derVar_poisson">
+<polygon fill="#d9534f" stroke="#d9534f" points="721,-351 554,-351 554,-327 721,-327 721,-351"/>
+<text text-anchor="middle" x="637.5" y="-336.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_derVar_poisson</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_dervar_poisson&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge12" class="edge">
+<title>proc~mus_append_dervar_poisson&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M721.12,-331.39C787.65,-326.96 883.37,-324.43 966,-337 988.5,-340.42 1012.79,-347.7 1032.43,-354.56"/>
+<polygon fill="#000000" stroke="#000000" points="1031.36,-357.9 1041.96,-357.98 1033.73,-351.31 1031.36,-357.9"/>
+</g>
+<!-- proc~mus_append_materialvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node14" class="node">
+<title>proc~mus_append_materialvar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node14"><a xlink:href="../proc/mus_append_materialvar.html" xlink:title="mus_append_materialVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="711.5,-306 563.5,-306 563.5,-282 711.5,-282 711.5,-306"/>
+<text text-anchor="middle" x="637.5" y="-291.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_materialVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_materialvar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge13" class="edge">
+<title>proc~mus_append_materialvar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M711.53,-293.65C778.68,-294.92 880.48,-300.9 966,-323 992.54,-329.86 1020.83,-342.71 1041.5,-353.25"/>
+<polygon fill="#000000" stroke="#000000" points="1039.95,-356.38 1050.43,-357.9 1043.18,-350.18 1039.95,-356.38"/>
+</g>
+<!-- proc~mus_append_readvarasstatevar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node15" class="node">
+<title>proc~mus_append_readvarasstatevar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node15"><a xlink:href="../proc/mus_append_readvarasstatevar.html" xlink:title="mus_append_readVarAsStateVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="963.5,-150 778.5,-150 778.5,-126 963.5,-126 963.5,-150"/>
+<text text-anchor="middle" x="871" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_readVarAsStateVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_readvarasstatevar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge14" class="edge">
+<title>proc~mus_append_readvarasstatevar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M941.49,-150.05C950.31,-153.57 958.77,-158.12 966,-164 1026.43,-213.14 1056.09,-305.81 1066.95,-348.03"/>
+<polygon fill="#000000" stroke="#000000" points="1063.58,-348.98 1069.37,-357.85 1070.38,-347.31 1063.58,-348.98"/>
+</g>
+<!-- proc~mus_append_sourcevar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node16" class="node">
+<title>proc~mus_append_sourcevar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node16"><a xlink:href="../proc/mus_append_sourcevar.html" xlink:title="mus_append_sourceVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="707,-259 568,-259 568,-235 707,-235 707,-259"/>
+<text text-anchor="middle" x="637.5" y="-244.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_sourceVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_sourcevar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge15" class="edge">
+<title>proc~mus_append_sourcevar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M707.19,-246.7C775.25,-248.61 881.31,-257.64 966,-292 999.68,-305.67 1032.43,-332.47 1052.41,-350.8"/>
+<polygon fill="#000000" stroke="#000000" points="1050.22,-353.55 1059.9,-357.84 1055.01,-348.45 1050.22,-353.55"/>
+</g>
+<!-- proc~mus_append_statevar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node17" class="node">
+<title>proc~mus_append_statevar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node17"><a xlink:href="../proc/mus_append_statevar.html" xlink:title="mus_append_stateVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="936,-108 806,-108 806,-84 936,-84 936,-108"/>
+<text text-anchor="middle" x="871" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_stateVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_statevar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge16" class="edge">
+<title>proc~mus_append_statevar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M936.01,-101.68C946.88,-104.94 957.41,-109.81 966,-117 1039.16,-178.24 1062.73,-298.58 1069.52,-348.01"/>
+<polygon fill="#000000" stroke="#000000" points="1066.05,-348.48 1070.79,-357.95 1073,-347.59 1066.05,-348.48"/>
+</g>
+<!-- proc~mus_append_turbvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node18" class="node">
+<title>proc~mus_append_turbvar</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node18"><a xlink:href="../proc/mus_append_turbvar.html" xlink:title="mus_append_turbVar">
+<polygon fill="#d9534f" stroke="#d9534f" points="700,-206 575,-206 575,-182 700,-182 700,-206"/>
+<text text-anchor="middle" x="637.5" y="-191.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_append_turbVar</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_append_turbvar&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge17" class="edge">
+<title>proc~mus_append_turbvar&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M700.22,-191.74C769.28,-191.87 882.43,-200.26 966,-247 1009.55,-271.36 1043.55,-320.83 1060.39,-349.04"/>
+<polygon fill="#000000" stroke="#000000" points="1057.38,-350.84 1065.43,-357.73 1063.44,-347.33 1057.38,-350.84"/>
+</g>
+<!-- proc~mus_set_opvar_getelement -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node19" class="node">
+<title>proc~mus_set_opvar_getelement</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node19"><a xlink:href="../proc/mus_set_opvar_getelement.html" xlink:title="mus_set_opVar_getElement">
+<polygon fill="#d9534f" stroke="#d9534f" points="950.5,-66 791.5,-66 791.5,-42 950.5,-42 950.5,-66"/>
+<text text-anchor="middle" x="871" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_set_opVar_getElement</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_set_opvar_getelement&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge18" class="edge">
+<title>proc~mus_set_opvar_getelement&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M950.94,-65.05C956.38,-67.74 961.49,-71.02 966,-75 1049.43,-148.59 1067.21,-292.75 1070.99,-347.86"/>
+<polygon fill="#000000" stroke="#000000" points="1067.5,-348.15 1071.58,-357.93 1074.48,-347.74 1067.5,-348.15"/>
+</g>
+<!-- proc~mus_set_stfun_getelement -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node20" class="node">
+<title>proc~mus_set_stfun_getelement</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node20"><a xlink:href="../proc/mus_set_stfun_getelement.html" xlink:title="mus_set_stFun_getElement">
+<polygon fill="#d9534f" stroke="#d9534f" points="949,-24 793,-24 793,0 949,0 949,-24"/>
+<text text-anchor="middle" x="871" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_set_stFun_getElement</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_set_stfun_getelement&#45;&gt;proc~mus_get_new_solver_ptr -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge19" class="edge">
+<title>proc~mus_set_stfun_getelement&#45;&gt;proc~mus_get_new_solver_ptr</title>
+<path fill="none" stroke="#000000" d="M949.31,-21.96C955.39,-24.85 961.07,-28.48 966,-33 1059.78,-119.14 1071.17,-287.22 1072.12,-347.67"/>
+<polygon fill="#000000" stroke="#000000" points="1068.62,-347.99 1072.2,-357.97 1075.62,-347.94 1068.62,-347.99"/>
+</g>
+<!-- proc~mus_build_varsys -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node21" class="node">
+<title>proc~mus_build_varsys</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node21"><a xlink:href="../proc/mus_build_varsys.html" xlink:title="mus_build_varSys">
+<polygon fill="#d9534f" stroke="#d9534f" points="477.5,-486 370.5,-486 370.5,-462 477.5,-462 477.5,-486"/>
+<text text-anchor="middle" x="424" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_build_varSys</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_auxfield -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge20" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_auxfield</title>
+<path fill="none" stroke="#000000" d="M427.14,-486.07C434.44,-523.44 462.11,-637.76 535,-689 611.51,-742.79 722.72,-746.24 795.69,-741.21"/>
+<polygon fill="#000000" stroke="#000000" points="796.02,-744.69 805.73,-740.44 795.49,-737.71 796.02,-744.69"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_bcvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge21" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_bcvar</title>
+<path fill="none" stroke="#000000" d="M428.45,-486.08C438.55,-519.04 471.45,-610.69 535,-651 616.06,-702.42 730.68,-703.98 802.64,-698.45"/>
+<polygon fill="#000000" stroke="#000000" points="803.26,-701.91 812.93,-697.58 802.68,-694.93 803.26,-701.91"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_fluid -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge25" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_fluid</title>
+<path fill="none" stroke="#000000" d="M430.25,-486.23C443.23,-514.77 479.82,-585.61 535,-616 612.07,-658.45 714.39,-662.03 785.58,-657.78"/>
+<polygon fill="#000000" stroke="#000000" points="786.11,-661.25 795.86,-657.1 785.65,-654.27 786.11,-661.25"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_fluidincomp -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge26" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_fluidincomp</title>
+<path fill="none" stroke="#000000" d="M432.56,-486.18C448.22,-510.17 486.83,-563.13 535,-585 607.04,-617.72 696.91,-621.63 765.42,-618.1"/>
+<polygon fill="#000000" stroke="#000000" points="766.01,-621.57 775.79,-617.5 765.61,-614.58 766.01,-621.57"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_isotherm_aceq -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge27" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_isotherm_aceq</title>
+<path fill="none" stroke="#000000" d="M441.24,-486.24C461.95,-501.28 499.35,-526.56 535,-541 542.76,-544.15 551.04,-546.91 559.4,-549.32"/>
+<polygon fill="#000000" stroke="#000000" points="558.65,-552.74 569.22,-551.99 560.49,-545.99 558.65,-552.74"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_lbmps -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge28" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_lbmps</title>
+<path fill="none" stroke="#000000" d="M477.55,-485.43C505.91,-491.6 541.17,-499.27 571.27,-505.81"/>
+<polygon fill="#000000" stroke="#000000" points="570.75,-509.28 581.26,-507.99 572.23,-502.44 570.75,-509.28"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_msgas -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge29" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_msgas</title>
+<path fill="none" stroke="#000000" d="M477.55,-474C498.12,-474 522.32,-474 545.55,-474"/>
+<polygon fill="#000000" stroke="#000000" points="545.78,-477.5 555.78,-474 545.78,-470.5 545.78,-477.5"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_msliquid -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge30" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_msliquid</title>
+<path fill="none" stroke="#000000" d="M477.01,-461.95C506.59,-455.1 543.81,-446.48 574.85,-439.28"/>
+<polygon fill="#000000" stroke="#000000" points="575.74,-442.67 584.69,-437 574.16,-435.85 575.74,-442.67"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_physics -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge31" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_physics</title>
+<path fill="none" stroke="#000000" d="M440.06,-461.94C460.41,-446.24 498.36,-419.06 535,-404 541.59,-401.29 548.57,-398.89 555.65,-396.77"/>
+<polygon fill="#000000" stroke="#000000" points="556.67,-400.12 565.36,-394.06 554.78,-393.38 556.67,-400.12"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_poisson -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge32" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_dervar_poisson</title>
+<path fill="none" stroke="#000000" d="M433.06,-461.86C449.33,-438.37 488.55,-386.75 535,-361 539.42,-358.55 544.09,-356.37 548.9,-354.44"/>
+<polygon fill="#000000" stroke="#000000" points="550.1,-357.72 558.3,-351.01 547.7,-351.15 550.1,-357.72"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_materialvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge33" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_materialvar</title>
+<path fill="none" stroke="#000000" d="M429.84,-461.99C442.4,-432.44 478.99,-355.86 535,-318 540.75,-314.12 547.04,-310.86 553.6,-308.12"/>
+<polygon fill="#000000" stroke="#000000" points="555.21,-311.26 563.36,-304.48 552.76,-304.7 555.21,-311.26"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_sourcevar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge35" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_sourcevar</title>
+<path fill="none" stroke="#000000" d="M427.99,-461.83C437.27,-426.67 469.03,-324.25 535,-273 541.99,-267.57 550,-263.26 558.37,-259.85"/>
+<polygon fill="#000000" stroke="#000000" points="559.76,-263.07 567.96,-256.36 557.36,-256.49 559.76,-263.07"/>
+</g>
+<!-- proc~mus_build_varsys&#45;&gt;proc~mus_append_turbvar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge37" class="edge">
+<title>proc~mus_build_varsys&#45;&gt;proc~mus_append_turbvar</title>
+<path fill="none" stroke="#000000" d="M426.8,-461.87C433.35,-421.94 459.67,-293.33 535,-226 543.77,-218.16 554.46,-212.24 565.57,-207.77"/>
+<polygon fill="#000000" stroke="#000000" points="566.76,-211.06 574.96,-204.35 564.37,-204.48 566.76,-211.06"/>
+</g>
+<!-- proc~mus_load_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node22" class="node">
+<title>proc~mus_load_scheme</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node22"><a xlink:href="../proc/mus_load_scheme.html" xlink:title="mus_load_scheme">
+<polygon fill="#d9534f" stroke="#d9534f" points="693,-129 582,-129 582,-105 693,-105 693,-129"/>
+<text text-anchor="middle" x="637.5" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_load_scheme</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_load_scheme&#45;&gt;proc~mus_append_readvarasstatevar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge34" class="edge">
+<title>proc~mus_load_scheme&#45;&gt;proc~mus_append_readvarasstatevar</title>
+<path fill="none" stroke="#000000" d="M693.07,-121.95C715.49,-123.98 742.21,-126.41 768.01,-128.75"/>
+<polygon fill="#000000" stroke="#000000" points="767.94,-132.26 778.22,-129.67 768.58,-125.29 767.94,-132.26"/>
+</g>
+<!-- proc~mus_load_scheme&#45;&gt;proc~mus_append_statevar -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge36" class="edge">
+<title>proc~mus_load_scheme&#45;&gt;proc~mus_append_statevar</title>
+<path fill="none" stroke="#000000" d="M693.07,-112.05C723.72,-109.27 762.4,-105.76 795.77,-102.73"/>
+<polygon fill="#000000" stroke="#000000" points="796.3,-106.2 805.94,-101.81 795.67,-99.23 796.3,-106.2"/>
+</g>
+<!-- proc~mus_hvs_load_solverdata -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node23" class="node">
+<title>proc~mus_hvs_load_solverdata</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node23"><a xlink:href="../proc/mus_hvs_load_solverdata.html" xlink:title="mus_hvs_load_solverData">
+<polygon fill="#d9534f" stroke="#d9534f" points="499,-150 349,-150 349,-126 499,-126 499,-150"/>
+<text text-anchor="middle" x="424" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_load_solverData</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_hvs_load_solverdata&#45;&gt;proc~mus_load_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge39" class="edge">
+<title>proc~mus_hvs_load_solverdata&#45;&gt;proc~mus_load_scheme</title>
+<path fill="none" stroke="#000000" d="M499.27,-130.63C522.91,-128.28 548.86,-125.7 571.77,-123.43"/>
+<polygon fill="#000000" stroke="#000000" points="572.12,-126.91 581.72,-122.44 571.42,-119.94 572.12,-126.91"/>
+</g>
+<!-- proc~mus_init_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node24" class="node">
+<title>proc~mus_init_scheme</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node24"><a xlink:href="../proc/mus_init_scheme.html" xlink:title="mus_init_scheme">
+<polygon fill="#d9534f" stroke="#d9534f" points="302.5,-486 198.5,-486 198.5,-462 302.5,-462 302.5,-486"/>
+<text text-anchor="middle" x="250.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_init_scheme</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_init_scheme&#45;&gt;proc~mus_build_varsys -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge38" class="edge">
+<title>proc~mus_init_scheme&#45;&gt;proc~mus_build_varsys</title>
+<path fill="none" stroke="#000000" d="M302.96,-474C320.94,-474 341.33,-474 360.13,-474"/>
+<polygon fill="#000000" stroke="#000000" points="360.39,-477.5 370.39,-474 360.39,-470.5 360.39,-477.5"/>
+</g>
+<!-- proc~mus_load_config -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node25" class="node">
+<title>proc~mus_load_config</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node25"><a xlink:href="../proc/mus_load_config.html" xlink:title="mus_load_config">
+<polygon fill="#d9534f" stroke="#d9534f" points="475,-108 373,-108 373,-84 475,-84 475,-108"/>
+<text text-anchor="middle" x="424" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_load_config</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_load_config&#45;&gt;proc~mus_load_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge40" class="edge">
+<title>proc~mus_load_config&#45;&gt;proc~mus_load_scheme</title>
+<path fill="none" stroke="#000000" d="M475.12,-100.98C503.99,-103.84 540.58,-107.48 571.62,-110.56"/>
+<polygon fill="#000000" stroke="#000000" points="571.62,-114.07 581.92,-111.58 572.31,-107.11 571.62,-114.07"/>
+</g>
+<!-- proc~mus_hvs_config_load -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node26" class="node">
+<title>proc~mus_hvs_config_load</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node26"><a xlink:href="../proc/mus_hvs_config_load.html" xlink:title="mus_hvs_config_load">
+<polygon fill="#d9534f" stroke="#d9534f" points="313,-150 188,-150 188,-126 313,-126 313,-150"/>
+<text text-anchor="middle" x="250.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_load</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_hvs_config_load&#45;&gt;proc~mus_hvs_load_solverdata -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge41" class="edge">
+<title>proc~mus_hvs_config_load&#45;&gt;proc~mus_hvs_load_solverdata</title>
+<path fill="none" stroke="#000000" d="M313.42,-138C321.69,-138 330.29,-138 338.86,-138"/>
+<polygon fill="#000000" stroke="#000000" points="338.9,-141.5 348.9,-138 338.9,-134.5 338.9,-141.5"/>
+</g>
+<!-- proc~mus_initialize -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node27" class="node">
+<title>proc~mus_initialize</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node27"><a xlink:href="../proc/mus_initialize.html" xlink:title="mus_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="118.5,-528 33.5,-528 33.5,-504 118.5,-504 118.5,-528"/>
+<text text-anchor="middle" x="76" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initialize&#45;&gt;proc~mus_init_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge42" class="edge">
+<title>proc~mus_initialize&#45;&gt;proc~mus_init_scheme</title>
+<path fill="none" stroke="#000000" d="M118.76,-505.83C140.22,-500.61 166.74,-494.15 190.28,-488.42"/>
+<polygon fill="#000000" stroke="#000000" points="191.27,-491.78 200.16,-486.01 189.62,-484.98 191.27,-491.78"/>
+</g>
+<!-- proc~mus_perform_dynloadbal -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node28" class="node">
+<title>proc~mus_perform_dynloadbal</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node28"><a xlink:href="../proc/mus_perform_dynloadbal.html" xlink:title="mus_perform_dynLoadBal">
+<polygon fill="#d9534f" stroke="#d9534f" points="152,-486 0,-486 0,-462 152,-462 152,-486"/>
+<text text-anchor="middle" x="76" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_perform_dynLoadBal</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_perform_dynloadbal&#45;&gt;proc~mus_init_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge43" class="edge">
+<title>proc~mus_perform_dynloadbal&#45;&gt;proc~mus_init_scheme</title>
+<path fill="none" stroke="#000000" d="M152.16,-474C164.24,-474 176.61,-474 188.31,-474"/>
+<polygon fill="#000000" stroke="#000000" points="188.39,-477.5 198.39,-474 188.39,-470.5 188.39,-477.5"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node29" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node29"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="124.5,-444 27.5,-444 27.5,-420 124.5,-420 124.5,-444"/>
+<text text-anchor="middle" x="76" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;proc~mus_init_scheme -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge44" class="edge">
+<title>program~mus_harvesting&#45;&gt;proc~mus_init_scheme</title>
+<path fill="none" stroke="#000000" d="M124.59,-443.59C144.82,-448.51 168.63,-454.31 190.01,-459.52"/>
+<polygon fill="#000000" stroke="#000000" points="189.41,-462.97 199.96,-461.94 191.07,-456.17 189.41,-462.97"/>
+</g>
+<!-- program~musubi -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_node30" class="node">
+<title>program~musubi</title>
+<g id="a_proc~~mus_get_new_solver_ptr~~CalledByGraph_node30"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="277.5,-108 223.5,-108 223.5,-84 277.5,-84 277.5,-108"/>
+<text text-anchor="middle" x="250.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;proc~mus_load_config -->
+<g id="proc~~mus_get_new_solver_ptr~~CalledByGraph_edge45" class="edge">
+<title>program~musubi&#45;&gt;proc~mus_load_config</title>
+<path fill="none" stroke="#000000" d="M277.55,-96C300.1,-96 333.58,-96 362.73,-96"/>
+<polygon fill="#000000" stroke="#000000" points="362.84,-99.5 372.84,-96 362.84,-92.5 362.84,-99.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocmus_get_new_solver_ptrCalledByGraph = svgPanZoom('#procmus_get_new_solver_ptrCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

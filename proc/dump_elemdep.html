@@ -1,0 +1,671 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>dump_elemDep &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>dump_elemDep
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">19 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_interpolate_tools_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_interpolate_tools_module.f90.html'>mus_interpolate_tools_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_interpolate_tools_module.html'>mus_interpolate_tools_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">dump_elemDep</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  subroutine dump_elemDep(targetElem, sourceElem, nUnit, tree, weight)  
+</h2>
+    
+
+    <p>dump dependencies for one element</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-targetelem~5"></span>
+              integer(kind=long_k),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>targetElem</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sourceelem~4"></span>
+              integer(kind=long_k),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sourceElem</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nunit~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nUnit</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tree~72"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tree</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-weight~13"></span>
+              real(kind=rk),
+            </td>
+<td></td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>weight</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~dump_elemdep~~CallsGraph Pages: 1 -->
+<svg id="procdump_elemdepCallsGraph" width="229pt" height="74pt"
+ viewBox="0.00 0.00 229.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dump_elemdep~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~dump_elemdep~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 225,-70 225,4 -4,4"/>
+<!-- proc~dump_elemdep -->
+<g id="proc~~dump_elemdep~~CallsGraph_node1" class="node">
+<title>proc~dump_elemdep</title>
+<polygon fill="none" stroke="black" points="97,-45 0,-45 0,-21 97,-21 97,-45"/>
+<text text-anchor="middle" x="48.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">dump_elemDep</text>
+</g>
+<!-- tem_BaryOfId -->
+<g id="proc~~dump_elemdep~~CallsGraph_node2" class="node">
+<title>tem_BaryOfId</title>
+<g id="a_proc~~dump_elemdep~~CallsGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_baryofid.html" xlink:title="tem_BaryOfId">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="219.5,-66 134.5,-66 134.5,-42 219.5,-42 219.5,-66"/>
+<text text-anchor="middle" x="177" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_BaryOfId</text>
+</a>
+</g>
+</g>
+<!-- proc~dump_elemdep&#45;&gt;tem_BaryOfId -->
+<g id="proc~~dump_elemdep~~CallsGraph_edge1" class="edge">
+<title>proc~dump_elemdep&#45;&gt;tem_BaryOfId</title>
+<path fill="none" stroke="#000000" d="M97.32,-40.94C106.17,-42.41 115.44,-43.95 124.39,-45.43"/>
+<polygon fill="#000000" stroke="#000000" points="123.89,-48.9 134.32,-47.08 125.03,-41.99 123.89,-48.9"/>
+</g>
+<!-- tem_ElemSize -->
+<g id="proc~~dump_elemdep~~CallsGraph_node3" class="node">
+<title>tem_ElemSize</title>
+<g id="a_proc~~dump_elemdep~~CallsGraph_node3"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_elemsize.html" xlink:title="tem_ElemSize">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="221,-24 133,-24 133,0 221,0 221,-24"/>
+<text text-anchor="middle" x="177" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_ElemSize</text>
+</a>
+</g>
+</g>
+<!-- proc~dump_elemdep&#45;&gt;tem_ElemSize -->
+<g id="proc~~dump_elemdep~~CallsGraph_edge2" class="edge">
+<title>proc~dump_elemdep&#45;&gt;tem_ElemSize</title>
+<path fill="none" stroke="#000000" d="M97.32,-25.06C105.58,-23.69 114.21,-22.26 122.61,-20.86"/>
+<polygon fill="#000000" stroke="#000000" points="123.39,-24.28 132.68,-19.19 122.25,-17.38 123.39,-24.28"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~dump_elemdep~~CalledByGraph Pages: 1 -->
+<svg id="procdump_elemdepCalledByGraph" width="641pt" height="97pt"
+ viewBox="0.00 0.00 641.00 97.32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dump_elemdep~~CalledByGraph" class="graph" transform="scale(0.84 0.84) rotate(0) translate(4 112)">
+<title>proc~~dump_elemdep~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 760,-112 760,4 -4,4"/>
+<!-- proc~dump_elemdep -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node1" class="node">
+<title>proc~dump_elemdep</title>
+<polygon fill="none" stroke="black" points="756,-66 659,-66 659,-42 756,-42 756,-66"/>
+<text text-anchor="middle" x="707.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">dump_elemDep</text>
+</g>
+<!-- proc~dump_finerghostsfromme -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node2" class="node">
+<title>proc~dump_finerghostsfromme</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node2"><a xlink:href="../proc/dump_finerghostsfromme.html" xlink:title="dump_FinerGhostsFromMe">
+<polygon fill="#d9534f" stroke="#d9534f" points="606.5,-108 453.5,-108 453.5,-84 606.5,-84 606.5,-108"/>
+<text text-anchor="middle" x="530" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dump_FinerGhostsFromMe</text>
+</a>
+</g>
+</g>
+<!-- proc~dump_finerghostsfromme&#45;&gt;proc~dump_elemdep -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge1" class="edge">
+<title>proc~dump_finerghostsfromme&#45;&gt;proc~dump_elemdep</title>
+<path fill="none" stroke="#000000" d="M584.56,-83.98C597.18,-81.09 610.57,-77.98 623,-75 631.55,-72.95 640.59,-70.73 649.43,-68.53"/>
+<polygon fill="#000000" stroke="#000000" points="650.44,-71.89 659.29,-66.06 648.74,-65.09 650.44,-71.89"/>
+</g>
+<!-- proc~dump_finerghostsfrommebuffer -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node3" class="node">
+<title>proc~dump_finerghostsfrommebuffer</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node3"><a xlink:href="../proc/dump_finerghostsfrommebuffer.html" xlink:title="dump_FinerGhostsFromMeBuffer">
+<polygon fill="#d9534f" stroke="#d9534f" points="623,-66 437,-66 437,-42 623,-42 623,-66"/>
+<text text-anchor="middle" x="530" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dump_FinerGhostsFromMeBuffer</text>
+</a>
+</g>
+</g>
+<!-- proc~dump_finerghostsfrommebuffer&#45;&gt;proc~dump_elemdep -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge2" class="edge">
+<title>proc~dump_finerghostsfrommebuffer&#45;&gt;proc~dump_elemdep</title>
+<path fill="none" stroke="#000000" d="M623.12,-54C631.73,-54 640.29,-54 648.45,-54"/>
+<polygon fill="#000000" stroke="#000000" points="648.56,-57.5 658.56,-54 648.56,-50.5 648.56,-57.5"/>
+</g>
+<!-- proc~dump_myghostsfromfiner -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node4" class="node">
+<title>proc~dump_myghostsfromfiner</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node4"><a xlink:href="../proc/dump_myghostsfromfiner.html" xlink:title="dump_MyGhostsFromFiner">
+<polygon fill="#d9534f" stroke="#d9534f" points="606,-24 454,-24 454,0 606,0 606,-24"/>
+<text text-anchor="middle" x="530" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dump_MyGhostsFromFiner</text>
+</a>
+</g>
+</g>
+<!-- proc~dump_myghostsfromfiner&#45;&gt;proc~dump_elemdep -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge3" class="edge">
+<title>proc~dump_myghostsfromfiner&#45;&gt;proc~dump_elemdep</title>
+<path fill="none" stroke="#000000" d="M584.56,-24.02C597.18,-26.91 610.57,-30.02 623,-33 631.55,-35.05 640.59,-37.27 649.43,-39.47"/>
+<polygon fill="#000000" stroke="#000000" points="648.74,-42.91 659.29,-41.94 650.44,-36.11 648.74,-42.91"/>
+</g>
+<!-- proc~debug_dependencies -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node5" class="node">
+<title>proc~debug_dependencies</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node5"><a xlink:href="../proc/debug_dependencies.html" xlink:title="debug_dependencies">
+<polygon fill="#d9534f" stroke="#d9534f" points="401,-66 274,-66 274,-42 401,-42 401,-66"/>
+<text text-anchor="middle" x="337.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">debug_dependencies</text>
+</a>
+</g>
+</g>
+<!-- proc~debug_dependencies&#45;&gt;proc~dump_finerghostsfromme -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge4" class="edge">
+<title>proc~debug_dependencies&#45;&gt;proc~dump_finerghostsfromme</title>
+<path fill="none" stroke="#000000" d="M393.09,-66.04C415.41,-70.96 441.39,-76.69 464.63,-81.81"/>
+<polygon fill="#000000" stroke="#000000" points="463.88,-85.23 474.4,-83.96 465.39,-78.39 463.88,-85.23"/>
+</g>
+<!-- proc~debug_dependencies&#45;&gt;proc~dump_finerghostsfrommebuffer -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge5" class="edge">
+<title>proc~debug_dependencies&#45;&gt;proc~dump_finerghostsfrommebuffer</title>
+<path fill="none" stroke="#000000" d="M401.14,-54C409.4,-54 418.04,-54 426.75,-54"/>
+<polygon fill="#000000" stroke="#000000" points="427,-57.5 437,-54 427,-50.5 427,-57.5"/>
+</g>
+<!-- proc~debug_dependencies&#45;&gt;proc~dump_myghostsfromfiner -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge6" class="edge">
+<title>proc~debug_dependencies&#45;&gt;proc~dump_myghostsfromfiner</title>
+<path fill="none" stroke="#000000" d="M393.09,-41.96C415.41,-37.04 441.39,-31.31 464.63,-26.19"/>
+<polygon fill="#000000" stroke="#000000" points="465.39,-29.61 474.4,-24.04 463.88,-22.77 465.39,-29.61"/>
+</g>
+<!-- proc~mus_hvs_init_aux -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node6" class="node">
+<title>proc~mus_hvs_init_aux</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node6"><a xlink:href="../proc/mus_hvs_init_aux.html" xlink:title="mus_hvs_init_aux">
+<polygon fill="#d9534f" stroke="#d9534f" points="238,-87 133,-87 133,-63 238,-63 238,-87"/>
+<text text-anchor="middle" x="185.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_init_aux</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_hvs_init_aux&#45;&gt;proc~debug_dependencies -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge7" class="edge">
+<title>proc~mus_hvs_init_aux&#45;&gt;proc~debug_dependencies</title>
+<path fill="none" stroke="#000000" d="M238.12,-67.77C246.41,-66.61 255.11,-65.39 263.78,-64.18"/>
+<polygon fill="#000000" stroke="#000000" points="264.49,-67.62 273.9,-62.76 263.52,-60.68 264.49,-67.62"/>
+</g>
+<!-- proc~mus_init_aux -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node7" class="node">
+<title>proc~mus_init_aux</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node7"><a xlink:href="../proc/mus_init_aux.html" xlink:title="mus_init_aux">
+<polygon fill="#d9534f" stroke="#d9534f" points="226.5,-45 144.5,-45 144.5,-21 226.5,-21 226.5,-45"/>
+<text text-anchor="middle" x="185.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_init_aux</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_init_aux&#45;&gt;proc~debug_dependencies -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge8" class="edge">
+<title>proc~mus_init_aux&#45;&gt;proc~debug_dependencies</title>
+<path fill="none" stroke="#000000" d="M226.7,-38.63C238.13,-40.23 250.96,-42.02 263.69,-43.81"/>
+<polygon fill="#000000" stroke="#000000" points="263.47,-47.31 273.86,-45.23 264.44,-40.38 263.47,-47.31"/>
+</g>
+<!-- proc~mus_initialize -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node8" class="node">
+<title>proc~mus_initialize</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node8"><a xlink:href="../proc/mus_initialize.html" xlink:title="mus_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="91,-45 6,-45 6,-21 91,-21 91,-45"/>
+<text text-anchor="middle" x="48.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initialize&#45;&gt;proc~mus_init_aux -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge10" class="edge">
+<title>proc~mus_initialize&#45;&gt;proc~mus_init_aux</title>
+<path fill="none" stroke="#000000" d="M91.11,-33C104.7,-33 119.94,-33 134.1,-33"/>
+<polygon fill="#000000" stroke="#000000" points="134.19,-36.5 144.19,-33 134.19,-29.5 134.19,-36.5"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="proc~~dump_elemdep~~CalledByGraph_node9" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_proc~~dump_elemdep~~CalledByGraph_node9"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="97,-87 0,-87 0,-63 97,-63 97,-87"/>
+<text text-anchor="middle" x="48.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;proc~mus_hvs_init_aux -->
+<g id="proc~~dump_elemdep~~CalledByGraph_edge9" class="edge">
+<title>program~mus_harvesting&#45;&gt;proc~mus_hvs_init_aux</title>
+<path fill="none" stroke="#000000" d="M97.1,-75C105.39,-75 114.12,-75 122.73,-75"/>
+<polygon fill="#000000" stroke="#000000" points="122.75,-78.5 132.75,-75 122.75,-71.5 122.75,-78.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocdump_elemdepCalledByGraph = svgPanZoom('#procdump_elemdepCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

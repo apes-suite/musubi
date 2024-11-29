@@ -1,0 +1,909 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_bgk_module &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_bgk_module
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.1% of total for modules and submodules.">59 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_compute_bgk_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_compute_bgk_module.f90.html'>mus_compute_bgk_module.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_bgk_module</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_bgk_module.html#proc-mus_advrel_kcfd_rbgk_vstdnoopt_l">mus_advRel_kCFD_rBGK_vStdNoOpt_l</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>This module provides the definition and methods for
+BGK advection relaxation scheme.</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='mus_field_prop_module.html'>mus_field_prop_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_varsys_module.html'>tem_varSys_module</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_c_binding'>iso_c_binding</a></li>
+                  <li class="list-inline-item"><a href='mus_varsys_module.html'>mus_varSys_module</a></li>
+                  <li class="list-inline-item"><a href='mus_param_module.html'>mus_param_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
+                  <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_bgk_module~~UsesGraph Pages: 1 -->
+<svg id="modulemus_bgk_moduleUsesGraph" width="316pt" height="410pt"
+ viewBox="0.00 0.00 316.00 410.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_bgk_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 406)">
+<title>module~~mus_bgk_module~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-406 312,-406 312,4 -4,4"/>
+<!-- module~mus_bgk_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node1" class="node">
+<title>module~mus_bgk_module</title>
+<polygon fill="none" stroke="black" points="308,-213 202,-213 202,-189 308,-189 308,-213"/>
+<text text-anchor="middle" x="255" y="-198.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_bgk_module</text>
+</g>
+<!-- env_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node2" class="node">
+<title>env_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="122,-402 44,-402 44,-378 122,-378 122,-402"/>
+<text text-anchor="middle" x="83" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;env_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge1" class="edge">
+<title>module~mus_bgk_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M251.22,-213.36C243.52,-244.58 218.93,-327.11 166,-369 156.28,-376.69 144.06,-381.6 132.04,-384.72"/>
+<polygon fill="#000000" stroke="#000000" points="131.05,-381.35 122.05,-386.94 132.57,-388.18 131.05,-381.35"/>
+</g>
+<!-- iso_c_binding -->
+<g id="module~~mus_bgk_module~~UsesGraph_node3" class="node">
+<title>iso_c_binding</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_c_binding" xlink:title="iso_c_binding">
+<polygon fill="#337ab7" stroke="#337ab7" points="125,-360 41,-360 41,-336 125,-336 125,-360"/>
+<text text-anchor="middle" x="83" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;iso_c_binding -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge2" class="edge">
+<title>module~mus_bgk_module&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M249.02,-213.22C238.03,-238.59 209.21,-297.06 166,-327 156.84,-333.34 145.92,-337.77 135.08,-340.86"/>
+<polygon fill="#000000" stroke="#000000" points="134.05,-337.51 125.2,-343.34 135.75,-344.3 134.05,-337.51"/>
+</g>
+<!-- module~mus_dervarpos_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node4" class="node">
+<title>module~mus_dervarpos_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node4"><a xlink:href="../module/mus_dervarpos_module.html" xlink:title="mus_derVarPos_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="152.5,-318 13.5,-318 13.5,-294 152.5,-294 152.5,-318"/>
+<text text-anchor="middle" x="83" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derVarPos_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;module~mus_dervarpos_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge3" class="edge">
+<title>module~mus_bgk_module&#45;&gt;module~mus_dervarpos_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M244.86,-213.02C230.24,-231.38 199.8,-266.25 166,-285 162.56,-286.91 158.94,-288.65 155.21,-290.24"/>
+<polygon fill="#000000" stroke="#000000" points="153.86,-287.01 145.79,-293.86 156.38,-293.54 153.86,-287.01"/>
+</g>
+<!-- module~mus_field_prop_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node5" class="node">
+<title>module~mus_field_prop_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node5"><a xlink:href="../module/mus_field_prop_module.html" xlink:title="mus_field_prop_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="152.5,-276 13.5,-276 13.5,-252 152.5,-252 152.5,-276"/>
+<text text-anchor="middle" x="83" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_prop_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;module~mus_field_prop_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge4" class="edge">
+<title>module~mus_bgk_module&#45;&gt;module~mus_field_prop_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M231.73,-213.12C214.24,-222.27 189.08,-234.63 166,-243 160.02,-245.17 153.71,-247.21 147.36,-249.09"/>
+<polygon fill="#000000" stroke="#000000" points="146.05,-245.83 137.39,-251.93 147.97,-252.56 146.05,-245.83"/>
+</g>
+<!-- module~mus_param_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node6" class="node">
+<title>module~mus_param_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node6"><a xlink:href="../module/mus_param_module.html" xlink:title="mus_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143.5,-234 22.5,-234 22.5,-210 143.5,-210 143.5,-234"/>
+<text text-anchor="middle" x="83" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;module~mus_param_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge5" class="edge">
+<title>module~mus_bgk_module&#45;&gt;module~mus_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M201.61,-207.47C186.56,-209.33 169.91,-211.39 153.98,-213.35"/>
+<polygon fill="#000000" stroke="#000000" points="153.14,-209.93 143.65,-214.63 154,-216.88 153.14,-209.93"/>
+</g>
+<!-- module~mus_scheme_layout_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node7" class="node">
+<title>module~mus_scheme_layout_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node7"><a xlink:href="../module/mus_scheme_layout_module.html" xlink:title="mus_scheme_layout_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="166,-192 0,-192 0,-168 166,-168 166,-192"/>
+<text text-anchor="middle" x="83" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_layout_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;module~mus_scheme_layout_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge6" class="edge">
+<title>module~mus_bgk_module&#45;&gt;module~mus_scheme_layout_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M201.61,-194.53C193.54,-193.53 185.02,-192.48 176.39,-191.41"/>
+<polygon fill="#000000" stroke="#000000" points="176.59,-187.91 166.24,-190.16 175.73,-194.86 176.59,-187.91"/>
+</g>
+<!-- module~mus_scheme_type_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node8" class="node">
+<title>module~mus_scheme_type_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node8"><a xlink:href="../module/mus_scheme_type_module.html" xlink:title="mus_scheme_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="161.5,-150 4.5,-150 4.5,-126 161.5,-126 161.5,-150"/>
+<text text-anchor="middle" x="83" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;module~mus_scheme_type_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge7" class="edge">
+<title>module~mus_bgk_module&#45;&gt;module~mus_scheme_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M231.73,-188.88C214.24,-179.73 189.08,-167.37 166,-159 160.02,-156.83 153.71,-154.79 147.36,-152.91"/>
+<polygon fill="#000000" stroke="#000000" points="147.97,-149.44 137.39,-150.07 146.05,-156.17 147.97,-149.44"/>
+</g>
+<!-- module~mus_varsys_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node9" class="node">
+<title>module~mus_varsys_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node9"><a xlink:href="../module/mus_varsys_module.html" xlink:title="mus_varSys_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143.5,-108 22.5,-108 22.5,-84 143.5,-84 143.5,-108"/>
+<text text-anchor="middle" x="83" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_varSys_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;module~mus_varsys_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge8" class="edge">
+<title>module~mus_bgk_module&#45;&gt;module~mus_varsys_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M244.86,-188.98C230.24,-170.62 199.8,-135.75 166,-117 161.99,-114.77 157.74,-112.78 153.36,-110.99"/>
+<polygon fill="#000000" stroke="#000000" points="154.22,-107.58 143.63,-107.4 151.8,-114.15 154.22,-107.58"/>
+</g>
+<!-- tem_param_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node10" class="node">
+<title>tem_param_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node10"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_param_module.html" xlink:title="tem_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143,-66 23,-66 23,-42 143,-42 143,-66"/>
+<text text-anchor="middle" x="83" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge9" class="edge">
+<title>module~mus_bgk_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M249.02,-188.78C238.03,-163.41 209.21,-104.94 166,-75 161.8,-72.09 157.24,-69.59 152.48,-67.43"/>
+<polygon fill="#000000" stroke="#000000" points="153.72,-64.16 143.13,-63.69 151.12,-70.66 153.72,-64.16"/>
+</g>
+<!-- tem_varSys_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_node11" class="node">
+<title>tem_varSys_module</title>
+<g id="a_module~~mus_bgk_module~~UsesGraph_node11"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_varsys_module.html" xlink:title="tem_varSys_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143,-24 23,-24 23,0 143,0 143,-24"/>
+<text text-anchor="middle" x="83" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_varSys_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bgk_module&#45;&gt;tem_varSys_module -->
+<g id="module~~mus_bgk_module~~UsesGraph_edge10" class="edge">
+<title>module~mus_bgk_module&#45;&gt;tem_varSys_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M251.22,-188.64C243.52,-157.42 218.93,-74.89 166,-33 161.93,-29.78 157.42,-27.04 152.67,-24.73"/>
+<polygon fill="#000000" stroke="#000000" points="153.86,-21.43 143.29,-20.76 151.13,-27.88 153.86,-21.43"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_bgk_module~~UsedByGraph Pages: 1 -->
+<svg id="modulemus_bgk_moduleUsedByGraph" width="641pt" height="67pt"
+ viewBox="0.00 0.00 641.00 67.29" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_bgk_module~~UsedByGraph" class="graph" transform="scale(0.71 0.71) rotate(0) translate(4 91)">
+<title>module~~mus_bgk_module~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-91 901,-91 901,4 -4,4"/>
+<!-- module~mus_bgk_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node1" class="node">
+<title>module~mus_bgk_module</title>
+<polygon fill="none" stroke="black" points="106,-66 0,-66 0,-42 106,-42 106,-66"/>
+<text text-anchor="middle" x="53" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_bgk_module</text>
+</g>
+<!-- module~mus_initfluid_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node2" class="node">
+<title>module~mus_initfluid_module</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node2"><a xlink:href="../module/mus_initfluid_module.html" xlink:title="mus_initFluid_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="290,-87 162,-87 162,-63 290,-63 290,-87"/>
+<text text-anchor="middle" x="226" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluid_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_initfluid_module&#45;&gt;module~mus_bgk_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge1" class="edge">
+<title>module~mus_initfluid_module&#45;&gt;module~mus_bgk_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M161.81,-67.24C146.89,-65.41 131,-63.46 116.13,-61.63"/>
+<polygon fill="#000000" stroke="#000000" points="116.37,-58.13 106.02,-60.39 115.52,-65.08 116.37,-58.13"/>
+</g>
+<!-- module~mus_initfluidincomp_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node3" class="node">
+<title>module~mus_initfluidincomp_module</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node3"><a xlink:href="../module/mus_initfluidincomp_module.html" xlink:title="mus_initFluidIncomp_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="310,-45 142,-45 142,-21 310,-21 310,-45"/>
+<text text-anchor="middle" x="226" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initFluidIncomp_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_initfluidincomp_module&#45;&gt;module~mus_bgk_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge2" class="edge">
+<title>module~mus_initfluidincomp_module&#45;&gt;module~mus_bgk_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M141.75,-43.22C133.18,-44.28 124.57,-45.33 116.28,-46.35"/>
+<polygon fill="#000000" stroke="#000000" points="115.85,-42.88 106.35,-47.57 116.7,-49.83 115.85,-42.88"/>
+</g>
+<!-- module~mus_flow_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node4" class="node">
+<title>module~mus_flow_module</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node4"><a xlink:href="../module/mus_flow_module.html" xlink:title="mus_flow_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="454,-66 346,-66 346,-42 454,-42 454,-66"/>
+<text text-anchor="middle" x="400" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_flow_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_flow_module&#45;&gt;module~mus_initfluid_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge3" class="edge">
+<title>module~mus_flow_module&#45;&gt;module~mus_initfluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M345.99,-60.47C331.5,-62.24 315.53,-64.19 300.13,-66.07"/>
+<polygon fill="#000000" stroke="#000000" points="299.61,-62.61 290.11,-67.3 300.46,-69.56 299.61,-62.61"/>
+</g>
+<!-- module~mus_flow_module&#45;&gt;module~mus_initfluidincomp_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge4" class="edge">
+<title>module~mus_flow_module&#45;&gt;module~mus_initfluidincomp_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M345.99,-47.53C337.74,-46.52 329.02,-45.46 320.19,-44.38"/>
+<polygon fill="#000000" stroke="#000000" points="320.55,-40.9 310.2,-43.16 319.71,-47.84 320.55,-40.9"/>
+</g>
+<!-- module~mus_dynloadbal_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node5" class="node">
+<title>module~mus_dynloadbal_module</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node5"><a xlink:href="../module/mus_dynloadbal_module.html" xlink:title="mus_dynLoadBal_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="639,-66 490,-66 490,-42 639,-42 639,-66"/>
+<text text-anchor="middle" x="564.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_dynloadbal_module&#45;&gt;module~mus_flow_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge5" class="edge">
+<title>module~mus_dynloadbal_module&#45;&gt;module~mus_flow_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M489.86,-54C481.38,-54 472.79,-54 464.46,-54"/>
+<polygon fill="#000000" stroke="#000000" points="464.46,-50.5 454.46,-54 464.46,-57.5 464.46,-50.5"/>
+</g>
+<!-- module~mus_program_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node6" class="node">
+<title>module~mus_program_module</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node6"><a xlink:href="../module/mus_program_module.html" xlink:title="mus_program_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="807,-86 675,-86 675,-62 807,-62 807,-86"/>
+<text text-anchor="middle" x="741" y="-71.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_program_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_flow_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge6" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_flow_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M674.75,-78.52C624.17,-80.99 552.4,-82.26 490,-75 477.93,-73.59 465.11,-71.15 453.09,-68.42"/>
+<polygon fill="#000000" stroke="#000000" points="453.74,-64.97 443.2,-66.07 452.12,-71.79 453.74,-64.97"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_dynloadbal_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge8" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_dynloadbal_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M674.53,-66.5C666.25,-65.55 657.7,-64.57 649.2,-63.59"/>
+<polygon fill="#000000" stroke="#000000" points="649.59,-60.11 639.25,-62.45 648.79,-67.07 649.59,-60.11"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node7" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node7"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="613,-24 516,-24 516,0 613,0 613,-24"/>
+<text text-anchor="middle" x="564.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;module~mus_flow_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge7" class="edge">
+<title>program~mus_harvesting&#45;&gt;module~mus_flow_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M516.93,-24.04C498.41,-28.82 476.91,-34.38 457.51,-39.4"/>
+<polygon fill="#000000" stroke="#000000" points="456.38,-36.07 447.57,-41.96 458.13,-42.85 456.38,-36.07"/>
+</g>
+<!-- program~musubi -->
+<g id="module~~mus_bgk_module~~UsedByGraph_node8" class="node">
+<title>program~musubi</title>
+<g id="a_module~~mus_bgk_module~~UsedByGraph_node8"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="897,-86 843,-86 843,-62 897,-62 897,-86"/>
+<text text-anchor="middle" x="870" y="-71.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_program_module -->
+<g id="module~~mus_bgk_module~~UsedByGraph_edge9" class="edge">
+<title>program~musubi&#45;&gt;module~mus_program_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M842.99,-74C835.27,-74 826.38,-74 817.16,-74"/>
+<polygon fill="#000000" stroke="#000000" points="817.06,-70.5 807.06,-74 817.06,-77.5 817.06,-70.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_bgk_moduleUsedByGraph = svgPanZoom('#modulemus_bgk_moduleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_advrel_kcfd_rbgk_vstdnoopt_l"></span> <h3>public  subroutine <a href='../proc/mus_advrel_kcfd_rbgk_vstdnoopt_l.html'>mus_advRel_kCFD_rBGK_vStdNoOpt_l</a>(fieldProp, inState, outState, auxField, neigh, nElems, nSolve, level, layout, params, varSys, derVarPos)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Advection relaxation routine for the
+BGK model with an explicit calculation of all equilibrium
+quantities. Slow and simple. This routine should only be
+used for testing purposes</p><a href="../proc/mus_advrel_kcfd_rbgk_vstdnoopt_l.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fieldprop~120"></span>
+              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fieldProp</strong>(:)</td>
+            <td>
+<p>Array of field properties (fluid or species)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-instate~58"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>inState</strong>(nElems*varSys%nScalars)</td>
+            <td>
+<p>input  pdf vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outstate~58"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outState</strong>(nElems*varSys%nScalars)</td>
+            <td>
+<p>output pdf vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~112"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(nElems*varSys%nAuxScalars)</td>
+            <td>
+<p>Auxiliary field computed from pre-collision state
+Is updated with correct velocity field for multicomponent models</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~142"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(nElems*layout%fStencil%QQ)</td>
+            <td>
+<p>connectivity vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nelems~124"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nElems</strong></td>
+            <td>
+<p>number of elements in state Array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~91"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>number of elements solved in kernel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~89"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+<p>current level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~167"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>current layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~70"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>global parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~205"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+<p>variable system definition</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~159"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong>(:)</td>
+            <td>
+<p>position of derived quantities in varsys for all fields</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

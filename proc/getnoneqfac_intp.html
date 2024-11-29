@@ -1,0 +1,575 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>getNonEqFac_intp &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>getNonEqFac_intp
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">6 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_derivedQuantities_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_derivedquantities_module.f90.html'>mus_derivedQuantities_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></li>
+            <li class="breadcrumb-item active" aria-current="page">getNonEqFac_intp</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public pure function getNonEqFac_intp(omegaS, omegaT) result(fac)  
+</h2>
+    
+
+    <p>Calculate the conversion factor to convert nonEq moments
+between fine and coarser.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omegas"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omegaS</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omegat"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omegaT</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-fac~3"></span>
+          real(kind=rk)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~getnoneqfac_intp~~CalledByGraph Pages: 1 -->
+<svg id="procgetnoneqfac_intpCalledByGraph" width="635pt" height="494pt"
+ viewBox="0.00 0.00 635.00 494.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~getnoneqfac_intp~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 490)">
+<title>proc~~getnoneqfac_intp~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-490 631,-490 631,4 -4,4"/>
+<!-- proc~getnoneqfac_intp -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node1" class="node">
+<title>proc~getnoneqfac_intp</title>
+<polygon fill="none" stroke="black" points="627,-171 519,-171 519,-147 627,-147 627,-171"/>
+<text text-anchor="middle" x="573" y="-156.6" font-family="Helvetica,sans-Serif" font-size="10.50">getNonEqFac_intp</text>
+</g>
+<!-- proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node2" class="node">
+<title>proc~getnoneqfac_intp_coarse_to_fine</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node2"><a xlink:href="../proc/getnoneqfac_intp_coarse_to_fine.html" xlink:title="getNonEqFac_intp_coarse_to_fine">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="483,-297 293,-297 293,-273 483,-273 483,-297"/>
+<text text-anchor="middle" x="388" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getNonEqFac_intp_coarse_to_fine</text>
+</a>
+</g>
+</g>
+<!-- proc~getnoneqfac_intp_coarse_to_fine&#45;&gt;proc~getnoneqfac_intp -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge1" class="edge">
+<title>proc~getnoneqfac_intp_coarse_to_fine&#45;&gt;proc~getnoneqfac_intp</title>
+<path fill="none" stroke="#000000" d="M406.55,-272.92C438.93,-250.62 508.22,-202.91 546.05,-176.87"/>
+<polygon fill="#000000" stroke="#000000" points="548.25,-179.6 554.51,-171.04 544.28,-173.83 548.25,-179.6"/>
+</g>
+<!-- proc~getnoneqfac_intp_fine_to_coarse -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node3" class="node">
+<title>proc~getnoneqfac_intp_fine_to_coarse</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node3"><a xlink:href="../proc/getnoneqfac_intp_fine_to_coarse.html" xlink:title="getNonEqFac_intp_fine_to_coarse">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="483,-87 293,-87 293,-63 483,-63 483,-87"/>
+<text text-anchor="middle" x="388" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getNonEqFac_intp_fine_to_coarse</text>
+</a>
+</g>
+</g>
+<!-- proc~getnoneqfac_intp_fine_to_coarse&#45;&gt;proc~getnoneqfac_intp -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge2" class="edge">
+<title>proc~getnoneqfac_intp_fine_to_coarse&#45;&gt;proc~getnoneqfac_intp</title>
+<path fill="none" stroke="#000000" d="M415.22,-87.04C447.02,-101.63 500.77,-126.3 536.32,-142.62"/>
+<polygon fill="#000000" stroke="#000000" points="535.28,-146 545.83,-146.99 538.2,-139.63 535.28,-146"/>
+</g>
+<!-- proc~fillfinerghostsfromme_linear2d_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node4" class="node">
+<title>proc~fillfinerghostsfromme_linear2d_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node4"><a xlink:href="../proc/fillfinerghostsfromme_linear2d_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_linear2D_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="244.5,-486 12.5,-486 12.5,-462 244.5,-462 244.5,-486"/>
+<text text-anchor="middle" x="128.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_linear2D_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_linear2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge3" class="edge">
+<title>proc~fillfinerghostsfromme_linear2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M238.32,-461.98C244.84,-459.47 251.12,-456.5 257,-453 316.64,-417.43 358.88,-343.3 377.05,-306.57"/>
+<polygon fill="#000000" stroke="#000000" points="380.34,-307.8 381.53,-297.27 374.03,-304.76 380.34,-307.8"/>
+</g>
+<!-- proc~fillfinerghostsfromme_linear_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node5" class="node">
+<title>proc~fillfinerghostsfromme_linear_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node5"><a xlink:href="../proc/fillfinerghostsfromme_linear_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_linear_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="237,-444 20,-444 20,-420 237,-420 237,-444"/>
+<text text-anchor="middle" x="128.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_linear_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_linear_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge4" class="edge">
+<title>proc~fillfinerghostsfromme_linear_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M234.82,-419.97C242.51,-417.49 249.99,-414.53 257,-411 307.37,-385.63 351,-333.92 372.59,-305.26"/>
+<polygon fill="#000000" stroke="#000000" points="375.44,-307.29 378.56,-297.16 369.81,-303.13 375.44,-307.29"/>
+</g>
+<!-- proc~fillfinerghostsfromme_linearles_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node6" class="node">
+<title>proc~fillfinerghostsfromme_linearles_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node6"><a xlink:href="../proc/fillfinerghostsfromme_linearles_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_linearLES_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="247,-402 10,-402 10,-378 247,-378 247,-402"/>
+<text text-anchor="middle" x="128.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_linearLES_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_linearles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge5" class="edge">
+<title>proc~fillfinerghostsfromme_linearles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M228.05,-377.96C237.98,-375.51 247.79,-372.56 257,-369 298.04,-353.16 339.75,-323.23 364.49,-303.71"/>
+<polygon fill="#000000" stroke="#000000" points="366.9,-306.26 372.51,-297.28 362.52,-300.8 366.9,-306.26"/>
+</g>
+<!-- proc~fillfinerghostsfromme_quad2d_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node7" class="node">
+<title>proc~fillfinerghostsfromme_quad2d_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node7"><a xlink:href="../proc/fillfinerghostsfromme_quad2d_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_quad2D_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="243,-360 14,-360 14,-336 243,-336 243,-360"/>
+<text text-anchor="middle" x="128.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_quad2D_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_quad2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge6" class="edge">
+<title>proc~fillfinerghostsfromme_quad2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M213.53,-335.99C228.1,-333.39 243.05,-330.38 257,-327 286.71,-319.8 319.46,-309.2 344.65,-300.45"/>
+<polygon fill="#000000" stroke="#000000" points="345.98,-303.69 354.26,-297.08 343.67,-297.09 345.98,-303.69"/>
+</g>
+<!-- proc~fillfinerghostsfromme_quad_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node8" class="node">
+<title>proc~fillfinerghostsfromme_quad_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node8"><a xlink:href="../proc/fillfinerghostsfromme_quad_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_quad_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="235.5,-318 21.5,-318 21.5,-294 235.5,-294 235.5,-318"/>
+<text text-anchor="middle" x="128.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_quad_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_quad_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge7" class="edge">
+<title>proc~fillfinerghostsfromme_quad_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M235.72,-297.34C251.29,-296.07 267.31,-294.76 282.84,-293.49"/>
+<polygon fill="#000000" stroke="#000000" points="283.28,-296.97 292.96,-292.67 282.71,-289.99 283.28,-296.97"/>
+</g>
+<!-- proc~fillfinerghostsfromme_quadles_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node9" class="node">
+<title>proc~fillfinerghostsfromme_quadles_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node9"><a xlink:href="../proc/fillfinerghostsfromme_quadles_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_quadLES_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="245,-276 12,-276 12,-252 245,-252 245,-276"/>
+<text text-anchor="middle" x="128.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_quadLES_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_quadles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge8" class="edge">
+<title>proc~fillfinerghostsfromme_quadles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M245.07,-273.43C257.5,-274.44 270.09,-275.47 282.39,-276.47"/>
+<polygon fill="#000000" stroke="#000000" points="282.38,-279.98 292.63,-277.3 282.95,-273 282.38,-279.98"/>
+</g>
+<!-- proc~fillfinerghostsfromme_weighavg2d_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node10" class="node">
+<title>proc~fillfinerghostsfromme_weighavg2d_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node10"><a xlink:href="../proc/fillfinerghostsfromme_weighavg2d_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_weighAvg2D_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="255,-234 2,-234 2,-210 255,-210 255,-234"/>
+<text text-anchor="middle" x="128.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_weighAvg2D_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_weighavg2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge9" class="edge">
+<title>proc~fillfinerghostsfromme_weighavg2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M213.53,-234.01C228.1,-236.61 243.05,-239.62 257,-243 286.71,-250.2 319.46,-260.8 344.65,-269.55"/>
+<polygon fill="#000000" stroke="#000000" points="343.67,-272.91 354.26,-272.92 345.98,-266.31 343.67,-272.91"/>
+</g>
+<!-- proc~fillfinerghostsfromme_weighavg_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node11" class="node">
+<title>proc~fillfinerghostsfromme_weighavg_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node11"><a xlink:href="../proc/fillfinerghostsfromme_weighavg_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_weighAvg_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="247.5,-192 9.5,-192 9.5,-168 247.5,-168 247.5,-192"/>
+<text text-anchor="middle" x="128.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_weighAvg_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_weighavg_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge10" class="edge">
+<title>proc~fillfinerghostsfromme_weighavg_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M228.05,-192.04C237.98,-194.49 247.79,-197.44 257,-201 298.04,-216.84 339.75,-246.77 364.49,-266.29"/>
+<polygon fill="#000000" stroke="#000000" points="362.52,-269.2 372.51,-272.72 366.9,-263.74 362.52,-269.2"/>
+</g>
+<!-- proc~fillfinerghostsfromme_weighavgles_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node12" class="node">
+<title>proc~fillfinerghostsfromme_weighavgles_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node12"><a xlink:href="../proc/fillfinerghostsfromme_weighavgles_feq_fneq.html" xlink:title="fillFinerGhostsFromMe_weighAvgLES_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="257,-150 0,-150 0,-126 257,-126 257,-150"/>
+<text text-anchor="middle" x="128.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillFinerGhostsFromMe_weighAvgLES_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillfinerghostsfromme_weighavgles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge11" class="edge">
+<title>proc~fillfinerghostsfromme_weighavgles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_coarse_to_fine</title>
+<path fill="none" stroke="#000000" d="M234.82,-150.03C242.51,-152.51 249.99,-155.47 257,-159 307.37,-184.37 351,-236.08 372.59,-264.74"/>
+<polygon fill="#000000" stroke="#000000" points="369.81,-266.87 378.56,-272.84 375.44,-262.71 369.81,-266.87"/>
+</g>
+<!-- proc~fillmyghostsfromfiner_avg2d_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node13" class="node">
+<title>proc~fillmyghostsfromfiner_avg2d_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node13"><a xlink:href="../proc/fillmyghostsfromfiner_avg2d_feq_fneq.html" xlink:title="fillMyGhostsFromFiner_avg2D_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="238.5,-108 18.5,-108 18.5,-84 238.5,-84 238.5,-108"/>
+<text text-anchor="middle" x="128.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillMyGhostsFromFiner_avg2D_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillmyghostsfromfiner_avg2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_fine_to_coarse -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge12" class="edge">
+<title>proc~fillmyghostsfromfiner_avg2d_feq_fneq&#45;&gt;proc~getnoneqfac_intp_fine_to_coarse</title>
+<path fill="none" stroke="#000000" d="M238.7,-87.09C253.15,-85.92 267.94,-84.71 282.31,-83.54"/>
+<polygon fill="#000000" stroke="#000000" points="283.01,-86.99 292.69,-82.69 282.44,-80.02 283.01,-86.99"/>
+</g>
+<!-- proc~fillmyghostsfromfiner_avg_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node14" class="node">
+<title>proc~fillmyghostsfromfiner_avg_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node14"><a xlink:href="../proc/fillmyghostsfromfiner_avg_feq_fneq.html" xlink:title="fillMyGhostsFromFiner_avg_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="231,-66 26,-66 26,-42 231,-42 231,-66"/>
+<text text-anchor="middle" x="128.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillMyGhostsFromFiner_avg_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillmyghostsfromfiner_avg_feq_fneq&#45;&gt;proc~getnoneqfac_intp_fine_to_coarse -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge13" class="edge">
+<title>proc~fillmyghostsfromfiner_avg_feq_fneq&#45;&gt;proc~getnoneqfac_intp_fine_to_coarse</title>
+<path fill="none" stroke="#000000" d="M231.27,-62.3C248.03,-63.67 265.44,-65.09 282.27,-66.46"/>
+<polygon fill="#000000" stroke="#000000" points="282.42,-69.98 292.67,-67.31 282.99,-63.01 282.42,-69.98"/>
+</g>
+<!-- proc~fillmyghostsfromfiner_avgles_feq_fneq -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_node15" class="node">
+<title>proc~fillmyghostsfromfiner_avgles_feq_fneq</title>
+<g id="a_proc~~getnoneqfac_intp~~CalledByGraph_node15"><a xlink:href="../proc/fillmyghostsfromfiner_avgles_feq_fneq.html" xlink:title="fillMyGhostsFromFiner_avgLES_feq_fneq">
+<polygon fill="#d9534f" stroke="#d9534f" points="241,-24 16,-24 16,0 241,0 241,-24"/>
+<text text-anchor="middle" x="128.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fillMyGhostsFromFiner_avgLES_feq_fneq</text>
+</a>
+</g>
+</g>
+<!-- proc~fillmyghostsfromfiner_avgles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_fine_to_coarse -->
+<g id="proc~~getnoneqfac_intp~~CalledByGraph_edge14" class="edge">
+<title>proc~fillmyghostsfromfiner_avgles_feq_fneq&#45;&gt;proc~getnoneqfac_intp_fine_to_coarse</title>
+<path fill="none" stroke="#000000" d="M213.53,-24.01C228.1,-26.61 243.05,-29.62 257,-33 286.71,-40.2 319.46,-50.8 344.65,-59.55"/>
+<polygon fill="#000000" stroke="#000000" points="343.67,-62.91 354.26,-62.92 345.98,-56.31 343.67,-62.91"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

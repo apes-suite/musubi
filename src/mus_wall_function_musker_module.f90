@@ -68,7 +68,7 @@ contains
 
     !> yPlus
     real(kind=rk), intent(in) :: yPlus
-    !> output: uPlus
+    !> output is uPlus
     real(kind=rk) :: uPlus
     !uPlus = ( 5.424_rk * atan((2.0_rk*yPlus - 8.15_rk)/16.7_rk) &
     !  &        + log10( (yPlus + 10.6_rk)**9.6_rk               &
@@ -92,7 +92,7 @@ contains
     real(kind=rk), intent(in) :: uTau
     !> dynamic viscosity
     real(kind=rk), intent(in) :: nu
-    !> output: derivative of uPlus with respect to uTau
+    !> output is derivative of uPlus with respect to uTau
     real(kind=rk) :: d_uPlus_d_uTau
     ! ------------------------------------------------------------------------------
     real(kind=rk) :: uTau_y, yPlus, nu_sqr, uTau_y_sqr, nu_uTau_y, A, B, C, D, E

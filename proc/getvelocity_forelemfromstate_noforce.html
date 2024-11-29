@@ -1,0 +1,538 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>getVelocity_forElemFromState_noForce &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>getVelocity_forElemFromState_noForce
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">19 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_derivedQuantities_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_derivedquantities_module.f90.html'>mus_derivedQuantities_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></li>
+            <li class="breadcrumb-item active" aria-current="page">getVelocity_forElemFromState_noForce</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private pure function getVelocity_forElemFromState_noForce(state, elem, stencil, varPos, nScalars) result(vel)  
+</h2>
+    
+
+    <p>Calculate the velocity in all 3 directions
+from the element indicated (elem),
+reading the pdf (state information) from the state array.
+state array includes all the pdfs of all elements.
+The access to the state array has to be done via the generic
+access macro IDX, as we want to access post-collision values.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~36"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-elem~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>elem</strong></td>
+            <td>
+                <p>element index, for which to calc velocity</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stencil~11"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stencil</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varpos~41"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varPos</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~53"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-vel~15"></span>
+          real(kind=rk), (3)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph Pages: 1 -->
+<svg id="procgetvelocity_forelemfromstate_noforceCalledByGraph" width="641pt" height="74pt"
+ viewBox="0.00 0.00 641.00 74.06" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph" class="graph" transform="scale(0.64 0.64) rotate(0) translate(4 112)">
+<title>proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 1000,-112 1000,4 -4,4"/>
+<!-- proc~getvelocity_forelemfromstate_noforce -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node1" class="node">
+<title>proc~getvelocity_forelemfromstate_noforce</title>
+<polygon fill="none" stroke="black" points="996,-45 776,-45 776,-21 996,-21 996,-45"/>
+<text text-anchor="middle" x="886" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">getVelocity_forElemFromState_noForce</text>
+</g>
+<!-- interface~getvelocity -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node2" class="node">
+<title>interface~getvelocity</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node2"><a xlink:href="../interface/getvelocity.html" xlink:title="getVelocity">
+<polygon fill="#a7506f" stroke="#a7506f" points="740,-45 669,-45 669,-21 740,-21 740,-45"/>
+<text text-anchor="middle" x="704.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getVelocity</text>
+</a>
+</g>
+</g>
+<!-- interface~getvelocity&#45;&gt;proc~getvelocity_forelemfromstate_noforce -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge1" class="edge">
+<title>interface~getvelocity&#45;&gt;proc~getvelocity_forelemfromstate_noforce</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M740.11,-33C747.89,-33 756.57,-33 765.72,-33"/>
+<polygon fill="#000000" stroke="#000000" points="765.8,-36.5 775.8,-33 765.8,-29.5 765.8,-36.5"/>
+</g>
+<!-- proc~getequilibrium_forelemfromstate -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node3" class="node">
+<title>proc~getequilibrium_forelemfromstate</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node3"><a xlink:href="../proc/getequilibrium_forelemfromstate.html" xlink:title="getEquilibrium_forElemfromState">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="633,-66 443,-66 443,-42 633,-42 633,-66"/>
+<text text-anchor="middle" x="538" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getEquilibrium_forElemfromState</text>
+</a>
+</g>
+</g>
+<!-- proc~getequilibrium_forelemfromstate&#45;&gt;interface~getvelocity -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge2" class="edge">
+<title>proc~getequilibrium_forelemfromstate&#45;&gt;interface~getvelocity</title>
+<path fill="none" stroke="#000000" d="M633.26,-41.97C642.04,-40.85 650.64,-39.75 658.64,-38.73"/>
+<polygon fill="#000000" stroke="#000000" points="659.3,-42.17 668.78,-37.43 658.41,-35.23 659.3,-42.17"/>
+</g>
+<!-- proc~mus_inamuroini -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node4" class="node">
+<title>proc~mus_inamuroini</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node4"><a xlink:href="../proc/mus_inamuroini.html" xlink:title="mus_inamuroIni">
+<polygon fill="#d9534f" stroke="#d9534f" points="586.5,-24 489.5,-24 489.5,0 586.5,0 586.5,-24"/>
+<text text-anchor="middle" x="538" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_inamuroIni</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_inamuroini&#45;&gt;interface~getvelocity -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge3" class="edge">
+<title>proc~mus_inamuroini&#45;&gt;interface~getvelocity</title>
+<path fill="none" stroke="#000000" d="M586.58,-18.07C609.37,-20.98 636.51,-24.45 658.91,-27.31"/>
+<polygon fill="#000000" stroke="#000000" points="658.47,-30.78 668.83,-28.57 659.35,-23.84 658.47,-30.78"/>
+</g>
+<!-- interface~getequilibrium -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node5" class="node">
+<title>interface~getequilibrium</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node5"><a xlink:href="../interface/getequilibrium.html" xlink:title="getEquilibrium">
+<polygon fill="#a7506f" stroke="#a7506f" points="398,-66 307,-66 307,-42 398,-42 398,-66"/>
+<text text-anchor="middle" x="352.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getEquilibrium</text>
+</a>
+</g>
+</g>
+<!-- interface~getequilibrium&#45;&gt;proc~getequilibrium_forelemfromstate -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge4" class="edge">
+<title>interface~getequilibrium&#45;&gt;proc~getequilibrium_forelemfromstate</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M398.39,-54C409,-54 420.75,-54 432.8,-54"/>
+<polygon fill="#000000" stroke="#000000" points="432.97,-57.5 442.97,-54 432.97,-50.5 432.97,-57.5"/>
+</g>
+<!-- proc~mus_inamuro_ibm -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node6" class="node">
+<title>proc~mus_inamuro_ibm</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node6"><a xlink:href="../proc/mus_inamuro_ibm.html" xlink:title="mus_inamuro_IBM">
+<polygon fill="#d9534f" stroke="#d9534f" points="407,-24 298,-24 298,0 407,0 407,-24"/>
+<text text-anchor="middle" x="352.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_inamuro_IBM</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_inamuro_ibm&#45;&gt;proc~mus_inamuroini -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge5" class="edge">
+<title>proc~mus_inamuro_ibm&#45;&gt;proc~mus_inamuroini</title>
+<path fill="none" stroke="#000000" d="M407.07,-12C429.74,-12 456.19,-12 479.29,-12"/>
+<polygon fill="#000000" stroke="#000000" points="479.3,-15.5 489.3,-12 479.3,-8.5 479.3,-15.5"/>
+</g>
+<!-- proc~do_fast_singlelevel -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node7" class="node">
+<title>proc~do_fast_singlelevel</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node7"><a xlink:href="../proc/do_fast_singlelevel.html" xlink:title="do_fast_singleLevel">
+<polygon fill="#d9534f" stroke="#d9534f" points="189,-24 73,-24 73,0 189,0 189,-24"/>
+<text text-anchor="middle" x="131" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">do_fast_singleLevel</text>
+</a>
+</g>
+</g>
+<!-- proc~do_fast_singlelevel&#45;&gt;proc~mus_inamuro_ibm -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge8" class="edge">
+<title>proc~do_fast_singlelevel&#45;&gt;proc~mus_inamuro_ibm</title>
+<path fill="none" stroke="#000000" d="M189.1,-12C219.23,-12 256.29,-12 287.4,-12"/>
+<polygon fill="#000000" stroke="#000000" points="287.71,-15.5 297.71,-12 287.71,-8.5 287.71,-15.5"/>
+</g>
+<!-- proc~mus_turbvisc_smagorinsky_fromprecolpdf_2d -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node8" class="node">
+<title>proc~mus_turbvisc_smagorinsky_fromprecolpdf_2d</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node8"><a xlink:href="../proc/mus_turbvisc_smagorinsky_fromprecolpdf_2d.html" xlink:title="mus_turbVisc_Smagorinsky_fromPreColPDF_2D">
+<polygon fill="#d9534f" stroke="#d9534f" points="262,-108 0,-108 0,-84 262,-84 262,-108"/>
+<text text-anchor="middle" x="131" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turbVisc_Smagorinsky_fromPreColPDF_2D</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_turbvisc_smagorinsky_fromprecolpdf_2d&#45;&gt;interface~getequilibrium -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge6" class="edge">
+<title>proc~mus_turbvisc_smagorinsky_fromprecolpdf_2d&#45;&gt;interface~getequilibrium</title>
+<path fill="none" stroke="#000000" d="M211.91,-84C228.5,-81.25 245.85,-78.19 262,-75 273.26,-72.77 285.26,-70.14 296.69,-67.5"/>
+<polygon fill="#000000" stroke="#000000" points="297.62,-70.88 306.56,-65.2 296.03,-64.06 297.62,-70.88"/>
+</g>
+<!-- proc~mus_turbvisc_smagorinsky_fromprecolpdf_3d -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node9" class="node">
+<title>proc~mus_turbvisc_smagorinsky_fromprecolpdf_3d</title>
+<g id="a_proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_node9"><a xlink:href="../proc/mus_turbvisc_smagorinsky_fromprecolpdf_3d.html" xlink:title="mus_turbVisc_Smagorinsky_fromPreColPDF_3D">
+<polygon fill="#d9534f" stroke="#d9534f" points="262,-66 0,-66 0,-42 262,-42 262,-66"/>
+<text text-anchor="middle" x="131" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_turbVisc_Smagorinsky_fromPreColPDF_3D</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_turbvisc_smagorinsky_fromprecolpdf_3d&#45;&gt;interface~getequilibrium -->
+<g id="proc~~getvelocity_forelemfromstate_noforce~~CalledByGraph_edge7" class="edge">
+<title>proc~mus_turbvisc_smagorinsky_fromprecolpdf_3d&#45;&gt;interface~getequilibrium</title>
+<path fill="none" stroke="#000000" d="M262.22,-54C274.13,-54 285.7,-54 296.36,-54"/>
+<polygon fill="#000000" stroke="#000000" points="296.68,-57.5 306.68,-54 296.68,-50.5 296.68,-57.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocgetvelocity_forelemfromstate_noforceCalledByGraph = svgPanZoom('#procgetvelocity_forelemfromstate_noforceCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

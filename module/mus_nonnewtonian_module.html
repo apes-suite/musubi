@@ -1,0 +1,4623 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_nonNewtonian_module &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_nonNewtonian_module
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Jiaxing Qi, Kannan Masilamani</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 1.1% of total for modules and submodules.">516 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_nonNewtonian_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_nonnewtonian_module.f90.html'>mus_nonNewtonian_module.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_nonNewtonian_module</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#variable-powerlaw">powerLaw</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#variable-casson">casson</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#variable-carreauyasuda">carreauYasuda</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#absints-0"
+         aria-expanded="false" aria-controls="absints-0">
+         <h4 class="card-header bg-primary text-white">Abstract Interfaces</h4>
+      </a>
+      <div id="absints-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#interface-proc_calc_nnwtn_visc_fromprecolpdf">proc_calc_nNwtn_visc_fromPreColPDF</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#type-mus_nnwtn_type">mus_nNwtn_type</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#type-mus_nnwtn_pl_type">mus_nNwtn_PL_type</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#type-mus_nnwtn_cy_type">mus_nNwtn_CY_type</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#type-mus_nnwtn_cs_type">mus_nNwtn_CS_type</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-viscphy_pl">viscPhy_PL</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-viscphy_cs">viscPhy_CS</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-viscphy_cy">viscPhy_CY</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_load">mus_nNwtn_load</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_save2lua">mus_nNwtn_save2lua</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_dump2outunit">mus_nNwtn_dump2outUnit</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_assign_nnwtnvisc_ptr">mus_assign_nNwtnVisc_ptr</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-calcvisc_cy">calcVisc_CY</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_pl_load">mus_nNwtn_PL_load</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_cy_load">mus_nNwtn_CY_load</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_cs_load">mus_nNwtn_CS_load</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_pl_save">mus_nNwtn_PL_save</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_cy_save">mus_nNwtn_CY_save</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_cs_save">mus_nNwtn_CS_save</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_pl_dump">mus_nNwtn_PL_dump</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_cy_dump">mus_nNwtn_CY_dump</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-mus_nnwtn_cs_dump">mus_nNwtn_CS_dump</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-calcvisc_pl">calcVisc_PL</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-calcvisc_cs">calcVisc_CS</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-calcvisc_incomp_pl">calcVisc_incomp_PL</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-calcvisc_incomp_cs">calcVisc_incomp_CS</a>
+            <a class="list-group-item" href="../module/mus_nonnewtonian_module.html#proc-calcvisc_incomp_cy">calcVisc_incomp_CY</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>This module keeps all information about the nonNewtonian models.
+Contains routines which calculates non-Newtonian kinematic
+viscosity according to non-Newtonian model.</p>
+<p>It supports three non-Newtonian models:
+Power law, Carrear Yasuda and Casson.
+All these models are described in
+Ashrafizaadeh, M., &amp; Bakhshaei, H. (2009). A comparison of non-Newtonian
+models for lattice Boltzmann blood flow simulations.
+Computers and Mathematics with Applications, 58(5), 1045–1054.</p>
+<p>For further information about the theory visit the
+<a href="../page/mus_nonNewtonianTheory.html">non-newtonian theory page</a>.</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aot_out_module.html'>aot_out_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_header_module.html'>mus_scheme_header_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aotus_module.html'>aotus_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aot_table_module.html'>aot_table_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
+                  <li class="list-inline-item"><a href='mus_physics_module.html'>mus_physics_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_tools_module.html'>tem_tools_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_nonnewtonian_module~~UsesGraph Pages: 1 -->
+<svg id="modulemus_nonnewtonian_moduleUsesGraph" width="641pt" height="675pt"
+ viewBox="0.00 0.00 641.00 675.15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_nonnewtonian_module~~UsesGraph" class="graph" transform="scale(0.61 0.61) rotate(0) translate(4 1103)">
+<title>module~~mus_nonnewtonian_module~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1103 1047,-1103 1047,4 -4,4"/>
+<!-- module~mus_nonnewtonian_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node1" class="node">
+<title>module~mus_nonnewtonian_module</title>
+<polygon fill="none" stroke="black" points="1043,-336 880,-336 880,-312 1043,-312 1043,-336"/>
+<text text-anchor="middle" x="961.5" y="-321.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_nonNewtonian_module</text>
+</g>
+<!-- aot_out_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node2" class="node">
+<title>aot_out_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/aotus/module/aot_out_module.html" xlink:title="aot_out_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="124.5,-839 26.5,-839 26.5,-815 124.5,-815 124.5,-839"/>
+<text text-anchor="middle" x="75.5" y="-824.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">aot_out_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;aot_out_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge1" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;aot_out_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M749.5,-667C614.65,-785.08 700.77,-933.81 539,-1011"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-1011C475.22,-1040.48 481.2,-940.59 419,-912 371.93,-890.36 355.78,-894.46 304,-893"/>
+</g>
+<!-- aot_table_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node3" class="node">
+<title>aot_table_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node3"><a xlink:href="https://apes-suite.github.io/aotus/module/aot_table_module.html" xlink:title="aot_table_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="129.5,-1007 21.5,-1007 21.5,-983 129.5,-983 129.5,-1007"/>
+<text text-anchor="middle" x="75.5" y="-992.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">aot_table_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;aot_table_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge2" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;aot_table_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-1011C438.77,-1058.07 412.75,-1080.83 304,-1087"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-1087C223.7,-1091.44 140.49,-1041.15 100.59,-1013.11"/>
+<polygon fill="#000000" stroke="#000000" points="102.46,-1010.15 92.3,-1007.16 98.38,-1015.84 102.46,-1010.15"/>
+</g>
+<!-- aotus_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node4" class="node">
+<title>aotus_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node4"><a xlink:href="https://apes-suite.github.io/aotus/module/aotus_module.html" xlink:title="aotus_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="119.5,-965 31.5,-965 31.5,-941 119.5,-941 119.5,-965"/>
+<text text-anchor="middle" x="75.5" y="-950.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">aotus_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;aotus_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge3" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;aotus_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-1011C396.28,-1078.15 339.58,-1019.12 187,-987 170.35,-983.5 167.2,-979.2 151,-974 144.05,-971.77 136.7,-969.54 129.42,-967.41"/>
+<polygon fill="#000000" stroke="#000000" points="130.18,-963.99 119.6,-964.58 128.24,-970.71 130.18,-963.99"/>
+</g>
+<!-- env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node5" class="node">
+<title>env_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node5"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="114.5,-299 36.5,-299 36.5,-275 114.5,-275 114.5,-299"/>
+<text text-anchor="middle" x="75.5" y="-284.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge4" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-51C382.32,-32.51 309.53,26.21 187,-70 143.54,-104.12 176.12,-139.78 151,-189 135.85,-218.68 111.52,-248.56 94.81,-267.39"/>
+<polygon fill="#000000" stroke="#000000" points="92.05,-265.22 87.95,-274.98 97.25,-269.91 92.05,-265.22"/>
+</g>
+<!-- module~mus_derivedquantities_module2 -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node6" class="node">
+<title>module~mus_derivedquantities_module2</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node6"><a xlink:href="../module/mus_derivedquantities_module2.html" xlink:title="mus_derivedQuantities_module2">
+<polygon fill="#337ab7" stroke="#337ab7" points="844,-336 657,-336 657,-312 844,-312 844,-336"/>
+<text text-anchor="middle" x="750.5" y="-321.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derivedQuantities_module2</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;module~mus_derivedquantities_module2 -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge5" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;module~mus_derivedquantities_module2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M879.99,-324C871.56,-324 862.91,-324 854.28,-324"/>
+<polygon fill="#000000" stroke="#000000" points="854.16,-320.5 844.16,-324 854.16,-327.5 854.16,-320.5"/>
+</g>
+<!-- module~mus_physics_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node7" class="node">
+<title>module~mus_physics_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node7"><a xlink:href="../module/mus_physics_module.html" xlink:title="mus_physics_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="365.5,-945 240.5,-945 240.5,-921 365.5,-921 365.5,-945"/>
+<text text-anchor="middle" x="303" y="-930.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;module~mus_physics_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge6" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;module~mus_physics_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-1011C485.28,-1035.68 473.42,-976.96 419,-959 405.18,-954.44 390.17,-950.41 375.69,-946.96"/>
+<polygon fill="#000000" stroke="#000000" points="376.3,-943.51 365.77,-944.67 374.73,-950.33 376.3,-943.51"/>
+</g>
+<!-- module~mus_scheme_header_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node8" class="node">
+<title>module~mus_scheme_header_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node8"><a xlink:href="../module/mus_scheme_header_module.html" xlink:title="mus_scheme_header_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="389,-659 217,-659 217,-635 389,-635 389,-659"/>
+<text text-anchor="middle" x="303" y="-644.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_header_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;module~mus_scheme_header_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge7" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;module~mus_scheme_header_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-607C520.91,-604.8 435.64,-620.61 372.9,-633"/>
+<polygon fill="#000000" stroke="#000000" points="372.16,-629.58 363.03,-634.96 373.52,-636.45 372.16,-629.58"/>
+</g>
+<!-- module~mus_scheme_layout_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node9" class="node">
+<title>module~mus_scheme_layout_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node9"><a xlink:href="../module/mus_scheme_layout_module.html" xlink:title="mus_scheme_layout_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="621,-679 455,-679 455,-655 621,-655 621,-679"/>
+<text text-anchor="middle" x="538" y="-664.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_layout_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;module~mus_scheme_layout_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge8" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;module~mus_scheme_layout_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M749.5,-667C703.94,-706.9 629.16,-695.14 582.08,-681.89"/>
+<polygon fill="#000000" stroke="#000000" points="583.06,-678.53 572.47,-679.05 581.08,-685.24 583.06,-678.53"/>
+</g>
+<!-- tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node10" class="node">
+<title>tem_aux_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node10"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_aux_module.html" xlink:title="tem_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="127.5,-639 23.5,-639 23.5,-615 127.5,-615 127.5,-639"/>
+<text text-anchor="middle" x="75.5" y="-624.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge9" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-607C394.96,-587.54 226.19,-605.11 137.67,-617.41"/>
+<polygon fill="#000000" stroke="#000000" points="136.95,-613.98 127.54,-618.85 137.93,-620.91 136.95,-613.98"/>
+</g>
+<!-- tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node11" class="node">
+<title>tem_logging_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node11"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_logging_module.html" xlink:title="tem_logging_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="137.5,-383 13.5,-383 13.5,-359 137.5,-359 137.5,-383"/>
+<text text-anchor="middle" x="75.5" y="-368.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_logging_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge10" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956.23,-336.11C938.64,-384.44 867.18,-565.71 751.5,-667"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M749.5,-667C676.31,-731.09 635.38,-620.21 539,-607"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-607C511.01,-603.44 327.03,-581.55 304,-569"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-569C251.91,-541.71 231.24,-548.01 187,-512 143.69,-476.75 106.77,-421.58 88.59,-391.77"/>
+<polygon fill="#000000" stroke="#000000" points="91.5,-389.83 83.36,-383.05 85.49,-393.42 91.5,-389.83"/>
+</g>
+<!-- tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node12" class="node">
+<title>tem_param_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node12"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_param_module.html" xlink:title="tem_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="135.5,-180 15.5,-180 15.5,-156 135.5,-156 135.5,-180"/>
+<text text-anchor="middle" x="75.5" y="-165.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge11" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M950.04,-311.78C906.19,-261.92 730.58,-75.27 539,-51"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-51C467.38,-26.37 198.16,-35.92 187,-41 139,-62.86 103.76,-117.01 87.15,-147.07"/>
+<polygon fill="#000000" stroke="#000000" points="84.05,-145.44 82.41,-155.91 90.22,-148.74 84.05,-145.44"/>
+</g>
+<!-- tem_tools_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node13" class="node">
+<title>tem_tools_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node13"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_tools_module.html" xlink:title="tem_tools_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="130.5,-1099 20.5,-1099 20.5,-1075 130.5,-1075 130.5,-1099"/>
+<text text-anchor="middle" x="75.5" y="-1084.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_tools_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_nonnewtonian_module&#45;&gt;tem_tools_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge12" class="edge">
+<title>module~mus_nonnewtonian_module&#45;&gt;tem_tools_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-1087C247.79,-1090.07 186.13,-1089.82 141,-1088.94"/>
+<polygon fill="#000000" stroke="#000000" points="140.84,-1085.43 130.77,-1088.72 140.69,-1092.43 140.84,-1085.43"/>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge13" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M726.57,-336.02C688.66,-355.29 610.06,-392.8 539,-411"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-411C485.4,-424.22 471.5,-399.01 419,-390 367.94,-381.24 355.01,-380.05 304,-371"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-371C248.72,-361.55 235.69,-354.62 187,-331 169.92,-322.71 168.32,-315.77 151,-308 142.63,-304.24 133.42,-301 124.42,-298.26"/>
+<polygon fill="#000000" stroke="#000000" points="125.36,-294.88 114.78,-295.48 123.42,-301.61 125.36,-294.88"/>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;module~mus_scheme_layout_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge15" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;module~mus_scheme_layout_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M747.15,-336.28C738.21,-380.02 702.66,-530.47 621,-621 609.88,-633.33 594.65,-643.12 580.33,-650.45"/>
+<polygon fill="#000000" stroke="#000000" points="578.59,-647.41 571.11,-654.91 581.63,-653.71 578.59,-647.41"/>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge16" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-411C470.13,-428.13 481.58,-482.86 419,-512 372.04,-533.87 347.84,-503.4 304,-531"/>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge18" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-371C251.04,-361.96 192.58,-362.26 147.95,-364.66"/>
+<polygon fill="#000000" stroke="#000000" points="147.56,-361.17 137.78,-365.25 147.97,-368.16 147.56,-361.17"/>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge19" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M739.49,-311.75C702.66,-267.77 568.91,-117.96 419,-70 320.79,-38.58 283.4,-33.41 187,-70 146.01,-85.56 110.47,-124.06 91.4,-147.91"/>
+<polygon fill="#000000" stroke="#000000" points="88.51,-145.92 85.14,-155.96 94.04,-150.22 88.51,-145.92"/>
+</g>
+<!-- module~mus_moments_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node14" class="node">
+<title>module~mus_moments_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node14"><a xlink:href="../module/mus_moments_module.html" xlink:title="mus_moments_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="606,-247 470,-247 470,-223 606,-223 606,-247"/>
+<text text-anchor="middle" x="538" y="-232.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_moments_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;module~mus_moments_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge14" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;module~mus_moments_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M721.11,-312C683.84,-296.24 618.29,-268.52 576.84,-251"/>
+<polygon fill="#000000" stroke="#000000" points="578.19,-247.77 567.61,-247.1 575.46,-254.22 578.19,-247.77"/>
+</g>
+<!-- tem_float_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node20" class="node">
+<title>tem_float_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node20"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_float_module.html" xlink:title="tem_float_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="592.5,-336 483.5,-336 483.5,-312 592.5,-312 592.5,-336"/>
+<text text-anchor="middle" x="538" y="-321.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_float_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;tem_float_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge17" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;tem_float_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M656.87,-324C638.69,-324 620,-324 603.02,-324"/>
+<polygon fill="#000000" stroke="#000000" points="602.68,-320.5 592.68,-324 602.68,-327.5 602.68,-320.5"/>
+</g>
+<!-- tem_stencil_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node23" class="node">
+<title>tem_stencil_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node23"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_stencil_module.html" xlink:title="tem_stencil_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="362.5,-423 243.5,-423 243.5,-399 362.5,-399 362.5,-423"/>
+<text text-anchor="middle" x="303" y="-408.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_stencil_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_derivedquantities_module2&#45;&gt;tem_stencil_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge20" class="edge">
+<title>module~mus_derivedquantities_module2&#45;&gt;tem_stencil_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537,-411C483.15,-424.8 419.98,-423.78 373,-419.88"/>
+<polygon fill="#000000" stroke="#000000" points="373.21,-416.38 362.94,-418.98 372.58,-423.36 373.21,-416.38"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;aot_out_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge21" class="edge">
+<title>module~mus_physics_module&#45;&gt;aot_out_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.31,-928.3C221.87,-924.57 202.46,-918.1 187,-907 162.05,-889.09 175.48,-866.56 151,-848 145.94,-844.16 140.21,-841.03 134.23,-838.46"/>
+<polygon fill="#000000" stroke="#000000" points="135.28,-835.12 124.69,-834.89 132.82,-841.68 135.28,-835.12"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;aot_table_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge22" class="edge">
+<title>module~mus_physics_module&#45;&gt;aot_table_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.3,-944.89C222.9,-948.8 204.06,-953.56 187,-959 170.49,-964.26 167.37,-968.31 151,-974 145,-976.09 138.68,-978.12 132.36,-980.04"/>
+<polygon fill="#000000" stroke="#000000" points="131.07,-976.78 122.47,-982.98 133.06,-983.49 131.07,-976.78"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;aotus_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge23" class="edge">
+<title>module~mus_physics_module&#45;&gt;aotus_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.38,-938.47C205.76,-941.54 162.97,-945.33 129.79,-948.27"/>
+<polygon fill="#000000" stroke="#000000" points="129.48,-944.79 119.83,-949.16 130.1,-951.76 129.48,-944.79"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge24" class="edge">
+<title>module~mus_physics_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M254.85,-921C230.38,-912.19 202.44,-897.55 187,-874 117.92,-768.59 230.23,-406.02 151,-308 144.34,-299.76 134.72,-294.61 124.6,-291.42"/>
+<polygon fill="#000000" stroke="#000000" points="125.37,-288 114.81,-288.92 123.64,-294.78 125.37,-288"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge25" class="edge">
+<title>module~mus_physics_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M263.99,-920.97C239.37,-911.53 208.07,-896.23 187,-874 170.27,-856.35 108.28,-705.59 85.22,-648.65"/>
+<polygon fill="#000000" stroke="#000000" points="88.38,-647.13 81.39,-639.17 81.89,-649.75 88.38,-647.13"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge27" class="edge">
+<title>module~mus_physics_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M256.64,-920.99C232.1,-912.09 203.51,-897.37 187,-874 117.65,-775.85 177.26,-723.28 151,-606 133.02,-525.7 100.03,-433.46 84.71,-392.51"/>
+<polygon fill="#000000" stroke="#000000" points="87.94,-391.15 81.14,-383.03 81.39,-393.62 87.94,-391.15"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge28" class="edge">
+<title>module~mus_physics_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M254.52,-920.92C230.1,-912.11 202.32,-897.49 187,-874 113.06,-760.64 197.99,-392.93 151,-266 139.51,-234.96 114.65,-205.61 96.81,-187.26"/>
+<polygon fill="#000000" stroke="#000000" points="99.2,-184.7 89.65,-180.1 94.25,-189.65 99.2,-184.7"/>
+</g>
+<!-- module~mus_physics_module&#45;&gt;tem_tools_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge29" class="edge">
+<title>module~mus_physics_module&#45;&gt;tem_tools_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.42,-937.84C221.98,-941.58 202.55,-948.02 187,-959 162.53,-976.29 169.99,-992.82 151,-1016 135.19,-1035.3 114.46,-1054.67 98.88,-1068.3"/>
+<polygon fill="#000000" stroke="#000000" points="96.55,-1065.68 91.25,-1074.86 101.11,-1070.99 96.55,-1065.68"/>
+</g>
+<!-- tem_geometry_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node21" class="node">
+<title>tem_geometry_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node21"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_geometry_module.html" xlink:title="tem_geometry_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="143.5,-923 7.5,-923 7.5,-899 143.5,-899 143.5,-923"/>
+<text text-anchor="middle" x="75.5" y="-908.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_geometry_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_physics_module&#45;&gt;tem_geometry_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge26" class="edge">
+<title>module~mus_physics_module&#45;&gt;tem_geometry_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.38,-926.99C213.67,-924.38 182.1,-921.3 153.83,-918.54"/>
+<polygon fill="#000000" stroke="#000000" points="153.88,-915.03 143.59,-917.54 153.2,-922 153.88,-915.03"/>
+</g>
+<!-- treelmesh_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node24" class="node">
+<title>treelmesh_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node24"><a xlink:href="https://apes-suite.github.io/treelm/module/treelmesh_module.html" xlink:title="treelmesh_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="131.5,-881 19.5,-881 19.5,-857 131.5,-857 131.5,-881"/>
+<text text-anchor="middle" x="75.5" y="-866.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">treelmesh_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_physics_module&#45;&gt;treelmesh_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge30" class="edge">
+<title>module~mus_physics_module&#45;&gt;treelmesh_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M240.43,-921.68C222.94,-917.77 204.03,-912.87 187,-907 170.27,-901.24 167.57,-896.2 151,-890 145.44,-887.92 139.57,-885.93 133.68,-884.06"/>
+<polygon fill="#000000" stroke="#000000" points="134.37,-880.61 123.78,-881.05 132.32,-887.31 134.37,-880.61"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;aot_out_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge31" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;aot_out_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M271.46,-659.09C247.24,-669.49 213.21,-685.97 187,-706 147.97,-735.82 111.33,-780.45 91.6,-806.35"/>
+<polygon fill="#000000" stroke="#000000" points="88.56,-804.58 85.36,-814.68 94.16,-808.78 88.56,-804.58"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;aot_table_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge32" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;aot_table_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M256.64,-659.01C232.1,-667.91 203.51,-682.63 187,-706 117.65,-804.15 229.77,-883.24 151,-974 147.56,-977.96 143.45,-981.2 138.94,-983.85"/>
+<polygon fill="#000000" stroke="#000000" points="137.32,-980.74 129.85,-988.24 140.37,-987.04 137.32,-980.74"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;aotus_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge33" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;aotus_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.15,-659.06C232.61,-668 203.86,-682.75 187,-706 127.29,-788.34 218.6,-856 151,-932 145.22,-938.49 137.61,-943.05 129.45,-946.23"/>
+<polygon fill="#000000" stroke="#000000" points="128.16,-942.97 119.71,-949.36 130.3,-949.63 128.16,-942.97"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge34" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M287.59,-634.92C262.66,-613.14 211.79,-564.64 187,-512 147.77,-428.71 212.76,-376.28 151,-308 144.04,-300.3 134.49,-295.34 124.56,-292.16"/>
+<polygon fill="#000000" stroke="#000000" points="125.14,-288.69 114.57,-289.54 123.36,-295.46 125.14,-288.69"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge35" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M216.75,-639.44C190.45,-637.11 162.02,-634.58 137.68,-632.43"/>
+<polygon fill="#000000" stroke="#000000" points="137.79,-628.92 127.52,-631.52 137.17,-635.89 137.79,-628.92"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge36" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M269.43,-634.95C244.4,-624.36 210.26,-606.91 187,-583 131.08,-525.53 96.63,-434.07 83.09,-392.65"/>
+<polygon fill="#000000" stroke="#000000" points="86.4,-391.49 80.03,-383.02 79.73,-393.61 86.4,-391.49"/>
+</g>
+<!-- module~mus_scheme_header_module&#45;&gt;tem_tools_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge37" class="edge">
+<title>module~mus_scheme_header_module&#45;&gt;tem_tools_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M256.19,-659C231.67,-667.88 203.24,-682.58 187,-706 107.97,-819.99 212.89,-891.87 151,-1016 140.27,-1037.51 120.24,-1056.03 103.65,-1068.75"/>
+<polygon fill="#000000" stroke="#000000" points="101.33,-1066.11 95.36,-1074.86 105.48,-1071.75 101.33,-1066.11"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;aot_out_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge38" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;aot_out_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M534.05,-679.06C524.5,-715.33 490.8,-824.01 419,-874 376.49,-903.6 355.78,-894.46 304,-893"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-893C250.22,-891.54 234.82,-893.92 187,-874 168.78,-866.41 168.77,-856.59 151,-848 145.73,-845.45 140.09,-843.16 134.37,-841.12"/>
+<polygon fill="#000000" stroke="#000000" points="135.3,-837.74 124.71,-837.91 133.1,-844.39 135.3,-837.74"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;aot_table_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge39" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;aot_table_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-973C251.43,-998.06 186.72,-1001.94 139.6,-1000.51"/>
+<polygon fill="#000000" stroke="#000000" points="139.65,-997.01 129.52,-1000.12 139.38,-1004.01 139.65,-997.01"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;aotus_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge40" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;aotus_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M536.05,-679.26C531.85,-724.17 510.89,-880.86 419,-954 378.47,-986.26 350.42,-950 304,-973"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-973C272.77,-987.49 186.6,-974.77 129.65,-964.04"/>
+<polygon fill="#000000" stroke="#000000" points="130.2,-960.59 119.72,-962.14 128.88,-967.46 130.2,-960.59"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge41" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M501.74,-654.9C485.25,-647.53 466.71,-636.5 455,-621 413.42,-565.94 469.5,-517.01 419,-470 342.52,-398.81 265.19,-501.31 187,-432 144.06,-393.93 191.74,-348.42 151,-308 143.77,-300.83 134.3,-296.06 124.54,-292.91"/>
+<polygon fill="#000000" stroke="#000000" points="125.33,-289.5 114.77,-290.26 123.5,-296.25 125.33,-289.5"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge45" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M454.95,-675.5C383.55,-680.93 277.61,-684.27 187,-668 160.45,-663.23 131.95,-652.51 110.54,-643.22"/>
+<polygon fill="#000000" stroke="#000000" points="111.8,-639.95 101.24,-639.08 108.95,-646.34 111.8,-639.95"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge49" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M502.43,-654.95C456.04,-638.23 371.63,-605.85 304,-569"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge50" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M499.81,-654.82C483.49,-647.57 465.65,-636.65 455,-621 388.38,-523.1 493.94,-448.69 419,-357 349.89,-272.44 279.83,-333.54 187,-276 148.22,-251.96 112.18,-212.18 92.37,-188.19"/>
+<polygon fill="#000000" stroke="#000000" points="94.85,-185.69 85.83,-180.13 89.41,-190.1 94.85,-185.69"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_tools_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge52" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_tools_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M536.28,-679.25C532.85,-726.46 514.03,-898.33 419,-987 378.59,-1024.7 228.12,-1058.43 140.64,-1075.41"/>
+<polygon fill="#000000" stroke="#000000" points="139.72,-1072.02 130.56,-1077.34 141.04,-1078.89 139.72,-1072.02"/>
+</g>
+<!-- module~mus_moments_type_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node15" class="node">
+<title>module~mus_moments_type_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node15"><a xlink:href="../module/mus_moments_type_module.html" xlink:title="mus_moments_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="385.5,-267 220.5,-267 220.5,-243 385.5,-243 385.5,-267"/>
+<text text-anchor="middle" x="303" y="-252.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_moments_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;module~mus_moments_type_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge42" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;module~mus_moments_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M499.69,-654.9C483.34,-647.66 465.52,-636.74 455,-621 379.9,-508.61 494.29,-431.26 419,-319 403.84,-296.4 377.9,-280.98 354.49,-270.94"/>
+<polygon fill="#000000" stroke="#000000" points="355.57,-267.61 344.99,-267.1 352.95,-274.1 355.57,-267.61"/>
+</g>
+<!-- module~mus_scheme_derived_quantities_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node16" class="node">
+<title>module~mus_scheme_derived_quantities_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node16"><a xlink:href="../module/mus_scheme_derived_quantities_module.html" xlink:title="mus_scheme_derived_quantities_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="419,-503 187,-503 187,-479 419,-479 419,-503"/>
+<text text-anchor="middle" x="303" y="-488.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_derived_quantities_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;module~mus_scheme_derived_quantities_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge43" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;module~mus_scheme_derived_quantities_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M503.62,-654.94C487,-647.44 467.77,-636.28 455,-621 423.62,-583.48 455.45,-549.62 419,-517 415.1,-513.51 410.82,-510.45 406.29,-507.78"/>
+<polygon fill="#000000" stroke="#000000" points="407.79,-504.61 397.3,-503.11 404.56,-510.83 407.79,-504.61"/>
+</g>
+<!-- mpi -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node17" class="node">
+<title>mpi</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node17"><a xlink:href="http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm" xlink:title="mpi">
+<polygon fill="#337ab7" stroke="#337ab7" points="330,-823 276,-823 276,-799 330,-799 330,-823"/>
+<text text-anchor="middle" x="303" y="-808.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;mpi -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge44" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;mpi</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M529.27,-679.19C512.54,-704.44 470.34,-762.39 419,-790 394.71,-803.06 363.8,-808.17 340.15,-810.1"/>
+<polygon fill="#000000" stroke="#000000" points="339.92,-806.6 330.17,-810.75 340.38,-813.59 339.92,-806.6"/>
+</g>
+<!-- tem_comm_env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node18" class="node">
+<title>tem_comm_env_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node18"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_comm_env_module.html" xlink:title="tem_comm_env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="374.5,-781 231.5,-781 231.5,-757 374.5,-757 374.5,-781"/>
+<text text-anchor="middle" x="303" y="-766.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_comm_env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_comm_env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge46" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_comm_env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M523.6,-679.07C502.81,-697.09 460.81,-730.76 419,-748 408.15,-752.47 396.34,-756 384.55,-758.77"/>
+<polygon fill="#000000" stroke="#000000" points="383.7,-755.38 374.67,-760.93 385.19,-762.21 383.7,-755.38"/>
+</g>
+<!-- tem_dyn_array_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node19" class="node">
+<title>tem_dyn_array_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node19"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_dyn_array_module.html" xlink:title="tem_dyn_array_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="372,-739 234,-739 234,-715 372,-715 372,-739"/>
+<text text-anchor="middle" x="303" y="-724.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_dyn_array_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_dyn_array_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge47" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_dyn_array_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M497.29,-679.07C474.47,-685.84 445.22,-694.26 419,-701 403.24,-705.05 386.18,-709.09 370.14,-712.74"/>
+<polygon fill="#000000" stroke="#000000" points="369.29,-709.34 360.31,-714.96 370.83,-716.17 369.29,-709.34"/>
+</g>
+<!-- tem_grow_array_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node22" class="node">
+<title>tem_grow_array_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node22"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_grow_array_module.html" xlink:title="tem_grow_array_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="375,-865 231,-865 231,-841 375,-841 375,-865"/>
+<text text-anchor="middle" x="303" y="-850.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_grow_array_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_grow_array_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge48" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_grow_array_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M532.08,-679.43C518.96,-710.78 479.96,-793.33 419,-832 408.82,-838.45 397.18,-843.05 385.3,-846.29"/>
+<polygon fill="#000000" stroke="#000000" points="384.19,-842.96 375.29,-848.71 385.84,-849.76 384.19,-842.96"/>
+</g>
+<!-- module~mus_scheme_layout_module&#45;&gt;tem_stencil_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge51" class="edge">
+<title>module~mus_scheme_layout_module&#45;&gt;tem_stencil_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M501.05,-654.91C484.6,-647.6 466.29,-636.6 455,-621 406.15,-553.49 477.06,-496.77 419,-437 406.78,-424.42 389.86,-417.35 372.75,-413.51"/>
+<polygon fill="#000000" stroke="#000000" points="373.17,-410.02 362.69,-411.6 371.86,-416.9 373.17,-410.02"/>
+</g>
+<!-- module~mus_moments_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge53" class="edge">
+<title>module~mus_moments_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M469.9,-225.97C398.71,-218.43 283.43,-212.07 187,-234 156.87,-240.85 125.35,-256.99 103.73,-269.67"/>
+<polygon fill="#000000" stroke="#000000" points="101.87,-266.71 95.1,-274.86 105.47,-272.71 101.87,-266.71"/>
+</g>
+<!-- module~mus_moments_module&#45;&gt;module~mus_scheme_header_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge56" class="edge">
+<title>module~mus_moments_module&#45;&gt;module~mus_scheme_header_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M514.49,-247.13C495.27,-258.76 468.64,-278.21 455,-303 394.5,-412.92 489.37,-479.12 419,-583 403.68,-605.61 377.6,-621.06 354.14,-631.11"/>
+<polygon fill="#000000" stroke="#000000" points="352.58,-627.96 344.63,-634.95 355.21,-634.45 352.58,-627.96"/>
+</g>
+<!-- module~mus_moments_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge57" class="edge">
+<title>module~mus_moments_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M515.11,-247.04C496.04,-258.75 469.26,-278.35 455,-303 407.8,-384.59 485.88,-445.58 419,-512 382.24,-548.51 347.84,-503.4 304,-531"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M302,-531C244.69,-567.09 171.46,-595.41 124.27,-611.68"/>
+<polygon fill="#000000" stroke="#000000" points="122.95,-608.43 114.61,-614.96 125.21,-615.06 122.95,-608.43"/>
+</g>
+<!-- module~mus_moments_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge59" class="edge">
+<title>module~mus_moments_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M504.13,-247.05C480.56,-255.54 447.98,-266.96 419,-276 319.2,-307.14 201.49,-338.67 133.29,-356.44"/>
+<polygon fill="#000000" stroke="#000000" points="132.39,-353.05 123.59,-358.96 134.15,-359.83 132.39,-353.05"/>
+</g>
+<!-- module~mus_moments_module&#45;&gt;module~mus_moments_type_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge54" class="edge">
+<title>module~mus_moments_module&#45;&gt;module~mus_moments_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M469.92,-240.76C446.88,-242.74 420.67,-244.99 396,-247.1"/>
+<polygon fill="#000000" stroke="#000000" points="395.57,-243.63 385.9,-247.97 396.16,-250.6 395.57,-243.63"/>
+</g>
+<!-- module~mus_mrtinit_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node25" class="node">
+<title>module~mus_mrtinit_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node25"><a xlink:href="../module/mus_mrtinit_module.html" xlink:title="mus_mrtInit_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="363.5,-103 242.5,-103 242.5,-79 363.5,-79 363.5,-103"/>
+<text text-anchor="middle" x="303" y="-88.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_mrtInit_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_moments_module&#45;&gt;module~mus_mrtinit_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge55" class="edge">
+<title>module~mus_moments_module&#45;&gt;module~mus_mrtinit_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M529.27,-222.81C512.54,-197.56 470.34,-139.61 419,-112 405.22,-104.59 389.3,-99.74 373.79,-96.57"/>
+<polygon fill="#000000" stroke="#000000" points="374.15,-93.08 363.69,-94.73 372.9,-99.97 374.15,-93.08"/>
+</g>
+<!-- tem_debug_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node27" class="node">
+<title>tem_debug_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node27"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_debug_module.html" xlink:title="tem_debug_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="362,-187 244,-187 244,-163 362,-163 362,-187"/>
+<text text-anchor="middle" x="303" y="-172.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_debug_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_moments_module&#45;&gt;tem_debug_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge58" class="edge">
+<title>module~mus_moments_module&#45;&gt;tem_debug_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M497.29,-222.93C474.47,-216.16 445.22,-207.74 419,-201 403.24,-196.95 386.18,-192.91 370.14,-189.26"/>
+<polygon fill="#000000" stroke="#000000" points="370.83,-185.83 360.31,-187.04 369.29,-192.66 370.83,-185.83"/>
+</g>
+<!-- tem_math_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node28" class="node">
+<title>tem_math_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node28"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_math_module.html" xlink:title="tem_math_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="359,-145 247,-145 247,-121 359,-121 359,-145"/>
+<text text-anchor="middle" x="303" y="-130.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_math_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_moments_module&#45;&gt;tem_math_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge60" class="edge">
+<title>module~mus_moments_module&#45;&gt;tem_math_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M523.6,-222.93C502.81,-204.91 460.81,-171.24 419,-154 403.46,-147.59 385.94,-143.13 369.35,-140.03"/>
+<polygon fill="#000000" stroke="#000000" points="369.61,-136.53 359.16,-138.27 368.42,-143.42 369.61,-136.53"/>
+</g>
+<!-- tem_matrix_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node29" class="node">
+<title>tem_matrix_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node29"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_matrix_module.html" xlink:title="tem_matrix_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="135,-24 16,-24 16,0 135,0 135,-24"/>
+<text text-anchor="middle" x="75.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_matrix_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_moments_module&#45;&gt;tem_matrix_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge61" class="edge">
+<title>module~mus_moments_module&#45;&gt;tem_matrix_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M532.29,-222.98C519.44,-191.87 480.51,-108.47 419,-70 335.25,-17.62 218.46,-8.53 145.19,-8.77"/>
+<polygon fill="#000000" stroke="#000000" points="145.12,-5.27 135.15,-8.86 145.18,-12.27 145.12,-5.27"/>
+</g>
+<!-- module~mus_moments_type_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge62" class="edge">
+<title>module~mus_moments_type_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M220.27,-266.6C188.31,-271.13 152.73,-276.18 124.97,-280.12"/>
+<polygon fill="#000000" stroke="#000000" points="124.15,-276.7 114.74,-281.57 125.13,-283.63 124.15,-276.7"/>
+</g>
+<!-- module~mus_moments_type_module&#45;&gt;tem_matrix_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge63" class="edge">
+<title>module~mus_moments_type_module&#45;&gt;tem_matrix_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.96,-242.96C242.42,-233.2 210.03,-217.54 187,-196 173.41,-183.29 113.73,-78.35 88.18,-32.88"/>
+<polygon fill="#000000" stroke="#000000" points="91.22,-31.14 83.27,-24.13 85.11,-34.57 91.22,-31.14"/>
+</g>
+<!-- module~mus_scheme_derived_quantities_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge64" class="edge">
+<title>module~mus_scheme_derived_quantities_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M206.65,-478.91C199.42,-475.27 192.73,-470.71 187,-465 136.3,-414.46 200.36,-359.85 151,-308 143.91,-300.55 134.41,-295.68 124.56,-292.51"/>
+<polygon fill="#000000" stroke="#000000" points="125.25,-289.07 114.68,-289.88 123.44,-295.84 125.25,-289.07"/>
+</g>
+<!-- module~mus_scheme_derived_quantities_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge65" class="edge">
+<title>module~mus_scheme_derived_quantities_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M221.61,-503.07C209.6,-506.59 197.67,-511.13 187,-517 146.05,-539.52 110.08,-581.69 90.99,-606.77"/>
+<polygon fill="#000000" stroke="#000000" points="88.13,-604.76 84.97,-614.87 93.74,-608.93 88.13,-604.76"/>
+</g>
+<!-- module~mus_scheme_derived_quantities_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge67" class="edge">
+<title>module~mus_scheme_derived_quantities_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M224.74,-478.95C211.76,-475.41 198.72,-470.86 187,-465 149.65,-446.32 114.32,-412.4 94.07,-390.82"/>
+<polygon fill="#000000" stroke="#000000" points="96.42,-388.21 87.07,-383.22 91.27,-392.95 96.42,-388.21"/>
+</g>
+<!-- module~mus_scheme_derived_quantities_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge68" class="edge">
+<title>module~mus_scheme_derived_quantities_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M258.48,-478.9C233.93,-469.87 204.71,-455.04 187,-432 141,-372.14 182.59,-334.56 151,-266 137.13,-235.9 112.73,-206.31 95.65,-187.66"/>
+<polygon fill="#000000" stroke="#000000" points="97.99,-185.04 88.6,-180.13 92.88,-189.82 97.99,-185.04"/>
+</g>
+<!-- tem_compileconf_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_node26" class="node">
+<title>tem_compileconf_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsesGraph_node26"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_compileconf_module.html" xlink:title="tem_compileconf_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="151,-341 0,-341 0,-317 151,-317 151,-341"/>
+<text text-anchor="middle" x="75.5" y="-326.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_compileconf_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_scheme_derived_quantities_module&#45;&gt;tem_compileconf_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge66" class="edge">
+<title>module~mus_scheme_derived_quantities_module&#45;&gt;tem_compileconf_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M208.24,-478.96C200.49,-475.33 193.25,-470.76 187,-465 147.63,-428.69 189.41,-387.32 151,-350 149.74,-348.78 148.42,-347.62 147.04,-346.54"/>
+<polygon fill="#000000" stroke="#000000" points="148.88,-343.56 138.6,-341.01 145.04,-349.41 148.88,-343.56"/>
+</g>
+<!-- module~mus_mrtinit_module&#45;&gt;env_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge69" class="edge">
+<title>module~mus_mrtinit_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M242.36,-91.28C223.08,-93.99 202.67,-99.91 187,-112 157.09,-135.07 170.54,-156.67 151,-189 133.67,-217.68 109.62,-247.99 93.58,-267.18"/>
+<polygon fill="#000000" stroke="#000000" points="90.82,-265.02 87.04,-274.92 96.17,-269.54 90.82,-265.02"/>
+</g>
+<!-- module~mus_mrtinit_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_nonnewtonian_module~~UsesGraph_edge70" class="edge">
+<title>module~mus_mrtinit_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M242.37,-98.53C224.31,-101.7 204.6,-106.07 187,-112 157.75,-121.85 126.57,-138.25 104.82,-150.77"/>
+<polygon fill="#000000" stroke="#000000" points="102.97,-147.79 96.1,-155.86 106.5,-153.84 102.97,-147.79"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_nonnewtonian_moduleUsesGraph = svgPanZoom('#modulemus_nonnewtonian_moduleUsesGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_nonnewtonian_module~~UsedByGraph Pages: 1 -->
+<svg id="modulemus_nonnewtonian_moduleUsedByGraph" width="641pt" height="315pt"
+ viewBox="0.00 0.00 641.00 314.74" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph" class="graph" transform="scale(0.77 0.77) rotate(0) translate(4 406)">
+<title>module~~mus_nonnewtonian_module~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-406 831,-406 831,4 -4,4"/>
+<!-- module~mus_nonnewtonian_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node1" class="node">
+<title>module~mus_nonnewtonian_module</title>
+<polygon fill="none" stroke="black" points="163,-190 0,-190 0,-166 163,-166 163,-190"/>
+<text text-anchor="middle" x="81.5" y="-175.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_nonNewtonian_module</text>
+</g>
+<!-- module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node2" class="node">
+<title>module~mus_fluid_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node2"><a xlink:href="../module/mus_fluid_module.html" xlink:title="mus_fluid_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="554,-233 445,-233 445,-209 554,-209 554,-233"/>
+<text text-anchor="middle" x="499.5" y="-218.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_fluid_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_fluid_module&#45;&gt;module~mus_nonnewtonian_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge1" class="edge">
+<title>module~mus_fluid_module&#45;&gt;module~mus_nonnewtonian_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M444.97,-215.47C376.4,-208.38 256.52,-195.99 173.5,-187.41"/>
+<polygon fill="#000000" stroke="#000000" points="173.62,-183.9 163.31,-186.35 172.9,-190.86 173.62,-183.9"/>
+</g>
+<!-- module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node3" class="node">
+<title>module~mus_relaxationparam_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node3"><a xlink:href="../module/mus_relaxationparam_module.html" xlink:title="mus_relaxationParam_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="373,-170 199,-170 199,-146 373,-146 373,-170"/>
+<text text-anchor="middle" x="286" y="-155.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_relaxationParam_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_fluid_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge17" class="edge">
+<title>module~mus_fluid_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M444.79,-209.33C432.94,-206.5 420.5,-203.32 409,-200 381.98,-192.2 352.11,-181.95 328.7,-173.52"/>
+<polygon fill="#000000" stroke="#000000" points="329.68,-170.16 319.08,-170.04 327.29,-176.74 329.68,-170.16"/>
+</g>
+<!-- module~mus_relaxationparam_module&#45;&gt;module~mus_nonnewtonian_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge2" class="edge">
+<title>module~mus_relaxationparam_module&#45;&gt;module~mus_nonnewtonian_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M198.83,-166.51C190.32,-167.35 181.66,-168.21 173.11,-169.05"/>
+<polygon fill="#000000" stroke="#000000" points="172.74,-165.57 163.13,-170.04 173.42,-172.54 172.74,-165.57"/>
+</g>
+<!-- module~mus_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node4" class="node">
+<title>module~mus_aux_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node4"><a xlink:href="../module/mus_aux_module.html" xlink:title="mus_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="779.5,-402 673.5,-402 673.5,-378 779.5,-378 779.5,-402"/>
+<text text-anchor="middle" x="726.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_aux_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge3" class="edge">
+<title>module~mus_aux_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M673.49,-387C657.16,-384.06 639.8,-378.68 626,-369 601.16,-351.58 608.82,-334.8 590,-311 569.07,-284.53 541.16,-257.53 522.1,-240.1"/>
+<polygon fill="#000000" stroke="#000000" points="524.29,-237.36 514.53,-233.24 519.6,-242.55 524.29,-237.36"/>
+</g>
+<!-- module~mus_aux_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge13" class="edge">
+<title>module~mus_aux_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M673.46,-382.29C657.89,-379.12 640.99,-374.79 626,-369 496.45,-318.94 362.05,-218 309.73,-176.48"/>
+<polygon fill="#000000" stroke="#000000" points="311.77,-173.63 301.77,-170.12 307.4,-179.1 311.77,-173.63"/>
+</g>
+<!-- module~mus_bc_fluid_turbulent_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node5" class="node">
+<title>module~mus_bc_fluid_turbulent_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node5"><a xlink:href="../module/mus_bc_fluid_turbulent_module.html" xlink:title="mus_bc_fluid_turbulent_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="590,-191 409,-191 409,-167 590,-167 590,-191"/>
+<text text-anchor="middle" x="499.5" y="-176.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_fluid_turbulent_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_turbulent_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge14" class="edge">
+<title>module~mus_bc_fluid_turbulent_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M408.8,-170.09C400.31,-169.25 391.67,-168.39 383.12,-167.54"/>
+<polygon fill="#000000" stroke="#000000" points="383.42,-164.06 373.13,-166.55 382.73,-171.02 383.42,-164.06"/>
+</g>
+<!-- module~mus_bc_fluid_wall_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node6" class="node">
+<title>module~mus_bc_fluid_wall_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node6"><a xlink:href="../module/mus_bc_fluid_wall_module.html" xlink:title="mus_bc_fluid_wall_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="576.5,-149 422.5,-149 422.5,-125 576.5,-125 576.5,-149"/>
+<text text-anchor="middle" x="499.5" y="-134.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_fluid_wall_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_fluid_wall_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge15" class="edge">
+<title>module~mus_bc_fluid_wall_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M422.44,-144.55C409.7,-145.82 396.34,-147.14 383.17,-148.45"/>
+<polygon fill="#000000" stroke="#000000" points="382.76,-144.97 373.15,-149.45 383.45,-151.94 382.76,-144.97"/>
+</g>
+<!-- module~mus_bc_general_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node7" class="node">
+<title>module~mus_bc_general_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node7"><a xlink:href="../module/mus_bc_general_module.html" xlink:title="mus_bc_general_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="572,-107 427,-107 427,-83 572,-83 572,-107"/>
+<text text-anchor="middle" x="499.5" y="-92.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_general_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_bc_general_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge16" class="edge">
+<title>module~mus_bc_general_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M443.37,-107.01C431.95,-109.76 420.04,-112.81 409,-116 381.98,-123.8 352.11,-134.05 328.7,-142.48"/>
+<polygon fill="#000000" stroke="#000000" points="327.29,-139.26 319.08,-145.96 329.68,-145.84 327.29,-139.26"/>
+</g>
+<!-- module~mus_dynloadbal_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node8" class="node">
+<title>module~mus_dynloadbal_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node8"><a xlink:href="../module/mus_dynloadbal_module.html" xlink:title="mus_dynLoadBal_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="801,-360 652,-360 652,-336 801,-336 801,-360"/>
+<text text-anchor="middle" x="726.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_dynLoadBal_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_dynloadbal_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge4" class="edge">
+<title>module~mus_dynloadbal_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M651.84,-336.78C642.9,-334.17 634.09,-330.95 626,-327 581.8,-305.39 540.18,-264.78 517.74,-240.58"/>
+<polygon fill="#000000" stroke="#000000" points="520.21,-238.09 510.89,-233.05 515.03,-242.8 520.21,-238.09"/>
+</g>
+<!-- module~mus_field_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node9" class="node">
+<title>module~mus_field_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node9"><a xlink:href="../module/mus_field_module.html" xlink:title="mus_field_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="781,-318 672,-318 672,-294 781,-294 781,-318"/>
+<text text-anchor="middle" x="726.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_field_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge5" class="edge">
+<title>module~mus_field_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M671.86,-297.37C656.8,-294.23 640.56,-290.15 626,-285 591.24,-272.71 553.9,-252.7 529.07,-238.33"/>
+<polygon fill="#000000" stroke="#000000" points="530.6,-235.17 520.2,-233.12 527.06,-241.2 530.6,-235.17"/>
+</g>
+<!-- module~mus_field_prop_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node10" class="node">
+<title>module~mus_field_prop_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node10"><a xlink:href="../module/mus_field_prop_module.html" xlink:title="mus_field_prop_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="796,-276 657,-276 657,-252 796,-252 796,-276"/>
+<text text-anchor="middle" x="726.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_prop_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_field_prop_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge6" class="edge">
+<title>module~mus_field_prop_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M662.53,-251.96C631.92,-246.12 595.21,-239.1 564.48,-233.23"/>
+<polygon fill="#000000" stroke="#000000" points="564.78,-229.72 554.3,-231.28 563.47,-236.6 564.78,-229.72"/>
+</g>
+<!-- module~mus_flow_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node11" class="node">
+<title>module~mus_flow_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node11"><a xlink:href="../module/mus_flow_module.html" xlink:title="mus_flow_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="780.5,-234 672.5,-234 672.5,-210 780.5,-210 780.5,-234"/>
+<text text-anchor="middle" x="726.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_flow_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_flow_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge7" class="edge">
+<title>module~mus_flow_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M672.46,-221.76C640.2,-221.62 598.79,-221.44 564.68,-221.29"/>
+<polygon fill="#000000" stroke="#000000" points="564.37,-217.78 554.35,-221.24 564.34,-224.78 564.37,-217.78"/>
+</g>
+<!-- module~mus_hvs_aux_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node12" class="node">
+<title>module~mus_hvs_aux_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node12"><a xlink:href="../module/mus_hvs_aux_module.html" xlink:title="mus_hvs_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="791,-192 662,-192 662,-168 791,-168 791,-192"/>
+<text text-anchor="middle" x="726.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_hvs_aux_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge8" class="edge">
+<title>module~mus_hvs_aux_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M661.93,-191.58C631.34,-197.16 594.75,-203.82 564.15,-209.4"/>
+<polygon fill="#000000" stroke="#000000" points="563.23,-206.01 554.02,-211.25 564.49,-212.9 563.23,-206.01"/>
+</g>
+<!-- module~mus_interpolate_average_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node13" class="node">
+<title>module~mus_interpolate_average_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node13"><a xlink:href="../module/mus_interpolate_average_module.html" xlink:title="mus_interpolate_average_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="823.5,-108 629.5,-108 629.5,-84 823.5,-84 823.5,-108"/>
+<text text-anchor="middle" x="726.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_average_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_average_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge9" class="edge">
+<title>module~mus_interpolate_average_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M639.85,-108.13C634.91,-110.61 630.24,-113.54 626,-117 594.86,-142.43 620.86,-174.22 590,-200 582.55,-206.23 573.58,-210.68 564.24,-213.85"/>
+<polygon fill="#000000" stroke="#000000" points="563.04,-210.56 554.42,-216.71 565,-217.28 563.04,-210.56"/>
+</g>
+<!-- module~mus_interpolate_average_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge18" class="edge">
+<title>module~mus_interpolate_average_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M666.04,-83.96C602.14,-71.2 508.59,-53.13 500.5,-55"/>
+</g>
+<!-- module~mus_interpolate_debug_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node14" class="node">
+<title>module~mus_interpolate_debug_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node14"><a xlink:href="../module/mus_interpolate_debug_module.html" xlink:title="mus_interpolate_debug_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="818.5,-150 634.5,-150 634.5,-126 818.5,-126 818.5,-150"/>
+<text text-anchor="middle" x="726.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_debug_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_debug_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge10" class="edge">
+<title>module~mus_interpolate_debug_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M645.55,-150.01C638.72,-152.47 632.1,-155.44 626,-159 605.07,-171.24 610.79,-187.52 590,-200 582.06,-204.76 573.12,-208.45 564.05,-211.29"/>
+<polygon fill="#000000" stroke="#000000" points="562.86,-207.99 554.19,-214.07 564.76,-214.73 562.86,-207.99"/>
+</g>
+<!-- module~mus_interpolate_linear_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node15" class="node">
+<title>module~mus_interpolate_linear_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node15"><a xlink:href="../module/mus_interpolate_linear_module.html" xlink:title="mus_interpolate_linear_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="817,-66 636,-66 636,-42 817,-42 817,-66"/>
+<text text-anchor="middle" x="726.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_linear_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_linear_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge11" class="edge">
+<title>module~mus_interpolate_linear_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M638.38,-66.03C633.93,-68.55 629.75,-71.51 626,-75 583.67,-114.37 631.89,-160.15 590,-200 582.71,-206.93 573.59,-211.72 563.98,-215.01"/>
+<polygon fill="#000000" stroke="#000000" points="562.9,-211.68 554.26,-217.81 564.84,-218.4 562.9,-211.68"/>
+</g>
+<!-- module~mus_interpolate_linear_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge19" class="edge">
+<title>module~mus_interpolate_linear_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M635.75,-45.38C594.12,-43.66 544.27,-44.89 500.5,-55"/>
+</g>
+<!-- module~mus_interpolate_quadratic_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node16" class="node">
+<title>module~mus_interpolate_quadratic_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node16"><a xlink:href="../module/mus_interpolate_quadratic_module.html" xlink:title="mus_interpolate_quadratic_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="827,-24 626,-24 626,0 827,0 827,-24"/>
+<text text-anchor="middle" x="726.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_quadratic_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_quadratic_module&#45;&gt;module~mus_fluid_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge12" class="edge">
+<title>module~mus_interpolate_quadratic_module&#45;&gt;module~mus_fluid_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M637.65,-24C633.43,-26.54 629.5,-29.51 626,-33 572.2,-86.57 643.2,-145.83 590,-200 582.87,-207.26 573.74,-212.21 564.05,-215.54"/>
+<polygon fill="#000000" stroke="#000000" points="562.87,-212.24 554.23,-218.36 564.81,-218.97 562.87,-212.24"/>
+</g>
+<!-- module~mus_interpolate_quadratic_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge20" class="edge">
+<title>module~mus_interpolate_quadratic_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M655.03,-24.04C610.53,-32 551.94,-43.12 500.5,-55"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M498.5,-55C458.88,-64.15 446.36,-57.94 409,-74 370.5,-90.56 331.57,-120.08 308.36,-139.35"/>
+<polygon fill="#000000" stroke="#000000" points="305.94,-136.81 300.56,-145.94 310.46,-142.16 305.94,-136.81"/>
+</g>
+<!-- module~mus_tools_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_node17" class="node">
+<title>module~mus_tools_module</title>
+<g id="a_module~~mus_nonnewtonian_module~~UsedByGraph_node17"><a xlink:href="../module/mus_tools_module.html" xlink:title="mus_tools_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="555.5,-27 443.5,-27 443.5,-3 555.5,-3 555.5,-27"/>
+<text text-anchor="middle" x="499.5" y="-12.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_tools_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_tools_module&#45;&gt;module~mus_relaxationparam_module -->
+<g id="module~~mus_nonnewtonian_module~~UsedByGraph_edge21" class="edge">
+<title>module~mus_tools_module&#45;&gt;module~mus_relaxationparam_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M443.31,-26.51C431.54,-30.19 419.51,-34.93 409,-41 364.7,-66.58 324.17,-111.56 302.81,-137.67"/>
+<polygon fill="#000000" stroke="#000000" points="299.86,-135.76 296.33,-145.75 305.32,-140.14 299.86,-135.76"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_nonnewtonian_moduleUsedByGraph = svgPanZoom('#modulemus_nonnewtonian_moduleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-powerlaw"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>powerLaw</strong></td>
+<td> =</td>
+                <td>1</td>
+            <td>
+                <p>Identifier for Power-Law model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-casson"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>casson</strong></td>
+<td> =</td>
+                <td>2</td>
+            <td>
+                <p>Identifier for Casson model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-carreauyasuda"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>carreauYasuda</strong></td>
+<td> =</td>
+                <td>3</td>
+            <td>
+                <p>Identifier for Carreau-Yasuda model</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+        <section>
+          <h2>Abstract Interfaces</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="interface-proc_calc_nnwtn_visc_fromprecolpdf"></span><h3>abstract interface
+        
+    </h3></div>
+      <div class="card-body">
+        
+        <p>Interface to calculate kinematic viscosity for non-Newtonian model.
+Viscosity is computed from shear rate which is computed from strain rate
+which is computed from nonEquilibrium PDF which in turn is computed from
+pre-collision PDF</p>
+      </div>
+    <ul class="list-group">
+      <li class="list-group-item">
+            <h3>
+    private  subroutine proc_calc_nNwtn_visc_fromPreColPDF(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~2"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+                <p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~11"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+                <p>output is kinematic viscosity from non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~65"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+                <p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~97"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+                <p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~169"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+                <p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~130"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+                <p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+                <p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~20"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+                <p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~100"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+                <p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~93"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+                <p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~178"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+                <p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~23"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+                <p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~193"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+                <p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+                <p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+      </li>
+    </ul>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-mus_nnwtn_type"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>The nonNewtonian fluid feature description type</p><a href="../type/mus_nnwtn_type.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-active~3"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>active</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+<p>Indicator whether nonNewtonian feature is active
+maybe not useful. schemeHeader%kind can used to check if nNwtn is active</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-label~6"></span>
+              character(len=labellen),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>label</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>nonNewtonian fluid model label</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-model~2"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>model</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>nonNewtonian fluid model identifier</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pl"></span>
+              type(<a href='../type/mus_nnwtn_pl_type.html'>mus_nNwtn_PL_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>PL</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Power Law (PL) model type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cy"></span>
+              type(<a href='../type/mus_nnwtn_cy_type.html'>mus_nNwtn_CY_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>CY</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Carreau-Yasuda (CY) model type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cs"></span>
+              type(<a href='../type/mus_nnwtn_cs_type.html'>mus_nNwtn_CS_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>CS</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Casson model type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-calcvisc~2"></span>
+              procedure(<a href='../interface/proc_calc_nnwtn_visc_fromprecolpdf.html'>proc_calc_nNwtn_visc_fromPreColPDF</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>calcVisc</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+<p>this procedure compute kinematic viscosity in lattice unit on current
+level from preCollision PDF based on non-Newtonian model.
+It uses shear-rate to compute viscosity.
+Non-newtonian model is given in dynamic viscosity in physical unit
+so it is dimensionalized using viscDyna in physics%fac and
+lattice kinematic viscosity = lattice dynamic viscosity
+/ rho (local density)  for compressible model and
+lattice kinematic viscosity = lattice dynamic viscosity / rho0
+for incompressible model.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-mus_nnwtn_pl_type"></span>
+      <h3>
+        type, private&nbsp;::&nbsp;
+        <a href='../type/mus_nnwtn_pl_type.html'>mus_nNwtn_PL_type</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>The nonNewtonian power law model parameter</p><a href="../type/mus_nnwtn_pl_type.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>n</strong></td>
+<td> =</td>
+                <td>0.5_rk</td>
+            <td>
+<p>exponentiation parameter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visc0"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>visc0</strong></td>
+<td> =</td>
+                <td>0.0035_rk</td>
+            <td>
+<p>Unit consistency index.
+Dynamic viscosity parameter when shear rate equals to 1.
+i.e. backgroud viscosity for power-law model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nminus1"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nMinus1</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>parameter for computation</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-mus_nnwtn_cy_type"></span>
+      <h3>
+        type, private&nbsp;::&nbsp;
+        <a href='../type/mus_nnwtn_cy_type.html'>mus_nNwtn_CY_type</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>The nonNewtonian power law model parameter</p><a href="../type/mus_nnwtn_cy_type.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n~2"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>n</strong></td>
+<td> =</td>
+                <td>0.2128_rk</td>
+            <td>
+<p>model parameter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-a~7"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>a</strong></td>
+<td> =</td>
+                <td>0.64_rk</td>
+            <td>
+<p>model parameter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-lambda~13"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>lambda</strong></td>
+<td> =</td>
+                <td>8.2_rk</td>
+            <td>
+<p>model parameter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visc0~2"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>visc0</strong></td>
+<td> =</td>
+                <td>0.16_rk</td>
+            <td>
+<p>model parameter, dynamic viscosity at zero shear-rate</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-viscinf"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscInf</strong></td>
+<td> =</td>
+                <td>0.0035_rk</td>
+            <td>
+<p>model parameter, dynamic viscosity in infinity shear-rate</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nminus1div_a"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nMinus1Div_a</strong></td>
+<td> =</td>
+                <td>(0.2128_rk-1._rk)/0.64_rk</td>
+            <td>
+<p>calculated parameter for later usage, nMinus1Div_a = (n-1)/a</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-mus_nnwtn_cs_type"></span>
+      <h3>
+        type, private&nbsp;::&nbsp;
+        <a href='../type/mus_nnwtn_cs_type.html'>mus_nNwtn_CS_type</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>The nonNewtonian power law model parameter</p><a href="../type/mus_nnwtn_cs_type.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k0"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k0</strong></td>
+<td> =</td>
+                <td>0.1937_rk</td>
+            <td>
+<p>model parameter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-k1"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>k1</strong></td>
+<td> =</td>
+                <td>0.055_rk</td>
+            <td>
+<p>model parameter</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-viscphy_pl"></span> <h3>private  function <a href='../proc/viscphy_pl.html'>viscPhy_PL</a>(me, shearRate)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>nonNewtonian power-law model</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~142"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-shearrate"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>shearRate</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=rk)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-viscphy_cs"></span> <h3>private  function <a href='../proc/viscphy_cs.html'>viscPhy_CS</a>(me, shearRate)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>nonNewtonian Casson model</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~143"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-shearrate~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>shearRate</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=rk)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-viscphy_cy"></span> <h3>private  function <a href='../proc/viscphy_cy.html'>viscPhy_CY</a>(me, shearRate)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>nonNewtonian Carreau-Yasuda model</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~144"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-shearrate~3"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>shearRate</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=rk)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_load"></span> <h3>public  subroutine <a href='../proc/mus_nnwtn_load.html'>mus_nNwtn_load</a>(me, conf, parent)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Read in the nonNewtonian table from Lua file and dump parameters to logUnit
+Specificly, this routine calls each model parameter loader.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~130"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~36"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/flu_state.html'>flu_State</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+<p>lua state</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-parent~16"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>parent</strong></td>
+            <td>
+<p>parent handle</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_save2lua"></span> <h3>public  subroutine <a href='../proc/mus_nnwtn_save2lua.html'>mus_nNwtn_save2lua</a>(me, conf)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>write nonNewtonian fluid parameters into a lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~134"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~40"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/aot_out_type.html'>aot_out_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_dump2outunit"></span> <h3>public  subroutine <a href='../proc/mus_nnwtn_dump2outunit.html'>mus_nNwtn_dump2outUnit</a>(me, outUnit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Dump nonNewtonian fluid parameters to outUnit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~138"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outunit~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outUnit</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_assign_nnwtnvisc_ptr"></span> <h3>public  subroutine <a href='../proc/mus_assign_nnwtnvisc_ptr.html'>mus_assign_nNwtnVisc_ptr</a>(nNwtn, schemeHeader)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>This routine assigns function pointer to compute non-Newtonian viscosity</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~3"></span>
+              type(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>non-Newtonian type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-schemeheader~18"></span>
+              type(<a href='../type/mus_scheme_header_type.html'>mus_scheme_header_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>schemeHeader</strong></td>
+            <td>
+<p>scheme header</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcvisc_cy"></span> <h3>public  subroutine <a href='../proc/calcvisc_cy.html'>calcVisc_CY</a>(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate kinematic viscosity from nonNewtonian Carreau-Yasuda model.
+$\mu = \mu_\inf + (\mu_0-\mu_\inf)(1+(\lambda<em>shearRate)</em>a)^((n-1)/a)$</p><a href="../proc/calcvisc_cy.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~6"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~14"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+<p>output is physical kinematic viscosity will be overwritten by
+non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~68"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+<p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~100"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~172"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~133"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~23"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~103"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~96"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~181"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~26"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~196"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac~4"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+<p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_pl_load"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_pl_load.html'>mus_nNwtn_PL_load</a>(me, conf, tHandle)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Read in the nonNewtonian Power Law (PL) model parameters from Lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~131"></span>
+              type(<a href='../type/mus_nnwtn_pl_type.html'>mus_nNwtn_PL_type</a>),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~37"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/flu_state.html'>flu_State</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+<p>lua state</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-thandle"></span>
+              integer,
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tHandle</strong></td>
+            <td>
+<p>nonNewtonian table handle</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_cy_load"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_cy_load.html'>mus_nNwtn_CY_load</a>(me, conf, tHandle)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Read in the nonNewtonian Carreau-Yasuda (CY) model parameters from Lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~132"></span>
+              type(<a href='../type/mus_nnwtn_cy_type.html'>mus_nNwtn_CY_type</a>),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~38"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/flu_state.html'>flu_State</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+<p>lua state</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-thandle~2"></span>
+              integer,
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tHandle</strong></td>
+            <td>
+<p>nonNewtonian table handle</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_cs_load"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_cs_load.html'>mus_nNwtn_CS_load</a>(me, conf, tHandle)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Read in the nonNewtonian Casson model parameters from Lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~133"></span>
+              type(<a href='../type/mus_nnwtn_cs_type.html'>mus_nNwtn_CS_type</a>),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~39"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/flu_state.html'>flu_State</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+<p>lua state</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-thandle~3"></span>
+              integer,
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tHandle</strong></td>
+            <td>
+<p>nonNewtonian table handle</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_pl_save"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_pl_save.html'>mus_nNwtn_PL_save</a>(me, conf)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>write nonNewtonian Power Law (PL) parameters into a lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~135"></span>
+              type(<a href='../type/mus_nnwtn_pl_type.html'>mus_nNwtn_PL_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~41"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/aot_out_type.html'>aot_out_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_cy_save"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_cy_save.html'>mus_nNwtn_CY_save</a>(me, conf)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>write nonNewtonian (CY) parameters into a lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~136"></span>
+              type(<a href='../type/mus_nnwtn_cy_type.html'>mus_nNwtn_CY_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~42"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/aot_out_type.html'>aot_out_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_cs_save"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_cs_save.html'>mus_nNwtn_CS_save</a>(me, conf)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>write nonNewtonian Casson parameters into a lua file</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~137"></span>
+              type(<a href='../type/mus_nnwtn_cs_type.html'>mus_nNwtn_CS_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-conf~43"></span>
+              type(<a href='https://apes-suite.github.io/aotus/type/aot_out_type.html'>aot_out_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>conf</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_pl_dump"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_pl_dump.html'>mus_nNwtn_PL_dump</a>(me, outUnit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Dump nonNewtonian Power Law (PL) parameters to outUnit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~139"></span>
+              type(<a href='../type/mus_nnwtn_pl_type.html'>mus_nNwtn_PL_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outunit~5"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outUnit</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_cy_dump"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_cy_dump.html'>mus_nNwtn_CY_dump</a>(me, outUnit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Dump nonNewtonian (CY) parameters to outUnit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~140"></span>
+              type(<a href='../type/mus_nnwtn_cy_type.html'>mus_nNwtn_CY_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outunit~6"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outUnit</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_nnwtn_cs_dump"></span> <h3>private  subroutine <a href='../proc/mus_nnwtn_cs_dump.html'>mus_nNwtn_CS_dump</a>(me, outUnit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Dump nonNewtonian (CY) parameters to outUnit</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~141"></span>
+              type(<a href='../type/mus_nnwtn_cs_type.html'>mus_nNwtn_CS_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>nonNewtonian parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outunit~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outUnit</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcvisc_pl"></span> <h3>private  subroutine <a href='../proc/calcvisc_pl.html'>calcVisc_PL</a>(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate kinematic viscosity from nonNewtonian power-law model.
+$\mu = K shearRate^(n-1)$.
+Shear rate is computed from strain rate which is computed from
+nonEquilibrium PDF which in turn computed from pre-collision PDF</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~4"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~12"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+<p>output is physical kinematic viscosity will be overwritten by
+non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~66"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+<p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~98"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~170"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~131"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~10"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~21"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~101"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~94"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~179"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~24"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~194"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac~2"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+<p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcvisc_cs"></span> <h3>private  subroutine <a href='../proc/calcvisc_cs.html'>calcVisc_CS</a>(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate kinematic viscosity from nonNewtonian Casson model.
+$\mu = (k0 + k1 * sqrt(shearRate))^2/shearRate$</p><a href="../proc/calcvisc_cs.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~5"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~13"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+<p>output is physical kinematic viscosity will be overwritten by
+non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~67"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+<p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~99"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~171"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~132"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~22"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~102"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~95"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~180"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~25"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~195"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac~3"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+<p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcvisc_incomp_pl"></span> <h3>private  subroutine <a href='../proc/calcvisc_incomp_pl.html'>calcVisc_incomp_PL</a>(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate kinematic viscosity from nonNewtonian power-law model for
+incompressible model
+$\mu = K shearRate^(n-1)$</p><a href="../proc/calcvisc_incomp_pl.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~7"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~15"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+<p>output is physical kinematic viscosity will be overwritten by
+non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~69"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+<p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~101"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~173"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~134"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~13"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~24"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~104"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~97"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~182"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~27"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~197"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac~5"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+<p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcvisc_incomp_cs"></span> <h3>private  subroutine <a href='../proc/calcvisc_incomp_cs.html'>calcVisc_incomp_CS</a>(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate kinematic viscosity from nonNewtonian Casson model for
+incompressible model.
+$\mu = (k0 + k1 * sqrt(shearRate))^2/shearRate$</p><a href="../proc/calcvisc_incomp_cs.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~8"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~16"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+<p>output is physical kinematic viscosity will be overwritten by
+non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~70"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+<p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~102"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~174"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~135"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~14"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~25"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~105"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~98"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~183"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~28"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~198"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac~6"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+<p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcvisc_incomp_cy"></span> <h3>private  subroutine <a href='../proc/calcvisc_incomp_cy.html'>calcVisc_incomp_CY</a>(nNwtn, viscKine, omega, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, convFac)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate kinematic viscosity from nonNewtonian Carreau-Yasuda model for
+incompressible model.
+$\mu = \mu_\inf + (\mu_0-\mu_\inf)(1+(\lambda<em>shearRate)</em>a)^((n-1)/a)$</p><a href="../proc/calcvisc_incomp_cy.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nnwtn~9"></span>
+              class(<a href='../type/mus_nnwtn_type.html'>mus_nNwtn_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nNwtn</strong></td>
+            <td>
+<p>contains non-Newtonian model parameters loaded from config file</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-visckine~17"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>viscKine</strong>(:)</td>
+            <td>
+<p>output is physical kinematic viscosity will be overwritten by
+non-Netonian model</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-omega~71"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>omega</strong>(:)</td>
+            <td>
+<p>Kinematic viscosity omega from last timestep</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-state~103"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>state</strong>(:)</td>
+            <td>
+<p>state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~175"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~136"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-denspos~15"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~26"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsize~106"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~99"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nscalars~184"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~29"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~199"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-convfac~7"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>convFac</strong></td>
+            <td>
+<p>conversion factor to convert lattice to physical units</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

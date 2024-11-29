@@ -1,0 +1,622 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_initAuxField &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_initAuxField
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">15 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_flow_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_flow_module.f90.html'>mus_flow_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_flow_module.html'>mus_flow_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_initAuxField</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine mus_initAuxField(scheme, general, minLevel, maxLevel)  
+</h2>
+    
+
+    <p>This routine initialize auxField variable from PDF values initialized by
+initial condition. AuxField is computed from state using SAVE access for
+fluid elements and interpolated for ghost elements</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~59"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+                <p>containers for the scheme
+contains interpolation type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-general~14"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_general_type.html'>tem_general_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>general</strong></td>
+            <td>
+                <p>contains commPattern, MPI communicator and simControl</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-minlevel~33"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>minLevel</strong></td>
+            <td>
+                <p>level range</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-maxlevel~31"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>maxLevel</strong></td>
+            <td>
+                <p>level range</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_initauxfield~~CallsGraph Pages: 1 -->
+<svg id="procmus_initauxfieldCallsGraph" width="493pt" height="116pt"
+ viewBox="0.00 0.00 493.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_initauxfield~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>proc~~mus_initauxfield~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 489,-112 489,4 -4,4"/>
+<!-- proc~mus_initauxfield -->
+<g id="proc~~mus_initauxfield~~CallsGraph_node1" class="node">
+<title>proc~mus_initauxfield</title>
+<polygon fill="none" stroke="black" points="102,-66 0,-66 0,-42 102,-42 102,-66"/>
+<text text-anchor="middle" x="51" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_initAuxField</text>
+</g>
+<!-- proc~mus_initauxfieldfluidandexchange -->
+<g id="proc~~mus_initauxfield~~CallsGraph_node2" class="node">
+<title>proc~mus_initauxfieldfluidandexchange</title>
+<g id="a_proc~~mus_initauxfield~~CallsGraph_node2"><a xlink:href="../proc/mus_initauxfieldfluidandexchange.html" xlink:title="mus_initAuxFieldFluidAndExchange">
+<polygon fill="#d9534f" stroke="#d9534f" points="349,-108 148,-108 148,-84 349,-84 349,-108"/>
+<text text-anchor="middle" x="248.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initAuxFieldFluidAndExchange</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initauxfield&#45;&gt;proc~mus_initauxfieldfluidandexchange -->
+<g id="proc~~mus_initauxfield~~CallsGraph_edge1" class="edge">
+<title>proc~mus_initauxfield&#45;&gt;proc~mus_initauxfieldfluidandexchange</title>
+<path fill="none" stroke="#000000" d="M99.67,-66.09C112.11,-69.12 125.54,-72.28 138,-75 148.97,-77.39 160.59,-79.78 172.01,-82.03"/>
+<polygon fill="#000000" stroke="#000000" points="171.47,-85.5 181.96,-83.99 172.82,-78.63 171.47,-85.5"/>
+</g>
+<!-- proc~mus_intpauxfieldcoarserandexchange -->
+<g id="proc~~mus_initauxfield~~CallsGraph_node3" class="node">
+<title>proc~mus_intpauxfieldcoarserandexchange</title>
+<g id="a_proc~~mus_initauxfield~~CallsGraph_node3"><a xlink:href="../proc/mus_intpauxfieldcoarserandexchange.html" xlink:title="mus_intpAuxFieldCoarserAndExchange">
+<polygon fill="#d9534f" stroke="#d9534f" points="359,-66 138,-66 138,-42 359,-42 359,-66"/>
+<text text-anchor="middle" x="248.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_intpAuxFieldCoarserAndExchange</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initauxfield&#45;&gt;proc~mus_intpauxfieldcoarserandexchange -->
+<g id="proc~~mus_initauxfield~~CallsGraph_edge2" class="edge">
+<title>proc~mus_initauxfield&#45;&gt;proc~mus_intpauxfieldcoarserandexchange</title>
+<path fill="none" stroke="#000000" d="M102.09,-54C110.15,-54 118.77,-54 127.66,-54"/>
+<polygon fill="#000000" stroke="#000000" points="127.78,-57.5 137.78,-54 127.78,-50.5 127.78,-57.5"/>
+</g>
+<!-- proc~mus_intpauxfieldfinerandexchange -->
+<g id="proc~~mus_initauxfield~~CallsGraph_node4" class="node">
+<title>proc~mus_intpauxfieldfinerandexchange</title>
+<g id="a_proc~~mus_initauxfield~~CallsGraph_node4"><a xlink:href="../proc/mus_intpauxfieldfinerandexchange.html" xlink:title="mus_intpAuxFieldFinerAndExchange">
+<polygon fill="#d9534f" stroke="#d9534f" points="351,-24 146,-24 146,0 351,0 351,-24"/>
+<text text-anchor="middle" x="248.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_intpAuxFieldFinerAndExchange</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initauxfield&#45;&gt;proc~mus_intpauxfieldfinerandexchange -->
+<g id="proc~~mus_initauxfield~~CallsGraph_edge3" class="edge">
+<title>proc~mus_initauxfield&#45;&gt;proc~mus_intpauxfieldfinerandexchange</title>
+<path fill="none" stroke="#000000" d="M99.67,-41.91C112.11,-38.88 125.54,-35.72 138,-33 148.97,-30.61 160.59,-28.22 172.01,-25.97"/>
+<polygon fill="#000000" stroke="#000000" points="172.82,-29.37 181.96,-24.01 171.47,-22.5 172.82,-29.37"/>
+</g>
+<!-- exchange_real -->
+<g id="proc~~mus_initauxfield~~CallsGraph_node5" class="node">
+<title>exchange_real</title>
+<polygon fill="#777777" stroke="#777777" points="485,-66 395,-66 395,-42 485,-42 485,-66"/>
+<text text-anchor="middle" x="440" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">exchange_real</text>
+</g>
+<!-- proc~mus_initauxfieldfluidandexchange&#45;&gt;exchange_real -->
+<g id="proc~~mus_initauxfield~~CallsGraph_edge4" class="edge">
+<title>proc~mus_initauxfieldfluidandexchange&#45;&gt;exchange_real</title>
+<path fill="none" stroke="#000000" d="M315.95,-84C330.19,-81.22 345.13,-78.15 359,-75 367.55,-73.06 376.56,-70.85 385.34,-68.61"/>
+<polygon fill="#000000" stroke="#000000" points="386.31,-71.98 395.12,-66.09 384.56,-65.2 386.31,-71.98"/>
+</g>
+<!-- proc~mus_intpauxfieldcoarserandexchange&#45;&gt;exchange_real -->
+<g id="proc~~mus_initauxfield~~CallsGraph_edge5" class="edge">
+<title>proc~mus_intpauxfieldcoarserandexchange&#45;&gt;exchange_real</title>
+<path fill="none" stroke="#000000" d="M359.18,-54C368.05,-54 376.73,-54 384.92,-54"/>
+<polygon fill="#000000" stroke="#000000" points="384.99,-57.5 394.99,-54 384.99,-50.5 384.99,-57.5"/>
+</g>
+<!-- proc~mus_intpauxfieldfinerandexchange&#45;&gt;exchange_real -->
+<g id="proc~~mus_initauxfield~~CallsGraph_edge6" class="edge">
+<title>proc~mus_intpauxfieldfinerandexchange&#45;&gt;exchange_real</title>
+<path fill="none" stroke="#000000" d="M315.95,-24C330.19,-26.78 345.13,-29.85 359,-33 367.55,-34.94 376.56,-37.15 385.34,-39.39"/>
+<polygon fill="#000000" stroke="#000000" points="384.56,-42.8 395.12,-41.91 386.31,-36.02 384.56,-42.8"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_initauxfield~~CalledByGraph Pages: 1 -->
+<svg id="procmus_initauxfieldCalledByGraph" width="454pt" height="74pt"
+ viewBox="0.00 0.00 454.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_initauxfield~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
+<title>proc~~mus_initauxfield~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-70 450,-70 450,4 -4,4"/>
+<!-- proc~mus_initauxfield -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_node1" class="node">
+<title>proc~mus_initauxfield</title>
+<polygon fill="none" stroke="black" points="446,-45 344,-45 344,-21 446,-21 446,-45"/>
+<text text-anchor="middle" x="395" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_initAuxField</text>
+</g>
+<!-- proc~mus_init_flow -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_node2" class="node">
+<title>proc~mus_init_flow</title>
+<g id="a_proc~~mus_initauxfield~~CalledByGraph_node2"><a xlink:href="../proc/mus_init_flow.html" xlink:title="mus_init_flow">
+<polygon fill="#d9534f" stroke="#d9534f" points="301.5,-66 217.5,-66 217.5,-42 301.5,-42 301.5,-66"/>
+<text text-anchor="middle" x="259.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_init_flow</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_init_flow&#45;&gt;proc~mus_initauxfield -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_edge1" class="edge">
+<title>proc~mus_init_flow&#45;&gt;proc~mus_initauxfield</title>
+<path fill="none" stroke="#000000" d="M301.64,-47.53C311.85,-45.92 323,-44.17 333.91,-42.45"/>
+<polygon fill="#000000" stroke="#000000" points="334.49,-45.9 343.82,-40.89 333.4,-38.99 334.49,-45.9"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_node3" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_proc~~mus_initauxfield~~CalledByGraph_node3"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="308,-24 211,-24 211,0 308,0 308,-24"/>
+<text text-anchor="middle" x="259.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;proc~mus_initauxfield -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_edge2" class="edge">
+<title>program~mus_harvesting&#45;&gt;proc~mus_initauxfield</title>
+<path fill="none" stroke="#000000" d="M308.32,-19.52C316.6,-20.82 325.31,-22.19 333.86,-23.54"/>
+<polygon fill="#000000" stroke="#000000" points="333.39,-27.01 343.81,-25.1 334.48,-20.09 333.39,-27.01"/>
+</g>
+<!-- proc~mus_initialize -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_node4" class="node">
+<title>proc~mus_initialize</title>
+<g id="a_proc~~mus_initauxfield~~CalledByGraph_node4"><a xlink:href="../proc/mus_initialize.html" xlink:title="mus_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="175,-66 90,-66 90,-42 175,-42 175,-66"/>
+<text text-anchor="middle" x="132.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initialize&#45;&gt;proc~mus_init_flow -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_edge3" class="edge">
+<title>proc~mus_initialize&#45;&gt;proc~mus_init_flow</title>
+<path fill="none" stroke="#000000" d="M175.12,-54C185.46,-54 196.65,-54 207.38,-54"/>
+<polygon fill="#000000" stroke="#000000" points="207.48,-57.5 217.48,-54 207.48,-50.5 207.48,-57.5"/>
+</g>
+<!-- program~musubi -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_node5" class="node">
+<title>program~musubi</title>
+<g id="a_proc~~mus_initauxfield~~CalledByGraph_node5"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="54,-66 0,-66 0,-42 54,-42 54,-66"/>
+<text text-anchor="middle" x="27" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;proc~mus_initialize -->
+<g id="proc~~mus_initauxfield~~CalledByGraph_edge4" class="edge">
+<title>program~musubi&#45;&gt;proc~mus_initialize</title>
+<path fill="none" stroke="#000000" d="M54.12,-54C61.87,-54 70.64,-54 79.42,-54"/>
+<polygon fill="#000000" stroke="#000000" points="79.68,-57.5 89.68,-54 79.68,-50.5 79.68,-57.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

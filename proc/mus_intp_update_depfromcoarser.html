@@ -1,0 +1,789 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_intp_update_depFromCoarser &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_intp_update_depFromCoarser
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.3% of total for procedures.">114 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_interpolate_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_interpolate_module.f90.html'>mus_interpolate_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_interpolate_module.html'>mus_interpolate_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_intp_update_depFromCoarser</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine mus_intp_update_depFromCoarser(intp, levelDesc, stencil, minLevel, maxLevel)  
+</h2>
+    
+
+    <p>The required source elements for ghost from coarser elements are
+ identified in this routine. Moreover, the weights for each sources based
+ on distance are calculated. \n</p>
+<p>The depdendencies for ghostFromCoarser elements initially only include its
+ parent element.
+ Additional dependencies Y for the element x are found which were not
+ included in the construction routine before hand. However, they are
+ defined to be inherently part of the stencil and hence exist locally and
+ can simply be added to the dependencies. Two different ways are
+ implemented.
+ Full interpolation stencil
+   the complete compute stencil is included into the dependency list</p>
+<div class="codehilite"><pre><span></span><code>  Y       Y       Y
+
+        x   o
+  Y       O       Y
+        o   o
+
+  Y       Y       Y
+</code></pre></div>
+
+<p>Note: The view here is according to how the interpolation will be done.
+       The coarse level does the interpolation for the finer level.
+       Thus, we access the information from the levelDesc with the
+       targetLevel and sourceLevel perspective.</p>
+<p>Steps of finding sources:
+ 1.  loop over all neighbors: iNeigh = 1, QQ
+ 2.  get neighbor posInTotal: elemPos = neigh(1)%nghElems
+ 3.  if elemPos &gt; 0,
+       add this source into depFromCoarser%elem
+       add this source into sourceFromCoarser
+       save its position in sourceFromCoarser into depFromCoarser%elemBuffer
+       calculate its weight based on relative coordinates in stencil
+       weight is inverse proportional to the distance from source to target
+       weight is normalized at last, so that sum of weights equals 1
+ 4.  save its offset on stencil</p>
+<p>After finding sources, append target to low or high interpolation list
+ based on if all required sources are found.</p>
+<p>suppChild = 1</p>
+<p>write(dbgUnit(5),"(A, I0)") '      suppChild: ', suppChild
+write(dbgUnit(5),"(A, I0)") '      childNum: ', childNum</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-intp~14"></span>
+              type(<a href='../type/mus_interpolation_type.html'>mus_interpolation_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>intp</strong></td>
+            <td>
+                <p>interpolation type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~136"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong>(minLevel:maxLevel)</td>
+            <td>
+                <p>Level Descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stencil~88"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stencil</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-minlevel~98"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>minLevel</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-maxlevel~94"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>maxLevel</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_intp_update_depfromcoarser~~CallsGraph Pages: 1 -->
+<svg id="procmus_intp_update_depfromcoarserCallsGraph" width="573pt" height="406pt"
+ viewBox="0.00 0.00 573.00 406.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 402)">
+<title>proc~~mus_intp_update_depfromcoarser~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-402 569,-402 569,4 -4,4"/>
+<!-- proc~mus_intp_update_depfromcoarser -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node1" class="node">
+<title>proc~mus_intp_update_depfromcoarser</title>
+<polygon fill="none" stroke="black" points="197,-209 0,-209 0,-185 197,-185 197,-209"/>
+<text text-anchor="middle" x="98.5" y="-194.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_intp_update_depFromCoarser</text>
+</g>
+<!-- append -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node2" class="node">
+<title>append</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CallsGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/interface/append~24.html" xlink:title="append">
+<polygon fill="#a7506f" stroke="#a7506f" points="374.5,-398 320.5,-398 320.5,-374 374.5,-374 374.5,-398"/>
+<text text-anchor="middle" x="347.5" y="-383.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">append</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;append -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge1" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;append</title>
+<path fill="none" stroke="#000000" d="M105.26,-209.2C120.86,-240.77 167.22,-325.47 233,-365 256.24,-378.96 286.61,-384.03 310.09,-385.71"/>
+<polygon fill="#000000" stroke="#000000" points="310.17,-389.22 320.34,-386.26 310.54,-382.23 310.17,-389.22"/>
+</g>
+<!-- coord -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node3" class="node">
+<title>coord</title>
+<polygon fill="#777777" stroke="#777777" points="374.5,-356 320.5,-356 320.5,-332 374.5,-332 374.5,-356"/>
+<text text-anchor="middle" x="347.5" y="-341.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">coord</text>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;coord -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge2" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;coord</title>
+<path fill="none" stroke="#000000" d="M108.29,-209.07C127.64,-234.68 176.73,-294.44 233,-323 257.02,-335.19 287.1,-340.37 310.27,-342.54"/>
+<polygon fill="#000000" stroke="#000000" points="310.13,-346.04 320.37,-343.34 310.68,-339.06 310.13,-346.04"/>
+</g>
+<!-- depSource_append -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node4" class="node">
+<title>depSource_append</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CallsGraph_node4"><a xlink:href="https://apes-suite.github.io/treelm/proc/depsource_append.html" xlink:title="depSource_append">
+<polygon fill="#d9534f" stroke="#d9534f" points="405,-314 290,-314 290,-290 405,-290 405,-314"/>
+<text text-anchor="middle" x="347.5" y="-299.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">depSource_append</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;depSource_append -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge3" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;depSource_append</title>
+<path fill="none" stroke="#000000" d="M114.49,-209.15C138.16,-227.68 186.32,-262.77 233,-281 247.7,-286.74 264.1,-290.94 279.75,-293.99"/>
+<polygon fill="#000000" stroke="#000000" points="279.45,-297.5 289.91,-295.84 280.7,-290.61 279.45,-297.5"/>
+</g>
+<!-- nelems -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node5" class="node">
+<title>nelems</title>
+<polygon fill="#777777" stroke="#777777" points="374.5,-272 320.5,-272 320.5,-248 374.5,-248 374.5,-272"/>
+<text text-anchor="middle" x="347.5" y="-257.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nelems</text>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;nelems -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge4" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;nelems</title>
+<path fill="none" stroke="#000000" d="M133.75,-209.04C160.52,-218.15 198.81,-230.49 233,-239 258.52,-245.35 287.7,-250.71 310.08,-254.42"/>
+<polygon fill="#000000" stroke="#000000" points="309.73,-257.91 320.16,-256.06 310.85,-251 309.73,-257.91"/>
+</g>
+<!-- nghelems -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node6" class="node">
+<title>nghelems</title>
+<polygon fill="#777777" stroke="#777777" points="380,-230 315,-230 315,-206 380,-206 380,-230"/>
+<text text-anchor="middle" x="347.5" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nghelems</text>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;nghelems -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge5" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;nghelems</title>
+<path fill="none" stroke="#000000" d="M197.12,-205.3C234.47,-208.48 275.13,-211.93 304.58,-214.44"/>
+<polygon fill="#000000" stroke="#000000" points="304.64,-217.95 314.9,-215.31 305.23,-210.98 304.64,-217.95"/>
+</g>
+<!-- proc~compute_weight -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node7" class="node">
+<title>proc~compute_weight</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CallsGraph_node7"><a xlink:href="../proc/compute_weight.html" xlink:title="compute_weight">
+<polygon fill="#d9534f" stroke="#d9534f" points="397.5,-188 297.5,-188 297.5,-164 397.5,-164 397.5,-188"/>
+<text text-anchor="middle" x="347.5" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_weight</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;proc~compute_weight -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge6" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;proc~compute_weight</title>
+<path fill="none" stroke="#000000" d="M197.12,-188.7C227.61,-186.11 260.3,-183.33 287.31,-181.03"/>
+<polygon fill="#000000" stroke="#000000" points="287.7,-184.51 297.36,-180.18 287.1,-177.54 287.7,-184.51"/>
+</g>
+<!-- proc~find_possintporderandupdatemysources -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node8" class="node">
+<title>proc~find_possintporderandupdatemysources</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CallsGraph_node8"><a xlink:href="../proc/find_possintporderandupdatemysources.html" xlink:title="find_possIntpOrderAndUpdateMySources">
+<polygon fill="#d9534f" stroke="#d9534f" points="462,-146 233,-146 233,-122 462,-122 462,-146"/>
+<text text-anchor="middle" x="347.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">find_possIntpOrderAndUpdateMySources</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;proc~find_possintporderandupdatemysources -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge7" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;proc~find_possintporderandupdatemysources</title>
+<path fill="none" stroke="#000000" d="M133.75,-184.96C160.52,-175.85 198.81,-163.51 233,-155 243.02,-152.51 253.61,-150.17 264.12,-148.02"/>
+<polygon fill="#000000" stroke="#000000" points="265.04,-151.4 274.16,-146.02 263.67,-144.54 265.04,-151.4"/>
+</g>
+<!-- tem_abort -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node9" class="node">
+<title>tem_abort</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CallsGraph_node9"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_abort.html" xlink:title="tem_abort">
+<polygon fill="#d9534f" stroke="#d9534f" points="565,-147 498,-147 498,-123 565,-123 565,-147"/>
+<text text-anchor="middle" x="531.5" y="-132.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_abort</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;tem_abort -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge8" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;tem_abort</title>
+<path fill="none" stroke="#000000" d="M113.01,-184.76C135.76,-165.06 184.06,-127.12 233,-113 330.79,-84.79 361.45,-97.25 462,-113 471.33,-114.46 481.13,-116.98 490.31,-119.8"/>
+<polygon fill="#000000" stroke="#000000" points="489.37,-123.18 499.96,-122.95 491.54,-116.53 489.37,-123.18"/>
+</g>
+<!-- tem_horizontalSpacer -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node10" class="node">
+<title>tem_horizontalSpacer</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CallsGraph_node10"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_horizontalspacer.html" xlink:title="tem_horizontalSpacer">
+<polygon fill="#d9534f" stroke="#d9534f" points="412.5,-66 282.5,-66 282.5,-42 412.5,-42 412.5,-66"/>
+<text text-anchor="middle" x="347.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_horizontalSpacer</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;tem_horizontalSpacer -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge9" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;tem_horizontalSpacer</title>
+<path fill="none" stroke="#000000" d="M109.51,-184.89C130.04,-160.92 179.49,-107.35 233,-80 245.24,-73.75 258.99,-68.98 272.57,-65.35"/>
+<polygon fill="#000000" stroke="#000000" points="273.55,-68.71 282.41,-62.91 271.87,-61.92 273.55,-68.71"/>
+</g>
+<!-- val -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_node11" class="node">
+<title>val</title>
+<polygon fill="#777777" stroke="#777777" points="374.5,-24 320.5,-24 320.5,0 374.5,0 374.5,-24"/>
+<text text-anchor="middle" x="347.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">val</text>
+</g>
+<!-- proc~mus_intp_update_depfromcoarser&#45;&gt;val -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge10" class="edge">
+<title>proc~mus_intp_update_depfromcoarser&#45;&gt;val</title>
+<path fill="none" stroke="#000000" d="M105.58,-184.64C121.6,-153.46 168.26,-71.39 233,-33 256.32,-19.17 286.69,-14.09 310.14,-12.38"/>
+<polygon fill="#000000" stroke="#000000" points="310.59,-15.86 320.38,-11.81 310.2,-8.87 310.59,-15.86"/>
+</g>
+<!-- proc~compute_weight&#45;&gt;tem_abort -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CallsGraph_edge11" class="edge">
+<title>proc~compute_weight&#45;&gt;tem_abort</title>
+<path fill="none" stroke="#000000" d="M397.61,-168.03C417.67,-164.49 441.04,-159.98 462,-155 470.49,-152.98 479.49,-150.56 488.09,-148.11"/>
+<polygon fill="#000000" stroke="#000000" points="489.31,-151.4 497.93,-145.24 487.35,-144.68 489.31,-151.4"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_intp_update_depfromcoarser~~CalledByGraph Pages: 1 -->
+<svg id="procmus_intp_update_depfromcoarserCalledByGraph" width="641pt" height="101pt"
+ viewBox="0.00 0.00 641.00 100.98" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph" class="graph" transform="scale(0.88 0.88) rotate(0) translate(4 111)">
+<title>proc~~mus_intp_update_depfromcoarser~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-111 726,-111 726,4 -4,4"/>
+<!-- proc~mus_intp_update_depfromcoarser -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node1" class="node">
+<title>proc~mus_intp_update_depfromcoarser</title>
+<polygon fill="none" stroke="black" points="722,-66 525,-66 525,-42 722,-42 722,-66"/>
+<text text-anchor="middle" x="623.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_intp_update_depFromCoarser</text>
+</g>
+<!-- proc~mus_construct -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node2" class="node">
+<title>proc~mus_construct</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node2"><a xlink:href="../proc/mus_construct.html" xlink:title="mus_construct">
+<polygon fill="#d9534f" stroke="#d9534f" points="489,-66 399,-66 399,-42 489,-42 489,-66"/>
+<text text-anchor="middle" x="444" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_construct</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_construct&#45;&gt;proc~mus_intp_update_depfromcoarser -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge1" class="edge">
+<title>proc~mus_construct&#45;&gt;proc~mus_intp_update_depfromcoarser</title>
+<path fill="none" stroke="#000000" d="M489.33,-54C497.32,-54 505.94,-54 514.84,-54"/>
+<polygon fill="#000000" stroke="#000000" points="514.97,-57.5 524.97,-54 514.97,-50.5 514.97,-57.5"/>
+</g>
+<!-- proc~mus_initialize -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node3" class="node">
+<title>proc~mus_initialize</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node3"><a xlink:href="../proc/mus_initialize.html" xlink:title="mus_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="175,-107 90,-107 90,-83 175,-83 175,-107"/>
+<text text-anchor="middle" x="132.5" y="-92.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_initialize&#45;&gt;proc~mus_construct -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge2" class="edge">
+<title>proc~mus_initialize&#45;&gt;proc~mus_construct</title>
+<path fill="none" stroke="#000000" d="M175.23,-93.49C221.44,-91.33 297.98,-86.28 363,-75 372.66,-73.32 382.86,-71.05 392.62,-68.61"/>
+<polygon fill="#000000" stroke="#000000" points="393.79,-71.92 402.6,-66.03 392.04,-65.15 393.79,-71.92"/>
+</g>
+<!-- proc~mus_perform_dynloadbal -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node4" class="node">
+<title>proc~mus_perform_dynloadbal</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node4"><a xlink:href="../proc/mus_perform_dynloadbal.html" xlink:title="mus_perform_dynLoadBal">
+<polygon fill="#d9534f" stroke="#d9534f" points="363,-66 211,-66 211,-42 363,-42 363,-66"/>
+<text text-anchor="middle" x="287" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_perform_dynLoadBal</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_perform_dynloadbal&#45;&gt;proc~mus_construct -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge3" class="edge">
+<title>proc~mus_perform_dynloadbal&#45;&gt;proc~mus_construct</title>
+<path fill="none" stroke="#000000" d="M363.23,-54C371.8,-54 380.4,-54 388.63,-54"/>
+<polygon fill="#000000" stroke="#000000" points="388.81,-57.5 398.81,-54 388.81,-50.5 388.81,-57.5"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node5" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node5"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="335.5,-24 238.5,-24 238.5,0 335.5,0 335.5,-24"/>
+<text text-anchor="middle" x="287" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;proc~mus_construct -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge4" class="edge">
+<title>program~mus_harvesting&#45;&gt;proc~mus_construct</title>
+<path fill="none" stroke="#000000" d="M332.42,-24.04C350.08,-28.82 370.58,-34.38 389.09,-39.39"/>
+<polygon fill="#000000" stroke="#000000" points="388.28,-42.8 398.84,-42.04 390.11,-36.04 388.28,-42.8"/>
+</g>
+<!-- proc~mus_solve -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node6" class="node">
+<title>proc~mus_solve</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node6"><a xlink:href="../proc/mus_solve.html" xlink:title="mus_solve">
+<polygon fill="#d9534f" stroke="#d9534f" points="166.5,-65 98.5,-65 98.5,-41 166.5,-41 166.5,-65"/>
+<text text-anchor="middle" x="132.5" y="-50.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_solve</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_solve&#45;&gt;proc~mus_perform_dynloadbal -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge6" class="edge">
+<title>proc~mus_solve&#45;&gt;proc~mus_perform_dynloadbal</title>
+<path fill="none" stroke="#000000" d="M166.59,-53.22C176.79,-53.28 188.52,-53.36 200.56,-53.44"/>
+<polygon fill="#000000" stroke="#000000" points="200.7,-56.94 210.73,-53.51 200.75,-49.94 200.7,-56.94"/>
+</g>
+<!-- program~musubi -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node7" class="node">
+<title>program~musubi</title>
+<g id="a_proc~~mus_intp_update_depfromcoarser~~CalledByGraph_node7"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="54,-86 0,-86 0,-62 54,-62 54,-86"/>
+<text text-anchor="middle" x="27" y="-71.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;proc~mus_initialize -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge5" class="edge">
+<title>program~musubi&#45;&gt;proc~mus_initialize</title>
+<path fill="none" stroke="#000000" d="M54.12,-79.3C61.95,-80.89 70.83,-82.69 79.71,-84.49"/>
+<polygon fill="#000000" stroke="#000000" points="79.19,-87.96 89.68,-86.52 80.58,-81.1 79.19,-87.96"/>
+</g>
+<!-- program~musubi&#45;&gt;proc~mus_solve -->
+<g id="proc~~mus_intp_update_depfromcoarser~~CalledByGraph_edge7" class="edge">
+<title>program~musubi&#45;&gt;proc~mus_solve</title>
+<path fill="none" stroke="#000000" d="M54.12,-68.7C64.49,-66.6 76.71,-64.12 88.33,-61.76"/>
+<polygon fill="#000000" stroke="#000000" points="89.22,-65.15 98.32,-59.73 87.83,-58.29 89.22,-65.15"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocmus_intp_update_depfromcoarserCalledByGraph = svgPanZoom('#procmus_intp_update_depfromcoarserCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>

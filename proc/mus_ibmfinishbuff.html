@@ -1,0 +1,789 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_IBMFinishBuff &ndash; Musubi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_IBMFinishBuff
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.4% of total for procedures.">171 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_IBM_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_ibm_module.f90.html'>mus_IBM_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_ibm_module.html'>mus_IBM_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_IBMFinishBuff</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  subroutine mus_IBMFinishBuff(me, IBMData, levelDesc, commPattern, globTree, iLevel, comm, stencil)  
+</h2>
+    
+
+    <p>This routine finishes the buffers for Xk and X_pdf. This is moved to
+a seperate routine since both buffers depend on a local communication
+which should be done nearby the global synchronization point (mus_exchange)</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~206"></span>
+              type(<a href='../type/mus_ibm_type.html'>mus_IBM_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+                <p>datatype to store the surface information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ibmdata~15"></span>
+              type(<a href='../type/mus_ibm_tmpdata_type.html'>mus_IBM_tmpData_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>IBMData</strong></td>
+            <td>
+                <p>tmp IBMData type to be filled</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-leveldesc~124"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>levelDesc</strong></td>
+            <td>
+                <p>the level descriptor incl. the global send and receive buffers</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-commpattern~8"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_commpattern_type.html'>tem_commPattern_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>commPattern</strong></td>
+            <td>
+                <p>communication pattern to be used</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-globtree~9"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>globTree</strong></td>
+            <td>
+                <p>global tree information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~348"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+                <p>current level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~13"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+                <p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stencil~81"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stencil</strong>(:)</td>
+            <td>
+                <p>array of stencils (1 is the fluid stencil)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_ibmfinishbuff~~CallsGraph Pages: 1 -->
+<svg id="procmus_ibmfinishbuffCallsGraph" width="313pt" height="620pt"
+ viewBox="0.00 0.00 313.00 620.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 616)">
+<title>proc~~mus_ibmfinishbuff~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-616 309,-616 309,4 -4,4"/>
+<!-- proc~mus_ibmfinishbuff -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node1" class="node">
+<title>proc~mus_ibmfinishbuff</title>
+<polygon fill="none" stroke="black" points="112,-318 0,-318 0,-294 112,-294 112,-318"/>
+<text text-anchor="middle" x="56" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_IBMFinishBuff</text>
+</g>
+<!-- append -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node2" class="node">
+<title>append</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/interface/append~29.html" xlink:title="append">
+<polygon fill="#a7506f" stroke="#a7506f" points="253.5,-612 199.5,-612 199.5,-588 253.5,-588 253.5,-612"/>
+<text text-anchor="middle" x="226.5" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">append</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;append -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge1" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;append</title>
+<path fill="none" stroke="#000000" d="M57.21,-318.19C58.65,-360.83 69.36,-504.73 148,-579 159.09,-589.47 174.86,-594.83 189.29,-597.53"/>
+<polygon fill="#000000" stroke="#000000" points="189.05,-601.04 199.46,-599.06 190.1,-594.11 189.05,-601.04"/>
+</g>
+<!-- buf_int -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node3" class="node">
+<title>buf_int</title>
+<polygon fill="#777777" stroke="#777777" points="253.5,-570 199.5,-570 199.5,-546 253.5,-546 253.5,-570"/>
+<text text-anchor="middle" x="226.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">buf_int</text>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;buf_int -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge2" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;buf_int</title>
+<path fill="none" stroke="#000000" d="M58.05,-318.18C62.02,-356.51 79.59,-475.77 148,-537 159.28,-547.1 174.95,-552.41 189.24,-555.18"/>
+<polygon fill="#000000" stroke="#000000" points="188.9,-558.66 199.32,-556.77 189.99,-551.75 188.9,-558.66"/>
+</g>
+<!-- buf_long -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node4" class="node">
+<title>buf_long</title>
+<polygon fill="#777777" stroke="#777777" points="255.5,-528 197.5,-528 197.5,-504 255.5,-504 255.5,-528"/>
+<text text-anchor="middle" x="226.5" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">buf_long</text>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;buf_long -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge3" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;buf_long</title>
+<path fill="none" stroke="#000000" d="M59.25,-318.34C66.08,-352.08 89.74,-446.59 148,-495 159.02,-504.16 173.69,-509.35 187.29,-512.28"/>
+<polygon fill="#000000" stroke="#000000" points="186.95,-515.77 197.42,-514.11 188.2,-508.89 186.95,-515.77"/>
+</g>
+<!-- buf_real -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node5" class="node">
+<title>buf_real</title>
+<polygon fill="#777777" stroke="#777777" points="254,-486 199,-486 199,-462 254,-462 254,-486"/>
+<text text-anchor="middle" x="226.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">buf_real</text>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;buf_real -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge4" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;buf_real</title>
+<path fill="none" stroke="#000000" d="M60.95,-318.03C70.83,-346.19 99.39,-416.76 148,-453 159.76,-461.76 174.94,-466.87 188.74,-469.85"/>
+<polygon fill="#000000" stroke="#000000" points="188.48,-473.36 198.95,-471.73 189.75,-466.47 188.48,-473.36"/>
+</g>
+<!-- destroy -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node6" class="node">
+<title>destroy</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node6"><a xlink:href="https://apes-suite.github.io/treelm/interface/destroy~30.html" xlink:title="destroy">
+<polygon fill="#a7506f" stroke="#a7506f" points="253.5,-444 199.5,-444 199.5,-420 253.5,-420 253.5,-444"/>
+<text text-anchor="middle" x="226.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">destroy</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;destroy -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge5" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;destroy</title>
+<path fill="none" stroke="#000000" d="M64.07,-318.13C77.53,-340.11 108.98,-386.5 148,-411 160.32,-418.74 175.48,-423.66 189.12,-426.77"/>
+<polygon fill="#000000" stroke="#000000" points="188.68,-430.25 199.17,-428.81 190.07,-423.39 188.68,-430.25"/>
+</g>
+<!-- elempos -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node7" class="node">
+<title>elempos</title>
+<polygon fill="#777777" stroke="#777777" points="255.5,-402 197.5,-402 197.5,-378 255.5,-378 255.5,-402"/>
+<text text-anchor="middle" x="226.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">elempos</text>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;elempos -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge6" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;elempos</title>
+<path fill="none" stroke="#000000" d="M71.18,-318.14C88.33,-332.24 118.55,-355.31 148,-369 160.37,-374.75 174.6,-379.17 187.47,-382.44"/>
+<polygon fill="#000000" stroke="#000000" points="186.9,-385.9 197.44,-384.82 188.52,-379.09 186.9,-385.9"/>
+</g>
+<!-- empty -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node8" class="node">
+<title>empty</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node8"><a xlink:href="https://apes-suite.github.io/treelm/interface/empty~18.html" xlink:title="empty">
+<polygon fill="#a7506f" stroke="#a7506f" points="253.5,-360 199.5,-360 199.5,-336 253.5,-336 253.5,-360"/>
+<text text-anchor="middle" x="226.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">empty</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;empty -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge7" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;empty</title>
+<path fill="none" stroke="#000000" d="M105.29,-318.04C132,-324.7 164.66,-332.84 189.2,-338.95"/>
+<polygon fill="#000000" stroke="#000000" points="188.62,-342.41 199.17,-341.44 190.31,-335.62 188.62,-342.41"/>
+</g>
+<!-- init -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node9" class="node">
+<title>init</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node9"><a xlink:href="https://apes-suite.github.io/treelm/interface/init~29.html" xlink:title="init">
+<polygon fill="#a7506f" stroke="#a7506f" points="253.5,-318 199.5,-318 199.5,-294 253.5,-294 253.5,-318"/>
+<text text-anchor="middle" x="226.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">init</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;init -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge8" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;init</title>
+<path fill="none" stroke="#000000" d="M112.17,-306C137.53,-306 166.89,-306 189.37,-306"/>
+<polygon fill="#000000" stroke="#000000" points="189.49,-309.5 199.49,-306 189.49,-302.5 189.49,-309.5"/>
+</g>
+<!-- nelemsproc -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node10" class="node">
+<title>nelemsproc</title>
+<polygon fill="#777777" stroke="#777777" points="264,-276 189,-276 189,-252 264,-252 264,-276"/>
+<text text-anchor="middle" x="226.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nelemsproc</text>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;nelemsproc -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge9" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;nelemsproc</title>
+<path fill="none" stroke="#000000" d="M105.29,-293.96C128.5,-288.18 156.19,-281.28 179.15,-275.55"/>
+<polygon fill="#000000" stroke="#000000" points="180.14,-278.91 188.99,-273.1 178.45,-272.12 180.14,-278.91"/>
+</g>
+<!-- tem_init_surfData -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node11" class="node">
+<title>tem_init_surfData</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node11"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_init_surfdata.html" xlink:title="tem_init_surfData">
+<polygon fill="#d9534f" stroke="#d9534f" points="279.5,-234 173.5,-234 173.5,-210 279.5,-210 279.5,-234"/>
+<text text-anchor="middle" x="226.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_init_surfData</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;tem_init_surfData -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge10" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;tem_init_surfData</title>
+<path fill="none" stroke="#000000" d="M71.18,-293.86C88.33,-279.76 118.55,-256.69 148,-243 152.98,-240.69 158.26,-238.59 163.63,-236.69"/>
+<polygon fill="#000000" stroke="#000000" points="164.94,-239.95 173.35,-233.5 162.76,-233.3 164.94,-239.95"/>
+</g>
+<!-- tem_startTimer -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node12" class="node">
+<title>tem_startTimer</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node12"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_starttimer.html" xlink:title="tem_startTimer">
+<polygon fill="#d9534f" stroke="#d9534f" points="273.5,-192 179.5,-192 179.5,-168 273.5,-168 273.5,-192"/>
+<text text-anchor="middle" x="226.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_startTimer</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;tem_startTimer -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge11" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;tem_startTimer</title>
+<path fill="none" stroke="#000000" d="M64.07,-293.87C77.53,-271.89 108.98,-225.5 148,-201 154.64,-196.83 162.1,-193.48 169.71,-190.79"/>
+<polygon fill="#000000" stroke="#000000" points="170.9,-194.08 179.37,-187.72 168.78,-187.41 170.9,-194.08"/>
+</g>
+<!-- tem_stopTimer -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node13" class="node">
+<title>tem_stopTimer</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node13"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_stoptimer.html" xlink:title="tem_stopTimer">
+<polygon fill="#d9534f" stroke="#d9534f" points="272.5,-150 180.5,-150 180.5,-126 272.5,-126 272.5,-150"/>
+<text text-anchor="middle" x="226.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_stopTimer</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;tem_stopTimer -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge12" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;tem_stopTimer</title>
+<path fill="none" stroke="#000000" d="M60.95,-293.97C70.83,-265.81 99.39,-195.24 148,-159 154.75,-153.97 162.62,-150.14 170.72,-147.24"/>
+<polygon fill="#000000" stroke="#000000" points="171.79,-150.57 180.27,-144.22 169.68,-143.89 171.79,-150.57"/>
+</g>
+<!-- tem_treeIDinTotal -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node14" class="node">
+<title>tem_treeIDinTotal</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node14"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_treeidintotal.html" xlink:title="tem_treeIDinTotal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="279.5,-108 173.5,-108 173.5,-84 279.5,-84 279.5,-108"/>
+<text text-anchor="middle" x="226.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_treeIDinTotal</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;tem_treeIDinTotal -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge13" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;tem_treeIDinTotal</title>
+<path fill="none" stroke="#000000" d="M59.25,-293.66C66.08,-259.92 89.74,-165.41 148,-117 152.67,-113.12 158,-109.95 163.62,-107.36"/>
+<polygon fill="#000000" stroke="#000000" points="165.28,-110.47 173.3,-103.54 162.71,-103.96 165.28,-110.47"/>
+</g>
+<!-- tem_updateTree_properties -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node15" class="node">
+<title>tem_updateTree_properties</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CallsGraph_node15"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_updatetree_properties.html" xlink:title="tem_updateTree_properties">
+<polygon fill="#d9534f" stroke="#d9534f" points="305,-66 148,-66 148,-42 305,-42 305,-66"/>
+<text text-anchor="middle" x="226.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_updateTree_properties</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;tem_updateTree_properties -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge14" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;tem_updateTree_properties</title>
+<path fill="none" stroke="#000000" d="M58.05,-293.82C62.02,-255.49 79.59,-136.23 148,-75 149.48,-73.68 151.04,-72.43 152.65,-71.27"/>
+<polygon fill="#000000" stroke="#000000" points="154.48,-74.25 161.2,-66.06 150.84,-68.27 154.48,-74.25"/>
+</g>
+<!-- val -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_node16" class="node">
+<title>val</title>
+<polygon fill="#777777" stroke="#777777" points="253.5,-24 199.5,-24 199.5,0 253.5,0 253.5,-24"/>
+<text text-anchor="middle" x="226.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">val</text>
+</g>
+<!-- proc~mus_ibmfinishbuff&#45;&gt;val -->
+<g id="proc~~mus_ibmfinishbuff~~CallsGraph_edge15" class="edge">
+<title>proc~mus_ibmfinishbuff&#45;&gt;val</title>
+<path fill="none" stroke="#000000" d="M57.21,-293.81C58.65,-251.17 69.36,-107.27 148,-33 159.09,-22.53 174.86,-17.17 189.29,-14.47"/>
+<polygon fill="#000000" stroke="#000000" points="190.1,-17.89 199.46,-12.94 189.05,-10.96 190.1,-17.89"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~mus_ibmfinishbuff~~CalledByGraph Pages: 1 -->
+<svg id="procmus_ibmfinishbuffCalledByGraph" width="417pt" height="32pt"
+ viewBox="0.00 0.00 417.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~mus_ibmfinishbuff~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~mus_ibmfinishbuff~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 413,-28 413,4 -4,4"/>
+<!-- proc~mus_ibmfinishbuff -->
+<g id="proc~~mus_ibmfinishbuff~~CalledByGraph_node1" class="node">
+<title>proc~mus_ibmfinishbuff</title>
+<polygon fill="none" stroke="black" points="409,-24 297,-24 297,0 409,0 409,-24"/>
+<text text-anchor="middle" x="353" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_IBMFinishBuff</text>
+</g>
+<!-- proc~mus_inamuro_ibm -->
+<g id="proc~~mus_ibmfinishbuff~~CalledByGraph_node2" class="node">
+<title>proc~mus_inamuro_ibm</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CalledByGraph_node2"><a xlink:href="../proc/mus_inamuro_ibm.html" xlink:title="mus_inamuro_IBM">
+<polygon fill="#d9534f" stroke="#d9534f" points="261,-24 152,-24 152,0 261,0 261,-24"/>
+<text text-anchor="middle" x="206.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_inamuro_IBM</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_inamuro_ibm&#45;&gt;proc~mus_ibmfinishbuff -->
+<g id="proc~~mus_ibmfinishbuff~~CalledByGraph_edge1" class="edge">
+<title>proc~mus_inamuro_ibm&#45;&gt;proc~mus_ibmfinishbuff</title>
+<path fill="none" stroke="#000000" d="M261.31,-12C269.52,-12 278.08,-12 286.51,-12"/>
+<polygon fill="#000000" stroke="#000000" points="286.7,-15.5 296.7,-12 286.7,-8.5 286.7,-15.5"/>
+</g>
+<!-- proc~do_fast_singlelevel -->
+<g id="proc~~mus_ibmfinishbuff~~CalledByGraph_node3" class="node">
+<title>proc~do_fast_singlelevel</title>
+<g id="a_proc~~mus_ibmfinishbuff~~CalledByGraph_node3"><a xlink:href="../proc/do_fast_singlelevel.html" xlink:title="do_fast_singleLevel">
+<polygon fill="#d9534f" stroke="#d9534f" points="116,-24 0,-24 0,0 116,0 116,-24"/>
+<text text-anchor="middle" x="58" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">do_fast_singleLevel</text>
+</a>
+</g>
+</g>
+<!-- proc~do_fast_singlelevel&#45;&gt;proc~mus_inamuro_ibm -->
+<g id="proc~~mus_ibmfinishbuff~~CalledByGraph_edge2" class="edge">
+<title>proc~do_fast_singlelevel&#45;&gt;proc~mus_inamuro_ibm</title>
+<path fill="none" stroke="#000000" d="M116.06,-12C124.4,-12 133.03,-12 141.5,-12"/>
+<polygon fill="#000000" stroke="#000000" points="141.71,-15.5 151.71,-12 141.71,-8.5 141.71,-15.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2024 
+<br /><small>03d36e6f940c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-11-29T18:19:33.949870+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>
