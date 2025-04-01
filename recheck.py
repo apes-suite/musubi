@@ -2242,3 +2242,52 @@ shepherd_jobs.append(dict(executable = musubi_exe,
     ))
 ### end tutorial channel testcase
 #------------------------------------------------------------------------------#
+
+
+################################################################################
+#                                                                              #
+#                       Testcases for particles                                #
+#                                                                              #
+################################################################################
+particledir = os.path.join(musubi_test, 'particles')
+
+#------------------------------------------------------------------------------#
+### start MEM/tencate_MEM/Re11_6
+testcase_path = os.path.join(particledir, 'MEM', 'tencate_MEM', 'Re11_6')
+
+shepherd_jobs.append(dict(executable=None,
+    template=os.path.join(testcase_path, 'params.lua'),
+    extension='lua',
+    run_exec = False,
+    run_command = '',
+    prefix = 'part_tencate_MEM_Re11_6',
+    label = 'part_tencate_MEM_Re11_6_params',
+    ))
+shepherd_jobs.append(dict(executable = seeder_exe,
+    template=os.path.join(testcase_path, 'seeder.lua'),
+    extension='lua',
+    run_exec = True,
+    create_subdir = ['mesh'],
+    depend = ['part_tencate_MEM_Re11_6_params'],
+    create_dir=False,
+    prefix = 'part_tencate_MEM_Re11_6',
+    label = 'part_tencate_MEM_Re11_6_seeder',
+    attachment = True,
+    ))
+shepherd_jobs.append(dict(executable = musubi_exe,
+    solver_name = 'musubi',
+    template=os.path.join(testcase_path, 'musubi_recheck.lua'),
+    extension='lua',
+    run_exec = True,
+    run_command = 'mpirun --oversubscribe -np 2',
+    create_subdir = ['tracking', 'trajectories'],
+    depend = ['part_tencate_MEM_Re11_6_seeder'],
+    create_dir=False,
+    label = 'part_tencate_MEM_Re11_6_musubi',
+    attachment = True,
+    validation = True,
+    val_method = 'difference',
+    val_loadtxt_args = {'skiprows': 2},
+    val_ref_path = os.path.join(testcase_path, 'reference', 'particle0001.dat'),
+    val_output_filename = 'particle0001.dat',
+    ))
