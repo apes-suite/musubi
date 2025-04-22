@@ -2291,3 +2291,43 @@ shepherd_jobs.append(dict(executable = musubi_exe,
     val_ref_path = os.path.join(testcase_path, 'reference', 'particle0001.dat'),
     val_output_filename = 'particle0001.dat',
     ))
+
+### start DPS/tencate_DPS/Re4_1
+testcase_path = os.path.join(particledir, 'DPS', 'tencate_DPS', 'Re4_1')
+
+shepherd_jobs.append(dict(executable=None,
+    template=os.path.join(testcase_path, 'params.lua'),
+    extension='lua',
+    run_exec = False,
+    run_command = '',
+    prefix = 'part_tencate_DPS_Re4_1',
+    label = 'part_tencate_DPS_Re4_1_params',
+    ))
+shepherd_jobs.append(dict(executable = seeder_exe,
+    template=os.path.join(testcase_path, 'seeder.lua'),
+    extension='lua',
+    run_exec = True,
+    create_subdir = ['mesh'],
+    depend = ['part_tencate_DPS_Re4_1_params'],
+    create_dir=False,
+    prefix = 'part_tencate_DPS_Re4_1',
+    label = 'part_tencate_DPS_Re4_1_seeder',
+    attachment = True,
+    ))
+shepherd_jobs.append(dict(executable = musubi_exe,
+    solver_name = 'musubi',
+    template=os.path.join(testcase_path, 'musubi.lua'),
+    extension='lua',
+    run_exec = True,
+    run_command = 'mpirun --oversubscribe -np 2',
+    create_subdir = ['tracking', 'trajectories'],
+    depend = ['part_tencate_DPS_Re4_1_seeder'],
+    create_dir=False,
+    label = 'part_tencate_DPS_Re4_1_musubi',
+    attachment = True,
+    validation = True,
+    val_method = 'difference',
+    val_loadtxt_args = {'skiprows': 2},
+    val_ref_path = os.path.join(testcase_path, 'reference', 'particle0000001.dat'),
+    val_output_filename = 'particle0000001.dat',
+    ))
