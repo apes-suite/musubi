@@ -121,7 +121,8 @@ contains
       & .or. initCheck                          ) then
 
       select case (trim(scheme%header%kind))
-      case ('fluid', 'fluid_incompressible')
+      case ('fluid', 'fluid_incompressible',       &
+        &   'fluid_GNS', 'fluid_incompressible_GNS')
         ! check total density
         call check_density( scheme, minLevel, maxLevel, general )
         ! check whether lattice velocity above stability limit

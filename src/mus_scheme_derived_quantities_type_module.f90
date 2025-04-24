@@ -193,12 +193,13 @@ function mus_assign_derived_functions_ptr(label_stencil, label_fluid) result(get
   getQuantities%kineticEnergy_from_vel_dens_ptr => null()
   getQuantities%rho0Inv_ptr => null()
 
-  if (trim(label_fluid) == 'fluid') then
+  if ( (trim(label_fluid) == 'fluid' .OR. trim(label_fluid) == 'fluid_GNS') ) then
     getQuantities%pdfEq_iDir_ptr => get_pdfEq_compressible_iDir
     getQuantities%momentum_from_vel_dens_ptr => get_momentum_from_vel_dens_compressible
     getQuantities%kineticEnergy_from_vel_dens_ptr => get_kineticEnergy_from_vel_dens_compressible
     getQuantities%rho0Inv_ptr => get_rho0Inv_compressible
-  else if (trim(label_fluid) == 'fluid_incompressible') then
+  else if ( (trim(label_fluid) == 'fluid_incompressible' &
+          & .OR. trim(label_fluid) == 'fluid_incompressible_GNS' ) ) then
     getQuantities%pdfEq_iDir_ptr => get_pdfEq_incompressible_iDir
     getQuantities%momentum_from_vel_dens_ptr => get_momentum_from_vel_dens_incompressible
     getQuantities%kineticEnergy_from_vel_dens_ptr => get_kineticEnergy_from_vel_dens_incompressible
@@ -210,11 +211,12 @@ function mus_assign_derived_functions_ptr(label_stencil, label_fluid) result(get
 
   select case (trim(label_stencil))
   case ('d2q9')
-    if (trim(label_fluid) == 'fluid') then
+    if ((trim(label_fluid) == 'fluid' .OR. trim(label_fluid) == 'fluid_GNS')) then
       getQuantities%pdfEq_ptr => get_pdfEq_d2q9
       getQuantities%vel_from_pdf_ptr => get_vel_from_pdf_d2q9
       getQuantities%vel_from_pdf_vectorized_ptr => get_vel_from_pdf_d2q9_vectorized
-    else if (trim(label_fluid) == 'fluid_incompressible') then
+    else if ((trim(label_fluid) == 'fluid_incompressible' &
+            & .OR. trim(label_fluid) == 'fluid_incompressible_GNS')) then
       getQuantities%pdfEq_ptr => get_pdfEq_incomp_d2q9
       getQuantities%vel_from_pdf_ptr => get_vel_from_pdf_d2q9_incompressible
       getQuantities%vel_from_pdf_vectorized_ptr => get_vel_from_pdf_d2q9_vectorized_incompressible
@@ -224,11 +226,11 @@ function mus_assign_derived_functions_ptr(label_stencil, label_fluid) result(get
       write(logUnit(1),*) "Warning: get_pdfEq not set for fluid type"
     end if
   case ('d3q19')
-    if (trim(label_fluid) == 'fluid') then
+    if (trim(label_fluid) == 'fluid' .OR. trim(label_fluid) == 'fluid_GNS') then
       getQuantities%pdfEq_ptr => get_pdfEq_d3q19
       getQuantities%vel_from_pdf_ptr => get_vel_from_pdf_d3q19
       getQuantities%vel_from_pdf_vectorized_ptr => get_vel_from_pdf_d3q19_vectorized
-    elseif (trim(label_fluid) == 'fluid_incompressible') then
+    elseif (trim(label_fluid) == 'fluid_incompressible' .OR. trim(label_fluid) == 'fluid_incompressible_GNS') then
       getQuantities%pdfEq_ptr => get_pdfEq_incomp_d3q19
       getQuantities%vel_from_pdf_ptr => get_vel_from_pdf_d3q19_incompressible
       getQuantities%vel_from_pdf_vectorized_ptr => get_vel_from_pdf_d3q19_vectorized_incompressible

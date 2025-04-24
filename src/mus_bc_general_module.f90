@@ -516,9 +516,9 @@ contains
           end do
         case('velocity_bounceback')
           select case(trim(schemeHeader%kind))
-          case('fluid')
+          case('fluid', 'fluid_GNS')
             bc( iBnd )%fnct => velocity_bounceback
-          case('fluid_incompressible')
+          case('fluid_incompressible', 'fluid_incompressible_GNS')
             bc( iBnd )%fnct => velocity_bounceback_incomp
           case default
             call tem_abort('Unknown scheme kind for velocity_bounceback')

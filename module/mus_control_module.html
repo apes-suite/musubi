@@ -12,14 +12,29 @@
 
     <title>mus_control_module &ndash; Musubi</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../css/local.css" rel="stylesheet">
-      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/pygments.css" rel="stylesheet">
     <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -80,7 +95,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.6% of total for modules and submodules.">270 statements</a>
+                 title=" 0.6% of total for modules and submodules.">336 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -100,9 +115,11 @@
     </div>
   </div>
   <script>
-    $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip()
-    })
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
   </script>
 
   </div>
@@ -140,6 +157,7 @@
       <div id="absints-0" class="collapse">
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../module/mus_control_module.html#interface-computation">computation</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#interface-update_particles_if">update_particles_if</a>
         </div>
       </div>
     </div>
@@ -166,10 +184,14 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item" href="../module/mus_control_module.html#proc-mus_init_control">mus_init_control</a>
             <a class="list-group-item" href="../module/mus_control_module.html#proc-do_recursive_multilevel">do_recursive_multiLevel</a>
-            <a class="list-group-item" href="../module/mus_control_module.html#proc-do_intpfinerandexchange">do_intpFinerAndExchange</a>
-            <a class="list-group-item" href="../module/mus_control_module.html#proc-do_intpcoarserandexchange">do_intpCoarserAndExchange</a>
             <a class="list-group-item" href="../module/mus_control_module.html#proc-do_fast_singlelevel">do_fast_singleLevel</a>
             <a class="list-group-item" href="../module/mus_control_module.html#proc-do_benchmark">do_benchmark</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#proc-do_intpfinerandexchange">do_intpFinerAndExchange</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#proc-do_intpcoarserandexchange">do_intpCoarserAndExchange</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#proc-check_particles_mem">check_particles_MEM</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#proc-advance_particles_mem">advance_particles_MEM</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#proc-check_particles_dps">check_particles_DPS</a>
+            <a class="list-group-item" href="../module/mus_control_module.html#proc-advance_particles_dps">advance_particles_DPS</a>
             <a class="list-group-item" href="../module/mus_control_module.html#proc-start_stagetimer">start_stageTimer</a>
             <a class="list-group-item" href="../module/mus_control_module.html#proc-stop_stagetimer">stop_stageTimer</a>
         </div>
@@ -203,29 +225,33 @@ the coarsest.</p>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_time_module.html'>tem_time_module</a></li>
+                  <li class="list-inline-item"><a href='mus_aux_module.html'>mus_aux_module</a></li>
                   <li class="list-inline-item"><a href='mus_pdf_module.html'>mus_pdf_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_general_module.html'>tem_general_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_timer_module.html'>tem_timer_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_module.html'>mus_particle_module</a></li>
+                  <li class="list-inline-item"><a href='mus_ibm_module.html'>mus_IBM_module</a></li>
+                  <li class="list-inline-item"><a href='mus_auxfield_module.html'>mus_auxField_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_time_module.html'>tem_time_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_creator_module.html'>mus_particle_creator_module</a></li>
                   <li class="list-inline-item"><a href='mus_param_module.html'>mus_param_module</a></li>
-                  <li class="list-inline-item"><a href='mus_source_module.html'>mus_source_module</a></li>
-                  <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
+                  <li class="list-inline-item"><a href='mus_geom_module.html'>mus_geom_module</a></li>
+                  <li class="list-inline-item"><a href='mus_bc_general_module.html'>mus_bc_general_module</a></li>
                   <li class="list-inline-item"><a href='mus_timer_module.html'>mus_timer_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_header_module.html'>mus_scheme_header_module</a></li>
+                  <li class="list-inline-item"><a href='mus_field_module.html'>mus_field_module</a></li>
                   <li class="list-inline-item"><a href='mus_physics_module.html'>mus_physics_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_stencil_module.html'>tem_stencil_module</a></li>
-                  <li class="list-inline-item"><a href='mus_aux_module.html'>mus_aux_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
-                  <li class="list-inline-item"><a href='mus_bc_general_module.html'>mus_bc_general_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_varsys_module.html'>tem_varSys_module</a></li>
-                  <li class="list-inline-item"><a href='mus_geom_module.html'>mus_geom_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_debug_module.html'>tem_debug_module</a></li>
-                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
-                  <li class="list-inline-item"><a href='mus_auxfield_module.html'>mus_auxField_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+                  <li class="list-inline-item"><a href='mus_source_module.html'>mus_source_module</a></li>
                   <li class="list-inline-item"><a href='mus_debug_module.html'>mus_debug_module</a></li>
-                  <li class="list-inline-item"><a href='mus_ibm_module.html'>mus_IBM_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_timer_module.html'>tem_timer_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_general_module.html'>tem_general_module</a></li>
-                  <li class="list-inline-item"><a href='mus_field_module.html'>mus_field_module</a></li>
-                  <li class="list-inline-item"><a href='mus_scheme_header_module.html'>mus_scheme_header_module</a></li>
+                  <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_dps_module.html'>mus_particle_DPS_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_debug_module.html'>tem_debug_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_logging_module.html'>mus_particle_logging_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -235,361 +261,421 @@ the coarsest.</p>
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: module~~mus_control_module~~UsesGraph Pages: 1 -->
-<svg id="modulemus_control_moduleUsesGraph" width="339pt" height="956pt"
- viewBox="0.00 0.00 339.00 956.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~mus_control_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 952)">
+<svg id="modulemus_control_moduleUsesGraph" width="339pt" height="1124pt"
+ viewBox="0.00 0.00 339.00 1124.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_control_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1120)">
 <title>module~~mus_control_module~~UsesGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-952 335,-952 335,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1120 335,-1120 335,4 -4,4"/>
 <!-- module~mus_control_module -->
 <g id="module~~mus_control_module~~UsesGraph_node1" class="node">
 <title>module~mus_control_module</title>
-<polygon fill="none" stroke="black" points="331,-486 208,-486 208,-462 331,-462 331,-486"/>
-<text text-anchor="middle" x="269.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_control_module</text>
+<polygon fill="none" stroke="black" points="331,-570 208,-570 208,-546 331,-546 331,-570"/>
+<text text-anchor="middle" x="269.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_control_module</text>
 </g>
 <!-- env_module -->
 <g id="module~~mus_control_module~~UsesGraph_node2" class="node">
 <title>env_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="125,-948 47,-948 47,-924 125,-924 125,-948"/>
-<text text-anchor="middle" x="86" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="125,-1116 47,-1116 47,-1092 125,-1092 125,-1116"/>
+<text text-anchor="middle" x="86" y="-1101.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;env_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge1" class="edge">
 <title>module~mus_control_module&#45;&gt;env_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.53,-486.38C262.18,-551.19 234.33,-850.98 172,-915 162.37,-924.89 148.87,-930.41 135.46,-933.41"/>
-<polygon fill="#000000" stroke="#000000" points="134.51,-930.03 125.29,-935.24 135.75,-936.91 134.51,-930.03"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268,-570.27C264.82,-641.89 245.21,-1005.23 172,-1083 162.36,-1093.24 148.58,-1098.82 134.92,-1101.78"/>
+<polygon fill="#000000" stroke="#000000" points="134.3,-1098.33 125.05,-1103.49 135.5,-1105.23 134.3,-1098.33"/>
 </g>
 <!-- module~mus_aux_module -->
 <g id="module~~mus_control_module~~UsesGraph_node3" class="node">
 <title>module~mus_aux_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node3"><a xlink:href="../module/mus_aux_module.html" xlink:title="mus_aux_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="139,-906 33,-906 33,-882 139,-882 139,-906"/>
-<text text-anchor="middle" x="86" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="139,-1074 33,-1074 33,-1050 139,-1050 139,-1074"/>
+<text text-anchor="middle" x="86" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_aux_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_aux_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge2" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_aux_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.22,-486.39C260.66,-547.47 228.93,-815.79 172,-873 165.61,-879.42 157.59,-883.99 149.05,-887.22"/>
-<polygon fill="#000000" stroke="#000000" points="147.71,-883.97 139.24,-890.33 149.83,-890.64 147.71,-883.97"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.79,-570.18C263.59,-638.14 239.81,-970.07 172,-1041 165.6,-1047.7 157.43,-1052.4 148.69,-1055.67"/>
+<polygon fill="#000000" stroke="#000000" points="147.54,-1052.36 139.04,-1058.69 149.63,-1059.04 147.54,-1052.36"/>
 </g>
 <!-- module~mus_auxfield_module -->
 <g id="module~~mus_control_module~~UsesGraph_node4" class="node">
 <title>module~mus_auxfield_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node4"><a xlink:href="../module/mus_auxfield_module.html" xlink:title="mus_auxField_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="151,-864 21,-864 21,-840 151,-840 151,-864"/>
-<text text-anchor="middle" x="86" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_auxField_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="151,-1032 21,-1032 21,-1008 151,-1008 151,-1032"/>
+<text text-anchor="middle" x="86" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_auxField_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_auxfield_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge3" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_auxfield_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.87,-486.21C259.05,-542.99 223.63,-780.49 172,-831 168.52,-834.41 164.57,-837.29 160.34,-839.73"/>
-<polygon fill="#000000" stroke="#000000" points="158.75,-836.61 151.29,-844.13 161.81,-842.9 158.75,-836.61"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.53,-570.38C262.18,-635.19 234.33,-934.98 172,-999 168.54,-1002.56 164.57,-1005.55 160.3,-1008.06"/>
+<polygon fill="#000000" stroke="#000000" points="158.56,-1005.01 151.13,-1012.57 161.65,-1011.3 158.56,-1005.01"/>
 </g>
 <!-- module~mus_bc_general_module -->
 <g id="module~~mus_control_module~~UsesGraph_node5" class="node">
 <title>module~mus_bc_general_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node5"><a xlink:href="../module/mus_bc_general_module.html" xlink:title="mus_bc_general_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="158.5,-822 13.5,-822 13.5,-798 158.5,-798 158.5,-822"/>
-<text text-anchor="middle" x="86" y="-807.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_general_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="158.5,-990 13.5,-990 13.5,-966 158.5,-966 158.5,-990"/>
+<text text-anchor="middle" x="86" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_bc_general_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_bc_general_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge4" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_bc_general_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.74,-486.12C268.95,-532.81 263.18,-702.7 172,-789 170.51,-790.41 168.94,-791.73 167.3,-792.97"/>
-<polygon fill="#000000" stroke="#000000" points="165.2,-790.16 158.62,-798.46 168.95,-796.07 165.2,-790.16"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.22,-570.39C260.66,-631.47 228.93,-899.79 172,-957 170.55,-958.45 169.02,-959.81 167.42,-961.08"/>
+<polygon fill="#000000" stroke="#000000" points="165.3,-958.29 158.88,-966.72 169.15,-964.13 165.3,-958.29"/>
 </g>
 <!-- module~mus_debug_module -->
 <g id="module~~mus_control_module~~UsesGraph_node6" class="node">
 <title>module~mus_debug_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node6"><a xlink:href="../module/mus_debug_module.html" xlink:title="mus_debug_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="146,-780 26,-780 26,-756 146,-756 146,-780"/>
-<text text-anchor="middle" x="86" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_debug_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="146,-948 26,-948 26,-924 146,-924 146,-948"/>
+<text text-anchor="middle" x="86" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_debug_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_debug_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge5" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_debug_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.07,-486.27C265.9,-529.18 252.62,-673.89 172,-747 167.2,-751.36 161.63,-754.84 155.7,-757.63"/>
-<polygon fill="#000000" stroke="#000000" points="154.11,-754.5 146.12,-761.46 156.71,-761 154.11,-754.5"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.87,-570.21C259.05,-626.99 223.63,-864.49 172,-915 167.29,-919.6 161.75,-923.25 155.78,-926.13"/>
+<polygon fill="#000000" stroke="#000000" points="154.06,-923.05 146.11,-930.06 156.7,-929.54 154.06,-923.05"/>
 </g>
 <!-- module~mus_dervarpos_module -->
 <g id="module~~mus_control_module~~UsesGraph_node7" class="node">
 <title>module~mus_dervarpos_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node7"><a xlink:href="../module/mus_dervarpos_module.html" xlink:title="mus_derVarPos_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="155.5,-738 16.5,-738 16.5,-714 155.5,-714 155.5,-738"/>
-<text text-anchor="middle" x="86" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derVarPos_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="155.5,-906 16.5,-906 16.5,-882 155.5,-882 155.5,-906"/>
+<text text-anchor="middle" x="86" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_derVarPos_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_dervarpos_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge6" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_dervarpos_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.2,-486.26C262.42,-524.84 242.29,-644.75 172,-705 169.73,-706.95 167.3,-708.72 164.76,-710.33"/>
-<polygon fill="#000000" stroke="#000000" points="162.86,-707.38 155.73,-715.22 166.19,-713.54 162.86,-707.38"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.74,-570.12C268.95,-616.81 263.18,-786.7 172,-873 169.7,-875.18 167.21,-877.14 164.58,-878.9"/>
+<polygon fill="#000000" stroke="#000000" points="162.73,-875.93 155.75,-883.91 166.18,-882.02 162.73,-875.93"/>
 </g>
 <!-- module~mus_field_module -->
 <g id="module~~mus_control_module~~UsesGraph_node8" class="node">
 <title>module~mus_field_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node8"><a xlink:href="../module/mus_field_module.html" xlink:title="mus_field_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="140.5,-696 31.5,-696 31.5,-672 140.5,-672 140.5,-696"/>
-<text text-anchor="middle" x="86" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="140.5,-864 31.5,-864 31.5,-840 140.5,-840 140.5,-864"/>
+<text text-anchor="middle" x="86" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_field_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_field_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge7" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_field_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M265.93,-486.42C258.22,-520.37 232.04,-615.39 172,-663 165.56,-668.1 158.06,-671.99 150.22,-674.94"/>
-<polygon fill="#000000" stroke="#000000" points="148.97,-671.67 140.55,-678.1 151.14,-678.32 148.97,-671.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.07,-570.27C265.9,-613.18 252.62,-757.89 172,-831 165.84,-836.59 158.42,-840.75 150.57,-843.83"/>
+<polygon fill="#000000" stroke="#000000" points="149.21,-840.6 140.84,-847.09 151.43,-847.24 149.21,-840.6"/>
 </g>
 <!-- module~mus_geom_module -->
 <g id="module~~mus_control_module~~UsesGraph_node9" class="node">
 <title>module~mus_geom_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node9"><a xlink:href="../module/mus_geom_module.html" xlink:title="mus_geom_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="144.5,-654 27.5,-654 27.5,-630 144.5,-630 144.5,-654"/>
-<text text-anchor="middle" x="86" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geom_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="144.5,-822 27.5,-822 27.5,-798 144.5,-798 144.5,-822"/>
+<text text-anchor="middle" x="86" y="-807.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geom_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_geom_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge8" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_geom_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M264.15,-486.11C253.32,-514.44 222.33,-585.37 172,-621 166.71,-624.75 160.82,-627.83 154.68,-630.36"/>
-<polygon fill="#000000" stroke="#000000" points="153.09,-627.21 144.88,-633.91 155.47,-633.8 153.09,-627.21"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.2,-570.26C262.42,-608.84 242.29,-728.75 172,-789 166.8,-793.45 160.81,-796.99 154.45,-799.79"/>
+<polygon fill="#000000" stroke="#000000" points="153.05,-796.58 144.94,-803.4 155.53,-803.13 153.05,-796.58"/>
 </g>
 <!-- module~mus_ibm_module -->
 <g id="module~~mus_control_module~~UsesGraph_node10" class="node">
 <title>module~mus_ibm_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node10"><a xlink:href="../module/mus_ibm_module.html" xlink:title="mus_IBM_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="139,-612 33,-612 33,-588 139,-588 139,-612"/>
-<text text-anchor="middle" x="86" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_IBM_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="139,-780 33,-780 33,-756 139,-756 139,-780"/>
+<text text-anchor="middle" x="86" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_IBM_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_ibm_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge9" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_ibm_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M260.86,-486.21C246.38,-508.31 212.68,-554.9 172,-579 164.93,-583.19 157.06,-586.54 149.04,-589.23"/>
-<polygon fill="#000000" stroke="#000000" points="147.8,-585.95 139.23,-592.19 149.82,-592.65 147.8,-585.95"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M265.93,-570.42C258.22,-604.37 232.04,-699.39 172,-747 165.24,-752.36 157.29,-756.38 149.02,-759.38"/>
+<polygon fill="#000000" stroke="#000000" points="147.71,-756.13 139.22,-762.47 149.81,-762.81 147.71,-756.13"/>
 </g>
 <!-- module~mus_param_module -->
 <g id="module~~mus_control_module~~UsesGraph_node11" class="node">
 <title>module~mus_param_module</title>
 <g id="a_module~~mus_control_module~~UsesGraph_node11"><a xlink:href="../module/mus_param_module.html" xlink:title="mus_param_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="146.5,-570 25.5,-570 25.5,-546 146.5,-546 146.5,-570"/>
-<text text-anchor="middle" x="86" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="146.5,-738 25.5,-738 25.5,-714 146.5,-714 146.5,-738"/>
+<text text-anchor="middle" x="86" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_param_module -->
 <g id="module~~mus_control_module~~UsesGraph_edge10" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_param_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M253.38,-486.21C235.13,-500.38 203.01,-523.51 172,-537 167.03,-539.16 161.8,-541.13 156.48,-542.91"/>
-<polygon fill="#000000" stroke="#000000" points="155.33,-539.6 146.83,-545.92 157.42,-546.28 155.33,-539.6"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M264.15,-570.11C253.32,-598.44 222.33,-669.37 172,-705 167.15,-708.43 161.8,-711.31 156.22,-713.71"/>
+<polygon fill="#000000" stroke="#000000" points="154.76,-710.52 146.65,-717.33 157.24,-717.07 154.76,-710.52"/>
+</g>
+<!-- module~mus_particle_creator_module -->
+<g id="module~~mus_control_module~~UsesGraph_node12" class="node">
+<title>module~mus_particle_creator_module</title>
+<g id="a_module~~mus_control_module~~UsesGraph_node12"><a xlink:href="../module/mus_particle_creator_module.html" xlink:title="mus_particle_creator_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="171,-696 1,-696 1,-672 171,-672 171,-696"/>
+<text text-anchor="middle" x="86" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_creator_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_control_module~~UsesGraph_edge11" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M260.86,-570.21C246.38,-592.31 212.68,-638.9 172,-663 168.8,-664.89 165.44,-666.62 161.98,-668.19"/>
+<polygon fill="#000000" stroke="#000000" points="160.56,-664.98 152.61,-671.99 163.19,-671.47 160.56,-664.98"/>
+</g>
+<!-- module~mus_particle_dps_module -->
+<g id="module~~mus_control_module~~UsesGraph_node13" class="node">
+<title>module~mus_particle_dps_module</title>
+<g id="a_module~~mus_control_module~~UsesGraph_node13"><a xlink:href="../module/mus_particle_dps_module.html" xlink:title="mus_particle_DPS_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="162.5,-654 9.5,-654 9.5,-630 162.5,-630 162.5,-654"/>
+<text text-anchor="middle" x="86" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_DPS_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_control_module~~UsesGraph_edge12" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M253.38,-570.21C235.13,-584.38 203.01,-607.51 172,-621 167.03,-623.16 161.8,-625.13 156.48,-626.91"/>
+<polygon fill="#000000" stroke="#000000" points="155.33,-623.6 146.83,-629.92 157.42,-630.28 155.33,-623.6"/>
+</g>
+<!-- module~mus_particle_logging_module -->
+<g id="module~~mus_control_module~~UsesGraph_node14" class="node">
+<title>module~mus_particle_logging_module</title>
+<g id="a_module~~mus_control_module~~UsesGraph_node14"><a xlink:href="../module/mus_particle_logging_module.html" xlink:title="mus_particle_logging_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="172,-612 0,-612 0,-588 172,-588 172,-612"/>
+<text text-anchor="middle" x="86" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_logging_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_control_module~~UsesGraph_edge13" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M216.49,-570.04C195.41,-574.91 170.91,-580.58 148.92,-585.67"/>
+<polygon fill="#000000" stroke="#000000" points="147.97,-582.3 139.02,-587.96 149.55,-589.12 147.97,-582.3"/>
+</g>
+<!-- module~mus_particle_module -->
+<g id="module~~mus_control_module~~UsesGraph_node15" class="node">
+<title>module~mus_particle_module</title>
+<g id="a_module~~mus_control_module~~UsesGraph_node15"><a xlink:href="../module/mus_particle_module.html" xlink:title="mus_particle_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="149.5,-570 22.5,-570 22.5,-546 149.5,-546 149.5,-570"/>
+<text text-anchor="middle" x="86" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_control_module~~UsesGraph_edge14" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M207.81,-558C192.51,-558 175.92,-558 160.08,-558"/>
+<polygon fill="#000000" stroke="#000000" points="159.8,-554.5 149.8,-558 159.8,-561.5 159.8,-554.5"/>
 </g>
 <!-- module~mus_pdf_module -->
-<g id="module~~mus_control_module~~UsesGraph_node12" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node16" class="node">
 <title>module~mus_pdf_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node12"><a xlink:href="../module/mus_pdf_module.html" xlink:title="mus_pdf_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node16"><a xlink:href="../module/mus_pdf_module.html" xlink:title="mus_pdf_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="137.5,-528 34.5,-528 34.5,-504 137.5,-504 137.5,-528"/>
 <text text-anchor="middle" x="86" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_pdf_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_pdf_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge11" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge15" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_pdf_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M216.49,-486.04C195.05,-491 170.06,-496.78 147.79,-501.93"/>
-<polygon fill="#000000" stroke="#000000" points="146.72,-498.59 137.77,-504.25 148.3,-505.41 146.72,-498.59"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M216.49,-545.96C195.05,-541 170.06,-535.22 147.79,-530.07"/>
+<polygon fill="#000000" stroke="#000000" points="148.3,-526.59 137.77,-527.75 146.72,-533.41 148.3,-526.59"/>
 </g>
 <!-- module~mus_physics_module -->
-<g id="module~~mus_control_module~~UsesGraph_node13" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node17" class="node">
 <title>module~mus_physics_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node13"><a xlink:href="../module/mus_physics_module.html" xlink:title="mus_physics_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node17"><a xlink:href="../module/mus_physics_module.html" xlink:title="mus_physics_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="148.5,-486 23.5,-486 23.5,-462 148.5,-462 148.5,-486"/>
 <text text-anchor="middle" x="86" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_physics_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_physics_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge12" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge16" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_physics_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M207.81,-474C192.02,-474 174.87,-474 158.57,-474"/>
-<polygon fill="#000000" stroke="#000000" points="158.56,-470.5 148.56,-474 158.56,-477.5 158.56,-470.5"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M253.38,-545.79C235.13,-531.62 203.01,-508.49 172,-495 167.03,-492.84 161.8,-490.87 156.48,-489.09"/>
+<polygon fill="#000000" stroke="#000000" points="157.42,-485.72 146.83,-486.08 155.33,-492.4 157.42,-485.72"/>
 </g>
 <!-- module~mus_scheme_header_module -->
-<g id="module~~mus_control_module~~UsesGraph_node14" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node18" class="node">
 <title>module~mus_scheme_header_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node14"><a xlink:href="../module/mus_scheme_header_module.html" xlink:title="mus_scheme_header_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node18"><a xlink:href="../module/mus_scheme_header_module.html" xlink:title="mus_scheme_header_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="172,-444 0,-444 0,-420 172,-420 172,-444"/>
 <text text-anchor="middle" x="86" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_header_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_scheme_header_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge13" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge17" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_scheme_header_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M216.49,-461.96C195.41,-457.09 170.91,-451.42 148.92,-446.33"/>
-<polygon fill="#000000" stroke="#000000" points="149.55,-442.88 139.02,-444.04 147.97,-449.7 149.55,-442.88"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M260.86,-545.79C246.38,-523.69 212.68,-477.1 172,-453 168.8,-451.11 165.44,-449.38 161.98,-447.81"/>
+<polygon fill="#000000" stroke="#000000" points="163.19,-444.53 152.61,-444.01 160.56,-451.02 163.19,-444.53"/>
 </g>
 <!-- module~mus_scheme_type_module -->
-<g id="module~~mus_control_module~~UsesGraph_node15" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node19" class="node">
 <title>module~mus_scheme_type_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node15"><a xlink:href="../module/mus_scheme_type_module.html" xlink:title="mus_scheme_type_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node19"><a xlink:href="../module/mus_scheme_type_module.html" xlink:title="mus_scheme_type_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="164.5,-402 7.5,-402 7.5,-378 164.5,-378 164.5,-402"/>
 <text text-anchor="middle" x="86" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_scheme_type_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge14" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge18" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_scheme_type_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M253.38,-461.79C235.13,-447.62 203.01,-424.49 172,-411 167.03,-408.84 161.8,-406.87 156.48,-405.09"/>
-<polygon fill="#000000" stroke="#000000" points="157.42,-401.72 146.83,-402.08 155.33,-408.4 157.42,-401.72"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M264.15,-545.89C253.32,-517.56 222.33,-446.63 172,-411 169.75,-409.41 167.4,-407.94 164.96,-406.58"/>
+<polygon fill="#000000" stroke="#000000" points="166.35,-403.36 155.82,-402.12 163.28,-409.65 166.35,-403.36"/>
 </g>
 <!-- module~mus_source_module -->
-<g id="module~~mus_control_module~~UsesGraph_node16" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node20" class="node">
 <title>module~mus_source_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node16"><a xlink:href="../module/mus_source_module.html" xlink:title="mus_source_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node20"><a xlink:href="../module/mus_source_module.html" xlink:title="mus_source_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="146.5,-360 25.5,-360 25.5,-336 146.5,-336 146.5,-360"/>
 <text text-anchor="middle" x="86" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_source_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_source_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge15" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge19" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_source_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M260.86,-461.79C246.38,-439.69 212.68,-393.1 172,-369 167.18,-366.14 161.98,-363.67 156.62,-361.54"/>
-<polygon fill="#000000" stroke="#000000" points="157.42,-358.11 146.83,-358.05 155.07,-364.7 157.42,-358.11"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M265.93,-545.58C258.22,-511.63 232.04,-416.61 172,-369 167.27,-365.25 161.96,-362.16 156.37,-359.61"/>
+<polygon fill="#000000" stroke="#000000" points="157.32,-356.22 146.74,-355.81 154.76,-362.73 157.32,-356.22"/>
 </g>
 <!-- module~mus_timer_module -->
-<g id="module~~mus_control_module~~UsesGraph_node17" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node21" class="node">
 <title>module~mus_timer_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node17"><a xlink:href="../module/mus_timer_module.html" xlink:title="mus_timer_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node21"><a xlink:href="../module/mus_timer_module.html" xlink:title="mus_timer_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="143.5,-318 28.5,-318 28.5,-294 143.5,-294 143.5,-318"/>
 <text text-anchor="middle" x="86" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_timer_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;module~mus_timer_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge16" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge20" class="edge">
 <title>module~mus_control_module&#45;&gt;module~mus_timer_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M264.15,-461.89C253.32,-433.56 222.33,-362.63 172,-327 166.33,-322.99 159.98,-319.74 153.37,-317.11"/>
-<polygon fill="#000000" stroke="#000000" points="154.14,-313.67 143.54,-313.68 151.83,-320.28 154.14,-313.67"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.2,-545.74C262.42,-507.16 242.29,-387.25 172,-327 166.45,-322.24 159.98,-318.53 153.13,-315.64"/>
+<polygon fill="#000000" stroke="#000000" points="154.21,-312.3 143.62,-312.18 151.82,-318.88 154.21,-312.3"/>
 </g>
 <!-- tem_debug_module -->
-<g id="module~~mus_control_module~~UsesGraph_node18" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node22" class="node">
 <title>tem_debug_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node18"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_debug_module.html" xlink:title="tem_debug_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node22"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_debug_module.html" xlink:title="tem_debug_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="145,-276 27,-276 27,-252 145,-252 145,-276"/>
 <text text-anchor="middle" x="86" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_debug_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_debug_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge17" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge21" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_debug_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M265.93,-461.58C258.22,-427.63 232.04,-332.61 172,-285 166.92,-280.97 161.17,-277.7 155.12,-275.05"/>
-<polygon fill="#000000" stroke="#000000" points="156.01,-271.64 145.41,-271.37 153.53,-278.19 156.01,-271.64"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.07,-545.73C265.9,-502.82 252.62,-358.11 172,-285 166.93,-280.4 161.02,-276.77 154.71,-273.91"/>
+<polygon fill="#000000" stroke="#000000" points="155.83,-270.6 145.25,-270.25 153.31,-277.12 155.83,-270.6"/>
 </g>
 <!-- tem_general_module -->
-<g id="module~~mus_control_module~~UsesGraph_node19" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node23" class="node">
 <title>tem_general_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node19"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_general_module.html" xlink:title="tem_general_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node23"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_general_module.html" xlink:title="tem_general_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="149,-234 23,-234 23,-210 149,-210 149,-234"/>
 <text text-anchor="middle" x="86" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_general_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_general_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge18" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge22" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_general_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.2,-461.74C262.42,-423.16 242.29,-303.25 172,-243 167.99,-239.56 163.51,-236.67 158.75,-234.24"/>
-<polygon fill="#000000" stroke="#000000" points="159.87,-230.92 149.31,-230.12 157.07,-237.33 159.87,-230.92"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.74,-545.88C268.95,-499.19 263.18,-329.3 172,-243 168,-239.21 163.42,-236.08 158.52,-233.48"/>
+<polygon fill="#000000" stroke="#000000" points="159.95,-230.29 149.4,-229.38 157.08,-236.67 159.95,-230.29"/>
 </g>
 <!-- tem_logging_module -->
-<g id="module~~mus_control_module~~UsesGraph_node20" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node24" class="node">
 <title>tem_logging_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node20"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_logging_module.html" xlink:title="tem_logging_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node24"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_logging_module.html" xlink:title="tem_logging_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="148,-192 24,-192 24,-168 148,-168 148,-192"/>
 <text text-anchor="middle" x="86" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_logging_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_logging_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge19" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge23" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_logging_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.07,-461.73C265.9,-418.82 252.62,-274.11 172,-201 167.78,-197.17 162.97,-194.01 157.83,-191.41"/>
-<polygon fill="#000000" stroke="#000000" points="158.87,-188.05 148.3,-187.31 156.1,-194.48 158.87,-188.05"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.87,-545.79C259.05,-489.01 223.63,-251.51 172,-201 167.75,-196.85 162.82,-193.47 157.52,-190.73"/>
+<polygon fill="#000000" stroke="#000000" points="158.85,-187.5 148.29,-186.7 156.05,-193.91 158.85,-187.5"/>
 </g>
 <!-- tem_stencil_module -->
-<g id="module~~mus_control_module~~UsesGraph_node21" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node25" class="node">
 <title>tem_stencil_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node21"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_stencil_module.html" xlink:title="tem_stencil_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node25"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_stencil_module.html" xlink:title="tem_stencil_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="145.5,-150 26.5,-150 26.5,-126 145.5,-126 145.5,-150"/>
 <text text-anchor="middle" x="86" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_stencil_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_stencil_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge20" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge24" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_stencil_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268.74,-461.88C268.95,-415.19 263.18,-245.3 172,-159 167.22,-154.47 161.62,-150.88 155.62,-148.03"/>
-<polygon fill="#000000" stroke="#000000" points="156.51,-144.61 145.92,-144.14 153.9,-151.11 156.51,-144.61"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.22,-545.61C260.66,-484.53 228.93,-216.21 172,-159 167.17,-154.15 161.42,-150.36 155.2,-147.4"/>
+<polygon fill="#000000" stroke="#000000" points="156.42,-144.11 145.83,-143.63 153.81,-150.61 156.42,-144.11"/>
 </g>
 <!-- tem_time_module -->
-<g id="module~~mus_control_module~~UsesGraph_node22" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node26" class="node">
 <title>tem_time_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node22"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_time_module.html" xlink:title="tem_time_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node26"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_time_module.html" xlink:title="tem_time_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="140.5,-108 31.5,-108 31.5,-84 140.5,-84 140.5,-108"/>
 <text text-anchor="middle" x="86" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_time_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_time_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge21" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge25" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_time_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.87,-461.79C259.05,-405.01 223.63,-167.51 172,-117 165.91,-111.04 158.41,-106.68 150.41,-103.51"/>
-<polygon fill="#000000" stroke="#000000" points="151.44,-100.17 140.84,-100.31 149.22,-106.81 151.44,-100.17"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.53,-545.62C262.18,-480.81 234.33,-181.02 172,-117 165.98,-110.82 158.45,-106.34 150.37,-103.12"/>
+<polygon fill="#000000" stroke="#000000" points="151.29,-99.74 140.7,-99.9 149.08,-106.38 151.29,-99.74"/>
 </g>
 <!-- tem_timer_module -->
-<g id="module~~mus_control_module~~UsesGraph_node23" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node27" class="node">
 <title>tem_timer_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node23"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_timer_module.html" xlink:title="tem_timer_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node27"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_timer_module.html" xlink:title="tem_timer_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="142.5,-66 29.5,-66 29.5,-42 142.5,-42 142.5,-66"/>
 <text text-anchor="middle" x="86" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_timer_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_timer_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge22" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge26" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_timer_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.22,-461.61C260.66,-400.53 228.93,-132.21 172,-75 166.42,-69.39 159.6,-65.2 152.27,-62.07"/>
-<polygon fill="#000000" stroke="#000000" points="153.36,-58.75 142.77,-58.66 151,-65.34 153.36,-58.75"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.79,-545.82C263.59,-477.86 239.81,-145.93 172,-75 166.46,-69.21 159.6,-64.91 152.19,-61.73"/>
+<polygon fill="#000000" stroke="#000000" points="153.17,-58.37 142.57,-58.29 150.81,-64.96 153.17,-58.37"/>
 </g>
 <!-- tem_varSys_module -->
-<g id="module~~mus_control_module~~UsesGraph_node24" class="node">
+<g id="module~~mus_control_module~~UsesGraph_node28" class="node">
 <title>tem_varSys_module</title>
-<g id="a_module~~mus_control_module~~UsesGraph_node24"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_varsys_module.html" xlink:title="tem_varSys_module">
+<g id="a_module~~mus_control_module~~UsesGraph_node28"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_varsys_module.html" xlink:title="tem_varSys_module">
 <polygon fill="#337ab7" stroke="#337ab7" points="146,-24 26,-24 26,0 146,0 146,-24"/>
 <text text-anchor="middle" x="86" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_varSys_module</text>
 </a>
 </g>
 </g>
 <!-- module~mus_control_module&#45;&gt;tem_varSys_module -->
-<g id="module~~mus_control_module~~UsesGraph_edge23" class="edge">
+<g id="module~~mus_control_module~~UsesGraph_edge27" class="edge">
 <title>module~mus_control_module&#45;&gt;tem_varSys_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M267.53,-461.62C262.18,-396.81 234.33,-97.02 172,-33 167.41,-28.28 161.94,-24.56 156.01,-21.63"/>
-<polygon fill="#000000" stroke="#000000" points="156.98,-18.24 146.4,-17.65 154.3,-24.71 156.98,-18.24"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M268,-545.73C264.82,-474.11 245.21,-110.77 172,-33 167.31,-28.02 161.64,-24.14 155.48,-21.13"/>
+<polygon fill="#000000" stroke="#000000" points="156.75,-17.86 146.17,-17.31 154.09,-24.34 156.75,-17.86"/>
 </g>
 </g>
 </svg>
@@ -869,7 +955,7 @@ modules which it uses.
     <ul class="list-group">
       <li class="list-group-item">
             <h3>
-    private  subroutine computation(me, scheme, geometry, params, iLevel)  
+    private  subroutine computation(me, iLevel)  
 
     </h3>
   <p>Interface describes the main control routine which does computation
@@ -888,7 +974,7 @@ set boundary and check flow status</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~116"></span>
+              <span class="anchor" id="variable-me~80"></span>
               class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
             </td>
 <td></td>
@@ -903,52 +989,7 @@ set boundary and check flow status</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-scheme~81"></span>
-              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>scheme</strong></td>
-            <td>
-                <p>container for the scheme</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-geometry~14"></span>
-              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>geometry</strong></td>
-            <td>
-                <p>geometry infomation</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-params~64"></span>
-              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>params</strong></td>
-            <td>
-                <p>global parameters</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ilevel~184"></span>
+              <span class="anchor" id="variable-ilevel~140"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -959,6 +1000,52 @@ set boundary and check flow status</p>
             <td><strong>iLevel</strong></td>
             <td>
                 <p>Level counter variable</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+      </li>
+    </ul>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="interface-update_particles_if"></span><h3>abstract interface
+        
+    </h3></div>
+    <ul class="list-group">
+      <li class="list-group-item">
+            <h3>
+    private  subroutine update_particles_if(me)  
+
+    </h3>
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~81"></span>
+              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+                <p>self control type</p>
             </td>
         </tr>
     </tbody>
@@ -999,6 +1086,125 @@ set boundary and check flow status</p>
     <tbody>
         <tr>
             <td>
+              <span class="anchor" id="variable-scheme~97"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~45"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~69"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~37"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dps_do_volfract"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>DPS_do_volfract</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dps_do_advance"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>DPS_do_advance</strong></td>
+<td> =</td>
+                <td>.true.</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-curlvl"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>curlvl</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
               <span class="anchor" id="variable-do_computation"></span>
               procedure(<a href='../interface/computation.html'>computation</a>),
             </td>
@@ -1008,6 +1214,40 @@ set boundary and check flow status</p>
             </td>
             <td>::</td>
             <td><strong>do_computation</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-check_particles"></span>
+              procedure(<a href='../interface/update_particles_if.html'>update_particles_if</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>check_particles</strong></td>
+<td>=&gt; </td>
+                <td>null()</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-advance_particles"></span>
+              procedure(<a href='../interface/update_particles_if.html'>update_particles_if</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              pointer
+            </td>
+            <td>::</td>
+            <td><strong>advance_particles</strong></td>
 <td>=&gt; </td>
                 <td>null()</td>
             <td>
@@ -1030,7 +1270,7 @@ set boundary and check flow status</p>
         <section>
           <h2>Subroutines</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_init_control"></span> <h3>public  subroutine <a href='../proc/mus_init_control.html'>mus_init_control</a>(controlRoutine, me, minLevel, maxLevel)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_init_control"></span> <h3>public  subroutine <a href='../proc/mus_init_control.html'>mus_init_control</a>(controlRoutine, me, minLevel, maxLevel, particle_kind)  
 </h3></div>
     <div class="card-body">
           
@@ -1049,7 +1289,7 @@ set boundary and check flow status</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-controlroutine~2"></span>
+              <span class="anchor" id="variable-controlroutine"></span>
               character(len=labelLen),
             </td>
 <td>intent(in)</td>
@@ -1064,10 +1304,10 @@ set boundary and check flow status</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~117"></span>
+              <span class="anchor" id="variable-me~82"></span>
               type(<a href='../type/mus_control_type.html'>mus_control_type</a>),
             </td>
-<td>intent(out)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
@@ -1079,7 +1319,7 @@ set boundary and check flow status</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-minlevel~58"></span>
+              <span class="anchor" id="variable-minlevel~38"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1094,7 +1334,7 @@ set boundary and check flow status</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-maxlevel~56"></span>
+              <span class="anchor" id="variable-maxlevel~36"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1107,6 +1347,23 @@ set boundary and check flow status</p>
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_kind~5"></span>
+              character(len=labelLen),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_kind</strong></td>
+            <td>
+<p>string containing kind of solid particles for coupled LBM-DEM simulations
+Can be fully resolved 'MEM' or unresolved 'DPS', 'DPS_twoway' 
+or 'DPS_oneway'</p>
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -1115,7 +1372,7 @@ set boundary and check flow status</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-do_recursive_multilevel"></span> <h3>private recursive subroutine <a href='../proc/do_recursive_multilevel.html'>do_recursive_multiLevel</a>(me, scheme, geometry, params, iLevel)  
+    <div class="card-header codesum"><span class="anchor" id="proc-do_recursive_multilevel"></span> <h3>private recursive subroutine <a href='../proc/do_recursive_multilevel.html'>do_recursive_multiLevel</a>(me, iLevel)  
 </h3></div>
     <div class="card-body">
           
@@ -1148,7 +1405,7 @@ Main steps:
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~118"></span>
+              <span class="anchor" id="variable-me~83"></span>
               class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
             </td>
 <td></td>
@@ -1163,52 +1420,7 @@ Main steps:
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-scheme~82"></span>
-              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>scheme</strong></td>
-            <td>
-<p>container for the scheme</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-geometry~15"></span>
-              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>geometry</strong></td>
-            <td>
-<p>geometry infomation</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-params~65"></span>
-              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>params</strong></td>
-            <td>
-<p>global parameters</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ilevel~185"></span>
+              <span class="anchor" id="variable-ilevel~141"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1219,6 +1431,118 @@ Main steps:
             <td><strong>iLevel</strong></td>
             <td>
 <p>the current level</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-do_fast_singlelevel"></span> <h3>private  subroutine <a href='../proc/do_fast_singlelevel.html'>do_fast_singleLevel</a>(me, iLevel)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Control routine for an optimized workflow with reduced functionality.</p><a href="../proc/do_fast_singlelevel.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~84"></span>
+              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>self control type
+dummy variable in this routine, required by interface</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~142"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+<p>Level counter variable</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-do_benchmark"></span> <h3>private  subroutine <a href='../proc/do_benchmark.html'>do_benchmark</a>(me, iLevel)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~85"></span>
+              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>self control type
+dummy variable in this routine, required by interface</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~143"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+<p>Level counter variable</p>
             </td>
         </tr>
     </tbody>
@@ -1250,7 +1574,7 @@ Main steps:
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-scheme~83"></span>
+              <span class="anchor" id="variable-scheme~98"></span>
               type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
             </td>
 <td>intent(inout),</td>
@@ -1265,7 +1589,7 @@ Main steps:
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-params~66"></span>
+              <span class="anchor" id="variable-params~70"></span>
               type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1280,7 +1604,7 @@ Main steps:
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~186"></span>
+              <span class="anchor" id="variable-ilevel~144"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1322,7 +1646,7 @@ Then it exchanges the datas of finer ghost elements (L+1) between process.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-scheme~84"></span>
+              <span class="anchor" id="variable-scheme~99"></span>
               type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
             </td>
 <td>intent(inout),</td>
@@ -1337,7 +1661,7 @@ Then it exchanges the datas of finer ghost elements (L+1) between process.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-params~67"></span>
+              <span class="anchor" id="variable-params~71"></span>
               type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1352,7 +1676,7 @@ Then it exchanges the datas of finer ghost elements (L+1) between process.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~187"></span>
+              <span class="anchor" id="variable-ilevel~145"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1373,108 +1697,7 @@ Then it exchanges the datas of finer ghost elements (L+1) between process.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-do_fast_singlelevel"></span> <h3>private  subroutine <a href='../proc/do_fast_singlelevel.html'>do_fast_singleLevel</a>(me, scheme, geometry, params, iLevel)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Control routine for an optimized workflow with reduced functionality.</p><a href="../proc/do_fast_singlelevel.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-me~119"></span>
-              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>me</strong></td>
-            <td>
-<p>self control type
-dummy variable in this routine, required by interface</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-scheme~85"></span>
-              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>scheme</strong></td>
-            <td>
-<p>container for the scheme</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-geometry~16"></span>
-              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>geometry</strong></td>
-            <td>
-<p>geometry infomation</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-params~68"></span>
-              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>params</strong></td>
-            <td>
-<p>global parameters</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ilevel~188"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>iLevel</strong></td>
-            <td>
-<p>Level counter variable</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-do_benchmark"></span> <h3>private  subroutine <a href='../proc/do_benchmark.html'>do_benchmark</a>(me, scheme, geometry, params, iLevel)  
+    <div class="card-header codesum"><span class="anchor" id="proc-check_particles_mem"></span> <h3>private  subroutine <a href='../proc/check_particles_mem.html'>check_particles_MEM</a>(me)  
 </h3></div>
     <div class="card-body">
           
@@ -1493,7 +1716,7 @@ dummy variable in this routine, required by interface</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~120"></span>
+              <span class="anchor" id="variable-me~86"></span>
               class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
             </td>
 <td></td>
@@ -1503,68 +1726,127 @@ dummy variable in this routine, required by interface</p>
             <td>::</td>
             <td><strong>me</strong></td>
             <td>
-<p>self control type
-dummy variable in this routine, required by interface</p>
+<p>self control type</p>
             </td>
         </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-advance_particles_mem"></span> <h3>private  subroutine <a href='../proc/advance_particles_mem.html'>advance_particles_MEM</a>(me)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-scheme~86"></span>
-              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+              <span class="anchor" id="variable-me~87"></span>
+              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>scheme</strong></td>
+            <td><strong>me</strong></td>
             <td>
-<p>containers for the different schemes</p>
+<p>self control type</p>
             </td>
         </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-check_particles_dps"></span> <h3>private  subroutine <a href='../proc/check_particles_dps.html'>check_particles_DPS</a>(me)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-geometry~17"></span>
-              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+              <span class="anchor" id="variable-me~88"></span>
+              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>geometry</strong></td>
+            <td><strong>me</strong></td>
             <td>
-<p>geometry infomation</p>
+<p>self control type</p>
             </td>
         </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-advance_particles_dps"></span> <h3>private  subroutine <a href='../proc/advance_particles_dps.html'>advance_particles_DPS</a>(me)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-params~69"></span>
-              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+              <span class="anchor" id="variable-me~89"></span>
+              class(<a href='../type/mus_control_type.html'>mus_control_type</a>)
             </td>
-<td>intent(inout)</td>
+<td></td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>params</strong></td>
+            <td><strong>me</strong></td>
             <td>
-<p>global parameters</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ilevel~189"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>iLevel</strong></td>
-            <td>
-<p>Level counter variable</p>
+<p>self control type</p>
             </td>
         </tr>
     </tbody>
@@ -1616,40 +1898,18 @@ dummy variable in this routine, required by interface</p>
           <div class="col">
             <p>
               Musubi
- was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>03d36e6f940c</small></p>
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-29T18:19:33.949870+0000             </p>
+ on 2025-04-24T09:44:22.475563+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

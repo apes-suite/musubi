@@ -1,0 +1,3127 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_particle_comm_module &ndash; Musubi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_particle_comm_module
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.1% of total for modules and submodules.">1208 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_particle_comm_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_particle_comm_module.f90.html'>mus_particle_comm_module.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_particle_comm_module</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-mus_particles_initialize_communication">mus_particles_initialize_communication</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-mus_particles_comm_init_buffers">mus_particles_comm_init_buffers</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangeparticlestoremove">exchangeParticlesToRemove</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangeparticlestoremove_dps">exchangeParticlesToRemove_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangeforces">exchangeForces</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-resetforcebuffers">resetForceBuffers</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-addcollisionforcetobuffer">addCollisionForceToBuffer</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-dem_exchangeforces_dps">DEM_exchangeForces_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-dem_exchangeforces">DEM_exchangeForces</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-dem_exchangewallpositions">DEM_exchangeWallPositions</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-dem_exchangewallpositions_dps">DEM_exchangeWallPositions_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangepositions">exchangePositions</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangepositions_dps">exchangePositions_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangevelocities">exchangeVelocities</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangevelocities_dps">exchangeVelocities_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangehydroforces_dps">exchangeHydroForces_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangeparticlestates">exchangeParticleStates</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangenewparticles_mem">exchangeNewParticles_MEM</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangenewparticles_dps">exchangeNewParticles_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_comm_module.html#proc-exchangemominc_dps">exchangeMomInc_DPS</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>mus_particle_comm_module contains the routines used for communication of
+particle data between processes</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='mus_geom_module.html'>mus_geom_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
+                  <li class="list-inline-item"><a href='http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm'>mpi</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_aux_module.html'>mus_particle_aux_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_timer_module.html'>mus_particle_timer_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_dyn_array_module.html'>tem_dyn_array_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_type_module.html'>mus_particle_type_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_timer_module.html'>tem_timer_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_logging_type_module.html'>mus_particle_logging_type_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_topology_module.html'>tem_topology_module</a></li>
+                  <li class="list-inline-item"><a href='mus_param_module.html'>mus_param_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_particle_comm_module~~UsesGraph Pages: 1 -->
+<svg id="modulemus_particle_comm_moduleUsesGraph" width="410pt" height="620pt"
+ viewBox="0.00 0.00 410.00 620.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_particle_comm_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 616)">
+<title>module~~mus_particle_comm_module~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-616 406,-616 406,4 -4,4"/>
+<!-- module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node1" class="node">
+<title>module~mus_particle_comm_module</title>
+<polygon fill="none" stroke="black" points="402,-318 236,-318 236,-294 402,-294 402,-318"/>
+<text text-anchor="middle" x="319" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_particle_comm_module</text>
+</g>
+<!-- env_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node2" class="node">
+<title>env_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="139,-612 61,-612 61,-588 139,-588 139,-612"/>
+<text text-anchor="middle" x="100" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;env_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge1" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M316.66,-318.14C311.2,-361.22 286.7,-508.03 200,-579 185.91,-590.54 167,-596.17 149.48,-598.8"/>
+<polygon fill="#000000" stroke="#000000" points="148.88,-595.34 139.37,-600.01 149.72,-602.29 148.88,-595.34"/>
+</g>
+<!-- module~mus_geom_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node3" class="node">
+<title>module~mus_geom_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node3"><a xlink:href="../module/mus_geom_module.html" xlink:title="mus_geom_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="158.5,-570 41.5,-570 41.5,-546 158.5,-546 158.5,-570"/>
+<text text-anchor="middle" x="100" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geom_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_geom_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge2" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_geom_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315.63,-318.15C307.41,-356.92 276.32,-478.52 200,-537 190.83,-544.03 179.84,-548.83 168.57,-552.08"/>
+<polygon fill="#000000" stroke="#000000" points="167.49,-548.75 158.64,-554.57 169.19,-555.54 167.49,-548.75"/>
+</g>
+<!-- module~mus_param_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node4" class="node">
+<title>module~mus_param_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node4"><a xlink:href="../module/mus_param_module.html" xlink:title="mus_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="160.5,-528 39.5,-528 39.5,-504 160.5,-504 160.5,-528"/>
+<text text-anchor="middle" x="100" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_param_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge3" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M314.23,-318.08C302.97,-352 266.23,-448.63 200,-495 191.18,-501.17 180.92,-505.59 170.4,-508.75"/>
+<polygon fill="#000000" stroke="#000000" points="169.49,-505.37 160.71,-511.3 171.27,-512.14 169.49,-505.37"/>
+</g>
+<!-- module~mus_particle_aux_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node5" class="node">
+<title>module~mus_particle_aux_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node5"><a xlink:href="../module/mus_particle_aux_module.html" xlink:title="mus_particle_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="175.5,-486 24.5,-486 24.5,-462 175.5,-462 175.5,-486"/>
+<text text-anchor="middle" x="100" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_aux_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge4" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M311.98,-318.24C297.22,-346.86 256.3,-418.35 200,-453 195.32,-455.88 190.31,-458.37 185.12,-460.52"/>
+<polygon fill="#000000" stroke="#000000" points="183.78,-457.28 175.61,-464.04 186.21,-463.85 183.78,-457.28"/>
+</g>
+<!-- module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node6" class="node">
+<title>module~mus_particle_comm_type_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node6"><a xlink:href="../module/mus_particle_comm_type_module.html" xlink:title="mus_particle_comm_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="197,-444 3,-444 3,-420 197,-420 197,-444"/>
+<text text-anchor="middle" x="100" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_comm_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge5" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M308.08,-318.3C289.42,-340.55 246.74,-387.37 200,-411 195.92,-413.06 191.65,-414.92 187.26,-416.6"/>
+<polygon fill="#000000" stroke="#000000" points="185.81,-413.4 177.52,-419.99 188.11,-420.01 185.81,-413.4"/>
+</g>
+<!-- module~mus_particle_logging_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node7" class="node">
+<title>module~mus_particle_logging_type_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node7"><a xlink:href="../module/mus_particle_logging_type_module.html" xlink:title="mus_particle_logging_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="200,-402 0,-402 0,-378 200,-378 200,-402"/>
+<text text-anchor="middle" x="100" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_logging_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_logging_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge6" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_logging_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M299.15,-318.22C276.49,-332.4 236.87,-355.55 200,-369 193.62,-371.33 186.92,-373.43 180.12,-375.32"/>
+<polygon fill="#000000" stroke="#000000" points="178.92,-372.02 170.14,-377.95 180.7,-378.79 178.92,-372.02"/>
+</g>
+<!-- module~mus_particle_timer_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node8" class="node">
+<title>module~mus_particle_timer_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node8"><a xlink:href="../module/mus_particle_timer_module.html" xlink:title="mus_particle_timer_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="180,-360 20,-360 20,-336 180,-336 180,-360"/>
+<text text-anchor="middle" x="100" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_timer_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_timer_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge7" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_timer_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M255.82,-318.04C230.05,-323.02 200,-328.84 173.26,-334.01"/>
+<polygon fill="#000000" stroke="#000000" points="172.35,-330.63 163.19,-335.96 173.68,-337.5 172.35,-330.63"/>
+</g>
+<!-- module~mus_particle_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node9" class="node">
+<title>module~mus_particle_type_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node9"><a xlink:href="../module/mus_particle_type_module.html" xlink:title="mus_particle_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="177.5,-318 22.5,-318 22.5,-294 177.5,-294 177.5,-318"/>
+<text text-anchor="middle" x="100" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge8" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M235.96,-306C220.31,-306 203.87,-306 188.07,-306"/>
+<polygon fill="#000000" stroke="#000000" points="187.79,-302.5 177.79,-306 187.79,-309.5 187.79,-302.5"/>
+</g>
+<!-- module~mus_scheme_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node10" class="node">
+<title>module~mus_scheme_type_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node10"><a xlink:href="../module/mus_scheme_type_module.html" xlink:title="mus_scheme_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="178.5,-276 21.5,-276 21.5,-252 178.5,-252 178.5,-276"/>
+<text text-anchor="middle" x="100" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_scheme_type_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge9" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_scheme_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M255.82,-293.96C230.05,-288.98 200,-283.16 173.26,-277.99"/>
+<polygon fill="#000000" stroke="#000000" points="173.68,-274.5 163.19,-276.04 172.35,-281.37 173.68,-274.5"/>
+</g>
+<!-- mpi -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node11" class="node">
+<title>mpi</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node11"><a xlink:href="http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm" xlink:title="mpi">
+<polygon fill="#337ab7" stroke="#337ab7" points="127,-234 73,-234 73,-210 127,-210 127,-234"/>
+<text text-anchor="middle" x="100" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;mpi -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge10" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;mpi</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M299.15,-293.78C276.49,-279.6 236.87,-256.45 200,-243 179.81,-235.64 156.3,-230.51 137.26,-227.17"/>
+<polygon fill="#000000" stroke="#000000" points="137.64,-223.69 127.2,-225.5 136.49,-230.59 137.64,-223.69"/>
+</g>
+<!-- tem_aux_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node12" class="node">
+<title>tem_aux_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node12"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_aux_module.html" xlink:title="tem_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="152,-192 48,-192 48,-168 152,-168 152,-192"/>
+<text text-anchor="middle" x="100" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge11" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M308.08,-293.7C289.42,-271.45 246.74,-224.63 200,-201 188.25,-195.06 174.91,-190.8 161.9,-187.74"/>
+<polygon fill="#000000" stroke="#000000" points="162.56,-184.31 152.05,-185.63 161.1,-191.15 162.56,-184.31"/>
+</g>
+<!-- tem_dyn_array_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node13" class="node">
+<title>tem_dyn_array_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node13"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_dyn_array_module.html" xlink:title="tem_dyn_array_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="169,-150 31,-150 31,-126 169,-126 169,-150"/>
+<text text-anchor="middle" x="100" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_dyn_array_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;tem_dyn_array_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge12" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;tem_dyn_array_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M311.98,-293.76C297.22,-265.14 256.3,-193.65 200,-159 193.42,-154.95 186.19,-151.68 178.71,-149.03"/>
+<polygon fill="#000000" stroke="#000000" points="179.74,-145.68 169.15,-145.99 177.62,-152.35 179.74,-145.68"/>
+</g>
+<!-- tem_logging_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node14" class="node">
+<title>tem_logging_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node14"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_logging_module.html" xlink:title="tem_logging_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="162,-108 38,-108 38,-84 162,-84 162,-108"/>
+<text text-anchor="middle" x="100" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_logging_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge13" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M314.23,-293.92C302.97,-260 266.23,-163.37 200,-117 191.55,-111.08 181.76,-106.77 171.7,-103.65"/>
+<polygon fill="#000000" stroke="#000000" points="172.57,-100.26 162.01,-101 170.73,-107.01 172.57,-100.26"/>
+</g>
+<!-- tem_timer_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node15" class="node">
+<title>tem_timer_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node15"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_timer_module.html" xlink:title="tem_timer_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="156.5,-66 43.5,-66 43.5,-42 156.5,-42 156.5,-66"/>
+<text text-anchor="middle" x="100" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_timer_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;tem_timer_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge14" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;tem_timer_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315.63,-293.85C307.41,-255.08 276.32,-133.48 200,-75 190.3,-67.57 178.57,-62.63 166.62,-59.37"/>
+<polygon fill="#000000" stroke="#000000" points="167.11,-55.89 156.58,-57.01 165.51,-62.7 167.11,-55.89"/>
+</g>
+<!-- tem_topology_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_node16" class="node">
+<title>tem_topology_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsesGraph_node16"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_topology_module.html" xlink:title="tem_topology_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="165.5,-24 34.5,-24 34.5,0 165.5,0 165.5,-24"/>
+<text text-anchor="middle" x="100" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_topology_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;tem_topology_module -->
+<g id="module~~mus_particle_comm_module~~UsesGraph_edge15" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;tem_topology_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M316.66,-293.86C311.2,-250.78 286.7,-103.97 200,-33 192.81,-27.12 184.37,-22.77 175.5,-19.57"/>
+<polygon fill="#000000" stroke="#000000" points="176.33,-16.16 165.74,-16.53 174.25,-22.85 176.33,-16.16"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_particle_comm_module~~UsedByGraph Pages: 1 -->
+<svg id="modulemus_particle_comm_moduleUsedByGraph" width="641pt" height="108pt"
+ viewBox="0.00 0.00 641.00 107.76" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_particle_comm_module~~UsedByGraph" class="graph" transform="scale(0.48 0.48) rotate(0) translate(4 222.45)">
+<title>module~~mus_particle_comm_module~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-222.45 1343,-222.45 1343,4 -4,4"/>
+<!-- module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node1" class="node">
+<title>module~mus_particle_comm_module</title>
+<polygon fill="none" stroke="black" points="166,-74.45 0,-74.45 0,-50.45 166,-50.45 166,-74.45"/>
+<text text-anchor="middle" x="83" y="-60.05" font-family="Helvetica,sans-Serif" font-size="10.50">mus_particle_comm_module</text>
+</g>
+<!-- module~mus_particle_creator_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node2" class="node">
+<title>module~mus_particle_creator_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node2"><a xlink:href="../module/mus_particle_creator_module.html" xlink:title="mus_particle_creator_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="561,-173.45 391,-173.45 391,-149.45 561,-149.45 561,-173.45"/>
+<text text-anchor="middle" x="476" y="-159.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_creator_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge1" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.86,-149.4C377.99,-141.38 325.7,-130.67 279.5,-121.45"/>
+</g>
+<!-- module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node4" class="node">
+<title>module~mus_particle_dps_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node4"><a xlink:href="../module/mus_particle_dps_module.html" xlink:title="mus_particle_DPS_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="355,-74.45 202,-74.45 202,-50.45 355,-50.45 355,-74.45"/>
+<text text-anchor="middle" x="278.5" y="-60.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_DPS_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge12" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M425.4,-149.34C413.79,-145.63 401.69,-141.02 391,-135.45 373.03,-126.08 371.74,-118.88 355,-107.45 340.63,-97.63 324.09,-87.64 310.15,-79.56"/>
+<polygon fill="#000000" stroke="#000000" points="311.84,-76.5 301.42,-74.56 308.36,-82.57 311.84,-76.5"/>
+</g>
+<!-- module~mus_particle_dem_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node3" class="node">
+<title>module~mus_particle_dem_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node3"><a xlink:href="../module/mus_particle_dem_module.html" xlink:title="mus_particle_DEM_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="554,-55.45 398,-55.45 398,-31.45 554,-31.45 554,-55.45"/>
+<text text-anchor="middle" x="476" y="-41.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_DEM_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge2" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M431.42,-31.41C383.16,-18.65 308.38,-0.66 279.5,-3.45"/>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge13" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M397.73,-50.96C387.14,-51.99 376.21,-53.05 365.47,-54.09"/>
+<polygon fill="#000000" stroke="#000000" points="364.86,-50.64 355.25,-55.09 365.54,-57.6 364.86,-50.64"/>
+</g>
+<!-- module~mus_particle_dps_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge3" class="edge">
+<title>module~mus_particle_dps_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M201.86,-62.45C193.48,-62.45 184.87,-62.45 176.32,-62.45"/>
+<polygon fill="#000000" stroke="#000000" points="176.31,-58.95 166.31,-62.45 176.31,-65.95 176.31,-58.95"/>
+</g>
+<!-- module~mus_particle_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node5" class="node">
+<title>module~mus_particle_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node5"><a xlink:href="../module/mus_particle_module.html" xlink:title="mus_particle_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="739,-135.45 612,-135.45 612,-111.45 739,-111.45 739,-135.45"/>
+<text text-anchor="middle" x="675.5" y="-121.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge4" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475,-121.45C388.38,-114.58 364.71,-138.46 279.5,-121.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M277.5,-121.45C224.39,-110.85 165.04,-91.61 126.25,-77.98"/>
+<polygon fill="#000000" stroke="#000000" points="126.96,-74.52 116.36,-74.48 124.62,-81.12 126.96,-74.52"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge8" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M612.01,-135.47C592.1,-139.3 569.91,-143.57 549.36,-147.53"/>
+<polygon fill="#000000" stroke="#000000" points="548.58,-144.11 539.42,-149.44 549.9,-150.99 548.58,-144.11"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_dem_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge9" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_dem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M644.5,-111.3C610.23,-97.41 554.02,-74.65 516.28,-59.36"/>
+<polygon fill="#000000" stroke="#000000" points="517.21,-55.96 506.63,-55.45 514.59,-62.45 517.21,-55.96"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge14" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M611.69,-125.02C572.83,-125.44 521.95,-125.01 477,-121.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475,-121.45C417.49,-116.89 354.11,-94.29 315.55,-78.43"/>
+<polygon fill="#000000" stroke="#000000" points="316.88,-75.19 306.3,-74.55 314.18,-81.64 316.88,-75.19"/>
+</g>
+<!-- module~mus_particle_tests_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node6" class="node">
+<title>module~mus_particle_tests_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node6"><a xlink:href="../module/mus_particle_tests_module.html" xlink:title="mus_particle_tests_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="754,-35.45 597,-35.45 597,-11.45 754,-11.45 754,-35.45"/>
+<text text-anchor="middle" x="675.5" y="-21.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_tests_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge5" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M599.64,-11.42C562.79,-6.64 517.66,-2.46 477,-3.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475,-3.45C388.14,-5.55 365.99,4.89 279.5,-3.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M277.5,-3.45C221.18,-8.88 159.11,-30.84 120.84,-46.37"/>
+<polygon fill="#000000" stroke="#000000" points="119.07,-43.32 111.17,-50.37 121.75,-49.79 119.07,-43.32"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_dem_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge10" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_dem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M596.73,-31.32C586.09,-32.4 575.12,-33.51 564.33,-34.6"/>
+<polygon fill="#000000" stroke="#000000" points="563.65,-31.16 554.06,-35.64 564.36,-38.12 563.65,-31.16"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge15" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475,-3.45C416.19,-4.87 351.48,-29.24 313.23,-46.21"/>
+<polygon fill="#000000" stroke="#000000" points="311.76,-43.03 304.09,-50.34 314.65,-49.41 311.76,-43.03"/>
+</g>
+<!-- module~mus_control_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node7" class="node">
+<title>module~mus_control_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node7"><a xlink:href="../module/mus_control_module.html" xlink:title="mus_control_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="934,-95.45 811,-95.45 811,-71.45 934,-71.45 934,-95.45"/>
+<text text-anchor="middle" x="872.5" y="-81.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge6" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M851.8,-95.54C828.98,-109.1 789.93,-130.94 754,-144.45 720.8,-156.93 711.8,-160.08 676.5,-163.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M674.5,-163.45C640.94,-166.65 604.02,-167.1 571.28,-166.43"/>
+<polygon fill="#000000" stroke="#000000" points="571.34,-162.94 561.26,-166.2 571.17,-169.93 571.34,-162.94"/>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge11" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M810.85,-81.87C772.34,-81.26 721.47,-81.17 676.5,-83.45"/>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge17" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M812.99,-95.45C791.69,-99.82 767.41,-104.8 745.29,-109.34"/>
+<polygon fill="#000000" stroke="#000000" points="744.39,-105.95 735.3,-111.39 745.8,-112.81 744.39,-105.95"/>
+</g>
+<!-- module~mus_particle_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node8" class="node">
+<title>module~mus_particle_config_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node8"><a xlink:href="../module/mus_particle_config_module.html" xlink:title="mus_particle_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="955,-175.45 790,-175.45 790,-151.45 955,-151.45 955,-175.45"/>
+<text text-anchor="middle" x="872.5" y="-161.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_config_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge7" class="edge">
+<title>module~mus_particle_config_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M789.74,-160C754.79,-159.41 713.57,-159.91 676.5,-163.45"/>
+</g>
+<!-- module~mus_program_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node9" class="node">
+<title>module~mus_program_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node9"><a xlink:href="../module/mus_program_module.html" xlink:title="mus_program_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1123,-134.45 991,-134.45 991,-110.45 1123,-110.45 1123,-134.45"/>
+<text text-anchor="middle" x="1057" y="-120.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_program_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge16" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1041.44,-110.31C1022.79,-95.63 988.83,-71.74 955,-62.45 884.28,-43.03 863.03,-55.75 790,-62.45 738.91,-67.13 727.73,-80.85 676.5,-83.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M674.5,-83.45C567.87,-87.1 445.19,-78.58 365.21,-71.33"/>
+<polygon fill="#000000" stroke="#000000" points="365.47,-67.83 355.19,-70.4 364.82,-74.8 365.47,-67.83"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge18" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M990.76,-122.62C923.6,-122.8 819.18,-123.07 749.35,-123.26"/>
+<polygon fill="#000000" stroke="#000000" points="749.3,-119.76 739.31,-123.28 749.32,-126.76 749.3,-119.76"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge19" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M999.75,-110.43C980.76,-106.37 959.38,-101.8 939.69,-97.59"/>
+<polygon fill="#000000" stroke="#000000" points="940.38,-94.16 929.87,-95.5 938.92,-101.01 940.38,-94.16"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge22" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1002.23,-134.53C981.81,-139.12 958.35,-144.39 937.11,-149.16"/>
+<polygon fill="#000000" stroke="#000000" points="936.19,-145.78 927.2,-151.38 937.72,-152.61 936.19,-145.78"/>
+</g>
+<!-- module~mus_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node10" class="node">
+<title>module~mus_config_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node10"><a xlink:href="../module/mus_config_module.html" xlink:title="mus_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1116.5,-176.45 997.5,-176.45 997.5,-152.45 1116.5,-152.45 1116.5,-176.45"/>
+<text text-anchor="middle" x="1057" y="-162.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_config_module&#45;&gt;module~mus_particle_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge21" class="edge">
+<title>module~mus_config_module&#45;&gt;module~mus_particle_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M997.25,-164.13C986.96,-164.07 976.03,-164.01 965.1,-163.95"/>
+<polygon fill="#000000" stroke="#000000" points="965.1,-160.45 955.08,-163.9 965.06,-167.45 965.1,-160.45"/>
+</g>
+<!-- program~musubi -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node11" class="node">
+<title>program~musubi</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node11"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1276,-134.45 1222,-134.45 1222,-110.45 1276,-110.45 1276,-134.45"/>
+<text text-anchor="middle" x="1249" y="-120.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge20" class="edge">
+<title>program~musubi&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1221.77,-117.3C1196.55,-112.52 1157.3,-105.56 1123,-101.45 1062.89,-94.25 994.27,-89.55 944.22,-86.77"/>
+<polygon fill="#000000" stroke="#000000" points="944.33,-83.27 934.15,-86.22 943.95,-90.26 944.33,-83.27"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_program_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge23" class="edge">
+<title>program~musubi&#45;&gt;module~mus_program_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1221.98,-122.45C1199.14,-122.45 1164.77,-122.45 1133.39,-122.45"/>
+<polygon fill="#000000" stroke="#000000" points="1133.32,-118.95 1123.32,-122.45 1133.32,-125.95 1133.32,-118.95"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge26" class="edge">
+<title>program~musubi&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1221.98,-128.2C1196.45,-133.84 1156.5,-142.67 1122.42,-150.21"/>
+<polygon fill="#000000" stroke="#000000" points="1121.53,-146.82 1112.52,-152.4 1123.04,-153.65 1121.53,-146.82"/>
+</g>
+<!-- module~mus_hvs_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node12" class="node">
+<title>module~mus_hvs_config_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node12"><a xlink:href="../module/mus_hvs_config_module.html" xlink:title="mus_hvs_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1320,-176.45 1178,-176.45 1178,-152.45 1320,-152.45 1320,-176.45"/>
+<text text-anchor="middle" x="1249" y="-162.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_hvs_config_module&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge24" class="edge">
+<title>module~mus_hvs_config_module&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1177.79,-164.45C1161.16,-164.45 1143.43,-164.45 1126.86,-164.45"/>
+<polygon fill="#000000" stroke="#000000" points="1126.71,-160.95 1116.71,-164.45 1126.71,-167.95 1126.71,-160.95"/>
+</g>
+<!-- module~mus_interpolate_verify_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_node13" class="node">
+<title>module~mus_interpolate_verify_module</title>
+<g id="a_module~~mus_particle_comm_module~~UsedByGraph_node13"><a xlink:href="../module/mus_interpolate_verify_module.html" xlink:title="mus_interpolate_verify_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1339,-218.45 1159,-218.45 1159,-194.45 1339,-194.45 1339,-218.45"/>
+<text text-anchor="middle" x="1249" y="-204.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_verify_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_verify_module&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_comm_module~~UsedByGraph_edge25" class="edge">
+<title>module~mus_interpolate_verify_module&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1193.55,-194.41C1171.39,-189.51 1145.61,-183.81 1122.51,-178.71"/>
+<polygon fill="#000000" stroke="#000000" points="1122.97,-175.23 1112.45,-176.49 1121.46,-182.06 1122.97,-175.23"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_particle_comm_moduleUsedByGraph = svgPanZoom('#modulemus_particle_comm_moduleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+
+
+
+
+
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_particles_initialize_communication"></span> <h3>public  subroutine <a href='../proc/mus_particles_initialize_communication.html'>mus_particles_initialize_communication</a>(particleGroup, scheme, geometry, params)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~18"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td></td>
+              <td></td>            <td>
+              target
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>Array of particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~33"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme for access to leveldescriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~23"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry for access to tree</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~35"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>Params for access to dt, dx, etc.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_particles_comm_init_buffers"></span> <h3>public  subroutine <a href='../proc/mus_particles_comm_init_buffers.html'>mus_particles_comm_init_buffers</a>(particleGroup, nProcs, maxParticles)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~19"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td></td>
+              <td></td>            <td>
+              target
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>Array of particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nprocs~5"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nProcs</strong></td>
+            <td>
+<p>Number of processes to communicate with</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-maxparticles~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>maxParticles</strong></td>
+            <td>
+<p>Maximum number of particles that can be held in communication buffer</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangeparticlestoremove"></span> <h3>public  subroutine <a href='../proc/exchangeparticlestoremove.html'>exchangeParticlesToRemove</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>If a particle is removed from the global domain (e.g. after colliding with an open boundary)
+then exchangeParticlesToRemove will send messages informing all other processes
+that this particle should be removed.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~12"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~3"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~3"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~8"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangeparticlestoremove_dps"></span> <h3>public  subroutine <a href='../proc/exchangeparticlestoremove_dps.html'>exchangeParticlesToRemove_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>If a particle is removed from the global domain (e.g. after colliding with an open boundary)
+then exchangeParticlesToRemove will send messages informing all other processes
+that this particle should be removed.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~13"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~4"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~4"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~3"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangeforces"></span> <h3>public  subroutine <a href='../proc/exchangeforces.html'>exchangeForces</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeForces send force contributions from each process on which a particle
+exists to the particle owner. The total hydrodynamic force is then computed by
+the particle owner as the sum of all the force contributions (which physically are
+the surface forces from the part of the particle surface handled by each process).
+The owner then updates particle velocity in a subsequent call to a different routine.
+For momentum-exchange method only!</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~14"></span>
+              class(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~5"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~5"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~10"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~13"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-resetforcebuffers"></span> <h3>public  subroutine <a href='../proc/resetforcebuffers.html'>resetForceBuffers</a>(this)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~15"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-addcollisionforcetobuffer"></span> <h3>public  subroutine <a href='../proc/addcollisionforcetobuffer.html'>addCollisionForceToBuffer</a>(particleGroup, recvRankIndex, Fcoll, particleID)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>addCollisionForceToBuffer adds DEM collision force Fcoll to the force buffer sent to
+particle with id particleID on rank recvRankIndex.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~20"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recvrankindex"></span>
+              integer
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recvRankIndex</strong></td>
+            <td>
+<p>Index of receiving rank in particleGroup%send%buf_force(recvRankIndex)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fcoll"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Fcoll</strong>(3)</td>
+            <td>
+<p>Collision force to add to buffer</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleid~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleID</strong></td>
+            <td>
+<p>ID of particle to which collision force should be applied</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-dem_exchangeforces_dps"></span> <h3>public  subroutine <a href='../proc/dem_exchangeforces_dps.html'>DEM_exchangeForces_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>DEM_exchangeForces sends DEM collision force contributions from collisions that
+cannot be resolved by the receiving process. The send force buffers in this case must
+already be filled in the DEM collision-handling routines!</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~16"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~6"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~6"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~14"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~5"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-dem_exchangeforces"></span> <h3>public  subroutine <a href='../proc/dem_exchangeforces.html'>DEM_exchangeForces</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>DEM_exchangeForces sends DEM collision force contributions from collisions that
+cannot be resolved by the receiving process. The send force buffers in this case must
+already be filled in the DEM collision-handling routines!</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~17"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~7"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~7"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~15"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~6"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-dem_exchangewallpositions"></span> <h3>public  subroutine <a href='../proc/dem_exchangewallpositions.html'>DEM_exchangeWallPositions</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>DEM_exchangeWallPositions sends wall position sums close to a particle as detected on each process
+to the particle owner, which averages the results to get one average wall position
+Upon termination of this routine particle%rwall for all particles which I own should be set
+correctly.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~18"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~8"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~8"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~13"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~16"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-dem_exchangewallpositions_dps"></span> <h3>public  subroutine <a href='../proc/dem_exchangewallpositions_dps.html'>DEM_exchangeWallPositions_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>DEM_exchangeWallPositions sends wall position sums close to a particle as detected on each process
+to the particle owner, which averages the results to get one average wall position
+Upon termination of this routine particle%rwall for all particles which I own should be set
+correctly.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~19"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~9"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~9"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~14"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~17"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~8"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangepositions"></span> <h3>public  subroutine <a href='../proc/exchangepositions.html'>exchangePositions</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangePositions exchanges particles continuous positions after they
+have been updated by the particle owner. Each process sends position updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~20"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~10"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~10"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~15"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~18"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangepositions_dps"></span> <h3>public  subroutine <a href='../proc/exchangepositions_dps.html'>exchangePositions_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangePositions exchanges particles continuous positions after they
+have been updated by the particle owner. Each process sends position updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~21"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~11"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~11"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~16"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~19"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~10"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangevelocities"></span> <h3>public  subroutine <a href='../proc/exchangevelocities.html'>exchangeVelocities</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeVelocities exchanges particles continuous velocities after they
+have been updated by the particle owner. Each process sends velocity updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~22"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~12"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~12"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~17"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~20"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangevelocities_dps"></span> <h3>public  subroutine <a href='../proc/exchangevelocities_dps.html'>exchangeVelocities_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeVelocities exchanges particles continuous velocities after they
+have been updated by the particle owner. Each process sends velocity updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~23"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~13"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~13"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~18"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~21"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangehydroforces_dps"></span> <h3>public  subroutine <a href='../proc/exchangehydroforces_dps.html'>exchangeHydroForces_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeHydroForces_DPS exchanges particles hydrodynamic forces after they
+have been updated by the particle owner. Each process sends force updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~24"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~14"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~14"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~19"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~22"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~13"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangeparticlestates"></span> <h3>public  subroutine <a href='../proc/exchangeparticlestates.html'>exchangeParticleStates</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeParticleStates is used to exchange particle (continuous) position
+and velocity as well as the integer coordOfOrigin. This is necessary for
+(for example) the collision handling routines</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~25"></span>
+              class(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~15"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~15"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~20"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~23"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~14"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangenewparticles_mem"></span> <h3>public  subroutine <a href='../proc/exchangenewparticles_mem.html'>exchangeNewParticles_MEM</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeNewParticles sends all the data needed to initialize a particle on
+a process. This is needed when a particle travels from one process to another.
+The data is used to add the particle to the receiving process particleGroup.
+This only creates a continuous representation of the particle on the receiving
+process. A subsequent call to a different routine then maps this to the discrete
+representation in the form of elements in the exclusionList.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~26"></span>
+              class(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~16"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~16"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~21"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~24"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~15"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangenewparticles_dps"></span> <h3>public  subroutine <a href='../proc/exchangenewparticles_dps.html'>exchangeNewParticles_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeNewParticles sends all the data needed to initialize a particle on
+a process. This is needed when a particle travels from one process to another.
+The data is used to add the particle to the receiving process particleGroup.
+This only creates a continuous representation of the particle on the receiving
+process. A subsequent call to a different routine then maps this to the discrete
+representation in the form of elements in the exclusionList.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~27"></span>
+              class(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~17"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~17"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~22"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~25"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~16"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-exchangemominc_dps"></span> <h3>public  subroutine <a href='../proc/exchangemominc_dps.html'>exchangeMomInc_DPS</a>(this, send, recv, comm, myRank, message_flag)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>exchangeMomInc_DPS send the accumulated momentum transfer FROM particles TO fluid
+from a particle's previous owner to its new owner.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~28"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>particleGroup of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-send~18"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>send</strong></td>
+            <td>
+<p>Communication type for sending force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-recv~18"></span>
+              type(<a href='../type/mus_particles_communication_type.html'>mus_particles_communication_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>recv</strong></td>
+            <td>
+<p>Communication type for receiving force contributions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-comm~23"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>comm</strong></td>
+            <td>
+<p>MPI communicator</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~26"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Rank of this process</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message_flag~17"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message_flag</strong></td>
+            <td>
+<p>Flag for message (in Musubi this is just iLevel, don't think we really
+need this here)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-04-24T09:44:22.475563+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

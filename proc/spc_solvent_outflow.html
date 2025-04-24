@@ -12,14 +12,29 @@
 
     <title>spc_solvent_outflow &ndash; Musubi</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../css/local.css" rel="stylesheet">
-      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/pygments.css" rel="stylesheet">
     <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -80,7 +95,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.2% of total for procedures.">74 statements</a>
+                 title=" 0.1% of total for procedures.">74 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -101,9 +116,11 @@
     </div>
   </div>
   <script>
-    $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip()
-    })
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
   </script>
 
   </div>
@@ -148,10 +165,10 @@
  method. Default qVal = 0.0
  Usage</p>
 <hr>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
- <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;outlet&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;spc_solvent_outflow&#39;</span><span class="p">,</span>
- <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;outlet&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;spc_solvent_outflow&#39;</span><span class="p">,</span>
+<span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -173,7 +190,7 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~174"></span>
+              <span class="anchor" id="variable-me~113"></span>
               class(<a href='../type/boundary_type.html'>boundary_type</a>)
             </td>
 <td></td>
@@ -188,7 +205,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~124"></span>
+              <span class="anchor" id="variable-state~53"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -203,7 +220,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-bcbuffer~77"></span>
+              <span class="anchor" id="variable-bcbuffer~33"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -218,7 +235,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-globbc~101"></span>
+              <span class="anchor" id="variable-globbc~52"></span>
               type(<a href='../type/glob_boundary_type.html'>glob_boundary_type</a>),
             </td>
 <td>intent(in)</td>
@@ -233,7 +250,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-leveldesc~104"></span>
+              <span class="anchor" id="variable-leveldesc~58"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
             </td>
 <td>intent(in)</td>
@@ -248,7 +265,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tree~158"></span>
+              <span class="anchor" id="variable-tree~110"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
             </td>
 <td>intent(in)</td>
@@ -263,7 +280,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~127"></span>
+              <span class="anchor" id="variable-nsize~50"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -278,7 +295,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~259"></span>
+              <span class="anchor" id="variable-ilevel~182"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -293,7 +310,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sim_time~74"></span>
+              <span class="anchor" id="variable-sim_time~30"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -308,7 +325,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~197"></span>
+              <span class="anchor" id="variable-neigh~103"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -323,7 +340,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~227"></span>
+              <span class="anchor" id="variable-layout~136"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(in)</td>
@@ -338,7 +355,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-fieldprop~147"></span>
+              <span class="anchor" id="variable-fieldprop~72"></span>
               type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
             </td>
 <td>intent(in)</td>
@@ -353,7 +370,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varpos~99"></span>
+              <span class="anchor" id="variable-varpos~48"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -368,7 +385,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nscalars~203"></span>
+              <span class="anchor" id="variable-nscalars~108"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -383,7 +400,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~303"></span>
+              <span class="anchor" id="variable-varsys~222"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -398,7 +415,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~205"></span>
+              <span class="anchor" id="variable-dervarpos~104"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -413,7 +430,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-physics~106"></span>
+              <span class="anchor" id="variable-physics~39"></span>
               type(<a href='../type/mus_physics_type.html'>mus_physics_type</a>),
             </td>
 <td>intent(in)</td>
@@ -428,7 +445,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ifield~159"></span>
+              <span class="anchor" id="variable-ifield~86"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -443,7 +460,7 @@
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-mixture~77"></span>
+              <span class="anchor" id="variable-mixture~31"></span>
               type(<a href='../type/mus_mixture_type.html'>mus_mixture_type</a>),
             </td>
 <td>intent(in)</td>
@@ -674,40 +691,18 @@ implementation in a submodule of an interface in a parent module.
           <div class="col">
             <p>
               Musubi
- was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>03d36e6f940c</small></p>
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-29T18:19:33.949870+0000             </p>
+ on 2025-04-24T09:44:22.475563+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

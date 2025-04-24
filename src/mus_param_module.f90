@@ -84,6 +84,15 @@ module mus_param_module
     !! vice versa
     type(mus_physics_type) :: physics
 
+    !> Type of particle modeling to use:
+    !!
+    !! Available kinds:
+    !! * Momentum-exchange method (kind = 'MEM')
+    !! * Discrete Particle Simulations (kind = 'DPS')
+    !! * One-way coupled Discrete Particle Simulations (kind = 'DPS_oneway')
+    !! Default: 'none'
+    character(len=labelLen) :: particle_kind = 'none'
+
     !> type of the control routine
     character(len=labelLen) :: controlRoutine
     !> initialize all elements with valid entries?

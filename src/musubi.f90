@@ -9,6 +9,7 @@
 ! Copyright (c) 2014 Julia Moos <julia.moos@student.uni-siegen.de>
 ! Copyright (c) 2016 Tobias Schneider <tobias1.schneider@student.uni-siegen.de>
 ! Copyright (c) 2016 Raphael Haupt <raphael.haupt@uni-siegen.de>
+! Copyright (c) 2025 Tristan Vlogman <t.g.vlogman@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -60,17 +61,27 @@ program musubi
     &                                      mus_finalize
   use mus_varSys_module,             only: mus_varSys_solverData_type
 
+  ! include modules for coupled LBM-DEM simulations of solid particles
+  use mus_particle_type_module,      only: mus_particle_group_type
+  use mus_particle_timer_module,     only: mus_init_particleTimer
+
   implicit none
   ! -------------------------------------------------------------------------- !
   !> scheme types
   type(mus_scheme_type),            target :: scheme
   type(mus_geom_type),              target :: geometry
   type(mus_param_type),             target :: params
+  type(mus_particle_group_type),    target :: particleGroup
   type(mus_varSys_solverData_type), target :: solverData
-  type(mus_control_type)                   :: control
   type(tem_adapt_type)                     :: adapt
+  type(mus_control_type)                   :: control
   integer :: ierr
   ! -------------------------------------------------------------------------- !
+
+  control = mus_control_type( scheme        = scheme,       &
+    &                         geometry      = geometry,     &
+    &                         params        = params,       &
+    &                         particleGroup = particleGroup )
 
   ! Initialize environment
   call tem_start(codeName   = 'Musubi',                 &
@@ -83,13 +94,15 @@ program musubi
   end if
 
   call mus_init_mainTimer()
+  call mus_init_particleTimer
 
   ! load configuration file
-  call mus_load_config( scheme     = scheme,     &
-    &                   solverData = solverData, &
-    &                   geometry   = geometry,   &
-    &                   params     = params,     &
-    &                   adapt      = adapt       )
+  call mus_load_config( scheme        = scheme,       &
+    &                   solverData    = solverData,   &
+    &                   geometry      = geometry,     &
+    &                   params        = params,       &
+    &                   adapt         = adapt,        &
+    &                   particleGroup = particleGroup )
 
   ! KM: Do not move this init_levelTimer and init_bcTimer from here,
   ! Need to be here for apesmate
@@ -98,11 +111,12 @@ program musubi
   call mus_init_bcTimer( geometry%boundary%nBCtypes )
 
   ! initialize musubi
-  call mus_initialize( scheme     = scheme,     &
-    &                  solverData = solverData, &
-    &                  geometry   = geometry,   &
-    &                  params     = params,     &
-    &                  control    = control     )
+  call mus_initialize( scheme        = scheme,        &
+    &                  solverData    = solverData,    &
+    &                  geometry      = geometry,      &
+    &                  params        = params,        &
+    &                  particleGroup = particleGroup, &
+    &                  control       = control        )
 
   call mpi_barrier( MPI_COMM_WORLD, ierr )
 
@@ -114,13 +128,14 @@ program musubi
     &             control    = control,    &
     &             adapt      = adapt       )
 
-  ! finialize musubi
-  call mus_finalize( scheme       = scheme,                     &
-    &                params       = params,                     &
-    &                tree         = geometry%tree,              &
-    &                nBCs         = geometry%boundary%nBCtypes, &
-    &                levelPointer = geometry%levelPointer,      &
-    &                globIBM      = geometry%globIBM            )
+  ! finalize musubi
+  call mus_finalize( scheme        = scheme,                     &
+    &                params        = params,                     &
+    &                particleGroup = particleGroup,              &
+    &                tree          = geometry%tree,              &
+    &                nBCs          = geometry%boundary%nBCtypes, &
+    &                levelPointer  = geometry%levelPointer,      &
+    &                globIBM       = geometry%globIBM            )
 
   ! finalize treelm function like print run time info and mpi
   call tem_finalize(params%general)

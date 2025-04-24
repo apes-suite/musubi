@@ -13,14 +13,29 @@
     <title>All Procedures &ndash; Musubi
 </title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../css/local.css" rel="stylesheet">
-      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/pygments.css" rel="stylesheet">
     <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -140,6 +155,49 @@ routine.</p><a href="../proc/access_bcturbvisc_forelement.html" class="pull-righ
                  <td><p>This routine returns the turbulent viscosity</p><a href="../proc/access_turbvisc_forelement.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/add_momentum_increment_to_auxfield.html'>add_Momentum_Increment_to_Auxfield</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Add a momentum increment to element with PosInTotal in total list</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/addcollisionforcetobuffer.html'>addCollisionForceToBuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>addCollisionForceToBuffer adds DEM collision force Fcoll to the force buffer sent to
+particle with id particleID on rank recvRankIndex.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/addforcetoauxfieldcell.html'>addForceToAuxFieldCell</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>ModifyAuxFieldCell is a helper routine that modifies the auxfield in the cell with
+position elemPos in the total list. It takes the total force F_particle and the vector
+r_lat (in lattice units) pointing from the particle location to the barycenter of the
+fluid element, then computes the weight and modifies the auxField.
+Performing addForceToAuxFieldCell over every neighboring cell around a particle
+(including the one the particle is on) distributes the entire force.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/addparticlesourcetoauxfield_dps.html'>addParticleSourceToAuxfield_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to modify the auxField (velocity) with the forces exerted
+by particles on the fluid</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/advance_particles_dps.html'>advance_particles_DPS</a></td>
+                 <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/advance_particles_mem.html'>advance_particles_MEM</a></td>
+                 <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/allocate_mombuf.html'>allocate_momBuf</a></td>
                  <td><a href='../module/mus_pdf_module.html'>mus_pdf_module</a></td>
                  <td>Subroutine</td>
@@ -150,6 +208,83 @@ routine.</p><a href="../proc/access_bcturbvisc_forelement.html" class="pull-righ
                  <td><a href='../module/mus_construction_module.html'>mus_construction_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Allocate BC lists, 2nd step in Build_BClists</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/allocateprocessmasks.html'>allocateProcessMasks</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/allocateprocessmasks~2.html'>allocateProcessMasks</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/allocateprocessmasks_dps.html'>allocateProcessMasks_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/allocateprocessmasks_mem.html'>allocateProcessMasks_MEM</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine for allocating the existsOnProc, addToProc and removeFromProc
+masks used to determine when particles should be sent over to new processes
+or which processes need to receive position, velocity updates etc.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/append_da_particle_dps.html'>append_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/append_da_particle_mem.html'>append_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applydragforce_dps.html'>applyDragForce_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to calculate the drag force according to
+[1] S. Tenneti, R. Garg, and S. Subramaniam, “Drag law for monodisperse
+gas–solid systems using particle-resolved direct numerical simulation of flow
+past fixed assemblies of spheres,” International Journal of Multiphase Flow,
+vol. 37, no. 9, pp. 1072–1092, Nov. 2011, doi:
+10.1016/j.ijmultiphaseflow.2011.05.010.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applydragforce_dps_noeps.html'>applyDragForce_DPS_noeps</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applyhydrodynamicforces.html'>applyHydrodynamicForces</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>ApplyHydrodynamicForces performs the momentum transfer
+from fluid TO particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applyliftforce_dps.html'>applyLiftForce_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>applyLiftForce_DPS computes the Saffman lift force on a particle according to
+the paper :
+  Saffman PG. The lift on a small sphere in a slow shear flow.
+  J Fluid Mech 1965;22(2):385–400. doi:10.1017/S0 022112065000824.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applypressureforce_dps.html'>applyPressureForce_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Calculate the pressure gradient force on a particle</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/applysrc_absorblayer.html'>applySrc_absorbLayer</a></td>
@@ -318,6 +453,14 @@ Force term used here is from:
 turbulent flows", K. Suga, Y. Kuwata, K. Takashima, R. Chikasue</p><a href="../proc/applysrc_force1stord.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/applysrc_force_gns.html'>applySrc_force_GNS</a></td>
+                 <td><a href='../module/mus_derquan_module.html'>mus_derQuan_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update state with source variable "force" for Generalized Navier-Stokes equations.
+The implementation is taken from "Lattice Boltzmann model for incompressible flows
+through porous media" by Z. Guo and T.S. Zhao (2002) Physical Review E.</p><a href="../proc/applysrc_force_gns.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/applysrc_force_mrt.html'>applySrc_force_MRT</a></td>
                  <td><a href='../module/mus_derquan_module.html'>mus_derQuan_module</a></td>
                  <td>Subroutine</td>
@@ -433,6 +576,18 @@ Similar to derive routine but it updates the state whereas derive
 is used for tracking</p><a href="../proc/applysrc_injectionps.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/applysrc_toelem.html'>applySrc_toElem</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/applysrc_toelem_eps.html'>applySrc_toElem_eps</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/applysrc_turbchanforce.html'>applySrc_turbChanForce</a></td>
                  <td><a href='../module/mus_derquan_module.html'>mus_derQuan_module</a></td>
                  <td>Subroutine</td>
@@ -471,6 +626,14 @@ for turb_channel_force. It uses velocityX average in bulk to adapt the
 driving force for turbulent channel.</p><a href="../proc/applysrc_turbchanforce_mrt_d3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/applyvelocitybounceback.html'>applyVelocityBounceback</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>ApplyVelocityBounceback adds the momentum exchange term to the
+distribution function at the particle  neighboring fluid nodes
+this term accounts for the moving boundary of the particle.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/assign_intp_fluid.html'>assign_intp_fluid</a></td>
                  <td><a href='../module/mus_interpolate_module.html'>mus_interpolate_module</a></td>
                  <td>Subroutine</td>
@@ -499,6 +662,17 @@ Assign all common boundaries to the level-wise representation
                  <td>Subroutine</td>
                  <td><p>Boundary condition for APESMATE that supports pdfs as input variable
  Makes it possible to use pdf from, for example, the left to the right domain</p><a href="../proc/bc_pdf.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/bgk_advrel_d3q19_gns.html'>bgk_advRel_d3q19_GNS</a></td>
+                 <td><a href='../module/mus_d3q19_module.html'>mus_d3q19_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Advection relaxation routine for the D3Q19 model with BGK based on the !!
+equilibrium distribution function for the generalized Navier Stokes equations
+(GNS) aka Volume Averaged Navier-Stokes !! equations (VANS).
+feq definition from: Z. Guo and T. S. Zhao, “Lattice Boltzmann model for
+incompressible flows through porous media,” Phys. Rev. E, vol. 66, no. 3, p.
+036304, Sep. 2002, doi: 10.1103/PhysRevE.66.036304.</p><a href="../proc/bgk_advrel_d3q19_gns.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/bgk_advrel_d3q19f3_msgas.html'>bgk_advRel_d3q19f3_MSGas</a></td>
@@ -561,7 +735,7 @@ with thermodynamic factors in Maxwell-Stefan formulation</p><a href="../proc/bgk
                  <td><p>Recursive Regularized relaxation routine for the D3Q19
 This subroutine interface must match the abstract interface definition
 <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
-via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
 works for both d3q19 and d3q27</p></td>
                </tr>
 			   <tr>
@@ -571,7 +745,7 @@ works for both d3q19 and d3q27</p></td>
                  <td><p>Recursive Regularized relaxation routine for the D3Q27
 This subroutine interface must match the abstract interface definition
 <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
-via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.</p></td>
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/bgk_forcing_advrel_msliquid_generic.html'>bgk_forcing_advRel_MSLiquid_generic</a></td>
@@ -596,7 +770,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Projected Recursive Regularized relaxation routine for the D3Q19
  This subroutine interface must match the abstract interface definition
  <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
- via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+ via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
  works for both d3q19 and d3q27</p><a href="../proc/bgk_hybridrecursiveregularized_d3q19.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
@@ -606,7 +780,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Projected Recursive Regularized relaxation routine for the D3Q19
  This subroutine interface must match the abstract interface definition
  <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
- via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+ via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
  works for both d3q19 and d3q27</p><a href="../proc/bgk_hybridrecursiveregularized_d3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
@@ -625,7 +799,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Projected Recursive Regularized relaxation routine for the D3Q19
  This subroutine interface must match the abstract interface definition
  <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
- via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+ via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
  works for both d3q19 and d3q27</p><a href="../proc/bgk_hybridrecursiveregularizedcorr_d3q19.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
@@ -635,7 +809,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Projected Recursive Regularized relaxation routine for the D3Q19
  This subroutine interface must match the abstract interface definition
  <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
- via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+ via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
  works for both d3q19 and d3q27</p><a href="../proc/bgk_hybridrecursiveregularizedcorr_d3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
@@ -651,7 +825,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Projected Recursive Regularized relaxation routine for the D3Q19
  This subroutine interface must match the abstract interface definition
  <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
- via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+ via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
  works for both d3q19 and d3q27</p><a href="../proc/bgk_projectedrecursiveregularized_d3q19.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
@@ -661,7 +835,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Projected Recursive Regularized relaxation routine for the D3Q27
  This subroutine interface must match the abstract interface definition
  <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
- via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.</p><a href="../proc/bgk_projectedrecursiveregularized_d3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+ via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.</p><a href="../proc/bgk_projectedrecursiveregularized_d3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/bgk_recursiveregularized_d2q9.html'>bgk_RecursiveRegularized_d2q9</a></td>
@@ -676,7 +850,7 @@ for high subsonic compressible flows"</p><a href="../proc/bgk_hybridrecursivereg
                  <td><p>Recursive Regularized relaxation routine for the D3Q19
 This subroutine interface must match the abstract interface definition
 <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
-via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
 works for both d3q19 and d3q27</p></td>
                </tr>
 			   <tr>
@@ -686,7 +860,7 @@ works for both d3q19 and d3q27</p></td>
                  <td><p>Recursive Regularized relaxation routine for the D3Q27
 This subroutine interface must match the abstract interface definition
 <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
-via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.</p></td>
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/bgk_regularized_d2q9.html'>bgk_Regularized_d2q9</a></td>
@@ -701,7 +875,7 @@ via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> functi
                  <td><p>Regularized relaxation routine for the D3Q19 and 27 model with BGK.
 This subroutine interface must match the abstract interface definition
 <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
-via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
 works for both d3q19 and d3q27</p></td>
                </tr>
 			   <tr>
@@ -711,7 +885,7 @@ works for both d3q19 and d3q27</p></td>
                  <td><p>Regularized relaxation routine for the D3Q19 and 27 model with BGK.
 This subroutine interface must match the abstract interface definition
 <a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
-via <a href="../type/mus_scheme_type.html#variable-compute~4">compute</a> function pointer.
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.
 works for both d3q19 and d3q27</p></td>
                </tr>
 			   <tr>
@@ -748,6 +922,12 @@ for given mole_frac of all species</p></td>
 for given mole_frac of all species</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/calc_surface_vel.html'>calc_surface_vel</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../interface/calc_therm_factor_loc.html'>calc_therm_factor_loc</a></td>
                  <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
                  <td>Interface</td>
@@ -763,6 +943,28 @@ velocity from given pdf of all species for single element.
 It is used in Nonequilbrium extrapolation based boundary conditions.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/calcperiodicdistancetosurface.html'>calcPeriodicDistanceToSurface</a></td>
+                 <td><a href='../module/mus_particle_boundary_module.html'>mus_particle_boundary_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>wrap_periodic checks whether a distance r from x_particle to </p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calcperiodicrsurface.html'>calcPeriodicRsurface</a></td>
+                 <td><a href='../module/mus_particle_boundary_module.html'>mus_particle_boundary_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>calcPeriodicRsurface is used to calculate the vector from the 
+particle origin to a point on the surface in presence of periodic 
+boundaries.
+Usage: first calculate the distance from the particle origin to a 
+surface element using r = baryOfSurface - x_origin. If the particle is 
+close to a periodic boundary this vector may not be correct.
+In that case a call to calcPeriodicRsurface modifies the vector r to 
+take into account the periodicity. This is done by checking if the 
+magnitude of r is less than the particle radius R_particle (which can 
+be modified with some tolerance if needed).
+This routine is used for fully resolved (MEM) particles only.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/calcturbwallbndforceandmoment.html'>calcTurbWallBndForceAndMoment</a></td>
                  <td><a href='../module/mus_bc_fluid_turbulent_module.html'>mus_bc_fluid_turbulent_module</a></td>
                  <td>Subroutine</td>
@@ -774,6 +976,30 @@ exchange method.</p></td>
                  <td><a href='../module/mus_construction_module.html'>mus_construction_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Calculate global and sum of levels numbers of elements</p><a href="../proc/calculate_nelems.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calcvelocityandpressuregradient.html'>calcVelocityAndPressureGradient</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>calcVelocityAndPressureGradient calculates the gradient of pressure and
+curl of the velocity field (in lattice units) at coordinate coord
+Coord must be a local element on this process!</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calcvelocityandpressuregradient_onewaycoupled.html'>calcVelocityAndPressureGradient_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>calcVelocityAndPressureGradient calculates the gradient of pressure and
+curl of the velocity field (in lattice units) at coordinate coord
+Coord must be a local element on this process!</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/calcvelocityandpressuregradient_onewaycoupled_old.html'>calcVelocityAndPressureGradient_onewaycoupled_old</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>calcVelocityAndPressureGradient calculates the gradient of pressure and
+curl of the velocity field (in lattice units) at coordinate coord
+Coord must be a local element on this process!</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/calcvelsw_unitsw_veltau_tvisc.html'>calcVelSW_unitSW_velTau_tVisc</a></td>
@@ -852,6 +1078,18 @@ This follows equations 43, 44, 45 in cumulent paper (Geier .et al 2015)
 We first do x direction for better performance.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/check_and_create_new_particles_dps.html'>check_and_create_new_particles_DPS</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine that checks if new particles should be created and creates them if so.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/check_and_create_new_particles_mem.html'>check_and_create_new_particles_MEM</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine that checks if new particles should be created and creates them if so.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/check_bcs_prerequisite_ms.html'>check_BCs_preRequisite_MS</a></td>
                  <td><a href='../module/mus_bc_general_module.html'>mus_bc_general_module</a></td>
                  <td>Subroutine</td>
@@ -881,6 +1119,24 @@ tracking, density checking, restart</p></td>
                  <td><a href='../module/mus_mrtinit_module.html'>mus_mrtInit_module</a></td>
                  <td>Function</td>
                  <td><p>Unoptimized explicit implementation</p><a href="../proc/check_mrt_matrix_d3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/check_particle_scheme_kind_compatibility.html'>check_particle_scheme_kind_compatibility</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/check_particles_dps.html'>check_particles_DPS</a></td>
+                 <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/check_particles_mem.html'>check_particles_MEM</a></td>
+                 <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/check_potential.html'>check_potential</a></td>
@@ -929,6 +1185,46 @@ variables loaded are pdf variable or derive variable</p><a href="../proc/check_v
                  <td><p>Check the maximum velocity whether it is above Ma&gt;0.1</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../interface/checkandcollidedem.html'>checkAndCollideDEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/checkandcollidedem_dps.html'>checkAndCollideDEM_DPS</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>checkAndCollideDEM checks if two particles A and B collide
+This is the case if the continuous representations overlap
+If there is a collision, a collision force is applied to each particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/checkandcollidedem_mem.html'>checkAndCollideDEM_MEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>checkAndCollideDEM checks if two particles A and B collide
+This is the case if the continuous representations overlap
+If there is a collision, a collision force is applied to each particle
+checkAndCollideDEM checks if two particles A and B collide
+This is the case if the continuous representations overlap
+If there is a collision, a collision force is applied to each particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/checkforparticleoverlap.html'>checkForParticleOverlap</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>handleParticleOverlap checks for overlap with discrete representations
+of other particles. Returns overlapsOtherParticle = TRUE if
+there is overlap. This does not require communication with other
+processes.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/closeparticlelog.html'>closeParticleLog</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/cm_to_pdf.html'>cm_to_pdf</a></td>
                  <td><a href='../module/mus_compute_cumulant_module.html'>mus_compute_cumulant_module</a></td>
                  <td>Function</td>
@@ -948,6 +1244,14 @@ variables loaded are pdf variable or derive variable</p><a href="../proc/check_v
 omega_bulk = (2-molWeigRatio_k)/(3*bulk_visc)</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/compute_fluid_momentum.html'>compute_fluid_momentum</a></td>
+                 <td><a href='../module/mus_particle_checks_module.html'>mus_particle_checks_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>compute_fluid_momentum calculates the total momentum of the fluid for all 
+fluid elements in the global domain. The result "totalMomentum" is returned 
+in physical units.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/compute_fricvel.html'>compute_fricVel</a></td>
                  <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
                  <td>Subroutine</td>
@@ -962,10 +1266,43 @@ using Newton iteration method</p></td>
 based asinari model</p><a href="../proc/compute_molweightratio.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/compute_particle_momentum.html'>compute_particle_momentum</a></td>
+                 <td><a href='../module/mus_particle_checks_module.html'>mus_particle_checks_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/compute_weight.html'>compute_weight</a></td>
                  <td><a href='../module/mus_interpolate_module.html'>mus_interpolate_module</a></td>
                  <td>Subroutine</td>
                  <td><p>This routine computes weights for weighted_average interpolation.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computedisplacement.html'>computeDisplacement</a></td>
+                 <td><a href='../module/mus_particle_boundary_module.html'>mus_particle_boundary_module</a></td>
+                 <td>Function</td>
+                 <td><p>computeDistance computes the shortest distance between points x1 and x2
+In doing so it takes possible periodic boundaries into account.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computehydroforces_dps.html'>computeHydroForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_computeExternalForces adds the non-DEM forces (including
+hydrodynamic force from the LBM) to F_DEM which is used to
+update velocity within the DEM subcycle.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computelubforce_normal.html'>computeLubForce_normal</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computelubforce_tangential.html'>computeLubForce_tangential</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Function</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/computestreamwisevel.html'>computeStreamWiseVel</a></td>
@@ -975,11 +1312,62 @@ based asinari model</p><a href="../proc/compute_molweightratio.html" class="pull
 and distance to boundary using any wall function profile.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/computewallforce_1d.html'>computeWallForce_1D</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Function</td>
+                 <td><p>computeWallForce_1D computes the 1D DEM force between a particle at position
+xp with velocity un to a wall at position xwall.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computewallforce_dps.html'>computeWallForce_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Function</td>
+                 <td><p>Routine for computing the collision force between particles and walls for the 
+case of a simple prismatic domain with walls aligned with the Cartesian axes.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/computewallpossum.html'>computeWallPosSum</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computewallpossum_dps.html'>computeWallPosSum_DPS</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>computeWallPosSum computes the sum of the locations of wall boundaries in the
+area surrounding the particle. It also sets rmflag to true if an open boundary
+is detected, indicating that this particle should be removed from the global
+domain (in a different routine)</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/computewallpossum_mem.html'>computeWallPosSum_MEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>computeWallPosSum computes the sum of the locations of wall boundaries in the
+area surrounding the particle. It also sets rmflag to true if an open boundary
+is detected, indicating that this particle should be removed from the global
+domain (in a different routine)</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/convprepost.html'>convPrePost</a></td>
                  <td><a href='../module/mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></td>
                  <td>Function</td>
                  <td><p>Conversion factor betwen the pre- and post-collision quantity for the shear
  stress.</p><a href="../proc/convprepost.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/coordexistsonmyrank.html'>coordExistsOnMyRank</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>Checks if integer coordinate is in the total list of this rank</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/coordlocalonmyrank.html'>coordLocalOnMyRank</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>Routine which checks whether integer coordinate is local 
+on the current rank</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/countnbnds.html'>countnBnds</a></td>
@@ -988,6 +1376,43 @@ and distance to boundary using any wall function profile.</p></td>
                  <td><p>Identify the number of boundary condition elements of each BC type
 and number of elements with multiple BC types.
 This is 1st step in Build_BClists</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/create_particles_dps.html'>create_particles_DPS</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create new unresolved DPS particles</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/create_particles_mem.html'>create_particles_MEM</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create new fully resolved MEM particles</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/createnewparticle_dps.html'>createNewParticle_DPS</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create a new particle using the information in the
+particleCreator object</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/createnewparticle_mem.html'>createNewParticle_MEM</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create a new particle using the information in the particleCreator object</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/cross_product.html'>cross_product</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>computes cross-product a x b = res</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/cumnor.html'>cumnor</a></td>
+                 <td><a href='../module/mus_particle_prob_module.html'>mus_particle_prob_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong><em>*</em></strong><strong>*</strong>*80</p><a href="../proc/cumnor.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/cumulant_d3q27.html'>cumulant_d3q27</a></td>
@@ -1118,6 +1543,208 @@ e
 n
 t
 s</p><a href="../proc/debug_normals.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_collidewithplanarwall_dps.html'>DEM_collideWithPlanarWall_DPS</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dem_collidewithwall.html'>DEM_collideWithWall</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_collidewithwall_dps.html'>DEM_collideWithWall_DPS</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_collidewithwall_mem.html'>DEM_collideWithWall_MEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computeexternalforces.html'>DEM_computeExternalForces</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_computeExternalForces adds the non-DEM forces (including
+hydrodynamic force from the LBM) to F_DEM which is used to
+update velocity within the DEM subcycle.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computeexternalforces_dps_oneway.html'>DEM_computeExternalForces_DPS_oneway</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_computeExternalForces adds the non-DEM forces (including
+hydrodynamic force from the LBM) to F_DEM which is used to
+update velocity within the DEM subcycle.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computelocalcollisionforces.html'>DEM_computeLocalCollisionForces</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Compute collision forces using Discrete Element Method between particles 
+local to this process i.e. both particles are owned by this process.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computelocalcollisionforces_dps.html'>DEM_computeLocalCollisionForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Compute collision forces using Discrete Element Method between particles 
+local to this process i.e. both particles are owned by this process.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computeremotecollisionforces.html'>DEM_computeRemoteCollisionForces</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Compute collision forces using Discrete Element Method between particle
+pairs where particles belong to different processes.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computeremotecollisionforces_dps.html'>DEM_computeRemoteCollisionForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Compute collision forces using Discrete Element Method between particle
+pairs where particles belong to different processes.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computewallforces_dps.html'>DEM_computeWallForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_computeWallForces_DPS computes the forces on particles as a result of 
+collisions with walls described in the boundaryData object. These forces 
+are only computed for particles owned by this process.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_computewallforces_mem.html'>DEM_computeWallForces_MEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_exchangeforces.html'>DEM_exchangeForces</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_exchangeForces sends DEM collision force contributions from collisions that
+cannot be resolved by the receiving process. The send force buffers in this case must
+already be filled in the DEM collision-handling routines!</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_exchangeforces_dps.html'>DEM_exchangeForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_exchangeForces sends DEM collision force contributions from collisions that
+cannot be resolved by the receiving process. The send force buffers in this case must
+already be filled in the DEM collision-handling routines!</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_exchangewallpositions.html'>DEM_exchangeWallPositions</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_exchangeWallPositions sends wall position sums close to a particle as detected on each process
+to the particle owner, which averages the results to get one average wall position
+Upon termination of this routine particle%rwall for all particles which I own should be set
+correctly.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_exchangewallpositions_dps.html'>DEM_exchangeWallPositions_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEM_exchangeWallPositions sends wall position sums close to a particle as detected on each process
+to the particle owner, which averages the results to get one average wall position
+Upon termination of this routine particle%rwall for all particles which I own should be set
+correctly.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_fillneighborlist.html'>DEM_fillNeighborList</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dem_isremotecollision.html'>DEM_isRemoteCollision</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_isremotecollision_dps.html'>DEM_isRemoteCollision_DPS</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_isremotecollision_mem.html'>DEM_isRemoteCollision_MEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_resetfnext_dps.html'>DEM_resetFnext_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Reset the force at the next time step to 0</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_resetfnext_mem.html'>DEM_resetFnext_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Reset the force at the next time step to 0</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_storewallpositions_mem.html'>DEM_storeWallPositions_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/dem_swapfnowfnext.html'>DEM_swapFnowFnext</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_swapfnowfnext_dps.html'>DEM_swapFnowFnext_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Swap the indices of Fnow and Fnext pointing to the 
+force at the current and next time step respectively</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dem_swapfnowfnext_mem.html'>DEM_swapFnowFnext_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Swap the indices of Fnow and Fnext pointing to the 
+force at the current and next time step respectively</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/demsubcycles_dps.html'>DEMSubcycles_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEMsubcycles runs Nsubcycles time integration steps per LBM time step 
+In this routine velocity verlet integration of particle position and
+velocity is used. </p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/demsubcycles_dps_onewaycoupled.html'>DEMSubcycles_DPS_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEMsubcycles runs Nsubcycles time integration steps per LBM time step 
+In this routine velocity verlet integration of particle position and
+velocity is used. This routine is for one-way coupled DPS particles. </p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/demsubcycles_mem.html'>DEMSubcycles_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>DEMsubcycles runs Nsubcycles time integration steps per LBM time step 
+In this routine simple Forward Euler integration of particle position and
+velocity is used.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/derdensityisothermaceq.html'>derDensityIsothermAcEq</a></td>
@@ -1602,7 +2229,7 @@ calls the generice get Value of Index routine</p><a href="../proc/deriveke_fromi
                  <td>Subroutine</td>
                  <td><p>Calculate the kinetic energy in physical units
 The interface has to comply to the abstract interface
-<a href="../https:/apes-suite.github.io/treelm/interface/tem_varsys_proc_element.html">tem_varSys_proc_element</a>.</p></td>
+<a href="https://apes-suite.github.io/treelm/interface/tem_varsys_proc_element.html">tem_varSys_proc_element</a>.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/derivekineenerphy_fromindex.html'>deriveKineEnerPhy_fromIndex</a></td>
@@ -2107,6 +2734,35 @@ This routine sets the function Pointer for velocity calcualtion and calls
 the generice get Element from PDF routine</p><a href="../proc/dervelocityisothermaceq.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/destroy_da_particle_dps.html'>destroy_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/destroy_da_particle_mem.html'>destroy_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/destroyparticle_mem.html'>destroyParticle_MEM</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>destroyParticle_MEM removes a particle from the lattice and the particleGroup
+It will
+* empty the exclusionList
+* initialize all the former particle elements to new fluid elements
+* restore connectivity for all these new fluid elements
+This routine should be followed up by a call to remove_particle_from_da_particle_MEM!</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/distributeparticlevolume.html'>distributeParticleVolume</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Distribute the volume of a particle to update the fluid volume fraction field</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/do_benchmark.html'>do_benchmark</a></td>
                  <td><a href='../module/mus_control_module.html'>mus_control_module</a></td>
                  <td>Subroutine</td>
@@ -2136,15 +2792,15 @@ Then it exchanges the datas of finer ghost elements (L+1) between process.</p></
                </tr>
 			   <tr>
                  <td><a href='../proc/do_nothing.html'>do_nothing</a></td>
-                 <td><a href='../module/mus_bc_fluid_wall_module.html'>mus_bc_fluid_wall_module</a></td>
+                 <td><a href='../module/mus_interpolate_debug_module.html'>mus_interpolate_debug_module</a></td>
                  <td>Subroutine</td>
-                 <td><p>No comment yet!</p><a href="../proc/do_nothing.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+                 <td><p>Fill GhostFromFiner elements on my level with debug value</p><a href="../proc/do_nothing.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/do_nothing~2.html'>do_nothing</a></td>
-                 <td><a href='../module/mus_interpolate_debug_module.html'>mus_interpolate_debug_module</a></td>
+                 <td><a href='../module/mus_bc_fluid_wall_module.html'>mus_bc_fluid_wall_module</a></td>
                  <td>Subroutine</td>
-                 <td><p>Fill GhostFromFiner elements on my level with debug value</p><a href="../proc/do_nothing~2.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+                 <td><p>No comment yet!</p><a href="../proc/do_nothing~2.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/do_nothing_arbi.html'>do_nothing_arbi</a></td>
@@ -2234,11 +2890,23 @@ rank    nFluids     tCompute     nBCElems     tBC    tCPU    tMainLoop</p></td>
                  <td><p>check the dependencies from Finer and write them out so we can compare</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/dump_particle_timing.html'>dump_particle_timing</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to dump particle timing data</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/dump_timing.html'>dump_timing</a></td>
                  <td><a href='../module/mus_tools_module.html'>mus_tools_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Performance results (MLUPs) are written to a file for statistical review
 The file-format is simple can be evaluated with gnuplot</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dumpdata.html'>dumpdata</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Debugging routine to dump debug tracking data</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/dumppdfall.html'>dumpPdfAll</a></td>
@@ -2274,6 +2942,127 @@ to the debug unit</p></td>
 			   <tr>
                  <td><a href='../proc/exchange_tree_bc.html'>exchange_tree_bc</a></td>
                  <td><a href='../module/mus_dynloadbal_module.html'>mus_dynLoadBal_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangeforces.html'>exchangeForces</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeForces send force contributions from each process on which a particle
+exists to the particle owner. The total hydrodynamic force is then computed by
+the particle owner as the sum of all the force contributions (which physically are
+the surface forces from the part of the particle surface handled by each process).
+The owner then updates particle velocity in a subsequent call to a different routine.
+For momentum-exchange method only!</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangehydroforces_dps.html'>exchangeHydroForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeHydroForces_DPS exchanges particles hydrodynamic forces after they
+have been updated by the particle owner. Each process sends force updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangemominc_dps.html'>exchangeMomInc_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeMomInc_DPS send the accumulated momentum transfer FROM particles TO fluid
+from a particle's previous owner to its new owner.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangenewparticles_dps.html'>exchangeNewParticles_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeNewParticles sends all the data needed to initialize a particle on
+a process. This is needed when a particle travels from one process to another.
+The data is used to add the particle to the receiving process particleGroup.
+This only creates a continuous representation of the particle on the receiving
+process. A subsequent call to a different routine then maps this to the discrete
+representation in the form of elements in the exclusionList.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangenewparticles_mem.html'>exchangeNewParticles_MEM</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeNewParticles sends all the data needed to initialize a particle on
+a process. This is needed when a particle travels from one process to another.
+The data is used to add the particle to the receiving process particleGroup.
+This only creates a continuous representation of the particle on the receiving
+process. A subsequent call to a different routine then maps this to the discrete
+representation in the form of elements in the exclusionList.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangeparticlestates.html'>exchangeParticleStates</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeParticleStates is used to exchange particle (continuous) position
+and velocity as well as the integer coordOfOrigin. This is necessary for
+(for example) the collision handling routines</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangeparticlestoremove.html'>exchangeParticlesToRemove</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>If a particle is removed from the global domain (e.g. after colliding with an open boundary)
+then exchangeParticlesToRemove will send messages informing all other processes
+that this particle should be removed.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangeparticlestoremove_dps.html'>exchangeParticlesToRemove_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>If a particle is removed from the global domain (e.g. after colliding with an open boundary)
+then exchangeParticlesToRemove will send messages informing all other processes
+that this particle should be removed.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangepositions.html'>exchangePositions</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangePositions exchanges particles continuous positions after they
+have been updated by the particle owner. Each process sends position updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangepositions_dps.html'>exchangePositions_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangePositions exchanges particles continuous positions after they
+have been updated by the particle owner. Each process sends position updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangevelocities.html'>exchangeVelocities</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeVelocities exchanges particles continuous velocities after they
+have been updated by the particle owner. Each process sends velocity updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/exchangevelocities_dps.html'>exchangeVelocities_DPS</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>exchangeVelocities exchanges particles continuous velocities after they
+have been updated by the particle owner. Each process sends velocity updates
+for particles they own and receives updates for particles which they do not
+own, but that do exist in their particleGroup.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/expand_da_particle_dps.html'>expand_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/expand_da_particle_mem.html'>expand_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
                  <td>Subroutine</td>
                  <td></td>
                </tr>
@@ -2321,12 +3110,60 @@ to the debug unit</p></td>
 boundary routines.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/fill_bins.html'>fill_bins</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine which fills the bins in mus_particle_blob_prob_type</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fill_blob_positions_gauss.html'>fill_blob_positions_gauss</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize particle creator object with random positions 
+inside a cylinder described by blob_cylinder type</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fill_blob_positions_gauss_prism.html'>fill_blob_positions_gauss_prism</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize particle creator object with random positions 
+inside a prism described by blob_prism type</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fill_cylinder.html'>fill_cylinder</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Fill_cylinder fills the dynamic array positions with coordinates
+of particles spaced a distance d apart inside a cylinder with
+faces z = 0 and z = L and radius R.
+For cylinders of different position and orientation, these coordinates
+can be transformed.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/fill_neighbuffer.html'>fill_neighBuffer</a></td>
                  <td><a href='../module/mus_bc_general_module.html'>mus_bc_general_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Transfer pre- and post-collision PDF of neighbors of boundary elements
 into neighBufferPre and neighBufferPost.
 Access to state array</p><a href="../proc/fill_neighbuffer.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/fill_prism.html'>fill_prism</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fill_prism_by_distance.html'>fill_prism_by_distance</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/fill_prism_by_number.html'>fill_prism_by_number</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/fillarbifinerghostsfromme_linear.html'>fillArbiFinerGhostsFromMe_linear</a></td>
@@ -2519,12 +3356,52 @@ The interpolation procedure used in this routine is:\n
                  <td></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/finalize_particle_interpolator.html'>finalize_particle_interpolator</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/find_particle_comm_procs4.html'>find_particle_comm_procs4</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>find_particle_comm_procs generates a list of all processes we may need to communicate
+particle data with over the duration of the simulation. We only need to communicate
+this data for particles on our rank which also exist on other processes. This means
+we will never communicate with processes whose domains are not within one particle
+diameter of our domain. This is the key assumption used to generate the list of procs
+Hence the padding distance dpad should be set to the largest particle diameter in the
+simulation</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/find_possintporderandupdatemysources.html'>find_possIntpOrderAndUpdateMySources</a></td>
                  <td><a href='../module/mus_interpolate_module.html'>mus_interpolate_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Find maximum possible interpolation order which can be used for
 fillFinerFromMe by comparing nFoundSources with nMaxSources of different
 interpolation order starting from interpolation order defined by user</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/findparticlefromelem.html'>findParticleFromElem</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>find particle index and ID in particleGroup array</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/findpartitionoftreeid.html'>findPartitionOfTreeID</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to find the process a certain treeID is on.
+Looks in the ranks in the array of argument procs
+Returns the INDEX of the found proc in this array
+Example: procs = [4 8 7] and we find our treeID on rank 8
+         will return procIndex = 2</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/findpropindex.html'>findPropIndex</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/fixedpoint_method.html'>fixedPoint_method</a></td>
@@ -2534,10 +3411,26 @@ interpolation order starting from interpolation order defined by user</p></td>
 using fixed-point iterative method</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/followneighpath.html'>followNeighPath</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>followNeighPath can be used to determine the position of a neighboring
+lattice site in the total list. For this we follow one or more entries of
+the levelDesc%neigh array. Since this array is only defined for local fluid
+elements, startPos must point to a local fluid element.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/fricvel_schmitt.html'>fricVel_Schmitt</a></td>
                  <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
                  <td>Subroutine</td>
                  <td><p>This routine computes friction velocity from Schmitt wall model.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/generateelemlistline.html'>generateElemListLine</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Debugging routine to create a list of elements along a line so
+that the properties of these elements can be printed</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/get_auxtime.html'>get_auxTime</a></td>
@@ -2667,13 +3560,13 @@ using fixed-point iterative method</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_d_uplus_d_utau.html'>get_d_uPlus_d_uTau</a></td>
-                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
+                 <td><a href='../module/mus_wall_function_reichardt_module.html'>mus_wall_function_reichardt_module</a></td>
                  <td>Function</td>
                  <td><p>function to get the derivative of uPlus with respect to uTau</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_d_uplus_d_utau~2.html'>get_d_uPlus_d_uTau</a></td>
-                 <td><a href='../module/mus_wall_function_reichardt_module.html'>mus_wall_function_reichardt_module</a></td>
+                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
                  <td>Function</td>
                  <td><p>function to get the derivative of uPlus with respect to uTau</p></td>
                </tr>
@@ -2943,13 +3836,13 @@ which contains the values of \f$p, q, r\f$</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_uplus.html'>get_uPlus</a></td>
-                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
+                 <td><a href='../module/mus_wall_function_reichardt_module.html'>mus_wall_function_reichardt_module</a></td>
                  <td>Function</td>
                  <td><p>function to get uPlus</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_uplus~2.html'>get_uPlus</a></td>
-                 <td><a href='../module/mus_wall_function_reichardt_module.html'>mus_wall_function_reichardt_module</a></td>
+                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
                  <td>Function</td>
                  <td><p>function to get uPlus</p></td>
                </tr>
@@ -3072,6 +3965,24 @@ which contains the values of \f$p, q, r\f$</p></td>
                  <td><a href='../module/mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></td>
                  <td>Function</td>
                  <td><p>function pointer to get pdf equilibrium from vel and density for any stencil</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/get_xd.html'>get_xd</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getbaryofcoord.html'>getBaryOfCoord</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>Convenience function to get barycenter of integer coordinate</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getcartesianstencilindices.html'>getCartesianStencilIndices</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/getconversionfac.html'>getConversionFac</a></td>
@@ -3277,6 +4188,29 @@ then forward difference is used</p></td>
 character handle and a given key word.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/getindexofcoordintotal.html'>getIndexOfCoordInTotal</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Get the index in the total list of a specified integer coordinate</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getinterpolationbnds.html'>getInterpolationBnds</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>getInterpolationBnds is used to determine which cells to interpolate
+fluid quantities from for a particle positioned at its coordOfOrigin + r_lat.
+The 8 cells obtained are the cells whose barycenter forms the tightest
+bounding cube around the particle.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getneighborcoord.html'>getNeighborCoord</a></td>
+                 <td><a href='../module/mus_particle_boundary_module.html'>mus_particle_boundary_module</a></td>
+                 <td>Function</td>
+                 <td><p>getNeighborCoord gets the coordinate of the element
+offset from input coord by (nx,ny,nz) while taking into
+account periodicity</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/getneq_acoustic.html'>getNEq_acoustic</a></td>
                  <td><a href='../module/mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></td>
                  <td>Function</td>
@@ -3288,6 +4222,12 @@ character handle and a given key word.</p></td>
                  <td>Function</td>
                  <td><p>Calculate the non-equilibrium part of pdf from strain rate tensor
 based on the diffusive scaling</p><a href="../proc/getneq_diffusive.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getnewparticleid.html'>getNewParticleID</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Function</td>
+                 <td><p>Routine to generate a unique particleID for a particle</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/getnfields.html'>getNFields</a></td>
@@ -3315,6 +4255,50 @@ from coarse to fine.</p></td>
                  <td>Function</td>
                  <td><p>Calculate the conversion factor to convert nonEq pdfs
 from fine to coarse.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getparticlelogunit.html'>getParticleLogUnit</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Function</td>
+                 <td><p>Routine to create a particle logunit based on particle ID</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getpathtovec.html'>getPathToVec</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>getPathToVec builds a series of 3 indices which can be followed using the 
+levelDesc(lev)%neigh array to get the position of a neighboring element 
+in the total list.
+Usage: given an element at coordinate [0,0,0] with position startPos in the
+total list, to reach the element at [1,1,1] we do:
+call getPathToVec([1,1,1], cxDir, path)
+pos = startPos 
+do k = 1,3
+  pos = levelDesc(lev)%neigh%nghElems(path(k),pos)
+end do
+At the end of the loop pos will point to the requested element</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getposofcoord.html'>getPosOfCoord</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>Get the position in the levelDesc%total list of an element with 
+integer coordinate coord. This routine returns ldPos &lt;= 0 if 
+the element could not be found on this process.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getprocessboundingbox.html'>getProcessBoundingBox</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to find the bounding box of the part of the spatial 
+domain on this process</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/getsearchboxlimits.html'>getSearchBoxLimits</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>getSearchBoxLimits is used in find_particle_comm_procs to determine
+where the non-local elements we have to check the owner proc of are.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/getshearrate.html'>getShearRate</a></td>
@@ -3375,11 +4359,46 @@ access macro IDX, as we want to access post-collision values.</p></td>
 character handle.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/getwght1d_linear.html'>getwght1d_linear</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Function</td>
+                 <td><p>Weight function for 1d linear interpolation or distribution.
+Given the distance from particle to fluid cell barycenter,
+it returns weight, where weight is a linear function
+of the distance between the position of the particle and the
+barycenter of the lattice site we are distributing to.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/getwss.html'>getWSS</a></td>
                  <td><a href='../module/mus_derquan_module.html'>mus_derQuan_module</a></td>
                  <td>Function</td>
                  <td><p>Calculate wss from shear stress (tau)
 tau: x, y, z, xy, yz, xz</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/grabvalueatcoord.html'>grabValueAtCoord</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Interface</td>
+                 <td><p>Interface for routine to get the value of the velocity and
+pressure field at a specified integer coordinate</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/grabvalueatcoord_onewaycoupled.html'>grabValueAtCoord_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Get the value of the density and velocity at a certain integer coordinate</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/grabvalueatcoord_twowaycoupled.html'>grabValueAtCoord_twowaycoupled</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Get the value of the density and velocity at a certain integer coordinate</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/has_remote_neighbors.html'>has_remote_neighbors</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>Function which checks if element has remote neighbors</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/hrr_correction_d2q9.html'>HRR_Correction_d2q9</a></td>
@@ -3400,6 +4419,13 @@ tau: x, y, z, xy, yz, xz</p></td>
                  <td></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/incrementauxfield_dps.html'>incrementAuxField_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Add momentum increments due to particles within DEM subcycles to the
+auxField</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/init_advrel.html'>init_advRel</a></td>
                  <td><a href='../module/mus_flow_module.html'>mus_flow_module</a></td>
                  <td>Subroutine</td>
@@ -3417,6 +4443,18 @@ boundaries.</p><a href="../proc/init_boundary_single.html" class="pull-right"><e
                  <td><a href='../module/mus_interpolate_header_module.html'>mus_interpolate_header_module</a></td>
                  <td>Function</td>
                  <td><p>Initialize stencil for weighted average interpolation</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_da_particle_dps.html'>init_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_da_particle_mem.html'>init_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/init_enrtl_loc.html'>init_enrtl_loc</a></td>
@@ -3444,10 +4482,68 @@ property from filename</p></td>
                  <td><p>Initialize the values required for the moments BC</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/init_mus_particles_comm_type.html'>init_mus_particles_comm_type</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Allocate mus_particles_communication_type and its variables</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/init_nrbc.html'>init_nrbc</a></td>
                  <td><a href='../module/mus_bc_general_module.html'>mus_bc_general_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Initialize the values required for the characteristic boundary conditions</p><a href="../proc/init_nrbc.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/init_particle_blob_prob.html'>init_particle_blob_prob</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_blob_prob_circle.html'>init_particle_blob_prob_circle</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_blob_prob_square.html'>init_particle_blob_prob_square</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_creator.html'>init_particle_creator</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_creator_from_blob.html'>init_particle_creator_from_blob</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize the particle creator object from a particle 
+blob cylinder object
+Check if particles should be initialized to the local fluid velocity.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_creator_from_blob_prism.html'>init_particle_creator_from_blob_prism</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize the particle creator object from a particle 
+blob prism object
+Check if particles should be initialized to the local fluid velocity.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_interpolator.html'>init_particle_interpolator</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/init_particle_logger.html'>init_particle_logger</a></td>
+                 <td><a href='../module/mus_particle_logging_type_module.html'>mus_particle_logging_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/init_qvals.html'>init_qVals</a></td>
@@ -3487,6 +4583,33 @@ This matrix must be consistent with relaxation matrix used for
 multispecies MRT collision routines</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/initparticle_dps.html'>initParticle_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>initParticle_DPS performs the initialization of a DPS particle once
+it has been created. This consists of determining the coordinates of
+particle origin and determining which processes this particle exists
+on.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/initparticle_mem.html'>initParticle_MEM</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize a newly created MEM particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/initparticlelog_dps.html'>initParticleLog_DPS</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize DPS particle log file (e.g. print header)</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/initparticlelog_mem.html'>initParticleLog_MEM</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize MEM particle log file (e.g. print header)</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/inlet_nrbc.html'>inlet_nrbc</a></td>
                  <td><a href='../module/mus_bc_fluid_module.html'>mus_bc_fluid_module</a></td>
                  <td>Subroutine</td>
@@ -3510,6 +4633,76 @@ incompressible flows</p><a href="../proc/inlet_nrbc_incomp.html" class="pull-rig
                  <td><a href='../module/mus_interpolate_header_module.html'>mus_interpolate_header_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Dump interpolation method to logUnit</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/interpolatefluidproperties_dps.html'>interpolateFluidProperties_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Main control routine which interpolates and stores the fluid properties at
+the particle locations</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/interpolatefluidprops.html'>interpolateFluidProps</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Interpolate the fluid properties to a point xp</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/interpolatefluidprops_onewaycoupled.html'>interpolateFluidProps_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Interpolate the fluid properties to a point xp</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/interpolatefluidprops_onewaycoupled_old.html'>interpolateFluidProps_onewaycoupled_old</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/intp1d_linear.html'>intp1d_linear</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/intp_1d_delta.html'>intp_1D_delta</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Function</td>
+                 <td><p>1D discrete delta interpolation function. Used to interpolate the
+fluid property of a lattice cell with barycenter xf to the position
+of a particle xp.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/intp_1d_peskin.html'>intp_1D_peskin</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Function</td>
+                 <td><p>1D discrete delta interpolation function according to Peskin.
+Used to interpolate the
+fluid property of a lattice cell with barycenter xf to the position
+of a particle xp.
+Note that this function has a support of 2*dx so requires both neighbor
+and next-neighbor for interpolation</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/islocalcollision.html'>isLocalCollision</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/islocalcollision_dps.html'>isLocalCollision_DPS</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Function</td>
+                 <td><p>isLocalCollision checks if collision between two particles is local
+This is the case when they are both owned by this process</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/islocalcollision_mem.html'>isLocalCollision_MEM</a></td>
+                 <td><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></td>
+                 <td>Function</td>
+                 <td><p>isLocalCollision checks if collision between two particles is local
+This is the case when they are both owned by this process</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/kpc_i_bg.html'>kpc_i_bg</a></td>
@@ -3561,6 +4754,30 @@ This follows equations 6-8 in cumulent paper (Geier .et al 2017)</p></td>
 configuration.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/load_particle_dps_creator_data.html'>load_particle_dps_creator_data</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/load_particle_dps_data.html'>load_particle_dps_data</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/load_particle_mem_creator_data.html'>load_particle_mem_creator_data</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/load_particle_mem_data.html'>load_particle_mem_data</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/load_relaxation_header.html'>load_relaxation_header</a></td>
                  <td><a href='../module/mus_scheme_header_module.html'>mus_scheme_header_module</a></td>
                  <td>Subroutine</td>
@@ -3580,6 +4797,57 @@ configuration.</p></td>
 configuration.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../interface/logparticledata.html'>logParticleData</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/logparticledata_dps.html'>logParticleData_DPS</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to log DPS particle data</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/logparticledata_mem.html'>logParticleData_MEM</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to log MEM particle data</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/make_pdf_tiny.html'>make_pdf_tiny</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>make_pdf_tiny sets the state vector (particle distribution function) values
+to some tiny value. This is done for visualization purposes. It has no effect
+on the flow as the particle elements do not participate in the
+stream-and-collide process.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/map_to_bin.html'>map_to_bin</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mapparticlestolattice_dps.html'>mapParticlesToLattice_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Main control routine which maps each DPS particle to the lattice</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/maptolattice.html'>mapToLattice</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>mapToLattice is the high-level routine performs a full re-mapping each time step</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/maptolattice_dps.html'>mapToLattice_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to map particles to the lattice (update coordinate of the origin etc.)</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mfr_bounceback.html'>mfr_bounceback</a></td>
                  <td><a href='../module/mus_bc_fluid_module.html'>mus_bc_fluid_module</a></td>
                  <td>Subroutine</td>
@@ -3591,6 +4859,12 @@ configuration.</p></td>
                  <td>Subroutine</td>
                  <td><p>Inlet Velocity Equilibrium type boundary conditions with mass flow rate
  as input</p><a href="../proc/mfr_eq.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/modify_auxfield_of_elem.html'>modify_AuxField_of_Elem</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Modify the auxField of an element with posInTotal in the total list</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/moledens_neumann.html'>moleDens_neumann</a></td>
@@ -3837,6 +5111,14 @@ Seawater Desalination"</p></td>
 model.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_addforcetoauxfield_fluid_gns.html'>mus_addForceToAuxField_fluid_GNS</a></td>
+                 <td><a href='../module/mus_auxfieldvar_module.html'>mus_auxFieldVar_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>This routine add body force to velocity in auxField for weakly-compressible
+model for the Generalized Navier Stokes equations (GNS) for coupled
+LBM-DEM simulations.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_addforcetoauxfield_fluidincomp.html'>mus_addForceToAuxField_fluidIncomp</a></td>
                  <td><a href='../module/mus_auxfieldvar_module.html'>mus_auxFieldVar_module</a></td>
                  <td>Subroutine</td>
@@ -4041,6 +5323,17 @@ above magic number combination.</p><a href="../proc/mus_advrel_kfluid_rtrt_vstd_
                  <td><p>No comment yet!</p><a href="../proc/mus_advrel_kfluid_rtrt_vstd_ld3q27.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_advrel_kfluidgns_rbgk_vstd_ld2q9.html'>mus_advRel_kFluidGNS_rBGK_vStd_lD2Q9</a></td>
+                 <td><a href='../module/mus_d2q9_module.html'>mus_d2q9_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>BGK relaxation routine using equilibrium distribution for simulating the
+Generalized Navier Stokes (GNS) aka Volume-Averaged Navier-Stokes (VANS)
+equations for coupled LBM-DEM simulations
+This subroutine interface must match the abstract interface definition
+<a href="../interface/kernel.html">kernel</a> in scheme/<a href="../module/mus_scheme_type_module.html">mus_scheme_type_module</a>.f90 in order to be callable
+via <a href="../type/mus_scheme_type.html#variable-compute~6">compute</a> function pointer.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_advrel_kfluidincomp_rbgk_vstd_ld2q9.html'>mus_advRel_kFluidIncomp_rBGK_vStd_lD2Q9</a></td>
                  <td><a href='../module/mus_d2q9_module.html'>mus_d2q9_module</a></td>
                  <td>Subroutine</td>
@@ -4085,6 +5378,18 @@ This routine has roughly 205 FLOPS per element.</p><a href="../proc/mus_advrel_k
                  <td>Subroutine</td>
                  <td><p>Advection relaxation routine for the D3Q19 model with TRT collision
 operator.</p><a href="../proc/mus_advrel_kfluidincomp_rtrt_vstd_ld3q19.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_advrel_kfluidincompgns_rbgk_vstd_ld3q19.html'>mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19</a></td>
+                 <td><a href='../module/mus_d3q19_module.html'>mus_d3q19_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Advection relaxation routine for the D3Q19 model with BGK based on the !!
+equilibrium distribution function for the generalized Navier Stokes equations
+(GNS) aka Volume Averaged Navier-Stokes !! equations (VANS).
+feq definition from: Z. Guo and T. S. Zhao, “Lattice Boltzmann model for
+incompressible flows through porous media,” Phys. Rev. E, vol. 66, no. 3, p.
+036304, Sep. 2002, doi: 10.1103/PhysRevE.66.036304.
+Incompressible version</p><a href="../proc/mus_advrel_kfluidincompgns_rbgk_vstd_ld3q19.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_advrel_kps_rbgk_v1st_l.html'>mus_advRel_kPS_rBGK_v1st_l</a></td>
@@ -4317,7 +5622,7 @@ ghost and halo elements, this routine considers them because
 auxField vars on ghost elements are interpolated and halo elements are
 exchanged.
 The interface has to comply to the abstract interface
-<a href="../https:/apes-suite.github.io/treelm/interface/tem_varsys_proc_point.html">tem_varSys_proc_point</a>.</p></td>
+<a href="https://apes-suite.github.io/treelm/interface/tem_varsys_proc_point.html">tem_varSys_proc_point</a>.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_auxfieldvar_fromindex.html'>mus_auxFieldVar_fromIndex</a></td>
@@ -4893,6 +6198,12 @@ finalize treelm, dump timing and finialize mpi with fin_env</p></td>
 set stencil%nElems</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_finalize_particlegroup.html'>mus_finalize_particleGroup</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_finishibm.html'>mus_finishIBM</a></td>
                  <td><a href='../module/mus_ibm_module.html'>mus_IBM_module</a></td>
                  <td>Subroutine</td>
@@ -5128,6 +6439,12 @@ absorb_layer_inlet or absorb_layer_outlet</p></td>
                  <td><p>This routine assigns compute routine for bgk relaxation.</p><a href="../proc/mus_init_advrel_fluid_bgk.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_init_advrel_fluid_gns.html'>mus_init_advRel_fluid_GNS</a></td>
+                 <td><a href='../module/mus_initfluid_module.html'>mus_initFluid_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Assigning compute kernel routine by scheme relaxation type for fluid GNS kind.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_init_advrel_fluid_mrt.html'>mus_init_advRel_fluid_mrt</a></td>
                  <td><a href='../module/mus_initfluid_module.html'>mus_initFluid_module</a></td>
                  <td>Subroutine</td>
@@ -5150,6 +6467,13 @@ absorb_layer_inlet or absorb_layer_outlet</p></td>
                  <td><a href='../module/mus_initfluidincomp_module.html'>mus_initFluidIncomp_module</a></td>
                  <td>Subroutine</td>
                  <td><p>This routine assigns compute routine for bgk relaxation</p><a href="../proc/mus_init_advrel_fluidincomp_bgk.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_init_advrel_fluidincomp_gns.html'>mus_init_advRel_fluidIncomp_GNS</a></td>
+                 <td><a href='../module/mus_initfluidincomp_module.html'>mus_initFluidIncomp_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Assigning compute kernel routine by scheme relaxation type for fluid GNS 
+kind for unresolved LBM-DEM particulate flow simulations</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_init_advrel_fluidincomp_mrt.html'>mus_init_advRel_fluidIncomp_mrt</a></td>
@@ -5408,6 +6732,12 @@ for multispecies lbm</p></td>
 Equilibirium pdf (fEq) is calculated from          and         .</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_init_particletimer.html'>mus_init_particleTimer</a></td>
+                 <td><a href='../module/mus_particle_timer_module.html'>mus_particle_timer_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_init_passivescalar.html'>mus_init_passiveScalar</a></td>
                  <td><a href='../module/mus_flow_module.html'>mus_flow_module</a></td>
                  <td>Subroutine</td>
@@ -5641,6 +6971,12 @@ more complex parameter files including comments
 And load / create the mesh depending on the configuration</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_load_debugtracker.html'>mus_load_debugtracker</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_load_field_prop.html'>mus_load_field_prop</a></td>
                  <td><a href='../module/mus_field_prop_module.html'>mus_field_prop_module</a></td>
                  <td>Subroutine</td>
@@ -5741,6 +7077,74 @@ or vice versa.
                  <td><p>load global parameter from conf</p><a href="../proc/mus_load_param.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_load_particle_boundaries.html'>mus_load_particle_boundaries</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particle_collisions.html'>mus_load_particle_collisions</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particle_creator_timing.html'>mus_load_particle_creator_timing</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particle_distribution.html'>mus_load_particle_distribution</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particle_dps_data_chunk.html'>mus_load_particle_dps_data_chunk</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particle_interpolation.html'>mus_load_particle_interpolation</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particle_mem_data_chunk.html'>mus_load_particle_mem_data_chunk</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particleblob_cylinder.html'>mus_load_particleblob_cylinder</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particleblob_prism.html'>mus_load_particleblob_prism</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particlekind.html'>mus_load_particlekind</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Get the particle kind from the configuration</p><a href="../proc/mus_load_particlekind.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_particles.html'>mus_load_particles</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to load the particle data from the musubi.lua file
+meant to be called from within mus_load_config after the lua
+file has already been opened</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_load_physics.html'>mus_load_physics</a></td>
                  <td><a href='../module/mus_physics_module.html'>mus_physics_module</a></td>
                  <td>Subroutine</td>
@@ -5757,6 +7161,12 @@ or vice versa.
                  <td><a href='../module/mus_poisson_module.html'>mus_poisson_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Load input to solve poisson boltzmann equation</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_load_predefined_particleblob.html'>mus_load_predefined_particleblob</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_load_scheme.html'>mus_load_scheme</a></td>
@@ -5802,6 +7212,13 @@ equation</p></td>
                  <td><a href='../module/mus_turbulence_module.html'>mus_turbulence_module</a></td>
                  <td>Subroutine</td>
                  <td><p>load turbulence table</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_log_fluid_momentum.html'>mus_log_fluid_momentum</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>perform_particle_checks computes the total momentum of the fluid and particle
+phases and logs this to a file</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_mixture_out.html'>mus_mixture_out</a></td>
@@ -5936,6 +7353,233 @@ i.e <script type="math/tex; mode=display">\Omega = 1/2(du_i/dx_j - du_j/dx_i)</s
                  <td>Subroutine</td>
                  <td><p>This routine writes global parameter into solver specific string in lua
 format</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_addsourcetermstoauxfield_dps.html'>mus_particles_addSourceTermsToAuxField_DPS</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_applyhydrodynamicforces_dps.html'>mus_particles_applyHydrodynamicForces_DPS</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_applyhydrodynamicforces_dps_onewaycoupled.html'>mus_particles_applyHydrodynamicForces_DPS_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_applyhydrodynamicforces_mem.html'>mus_particles_applyHydrodynamicForces_MEM</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_buffers.html'>mus_particles_comm_init_buffers</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_idbuffer.html'>mus_particles_comm_init_IDbuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_particlebuffer.html'>mus_particles_comm_init_particlebuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_posbuffer.html'>mus_particles_comm_init_posbuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_statebuffer.html'>mus_particles_comm_init_statebuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_vectorbuffer.html'>mus_particles_comm_init_vectorbuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_comm_init_wallbuffer.html'>mus_particles_comm_init_wallbuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_dps_interpolatefluidproperties.html'>mus_particles_DPS_interpolateFluidProperties</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Interpolates fluid properties from neighboring lattice sites to determine the
+fluid density and velocity at the location of the particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_dps_interpolatefluidproperties_onewaycoupled.html'>mus_particles_DPS_interpolateFluidProperties_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Interpolates fluid properties from neighboring lattice sites to determine the
+fluid density and velocity at the location of the particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_global_errorcheck.html'>mus_particles_global_errorcheck</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to aggregate local error flags and use MPI allreduce 
+to set a global flag if any of the local flags is true</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initfluidvolumefraction.html'>mus_particles_initFluidVolumeFraction</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to initialize the fluid volume fraction field</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initforcecontributionmpitype.html'>mus_particles_initForceContributionMPItype</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initialize.html'>mus_particles_initialize</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Initialization for particleGroup and all the particles in it
+Includes:
+* Assigning the required procedure pointers for particleGroup and particles
+* Initializing loggers
+* Initializing communication routines
+* Building the representation of the particles on the grid</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initialize_communication.html'>mus_particles_initialize_communication</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initparticleinfompitype.html'>mus_particles_initParticleInfoMPItype</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create and commit the MPI type used to communicate
+all continuous particle data</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initparticlestatempitype.html'>mus_particles_initParticleStateMPItype</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create and commit the MPI type used to communicate
+position, velocity and coordOfOrigin</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initpositionupdatempitype.html'>mus_particles_initPositionUpdateMPItype</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine to create and commit the MPI type used to communicate
+position and coordOfOrigin</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_initwallposmpitype.html'>mus_particles_initWallPosMPItype</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_log_total_momentum.html'>mus_particles_log_total_momentum</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>perform_particle_checks computes the total momentum of the fluid and particle
+phases and logs this to a file</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_logdata_dps.html'>mus_particles_logdata_DPS</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Main routine to log particle data for DPS particles</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_logdata_mem.html'>mus_particles_logdata_MEM</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Main routine to log particle data for MEM particles</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_mapping_dps.html'>mus_particles_mapping_DPS</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_mapping_mem.html'>mus_particles_mapping_MEM</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>mus_particles_mapping maps the current particle positions to the lattice
+This means the exclusionLists are updated, connectivity of solid and
+fluid neighbor particles is modified, new fluid particles are initialized
+and have their connectivity restored. Also particles that have no more elements
+on this process (either local or halo) get removed from this process.
+Should be called once per LBM time step.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_move.html'>mus_particles_move</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>This routine moves all particles in particleArray.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_move_dps.html'>mus_particles_move_DPS</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>This routine moves all particles in particleArray.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_move_dps_onewaycoupled.html'>mus_particles_move_DPS_onewaycoupled</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>This routine moves all particles in particleArray.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_print_config.html'>mus_particles_print_config</a></td>
+                 <td><a href='../module/mus_particle_config_module.html'>mus_particle_config_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_runtests.html'>mus_particles_runtests</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_transfermomentumtofluid_dps.html'>mus_particles_transferMomentumToFluid_DPS</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_transfermomentumtofluid_mem.html'>mus_particles_transferMomentumToFluid_MEM</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_particles_updatefluidvolumefraction.html'>mus_particles_updateFluidVolumeFraction</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Main routine to update the fluid volume fraction in the auxField</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_pblinear_advrel_generic.html'>mus_PBLinear_advRel_generic</a></td>
@@ -6596,11 +8240,24 @@ force.</p><a href="../proc/mus_updatesrcvar_turbchanforce.html" class="pull-righ
                  <td><p>Write solver specific info to scratch file</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/must_create_new_particles.html'>must_create_new_particles</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Function</td>
+                 <td><p>Function to check whether particles should be created using the particleCreator 
+object at the current iteration iter.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/newton_method.html'>newton_method</a></td>
                  <td><a href='../module/mus_turb_wallfunc_module.html'>mus_turb_wallFunc_module</a></td>
                  <td>Function</td>
                  <td><p>This routine computes friction velocity from wall model profile
 using Newton iteration method</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/normalize_probabilities.html'>normalize_probabilities</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/normalizebc.html'>normalizeBC</a></td>
@@ -6609,6 +8266,27 @@ using Newton iteration method</p></td>
                  <td><p>This routine normalizes the normal vectors of boundary elements including
 the corner elements as well as assigns the corresponding prevailing
 direction from the stencil</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/normcdf.html'>normcdf</a></td>
+                 <td><a href='../module/mus_particle_prob_module.html'>mus_particle_prob_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>This function evaluates the normal distribution function:</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/one.html'>one</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Function</td>
+                 <td><p>Function to return interpolation weight 1.0 regardless of input.
+We need this as the weight for the z-direction interpolation in
+case of d2q9 stencil.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/openlogfile.html'>openLogFile</a></td>
+                 <td><a href='../module/mus_particle_logging_module.html'>mus_particle_logging_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>openLogFile opens a file with name fileName and returns the unit
+attached to it. It checks whether the file exists and if not</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/outlet_dnt.html'>outlet_dnt</a></td>
@@ -6661,6 +8339,19 @@ In fNeq, post-collision of current time step is used for normal direction.</p><a
                  <td><a href='../module/mus_tools_module.html'>mus_tools_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Perform run-time checks if interval is active</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/pick_random_position.html'>pick_random_position</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/positionlocalonmyrank.html'>positionLocalOnMyRank</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td><p>Routine which checks whether a spatial position is local 
+on the current rank</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/potential_neumann.html'>potential_neumann</a></td>
@@ -6769,12 +8460,137 @@ this bit in case of fluidification</p><a href="../proc/prepare_target_elem_list.
  boundary normal instead of along the link and qVal=0.</p><a href="../proc/pressure_noneqexpol.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/print_particle_creator.html'>print_particle_creator</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Print the data in particle creator object, used for debugging</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particle_creator_positions.html'>print_particle_creator_positions</a></td>
+                 <td><a href='../module/mus_particle_creator_module.html'>mus_particle_creator_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Print the positions in particle creator object, used for debugging</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particleblob.html'>print_particleblob</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particleblob_prism.html'>print_particleblob_prism</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particleblob_prob.html'>print_particleblob_prob</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particles_comm.html'>print_particles_comm</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particles_pidvectorbuffer.html'>print_particles_pIDvectorbuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_particles_statebuffer.html'>print_particles_statebuffer</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_positions.html'>print_positions</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printdebugtrackerdata.html'>printDebugTrackerData</a></td>
+                 <td><a href='../module/mus_particle_logging_type_module.html'>mus_particle_logging_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printneighlist.html'>printNeighList</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printparticlegroup.html'>printParticleGroup</a></td>
+                 <td><a href='../module/mus_particle_type_module.html'>mus_particle_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printparticlegroup2_dps.html'>printParticleGroup2_DPS</a></td>
+                 <td><a href='../module/mus_particle_type_module.html'>mus_particle_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printparticlegroup2_mem.html'>printParticleGroup2_MEM</a></td>
+                 <td><a href='../module/mus_particle_type_module.html'>mus_particle_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printparticlegroupdata.html'>printParticleGroupData</a></td>
+                 <td><a href='../module/mus_particle_type_module.html'>mus_particle_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printparticleinterpolator.html'>printParticleInterpolator</a></td>
+                 <td><a href='../module/mus_particle_interpolation_module.html'>mus_particle_interpolation_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printpidlist.html'>printpIDlist</a></td>
+                 <td><a href='../module/mus_particle_type_module.html'>mus_particle_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/printtotalelemlist.html'>printTotalElemList</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/proximity.html'>proximity</a></td>
                  <td><a href='../module/mus_geomincr_module.html'>mus_geomIncr_module</a></td>
                  <td>Subroutine</td>
                  <td><p>A subroutine which checks the proximity condition and generates a new
 treeID list of potential target elements which can then be checked against
 various thresholds as defined in the lua configuration file.</p><a href="../proc/proximity.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/pruneparticlecommprocs.html'>pruneParticleCommProcs</a></td>
+                 <td><a href='../module/mus_particle_comm_type_module.html'>mus_particle_comm_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>pruneParticleCommProcs takes the initial list of processes we think
+we need to communicate particle data with (determined using only
+local data) and checks whether those processes also think they
+need to communicate with us. The prunedProcs array contains the
+final list of processes for which we know we will send and also
+receive messages.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/r8_swap.html'>r8_swap</a></td>
+                 <td><a href='../module/mus_particle_prob_module.html'>mus_particle_prob_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Swap two reals of kind rk</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/rearrange_bc_elems.html'>rearrange_bc_elems</a></td>
@@ -6787,6 +8603,37 @@ Valid elements are moved towards the start of the elems so that they become
 continuous in the elems.</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/recalculate_auxfield_dps.html'>recalculate_auxField_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Remove the momentum increments added during subcycles to prevent double-adding
+the momentum of particles to the fluid.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/remove_elem_grw_real2darray.html'>remove_elem_grw_real2darray</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/remove_elem_grw_realarray.html'>remove_elem_grw_realarray</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/remove_particle_from_da_particle_dps.html'>remove_particle_from_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/remove_particle_from_da_particle_mem.html'>remove_particle_from_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/remove_solid_in_bc.html'>remove_solid_in_bc</a></td>
                  <td><a href='../module/mus_field_module.html'>mus_field_module</a></td>
                  <td>Subroutine</td>
@@ -6794,6 +8641,24 @@ continuous in the elems.</p></td>
 Then rearrange BC elements list so it contains only valid elements.
 Update fields%bc%elemLvl%stencilPos fields%bc%elemLvl%posInNghElems
 accordingly.</p><a href="../proc/remove_solid_in_bc.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/resetforcebuffers.html'>resetForceBuffers</a></td>
+                 <td><a href='../module/mus_particle_comm_module.html'>mus_particle_comm_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/rodriguez_rotation.html'>rodriguez_rotation</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/rotate_positions.html'>rotate_positions</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/secondmom_2d.html'>secondMom_2D</a></td>
@@ -6903,6 +8768,12 @@ vector</p></td>
                  <td><p>Set the omegas according to the time step setting</p><a href="../proc/set_omegaslvl.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/set_random_seed.html'>set_random_seed</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/set_sendhalobits.html'>set_sendHaloBits</a></td>
                  <td><a href='../module/mus_construction_module.html'>mus_construction_module</a></td>
                  <td>Subroutine</td>
@@ -6933,10 +8804,28 @@ neighbor</p></td>
                  <td><p>Set parameters for multispecies</p><a href="../proc/setparameters_multispecies.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/settoequilibrium.html'>setToEquilibrium</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>setToEquilibrium sets elements to equilibrium distribution</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/slip_wall.html'>slip_wall</a></td>
                  <td><a href='../module/mus_bc_fluid_wall_module.html'>mus_bc_fluid_wall_module</a></td>
                  <td>Subroutine</td>
                  <td><p>slip-wall boundary condition. Slip defined by a slip factor</p><a href="../proc/slip_wall.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/sortposofval_particle_dps.html'>sortposofval_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Function</td>
+                 <td><p>return the sorted position of a value in the given dynamic array</p><a href="../proc/sortposofval_particle_dps.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/sortposofval_particle_mem.html'>sortposofval_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Function</td>
+                 <td><p>return the sorted position of a value in the given dynamic array</p><a href="../proc/sortposofval_particle_mem.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/spc_bb_vel_test.html'>spc_bb_vel_test</a></td>
@@ -7180,11 +9069,174 @@ computed from mass density and velocity</p><a href="../proc/spc_blackbox_mem_sol
                  <td></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/swap_da_particle_dps.html'>swap_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>swaps the position of two particles in particle dynamic array
+new position of ielem1 = old position of ielem2 and vice-versa
+also updates the pidlist and pidsort arrays</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/swap_da_particle_mem.html'>swap_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>swaps the position of two particles in particle dynamic array
+new position of ielem1 = old position of ielem2 and vice-versa
+also updates the pidlist and pidsort arrays</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/swap_grw_real2darray.html'>swap_grw_real2darray</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/swap_grw_realarray.html'>swap_grw_realarray</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/swapfbuff.html'>swapFBuff</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Swap index of the particle force buffer</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/swapmomnowmomlast.html'>swapMomNowMomLast</a></td>
+                 <td><a href='../module/mus_particle_checks_module.html'>mus_particle_checks_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_append_da_particle.html'>test_append_da_particle</a></td>
+                 <td><a href='../module/mus_particle_type_module.html'>mus_particle_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_calcvelocityandpressuregradient_dps.html'>test_calcVelocityAndPressureGradient_DPS</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_compute_fluid_momentum.html'>test_compute_fluid_momentum</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_compute_particle_momentum.html'>test_compute_particle_momentum</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_computedisplacement.html'>test_computeDisplacement</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_computewallforces.html'>test_computeWallForces</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_dem_fillneighborlist.html'>test_DEM_fillNeighborList</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_generateelemlistline.html'>test_generateElemListLine</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_global_errorcheck.html'>test_global_errorcheck</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_interpolation_delta_dps_d2q9.html'>test_interpolation_delta_DPS_d2q9</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_interpolation_delta_dps_d3q19.html'>test_interpolation_delta_DPS_d3q19</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_intp1d_peskin.html'>test_intp1D_peskin</a></td>
+                 <td><a href='../module/mus_particle_tests_module.html'>mus_particle_tests_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/test_loopoverlocallinks.html'>test_loopOverLocalLinks</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/testparticleconnectivity.html'>testParticleConnectivity</a></td>
+                 <td><a href='../module/mus_particle_module.html'>mus_particle_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine for manually checking connectivity of particle elements,
+to be removed later</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/tgv_2d.html'>TGV_2D</a></td>
                  <td><a href='../module/mus_interpolate_debug_module.html'>mus_interpolate_debug_module</a></td>
                  <td>Function</td>
                  <td><p>This routine returns the analytical solution of TGV 2D testcase for a given
 position and time (coord, t)</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/transfermomentumtofluid_dps.html'>transferMomentumToFluid_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine that applies forces from particles to the fluid for unresolved
+DPS particles based on the VANS equations</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/transfermomentumtofluid_dps_twoway.html'>transferMomentumToFluid_DPS_twoway</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Routine that applies forces from particles to the fluid for unresolved
+DPS two-way coupled particles</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/translate_positions.html'>translate_positions</a></td>
+                 <td><a href='../module/mus_particle_blob_module.html'>mus_particle_blob_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/treeidlocalonmyrank.html'>treeIDlocalOnMyRank</a></td>
+                 <td><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/truncate_da_particle_dps.html'>truncate_da_particle_dps</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>truncate the dynamic particle array to only fit the actual entries</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/truncate_da_particle_mem.html'>truncate_da_particle_mem</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>truncate the dynamic particle array to only fit the actual entries</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/turbulent_wall.html'>turbulent_wall</a></td>
@@ -7267,6 +9319,171 @@ position and time (coord, t)</p></td>
                  <td><a href='../module/mus_geomincr_module.html'>mus_geomIncr_module</a></td>
                  <td>Subroutine</td>
                  <td><p>Construct the propagation stencil for each element</p><a href="../proc/update_connectivity.html" class="pull-right"><emph>Read more&hellip;</emph></a></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatecoordoforigin.html'>updateCoordOfOrigin</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateCoordOfOrigin updates the integer coordinate of
+the origin of a particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatecoordoforigin_dps.html'>updateCoordOfOrigin_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateCoordOfOrigin updates the integer coordinate of
+the origin of a particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateexclusionlist.html'>updateExclusionList</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>UpdateExclusionList uses the continuous particle position and particle
+radius to determine which lattice elements belong to the particle.
+These are stored in the 'ExclusionList' of elements which do not participate
+in stream-and-collide. It also checks if particles exist or should exist
+on some other process and stores this information in the logical masks of
+the particle.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateexistsonproc.html'>updateExistsOnProc</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateExistsOnProc updates the mask that tells us whether a particle exists
+on our neighboring procs. It does this by checking which processes are intersected
+by the bounding box of the particle + a "bumper" of one lattice cell to account
+for the fact that a particle can also exist on a proc as purely halos</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateexistsonproc_dps.html'>updateExistsOnProc_DPS</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateExistsOnProc updates the boolean values of the array of neighbor procs
+that tell us whether the particle exists on that process or not.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatefluidneighbors.html'>updateFluidNeighbors</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateFluidNeighbors Runs over all particle elements
+(those in exclusionList) and then over each stencil direction.
+ When it finds a fluid neighbor in a direction it sets
+ the bounceback condition for that neighbor</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatenewfluidnodes.html'>updateNewFluidNodes</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateNewFluidNodes restores the correct connectivity for
+new fluid elements which were particle elements in the previous time step.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateparticleforces.html'>updateParticleForces</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateparticleowner.html'>updateParticleOwner</a></td>
+                 <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>UpdateParticleOwner updates the "owner process" of each particle,
+which is the process responsible for performing operations
+(e.g. modifying velocity and position) on the particle and sending
+updates to other processes.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateparticleowner~2.html'>updateParticleOwner</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/updatepositioneuler.html'>updatePositionEuler</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatepositioneuler_dps.html'>updatePositionEuler_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle continuous position using Euler integration </p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatepositioneuler_mem.html'>updatePositionEuler_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle continuous position using Euler integration </p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/updatepositionverlet.html'>updatePositionVerlet</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatepositionverlet_dps.html'>updatePositionVerlet_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle position using Verlet integration</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatepositionverlet_mem.html'>updatePositionVerlet_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle position using Verlet integration</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatesolidnodes.html'>updateSolidNodes</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>updateSolidNodes  modifies connectivity of scheme%pdf%neigh such
+that the particle cells do not participate in the streaming process.
+Specifically it:
+ * runs over the elements in this%exclusionList
+ * sets kernel neighbor list values to the particle elements themselves.
+ * This way they are effectively excluded from the streaming process.
+ * Sets the property bit prp_solid to 1 to indicate elements
+   belonging to a particle</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/updatevelocityeuler.html'>updateVelocityEuler</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatevelocityeuler_dps.html'>updateVelocityEuler_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle velocity according to current forces on particle
+using Euler integration</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatevelocityeuler_mem.html'>updateVelocityEuler_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle velocity according to current forces on particle
+using Euler integration</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../interface/updatevelocityverlet.html'>updateVelocityVerlet</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Interface</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatevelocityverlet_dps.html'>updateVelocityVerlet_DPS</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle velocity using Verlet integration</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updatevelocityverlet_mem.html'>updateVelocityVerlet_MEM</a></td>
+                 <td><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Update particle velocity using Verlet integration</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/vec_fma.html'>vec_fma</a></td>
@@ -7405,6 +9622,19 @@ This follows equation 3 in cumulent paper (Geier .et al 2017)</p></td>
                  <td><p>Calculating central moment weights
 This follows equation 3 in cumulent paper (Geier .et al 2017)</p></td>
                </tr>
+			   <tr>
+                 <td><a href='../proc/wrapperiodiccoord.html'>wrapPeriodicCoord</a></td>
+                 <td><a href='../module/mus_particle_boundary_module.html'>mus_particle_boundary_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>wrapPeriodicCoord modifies the input coord to take into
+account periodicity</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/wrapperiodicpos.html'>wrapPeriodicPos</a></td>
+                 <td><a href='../module/mus_particle_boundary_module.html'>mus_particle_boundary_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
 			 </tbody></table>
              
         </div>
@@ -7417,40 +9647,18 @@ This follows equation 3 in cumulent paper (Geier .et al 2017)</p></td>
           <div class="col">
             <p>
               Musubi
- was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>03d36e6f940c</small></p>
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-29T18:19:33.949870+0000             </p>
+ on 2025-04-24T09:44:22.475563+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

@@ -109,6 +109,7 @@ module mus_d2q9_module
   public :: bgk_HybridRecursiveRegularizedCorr_d2q9
   public :: bgk_ProjectedRecursiveRegularized_d2q9
   public :: bgk_DualRelaxationTime_RR_d2q9
+  public :: mus_advRel_kFluidGNS_rBGK_vStd_lD2Q9
 
   ! ============================================================================
   ! D2Q9 flow model
@@ -1831,6 +1832,136 @@ end subroutine bgk_HybridRecursiveRegularizedCorr_d2q9
 
   end subroutine bgk_DualRelaxationTime_RR_d2q9
 ! ****************************************************************************** !
+
+  !> BGK relaxation routine using equilibrium distribution for simulating the
+  !! Generalized Navier Stokes (GNS) aka Volume-Averaged Navier-Stokes (VANS)
+  !! equations for coupled LBM-DEM simulations
+  !! This subroutine interface must match the abstract interface definition
+  !! [[kernel]] in scheme/[[mus_scheme_type_module]].f90 in order to be callable
+  !! via [[mus_scheme_type:compute]] function pointer.
+  subroutine mus_advRel_kFluidGNS_rBGK_vStd_lD2Q9(     &
+    &          fieldProp, inState, outState, auxField, &
+    &          neigh, nElems, nSolve, level, layout,   &
+    &          params, varSys, derVarPos               )
+    ! -------------------------------------------------------------------- !
+    !> Array of field properties (fluid or species)
+    type(mus_field_prop_type), intent(in) :: fieldProp(:)
+    !> variable system definition
+    type(tem_varSys_type), intent(in) :: varSys
+    !> current layout
+    type(mus_scheme_layout_type), intent(in) :: layout
+    !> number of elements in state Array
+    integer, intent(in) :: nElems
+    !> input  pdf vector
+    real(kind=rk), intent(in)  ::  inState(nElems * varSys%nScalars)
+    !> output pdf vector
+    real(kind=rk), intent(out) :: outState(nElems * varSys%nScalars)
+    !> Auxiliary field computed from pre-collision state
+    !! Is updated with correct velocity field for multicomponent models
+    real(kind=rk), intent(inout) :: auxField(nElems * varSys%nAuxScalars)
+    !> connectivity vector
+    integer, intent(in) :: neigh(nElems * layout%fStencil%QQ)
+    !> number of elements solved in kernel
+    integer, intent(in) :: nSolve
+    !> current level
+    integer,intent(in) :: level
+    !> global parameters
+    type(mus_param_type),intent(in) :: params
+    !> position of derived quantities in varsys for all fields
+    type( mus_derVarPos_type ), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    integer :: iElem
+    ! temporary distribution variables
+    real(kind=rk) :: f1, f2, f3, f4, f5, f6, f7, f8, f9
+    real(kind=rk) :: fEq1, fEq2, fEq3, fEq4, fEq5, fEq6, fEq7, fEq8, fEq9
+    real(kind=rk) :: u_x, u_y
+    real(kind=rk) :: rho, usq, ucx
+    real(kind=rk) :: eps_inv     ! fluid volume fraction
+    real(kind=rk) :: omega, cmpl_o
+    real(kind=rk) :: c0, c1, c2, c3
+    integer :: dens_pos, vel_pos(2), vol_frac_pos, elemOff
+    ! -------------------------------------------------------------------- !
+    dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:2)
+    vol_frac_pos = varSys%method%val(derVarPos(1)%vol_frac)%auxField_varPos(1)
+
+!$omp do schedule(static)
+    !NEC$ ivdep
+    !DIR$ NOVECTOR
+    nodeloop: do iElem = 1, nSolve
+
+      f1 = inState(  neigh(( 1-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f2 = inState(  neigh(( 2-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f3 = inState(  neigh(( 3-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f4 = inState(  neigh(( 4-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f5 = inState(  neigh(( 5-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f6 = inState(  neigh(( 6-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f7 = inState(  neigh(( 7-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f8 = inState(  neigh(( 8-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+      f9 = inState(  neigh(( 9-1)* nelems+ ielem)+( 1-1)* 9+ 9*0)
+
+      ! element offset for auxField array
+      elemOff = (iElem - 1) * varSys%nAuxScalars
+      ! local density
+      rho = auxField(elemOff + dens_pos)
+      ! local x-, y- and z-velocity
+      u_x = auxField(elemOff + vel_pos(1))
+      u_y = auxField(elemOff + vel_pos(2))
+
+      ! Inverse of local fluid volume fraction
+      eps_inv = 1.0_rk / auxField(elemOff + vol_frac_pos)
+
+      ! calculate fEq
+      usq = u_x * u_x + u_y * u_y
+      c1 = rho - rho * usq * div1_2 * cs2inv * eps_inv
+      feq9 = div4_9 * c1
+
+      c0 = rho * cs2inv * cs2inv * div1_2 * eps_inv
+      c2 = rho * cs2inv * u_x
+      c3 = rho * cs2inv * u_y
+
+      feq1 = div1_9 * ( c1 - c2 + u_x * u_x * c0 )
+      feq3 = feq1 + div2_9 * c2
+
+      feq2 = div1_9 * ( c1 - c3 + u_y * u_y * c0 )
+      feq4 = feq2 + div2_9 * c3
+
+      ucx  = u_x + u_y
+      feq5 = div1_36 * ( c1 - c2 - c3 + ucx * ucx * c0 )
+      feq8 = feq5 + div1_18 * ( c2 + c3 )
+
+      ucx  = u_x - u_y
+      feq6 = div1_36 * ( c1 - c2 + c3 + ucx * ucx * c0 )
+      feq7 = feq6 + div1_18 * ( c2 - c3 )
+
+
+      omega  = fieldProp(1)%fluid%viscKine%omLvl(level)%val(iElem)
+      cmpl_o = 1._rk - omega
+
+      outState( ( ielem-1)* 9+ 9+( 1-1)* 9) &
+        & = cmpl_o * f9 + omega * fEq9
+      outState( ( ielem-1)* 9+ 1+( 1-1)* 9) &
+        & = cmpl_o * f1 + omega * fEq1
+      outState( ( ielem-1)* 9+ 2+( 1-1)* 9) &
+        & = cmpl_o * f2 + omega * fEq2
+      outState( ( ielem-1)* 9+ 3+( 1-1)* 9) &
+        & = cmpl_o * f3 + omega * fEq3
+      outState( ( ielem-1)* 9+ 4+( 1-1)* 9) &
+        & = cmpl_o * f4 + omega * fEq4
+      outState( ( ielem-1)* 9+ 5+( 1-1)* 9) &
+        & = cmpl_o * f5 + omega * fEq5
+      outState( ( ielem-1)* 9+ 6+( 1-1)* 9) &
+        & = cmpl_o * f6 + omega * fEq6
+      outState( ( ielem-1)* 9+ 7+( 1-1)* 9) &
+        & = cmpl_o * f7 + omega * fEq7
+      outState( ( ielem-1)* 9+ 8+( 1-1)* 9) &
+        & = cmpl_o * f8 + omega * fEq8
+
+    end do nodeloop
+!$omp end do nowait
+
+  end subroutine mus_advRel_kFluidGNS_rBGK_vStd_lD2Q9
+! **************************************************************************** !
 
 end module mus_d2q9_module
 ! **************************************************************************** !

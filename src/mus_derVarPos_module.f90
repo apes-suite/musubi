@@ -76,6 +76,7 @@ module mus_derVarPos_module
     integer :: nonEquilibrium    = -1
     integer :: equilibriumVel    = -1
     integer :: potential         = -1
+    integer :: vol_frac          = -1
     procedure( derive_FromMacro ), pointer, nopass :: equilFromMacro => null()
     ! return velocity of single species
     procedure( derive_FromState ), pointer, nopass :: velFromState   => null()

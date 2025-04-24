@@ -137,6 +137,7 @@ module mus_auxFieldVar_module
   public :: mus_auxFieldVar_forPoint
   public :: mus_auxFieldVar_fromIndex
   public :: mus_addForceToAuxField_fluid
+  public :: mus_addForceToAuxField_fluid_GNS
   public :: mus_addForceToAuxField_fluidIncomp
   public :: mus_addForceToAuxField_MSL
   public :: mus_addForceToAuxField_MSL_WTDF
@@ -164,7 +165,8 @@ contains
     ! --------------------------------------------------------------------- !
     calcAuxField => mus_calcAuxField_dummy
     select case (trim(schemeHeader%kind))
-    case ('fluid', 'fluid_incompressible', 'isotherm_acEq')
+    case ('fluid', 'fluid_incompressible', 'fluid_GNS', &
+         & 'fluid_incompressible_GNS', 'isotherm_acEq')
       select case (trim(schemeHeader%layout))
       case ('d2q9')
         calcAuxField => mus_calcAuxField_fluid_d2q9
@@ -1142,6 +1144,72 @@ contains
     end do
 
   end subroutine mus_addForceToAuxField_fluid
+  ! ************************************************************************** !
+
+  !> This routine add body force to velocity in auxField for weakly-compressible
+  !! model for the Generalized Navier Stokes equations (GNS) for coupled
+  !! LBM-DEM simulations.
+  subroutine mus_addForceToAuxField_fluid_GNS(fun, auxField, iLevel, time, varSys, &
+    &                                   phyConvFac, derVarPos)
+    ! ------------------------------------------------------------------------ !
+    !> Description of method to update source
+    class(mus_source_op_type), intent(inout) :: fun
+    !> output auxField array
+    real(kind=rk), intent(inout)         :: auxField(:)
+    !> current level
+    integer, intent(in)                :: iLevel
+    !> current timing information
+    type(tem_time_type), intent(in)    :: time
+    !> variable system definition
+    type(tem_varSys_type), intent(in) :: varSys
+    !> Physics conversion factor for current level
+    type(mus_convertFac_type), intent(in) :: phyConvFac
+    !> position of derived quantities in varsys
+    type(mus_derVarPos_type), intent(in) :: derVarPos(:)
+    ! ------------------------------------------------------------------------ !
+    integer :: dens_pos, vel_pos(3), vol_frac_pos
+    real(kind=rk) :: forceTerm(3)
+    integer :: iElem, nElems, posInTotal, elemOff
+    real(kind=rk) :: forceField(fun%elemLvl(iLevel)%nElems*3), inv_rho, eps_f
+    ! ------------------------------------------------------------------------ !
+    ! position of density, velocity and volume fraction field in auxField
+    dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+    vol_frac_pos = varSys%method%val(derVarPos(1)%vol_frac)%auxField_varPos(1)
+
+    ! Number of elements to apply source terms
+    nElems = fun%elemLvl(iLevel)%nElems
+    ! Get force which is refered in config file either its
+    ! spacetime variable or operation variable
+    call varSys%method%val(fun%data_varPos)%get_valOfIndex( &
+      & varSys  = varSys,                                   &
+      & time    = time,                                     &
+      & iLevel  = iLevel,                                   &
+      & idx     = fun%elemLvl(iLevel)%idx(1:nElems),        &
+      & nVals   = nElems,                                   &
+      & res     = forceField                                )
+
+    ! convert physical to lattice
+    forceField = forceField / phyConvFac%body_force
+
+!$omp parallel do schedule(static), private( posInTotal, forceTerm, inv_rho, elemOff )
+    !NEC$ ivdep
+    do iElem = 1, nElems
+      posInTotal = fun%elemLvl(iLevel)%posInTotal(iElem)
+      ! element offset
+      elemoff = (posInTotal-1)*varSys%nAuxScalars
+      ! inverse of density
+      inv_rho = 1.0_rk/auxField(elemOff+dens_pos)
+      eps_f = auxField(elemOff+vol_frac_pos)
+      ! forceterm to add to velocity: F/(2*rho)
+      forceTerm = forceField((iElem-1)*3+1 : iElem*3)*0.5_rk*inv_rho*eps_f
+      ! add force to velocity
+      auxField(elemOff+vel_pos(1)) = auxField(elemOff+vel_pos(1)) + forceTerm(1)
+      auxField(elemOff+vel_pos(2)) = auxField(elemOff+vel_pos(2)) + forceTerm(2)
+      auxField(elemOff+vel_pos(3)) = auxField(elemOff+vel_pos(3)) + forceTerm(3)
+    end do
+
+  end subroutine mus_addForceToAuxField_fluid_GNS
   ! ************************************************************************** !
 
   ! ************************************************************************** !

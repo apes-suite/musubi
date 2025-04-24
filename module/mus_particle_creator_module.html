@@ -1,0 +1,2757 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_particle_creator_module &ndash; Musubi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_particle_creator_module
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.9% of total for modules and submodules.">529 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_particle_creator_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_particle_creator_module.f90.html'>mus_particle_creator_module.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_particle_creator_module</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#variable-particle_creator~4">particle_creator</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#type-mus_particle_creator_type">mus_particle_creator_type</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-getnewparticleid">getNewParticleID</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-must_create_new_particles">must_create_new_particles</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-init_particle_creator">init_particle_creator</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-createnewparticle_mem">createNewParticle_MEM</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-createnewparticle_dps">createNewParticle_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-create_particles_mem">create_particles_MEM</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-create_particles_dps">create_particles_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-check_and_create_new_particles_mem">check_and_create_new_particles_MEM</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-check_and_create_new_particles_dps">check_and_create_new_particles_DPS</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-init_particle_creator_from_blob">init_particle_creator_from_blob</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-init_particle_creator_from_blob_prism">init_particle_creator_from_blob_prism</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-fill_blob_positions_gauss">fill_blob_positions_gauss</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-fill_blob_positions_gauss_prism">fill_blob_positions_gauss_prism</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-print_particle_creator">print_particle_creator</a>
+            <a class="list-group-item" href="../module/mus_particle_creator_module.html#proc-print_particle_creator_positions">print_particle_creator_positions</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>mus_particle_creator_module contains data types and routines for the particle 
+creator object which is used to initialize new particles at specified locations 
+at specified time steps.</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
+                  <li class="list-inline-item"><a href='mus_geom_module.html'>mus_geom_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_mem_module.html'>mus_particle_MEM_module</a></li>
+                  <li class="list-inline-item"><a href='http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm'>mpi</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_blob_module.html'>mus_particle_blob_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_grow_array_module.html'>tem_grow_array_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_aux_module.html'>mus_particle_aux_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_dps_module.html'>mus_particle_DPS_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_type_module.html'>mus_particle_type_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_geometry_module.html'>tem_geometry_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_comm_module.html'>mus_particle_comm_module</a></li>
+                  <li class="list-inline-item"><a href='mus_particle_logging_type_module.html'>mus_particle_logging_type_module</a></li>
+                  <li class="list-inline-item"><a href='mus_param_module.html'>mus_param_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_particle_creator_module~~UsesGraph Pages: 1 -->
+<svg id="modulemus_particle_creator_moduleUsesGraph" width="414pt" height="704pt"
+ viewBox="0.00 0.00 414.00 704.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_particle_creator_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 700)">
+<title>module~~mus_particle_creator_module~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-700 410,-700 410,4 -4,4"/>
+<!-- module~mus_particle_creator_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node1" class="node">
+<title>module~mus_particle_creator_module</title>
+<polygon fill="none" stroke="black" points="406,-360 236,-360 236,-336 406,-336 406,-360"/>
+<text text-anchor="middle" x="321" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_particle_creator_module</text>
+</g>
+<!-- env_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node2" class="node">
+<title>env_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="139,-696 61,-696 61,-672 139,-672 139,-696"/>
+<text text-anchor="middle" x="100" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;env_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge1" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M319.33,-360.29C316.05,-407.6 297.59,-579.47 200,-663 186.05,-674.94 167,-680.63 149.33,-683.18"/>
+<polygon fill="#000000" stroke="#000000" points="148.67,-679.74 139.13,-684.35 149.47,-686.69 148.67,-679.74"/>
+</g>
+<!-- module~mus_geom_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node3" class="node">
+<title>module~mus_geom_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node3"><a xlink:href="../module/mus_geom_module.html" xlink:title="mus_geom_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="158.5,-654 41.5,-654 41.5,-630 158.5,-630 158.5,-654"/>
+<text text-anchor="middle" x="100" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_geom_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_geom_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge2" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_geom_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M318.56,-360.14C312.78,-403.24 287.16,-550.11 200,-621 190.99,-628.33 180.02,-633.28 168.72,-636.58"/>
+<polygon fill="#000000" stroke="#000000" points="167.59,-633.25 158.74,-639.08 169.29,-640.04 167.59,-633.25"/>
+</g>
+<!-- module~mus_param_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node4" class="node">
+<title>module~mus_param_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node4"><a xlink:href="../module/mus_param_module.html" xlink:title="mus_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="160.5,-612 39.5,-612 39.5,-588 160.5,-588 160.5,-612"/>
+<text text-anchor="middle" x="100" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_param_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge3" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M317.53,-360.16C308.96,-398.94 276.79,-520.58 200,-579 191.33,-585.6 181.05,-590.23 170.45,-593.46"/>
+<polygon fill="#000000" stroke="#000000" points="169.43,-590.11 160.66,-596.06 171.22,-596.88 169.43,-590.11"/>
+</g>
+<!-- module~mus_particle_aux_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node5" class="node">
+<title>module~mus_particle_aux_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node5"><a xlink:href="../module/mus_particle_aux_module.html" xlink:title="mus_particle_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="175.5,-570 24.5,-570 24.5,-546 175.5,-546 175.5,-570"/>
+<text text-anchor="middle" x="100" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_aux_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge4" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M316.1,-360.09C304.48,-394.01 266.72,-490.66 200,-537 195.4,-540.19 190.41,-542.92 185.2,-545.24"/>
+<polygon fill="#000000" stroke="#000000" points="183.65,-542.09 175.62,-549 186.21,-548.61 183.65,-542.09"/>
+</g>
+<!-- module~mus_particle_blob_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node6" class="node">
+<title>module~mus_particle_blob_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node6"><a xlink:href="../module/mus_particle_blob_module.html" xlink:title="mus_particle_blob_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="177.5,-528 22.5,-528 22.5,-504 177.5,-504 177.5,-528"/>
+<text text-anchor="middle" x="100" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_blob_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_blob_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge5" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_blob_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313.82,-360.24C298.68,-388.86 256.82,-460.35 200,-495 195.9,-497.5 191.55,-499.7 187.05,-501.65"/>
+<polygon fill="#000000" stroke="#000000" points="185.7,-498.42 177.63,-505.29 188.22,-504.95 185.7,-498.42"/>
+</g>
+<!-- module~mus_particle_comm_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node7" class="node">
+<title>module~mus_particle_comm_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node7"><a xlink:href="../module/mus_particle_comm_module.html" xlink:title="mus_particle_comm_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="183,-486 17,-486 17,-462 183,-462 183,-486"/>
+<text text-anchor="middle" x="100" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_comm_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge6" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M309.87,-360.29C290.81,-382.54 247.29,-429.34 200,-453 195.91,-455.05 191.63,-456.89 187.24,-458.56"/>
+<polygon fill="#000000" stroke="#000000" points="185.8,-455.36 177.49,-461.93 188.08,-461.97 185.8,-455.36"/>
+</g>
+<!-- module~mus_particle_dps_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node8" class="node">
+<title>module~mus_particle_dps_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node8"><a xlink:href="../module/mus_particle_dps_module.html" xlink:title="mus_particle_DPS_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="176.5,-444 23.5,-444 23.5,-420 176.5,-420 176.5,-444"/>
+<text text-anchor="middle" x="100" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_DPS_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge7" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M300.8,-360.21C277.72,-374.37 237.41,-397.51 200,-411 193.56,-413.32 186.79,-415.43 179.93,-417.32"/>
+<polygon fill="#000000" stroke="#000000" points="178.65,-414.04 169.85,-419.95 180.41,-420.81 178.65,-414.04"/>
+</g>
+<!-- module~mus_particle_logging_type_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node9" class="node">
+<title>module~mus_particle_logging_type_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node9"><a xlink:href="../module/mus_particle_logging_type_module.html" xlink:title="mus_particle_logging_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="200,-402 0,-402 0,-378 200,-378 200,-402"/>
+<text text-anchor="middle" x="100" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_logging_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_logging_type_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge8" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_logging_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.24,-360.04C231.24,-365.02 200.91,-370.84 173.93,-376.01"/>
+<polygon fill="#000000" stroke="#000000" points="172.93,-372.64 163.77,-377.96 174.25,-379.52 172.93,-372.64"/>
+</g>
+<!-- module~mus_particle_mem_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node10" class="node">
+<title>module~mus_particle_mem_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node10"><a xlink:href="../module/mus_particle_mem_module.html" xlink:title="mus_particle_MEM_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="178.5,-360 21.5,-360 21.5,-336 178.5,-336 178.5,-360"/>
+<text text-anchor="middle" x="100" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_MEM_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_mem_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge9" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_mem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M235.96,-348C220.52,-348 204.37,-348 188.83,-348"/>
+<polygon fill="#000000" stroke="#000000" points="188.71,-344.5 178.71,-348 188.71,-351.5 188.71,-344.5"/>
+</g>
+<!-- module~mus_particle_type_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node11" class="node">
+<title>module~mus_particle_type_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node11"><a xlink:href="../module/mus_particle_type_module.html" xlink:title="mus_particle_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="177.5,-318 22.5,-318 22.5,-294 177.5,-294 177.5,-318"/>
+<text text-anchor="middle" x="100" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge10" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M257.24,-335.96C231.24,-330.98 200.91,-325.16 173.93,-319.99"/>
+<polygon fill="#000000" stroke="#000000" points="174.25,-316.48 163.77,-318.04 172.93,-323.36 174.25,-316.48"/>
+</g>
+<!-- module~mus_scheme_type_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node12" class="node">
+<title>module~mus_scheme_type_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node12"><a xlink:href="../module/mus_scheme_type_module.html" xlink:title="mus_scheme_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="178.5,-276 21.5,-276 21.5,-252 178.5,-252 178.5,-276"/>
+<text text-anchor="middle" x="100" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_scheme_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_scheme_type_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge11" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_scheme_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M300.8,-335.79C277.72,-321.63 237.41,-298.49 200,-285 193.56,-282.68 186.79,-280.57 179.93,-278.68"/>
+<polygon fill="#000000" stroke="#000000" points="180.41,-275.19 169.85,-276.05 178.65,-281.96 180.41,-275.19"/>
+</g>
+<!-- mpi -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node13" class="node">
+<title>mpi</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node13"><a xlink:href="http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm" xlink:title="mpi">
+<polygon fill="#337ab7" stroke="#337ab7" points="127,-234 73,-234 73,-210 127,-210 127,-234"/>
+<text text-anchor="middle" x="100" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;mpi -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge12" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;mpi</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M309.87,-335.71C290.81,-313.46 247.29,-266.66 200,-243 180.55,-233.27 156.77,-228.04 137.39,-225.23"/>
+<polygon fill="#000000" stroke="#000000" points="137.79,-221.75 127.42,-223.94 136.89,-228.7 137.79,-221.75"/>
+</g>
+<!-- tem_aux_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node14" class="node">
+<title>tem_aux_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node14"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_aux_module.html" xlink:title="tem_aux_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="152,-192 48,-192 48,-168 152,-168 152,-192"/>
+<text text-anchor="middle" x="100" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_aux_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;tem_aux_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge13" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;tem_aux_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M313.82,-335.76C298.68,-307.14 256.82,-235.65 200,-201 188.58,-194.04 175.21,-189.36 162.04,-186.22"/>
+<polygon fill="#000000" stroke="#000000" points="162.56,-182.76 152.05,-184.11 161.11,-189.6 162.56,-182.76"/>
+</g>
+<!-- tem_geometry_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node15" class="node">
+<title>tem_geometry_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node15"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_geometry_module.html" xlink:title="tem_geometry_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="168,-150 32,-150 32,-126 168,-126 168,-150"/>
+<text text-anchor="middle" x="100" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_geometry_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;tem_geometry_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge14" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;tem_geometry_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M316.1,-335.91C304.48,-301.99 266.72,-205.34 200,-159 193.28,-154.33 185.73,-150.67 177.87,-147.8"/>
+<polygon fill="#000000" stroke="#000000" points="178.76,-144.41 168.17,-144.67 176.62,-151.07 178.76,-144.41"/>
+</g>
+<!-- tem_grow_array_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node16" class="node">
+<title>tem_grow_array_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node16"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_grow_array_module.html" xlink:title="tem_grow_array_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="172,-108 28,-108 28,-84 172,-84 172,-108"/>
+<text text-anchor="middle" x="100" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_grow_array_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;tem_grow_array_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge15" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;tem_grow_array_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M317.53,-335.84C308.96,-297.06 276.79,-175.42 200,-117 194.5,-112.82 188.36,-109.43 181.9,-106.68"/>
+<polygon fill="#000000" stroke="#000000" points="182.84,-103.29 172.25,-103.1 180.41,-109.86 182.84,-103.29"/>
+</g>
+<!-- tem_logging_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node17" class="node">
+<title>tem_logging_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node17"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_logging_module.html" xlink:title="tem_logging_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="162,-66 38,-66 38,-42 162,-42 162,-66"/>
+<text text-anchor="middle" x="100" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_logging_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;tem_logging_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge16" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;tem_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M318.56,-335.86C312.78,-292.76 287.16,-145.89 200,-75 191.84,-68.36 182.08,-63.68 171.92,-60.4"/>
+<polygon fill="#000000" stroke="#000000" points="172.66,-56.98 162.09,-57.67 170.79,-63.72 172.66,-56.98"/>
+</g>
+<!-- tem_param_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_node18" class="node">
+<title>tem_param_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsesGraph_node18"><a xlink:href="https://apes-suite.github.io/treelm/module/tem_param_module.html" xlink:title="tem_param_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="160,-24 40,-24 40,0 160,0 160,-24"/>
+<text text-anchor="middle" x="100" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_param_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;tem_param_module -->
+<g id="module~~mus_particle_creator_module~~UsesGraph_edge17" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;tem_param_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M319.33,-335.71C316.05,-288.4 297.59,-116.53 200,-33 191.38,-25.62 180.81,-20.63 169.82,-17.29"/>
+<polygon fill="#000000" stroke="#000000" points="170.65,-13.89 160.09,-14.76 168.89,-20.66 170.65,-13.89"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_particle_creator_module~~UsedByGraph Pages: 1 -->
+<svg id="modulemus_particle_creator_moduleUsedByGraph" width="641pt" height="93pt"
+ viewBox="0.00 0.00 641.00 93.45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_particle_creator_module~~UsedByGraph" class="graph" transform="scale(0.6 0.6) rotate(0) translate(4 152)">
+<title>module~~mus_particle_creator_module~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-152 1066,-152 1066,4 -4,4"/>
+<!-- module~mus_particle_creator_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node1" class="node">
+<title>module~mus_particle_creator_module</title>
+<polygon fill="none" stroke="black" points="170,-108 0,-108 0,-84 170,-84 170,-108"/>
+<text text-anchor="middle" x="85" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_particle_creator_module</text>
+</g>
+<!-- module~mus_control_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node2" class="node">
+<title>module~mus_control_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node2"><a xlink:href="../module/mus_control_module.html" xlink:title="mus_control_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="513,-148 390,-148 390,-124 513,-124 513,-148"/>
+<text text-anchor="middle" x="451.5" y="-133.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge1" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M389.8,-132.9C340.22,-129.98 268.41,-124.87 206,-117 190.51,-115.05 173.97,-112.47 158.28,-109.8"/>
+<polygon fill="#000000" stroke="#000000" points="158.56,-106.3 148.11,-108.04 157.37,-113.19 158.56,-106.3"/>
+</g>
+<!-- module~mus_particle_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node4" class="node">
+<title>module~mus_particle_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node4"><a xlink:href="../module/mus_particle_module.html" xlink:title="mus_particle_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="333,-108 206,-108 206,-84 333,-84 333,-108"/>
+<text text-anchor="middle" x="269.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge8" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M396.49,-124C377,-119.67 354.82,-114.74 334.55,-110.23"/>
+<polygon fill="#000000" stroke="#000000" points="335.3,-106.81 324.78,-108.06 333.78,-113.65 335.3,-106.81"/>
+</g>
+<!-- module~mus_particle_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node3" class="node">
+<title>module~mus_particle_config_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node3"><a xlink:href="../module/mus_particle_config_module.html" xlink:title="mus_particle_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="534,-68 369,-68 369,-44 534,-44 534,-68"/>
+<text text-anchor="middle" x="451.5" y="-53.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_config_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge2" class="edge">
+<title>module~mus_particle_config_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M368.8,-60.39C321.19,-63.43 260.07,-68.18 206,-75 190.51,-76.95 173.97,-79.53 158.28,-82.2"/>
+<polygon fill="#000000" stroke="#000000" points="157.37,-78.81 148.11,-83.96 158.56,-85.7 157.37,-78.81"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge3" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M205.95,-96C197.64,-96 188.98,-96 180.29,-96"/>
+<polygon fill="#000000" stroke="#000000" points="180.08,-92.5 170.08,-96 180.08,-99.5 180.08,-92.5"/>
+</g>
+<!-- module~mus_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node5" class="node">
+<title>module~mus_config_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node5"><a xlink:href="../module/mus_config_module.html" xlink:title="mus_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="695.5,-66 576.5,-66 576.5,-42 695.5,-42 695.5,-66"/>
+<text text-anchor="middle" x="636" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_config_module&#45;&gt;module~mus_particle_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge6" class="edge">
+<title>module~mus_config_module&#45;&gt;module~mus_particle_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M576.25,-54.64C565.96,-54.76 555.03,-54.88 544.1,-55"/>
+<polygon fill="#000000" stroke="#000000" points="544.04,-51.5 534.08,-55.11 544.12,-58.5 544.04,-51.5"/>
+</g>
+<!-- module~mus_program_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node6" class="node">
+<title>module~mus_program_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node6"><a xlink:href="../module/mus_program_module.html" xlink:title="mus_program_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="702,-108 570,-108 570,-84 702,-84 702,-108"/>
+<text text-anchor="middle" x="636" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_program_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge4" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M580.24,-108C560.48,-112.33 537.99,-117.26 517.44,-121.77"/>
+<polygon fill="#000000" stroke="#000000" points="516.55,-118.38 507.53,-123.94 518.05,-125.22 516.55,-118.38"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge7" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M580.24,-84C560.48,-79.67 537.99,-74.74 517.44,-70.23"/>
+<polygon fill="#000000" stroke="#000000" points="518.05,-66.78 507.53,-68.06 516.55,-73.62 518.05,-66.78"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge9" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M569.83,-96C506.27,-96 409.77,-96 343.62,-96"/>
+<polygon fill="#000000" stroke="#000000" points="343.27,-92.5 333.27,-96 343.27,-99.5 343.27,-92.5"/>
+</g>
+<!-- program~musubi -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node7" class="node">
+<title>program~musubi</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node7"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="855,-108 801,-108 801,-84 855,-84 855,-108"/>
+<text text-anchor="middle" x="828" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge5" class="edge">
+<title>program~musubi&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M800.76,-101.12C775.54,-105.87 736.3,-112.82 702,-117 641.89,-124.32 573.26,-129.3 523.22,-132.32"/>
+<polygon fill="#000000" stroke="#000000" points="522.93,-128.83 513.15,-132.92 523.34,-135.82 522.93,-128.83"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge12" class="edge">
+<title>program~musubi&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M800.98,-90.25C775.45,-84.6 735.5,-75.77 701.42,-68.24"/>
+<polygon fill="#000000" stroke="#000000" points="702.04,-64.79 691.52,-66.05 700.53,-71.63 702.04,-64.79"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_program_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge13" class="edge">
+<title>program~musubi&#45;&gt;module~mus_program_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M800.98,-96C778.14,-96 743.77,-96 712.39,-96"/>
+<polygon fill="#000000" stroke="#000000" points="712.32,-92.5 702.32,-96 712.32,-99.5 712.32,-92.5"/>
+</g>
+<!-- module~mus_hvs_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node8" class="node">
+<title>module~mus_hvs_config_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node8"><a xlink:href="../module/mus_hvs_config_module.html" xlink:title="mus_hvs_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="899,-66 757,-66 757,-42 899,-42 899,-66"/>
+<text text-anchor="middle" x="828" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_hvs_config_module&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge10" class="edge">
+<title>module~mus_hvs_config_module&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M756.79,-54C740.16,-54 722.43,-54 705.86,-54"/>
+<polygon fill="#000000" stroke="#000000" points="705.71,-50.5 695.71,-54 705.71,-57.5 705.71,-50.5"/>
+</g>
+<!-- module~mus_interpolate_verify_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node9" class="node">
+<title>module~mus_interpolate_verify_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node9"><a xlink:href="../module/mus_interpolate_verify_module.html" xlink:title="mus_interpolate_verify_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="918,-24 738,-24 738,0 918,0 918,-24"/>
+<text text-anchor="middle" x="828" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_verify_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_verify_module&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge11" class="edge">
+<title>module~mus_interpolate_verify_module&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M772.55,-24.04C750.39,-28.93 724.61,-34.63 701.51,-39.74"/>
+<polygon fill="#000000" stroke="#000000" points="700.46,-36.39 691.45,-41.96 701.97,-43.22 700.46,-36.39"/>
+</g>
+<!-- module~mus_flow_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node10" class="node">
+<title>module~mus_flow_module</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node10"><a xlink:href="../module/mus_flow_module.html" xlink:title="mus_flow_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1062,-24 954,-24 954,0 1062,0 1062,-24"/>
+<text text-anchor="middle" x="1008" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_flow_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_flow_module&#45;&gt;module~mus_interpolate_verify_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge15" class="edge">
+<title>module~mus_flow_module&#45;&gt;module~mus_interpolate_verify_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M953.59,-12C945.57,-12 937.09,-12 928.47,-12"/>
+<polygon fill="#000000" stroke="#000000" points="928.31,-8.5 918.31,-12 928.31,-15.5 928.31,-8.5"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_node11" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_module~~mus_particle_creator_module~~UsedByGraph_node11"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="1056.5,-66 959.5,-66 959.5,-42 1056.5,-42 1056.5,-66"/>
+<text text-anchor="middle" x="1008" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;module~mus_hvs_config_module -->
+<g id="module~~mus_particle_creator_module~~UsedByGraph_edge14" class="edge">
+<title>program~mus_harvesting&#45;&gt;module~mus_hvs_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M959.3,-54C944.03,-54 926.69,-54 909.74,-54"/>
+<polygon fill="#000000" stroke="#000000" points="909.26,-50.5 899.26,-54 909.26,-57.5 909.26,-50.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_particle_creator_moduleUsedByGraph = svgPanZoom('#modulemus_particle_creator_moduleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~4"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              save
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-mus_particle_creator_type"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      <p>Data type used to create particles with certain properties at specified time 
+steps</p>
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nparticles~4"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Nparticles</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Number of particles in this particle creator object.
+This is the amount of particles that will be created at each interval.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-position"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_real2darray_type.html'>grw_real2darray_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>position</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Dynamic array containing positions of particles to be created at each iter
+First index corresponds to a certain particle, second to x, y, z, rx, ry, rz coordinate</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velocity~50"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_real2darray_type.html'>grw_real2darray_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velocity</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Dynamic array containing velocities of particles to be created at each iter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-force~7"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_real2darray_type.html'>grw_real2darray_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>force</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Dynamic array containing forces of particles to be created at each iter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-radius~5"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_realarray_type.html'>grw_realarray_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>radius</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Dynamic array containing radii of particles to be created at each iter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mass~4"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_realarray_type.html'>grw_realarray_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mass</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Dynamic array containing mass of particles to be created at each iter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-idoffset"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_intarray_type.html'>grw_intarray_type</a>),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>IDoffset</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Dynamic array containing the particleID offsets for each particle
+These are used to create unique (across all processes) ID's for each particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-init_particle_to_fluid_vel"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>init_particle_to_fluid_vel</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Logical to indicate whether to initialize particles to the local fluid velocity
+If this is set to TRUE, particles will be initialized with the local fluid velocity 
+when they are created. In this case the particle_creator%velocities array is not used.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-global_nparticles"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>global_Nparticles</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Number of particles in the particle creators on all processes</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-n_times_called"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>N_times_called</strong></td>
+<td> =</td>
+                <td>0</td>
+            <td>
+<p>Times that the particleCreator has been called
+This is the same on all processes</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iter_start"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iter_start</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Iteration number to start creating particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iter_end"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iter_end</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Iteration number to stop creating particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iter_interval"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iter_interval</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>Create particles every this many time steps</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-getnewparticleid"></span> <h3>public  function <a href='../proc/getnewparticleid.html'>getNewParticleID</a>(particle_creator, iParticle)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to generate a unique particleID for a particle</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~5"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iparticle~57"></span>
+              integer
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iParticle</strong></td>
+            <td>
+<p>Index of the particle data we want to use to create this particle 
+in the particle creator object </p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-must_create_new_particles"></span> <h3>public  function <a href='../proc/must_create_new_particles.html'>must_create_new_particles</a>(iter, i_start, i_end, interval)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Function to check whether particles should be created using the particleCreator 
+object at the current iteration iter.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iter~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iter</strong></td>
+            <td>
+<p>Current simulation time (in iterations)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i_start"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>i_start</strong></td>
+            <td>
+<p>Start creating new particles at this time (in iterations)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-i_end"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>i_end</strong></td>
+            <td>
+<p>Max time (in iterations) to create new particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-interval"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>interval</strong></td>
+            <td>
+<p>Interval (in iterations) at which to create new particles</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>logical</small>
+    </h4>
+    <p>Output logical: TRUE if particles should be created at this instant</p>
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-init_particle_creator"></span> <h3>public  subroutine <a href='../proc/init_particle_creator.html'>init_particle_creator</a>(me, Nparticles)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-me~248"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>me</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nparticles~5"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Nparticles</strong></td>
+            <td>
+<p>Number of particles to create at each time step</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-createnewparticle_mem"></span> <h3>public  subroutine <a href='../proc/createnewparticle_mem.html'>createNewParticle_MEM</a>(pos, vel, F, radius, mass, particleID, particleGroup, geometry, scheme, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to create a new particle using the information in the particleCreator object</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pos~57"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pos</strong>(6)</td>
+            <td>
+<p>Create particle at this position</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vel~153"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vel</strong>(6)</td>
+            <td>
+<p>Initial velocity of particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-f~10"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>F</strong>(6)</td>
+            <td>
+<p>External forces on particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-radius~6"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>radius</strong></td>
+            <td>
+<p>Particle radius</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mass~5"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mass</strong></td>
+            <td>
+<p>Particle mass</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleid~10"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleID</strong></td>
+            <td>
+<p>ID that should be assigned to this particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~69"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>ParticleGroup to add this particle to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~101"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~244"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~69"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Params for access to dt, dx, etc.
+This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-createnewparticle_dps"></span> <h3>public  subroutine <a href='../proc/createnewparticle_dps.html'>createNewParticle_DPS</a>(pos, vel, F, radius, mass, particleID, particleGroup, geometry, scheme, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to create a new particle using the information in the
+particleCreator object</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pos~58"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pos</strong>(6)</td>
+            <td>
+<p>Create particle at this position</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-vel~154"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>vel</strong>(6)</td>
+            <td>
+<p>Initial velocity of particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-f~11"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>F</strong>(6)</td>
+            <td>
+<p>External forces on particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-radius~7"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>radius</strong></td>
+            <td>
+<p>Particle radius</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mass~6"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mass</strong></td>
+            <td>
+<p>Particle mass</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleid~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleID</strong></td>
+            <td>
+<p>ID that should be assigned to this particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~70"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>ParticleGroup to add this particle to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~102"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~245"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~70"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>Params for access to dt, dx, etc.
+This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-create_particles_mem"></span> <h3>public  subroutine <a href='../proc/create_particles_mem.html'>create_particles_MEM</a>(particle_creator, particleGroup, scheme, geometry, params, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to create new fully resolved MEM particles</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~6"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~71"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>ParticleGroup to add this particle to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~246"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~103"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~163"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>Params for access to dt, dx, etc.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~71"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-create_particles_dps"></span> <h3>public  subroutine <a href='../proc/create_particles_dps.html'>create_particles_DPS</a>(particle_creator, particleGroup, scheme, geometry, params, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to create new unresolved DPS particles</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~7"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~72"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>ParticleGroup to add this particle to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~247"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~104"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~164"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>Params for access to dt, dx, etc.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~72"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-check_and_create_new_particles_mem"></span> <h3>public  subroutine <a href='../proc/check_and_create_new_particles_mem.html'>check_and_create_new_particles_MEM</a>(particle_creator, iter, particleGroup, scheme, geometry, params, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine that checks if new particles should be created and creates them if so.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~8"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iter~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iter</strong></td>
+            <td>
+<p>Current LBM iteration</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~73"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>particleGroup to add particles to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~248"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~105"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~165"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>Params</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~73"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-check_and_create_new_particles_dps"></span> <h3>public  subroutine <a href='../proc/check_and_create_new_particles_dps.html'>check_and_create_new_particles_DPS</a>(particle_creator, iter, particleGroup, scheme, geometry, params, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine that checks if new particles should be created and creates them if so.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~9"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-iter~10"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iter</strong></td>
+            <td>
+<p>Current LBM iteration</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~74"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+<p>particleGroup to add particles to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~249"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~106"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~166"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>Params</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~74"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-init_particle_creator_from_blob"></span> <h3>public  subroutine <a href='../proc/init_particle_creator_from_blob.html'>init_particle_creator_from_blob</a>(particle_creator, particleblob, Nparticles, scheme, geometry, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to initialize the particle creator object from a particle 
+blob cylinder object
+Check if particles should be initialized to the local fluid velocity.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~10"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleblob~7"></span>
+              type(<a href='../type/mus_particle_blob_cylinder_type.html'>mus_particle_blob_cylinder_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleblob</strong></td>
+            <td>
+<p>Particle blob object describing the shape of the initial "blob" of particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nparticles~6"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Nparticles</strong></td>
+            <td>
+<p>Desired number of particles to fill the ENTIRE blob with (so not just the 
+part of it on this rank, but on all ranks)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~250"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~107"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~75"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-init_particle_creator_from_blob_prism"></span> <h3>public  subroutine <a href='../proc/init_particle_creator_from_blob_prism.html'>init_particle_creator_from_blob_prism</a>(particle_creator, particleblob, Nparticles, scheme, geometry, myRank)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to initialize the particle creator object from a particle 
+blob prism object
+Check if particles should be initialized to the local fluid velocity.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~11"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleblob~8"></span>
+              type(<a href='../type/mus_particle_blob_prism_type.html'>mus_particle_blob_prism_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleblob</strong></td>
+            <td>
+<p>Particle blob object describing the shape of the initial "blob" of particles</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nparticles~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Nparticles</strong></td>
+            <td>
+<p>Desired number of particles to fill the ENTIRE blob with (so not just the 
+part of it on this rank, but on all ranks)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~251"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme to initialize particles on the lattice</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~108"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry to initialize particles on the lattice </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~76"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+<p>This process rank</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-fill_blob_positions_gauss"></span> <h3>public  subroutine <a href='../proc/fill_blob_positions_gauss.html'>fill_blob_positions_gauss</a>(particleblob, positions, Nparticles)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to initialize particle creator object with random positions 
+inside a cylinder described by blob_cylinder type</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleblob~9"></span>
+              type(<a href='../type/mus_particle_blob_cylinder_type.html'>mus_particle_blob_cylinder_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleblob</strong></td>
+            <td>
+<p>Particleblob type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-positions~9"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_real2darray_type.html'>grw_real2darray_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>positions</strong></td>
+            <td>
+<p>Positions array to append randomly created values to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nparticles~8"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Nparticles</strong></td>
+            <td>
+<p>Desired number of particles</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-fill_blob_positions_gauss_prism"></span> <h3>public  subroutine <a href='../proc/fill_blob_positions_gauss_prism.html'>fill_blob_positions_gauss_prism</a>(particleblob, positions, Nparticles)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Routine to initialize particle creator object with random positions 
+inside a prism described by blob_prism type</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particleblob~10"></span>
+              type(<a href='../type/mus_particle_blob_prism_type.html'>mus_particle_blob_prism_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleblob</strong></td>
+            <td>
+<p>Particleblob type</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-positions~10"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/grw_real2darray_type.html'>grw_real2darray_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>positions</strong></td>
+            <td>
+<p>Positions array to append randomly created values to</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nparticles~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Nparticles</strong></td>
+            <td>
+<p>Desired number of particles</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-print_particle_creator"></span> <h3>public  subroutine <a href='../proc/print_particle_creator.html'>print_particle_creator</a>(particle_creator, logUnit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Print the data in particle creator object, used for debugging</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~12"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-logunit~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>logUnit</strong></td>
+            <td>
+<p>Unit to write to</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-print_particle_creator_positions"></span> <h3>public  subroutine <a href='../proc/print_particle_creator_positions.html'>print_particle_creator_positions</a>(particle_creator, logUnit)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Print the positions in particle creator object, used for debugging</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particle_creator~13"></span>
+              type(<a href='../type/mus_particle_creator_type.html'>mus_particle_creator_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particle_creator</strong></td>
+            <td>
+<p>Particle creator object</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-logunit~13"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>logUnit</strong></td>
+            <td>
+<p>Unit to write to</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-04-24T09:44:22.475563+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

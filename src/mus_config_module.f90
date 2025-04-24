@@ -10,6 +10,7 @@
 ! Copyright (c) 2014 Julia Moos <julia.moos@student.uni-siegen.de>
 ! Copyright (c) 2016 Tobias Schneider <tobias1.schneider@student.uni-siegen.de>
 ! Copyright (c) 2016 Verena Krupp <verena.krupp@uni-siegen.de>
+! Copyright (c) 2025 Tristan Vlogman <t.g.vlogman@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -71,6 +72,10 @@ module mus_config_module
   ! include aotus modules
   use aotus_module,    only: flu_State, open_config_chunk
 
+  ! include particle modules
+  use mus_particle_type_module,   only: mus_particle_group_type
+  use mus_particle_config_module, only: mus_load_particlekind
+
   implicit none
 
   private
@@ -88,7 +93,8 @@ contains
   !! Lua is a scripting language in itself which allows
   !! more complex parameter files including comments
   !! And load / create the mesh depending on the configuration
-  subroutine mus_load_config( scheme, solverData, geometry, params, adapt )
+  subroutine mus_load_config( scheme, solverData, geometry, params, &
+                            & adapt, particleGroup                  )
     ! ---------------------------------------------------------------------- !
     !> scheme type
     type( mus_scheme_type ), target :: scheme
@@ -100,6 +106,8 @@ contains
     type( mus_param_type ), target, intent(inout) :: params
     !> mesh adaptation
     type(tem_adapt_type), intent(inout) :: adapt
+    !> particleGroup object containing all particle data on this process
+    type(mus_particle_group_type), intent(inout) :: particleGroup
     ! ---------------------------------------------------------------------- !
     character(len=PathLen) :: filename
     integer :: minLevel, maxLevel
@@ -194,6 +202,11 @@ contains
       &                   geometry   = geometry,                      &
       &                   conf       = params%general%solver%conf(1), &
       &                   params     = params                         )
+    
+    ! For coupled LBM-DEM simulations with solid particles
+    ! load data for particles from 'particles' table in musubi.lua, if present
+    call mus_load_particlekind( particle_kind = params%particle_kind,         &
+      &                         conf          = params%general%solver%conf(1) )
 
     call tem_horizontalSpacer(fUnit = logUnit(1))
 

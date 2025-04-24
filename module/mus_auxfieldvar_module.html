@@ -12,14 +12,29 @@
 
     <title>mus_auxFieldVar_module &ndash; Musubi</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../css/pygments.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../css/local.css" rel="stylesheet">
-      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/pygments.css" rel="stylesheet">
     <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -81,7 +96,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 2.0% of total for modules and submodules.">937 statements</a>
+                 title=" 1.7% of total for modules and submodules.">967 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -101,9 +116,11 @@
     </div>
   </div>
   <script>
-    $(function () {
-    $('[data-bs-toggle="tooltip"]').tooltip()
-    })
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
   </script>
 
   </div>
@@ -136,6 +153,7 @@
             <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_auxfieldvar_forpoint">mus_auxFieldVar_forPoint</a>
             <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_auxfieldvar_fromindex">mus_auxFieldVar_fromIndex</a>
             <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_addforcetoauxfield_fluid">mus_addForceToAuxField_fluid</a>
+            <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_addforcetoauxfield_fluid_gns">mus_addForceToAuxField_fluid_GNS</a>
             <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_addforcetoauxfield_fluidincomp">mus_addForceToAuxField_fluidIncomp</a>
             <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_addforcetoauxfield_msl">mus_addForceToAuxField_MSL</a>
             <a class="list-group-item" href="../module/mus_auxfieldvar_module.html#proc-mus_addelectrictoauxfield_msl">mus_addElectricToAuxField_MSL</a>
@@ -185,34 +203,34 @@ Auxilary field variables are:
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_time_module.html'>tem_time_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
-                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_c_binding'>iso_c_binding</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/treelmesh_module.html'>treelmesh_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
+                  <li class="list-inline-item"><a href='mus_connectivity_module.html'>mus_connectivity_module</a></li>
                   <li class="list-inline-item"><a href='mus_varsys_module.html'>mus_varSys_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
+                  <li class="list-inline-item"><a href='mus_enrtl_module.html'>mus_eNRTL_module</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_c_binding'>iso_c_binding</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/treelmesh_module.html'>treelmesh_module</a></li>
+                  <li class="list-inline-item"><a href='mus_auxfield_module.html'>mus_auxField_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_time_module.html'>tem_time_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_comm_module.html'>tem_comm_module</a></li>
                   <li class="list-inline-item"><a href='mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></li>
-                  <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_compileconf_module.html'>tem_compileconf_module</a></li>
-                  <li class="list-inline-item"><a href='mus_source_type_module.html'>mus_source_type_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_header_module.html'>mus_scheme_header_module</a></li>
                   <li class="list-inline-item"><a href='mus_physics_module.html'>mus_physics_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_stencil_module.html'>tem_stencil_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_math_module.html'>tem_math_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_varsys_module.html'>tem_varSys_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_topology_module.html'>tem_topology_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_construction_module.html'>tem_construction_module</a></li>
-                  <li class="list-inline-item"><a href='mus_enrtl_module.html'>mus_eNRTL_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_topology_module.html'>tem_topology_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
+                  <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_debug_module.html'>tem_debug_module</a></li>
+                  <li class="list-inline-item"><a href='mus_source_type_module.html'>mus_source_type_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_geometry_module.html'>tem_geometry_module</a></li>
-                  <li class="list-inline-item"><a href='mus_connectivity_module.html'>mus_connectivity_module</a></li>
-                  <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
-                  <li class="list-inline-item"><a href='mus_auxfield_module.html'>mus_auxField_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
                   <li class="list-inline-item"><a href='mus_graddata_module.html'>mus_gradData_module</a></li>
-                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
-                  <li class="list-inline-item"><a href='mus_scheme_header_module.html'>mus_scheme_header_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -1195,7 +1213,7 @@ modules which it uses.
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-schemeheader~16"></span>
+              <span class="anchor" id="variable-schemeheader~26"></span>
               type(<a href='../type/mus_scheme_header_type.html'>mus_scheme_header_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1250,7 +1268,7 @@ modules which it uses.
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~22"></span>
+              <span class="anchor" id="variable-fun~158"></span>
               class(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_op_type.html'>tem_varSys_op_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1267,7 +1285,7 @@ required variables.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~162"></span>
+              <span class="anchor" id="variable-varsys~336"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1282,7 +1300,7 @@ required variables.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-elempos~22"></span>
+              <span class="anchor" id="variable-elempos~78"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1298,7 +1316,7 @@ global treeID list.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~42"></span>
+              <span class="anchor" id="variable-time~171"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1313,7 +1331,7 @@ global treeID list.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tree~78"></span>
+              <span class="anchor" id="variable-tree~157"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1328,7 +1346,7 @@ global treeID list.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~93"></span>
+              <span class="anchor" id="variable-nelems~247"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1343,7 +1361,7 @@ global treeID list.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ndofs~10"></span>
+              <span class="anchor" id="variable-ndofs~78"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1358,7 +1376,7 @@ global treeID list.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-res~26"></span>
+              <span class="anchor" id="variable-res~155"></span>
               real(kind=rk),
             </td>
 <td>intent(out)</td>
@@ -1368,7 +1386,7 @@ global treeID list.</p>
             <td>::</td>
             <td><strong>res</strong>(:)</td>
             <td>
-<p>Resulting values for the requested variable.</p><a href="../proc/mus_access_auxfieldvar_forelement.html#variable-res~26" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>Resulting values for the requested variable.</p><a href="../proc/mus_access_auxfieldvar_forelement.html#variable-res~155" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
     </tbody>
@@ -1389,7 +1407,7 @@ ghost and halo elements, this routine considers them because
 auxField vars on ghost elements are interpolated and halo elements are
 exchanged.
 The interface has to comply to the abstract interface
-<a href="../https:/apes-suite.github.io/treelm/interface/tem_varsys_proc_point.html">tem_varSys_proc_point</a>.</p>
+<a href="https://apes-suite.github.io/treelm/interface/tem_varsys_proc_point.html">tem_varSys_proc_point</a>.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1404,7 +1422,7 @@ The interface has to comply to the abstract interface
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~23"></span>
+              <span class="anchor" id="variable-fun~159"></span>
               class(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_op_type.html'>tem_varSys_op_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1421,7 +1439,7 @@ required variables.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~163"></span>
+              <span class="anchor" id="variable-varsys~337"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1436,7 +1454,7 @@ required variables.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-point~4"></span>
+              <span class="anchor" id="variable-point~7"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1452,7 +1470,7 @@ evaluated. Only useful for variables provided as space-time functions.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~43"></span>
+              <span class="anchor" id="variable-time~172"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1467,7 +1485,7 @@ evaluated. Only useful for variables provided as space-time functions.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tree~79"></span>
+              <span class="anchor" id="variable-tree~158"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1482,7 +1500,7 @@ evaluated. Only useful for variables provided as space-time functions.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-npnts~4"></span>
+              <span class="anchor" id="variable-npnts~7"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1497,7 +1515,7 @@ evaluated. Only useful for variables provided as space-time functions.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-res~27"></span>
+              <span class="anchor" id="variable-res~156"></span>
               real(kind=rk),
             </td>
 <td>intent(out)</td>
@@ -1507,7 +1525,7 @@ evaluated. Only useful for variables provided as space-time functions.</p>
             <td>::</td>
             <td><strong>res</strong>(:)</td>
             <td>
-<p>Resulting values for the requested variable.</p><a href="../proc/mus_auxfieldvar_forpoint.html#variable-res~27" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>Resulting values for the requested variable.</p><a href="../proc/mus_auxfieldvar_forpoint.html#variable-res~156" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
     </tbody>
@@ -1541,7 +1559,7 @@ and evaluate the variable and returns the values</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~24"></span>
+              <span class="anchor" id="variable-fun~160"></span>
               class(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_op_type.html'>tem_varSys_op_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1556,7 +1574,7 @@ and evaluate the variable and returns the values</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~164"></span>
+              <span class="anchor" id="variable-varsys~338"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1571,7 +1589,7 @@ and evaluate the variable and returns the values</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~44"></span>
+              <span class="anchor" id="variable-time~173"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1586,7 +1604,7 @@ and evaluate the variable and returns the values</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~126"></span>
+              <span class="anchor" id="variable-ilevel~260"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1601,7 +1619,7 @@ and evaluate the variable and returns the values</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-idx~5"></span>
+              <span class="anchor" id="variable-idx~39"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1618,7 +1636,7 @@ Size: n</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-idxlen~2"></span>
+              <span class="anchor" id="variable-idxlen~36"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1636,7 +1654,7 @@ but the sum of all idxLen is equal to nVals</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nvals~10"></span>
+              <span class="anchor" id="variable-nvals~54"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1651,7 +1669,7 @@ but the sum of all idxLen is equal to nVals</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-res~28"></span>
+              <span class="anchor" id="variable-res~157"></span>
               real(kind=rk),
             </td>
 <td>intent(out)</td>
@@ -1661,7 +1679,7 @@ but the sum of all idxLen is equal to nVals</p>
             <td>::</td>
             <td><strong>res</strong>(:)</td>
             <td>
-<p>Resulting values for the requested variable.</p><a href="../proc/mus_auxfieldvar_fromindex.html#variable-res~28" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>Resulting values for the requested variable.</p><a href="../proc/mus_auxfieldvar_fromindex.html#variable-res~157" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
     </tbody>
@@ -1692,7 +1710,7 @@ model.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~25"></span>
+              <span class="anchor" id="variable-fun~161"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1707,7 +1725,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~94"></span>
+              <span class="anchor" id="variable-auxfield~132"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -1722,7 +1740,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~135"></span>
+              <span class="anchor" id="variable-ilevel~269"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1737,7 +1755,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~45"></span>
+              <span class="anchor" id="variable-time~174"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1752,7 +1770,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~173"></span>
+              <span class="anchor" id="variable-varsys~347"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1767,7 +1785,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~16"></span>
+              <span class="anchor" id="variable-phyconvfac~37"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1782,7 +1800,139 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~132"></span>
+              <span class="anchor" id="variable-dervarpos~176"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong>(:)</td>
+            <td>
+<p>position of derived quantities in varsys</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_addforcetoauxfield_fluid_gns"></span> <h3>public  subroutine <a href='../proc/mus_addforcetoauxfield_fluid_gns.html'>mus_addForceToAuxField_fluid_GNS</a>(fun, auxField, iLevel, time, varSys, phyConvFac, derVarPos)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>This routine add body force to velocity in auxField for weakly-compressible
+model for the Generalized Navier Stokes equations (GNS) for coupled
+LBM-DEM simulations.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fun~162"></span>
+              class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fun</strong></td>
+            <td>
+<p>Description of method to update source</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~133"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>output auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~270"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+<p>current level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-time~175"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time</strong></td>
+            <td>
+<p>current timing information</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~348"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+<p>variable system definition</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-phyconvfac~38"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>phyConvFac</strong></td>
+            <td>
+<p>Physics conversion factor for current level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~177"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1822,7 +1972,7 @@ model.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~26"></span>
+              <span class="anchor" id="variable-fun~163"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1837,7 +1987,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~95"></span>
+              <span class="anchor" id="variable-auxfield~134"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -1852,7 +2002,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~136"></span>
+              <span class="anchor" id="variable-ilevel~271"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1867,7 +2017,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~46"></span>
+              <span class="anchor" id="variable-time~176"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1882,7 +2032,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~174"></span>
+              <span class="anchor" id="variable-varsys~349"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1897,7 +2047,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~17"></span>
+              <span class="anchor" id="variable-phyconvfac~39"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1912,7 +2062,7 @@ model.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~133"></span>
+              <span class="anchor" id="variable-dervarpos~178"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1956,7 +2106,7 @@ Seawater Desalination"</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~27"></span>
+              <span class="anchor" id="variable-fun~164"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1971,7 +2121,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~96"></span>
+              <span class="anchor" id="variable-auxfield~135"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -1986,7 +2136,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~137"></span>
+              <span class="anchor" id="variable-ilevel~272"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2001,7 +2151,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~47"></span>
+              <span class="anchor" id="variable-time~177"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2016,7 +2166,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~175"></span>
+              <span class="anchor" id="variable-varsys~350"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2031,7 +2181,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~18"></span>
+              <span class="anchor" id="variable-phyconvfac~40"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2046,7 +2196,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~134"></span>
+              <span class="anchor" id="variable-dervarpos~179"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2090,7 +2240,7 @@ Seawater Desalination"</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~28"></span>
+              <span class="anchor" id="variable-fun~165"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2105,7 +2255,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~97"></span>
+              <span class="anchor" id="variable-auxfield~136"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2120,7 +2270,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~138"></span>
+              <span class="anchor" id="variable-ilevel~273"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2135,7 +2285,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~48"></span>
+              <span class="anchor" id="variable-time~178"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2150,7 +2300,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~176"></span>
+              <span class="anchor" id="variable-varsys~351"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2165,7 +2315,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~19"></span>
+              <span class="anchor" id="variable-phyconvfac~41"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2180,7 +2330,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~135"></span>
+              <span class="anchor" id="variable-dervarpos~180"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2224,7 +2374,7 @@ Seawater Desalination"</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~29"></span>
+              <span class="anchor" id="variable-fun~166"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2239,7 +2389,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~98"></span>
+              <span class="anchor" id="variable-auxfield~137"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2254,7 +2404,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~139"></span>
+              <span class="anchor" id="variable-ilevel~274"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2269,7 +2419,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~49"></span>
+              <span class="anchor" id="variable-time~179"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2284,7 +2434,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~177"></span>
+              <span class="anchor" id="variable-varsys~352"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2299,7 +2449,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~20"></span>
+              <span class="anchor" id="variable-phyconvfac~42"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2314,7 +2464,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~136"></span>
+              <span class="anchor" id="variable-dervarpos~181"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2358,7 +2508,7 @@ Seawater Desalination"</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~30"></span>
+              <span class="anchor" id="variable-fun~167"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2373,7 +2523,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~99"></span>
+              <span class="anchor" id="variable-auxfield~138"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2388,7 +2538,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~140"></span>
+              <span class="anchor" id="variable-ilevel~275"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2403,7 +2553,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~50"></span>
+              <span class="anchor" id="variable-time~180"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2418,7 +2568,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~178"></span>
+              <span class="anchor" id="variable-varsys~353"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2433,7 +2583,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~21"></span>
+              <span class="anchor" id="variable-phyconvfac~43"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2448,7 +2598,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~137"></span>
+              <span class="anchor" id="variable-dervarpos~182"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2492,7 +2642,7 @@ Seawater Desalination"</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~31"></span>
+              <span class="anchor" id="variable-fun~168"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2507,7 +2657,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~100"></span>
+              <span class="anchor" id="variable-auxfield~139"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2522,7 +2672,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~141"></span>
+              <span class="anchor" id="variable-ilevel~276"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2537,7 +2687,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~51"></span>
+              <span class="anchor" id="variable-time~181"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2552,7 +2702,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~179"></span>
+              <span class="anchor" id="variable-varsys~354"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2567,7 +2717,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~22"></span>
+              <span class="anchor" id="variable-phyconvfac~44"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2582,7 +2732,7 @@ Seawater Desalination"</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~138"></span>
+              <span class="anchor" id="variable-dervarpos~183"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2627,7 +2777,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~32"></span>
+              <span class="anchor" id="variable-fun~169"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2642,7 +2792,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~101"></span>
+              <span class="anchor" id="variable-auxfield~140"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2657,7 +2807,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~142"></span>
+              <span class="anchor" id="variable-ilevel~277"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2672,7 +2822,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~52"></span>
+              <span class="anchor" id="variable-time~182"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2687,7 +2837,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~180"></span>
+              <span class="anchor" id="variable-varsys~355"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2702,7 +2852,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~23"></span>
+              <span class="anchor" id="variable-phyconvfac~45"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2717,7 +2867,7 @@ flows. In Physics of Fluids 31 (12), p. 126103.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~139"></span>
+              <span class="anchor" id="variable-dervarpos~184"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2759,7 +2909,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~33"></span>
+              <span class="anchor" id="variable-fun~170"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2774,7 +2924,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~102"></span>
+              <span class="anchor" id="variable-auxfield~141"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2789,7 +2939,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~143"></span>
+              <span class="anchor" id="variable-ilevel~278"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2804,7 +2954,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~53"></span>
+              <span class="anchor" id="variable-time~183"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2819,7 +2969,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~181"></span>
+              <span class="anchor" id="variable-varsys~356"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2834,7 +2984,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~24"></span>
+              <span class="anchor" id="variable-phyconvfac~46"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2849,7 +2999,7 @@ average.</p><a href="../proc/mus_adddynsponfldtoauxfield_fluid.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~140"></span>
+              <span class="anchor" id="variable-dervarpos~185"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2891,7 +3041,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~34"></span>
+              <span class="anchor" id="variable-fun~171"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2906,7 +3056,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~103"></span>
+              <span class="anchor" id="variable-auxfield~142"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -2921,7 +3071,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~144"></span>
+              <span class="anchor" id="variable-ilevel~279"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2936,7 +3086,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~54"></span>
+              <span class="anchor" id="variable-time~184"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2951,7 +3101,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~182"></span>
+              <span class="anchor" id="variable-varsys~357"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2966,7 +3116,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~25"></span>
+              <span class="anchor" id="variable-phyconvfac~47"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2981,7 +3131,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_2d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~141"></span>
+              <span class="anchor" id="variable-dervarpos~186"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3023,7 +3173,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~35"></span>
+              <span class="anchor" id="variable-fun~172"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -3038,7 +3188,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~104"></span>
+              <span class="anchor" id="variable-auxfield~143"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -3053,7 +3203,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~145"></span>
+              <span class="anchor" id="variable-ilevel~280"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3068,7 +3218,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~55"></span>
+              <span class="anchor" id="variable-time~185"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3083,7 +3233,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~183"></span>
+              <span class="anchor" id="variable-varsys~358"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3098,7 +3248,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~26"></span>
+              <span class="anchor" id="variable-phyconvfac~48"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3113,7 +3263,7 @@ average.</p><a href="../proc/mus_addhrrcorrtoauxfield_fluid_3d.html" class="pull
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~142"></span>
+              <span class="anchor" id="variable-dervarpos~187"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3164,7 +3314,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fun~36"></span>
+              <span class="anchor" id="variable-fun~173"></span>
               class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -3179,7 +3329,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~105"></span>
+              <span class="anchor" id="variable-auxfield~144"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -3194,7 +3344,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~146"></span>
+              <span class="anchor" id="variable-ilevel~281"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3209,7 +3359,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-time~56"></span>
+              <span class="anchor" id="variable-time~186"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3224,7 +3374,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~184"></span>
+              <span class="anchor" id="variable-varsys~359"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3239,7 +3389,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-phyconvfac~27"></span>
+              <span class="anchor" id="variable-phyconvfac~49"></span>
               type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3254,7 +3404,7 @@ Coriolis mass flowmeter. In Computers &amp; Mathematics with Applications 78
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~143"></span>
+              <span class="anchor" id="variable-dervarpos~188"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3295,7 +3445,7 @@ for fluid and nGhostFromCoarser elements</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~86"></span>
+              <span class="anchor" id="variable-auxfield~124"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -3310,7 +3460,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~69"></span>
+              <span class="anchor" id="variable-state~94"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -3325,7 +3475,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~121"></span>
+              <span class="anchor" id="variable-neigh~166"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3340,7 +3490,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~71"></span>
+              <span class="anchor" id="variable-nsize~90"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3355,7 +3505,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~80"></span>
+              <span class="anchor" id="variable-nsolve~89"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3370,7 +3520,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~127"></span>
+              <span class="anchor" id="variable-ilevel~261"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3385,7 +3535,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~37"></span>
+              <span class="anchor" id="variable-stencil~65"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3400,7 +3550,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~165"></span>
+              <span class="anchor" id="variable-varsys~339"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3415,7 +3565,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~124"></span>
+              <span class="anchor" id="variable-dervarpos~168"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3430,7 +3580,7 @@ for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~6"></span>
+              <span class="anchor" id="variable-quantities~11"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3471,7 +3621,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~87"></span>
+              <span class="anchor" id="variable-auxfield~125"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -3486,7 +3636,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~70"></span>
+              <span class="anchor" id="variable-state~95"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -3501,7 +3651,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~122"></span>
+              <span class="anchor" id="variable-neigh~167"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3516,7 +3666,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~72"></span>
+              <span class="anchor" id="variable-nsize~91"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3531,7 +3681,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~81"></span>
+              <span class="anchor" id="variable-nsolve~90"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3546,7 +3696,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~128"></span>
+              <span class="anchor" id="variable-ilevel~262"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3561,7 +3711,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~38"></span>
+              <span class="anchor" id="variable-stencil~66"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3576,7 +3726,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~166"></span>
+              <span class="anchor" id="variable-varsys~340"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3591,7 +3741,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~125"></span>
+              <span class="anchor" id="variable-dervarpos~169"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3606,7 +3756,7 @@ d2q9 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~7"></span>
+              <span class="anchor" id="variable-quantities~12"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3647,7 +3797,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~88"></span>
+              <span class="anchor" id="variable-auxfield~126"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -3662,7 +3812,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~71"></span>
+              <span class="anchor" id="variable-state~96"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -3677,7 +3827,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~123"></span>
+              <span class="anchor" id="variable-neigh~168"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3692,7 +3842,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~73"></span>
+              <span class="anchor" id="variable-nsize~92"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3707,7 +3857,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~82"></span>
+              <span class="anchor" id="variable-nsolve~91"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3722,7 +3872,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~129"></span>
+              <span class="anchor" id="variable-ilevel~263"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3737,7 +3887,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~39"></span>
+              <span class="anchor" id="variable-stencil~67"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3752,7 +3902,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~167"></span>
+              <span class="anchor" id="variable-varsys~341"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3767,7 +3917,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~126"></span>
+              <span class="anchor" id="variable-dervarpos~170"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3782,7 +3932,7 @@ d3q19 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~8"></span>
+              <span class="anchor" id="variable-quantities~13"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3823,7 +3973,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~89"></span>
+              <span class="anchor" id="variable-auxfield~127"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -3838,7 +3988,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~72"></span>
+              <span class="anchor" id="variable-state~97"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -3853,7 +4003,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~124"></span>
+              <span class="anchor" id="variable-neigh~169"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3868,7 +4018,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~74"></span>
+              <span class="anchor" id="variable-nsize~93"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3883,7 +4033,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~83"></span>
+              <span class="anchor" id="variable-nsolve~92"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3898,7 +4048,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~130"></span>
+              <span class="anchor" id="variable-ilevel~264"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -3913,7 +4063,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~40"></span>
+              <span class="anchor" id="variable-stencil~68"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3928,7 +4078,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~168"></span>
+              <span class="anchor" id="variable-varsys~342"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3943,7 +4093,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~127"></span>
+              <span class="anchor" id="variable-dervarpos~171"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -3958,7 +4108,7 @@ d3q27 model for fluid and nGhostFromCoarser elements</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~9"></span>
+              <span class="anchor" id="variable-quantities~14"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4000,7 +4150,7 @@ moment as auxField</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~90"></span>
+              <span class="anchor" id="variable-auxfield~128"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -4015,7 +4165,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~73"></span>
+              <span class="anchor" id="variable-state~98"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -4030,7 +4180,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~125"></span>
+              <span class="anchor" id="variable-neigh~170"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4045,7 +4195,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~75"></span>
+              <span class="anchor" id="variable-nsize~94"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4060,7 +4210,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~84"></span>
+              <span class="anchor" id="variable-nsolve~93"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4075,7 +4225,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~131"></span>
+              <span class="anchor" id="variable-ilevel~265"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4090,7 +4240,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~41"></span>
+              <span class="anchor" id="variable-stencil~69"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4105,7 +4255,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~169"></span>
+              <span class="anchor" id="variable-varsys~343"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4120,7 +4270,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~128"></span>
+              <span class="anchor" id="variable-dervarpos~172"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4135,7 +4285,7 @@ moment as auxField</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~10"></span>
+              <span class="anchor" id="variable-quantities~15"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4176,7 +4326,7 @@ species and store in auxField.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~91"></span>
+              <span class="anchor" id="variable-auxfield~129"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -4191,7 +4341,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~74"></span>
+              <span class="anchor" id="variable-state~99"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -4206,7 +4356,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~126"></span>
+              <span class="anchor" id="variable-neigh~171"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4221,7 +4371,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~76"></span>
+              <span class="anchor" id="variable-nsize~95"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4236,7 +4386,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~85"></span>
+              <span class="anchor" id="variable-nsolve~94"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4251,7 +4401,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~132"></span>
+              <span class="anchor" id="variable-ilevel~266"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4266,7 +4416,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~42"></span>
+              <span class="anchor" id="variable-stencil~70"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4281,7 +4431,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~170"></span>
+              <span class="anchor" id="variable-varsys~344"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4296,7 +4446,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~129"></span>
+              <span class="anchor" id="variable-dervarpos~173"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4311,7 +4461,7 @@ species and store in auxField.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~11"></span>
+              <span class="anchor" id="variable-quantities~16"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4355,7 +4505,7 @@ updated there.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~92"></span>
+              <span class="anchor" id="variable-auxfield~130"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -4370,7 +4520,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~75"></span>
+              <span class="anchor" id="variable-state~100"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -4385,7 +4535,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~127"></span>
+              <span class="anchor" id="variable-neigh~172"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4400,7 +4550,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~77"></span>
+              <span class="anchor" id="variable-nsize~96"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4415,7 +4565,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~86"></span>
+              <span class="anchor" id="variable-nsolve~95"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4430,7 +4580,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~133"></span>
+              <span class="anchor" id="variable-ilevel~267"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4445,7 +4595,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~43"></span>
+              <span class="anchor" id="variable-stencil~71"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4460,7 +4610,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~171"></span>
+              <span class="anchor" id="variable-varsys~345"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4475,7 +4625,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~130"></span>
+              <span class="anchor" id="variable-dervarpos~174"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4490,7 +4640,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~12"></span>
+              <span class="anchor" id="variable-quantities~17"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4530,7 +4680,7 @@ updated there.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~93"></span>
+              <span class="anchor" id="variable-auxfield~131"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -4545,7 +4695,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~76"></span>
+              <span class="anchor" id="variable-state~101"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -4560,7 +4710,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~128"></span>
+              <span class="anchor" id="variable-neigh~173"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4575,7 +4725,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~78"></span>
+              <span class="anchor" id="variable-nsize~97"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4590,7 +4740,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~87"></span>
+              <span class="anchor" id="variable-nsolve~96"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4605,7 +4755,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~134"></span>
+              <span class="anchor" id="variable-ilevel~268"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -4620,7 +4770,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~44"></span>
+              <span class="anchor" id="variable-stencil~72"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4635,7 +4785,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~172"></span>
+              <span class="anchor" id="variable-varsys~346"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4650,7 +4800,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~131"></span>
+              <span class="anchor" id="variable-dervarpos~175"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4665,7 +4815,7 @@ updated there.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-quantities~13"></span>
+              <span class="anchor" id="variable-quantities~18"></span>
               type(<a href='../type/mus_scheme_derived_quantities_type.html'>mus_scheme_derived_quantities_type</a>),
             </td>
 <td>intent(in)</td>
@@ -4701,40 +4851,18 @@ updated there.</p>
           <div class="col">
             <p>
               Musubi
- was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>03d36e6f940c</small></p>
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-29T18:19:33.949870+0000             </p>
+ on 2025-04-24T09:44:22.475563+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

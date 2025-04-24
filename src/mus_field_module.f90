@@ -306,7 +306,8 @@ contains
 
     !load scheme specific field
     select case(trim(schemeHeader%kind))
-    case('fluid', 'fluid_incompressible', 'passive_scalar', 'isotherm_acEq', &
+    case('fluid', 'fluid_incompressible','fluid_GNS', &
+      & 'fluid_incompressible_GNS', 'passive_scalar', 'isotherm_acEq', &
       & 'poisson', 'poisson_boltzmann_linear', 'poisson_boltzmann_nonlinear' )
       !nFields must be = 1 scheme other than multispecies and nernst_planck
       if( nFields > 1 ) then
@@ -685,7 +686,7 @@ contains
 
     ! load scheme specific field
     select case( trim(scheme_kind) )
-    case('fluid', 'fluid_incompressible')
+    case('fluid', 'fluid_incompressible', 'fluid_GNS', 'fluid_incompressible_GNS')
       IC_nVars = 4
       allocate(ic_states(10))
       ic_states = (/ 'pressure ', 'velocityX', 'velocityY', 'velocityZ', &

@@ -97,8 +97,10 @@ module mus_flow_module
   use mus_field_module,              only: mus_field_type
   use mus_fluid_module,              only: mus_fluid_type
   use mus_mixture_module,            only: mus_mixture_type
-  use mus_initfluid_module,          only: mus_init_advRel_fluid
-  use mus_initfluidIncomp_module,    only: mus_init_advRel_fluidIncomp
+  use mus_initfluid_module,          only: mus_init_advRel_fluid, &
+                                         & mus_init_advRel_fluid_GNS
+  use mus_initfluidIncomp_module,    only: mus_init_advRel_fluidIncomp, &
+                                         & mus_init_advRel_fluidIncomp_GNS
   use mus_initLBMPS_module,          only: mus_init_advRel_LBM_PS
   use mus_initMultispecies_module,   only: mus_init_advRel_multispecies_gas,   &
     &                                      mus_init_advRel_multispecies_liquid
@@ -156,6 +158,14 @@ contains
         &                                                         %variant,    &
         &                               layout     = scheme%header%layout,     &
         &                               compute    = scheme%compute            )
+    case ('fluid_GNS')
+      call mus_init_advRel_fluid_GNS( relaxation = scheme%header%relaxation, &
+        &                             layout     = scheme%header%layout,     &
+        &                             compute    = scheme%compute            )
+    case ('fluid_incompressible_GNS')
+      call mus_init_advRel_fluidIncomp_GNS( relaxation = scheme%header%relaxation, &
+        &                                   layout     = scheme%header%layout,     &
+        &                                   compute    = scheme%compute            )
     case ('multispecies_gas')
       call mus_init_advRel_multispecies_gas(        &
         &    relaxation = scheme%header%relaxation, &
@@ -314,7 +324,8 @@ contains
       nSize  = scheme%pdf( iLevel )%nSize
 
       select case (trim(scheme%header%kind))
-      case ('fluid', 'fluid_incompressible')
+      case ('fluid', 'fluid_incompressible',        &
+           & 'fluid_GNS', 'fluid_incompressible_GNS')
         do iField = 1, scheme%nFields
           call mus_init_pdf( me     = scheme,                    &
             &    tree   = tree,                                  &

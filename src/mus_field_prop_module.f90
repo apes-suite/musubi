@@ -104,7 +104,8 @@ contains
     ! --------------------------------------------------------------------------
     ! load fluid info
     select case( trim(schemeHeader%kind) )
-      case('fluid', 'fluid_incompressible', 'isotherm_acEq')
+      case('fluid', 'fluid_incompressible', 'fluid_GNS', &
+          & 'fluid_incompressible_GNS','isotherm_acEq'   )
         write(logUnit(1),"(A)") ' Loading the fluid properties.'
         call mus_load_fluid( me           = me%fluid,    &
           &                  conf         = conf,        &

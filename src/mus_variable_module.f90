@@ -120,6 +120,7 @@ module mus_variable_module
     &                                   applySrc_absorbLayerDyn,          &
     &                                   applySrc_absorbLayerDyn_MRT,      &
     &                                   applySrc_force,                   &
+    &                                   applySrc_force_GNS,               &
     &                                   applySrc_force_MRT,               &
     &                                   applySrc_force_MRT_d2q9,          &
     &                                   applySrc_force_MRT_d3q19,         &
@@ -189,6 +190,7 @@ module mus_variable_module
   use mus_operation_var_module,       only: mus_opVar_setupIndices, &
     &                                   mus_set_opVar_getElement
   use mus_auxFieldVar_module,         only: mus_addForceToAuxField_fluid,        &
+    &                                       mus_addForceToAuxField_fluid_GNS,    &
     &                                       mus_addForceToAuxField_fluidIncomp,  &
     &                                       mus_addForceToAuxField_MSL,          &
     &                                       mus_addForceToAuxField_MSL_WTDF,     &
@@ -314,7 +316,7 @@ contains
       ! append derive vars depends on scheme kind
       select case ( trim(schemeHeader%kind) )
 
-      case ( 'fluid' )
+      case ( 'fluid', 'fluid_GNS' )
         ! append derived variables
         call mus_append_derVar_fluid( varSys       = varSys,       &
           &                         solverData   = solverData,     &
@@ -338,7 +340,7 @@ contains
             & turbConfig   = field(1)%fieldProp%fluid%turbulence%config )
         end if
 
-      case ( 'fluid_incompressible' )
+      case ( 'fluid_incompressible', 'fluid_incompressible_GNS' )
         ! append derived variables
         call mus_append_derVar_fluidIncomp( varSys       = varSys,       &
           &                               solverData   = solverData,     &
@@ -799,6 +801,13 @@ contains
       nDerVars = 2
       allocate(derVarName_loc(nDerVars))
       derVarName_loc    = [ 'density ', 'velocity'  ]
+    case ('fluid_GNS', 'fluid_incompressible_GNS') 
+      ! auxiliary variable for simulating generalized Navier-Stokes
+      ! equation for flows through porous media
+      ! append density, velocity and fluid volume fraction as auxField variables
+      nDerVars = 3
+      allocate(derVarName_loc(nDerVars))
+      derVarName_loc    = [ 'density ', 'velocity', 'vol_frac' ]
     case ('passive_scalar')
       ! append density as auxField variable
       nDerVars = 1
@@ -850,7 +859,7 @@ contains
     do iField = 1, nFields
       do iVar = 1, nDerVars
         select case(trim(adjustl(derVarName_loc(iVar))))
-        case ('density', 'mole_density', 'potential')
+        case ('density', 'mole_density', 'potential', 'vol_frac')
           nComponents = 1
         case ('velocity', 'momentum')
           nComponents = 3
@@ -1163,6 +1172,41 @@ contains
             &            //trim(schemeHeader%kind)      )
         end select
 
+      case('fluid_GNS', 'fluid_incompressible_GNS')
+        select case (trim(varname))
+        case ('force')
+          ! select pointer according to order
+          if (me%method(iSrc)%order == 2) then
+            select case (trim(schemeHeader%relaxation))
+            case ('bgk')
+              if (trim(schemeHeader%layout) == 'd3q19' &
+                & .OR. trim(schemeHeader%layout) == 'd2q9') then
+                me%method(iSrc)%applySrc => applySrc_force_GNS
+              else
+                write(logUnit(1),*) 'Error loading body force routine ', &
+                & 'layout ', trim(schemeHeader%layout),' not supported for fluid_GNS scheme'
+                call tem_abort() 
+              end if
+            case default
+              write(logUnit(1),*) 'Error loading body force routine ', &
+              & 'relaxation ', trim(schemeHeader%relaxation),' not supported for fluid_GNS scheme'
+              call tem_abort() 
+            end select ! relaxation kind
+
+            ! Assign addSrcToAuxField which is used to incorporate the force term
+            ! in the macroscopic velocity
+            me%method(iSrc)%addSrcToAuxField => mus_addForceToAuxField_fluid_GNS
+          else ! 1st order
+            ! addSrcToAuxField is not required for force1stOrd 1st order
+            write(logUnit(1),*) 'Error loading body force routine ', &
+            & 'first order forcing terms are not supported for fluid_GNS!'
+            call tem_abort() 
+          end if ! force order == 2
+        case default
+          call tem_abort('Unknown source variable for ' &
+            &            //trim(schemeHeader%kind)      )
+        end select ! varname
+
       case ('multispecies_liquid')
         select case (trim(varname))
         case ('force')
@@ -1411,6 +1455,8 @@ contains
           derVarPos(iField)%equilibriumVel = varPos
         case ('potential')
           derVarPos(iField)%potential = varPos
+        case ('vol_frac')
+          derVarPos(iField)%vol_frac = varPos
         case default
           write(logUnit(10),*) 'WARNING: Unknown variable: '//trim(varname)
           !write(*,*) 'derVarName ', derVarName%val(iVar)

@@ -12,14 +12,29 @@
 
     <title>Scheme Implementation &ndash; Musubi</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../../css/pygments.css" rel="stylesheet">
-    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../../css/brands.min.css" rel="stylesheet">
+    <link href="../../css/regular.min.css" rel="stylesheet">
+    <link href="../../css/solid.min.css" rel="stylesheet">
+    <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../../css/local.css" rel="stylesheet">
-      <link  href="../../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../../css/pygments.css" rel="stylesheet">
     <script src="../../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -234,6 +249,12 @@
                 </nav>
 
                 </nav>
+              <a class="nav-link" href="../examples/particles/index.html">Particulate Flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../examples/particles/DPS/index.html">Unresolved Discrete Particle Simulation (DPS)</a>
+              <a class="nav-link" href="../examples/particles/MEM/index.html">Fully Resolved Model</a>
+
+                </nav>
               <a class="nav-link" href="../examples/tutorials/index.html">Tutorials</a>
                 <nav class="nav nav-pills flex-column">
                                 <a class="nav-link" href="../examples/tutorials/tut_00_prerequisites.html">Prerequisites</a>
@@ -289,44 +310,44 @@ quantities:</p>
 <li>the fluid quantities. For all supported input variables check <a href="../../proc/mus_load_fluid.html">mus_load_fluid</a></li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Scheme identifier]</span>
-<span class="n">identify</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">layout</span> <span class="o">=</span> <span class="n">stencil</span><span class="p">,</span>
-  <span class="n">relaxation</span> <span class="o">=</span> <span class="n">relaxationModel</span><span class="p">,</span>
-  <span class="n">kind</span> <span class="o">=</span> <span class="n">physicsModel</span>
+<span class="nv">identify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stencil</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">relaxation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">relaxationModel</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">physicsModel</span>
 <span class="p">}</span>
 <span class="c1">--! [Scheme identifier]</span>
 
 
 <span class="c1">--! [Initial conditions]</span>
-<span class="n">initial_condition</span> <span class="o">=</span> <span class="p">{</span> <span class="n">pressure</span>  <span class="o">=</span> <span class="n">ic_pressure</span><span class="p">,</span>
-                      <span class="n">velocityX</span> <span class="o">=</span> <span class="n">ic_velX</span><span class="p">,</span>
-                      <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-                      <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-                      <span class="n">Sxx</span> <span class="o">=</span> <span class="n">ic_Sxx</span><span class="p">,</span>
-                      <span class="n">Syy</span> <span class="o">=</span> <span class="n">ic_Syy</span><span class="p">,</span>
-                      <span class="n">Sxy</span> <span class="o">=</span> <span class="n">ic_Sxy</span>
-                      <span class="p">}</span>
+<span class="nv">initial_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">pressure</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_pressure</span><span class="p">,</span>
+<span class="w">                      </span><span class="nv">velocityX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_velX</span><span class="p">,</span>
+<span class="w">                      </span><span class="nv">velocityY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                      </span><span class="nv">velocityZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                      </span><span class="nv">Sxx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_Sxx</span><span class="p">,</span>
+<span class="w">                      </span><span class="nv">Syy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_Syy</span><span class="p">,</span>
+<span class="w">                      </span><span class="nv">Sxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_Sxy</span>
+<span class="w">                      </span><span class="p">}</span>
 <span class="c1">--! [Initial conditions]</span>
 
 
 <span class="c1">--! [Boundary conditions]</span>
 <span class="c1">-- Label is a boundary identifier and it should be same as in seeder</span>
 <span class="c1">-- configuration.</span>
-<span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
-     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
-  <span class="p">},</span>
-  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
-     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
-  <span class="p">},</span>
-  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
-     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
-     <span class="n">pressure</span> <span class="o">=</span> <span class="n">pressureIn</span>
-  <span class="p">},</span>
-  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
-     <span class="n">pressure</span> <span class="o">=</span> <span class="n">pressureOut</span>
-  <span class="p">}</span>
+<span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;north&#39;</span><span class="p">,</span>
+<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;west&#39;</span><span class="p">,</span>
+<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+<span class="w">     </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">pressureIn</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+<span class="w">     </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">pressureOut</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">--! [Boundary conditions]</span>
 
@@ -335,15 +356,15 @@ quantities:</p>
 <span class="c1">-- For both, incompressible and compressible kinematic viscosity has to be</span>
 <span class="c1">-- defined. While for the first one, default values are stored for bulk</span>
 <span class="c1">-- viscosity,, the user has to explicitly give them for compr. fluid.</span>
-<span class="kr">if</span> <span class="p">(</span><span class="n">physicsModel</span> <span class="o">==</span> <span class="s1">&#39;fluid&#39;</span><span class="p">)</span> <span class="kr">then</span>
-  <span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="n">nu_phy</span><span class="p">,</span>
-    <span class="n">bulk_viscosity</span> <span class="o">=</span> <span class="n">bulk_visc</span>
-  <span class="p">}</span>
+<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nv">physicsModel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;fluid&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">  </span><span class="nv">fluid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">kinematic_viscosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">nu_phy</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">bulk_viscosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">bulk_visc</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="kr">else</span>
-  <span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="n">nu_phy</span><span class="p">,</span>
-    <span class="p">}</span>
+<span class="w">  </span><span class="nv">fluid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">kinematic_viscosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">nu_phy</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="kr">end</span>
 <span class="c1">--! [Fluid]</span>
 </code></pre></div>
@@ -357,40 +378,18 @@ quantities:</p>
           <div class="col">
             <p>
               Musubi
- was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>03d36e6f940c</small></p>
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-29T18:19:33.949870+0000             </p>
+ on 2025-04-24T09:44:22.475563+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

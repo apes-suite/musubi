@@ -37,7 +37,8 @@ module mus_initFluidIncomp_module
   ! include musubi modules
   use mus_bgk_module,   only: mus_advRel_kCFD_rBGK_vStdNoOpt_l
   use mus_d3q19_module, only: mus_advRel_kFluidIncomp_rBGK_vStd_lD3Q19, &
-    &                         mus_advRel_kFluidIncomp_rTRT_vStd_lD3Q19
+    &                         mus_advRel_kFluidIncomp_rTRT_vStd_lD3Q19, &
+    &                         mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19
   use mus_d3q27_module, only: mus_advRel_kCFD_rBGK_vStd_lD3Q27
   use mus_d2q9_module,  only: mus_advRel_kFluidIncomp_rBGK_vStd_lD2Q9, &
     &                         mus_advRel_kFluidIncomp_rMRT_vStd_lD2Q9
@@ -53,6 +54,7 @@ module mus_initFluidIncomp_module
   private
 
   public :: mus_init_advRel_fluidIncomp
+  public :: mus_init_advRel_fluidIncomp_GNS
 
 contains
 
@@ -97,6 +99,39 @@ contains
 
   end subroutine mus_init_advRel_fluidIncomp
   ! ************************************************************************** !
+  ! ************************************************************************** !
+  !> Assigning compute kernel routine by scheme relaxation type for fluid GNS 
+  !! kind for unresolved LBM-DEM particulate flow simulations
+  subroutine mus_init_advRel_fluidIncomp_GNS( relaxation, layout, compute )
+    ! --------------------------------------------------------------------------
+    character(len=labelLen), intent(inout) :: relaxation
+    character(len=labelLen), intent(in) :: layout
+    procedure( kernel ), pointer, intent(out) :: compute
+    ! --------------------------------------------------------------------------
+
+    write(logUnit(1),*) 'Choosing fluid relaxation model: '                 &
+      &                 // trim(relaxation) // ' for layout ' // trim(layout)
+
+    select case (trim(relaxation))
+
+    case ('bgk')
+      select case (trim(layout))
+      case ('d3q19')
+        compute => mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19
+      case default
+        write(logUnit(1),*) 'ERROR: layout not supported!'
+        write(logUnit(1),*) 'Currently only d3q19 and d2q9 layouts are supported for fluid_GNS'
+        call tem_abort()
+      end select
+
+    case default
+      write(logUnit(1),*) 'Relaxation '//trim(relaxation)//' is not supported!'
+      write(logUnit(1),*) 'Currently only relaxation bgk is supported for fluid_GNS'
+      call tem_abort()
+    end select
+
+  end subroutine mus_init_advRel_fluidIncomp_GNS
+  ! **************************************************************************** !
 
   ! ************************************************************************** !
   !> This routine assigns compute routine for bgk relaxation

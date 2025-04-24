@@ -381,6 +381,11 @@ contains
       call append(me          = poss_srcVar,      &
         &         varName     = 'hrr_correction', &
         &         nComponents = QQ                )
+    case ('fluid_GNS', 'fluid_incompressible_GNS')
+      ! body force
+      call append(me          = poss_srcVar, &
+        &         varName     = 'force',     &
+        &         nComponents = 3            )
 
     case ('passive_scalar')
       call append(me          = poss_srcVar,       &

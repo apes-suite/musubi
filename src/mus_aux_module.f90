@@ -279,7 +279,8 @@ contains
     !! and function pointers to get mrt paramter and nonEqScaling factor
     !! for interpolation
     select case( trim(scheme%header%kind) )
-    case('fluid', 'fluid_incompressible', 'isotherm_acEq')
+    case('fluid', 'fluid_incompressible', 'fluid_GNS', &
+        & 'fluid_incompressible_GNS', 'isotherm_acEq'  )
       if (scheme%nFields > 1) then
         call tem_abort('chosen scheme kind supports only one field')
       end if

@@ -1,0 +1,1702 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mus_particle_boundary_module &ndash; Musubi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>mus_particle_boundary_module
+      <small>Module</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.3% of total for modules and submodules.">187 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_particle_boundary_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_particle_boundary_module.f90.html'>mus_particle_boundary_module.f90</a></li>
+            <li class="breadcrumb-item active" aria-current="page">mus_particle_boundary_module</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+        <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#variable-pgbnddata">pgBndData</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#types-0"
+         aria-expanded="false" aria-controls="types-0">
+         <h4 class="card-header bg-primary text-white">Derived Types</h4>
+      </a>
+      <div id="types-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#type-mus_particle_boundarydata_type">mus_particle_boundarydata_type</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#funcs-0"
+         aria-expanded="false" aria-controls="funcs-0">
+         <h4 class="card-header bg-primary text-white">Functions</h4>
+      </a>
+      <div id="funcs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#proc-getneighborcoord">getNeighborCoord</a>
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#proc-computedisplacement">computeDisplacement</a>
+        </div>
+      </div>
+    </div>
+
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#subs-0"
+         aria-expanded="false" aria-controls="subs-0">
+         <h4 class="card-header bg-primary text-white">Subroutines</h4>
+      </a>
+      <div id="subs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#proc-wrapperiodiccoord">wrapPeriodicCoord</a>
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#proc-wrapperiodicpos">wrapPeriodicPos</a>
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#proc-calcperiodicrsurface">calcPeriodicRsurface</a>
+            <a class="list-group-item" href="../module/mus_particle_boundary_module.html#proc-calcperiodicdistancetosurface">calcPeriodicDistanceToSurface</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+
+    <div class="col-md-9" id='text'>
+      <p>mus_particle_boundary_module contains routines and data types to handle the 
+interaction of particles with (periodic) boundaries</p>
+<br>          <div class="card mb-4">
+      <h3 class="card-header card-title bg-light">Uses</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <ul class="list-inline">
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+              </ul>
+            </li>
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_particle_boundary_module~~UsesGraph Pages: 1 -->
+<svg id="modulemus_particle_boundary_moduleUsesGraph" width="305pt" height="32pt"
+ viewBox="0.00 0.00 305.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_particle_boundary_module~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~mus_particle_boundary_module~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 301,-28 301,4 -4,4"/>
+<!-- module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsesGraph_node1" class="node">
+<title>module~mus_particle_boundary_module</title>
+<polygon fill="none" stroke="black" points="297,-24 114,-24 114,0 297,0 297,-24"/>
+<text text-anchor="middle" x="205.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">mus_particle_boundary_module</text>
+</g>
+<!-- env_module -->
+<g id="module~~mus_particle_boundary_module~~UsesGraph_node2" class="node">
+<title>env_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsesGraph_node2"><a xlink:href="https://apes-suite.github.io/treelm/module/env_module.html" xlink:title="env_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="78,-24 0,-24 0,0 78,0 78,-24"/>
+<text text-anchor="middle" x="39" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">env_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_boundary_module&#45;&gt;env_module -->
+<g id="module~~mus_particle_boundary_module~~UsesGraph_edge1" class="edge">
+<title>module~mus_particle_boundary_module&#45;&gt;env_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M113.59,-12C104.91,-12 96.36,-12 88.33,-12"/>
+<polygon fill="#000000" stroke="#000000" points="88.11,-8.5 78.11,-12 88.11,-15.5 88.11,-8.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+          <div class="card">
+      <h3 class="card-header card-title bg-light">Used by</h3>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mus_particle_boundary_module~~UsedByGraph Pages: 1 -->
+<svg id="modulemus_particle_boundary_moduleUsedByGraph" width="641pt" height="218pt"
+ viewBox="0.00 0.00 641.00 217.68" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mus_particle_boundary_module~~UsedByGraph" class="graph" transform="scale(0.3 0.3) rotate(0) translate(4 732.92)">
+<title>module~~mus_particle_boundary_module~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-732.92 2166,-732.92 2166,4 -4,4"/>
+<!-- module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node1" class="node">
+<title>module~mus_particle_boundary_module</title>
+<polygon fill="none" stroke="black" points="183,-456.43 0,-456.43 0,-432.43 183,-432.43 183,-456.43"/>
+<text text-anchor="middle" x="91.5" y="-442.03" font-family="Helvetica,sans-Serif" font-size="10.50">mus_particle_boundary_module</text>
+</g>
+<!-- module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node2" class="node">
+<title>module~mus_particle_comm_type_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node2"><a xlink:href="../module/mus_particle_comm_type_module.html" xlink:title="mus_particle_comm_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="413,-456.43 219,-456.43 219,-432.43 413,-432.43 413,-456.43"/>
+<text text-anchor="middle" x="316" y="-442.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_comm_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_comm_type_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge1" class="edge">
+<title>module~mus_particle_comm_type_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M218.7,-444.43C210.35,-444.43 201.89,-444.43 193.5,-444.43"/>
+<polygon fill="#000000" stroke="#000000" points="193.33,-440.93 183.33,-444.43 193.33,-447.93 193.33,-440.93"/>
+</g>
+<!-- module~mus_particle_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node3" class="node">
+<title>module~mus_particle_config_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node3"><a xlink:href="../module/mus_particle_config_module.html" xlink:title="mus_particle_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1643,-229.43 1478,-229.43 1478,-205.43 1643,-205.43 1643,-229.43"/>
+<text text-anchor="middle" x="1560.5" y="-215.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_config_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge2" class="edge">
+<title>module~mus_particle_config_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1553.4,-205.02C1538.77,-176.83 1498.65,-108.35 1442,-81.43 1159.5,52.84 1033.83,2.58 738.5,-100.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-100.43C692.98,-118.72 574.66,-136.31 527.5,-138.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M525.5,-138.43C327.93,-147.3 156.99,-356.82 107.15,-423.94"/>
+<polygon fill="#000000" stroke="#000000" points="104.27,-421.95 101.18,-432.09 109.91,-426.09 104.27,-421.95"/>
+</g>
+<!-- module~mus_particle_creator_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node13" class="node">
+<title>module~mus_particle_creator_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node13"><a xlink:href="../module/mus_particle_creator_module.html" xlink:title="mus_particle_creator_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1442,-229.43 1272,-229.43 1272,-205.43 1442,-205.43 1442,-229.43"/>
+<text text-anchor="middle" x="1357" y="-215.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_creator_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_config_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge44" class="edge">
+<title>module~mus_particle_config_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1477.83,-217.43C1469.36,-217.43 1460.71,-217.43 1452.12,-217.43"/>
+<polygon fill="#000000" stroke="#000000" points="1452.08,-213.93 1442.08,-217.43 1452.08,-220.93 1452.08,-213.93"/>
+</g>
+<!-- module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node14" class="node">
+<title>module~mus_particle_type_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node14"><a xlink:href="../module/mus_particle_type_module.html" xlink:title="mus_particle_type_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="604,-302.43 449,-302.43 449,-278.43 604,-278.43 604,-302.43"/>
+<text text-anchor="middle" x="526.5" y="-288.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_type_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_config_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge49" class="edge">
+<title>module~mus_particle_config_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-100.43C678.18,-120.77 676.88,-150.88 640,-200.43 620.51,-226.6 629.11,-243.58 604,-264.43 599.51,-268.16 594.45,-271.36 589.13,-274.11"/>
+<polygon fill="#000000" stroke="#000000" points="587.61,-270.96 579.99,-278.33 590.54,-277.32 587.61,-270.96"/>
+</g>
+<!-- module~mus_particle_dem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node4" class="node">
+<title>module~mus_particle_dem_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node4"><a xlink:href="../module/mus_particle_dem_module.html" xlink:title="mus_particle_DEM_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1435,-499.43 1279,-499.43 1279,-475.43 1435,-475.43 1435,-499.43"/>
+<text text-anchor="middle" x="1357" y="-485.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_DEM_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge3" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1344.27,-499.72C1327.19,-517.97 1295.01,-553.72 1272,-587.43 1253.16,-615.02 1263.62,-634.62 1236,-653.43 1224.49,-661.26 752.41,-714.82 738.5,-715.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-715.43C549.37,-720.75 485.62,-758.75 317,-677.43"/>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge10" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-449.43C1120.94,-444.32 561.95,-609.61 527.5,-599.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M525.5,-599.43C443.65,-572.97 368.04,-499.91 334.8,-464.37"/>
+<polygon fill="#000000" stroke="#000000" points="336.98,-461.57 327.64,-456.58 331.83,-466.31 336.98,-461.57"/>
+</g>
+<!-- module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node5" class="node">
+<title>module~mus_particle_dps_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node5"><a xlink:href="../module/mus_particle_dps_module.html" xlink:title="mus_particle_DPS_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1234,-307.43 1081,-307.43 1081,-283.43 1234,-283.43 1234,-307.43"/>
+<text text-anchor="middle" x="1157.5" y="-293.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_DPS_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge23" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1343.65,-475.42C1310.39,-443.09 1218.79,-354.03 1178.24,-314.62"/>
+<polygon fill="#000000" stroke="#000000" points="1180.46,-311.89 1170.85,-307.43 1175.58,-316.91 1180.46,-311.89"/>
+</g>
+<!-- module~mus_particle_interactions_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node6" class="node">
+<title>module~mus_particle_interactions_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node6"><a xlink:href="../module/mus_particle_interactions_module.html" xlink:title="mus_particle_interactions_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="835,-611.43 640,-611.43 640,-587.43 835,-587.43 835,-611.43"/>
+<text text-anchor="middle" x="737.5" y="-597.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_interactions_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_interactions_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge27" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_interactions_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1289.62,-499.46C1174.19,-520.4 937.14,-563.4 814.99,-585.55"/>
+<polygon fill="#000000" stroke="#000000" points="814.18,-582.14 804.97,-587.37 815.43,-589.03 814.18,-582.14"/>
+</g>
+<!-- module~mus_particle_mem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node7" class="node">
+<title>module~mus_particle_mem_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node7"><a xlink:href="../module/mus_particle_mem_module.html" xlink:title="mus_particle_MEM_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1236,-189.43 1079,-189.43 1079,-165.43 1236,-165.43 1236,-189.43"/>
+<text text-anchor="middle" x="1157.5" y="-175.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_MEM_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_mem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge29" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_mem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1354.43,-475.16C1348.18,-431.54 1321.2,-282.37 1236,-203.43 1232.13,-199.84 1227.75,-196.75 1223.09,-194.08"/>
+<polygon fill="#000000" stroke="#000000" points="1224.35,-190.8 1213.84,-189.46 1221.22,-197.06 1224.35,-190.8"/>
+</g>
+<!-- module~mus_particle_comm_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node12" class="node">
+<title>module~mus_particle_comm_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node12"><a xlink:href="../module/mus_particle_comm_module.html" xlink:title="mus_particle_comm_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1040,-341.43 874,-341.43 874,-317.43 1040,-317.43 1040,-341.43"/>
+<text text-anchor="middle" x="957" y="-327.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_comm_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge39" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1300.46,-475.39C1261.01,-467.17 1206.69,-456.53 1158.5,-449.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-449.43C1091.7,-439.88 1100.66,-386.5 1043,-355.43 1035.48,-351.37 1027.24,-347.86 1018.94,-344.84"/>
+<polygon fill="#000000" stroke="#000000" points="1019.81,-341.44 1009.21,-341.52 1017.55,-348.06 1019.81,-341.44"/>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge51" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-449.43C929.24,-415.94 845.29,-533.5 640,-430.43 588.99,-404.81 553.41,-344.24 537.27,-311.81"/>
+<polygon fill="#000000" stroke="#000000" points="540.38,-310.2 532.89,-302.71 534.08,-313.24 540.38,-310.2"/>
+</g>
+<!-- module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node19" class="node">
+<title>module~mus_particle_logging_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node19"><a xlink:href="../module/mus_particle_logging_module.html" xlink:title="mus_particle_logging_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1043,-421.43 871,-421.43 871,-397.43 1043,-397.43 1043,-421.43"/>
+<text text-anchor="middle" x="957" y="-407.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_logging_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_dem_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge65" class="edge">
+<title>module~mus_particle_dem_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-449.43C1110.53,-442.65 1059.11,-432.21 1020.12,-423.69"/>
+<polygon fill="#000000" stroke="#000000" points="1020.5,-420.19 1009.98,-421.46 1018.99,-427.03 1020.5,-420.19"/>
+</g>
+<!-- module~mus_particle_dps_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge4" class="edge">
+<title>module~mus_particle_dps_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1141.51,-283.32C1125.8,-270.56 1100.47,-249.82 1079,-231.43 1062.74,-217.5 1061.78,-209.71 1043,-199.43 1008.57,-180.57 996.21,-184.42 958,-175.43"/>
+</g>
+<!-- module~mus_particle_dps_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge11" class="edge">
+<title>module~mus_particle_dps_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1089.05,-283.41C948.39,-259.51 628.45,-211.55 527.5,-250.43"/>
+</g>
+<!-- module~mus_particle_dps_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge40" class="edge">
+<title>module~mus_particle_dps_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1086.24,-307.46C1070.78,-310.11 1054.29,-312.93 1038.46,-315.64"/>
+<polygon fill="#000000" stroke="#000000" points="1037.43,-312.27 1028.17,-317.41 1038.62,-319.17 1037.43,-312.27"/>
+</g>
+<!-- module~mus_particle_dps_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge52" class="edge">
+<title>module~mus_particle_dps_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1135.38,-307.5C1113.05,-319.82 1076.49,-338.74 1043,-350.43 1006.45,-363.17 996.57,-366.08 958,-369.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956,-369.43C859.69,-377.77 832.74,-390.95 738.5,-369.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-369.43C693.08,-359.51 681.79,-357.82 640,-342.43 612.26,-332.21 581.9,-317.98 559.71,-306.99"/>
+<polygon fill="#000000" stroke="#000000" points="561.25,-303.85 550.74,-302.5 558.12,-310.11 561.25,-303.85"/>
+</g>
+<!-- module~mus_particle_dps_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge66" class="edge">
+<title>module~mus_particle_dps_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1143.96,-307.69C1124.1,-326.48 1083.51,-362.43 1043,-383.43 1035.14,-387.5 1026.53,-391.06 1017.9,-394.12"/>
+<polygon fill="#000000" stroke="#000000" points="1016.56,-390.88 1008.19,-397.37 1018.78,-397.51 1016.56,-390.88"/>
+</g>
+<!-- module~mus_particle_interactions_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge5" class="edge">
+<title>module~mus_particle_interactions_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M715.5,-611.48C652.55,-645.94 460.84,-738.58 317,-677.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M315,-677.43C213.69,-628.57 134.25,-512.7 104.83,-465.24"/>
+<polygon fill="#000000" stroke="#000000" points="107.82,-463.42 99.63,-456.7 101.84,-467.06 107.82,-463.42"/>
+</g>
+<!-- module~mus_particle_interactions_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge12" class="edge">
+<title>module~mus_particle_interactions_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M639.92,-610.79C603.98,-612.08 563.25,-609.99 527.5,-599.43"/>
+</g>
+<!-- module~mus_particle_interactions_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge53" class="edge">
+<title>module~mus_particle_interactions_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M662.19,-587.22C654.11,-583.71 646.48,-579.2 640,-573.43 559.84,-502.01 536.07,-365.84 529.66,-312.57"/>
+<polygon fill="#000000" stroke="#000000" points="533.13,-312.06 528.54,-302.51 526.17,-312.84 533.13,-312.06"/>
+</g>
+<!-- module~mus_particle_mem_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge6" class="edge">
+<title>module~mus_particle_mem_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1078.73,-184.49C1041.7,-185.87 997.08,-184.62 958,-175.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956,-175.43C860.55,-152.96 836.56,-138.2 738.5,-138.43"/>
+</g>
+<!-- module~mus_particle_mem_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge13" class="edge">
+<title>module~mus_particle_mem_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1098.09,-189.45C1058.67,-197.22 1005.38,-207.03 958,-213.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956,-213.43C766.57,-239.01 705.23,-180.05 527.5,-250.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M525.5,-250.43C492.54,-262.29 478.23,-250.11 449,-269.43 388.93,-309.13 345.55,-385.74 327,-423.01"/>
+<polygon fill="#000000" stroke="#000000" points="323.65,-421.9 322.43,-432.42 329.95,-424.95 323.65,-421.9"/>
+</g>
+<!-- module~mus_particle_mem_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge55" class="edge">
+<title>module~mus_particle_mem_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956,-213.43C854.38,-227.15 840.65,-281.42 738.5,-290.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-290.43C696.52,-293.95 652.08,-294.43 614.49,-293.84"/>
+<polygon fill="#000000" stroke="#000000" points="614.14,-290.33 604.08,-293.64 614.01,-297.33 614.14,-290.33"/>
+</g>
+<!-- module~mus_particle_mem_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge67" class="edge">
+<title>module~mus_particle_mem_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1097.74,-189.51C1090.68,-193.03 1084.16,-197.57 1079,-203.43 1025.07,-264.64 1097.75,-322.94 1043,-383.43 1039.95,-386.8 1036.47,-389.74 1032.71,-392.3"/>
+<polygon fill="#000000" stroke="#000000" points="1030.94,-389.28 1024.06,-397.33 1034.47,-395.33 1030.94,-389.28"/>
+</g>
+<!-- module~mus_particle_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node8" class="node">
+<title>module~mus_particle_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node8"><a xlink:href="../module/mus_particle_module.html" xlink:title="mus_particle_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1624,-347.43 1497,-347.43 1497,-323.43 1624,-323.43 1624,-347.43"/>
+<text text-anchor="middle" x="1560.5" y="-333.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge7" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1547.54,-323.4C1530.54,-305.85 1499.1,-271.67 1478,-238.43 1457.54,-206.19 1473.84,-181.5 1442,-160.43 1181.17,12.27 1051.32,-137.71 738.5,-138.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-138.43C643.62,-137.26 620.3,-134.26 527.5,-138.43"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge14" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1535.57,-347.59C1517.36,-358 1492.95,-374.58 1478,-395.43 1447.28,-438.25 1481.54,-473.57 1442,-508.43 1307,-627.41 819.12,-637.68 640,-620.43 623.78,-618.86 620.02,-616.45 604,-613.43 570.03,-607.02 560.39,-610.06 527.5,-599.43"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_dem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge19" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_dem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1542.86,-347.48C1526.32,-359.5 1500.28,-378.57 1478,-395.43 1461.84,-407.66 1458.06,-411.06 1442,-423.43 1421.96,-438.85 1399.12,-456.24 1382.33,-468.99"/>
+<polygon fill="#000000" stroke="#000000" points="1379.99,-466.37 1374.14,-475.2 1384.22,-471.95 1379.99,-466.37"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge24" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1509.31,-323.36C1468.75,-314.12 1410.03,-301.89 1358,-295.43"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_mem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge30" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_mem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1549.17,-323.14C1520.65,-289.24 1442.92,-196.89 1442,-196.43 1381.78,-165.99 1304.97,-162.65 1246.5,-166.15"/>
+<polygon fill="#000000" stroke="#000000" points="1245.91,-162.68 1236.17,-166.85 1246.39,-169.66 1245.91,-162.68"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge41" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1535.92,-323.24C1507.37,-308.72 1460.79,-285.87 1442,-281.43 1284.97,-244.26 1231.18,-220.76 1079,-274.43 1059.62,-281.26 1061.15,-293.8 1043,-303.43 1035.27,-307.52 1026.8,-311.08 1018.29,-314.13"/>
+<polygon fill="#000000" stroke="#000000" points="1017.06,-310.86 1008.71,-317.37 1019.31,-317.49 1017.06,-310.86"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge45" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1543.88,-323.14C1512.23,-298.25 1443.41,-244.17 1442,-243.43 1434.24,-239.36 1425.73,-235.81 1417.21,-232.75"/>
+<polygon fill="#000000" stroke="#000000" points="1418.21,-229.4 1407.62,-229.5 1415.96,-236.03 1418.21,-229.4"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge56" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1496.63,-337.74C1387.08,-342.05 1154.16,-352.43 958,-369.43"/>
+</g>
+<!-- module~mus_particle_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge68" class="edge">
+<title>module~mus_particle_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1538.02,-347.52C1502.11,-366.77 1427,-402.85 1358,-409.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356,-409.43C1252.93,-419.24 1134.16,-417.57 1053.39,-414.49"/>
+<polygon fill="#000000" stroke="#000000" points="1053.37,-410.99 1043.24,-414.09 1053.09,-417.98 1053.37,-410.99"/>
+</g>
+<!-- module~mus_particle_tests_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node9" class="node">
+<title>module~mus_particle_tests_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node9"><a xlink:href="../module/mus_particle_tests_module.html" xlink:title="mus_particle_tests_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1639,-480.43 1482,-480.43 1482,-456.43 1639,-456.43 1639,-480.43"/>
+<text text-anchor="middle" x="1560.5" y="-466.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_tests_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_boundary_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge8" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_boundary_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956,-715.43C859.35,-713.75 835.04,-710.39 738.5,-715.43"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge15" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356,-601.43C1292.49,-621.69 1298.28,-667.64 1236,-691.43 1120.15,-735.67 1081.9,-720.78 958,-715.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M956,-715.43C898.55,-714.23 497.77,-643.81 449,-613.43 389.5,-576.36 346.11,-502.39 327.33,-465.86"/>
+<polygon fill="#000000" stroke="#000000" points="330.3,-463.98 322.69,-456.61 324.04,-467.12 330.3,-463.98"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_dem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge20" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_dem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1481.88,-475.74C1469.93,-476.87 1457.52,-478.04 1445.37,-479.19"/>
+<polygon fill="#000000" stroke="#000000" points="1444.87,-475.72 1435.24,-480.14 1445.53,-482.69 1444.87,-475.72"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge25" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1535.39,-456.38C1518.85,-447.82 1496.62,-435.7 1478,-423.43 1461.08,-412.27 1459.76,-405.2 1442,-395.43 1356.76,-348.53 1327.9,-353.34 1236,-321.43 1225.84,-317.9 1214.9,-314.18 1204.54,-310.69"/>
+<polygon fill="#000000" stroke="#000000" points="1205.42,-307.3 1194.83,-307.44 1203.2,-313.93 1205.42,-307.3"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge42" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1507.43,-456.39C1396.93,-430.86 1139.32,-371.33 1020.31,-343.82"/>
+<polygon fill="#000000" stroke="#000000" points="1020.79,-340.34 1010.26,-341.5 1019.22,-347.16 1020.79,-340.34"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge57" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356,-601.43C1313.42,-615.01 1202.8,-645.38 1158.5,-639.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-639.43C1036.46,-623.28 735.52,-539.89 640,-465.43 586.59,-423.79 551.07,-349.27 535.88,-312.37"/>
+<polygon fill="#000000" stroke="#000000" points="538.94,-310.6 531.98,-302.61 532.44,-313.19 538.94,-310.6"/>
+</g>
+<!-- module~mus_particle_checks_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node18" class="node">
+<title>module~mus_particle_checks_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node18"><a xlink:href="../module/mus_particle_checks_module.html" xlink:title="mus_particle_checks_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="822,-421.43 653,-421.43 653,-397.43 822,-397.43 822,-421.43"/>
+<text text-anchor="middle" x="737.5" y="-407.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particle_checks_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_checks_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge63" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_checks_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356,-601.43C1241.06,-637.31 885.22,-478.27 772.86,-425.76"/>
+<polygon fill="#000000" stroke="#000000" points="774.21,-422.52 763.67,-421.44 771.24,-428.86 774.21,-422.52"/>
+</g>
+<!-- module~mus_particle_tests_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge69" class="edge">
+<title>module~mus_particle_tests_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1549.87,-480.54C1531.37,-503 1488.54,-551.2 1442,-577.43 1408.17,-596.48 1395.21,-590.34 1358,-601.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356,-601.43C1346.35,-604.3 1084.62,-473.21 990.95,-426.05"/>
+<polygon fill="#000000" stroke="#000000" points="992.42,-422.87 981.91,-421.5 989.27,-429.12 992.42,-422.87"/>
+</g>
+<!-- module~mus_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node10" class="node">
+<title>module~mus_config_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node10"><a xlink:href="../module/mus_config_module.html" xlink:title="mus_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1800,-229.43 1681,-229.43 1681,-205.43 1800,-205.43 1800,-229.43"/>
+<text text-anchor="middle" x="1740.5" y="-215.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_config_module&#45;&gt;module~mus_particle_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge17" class="edge">
+<title>module~mus_config_module&#45;&gt;module~mus_particle_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1680.72,-217.43C1671.87,-217.43 1662.57,-217.43 1653.23,-217.43"/>
+<polygon fill="#000000" stroke="#000000" points="1653.1,-213.93 1643.1,-217.43 1653.1,-220.93 1653.1,-213.93"/>
+</g>
+<!-- module~mus_config_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge46" class="edge">
+<title>module~mus_config_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1705.55,-205.36C1639.51,-183.01 1488.78,-137.43 1358,-137.43 1358,-137.43 1358,-137.43 1156.5,-137.43 1040.51,-137.43 702.65,-236.89 576.11,-275.43"/>
+<polygon fill="#000000" stroke="#000000" points="574.84,-272.15 566.3,-278.42 576.89,-278.85 574.84,-272.15"/>
+</g>
+<!-- module~mus_control_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node11" class="node">
+<title>module~mus_control_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node11"><a xlink:href="../module/mus_control_module.html" xlink:title="mus_control_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1802,-347.43 1679,-347.43 1679,-323.43 1802,-323.43 1802,-347.43"/>
+<text text-anchor="middle" x="1740.5" y="-333.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_control_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge21" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1721.79,-347.54C1690.86,-367.56 1624.31,-405.75 1561.5,-409.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1559.5,-409.43C1496.43,-413.12 1497.01,-360.49 1442,-329.43 1406.93,-309.62 1397.97,-300.39 1358,-295.43"/>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge31" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1678.74,-335.43C1664.42,-335.43 1649.01,-335.43 1634.22,-335.43"/>
+<polygon fill="#000000" stroke="#000000" points="1634.11,-331.93 1624.11,-335.43 1634.11,-338.93 1634.11,-331.93"/>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_creator_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge43" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_creator_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1700.47,-323.35C1630.4,-301.68 1483.49,-256.24 1406.86,-232.54"/>
+<polygon fill="#000000" stroke="#000000" points="1407.57,-229.09 1396.98,-229.48 1405.5,-235.78 1407.57,-229.09"/>
+</g>
+<!-- module~mus_control_module&#45;&gt;module~mus_particle_logging_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge64" class="edge">
+<title>module~mus_control_module&#45;&gt;module~mus_particle_logging_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1559.5,-409.43C1470.1,-414.66 1447.06,-400.04 1358,-409.43"/>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge9" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M873.79,-334.13C832.93,-335.18 782.92,-334.52 738.5,-328.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-328.43C638.27,-314.94 620.02,-214.8 527.5,-250.43"/>
+</g>
+<!-- module~mus_particle_comm_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge48" class="edge">
+<title>module~mus_particle_comm_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M736.5,-328.43C689.24,-321.94 636.39,-312.31 595.66,-304.36"/>
+<polygon fill="#000000" stroke="#000000" points="596.33,-300.93 585.84,-302.44 594.98,-307.8 596.33,-300.93"/>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge22" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1325.57,-229.44C1291.5,-242.9 1236.15,-264.76 1198.58,-279.6"/>
+<polygon fill="#000000" stroke="#000000" points="1196.98,-276.47 1188.96,-283.4 1199.55,-282.98 1196.98,-276.47"/>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_mem_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge28" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_mem_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1296.74,-205.42C1275.07,-201.03 1250.35,-196.03 1227.87,-191.48"/>
+<polygon fill="#000000" stroke="#000000" points="1228.55,-188.04 1218.06,-189.49 1227.16,-194.9 1228.55,-188.04"/>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_comm_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge38" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_comm_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-217.43C1121.27,-225.12 1107.21,-218.96 1079,-241.43 1054.07,-261.28 1067.96,-283.62 1043,-303.43 1038.28,-307.17 1033.01,-310.38 1027.49,-313.13"/>
+<polygon fill="#000000" stroke="#000000" points="1025.72,-310.09 1017.99,-317.34 1028.55,-316.49 1025.72,-310.09"/>
+</g>
+<!-- module~mus_particle_creator_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge50" class="edge">
+<title>module~mus_particle_creator_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1271.54,-209.53C1236.24,-208.26 1195.01,-209.45 1158.5,-217.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1156.5,-217.43C972.26,-257.68 926.36,-273.87 738.5,-290.43"/>
+</g>
+<!-- module~mus_particle_type_module&#45;&gt;module~mus_particle_comm_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge16" class="edge">
+<title>module~mus_particle_type_module&#45;&gt;module~mus_particle_comm_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M509.14,-302.51C472.68,-329.44 384.57,-394.52 341.51,-426.32"/>
+<polygon fill="#000000" stroke="#000000" points="339.25,-423.64 333.28,-432.4 343.41,-429.27 339.25,-423.64"/>
+</g>
+<!-- module~mus_program_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node15" class="node">
+<title>module~mus_program_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node15"><a xlink:href="../module/mus_program_module.html" xlink:title="mus_program_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1994,-342.43 1862,-342.43 1862,-318.43 1994,-318.43 1994,-342.43"/>
+<text text-anchor="middle" x="1928" y="-328.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_program_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge18" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1872.48,-318.38C1835.66,-310.68 1785.87,-301.11 1741.5,-295.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1739.5,-295.43C1691.18,-289.24 1687.84,-262.47 1643,-243.43 1633.77,-239.51 1623.74,-235.85 1613.98,-232.58"/>
+<polygon fill="#000000" stroke="#000000" points="1614.94,-229.21 1604.34,-229.45 1612.77,-235.87 1614.94,-229.21"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_dps_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge26" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_dps_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1739.5,-295.43C1571.32,-273.88 1526.26,-316.32 1358,-295.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1356,-295.43C1319.61,-290.93 1279.15,-290.2 1244.38,-290.86"/>
+<polygon fill="#000000" stroke="#000000" points="1244.18,-287.36 1234.26,-291.09 1244.34,-294.36 1244.18,-287.36"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_particle_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge32" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_particle_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1739.5,-295.43C1714.89,-292.27 1653.75,-307.96 1610,-320.6"/>
+<polygon fill="#000000" stroke="#000000" points="1609.01,-317.25 1600.39,-323.41 1610.97,-323.97 1609.01,-317.25"/>
+</g>
+<!-- module~mus_program_module&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge36" class="edge">
+<title>module~mus_program_module&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1861.86,-332.18C1845.78,-332.61 1828.48,-333.08 1812.15,-333.52"/>
+<polygon fill="#000000" stroke="#000000" points="1812.03,-330.02 1802.13,-333.79 1812.22,-337.02 1812.03,-330.02"/>
+</g>
+<!-- module~mus_hvs_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node16" class="node">
+<title>module~mus_hvs_config_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node16"><a xlink:href="../module/mus_hvs_config_module.html" xlink:title="mus_hvs_config_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="1999,-192.43 1857,-192.43 1857,-168.43 1999,-168.43 1999,-192.43"/>
+<text text-anchor="middle" x="1928" y="-178.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_hvs_config_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_hvs_config_module&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge33" class="edge">
+<title>module~mus_hvs_config_module&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1866.77,-192.44C1848.66,-196.05 1828.65,-200.04 1810.04,-203.75"/>
+<polygon fill="#000000" stroke="#000000" points="1809.28,-200.34 1800.16,-205.73 1810.65,-207.2 1809.28,-200.34"/>
+</g>
+<!-- module~mus_interpolate_verify_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node17" class="node">
+<title>module~mus_interpolate_verify_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node17"><a xlink:href="../module/mus_interpolate_verify_module.html" xlink:title="mus_interpolate_verify_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="2018,-234.43 1838,-234.43 1838,-210.43 2018,-210.43 2018,-234.43"/>
+<text text-anchor="middle" x="1928" y="-220.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_interpolate_verify_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_interpolate_verify_module&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge34" class="edge">
+<title>module~mus_interpolate_verify_module&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1837.78,-220.02C1828.48,-219.77 1819.12,-219.52 1810.1,-219.27"/>
+<polygon fill="#000000" stroke="#000000" points="1810.16,-215.77 1800.07,-219 1809.97,-222.77 1810.16,-215.77"/>
+</g>
+<!-- module~mus_particle_checks_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge47" class="edge">
+<title>module~mus_particle_checks_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M676.06,-397.4C663.76,-393.79 651.18,-389.2 640,-383.43 602.87,-364.24 566.89,-331.17 545.99,-310.08"/>
+<polygon fill="#000000" stroke="#000000" points="548.22,-307.36 538.74,-302.63 543.21,-312.24 548.22,-307.36"/>
+</g>
+<!-- module~mus_particle_logging_module&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge54" class="edge">
+<title>module~mus_particle_logging_module&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M887.05,-397.41C834.33,-388.09 766.15,-375.74 738.5,-369.43"/>
+</g>
+<!-- module~mus_particle_logging_module&#45;&gt;module~mus_particle_checks_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge62" class="edge">
+<title>module~mus_particle_logging_module&#45;&gt;module~mus_particle_checks_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M870.97,-409.43C858.28,-409.43 845.14,-409.43 832.28,-409.43"/>
+<polygon fill="#000000" stroke="#000000" points="832.04,-405.93 822.04,-409.43 832.04,-412.93 832.04,-405.93"/>
+</g>
+<!-- program~musubi -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node20" class="node">
+<title>program~musubi</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node20"><a xlink:href="../program/musubi.html" xlink:title="musubi">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="2135,-342.43 2081,-342.43 2081,-318.43 2135,-318.43 2135,-342.43"/>
+<text text-anchor="middle" x="2108" y="-328.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">musubi</text>
+</a>
+</g>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge35" class="edge">
+<title>program~musubi&#45;&gt;module~mus_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2080.71,-322.3C2019.81,-303.47 1868.28,-256.62 1790,-232.42"/>
+<polygon fill="#000000" stroke="#000000" points="1790.96,-229.05 1780.38,-229.45 1788.9,-235.74 1790.96,-229.05"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_control_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge37" class="edge">
+<title>program~musubi&#45;&gt;module~mus_control_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2105.75,-342.53C2099.38,-396.6 2065.41,-614.45 1929,-639.43"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1927,-639.43C1795.98,-663.41 1754.11,-431.72 1744.13,-357.71"/>
+<polygon fill="#000000" stroke="#000000" points="1747.58,-357.08 1742.83,-347.61 1740.63,-357.97 1747.58,-357.08"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_particle_type_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge58" class="edge">
+<title>program~musubi&#45;&gt;module~mus_particle_type_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M1927,-639.43C1591.03,-700.93 1499.27,-662.52 1158.5,-639.43"/>
+</g>
+<!-- program~musubi&#45;&gt;module~mus_program_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge59" class="edge">
+<title>program~musubi&#45;&gt;module~mus_program_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2080.74,-330.43C2060.58,-330.43 2031.7,-330.43 2004.53,-330.43"/>
+<polygon fill="#000000" stroke="#000000" points="2004.23,-326.93 1994.23,-330.43 2004.23,-333.93 2004.23,-326.93"/>
+</g>
+<!-- module~mus_flow_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node21" class="node">
+<title>module~mus_flow_module</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node21"><a xlink:href="../module/mus_flow_module.html" xlink:title="mus_flow_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="2162,-234.43 2054,-234.43 2054,-210.43 2162,-210.43 2162,-234.43"/>
+<text text-anchor="middle" x="2108" y="-220.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_flow_module</text>
+</a>
+</g>
+</g>
+<!-- module~mus_flow_module&#45;&gt;module~mus_interpolate_verify_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge61" class="edge">
+<title>module~mus_flow_module&#45;&gt;module~mus_interpolate_verify_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2053.59,-222.43C2045.57,-222.43 2037.09,-222.43 2028.47,-222.43"/>
+<polygon fill="#000000" stroke="#000000" points="2028.31,-218.93 2018.31,-222.43 2028.31,-225.93 2028.31,-218.93"/>
+</g>
+<!-- program~mus_harvesting -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_node22" class="node">
+<title>program~mus_harvesting</title>
+<g id="a_module~~mus_particle_boundary_module~~UsedByGraph_node22"><a xlink:href="../program/mus_harvesting.html" xlink:title="mus_harvesting">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="2156.5,-192.43 2059.5,-192.43 2059.5,-168.43 2156.5,-168.43 2156.5,-192.43"/>
+<text text-anchor="middle" x="2108" y="-178.03" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_harvesting</text>
+</a>
+</g>
+</g>
+<!-- program~mus_harvesting&#45;&gt;module~mus_hvs_config_module -->
+<g id="module~~mus_particle_boundary_module~~UsedByGraph_edge60" class="edge">
+<title>program~mus_harvesting&#45;&gt;module~mus_hvs_config_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M2059.3,-180.43C2044.03,-180.43 2026.69,-180.43 2009.74,-180.43"/>
+<polygon fill="#000000" stroke="#000000" points="2009.26,-176.93 1999.26,-180.43 2009.26,-183.93 2009.26,-176.93"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panmodulemus_particle_boundary_moduleUsedByGraph = svgPanZoom('#modulemus_particle_boundary_moduleUsedByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsedByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="UsedByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a submodule to the (sub)module which it is
+descended from. Dashed arrows point from a module or program unit to 
+modules which it uses.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+      <br>
+
+
+        <section>
+          <h2>Variables</h2>
+            <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pgbnddata"></span>
+              type(<a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>),
+            </td>
+              <td>public,</td>
+            <td>
+              save
+            </td>
+            <td>::</td>
+            <td><strong>pgBndData</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+        </section>
+        <br>
+
+
+
+
+        <section>
+          <h2>Derived Types</h2>
+              <div class="card">
+    <div class="card-header codesum">
+      <span class="anchor" id="type-mus_particle_boundarydata_type"></span>
+      <h3>
+        type, public&nbsp;::&nbsp;
+        <a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>
+        
+      </h3>
+    </div>
+    <div class="card-body">
+      
+
+        <h4>Components</h4>
+          <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bnd~2"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bnd</strong>(6)</td>
+                <td></td>
+                <td></td>
+            <td>
+<p>boundary locations [xmin, xmax, ymin, ymax, zmin, zma]</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-domain_size"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>domain_size</strong>(3)</td>
+                <td></td>
+                <td></td>
+            <td>
+<p>length of domain in x, y, z directions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bnd_coord~2"></span>
+              integer,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>bnd_coord</strong>(6)</td>
+                <td></td>
+                <td></td>
+            <td>
+<p>integer coordinates of bnd in x, y, z directions</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-usebnd"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>useBnd</strong></td>
+                <td></td>
+                <td></td>
+            <td>
+<p>logical set to TRUE if particle domain boundaries are active</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-periodicbnd"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>periodicBnd</strong>(6)</td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-wallbnd"></span>
+              logical,
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>wallBnd</strong>(6)</td>
+                <td></td>
+                <td></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Functions</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-getneighborcoord"></span> <h3>public  function <a href='../proc/getneighborcoord.html'>getNeighborCoord</a>(coord, nx, ny, nz, boundaryData) result(neighborCoord)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>getNeighborCoord gets the coordinate of the element
+offset from input coord by (nx,ny,nz) while taking into
+account periodicity</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-coord~10"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>coord</strong>(4)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nx"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nx</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ny"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ny</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nz"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nz</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-boundarydata"></span>
+              type(<a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>boundaryData</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer, (4)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-computedisplacement"></span> <h3>public  function <a href='../proc/computedisplacement.html'>computeDisplacement</a>(x1, x2, boundaryData) result(r12)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>computeDistance computes the shortest distance between points x1 and x2
+In doing so it takes possible periodic boundaries into account.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-x1"></span>
+              real(kind=rk)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x1</strong>(3)</td>
+            <td>
+<p>xyz coordinates of point 1</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-x2"></span>
+              real(kind=rk)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>x2</strong>(3)</td>
+            <td>
+<p>xyz coordinates of point 2</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-boundarydata~4"></span>
+              type(<a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>boundaryData</strong></td>
+            <td>
+<p>Boundary data tells us the domain bounds and if we have periodic bounds</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>real(kind=rk), (3)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+        <section>
+          <h2>Subroutines</h2>
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-wrapperiodiccoord"></span> <h3>public  subroutine <a href='../proc/wrapperiodiccoord.html'>wrapPeriodicCoord</a>(coord, boundaryData)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>wrapPeriodicCoord modifies the input coord to take into
+account periodicity</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-coord~11"></span>
+              integer,
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>coord</strong>(4)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-boundarydata~2"></span>
+              type(<a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>boundaryData</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-wrapperiodicpos"></span> <h3>public  subroutine <a href='../proc/wrapperiodicpos.html'>wrapPeriodicPos</a>(pos, boundaryData)  
+</h3></div>
+    <div class="card-body">
+          
+  
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pos~36"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pos</strong>(3)</td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-boundarydata~3"></span>
+              type(<a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>)
+            </td>
+<td></td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>boundaryData</strong></td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcperiodicrsurface"></span> <h3>public  subroutine <a href='../proc/calcperiodicrsurface.html'>calcPeriodicRsurface</a>(r, R_particle, boundaryData)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>calcPeriodicRsurface is used to calculate the vector from the 
+particle origin to a point on the surface in presence of periodic 
+boundaries.
+Usage: first calculate the distance from the particle origin to a 
+surface element using r = baryOfSurface - x_origin. If the particle is 
+close to a periodic boundary this vector may not be correct.
+In that case a call to calcPeriodicRsurface modifies the vector r to 
+take into account the periodicity. This is done by checking if the 
+magnitude of r is less than the particle radius R_particle (which can 
+be modified with some tolerance if needed).
+This routine is used for fully resolved (MEM) particles only.</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-r~4"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>r</strong>(3)</td>
+            <td>
+<p>Original vector r</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-r_particle"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>R_particle</strong></td>
+            <td>
+<p>Particle radius + a tolerance if desired</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-boundarydata~5"></span>
+              type(<a href='../type/mus_particle_boundarydata_type.html'>mus_particle_boundarydata_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>boundaryData</strong></td>
+            <td>
+<p>Datatype containing periodic boundary data</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-calcperiodicdistancetosurface"></span> <h3>private  subroutine <a href='../proc/calcperiodicdistancetosurface.html'>calcPeriodicDistanceToSurface</a>(ri, R, L)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>wrap_periodic checks whether a distance r from x_particle to </p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ri"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ri</strong></td>
+            <td>
+<p>Distance (in one of the Cartesian directions xi) from the particle 
+origin to the barycenter of a point on the surface.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-r"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>R</strong></td>
+            <td>
+<p>Radius of the particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-l~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>L</strong></td>
+            <td>
+<p>Length of the periodic domain (in direction xi )</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+        </section>
+        <br>
+
+
+
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-04-24T09:44:22.475563+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

@@ -56,7 +56,8 @@ module mus_initFluid_module
     &                             bgk_ProjectedRecursiveRegularized_d3q19, &
     &                             bgk_HybridRecursiveRegularized_d3q19,    &
     &                             bgk_DualRelaxationTime_RR_d3q19,         &
-    &                             bgk_HybridRecursiveRegularizedCorr_d3q19
+    &                             bgk_HybridRecursiveRegularizedCorr_d3q19,&
+    &                             bgk_advRel_d3q19_GNS
   use mus_d2q9_module,      only: mus_advRel_kFluid_rMRT_vStd_lD2Q9,       &
     &                             mus_advRel_kFluid_rBGK_vStd_lD2Q9,       &
     &                             mus_advRel_kFluid_rBGK_vImproved_lD2Q9,  &
@@ -65,7 +66,8 @@ module mus_initFluid_module
     &                             bgk_ProjectedRecursiveRegularized_d2q9,  &
     &                             bgk_HybridRecursiveRegularized_d2q9,     &
     &                             bgk_DualRelaxationTime_RR_d2q9,          &
-    &                             bgk_HybridRecursiveRegularizedCorr_d2q9
+    &                             bgk_HybridRecursiveRegularizedCorr_d2q9, &
+    &                             mus_advRel_kFluidGNS_rBGK_vStd_lD2Q9                    
   use mus_mrt_d3q19_module, only: mus_advRel_kFluid_rMRT_vStd_lD3Q19,      &
     &                             mus_advRel_kFluid_rMRT_vStdNoOpt_lD3Q19, &
     &                             mus_advRel_kCFD_rMRT_vStdNoOpt_l
@@ -79,6 +81,7 @@ module mus_initFluid_module
   private
 
   public :: mus_init_advRel_fluid
+  public :: mus_init_advRel_fluid_GNS
 
 contains
 
@@ -230,6 +233,41 @@ contains
 
   end subroutine mus_init_advRel_fluid
   ! ************************************************************************** !
+
+  ! ************************************************************************** !
+  !> Assigning compute kernel routine by scheme relaxation type for fluid GNS kind.
+  !!
+  subroutine mus_init_advRel_fluid_GNS( relaxation, layout, compute )
+    ! --------------------------------------------------------------------------
+    character(len=labelLen), intent(inout) :: relaxation
+    character(len=labelLen), intent(in) :: layout
+    procedure( kernel ), pointer, intent(out) :: compute
+    ! --------------------------------------------------------------------------
+
+    write(logUnit(1),*) 'Choosing fluid relaxation model: '                 &
+      &                 // trim(relaxation) // ' for layout ' // trim(layout)
+
+    select case (trim(relaxation))
+
+    case ('bgk')
+      select case (trim(layout))
+      case ('d3q19')
+        compute => bgk_advRel_d3q19_GNS
+      case('d2q9')
+        compute => mus_advRel_kFluidGNS_rBGK_vStd_lD2Q9
+      case default
+        write(logUnit(1),*) 'ERROR: layout not supported!'
+        write(logUnit(1),*) 'Currently only d3q19 and d2q9 layouts are supported for fluid_GNS'
+        call tem_abort()
+      end select
+
+    case default
+      write(logUnit(1),*) 'Relaxation '//trim(relaxation)//' is not supported!'
+      write(logUnit(1),*) 'Currently only relaxation bgk is supported for fluid_GNS'
+      call tem_abort()
+    end select
+
+  end subroutine mus_init_advRel_fluid_GNS
 
   ! ************************************************************************** !
   !> This routine assigns compute routine for bgk relaxation.

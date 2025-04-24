@@ -12,14 +12,29 @@
 
     <title>Boundary Conditions &ndash; Musubi</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="../../../css/pygments.css" rel="stylesheet">
-    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../../../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../../../css/brands.min.css" rel="stylesheet">
+    <link href="../../../css/regular.min.css" rel="stylesheet">
+    <link href="../../../css/solid.min.css" rel="stylesheet">
+    <link href="../../../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../../../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
     <link href="../../../css/local.css" rel="stylesheet">
-      <link  href="../../../tipuesearch/tipuesearch.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../../../css/pygments.css" rel="stylesheet">
     <script src="../../../js/svg-pan-zoom.min.js"></script>
   </head>
 
@@ -235,6 +250,12 @@
                 </nav>
 
                 </nav>
+              <a class="nav-link" href="../particles/index.html">Particulate Flows</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="../particles/DPS/index.html">Unresolved Discrete Particle Simulation (DPS)</a>
+              <a class="nav-link" href="../particles/MEM/index.html">Fully Resolved Model</a>
+
+                </nav>
               <a class="nav-link" href="index.html">Tutorials</a>
                 <nav class="nav nav-pills flex-column">
                                 <a class="nav-link" href="tut_00_prerequisites.html">Prerequisites</a>
@@ -309,13 +330,13 @@ which has boundary neighbor in binary format.
 These two files are important for <em>Musubi</em> in case of defining the boundary
 conditions.</p>
 <p>If you open <code>bnd.lua</code> file, you will probably find something like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">nSides</span> <span class="o">=</span> <span class="mi">26</span>
-<span class="n">nBCtypes</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">bclabel</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;south&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;north&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;west&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">nSides</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">26</span>
+<span class="nv">nBCtypes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
+<span class="nv">bclabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;north&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;west&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -328,23 +349,23 @@ As an example, we want to simulate a channel. A channel in 2D needs two walls,
 one inlet and one outlet.</p>
 <blockquote>
 <p>If you would like to know in detail how the boundaries are defined you might
-have a look at <a href="../../../https:/apes-suite.github.io/treelm/module/tem_bc_module.html">tem_bc_module</a> and <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_load_bc_state.html">tem_load_bc_state</a>.</p>
+have a look at <a href="https://apes-suite.github.io/treelm/module/tem_bc_module.html">tem_bc_module</a> and <a href="https://apes-suite.github.io/treelm/proc/tem_load_bc_state.html">tem_load_bc_state</a>.</p>
 </blockquote>
 <h2 id="how-to-define-boundary-conditions-in-musubi">How to Define Boundary Conditions in Musubi?</h2>
 <p>Now, we will have a look on the <code>boundary_conditions</code> table in <em>Musubi</em> for the
 channel test case.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
-   <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span> <span class="p">},</span>
-<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
-   <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span> <span class="p">},</span>
-<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
-   <span class="n">kind</span> <span class="o">=</span> <span class="n">inlet_kind</span><span class="p">,</span> <span class="c1">-- local variable inlet_kind</span>
-   <span class="n">pressure</span><span class="o">=</span> <span class="s1">&#39;pressureIn&#39;</span><span class="p">},</span> <span class="c1">-- refers to pressure defined in variable table</span>
-                            <span class="c1">-- (see last tutorial)</span>
-<span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-   <span class="n">kind</span> <span class="o">=</span> <span class="n">outlet_kind</span><span class="p">,</span> <span class="c1">-- local variable outlet_kind</span>
-   <span class="n">pressure</span><span class="o">=</span> <span class="s1">&#39;pressureOut&#39;</span><span class="p">}}</span> <span class="c1">-- local variable from variable table</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;north&#39;</span><span class="p">,</span>
+<span class="w">   </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<span class="w">   </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;west&#39;</span><span class="p">,</span>
+<span class="w">   </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">inlet_kind</span><span class="p">,</span><span class="w"> </span><span class="c1">-- local variable inlet_kind</span>
+<span class="w">   </span><span class="nv">pressure</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressureIn&#39;</span><span class="p">},</span><span class="w"> </span><span class="c1">-- refers to pressure defined in variable table</span>
+<span class="w">                            </span><span class="c1">-- (see last tutorial)</span>
+<span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">   </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">outlet_kind</span><span class="p">,</span><span class="w"> </span><span class="c1">-- local variable outlet_kind</span>
+<span class="w">   </span><span class="nv">pressure</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressureOut&#39;</span><span class="p">}}</span><span class="w"> </span><span class="c1">-- local variable from variable table</span>
 </code></pre></div>
 
 <p>In this basic example you can see the function of each boundary as outlined
@@ -354,7 +375,7 @@ above.</p>
 must be defined in <em>Musubi</em> which defines what to do with that boundary. The
 order of boundary definition in <em>Musubi</em> does not depend on the order in
 <em>Seeder</em> (bnd.lua). It just has to exist in both files.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="p">...</span>
 </code></pre></div>
 
@@ -363,8 +384,8 @@ order of boundary definition in <em>Musubi</em> does not depend on the order in
 Therefore, you call the boundary with the exact name (<code>label = ...</code>) that you
 can see in the bnd.lua file and give it a certain <strong>kind</strong> that is explained in
 the next section.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
 <span class="p">...</span>
 </code></pre></div>
 
@@ -378,9 +399,9 @@ boundary in the simulation run. Some of these kinds are described below.</p>
   It has to regard the wall as an obstacle. Moreover, the wall is seen as a
   <strong>no-slip</strong> boundary. If you would like to observe slip as well you have to
   use the separate kind <code>slip_wall</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
-  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -395,10 +416,10 @@ boundary in the simulation run. Some of these kinds are described below.</p>
   are on the one hand <code>fac = 1</code> which means that there is free-slip or full-slip
   and on the other hand, there is <code>fac = 0</code> which is used for no-slip. This case
   is the default case for the <code>kind = wall</code> which is mentioned above.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
-  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;slip_wall&#39;</span><span class="p">,</span>
-  <span class="n">fac</span> <span class="o">=</span> <span class="mf">0.4</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;north&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;slip_wall&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">fac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.4</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -429,34 +450,34 @@ differentiation between <code>q&lt;0.5</code> and <code>q&gt;=0.5</code>.</p>
 <p>Therefore, <em>Seeder</em> has to be configured. For each spatial_object which has
 boundary kind, <code>calc_dist = true</code> has to be added to the attributes right
 behind kind and label. Here is the <code>seeder.lua</code> block before the changes:</p>
-<div class="codehilite"><pre><span></span><code>  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>  <span class="p">{</span>
-    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-      <span class="n">label</span><span class="o">=</span><span class="s1">&#39;north&#39;</span>
-    <span class="p">},</span>
-    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">height</span><span class="o">*</span><span class="mf">0.5</span><span class="o">+</span><span class="n">dxDash</span><span class="p">,</span> <span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">},</span>
-        <span class="n">vec</span> <span class="o">=</span> <span class="p">{{</span><span class="n">length</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},</span>
-              <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">length</span><span class="p">}}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">})</span>
-  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>  <span class="p">{</span>
-    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-      <span class="n">label</span><span class="o">=</span><span class="s1">&#39;south&#39;</span>
-    <span class="p">},</span>
-    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="n">height</span><span class="o">*</span><span class="mf">0.5</span><span class="o">-</span><span class="n">dxDash</span><span class="p">,</span> <span class="o">-</span><span class="n">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">},</span>
-        <span class="n">vec</span> <span class="o">=</span> <span class="p">{{</span><span class="n">length</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.</span><span class="p">},</span>
-              <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">length</span><span class="p">}}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">})</span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span><span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nv">label</span><span class="o">=</span><span class="s1">&#39;north&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="o">-</span><span class="nv">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="o">*</span><span class="mf">0.5</span><span class="o">+</span><span class="nv">dxDash</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="nv">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">},</span>
+<span class="w">        </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="nv">length</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">length</span><span class="p">}}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">})</span>
+<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span><span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nv">label</span><span class="o">=</span><span class="s1">&#39;south&#39;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="o">-</span><span class="nv">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span><span class="o">-</span><span class="nv">height</span><span class="o">*</span><span class="mf">0.5</span><span class="o">-</span><span class="nv">dxDash</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="nv">length</span><span class="o">*</span><span class="mf">0.5</span><span class="p">},</span>
+<span class="w">        </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="nv">length</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">},</span>
+<span class="w">              </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">length</span><span class="p">}}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">})</span>
 </code></pre></div>
 
 <blockquote>
@@ -464,34 +485,34 @@ behind kind and label. Here is the <code>seeder.lua</code> block before the chan
  attributes <code>calc_dist = true</code>.</p>
 </blockquote>
 <p>Then there should be written as an example for one boundary:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>  <span class="p">{</span>
-        <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
-          <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-          <span class="n">level</span> <span class="o">=</span> <span class="n">maxLevel</span><span class="p">,</span> <span class="c1">--local variable</span>
-          <span class="n">label</span> <span class="o">=</span> <span class="n">stlLabel</span><span class="p">,</span> <span class="c1">--local variable</span>
-          <span class="n">calc_dist</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="p">},</span>
-        <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
-          <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;stl&#39;</span><span class="p">,</span>
-          <span class="n">object</span> <span class="o">=</span> <span class="p">{</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">stlfile</span> <span class="c1">--local variable</span>
-  <span class="c1">--          { origin = {-length*0.3,-0.01*height,0.},</span>
-  <span class="c1">--            radius = radius }</span>
-          <span class="p">}</span>
-        <span class="p">},</span>
-       <span class="n">transformation</span> <span class="o">=</span> <span class="p">{</span>
-          <span class="n">deformation</span> <span class="o">=</span>  <span class="mf">2.0</span><span class="p">,</span>
-          <span class="n">translation</span> <span class="o">=</span>  <span class="p">{</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="p">})</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span><span class="w">  </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+<span class="w">          </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">maxLevel</span><span class="p">,</span><span class="w"> </span><span class="c1">--local variable</span>
+<span class="w">          </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stlLabel</span><span class="p">,</span><span class="w"> </span><span class="c1">--local variable</span>
+<span class="w">          </span><span class="nv">calc_dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stl&#39;</span><span class="p">,</span>
+<span class="w">          </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stlfile</span><span class="w"> </span><span class="c1">--local variable</span>
+<span class="w">  </span><span class="c1">--          { origin = {-length*0.3,-0.01*height,0.},</span>
+<span class="w">  </span><span class="c1">--            radius = radius }</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">       </span><span class="nv">transformation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nv">deformation</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mf">2.0</span><span class="p">,</span>
+<span class="w">          </span><span class="nv">translation</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">{</span><span class="o">-</span><span class="mf">2.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
 </code></pre></div>
 
 <p>After that, you are able to set the kind of the boundary in <code>musubi.lua</code> to
   <code>wall_libb</code> instead of <code>wall</code>. You have to use the same syntax
   as shown above, otherwise it will not work.</p>
-<div class="codehilite"><pre><span></span><code>  <span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall_libb&#39;</span><span class="p">,</span>
-  <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall_libb&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -511,10 +532,10 @@ the Lattice Boltzmann Method (LBM). This function gets the density (rho) from
 the fluid. The velocity (u) has to be defined for each coordinate x, y and z.
 Therefore you can place the definition of the velocity after the kind of the
 boundary. Example:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-<span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
-  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;velocity_eq&#39;</span><span class="p">,</span>
-  <span class="n">velocity</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel&#39;</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velocity_eq&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet_vel&#39;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -528,10 +549,10 @@ the documentation for the subroutine <a href="../../../proc/velocity_eq.html">ve
 bounceback like this: A fluid particle gets near the boundary. If it reaches the
 boundary, the particle will bounce back in the same angle as it gets there.
 For this kind, you have to set the velocity values, too.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;velocity_bounceback&#39;</span><span class="p">,</span>
-    <span class="n">velocity</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel&#39;</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;west&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velocity_bounceback&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet_vel&#39;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -543,10 +564,10 @@ For this kind, you have to set the velocity values, too.</p>
 <p>Like for <code>velocity_bounceback</code> there is an "Inlet Velocity Bounce Back" boundary
 condition. But in this case, <code>mass flow rate</code> (<code>mfr</code>) is used as an input
 argumet as well. It is used like that:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;mfr_bounceback&#39;</span><span class="p">,</span>
-    <span class="n">massflowrate</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mfr_bounceback&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">massflowrate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -557,10 +578,10 @@ argumet as well. It is used like that:</p>
 </ul>
 <p>In this case, the mass flow rate is used for the equilibrium boundary condition
 and the velocity is taken from the configuration file.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;mfr_eq&#39;</span><span class="p">,</span>
-    <span class="n">massflowrate</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mfr_eq&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">massflowrate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -571,10 +592,10 @@ and the velocity is taken from the configuration file.</p>
 <li><strong>pressure_expol</strong></li>
 </ul>
 <p>The variable values are extrapolated during the simulation.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
-    <span class="n">pressure</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -586,10 +607,10 @@ and the velocity is taken from the configuration file.</p>
 <p>This is the outlet pressure anti-bounce back boundary condition kind. The
 velocity is extrapolated by two of its neighbors. The pressure has to be given
 as well.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;pressure_antiBounceBack&#39;</span><span class="p">,</span>
-    <span class="n">pressure</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_antiBounceBack&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -600,10 +621,10 @@ as well.</p>
 </ul>
 <p>The incoming densities are set to the equilibrium distribution with macroscopic
 velocity and pressure.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;pressure_eq&#39;</span><span class="p">,</span>
-    <span class="n">pressure</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_eq&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
@@ -621,10 +642,10 @@ The missing part can be easily mirrored when post-processing.</p>
 by <em>Seeder</em>!
 @end warning</p>
 </div>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;symmetry&#39;</span>
-  <span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;symmetry&#39;</span>
+<span class="w">  </span><span class="p">}</span>
 </code></pre></div>
 
 <h3 id="physical-conditions">Physical Conditions</h3>
@@ -669,7 +690,7 @@ variable values with <strong>space time functions</strong>.</p>
 <h3 id="space-time-functions">Space Time Functions</h3>
 <blockquote>
 <p>The documentation for these functions can be found in the
-<a href="../../../https:/apes-suite.github.io/treelm/module/tem_spacetime_fun_module.html">tem_spacetime_fun_module</a> in subroutine <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_load_spacetime_single.html">tem_load_spacetime_single</a>.</p>
+<a href="https://apes-suite.github.io/treelm/module/tem_spacetime_fun_module.html">tem_spacetime_fun_module</a> in subroutine <a href="https://apes-suite.github.io/treelm/proc/tem_load_spacetime_single.html">tem_load_spacetime_single</a>.</p>
 </blockquote>
 <p>Variable values like <code>pressure</code> and <code>velocity</code> are defined as
 <strong>space time functions</strong>. Space time functions contain the x-, y- and
@@ -694,38 +715,38 @@ condition.</p>
 <ul>
 <li><strong>lua function</strong></li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kr">function</span> <span class="nf">lua_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-  <span class="p">...</span>
-  <span class="kr">return</span>
+<div class="codehilite"><pre><span></span><code><span class="kr">function</span><span class="w"> </span><span class="nf">lua_function</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">,</span><span class="nv">t</span><span class="p">)</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="kr">return</span>
 <span class="kr">end</span>
 
-<span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;var_label&#39;</span><span class="p">,</span>
-    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">lua_function</span>
-  <span class="p">},</span>
-  <span class="p">...</span>
+<span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;var_label&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">ncomponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lua_function</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">...</span>
 <span class="p">}</span>
 
-<span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bc_label&#39;</span><span class="p">,</span>
-    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bc_kind&#39;</span>
-    <span class="n">bc_variable</span> <span class="o">=</span> <span class="s1">&#39;var_label&#39;</span>
-  <span class="p">},</span>
-  <span class="p">...</span>
+<span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bc_label&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bc_kind&#39;</span>
+<span class="w">    </span><span class="nv">bc_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;var_label&#39;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">...</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <ul>
 <li><strong>constant</strong></li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bc_label&#39;</span><span class="p">,</span>
-  <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;bc_kind&#39;</span><span class="p">,</span>
-  <span class="n">bc_variable</span> <span class="o">=</span> <span class="mf">1.0</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bc_label&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bc_kind&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nv">bc_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -735,52 +756,52 @@ condition.</p>
 <p>Do not forget to give combination variables to make a vector out of each
 velocity, moleflux and molediff_flux component.</p>
 <p>Here is an example on how to implement velocity as a boundary variable:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="c1">-- example for a predefined space time function</span>
-  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel&#39;</span><span class="p">,</span>
-    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-    <span class="n">st_fun</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">predefined</span> <span class="o">=</span> <span class="s1">&#39;combined&#39;</span><span class="p">,</span>
-      <span class="n">temporal</span>  <span class="o">=</span> <span class="p">{</span>
-        <span class="n">predefined</span> <span class="o">=</span> <span class="s1">&#39;smooth&#39;</span><span class="p">,</span>
-        <span class="n">min_factor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">max_factor</span> <span class="o">=</span> <span class="n">u_in_L</span><span class="p">,</span>
-        <span class="n">from_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">to_time</span> <span class="o">=</span> <span class="n">tmax</span><span class="o">/</span><span class="mi">4</span>
-      <span class="p">},</span>
-      <span class="n">spatial</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">const</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet_vel&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">ncomponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">predefined</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;combined&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nv">temporal</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">predefined</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;smooth&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nv">min_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">max_factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">u_in_L</span><span class="p">,</span>
+<span class="w">        </span><span class="nv">from_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">to_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax</span><span class="o">/</span><span class="mi">4</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nv">spatial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nv">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
 <span class="c1">-- example for a combination of 3 functions</span>
-  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velX&#39;</span><span class="p">,</span>
-    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">lua_function</span>
-  <span class="p">},</span>
-  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velY&#39;</span><span class="p">,</span>
-    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-    <span class="n">st_fun</span> <span class="o">=</span> <span class="mf">0.0</span>
-  <span class="p">},</span>
-  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;velZ&#39;</span><span class="p">,</span>
-    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-    <span class="n">st_fun</span> <span class="o">=</span> <span class="mf">0.0</span>
-  <span class="p">},</span>
-  <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;inlet_vel2&#39;</span><span class="p">,</span>
-    <span class="n">ncomponents</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;operation&#39;</span><span class="p">,</span>
-    <span class="n">operation</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;combine&#39;</span><span class="p">,</span>
-      <span class="n">input_varname</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;velX&#39;</span><span class="p">,</span><span class="s1">&#39;velY&#39;</span><span class="p">,</span><span class="s1">&#39;velZ&#39;</span><span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velX&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">ncomponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">lua_function</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velY&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">ncomponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velZ&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">ncomponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;inlet_vel2&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">ncomponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;operation&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nv">operation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;combine&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nv">input_varname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;velX&#39;</span><span class="p">,</span><span class="s1">&#39;velY&#39;</span><span class="p">,</span><span class="s1">&#39;velZ&#39;</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <blockquote>
-<p>You can find more examples in the subroutine <a href="../../../https:/apes-suite.github.io/treelm/proc/tem_load_bc_state.html">tem_load_bc_state</a> and on
+<p>You can find more examples in the subroutine <a href="https://apes-suite.github.io/treelm/proc/tem_load_bc_state.html">tem_load_bc_state</a> and on
 <a href="https://apes-suite.github.io/treelm//page/features/variables/index.html">variable system page</a>.</p>
 </blockquote>
 <p>Next chapter: <a href="tut_05_restart.html">Restart &rarr;</a></p>
@@ -794,40 +815,18 @@ velocity, moleflux and molediff_flux component.</p>
           <div class="col">
             <p>
               Musubi
- was developed by University of Siegen<br>              &copy; 2024 
-<br /><small>03d36e6f940c</small></p>
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-11-29T18:19:33.949870+0000             </p>
+ on 2025-04-24T09:44:22.475563+0000             </p>
           </div>
         </div>
         <br>
       </div> <!-- /container -->
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
-
-    <!-- MathJax JavaScript
-             ================================================== -->
-             <!-- Placed at the end of the document so the pages load faster -->
-        <script type="text/x-mathjax-config">
-          MathJax.Hub.Config({
-          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-          });
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-          <script src="../../../tipuesearch/tipuesearch_content.js"></script>
-          <script src="../../../tipuesearch/tipuesearch_set.js"></script>
-          <script src="../../../tipuesearch/tipuesearch.js"></script>
-
   </body>
 </html>

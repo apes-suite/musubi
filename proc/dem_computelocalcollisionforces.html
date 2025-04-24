@@ -1,0 +1,724 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>DEM_computeLocalCollisionForces &ndash; Musubi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>DEM_computeLocalCollisionForces
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.1% of total for procedures.">26 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_particle_DEM_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_particle_dem_module.f90.html'>mus_particle_DEM_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_particle_dem_module.html'>mus_particle_DEM_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">DEM_computeLocalCollisionForces</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine DEM_computeLocalCollisionForces(particleGroup, myRank, eps, Tc, mu)  
+</h2>
+    
+
+    <p>Compute collision forces using Discrete Element Method between particles 
+local to this process i.e. both particles are owned by this process.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-particlegroup~45"></span>
+              type(<a href='../type/mus_particle_group_type.html'>mus_particle_group_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>particleGroup</strong></td>
+            <td>
+                <p>particleGroup to search for collisions in</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-myrank~39"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>myRank</strong></td>
+            <td>
+                <p>This proc's rank</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-eps~3"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>eps</strong></td>
+            <td>
+                <p>Threshold gap at which to call it a collision</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tc~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Tc</strong></td>
+            <td>
+                <p>DEM collision time, used for calculating spring and damper coefficients</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-mu~5"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>mu</strong></td>
+            <td>
+                <p>Fluid dynamic viscosity (physical units)</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~dem_computelocalcollisionforces~~CallsGraph Pages: 1 -->
+<svg id="procdem_computelocalcollisionforcesCallsGraph" width="641pt" height="145pt"
+ viewBox="0.00 0.00 641.00 145.02" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph" class="graph" transform="scale(0.73 0.73) rotate(0) translate(4 196)">
+<title>proc~~dem_computelocalcollisionforces~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-196 880,-196 880,4 -4,4"/>
+<!-- proc~dem_computelocalcollisionforces -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node1" class="node">
+<title>proc~dem_computelocalcollisionforces</title>
+<polygon fill="none" stroke="black" points="197,-87 0,-87 0,-63 197,-63 197,-87"/>
+<text text-anchor="middle" x="98.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50">DEM_computeLocalCollisionForces</text>
+</g>
+<!-- interface~checkandcollidedem -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node2" class="node">
+<title>interface~checkandcollidedem</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node2"><a xlink:href="../interface/checkandcollidedem.html" xlink:title="checkAndCollideDEM">
+<polygon fill="#a7506f" stroke="#a7506f" points="359,-108 233,-108 233,-84 359,-84 359,-108"/>
+<text text-anchor="middle" x="296" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checkAndCollideDEM</text>
+</a>
+</g>
+</g>
+<!-- proc~dem_computelocalcollisionforces&#45;&gt;interface~checkandcollidedem -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge1" class="edge">
+<title>proc~dem_computelocalcollisionforces&#45;&gt;interface~checkandcollidedem</title>
+<path fill="none" stroke="#000000" d="M197.25,-85.5C205.87,-86.43 214.49,-87.35 222.84,-88.25"/>
+<polygon fill="#000000" stroke="#000000" points="222.56,-91.74 232.87,-89.33 223.3,-84.78 222.56,-91.74"/>
+</g>
+<!-- interface~islocalcollision -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node3" class="node">
+<title>interface~islocalcollision</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node3"><a xlink:href="../interface/islocalcollision.html" xlink:title="isLocalCollision">
+<polygon fill="#a7506f" stroke="#a7506f" points="343,-66 249,-66 249,-42 343,-42 343,-66"/>
+<text text-anchor="middle" x="296" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">isLocalCollision</text>
+</a>
+</g>
+</g>
+<!-- proc~dem_computelocalcollisionforces&#45;&gt;interface~islocalcollision -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge2" class="edge">
+<title>proc~dem_computelocalcollisionforces&#45;&gt;interface~islocalcollision</title>
+<path fill="none" stroke="#000000" d="M197.25,-64.5C211.41,-62.98 225.57,-61.46 238.54,-60.06"/>
+<polygon fill="#000000" stroke="#000000" points="239.1,-63.52 248.67,-58.98 238.35,-56.56 239.1,-63.52"/>
+</g>
+<!-- proc~checkandcollidedem_dps -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node4" class="node">
+<title>proc~checkandcollidedem_dps</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node4"><a xlink:href="../proc/checkandcollidedem_dps.html" xlink:title="checkAndCollideDEM_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="549,-150 397,-150 397,-126 549,-126 549,-150"/>
+<text text-anchor="middle" x="473" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checkAndCollideDEM_DPS</text>
+</a>
+</g>
+</g>
+<!-- interface~checkandcollidedem&#45;&gt;proc~checkandcollidedem_dps -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge3" class="edge">
+<title>interface~checkandcollidedem&#45;&gt;proc~checkandcollidedem_dps</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M347.15,-108.04C367.38,-112.89 390.88,-118.53 412.01,-123.6"/>
+<polygon fill="#000000" stroke="#000000" points="411.3,-127.03 421.84,-125.96 412.94,-120.23 411.3,-127.03"/>
+</g>
+<!-- proc~checkandcollidedem_mem -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node5" class="node">
+<title>proc~checkandcollidedem_mem</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node5"><a xlink:href="../proc/checkandcollidedem_mem.html" xlink:title="checkAndCollideDEM_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="551,-108 395,-108 395,-84 551,-84 551,-108"/>
+<text text-anchor="middle" x="473" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">checkAndCollideDEM_MEM</text>
+</a>
+</g>
+</g>
+<!-- interface~checkandcollidedem&#45;&gt;proc~checkandcollidedem_mem -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge4" class="edge">
+<title>interface~checkandcollidedem&#45;&gt;proc~checkandcollidedem_mem</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M359.19,-96C367.52,-96 376.19,-96 384.85,-96"/>
+<polygon fill="#000000" stroke="#000000" points="385,-99.5 395,-96 385,-92.5 385,-99.5"/>
+</g>
+<!-- proc~islocalcollision_dps -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node6" class="node">
+<title>proc~islocalcollision_dps</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node6"><a xlink:href="../proc/islocalcollision_dps.html" xlink:title="isLocalCollision_DPS">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="533.5,-66 412.5,-66 412.5,-42 533.5,-42 533.5,-66"/>
+<text text-anchor="middle" x="473" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">isLocalCollision_DPS</text>
+</a>
+</g>
+</g>
+<!-- interface~islocalcollision&#45;&gt;proc~islocalcollision_dps -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge5" class="edge">
+<title>interface~islocalcollision&#45;&gt;proc~islocalcollision_dps</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M343.44,-54C361.46,-54 382.49,-54 402.25,-54"/>
+<polygon fill="#000000" stroke="#000000" points="402.45,-57.5 412.45,-54 402.45,-50.5 402.45,-57.5"/>
+</g>
+<!-- proc~islocalcollision_mem -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node7" class="node">
+<title>proc~islocalcollision_mem</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node7"><a xlink:href="../proc/islocalcollision_mem.html" xlink:title="isLocalCollision_MEM">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="535,-24 411,-24 411,0 535,0 535,-24"/>
+<text text-anchor="middle" x="473" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">isLocalCollision_MEM</text>
+</a>
+</g>
+</g>
+<!-- interface~islocalcollision&#45;&gt;proc~islocalcollision_mem -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge6" class="edge">
+<title>interface~islocalcollision&#45;&gt;proc~islocalcollision_mem</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M343.44,-42.86C364.52,-37.8 389.71,-31.75 412.19,-26.35"/>
+<polygon fill="#000000" stroke="#000000" points="413.06,-29.75 421.97,-24.01 411.43,-22.94 413.06,-29.75"/>
+</g>
+<!-- proc~calc_surface_vel -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node8" class="node">
+<title>proc~calc_surface_vel</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node8"><a xlink:href="../proc/calc_surface_vel.html" xlink:title="calc_surface_vel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="721,-108 621,-108 621,-84 721,-84 721,-108"/>
+<text text-anchor="middle" x="671" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">calc_surface_vel</text>
+</a>
+</g>
+</g>
+<!-- proc~checkandcollidedem_dps&#45;&gt;proc~calc_surface_vel -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge7" class="edge">
+<title>proc~checkandcollidedem_dps&#45;&gt;proc~calc_surface_vel</title>
+<path fill="none" stroke="#000000" d="M530.17,-125.96C555.43,-120.55 585.26,-114.16 610.87,-108.67"/>
+<polygon fill="#000000" stroke="#000000" points="611.78,-112.06 620.82,-106.54 610.31,-105.21 611.78,-112.06"/>
+</g>
+<!-- proc~computedisplacement -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node9" class="node">
+<title>proc~computedisplacement</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node9"><a xlink:href="../proc/computedisplacement.html" xlink:title="computeDisplacement">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="737.5,-66 604.5,-66 604.5,-42 737.5,-42 737.5,-66"/>
+<text text-anchor="middle" x="671" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">computeDisplacement</text>
+</a>
+</g>
+</g>
+<!-- proc~checkandcollidedem_dps&#45;&gt;proc~computedisplacement -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge8" class="edge">
+<title>proc~checkandcollidedem_dps&#45;&gt;proc~computedisplacement</title>
+<path fill="none" stroke="#000000" d="M532.76,-125.98C539.16,-123.52 545.38,-120.56 551,-117 571.77,-103.85 566.1,-87.95 587,-75 589.84,-73.24 592.83,-71.62 595.9,-70.14"/>
+<polygon fill="#000000" stroke="#000000" points="597.56,-73.24 605.38,-66.1 594.81,-66.81 597.56,-73.24"/>
+</g>
+<!-- proc~computelubforce_normal -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node10" class="node">
+<title>proc~computelubforce_normal</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node10"><a xlink:href="../proc/computelubforce_normal.html" xlink:title="computeLubForce_normal">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="747,-192 595,-192 595,-168 747,-168 747,-192"/>
+<text text-anchor="middle" x="671" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">computeLubForce_normal</text>
+</a>
+</g>
+</g>
+<!-- proc~checkandcollidedem_dps&#45;&gt;proc~computelubforce_normal -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge9" class="edge">
+<title>proc~checkandcollidedem_dps&#45;&gt;proc~computelubforce_normal</title>
+<path fill="none" stroke="#000000" d="M530.17,-150.04C553.13,-154.96 579.87,-160.69 603.77,-165.81"/>
+<polygon fill="#000000" stroke="#000000" points="603.31,-169.29 613.83,-167.96 604.78,-162.45 603.31,-169.29"/>
+</g>
+<!-- proc~computelubforce_tangential -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node11" class="node">
+<title>proc~computelubforce_tangential</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node11"><a xlink:href="../proc/computelubforce_tangential.html" xlink:title="computeLubForce_tangential">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="755,-150 587,-150 587,-126 755,-126 755,-150"/>
+<text text-anchor="middle" x="671" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">computeLubForce_tangential</text>
+</a>
+</g>
+</g>
+<!-- proc~checkandcollidedem_dps&#45;&gt;proc~computelubforce_tangential -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge10" class="edge">
+<title>proc~checkandcollidedem_dps&#45;&gt;proc~computelubforce_tangential</title>
+<path fill="none" stroke="#000000" d="M549.22,-138C558.26,-138 567.57,-138 576.82,-138"/>
+<polygon fill="#000000" stroke="#000000" points="576.83,-141.5 586.83,-138 576.83,-134.5 576.83,-141.5"/>
+</g>
+<!-- proc~checkandcollidedem_mem&#45;&gt;proc~calc_surface_vel -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge11" class="edge">
+<title>proc~checkandcollidedem_mem&#45;&gt;proc~calc_surface_vel</title>
+<path fill="none" stroke="#000000" d="M551.18,-96C570.98,-96 591.96,-96 610.7,-96"/>
+<polygon fill="#000000" stroke="#000000" points="610.85,-99.5 620.85,-96 610.85,-92.5 610.85,-99.5"/>
+</g>
+<!-- proc~checkandcollidedem_mem&#45;&gt;proc~computedisplacement -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge12" class="edge">
+<title>proc~checkandcollidedem_mem&#45;&gt;proc~computedisplacement</title>
+<path fill="none" stroke="#000000" d="M530.17,-83.96C553.13,-79.04 579.87,-73.31 603.77,-68.19"/>
+<polygon fill="#000000" stroke="#000000" points="604.78,-71.55 613.83,-66.04 603.31,-64.71 604.78,-71.55"/>
+</g>
+<!-- proc~checkandcollidedem_mem&#45;&gt;proc~computelubforce_normal -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge13" class="edge">
+<title>proc~checkandcollidedem_mem&#45;&gt;proc~computelubforce_normal</title>
+<path fill="none" stroke="#000000" d="M532.76,-108.02C539.16,-110.48 545.38,-113.44 551,-117 571.77,-130.15 566.1,-146.05 587,-159 589.84,-160.76 592.83,-162.38 595.9,-163.86"/>
+<polygon fill="#000000" stroke="#000000" points="594.81,-167.19 605.38,-167.9 597.56,-160.76 594.81,-167.19"/>
+</g>
+<!-- proc~checkandcollidedem_mem&#45;&gt;proc~computelubforce_tangential -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge14" class="edge">
+<title>proc~checkandcollidedem_mem&#45;&gt;proc~computelubforce_tangential</title>
+<path fill="none" stroke="#000000" d="M530.17,-108.04C553.13,-112.96 579.87,-118.69 603.77,-123.81"/>
+<polygon fill="#000000" stroke="#000000" points="603.31,-127.29 613.83,-125.96 604.78,-120.45 603.31,-127.29"/>
+</g>
+<!-- proc~cross_product -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_node12" class="node">
+<title>proc~cross_product</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CallsGraph_node12"><a xlink:href="../proc/cross_product.html" xlink:title="cross_product">
+<polygon fill="#d9534f" stroke="#d9534f" points="876,-108 791,-108 791,-84 876,-84 876,-108"/>
+<text text-anchor="middle" x="833.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">cross_product</text>
+</a>
+</g>
+</g>
+<!-- proc~calc_surface_vel&#45;&gt;proc~cross_product -->
+<g id="proc~~dem_computelocalcollisionforces~~CallsGraph_edge15" class="edge">
+<title>proc~calc_surface_vel&#45;&gt;proc~cross_product</title>
+<path fill="none" stroke="#000000" d="M721.03,-96C739.94,-96 761.59,-96 780.75,-96"/>
+<polygon fill="#000000" stroke="#000000" points="780.81,-99.5 790.81,-96 780.81,-92.5 780.81,-99.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocdem_computelocalcollisionforcesCallsGraph = svgPanZoom('#procdem_computelocalcollisionforcesCallsGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~dem_computelocalcollisionforces~~CalledByGraph Pages: 1 -->
+<svg id="procdem_computelocalcollisionforcesCalledByGraph" width="518pt" height="32pt"
+ viewBox="0.00 0.00 518.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~dem_computelocalcollisionforces~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~dem_computelocalcollisionforces~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 514,-28 514,4 -4,4"/>
+<!-- proc~dem_computelocalcollisionforces -->
+<g id="proc~~dem_computelocalcollisionforces~~CalledByGraph_node1" class="node">
+<title>proc~dem_computelocalcollisionforces</title>
+<polygon fill="none" stroke="black" points="510,-24 313,-24 313,0 510,0 510,-24"/>
+<text text-anchor="middle" x="411.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">DEM_computeLocalCollisionForces</text>
+</g>
+<!-- proc~demsubcycles_mem -->
+<g id="proc~~dem_computelocalcollisionforces~~CalledByGraph_node2" class="node">
+<title>proc~demsubcycles_mem</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CalledByGraph_node2"><a xlink:href="../proc/demsubcycles_mem.html" xlink:title="DEMSubcycles_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="277,-24 157,-24 157,0 277,0 277,-24"/>
+<text text-anchor="middle" x="217" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DEMSubcycles_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~demsubcycles_mem&#45;&gt;proc~dem_computelocalcollisionforces -->
+<g id="proc~~dem_computelocalcollisionforces~~CalledByGraph_edge1" class="edge">
+<title>proc~demsubcycles_mem&#45;&gt;proc~dem_computelocalcollisionforces</title>
+<path fill="none" stroke="#000000" d="M277.06,-12C285.34,-12 294.04,-12 302.87,-12"/>
+<polygon fill="#000000" stroke="#000000" points="302.88,-15.5 312.88,-12 302.88,-8.5 302.88,-15.5"/>
+</g>
+<!-- proc~mus_particles_move -->
+<g id="proc~~dem_computelocalcollisionforces~~CalledByGraph_node3" class="node">
+<title>proc~mus_particles_move</title>
+<g id="a_proc~~dem_computelocalcollisionforces~~CalledByGraph_node3"><a xlink:href="../proc/mus_particles_move.html" xlink:title="mus_particles_move">
+<polygon fill="#d9534f" stroke="#d9534f" points="121,-24 0,-24 0,0 121,0 121,-24"/>
+<text text-anchor="middle" x="60.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_move</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_move&#45;&gt;proc~demsubcycles_mem -->
+<g id="proc~~dem_computelocalcollisionforces~~CalledByGraph_edge2" class="edge">
+<title>proc~mus_particles_move&#45;&gt;proc~demsubcycles_mem</title>
+<path fill="none" stroke="#000000" d="M121.23,-12C129.56,-12 138.18,-12 146.67,-12"/>
+<polygon fill="#000000" stroke="#000000" points="146.93,-15.5 156.93,-12 146.93,-8.5 146.93,-15.5"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-04-24T09:44:22.475563+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

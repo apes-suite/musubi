@@ -100,7 +100,9 @@ module mus_d3q19_module
   private
 
   public :: mus_advRel_kFluid_rBGK_vStd_lD3Q19
+  public :: bgk_advRel_d3q19_GNS
   public :: mus_advRel_kFluidIncomp_rBGK_vStd_lD3Q19
+  public :: mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19
   public :: mus_advRel_kFluid_rTRT_vStd_lD3Q19
   public :: mus_advRel_kFluidIncomp_rTRT_vStd_lD3Q19
   public :: mus_advRel_kFluid_rBGK_vBlock_lD3Q19
@@ -347,6 +349,255 @@ contains
   end subroutine mus_advRel_kFluid_rBGK_vStd_lD3Q19
 ! **************************************************************************** !
 
+  ! **************************************************************************** !
+  !> Advection relaxation routine for the D3Q19 model with BGK based on the !!
+  !! equilibrium distribution function for the generalized Navier Stokes equations
+  !! (GNS) aka Volume Averaged Navier-Stokes !! equations (VANS).
+  !! feq definition from: Z. Guo and T. S. Zhao, “Lattice Boltzmann model for
+  !! incompressible flows through porous media,” Phys. Rev. E, vol. 66, no. 3, p.
+  !! 036304, Sep. 2002, doi: 10.1103/PhysRevE.66.036304.
+  !!
+  !! \[ f_\alpha(x_i+e_{\alpha,i},t+1) =
+  !! f_\alpha(x_i,t) - \omega(f_\alpha(x_i,t)-f^{eq}_{\alpha}(x_i,t)) \]
+  !!
+  !! The number of floating point operation in this routine is 160 roughly.
+  !!
+  !! This subroutine interface must match the abstract interface definition
+  !! [[kernel]] in scheme/[[mus_scheme_type_module]].f90 in order to be callable
+  !! via [[mus_scheme_type:compute]] function pointer.
+  subroutine bgk_advRel_d3q19_GNS( fieldProp, inState, outState, auxField, &
+    &                          neigh, nElems, nSolve, level, layout,   &
+    &                          params, varSys, derVarPos )
+! -------------------------------------------------------------------- !
+!> Array of field properties (fluid or species)
+type(mus_field_prop_type), intent(in) :: fieldProp(:)
+!> variable system definition
+type(tem_varSys_type), intent(in) :: varSys
+!> current layout
+type(mus_scheme_layout_type), intent(in) :: layout
+!> number of elements in state Array
+integer, intent(in) :: nElems
+!> input  pdf vector
+real(kind=rk), intent(in)  ::  inState(nElems * varSys%nScalars)
+!> output pdf vector
+real(kind=rk), intent(out) :: outState(nElems * varSys%nScalars)
+!> Auxiliary field computed from pre-collision state
+!! Is updated with correct velocity field for multicomponent models
+real(kind=rk), intent(inout) :: auxField(nElems * varSys%nAuxScalars)
+!> connectivity vector
+integer, intent(in) :: neigh(nElems * layout%fStencil%QQ)
+!> number of elements solved in kernel
+integer, intent(in) :: nSolve
+!> current level
+integer,intent(in) :: level
+!> global parameters
+type(mus_param_type),intent(in) :: params
+!> position of derived quantities in varsys for all fields
+type( mus_derVarPos_type ), intent(in) :: derVarPos(:)
+! -------------------------------------------------------------------- !
+integer :: iElem, nScalars
+real(kind=rk) :: fN00, f0N0, f00N, f100, f010, f001, f0NN, f0N1, f01N, &
+  &              f011, fN0N, f10N, fN01, f101, fNN0, fN10, f1N0, f110, &
+  &              f000
+real(kind=rk) :: rho     ! local density
+real(kind=rk) :: u_x     ! local x-velocity
+real(kind=rk) :: u_y     ! local y-velocity
+real(kind=rk) :: u_z     ! local z-velocity
+real(kind=rk) :: eps_f   ! local fluid volume fraction
+real(kind=rk) :: eps_f_inv   ! 1 divided by local fluid volume fraction
+real(kind=rk) :: usq     ! square velocity
+! derived constants
+real(kind=rk) :: usqn, usqn_o1, usqn_o2
+real(kind=rk) :: omega_2, cmpl_o, omega
+real(kind=rk) :: coeff_1, coeff_2
+real(kind=rk) :: ui1, ui3, ui10, ui11, ui12, ui13
+real(kind=rk) :: fac_1, fac_2, fac_3, fac_4, fac_9, fac_10, fac_11, fac_12,&
+  &              fac_13
+real(kind=rk) :: sum1_1, sum1_2, sum2_1, sum2_2, sum3_1, sum3_2, sum4_1,   &
+  &              sum4_2, sum9_1, sum9_2, sum10_1, sum10_2, sum11_1,        &
+  &              sum11_2, sum12_1, sum12_2, sum13_1, sum13_2
+integer :: dens_pos, vel_pos(3), vol_frac_pos, elemOff
+! -------------------------------------------------------------------- !
+dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
+vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+vol_frac_pos = varSys%method%val(derVarPos(1)%vol_frac)%auxField_varPos(1)
+
+! nElems = size(neigh)/QQ
+nScalars = varSys%nScalars
+
+!$omp do schedule(static)
+
+!cdir nodep
+!ibm* novector
+!dir$ novector
+nodeloop: do iElem = 1, nSolve
+  ! First load all local values into temp array
+  fN00 = inState( neigh (( qn00-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f0N0 = inState( neigh (( q0n0-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f00N = inState( neigh (( q00n-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f100 = inState( neigh (( q100-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f010 = inState( neigh (( q010-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f001 = inState( neigh (( q001-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f0NN = inState( neigh (( q0nn-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f0N1 = inState( neigh (( q0n1-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f01N = inState( neigh (( q01n-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f011 = inState( neigh (( q011-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  fN0N = inState( neigh (( qn0n-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f10N = inState( neigh (( q10n-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  fN01 = inState( neigh (( qn01-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f101 = inState( neigh (( q101-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  fNN0 = inState( neigh (( qnn0-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  fN10 = inState( neigh (( qn10-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f1N0 = inState( neigh (( q1n0-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f110 = inState( neigh (( q110-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+  f000 = inState( neigh (( q000-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+
+  ! element offset for auxField array
+  elemOff = (iElem-1) * varSys%nAuxScalars
+  ! local density
+  rho = auxField(elemOff + dens_pos)
+  ! local x-, y- and z-velocity
+  u_x = auxField(elemOff + vel_pos(1))
+  u_y = auxField(elemOff + vel_pos(2))
+  u_z = auxField(elemOff + vel_pos(3))
+
+  ! local fluid volume fraction
+  eps_f = auxField(elemOff + vol_frac_pos)
+  eps_f_inv = 1/eps_f
+
+  ! square velocity and derived constants
+  usq  = (u_x * u_x) + (u_y * u_y) + (u_z * u_z)
+
+  ! Modified for Generalized Navier-Stokes!
+  usqn = div1_36 * (1._rk - 1.5_rk * usq * eps_f_inv) * rho
+  ! usqn = div1_36 * (1._rk - 1.5_rk * usq) * rho
+
+  ! read the relaxation parameter omega for the current level
+  omega = fieldProp(1)%fluid%viscKine%omLvl(level)%val(iElem)
+  ! pre-calculate partial collision constants
+  cmpl_o = 1._rk - omega
+
+  ! f = (1-w) * f + w * fEq
+
+  ! --- Compute f000: PDF at rest position --- !
+  outState(( ielem-1)* nscalars+q000+( 1-1)* qq) &
+    & = f000*cmpl_o+omega*rho*(div1_3-0.5_rk*usq*eps_f_inv)
+
+  ! --- Compute f110 and fNN0 --- !
+  coeff_1 = div1_8 * omega * rho
+
+  usqn_o1 = omega * usqn
+
+  ui1 = u_x + u_y
+  fac_1 = coeff_1 * ui1
+  sum1_1 = fac_1 * div3_4h
+  sum1_2 = fac_1 * ui1 * eps_f_inv + usqn_o1    ! GNS
+  ! sum1_2 = fac_1 * ui1 + usqn_o1
+
+  outState(( ielem-1)* nscalars+q110+( 1-1)* qq) &
+    & = f110 * cmpl_o + sum1_1 + sum1_2
+  outState(( ielem-1)* nscalars+qnn0+( 1-1)* qq) &
+    & = fNN0 * cmpl_o - sum1_1 + sum1_2
+
+  ! --- Compute fN10 and f1N0 --- !
+  ui3 = -u_x + u_y
+  fac_3 = coeff_1 * ui3
+  sum3_1 = fac_3 * div3_4h
+  sum3_2 = fac_3 * ui3 * eps_f_inv + usqn_o1   ! GNS
+  ! sum3_2 = fac_3 * ui3 + usqn_o1
+
+  outState(( ielem-1)* nscalars+qn10+( 1-1)* qq) &
+    & = fN10 * cmpl_o + sum3_1 + sum3_2
+  outState(( ielem-1)* nscalars+q1n0+( 1-1)* qq) &
+    & = f1N0 * cmpl_o - sum3_1 + sum3_2
+
+  ! --- Compute f101 and fN0N --- !
+  ui10 = u_x + u_z
+  fac_10 = coeff_1 * ui10
+  sum10_1 = fac_10 * div3_4h
+  sum10_2 = fac_10 * ui10 * eps_f_inv + usqn_o1   ! GNS
+  ! sum10_2 = fac_10 * ui10 + usqn_o1
+
+  outState(( ielem-1)* nscalars+q101+( 1-1)* qq) &
+    & = f101 * cmpl_o + sum10_1 + sum10_2
+  outState(( ielem-1)* nscalars+qn0n+( 1-1)* qq) &
+    & = fN0N * cmpl_o - sum10_1 + sum10_2
+
+  ! --- Compute fN01 and f10N --- !
+  ui12 = -u_x + u_z
+  fac_12 = coeff_1 * ui12
+  sum12_1 = fac_12 * div3_4h
+  sum12_2 = fac_12 * ui12 * eps_f_inv + usqn_o1    ! GNS
+  ! sum12_2 = fac_12 * ui12 + usqn_o1
+
+  outState(( ielem-1)* nscalars+qn01+( 1-1)* qq) &
+    & = fN01 * cmpl_o + sum12_1 + sum12_2
+  outState(( ielem-1)* nscalars+q10n+( 1-1)* qq) &
+    & = f10N * cmpl_o - sum12_1 + sum12_2
+
+  ! --- Compute f011 and f0NN --- !
+  ui11 = u_y + u_z
+  fac_11 = coeff_1 * ui11
+  sum11_1 = fac_11 * div3_4h
+  sum11_2 = fac_11 * ui11 * eps_f_inv + usqn_o1 ! GNS
+  ! sum11_2 = fac_11 * ui11 + usqn_o1
+
+  outState(( ielem-1)* nscalars+q011+( 1-1)* qq) &
+    & = f011 * cmpl_o + sum11_1 + sum11_2
+  outState(( ielem-1)* nscalars+q0nn+( 1-1)* qq) &
+    & = f0NN * cmpl_o - sum11_1 + sum11_2
+
+  ! --- Compute f0N1 and f01N --- !
+  ui13 = -u_y + u_z
+  fac_13 = coeff_1 * ui13
+  sum13_1 = fac_13 * div3_4h
+  sum13_2 = fac_13 * ui13 * eps_f_inv + usqn_o1 ! GNS
+  ! sum13_2 = fac_13 * ui13 + usqn_o1
+
+  outState(( ielem-1)* nscalars+q0n1+( 1-1)* qq) &
+    & = f0N1 * cmpl_o + sum13_1 + sum13_2
+  outState(( ielem-1)* nscalars+q01n+( 1-1)* qq) &
+    & = f01N * cmpl_o - sum13_1 + sum13_2
+
+  ! --- Compute f010 and f0N0 --- !
+  omega_2 = 2._rk * omega
+  coeff_2 = div1_8 * omega_2 * rho
+  usqn_o2 = omega_2 * usqn
+
+  fac_2 = coeff_2 * u_y
+  sum2_1 = fac_2 * div3_4h
+  sum2_2 = fac_2 * u_y * eps_f_inv + usqn_o2
+
+  outState(( ielem-1)* nscalars+q010+( 1-1)* qq) &
+    & = f010 * cmpl_o + sum2_1 + sum2_2
+  outState(( ielem-1)* nscalars+q0n0+( 1-1)* qq) &
+    & = f0N0 * cmpl_o - sum2_1 + sum2_2
+
+  ! --- Compute fN00 and f100 --- !
+  fac_4 = coeff_2 * u_x
+  sum4_1 = fac_4 * div3_4h
+  sum4_2 = fac_4 * u_x * eps_f_inv + usqn_o2
+
+  outState(( ielem-1)* nscalars+qn00+( 1-1)* qq) &
+    & = fN00 * cmpl_o - sum4_1 + sum4_2
+  outState(( ielem-1)* nscalars+q100+( 1-1)* qq) &
+    & = f100 * cmpl_o + sum4_1 + sum4_2
+
+  ! --- Compute f00N and f001 --- !
+  fac_9 = coeff_2 * u_z
+  sum9_1 = fac_9 * div3_4h
+  sum9_2 = fac_9 * u_z * eps_f_inv + usqn_o2
+
+  outState(( ielem-1)* nscalars+q001+( 1-1)* qq) &
+    & = f001 * cmpl_o + sum9_1 + sum9_2
+  outState(( ielem-1)* nscalars+q00n+( 1-1)* qq) &
+    & = f00N * cmpl_o - sum9_1 + sum9_2
+
+enddo nodeloop
+!$omp end do nowait
+
+end subroutine bgk_advRel_d3q19_GNS
+
 
 ! **************************************************************************** !
   !> Advection relaxation routine for the D3Q19 model with BGK for
@@ -553,6 +804,222 @@ contains
 !$omp end do nowait
 
   end subroutine mus_advRel_kFluidIncomp_rBGK_vStd_lD3Q19
+! **************************************************************************** !
+  ! **************************************************************************** !
+  !> Advection relaxation routine for the D3Q19 model with BGK based on the !!
+  !! equilibrium distribution function for the generalized Navier Stokes equations
+  !! (GNS) aka Volume Averaged Navier-Stokes !! equations (VANS).
+  !! feq definition from: Z. Guo and T. S. Zhao, “Lattice Boltzmann model for
+  !! incompressible flows through porous media,” Phys. Rev. E, vol. 66, no. 3, p.
+  !! 036304, Sep. 2002, doi: 10.1103/PhysRevE.66.036304.
+  !! Incompressible version
+  !!
+  !! This subroutine interface must match the abstract interface definition
+  !! [[kernel]] in scheme/[[mus_scheme_type_module]].f90 in order to be callable
+  !! via [[mus_scheme_type:compute]] function pointer.
+  subroutine mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19( &
+    &          fieldProp, inState, outState, auxField,    &
+    &          neigh, nElems, nSolve, level, layout,      &
+    &          params, varSys, derVarPos                  )
+    ! -------------------------------------------------------------------- !
+    !> Array of field properties (fluid or species)
+    type(mus_field_prop_type), intent(in) :: fieldProp(:)
+    !> variable system definition
+    type(tem_varSys_type), intent(in) :: varSys
+    !> current layout
+    type(mus_scheme_layout_type), intent(in) :: layout
+    !> number of elements in state Array
+    integer, intent(in) :: nElems
+    !> input  pdf vector
+    real(kind=rk), intent(in)  ::  inState(nElems * varSys%nScalars)
+    !> output pdf vector
+    real(kind=rk), intent(out) :: outState(nElems * varSys%nScalars)
+    !> Auxiliary field computed from pre-collision state
+    !! Is updated with correct velocity field for multicomponent models
+    real(kind=rk), intent(inout) :: auxField(nElems * varSys%nAuxScalars)
+    !> connectivity vector
+    integer, intent(in) :: neigh(nElems * layout%fStencil%QQ)
+    !> number of elements solved in kernel
+    integer, intent(in) :: nSolve
+    !> current level
+    integer,intent(in) :: level
+    !> global parameters
+    type(mus_param_type),intent(in) :: params
+    !> position of derived quantities in varsys for all fields
+    type( mus_derVarPos_type ), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    integer :: iElem
+    real(kind=rk) :: fN00, f0N0, f00N, f100, f010, f001, f0NN, f0N1, f01N, &
+      &              f011, fN0N, f10N, fN01, f101, fNN0, fN10, f1N0, f110, &
+      &              f000
+    real(kind=rk) :: rho, u_x, u_y, u_z, usq
+    real(kind=rk) :: eps_f, eps_f_inv
+    real(kind=rk) :: usqn_o1, usqn_o2
+    real(kind=rk) :: cmpl_o, omega
+    real(kind=rk) :: coeff_1, coeff_2
+    real(kind=rk) :: ui1, ui3, ui10, ui11, ui12, ui13
+    real(kind=rk) :: fac_1, fac_2, fac_3, fac_4, fac_9, &
+      &              fac_10, fac_11, fac_12, fac_13
+    real(kind=rk) :: sum1_1, sum1_2, sum2_1, sum2_2, sum3_1, sum3_2, sum4_1, &
+      &              sum4_2, sum9_1, sum9_2, sum10_1, sum10_2, sum11_1,      &
+      &              sum11_2, sum12_1, sum12_2, sum13_1, sum13_2
+    integer :: dens_pos, vel_pos(3), vol_frac_pos, elemOff
+    ! -------------------------------------------------------------------- !
+    dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+    vol_frac_pos = varSys%method%val(derVarPos(1)%vol_frac)%auxField_varPos(1)
+
+!$omp do schedule(static)
+
+    !NEC$ ivdep
+!cdir nodep
+!ibm* novector
+!dir$ novector
+    nodeloop: do iElem=1,nSolve
+      ! First load all local values into temp array
+      fN00 = inState( neigh((qn00-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f0N0 = inState( neigh((q0n0-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f00N = inState( neigh((q00n-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f100 = inState( neigh((q100-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f010 = inState( neigh((q010-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f001 = inState( neigh((q001-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f0NN = inState( neigh((q0nn-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f0N1 = inState( neigh((q0n1-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f01N = inState( neigh((q01n-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f011 = inState( neigh((q011-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      fN0N = inState( neigh((qn0n-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f10N = inState( neigh((q10n-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      fN01 = inState( neigh((qn01-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f101 = inState( neigh((q101-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      fNN0 = inState( neigh((qnn0-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      fN10 = inState( neigh((qn10-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f1N0 = inState( neigh((q1n0-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f110 = inState( neigh((q110-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+      f000 = inState( neigh((q000-1)* nelems+ ielem)+( 1-1)* qq+ qq*0)
+
+      ! element offset for auxField array
+      elemOff = (iElem-1) * varSys%nAuxScalars
+      ! local density
+      rho = auxField(elemOff + dens_pos)
+      ! local x-, y- and z-velocity
+      u_x = auxField(elemOff + vel_pos(1))
+      u_y = auxField(elemOff + vel_pos(2))
+      u_z = auxField(elemOff + vel_pos(3))
+
+      ! local fluid volume fraction
+      eps_f = auxField(elemOff + vol_frac_pos)
+      eps_f_inv = 1/eps_f
+
+      ! square velocity and derived constants
+      usq = u_x * u_x + u_y * u_y + u_z * u_z
+
+      ! read the relaxation parameter omega for the current level
+      omega = fieldProp(1)%fluid%viscKine%omLvl(level)%val(iElem)
+      ! pre-calculate partial collision constants
+      cmpl_o = 1._rk - omega
+
+      ! usqn = div1_36 * (rho - 1.5_rk * usq * rho0 )
+      usqn_o1 = omega * div1_36 * ( rho - 1.5d0 * usq * eps_f_inv )
+
+      outState(( ielem-1)* qq+q000+( 1-1)* qq) &
+        & = f000 * cmpl_o + 12d0 * usqn_o1
+
+      coeff_1 = div1_8 * omega
+
+      ui1 = u_x + u_y
+      fac_1 = coeff_1 * ui1
+      sum1_1 = fac_1 * div3_4h
+      sum1_2 = fac_1 * ui1 * eps_f_inv + usqn_o1
+
+      outState(( ielem-1)* qq+q110+( 1-1)* qq) &
+        & = f110 * cmpl_o + sum1_1 + sum1_2
+      outState(( ielem-1)* qq+qnn0+( 1-1)* qq) &
+        & = fNN0 * cmpl_o - sum1_1 + sum1_2
+
+      ui3 = -u_x + u_y
+      fac_3 = coeff_1 * ui3
+      sum3_1 = fac_3 * div3_4h
+      sum3_2 = fac_3 * ui3 * eps_f_inv + usqn_o1
+
+      outState(( ielem-1)* qq+qn10+( 1-1)* qq) &
+        & = fN10 * cmpl_o + sum3_1 + sum3_2
+      outState(( ielem-1)* qq+q1n0+( 1-1)* qq) &
+        & = f1N0 * cmpl_o - sum3_1 + sum3_2
+
+      ui10 = u_x + u_z
+      fac_10 = coeff_1 * ui10
+      sum10_1 = fac_10 * div3_4h
+      sum10_2 = fac_10 * ui10 * eps_f_inv + usqn_o1
+
+      outState(( ielem-1)* qq+q101+( 1-1)* qq) &
+        & = f101 * cmpl_o + sum10_1 + sum10_2
+      outState(( ielem-1)* qq+qn0n+( 1-1)* qq) &
+        & = fN0N * cmpl_o - sum10_1 + sum10_2
+
+      ui12 = -u_x + u_z
+      fac_12 = coeff_1 * ui12
+      sum12_1 = fac_12 * div3_4h
+      sum12_2 = fac_12 * ui12 * eps_f_inv + usqn_o1
+
+      outState(( ielem-1)* qq+qn01+( 1-1)* qq) &
+        & = fN01 * cmpl_o + sum12_1 + sum12_2
+      outState(( ielem-1)* qq+q10n+( 1-1)* qq) &
+        & = f10N * cmpl_o - sum12_1 + sum12_2
+
+      ui11 = u_y + u_z
+      fac_11 = coeff_1 * ui11
+      sum11_1 = fac_11 * div3_4h
+      sum11_2 = fac_11 * ui11 * eps_f_inv + usqn_o1
+
+      outState(( ielem-1)* qq+q011+( 1-1)* qq) &
+        & = f011 * cmpl_o + sum11_1 + sum11_2
+      outState(( ielem-1)* qq+q0nn+( 1-1)* qq) &
+        & = f0NN * cmpl_o - sum11_1 + sum11_2
+
+      ui13 = -u_y + u_z
+      fac_13 = coeff_1 * ui13
+      sum13_1 = fac_13 * div3_4h
+      sum13_2 = fac_13 * ui13 * eps_f_inv + usqn_o1
+
+      outState(( ielem-1)* qq+q0n1+( 1-1)* qq) &
+        & = f0N1 * cmpl_o + sum13_1 + sum13_2
+      outState(( ielem-1)* qq+q01n+( 1-1)* qq) &
+        & = f01N * cmpl_o - sum13_1 + sum13_2
+
+      coeff_2 = div1_8 * omega * 2.0_rk
+      usqn_o2 = 2d0 * usqn_o1
+
+      fac_2 = coeff_2 * u_y
+      sum2_1 = fac_2 * div3_4h
+      sum2_2 = fac_2 * u_y * eps_f_inv + usqn_o2
+
+      outState(( ielem-1)* qq+q010+( 1-1)* qq) &
+        & = f010 * cmpl_o + sum2_1 + sum2_2
+      outState(( ielem-1)* qq+q0n0+( 1-1)* qq) &
+        & = f0N0 * cmpl_o - sum2_1 + sum2_2
+
+      fac_4 = coeff_2 * u_x
+      sum4_1 = fac_4 * div3_4h
+      sum4_2 = fac_4 * u_x * eps_f_inv + usqn_o2
+
+      outState(( ielem-1)* qq+qn00+( 1-1)* qq) &
+        & = fN00 * cmpl_o - sum4_1 + sum4_2
+      outState(( ielem-1)* qq+q100+( 1-1)* qq) &
+        & = f100 * cmpl_o + sum4_1 + sum4_2
+
+      fac_9 = coeff_2 * u_z
+      sum9_1 = fac_9 * div3_4h
+      sum9_2 = fac_9 * u_z * eps_f_inv + usqn_o2
+
+      outState(( ielem-1)* qq+q001+( 1-1)* qq) &
+        & = f001 * cmpl_o + sum9_1 + sum9_2
+      outState(( ielem-1)* qq+q00n+( 1-1)* qq) &
+        & = f00N * cmpl_o - sum9_1 + sum9_2
+
+    enddo nodeloop
+!$omp end do nowait
+
+  end subroutine mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19
 ! **************************************************************************** !
 
 

@@ -1,0 +1,840 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>getBaryOfCoord &ndash; Musubi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>getBaryOfCoord
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.0% of total for procedures.">11 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_particle_aux_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_particle_aux_module.f90.html'>mus_particle_aux_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_particle_aux_module.html'>mus_particle_aux_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">getBaryOfCoord</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public pure function getBaryOfCoord(coord, origin, dx) result(bary)  
+</h2>
+    
+
+    <p>Convenience function to get barycenter of integer coordinate</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-coord~7"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>coord</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-origin"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>origin</strong>(3)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dx~14"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dx</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-bary~6"></span>
+          real(kind=rk), (3)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~getbaryofcoord~~CalledByGraph Pages: 1 -->
+<svg id="procgetbaryofcoordCalledByGraph" width="641pt" height="330pt"
+ viewBox="0.00 0.00 641.00 329.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~getbaryofcoord~~CalledByGraph" class="graph" transform="scale(0.56 0.56) rotate(0) translate(4 584)">
+<title>proc~~getbaryofcoord~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-584 1139,-584 1139,4 -4,4"/>
+<!-- proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node1" class="node">
+<title>proc~getbaryofcoord</title>
+<polygon fill="none" stroke="black" points="1135,-307 1036,-307 1036,-283 1135,-283 1135,-307"/>
+<text text-anchor="middle" x="1085.5" y="-292.6" font-family="Helvetica,sans-Serif" font-size="10.50">getBaryOfCoord</text>
+</g>
+<!-- proc~addparticlesourcetoauxfield_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node2" class="node">
+<title>proc~addparticlesourcetoauxfield_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node2"><a xlink:href="../proc/addparticlesourcetoauxfield_dps.html" xlink:title="addParticleSourceToAuxfield_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="977,-580 787,-580 787,-556 977,-556 977,-580"/>
+<text text-anchor="middle" x="882" y="-565.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">addParticleSourceToAuxfield_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~addparticlesourcetoauxfield_dps&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge1" class="edge">
+<title>proc~addparticlesourcetoauxfield_dps&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M977.26,-560.63C985.52,-557.25 993.28,-552.8 1000,-547 1069.82,-486.7 1082.12,-366.89 1084.16,-317.29"/>
+<polygon fill="#000000" stroke="#000000" points="1087.67,-317.15 1084.47,-307.05 1080.67,-316.93 1087.67,-317.15"/>
+</g>
+<!-- proc~distributeparticlevolume -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node3" class="node">
+<title>proc~distributeparticlevolume</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node3"><a xlink:href="../proc/distributeparticlevolume.html" xlink:title="distributeParticleVolume">
+<polygon fill="#d9534f" stroke="#d9534f" points="953,-538 811,-538 811,-514 953,-514 953,-538"/>
+<text text-anchor="middle" x="882" y="-523.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">distributeParticleVolume</text>
+</a>
+</g>
+</g>
+<!-- proc~distributeparticlevolume&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge2" class="edge">
+<title>proc~distributeparticlevolume&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M953.18,-524.94C969.95,-521.74 986.79,-515.74 1000,-505 1059.31,-456.75 1077.28,-360.54 1082.48,-317.14"/>
+<polygon fill="#000000" stroke="#000000" points="1085.98,-317.39 1083.57,-307.08 1079.02,-316.64 1085.98,-317.39"/>
+</g>
+<!-- proc~dumpdata -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node4" class="node">
+<title>proc~dumpdata</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node4"><a xlink:href="../proc/dumpdata.html" xlink:title="dumpdata">
+<polygon fill="#d9534f" stroke="#d9534f" points="915.5,-454 848.5,-454 848.5,-430 915.5,-430 915.5,-454"/>
+<text text-anchor="middle" x="882" y="-439.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">dumpdata</text>
+</a>
+</g>
+</g>
+<!-- proc~dumpdata&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge3" class="edge">
+<title>proc~dumpdata&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M915.53,-442.82C940.51,-441.96 974.86,-437.43 1000,-421 1038.88,-395.59 1064.29,-345.4 1076.34,-316.63"/>
+<polygon fill="#000000" stroke="#000000" points="1079.7,-317.66 1080.18,-307.08 1073.2,-315.05 1079.7,-317.66"/>
+</g>
+<!-- proc~find_particle_comm_procs4 -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node5" class="node">
+<title>proc~find_particle_comm_procs4</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node5"><a xlink:href="../proc/find_particle_comm_procs4.html" xlink:title="find_particle_comm_procs4">
+<polygon fill="#d9534f" stroke="#d9534f" points="961,-496 803,-496 803,-472 961,-472 961,-496"/>
+<text text-anchor="middle" x="882" y="-481.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">find_particle_comm_procs4</text>
+</a>
+</g>
+</g>
+<!-- proc~find_particle_comm_procs4&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge4" class="edge">
+<title>proc~find_particle_comm_procs4&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M961.12,-480.31C975.03,-476.89 988.67,-471.46 1000,-463 1048.84,-426.54 1071.39,-353.92 1080.01,-317.26"/>
+<polygon fill="#000000" stroke="#000000" points="1083.51,-317.64 1082.26,-307.12 1076.68,-316.13 1083.51,-317.64"/>
+</g>
+<!-- proc~getprocessboundingbox -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node6" class="node">
+<title>proc~getprocessboundingbox</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node6"><a xlink:href="../proc/getprocessboundingbox.html" xlink:title="getProcessBoundingBox">
+<polygon fill="#d9534f" stroke="#d9534f" points="952,-412 812,-412 812,-388 952,-388 952,-412"/>
+<text text-anchor="middle" x="882" y="-397.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">getProcessBoundingBox</text>
+</a>
+</g>
+</g>
+<!-- proc~getprocessboundingbox&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge5" class="edge">
+<title>proc~getprocessboundingbox&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M952.1,-394.68C968.44,-391.53 985.36,-386.62 1000,-379 1029.28,-363.76 1054.88,-334.88 1070.02,-315.29"/>
+<polygon fill="#000000" stroke="#000000" points="1073.02,-317.13 1076.22,-307.03 1067.42,-312.93 1073.02,-317.13"/>
+</g>
+<!-- proc~incrementauxfield_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node7" class="node">
+<title>proc~incrementauxfield_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node7"><a xlink:href="../proc/incrementauxfield_dps.html" xlink:title="incrementAuxField_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="951,-370 813,-370 813,-346 951,-346 951,-370"/>
+<text text-anchor="middle" x="882" y="-355.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">incrementAuxField_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~incrementauxfield_dps&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge6" class="edge">
+<title>proc~incrementauxfield_dps&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M951.25,-349.11C967.45,-346.08 984.52,-342.12 1000,-337 1019.24,-330.64 1039.62,-320.61 1055.54,-311.95"/>
+<polygon fill="#000000" stroke="#000000" points="1057.32,-314.97 1064.36,-307.05 1053.92,-308.85 1057.32,-314.97"/>
+</g>
+<!-- proc~interpolatefluidprops -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node8" class="node">
+<title>proc~interpolatefluidprops</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node8"><a xlink:href="../proc/interpolatefluidprops.html" xlink:title="interpolateFluidProps">
+<polygon fill="#d9534f" stroke="#d9534f" points="944.5,-286 819.5,-286 819.5,-262 944.5,-262 944.5,-286"/>
+<text text-anchor="middle" x="882" y="-271.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolateFluidProps</text>
+</a>
+</g>
+</g>
+<!-- proc~interpolatefluidprops&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge7" class="edge">
+<title>proc~interpolatefluidprops&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M944.55,-280.41C970.29,-283.1 1000.07,-286.2 1025.52,-288.85"/>
+<polygon fill="#000000" stroke="#000000" points="1025.47,-292.37 1035.77,-289.92 1026.19,-285.4 1025.47,-292.37"/>
+</g>
+<!-- proc~interpolatefluidprops_onewaycoupled -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node9" class="node">
+<title>proc~interpolatefluidprops_onewaycoupled</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node9"><a xlink:href="../proc/interpolatefluidprops_onewaycoupled.html" xlink:title="interpolateFluidProps_onewaycoupled">
+<polygon fill="#d9534f" stroke="#d9534f" points="989,-244 775,-244 775,-220 989,-220 989,-244"/>
+<text text-anchor="middle" x="882" y="-229.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolateFluidProps_onewaycoupled</text>
+</a>
+</g>
+</g>
+<!-- proc~interpolatefluidprops_onewaycoupled&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge8" class="edge">
+<title>proc~interpolatefluidprops_onewaycoupled&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M966.82,-244.05C978.1,-246.54 989.42,-249.5 1000,-253 1019.24,-259.36 1039.62,-269.39 1055.54,-278.05"/>
+<polygon fill="#000000" stroke="#000000" points="1053.92,-281.15 1064.36,-282.95 1057.32,-275.03 1053.92,-281.15"/>
+</g>
+<!-- proc~interpolatefluidprops_onewaycoupled_old -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node10" class="node">
+<title>proc~interpolatefluidprops_onewaycoupled_old</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node10"><a xlink:href="../proc/interpolatefluidprops_onewaycoupled_old.html" xlink:title="interpolateFluidProps_onewaycoupled_old">
+<polygon fill="#d9534f" stroke="#d9534f" points="1000,-202 764,-202 764,-178 1000,-178 1000,-202"/>
+<text text-anchor="middle" x="882" y="-187.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolateFluidProps_onewaycoupled_old</text>
+</a>
+</g>
+</g>
+<!-- proc~interpolatefluidprops_onewaycoupled_old&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge9" class="edge">
+<title>proc~interpolatefluidprops_onewaycoupled_old&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M978.5,-202.07C985.97,-204.53 993.23,-207.47 1000,-211 1029.28,-226.24 1054.88,-255.12 1070.02,-274.71"/>
+<polygon fill="#000000" stroke="#000000" points="1067.42,-277.07 1076.22,-282.97 1073.02,-272.87 1067.42,-277.07"/>
+</g>
+<!-- proc~recalculate_auxfield_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node11" class="node">
+<title>proc~recalculate_auxfield_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node11"><a xlink:href="../proc/recalculate_auxfield_dps.html" xlink:title="recalculate_auxField_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="956,-328 808,-328 808,-304 956,-304 956,-328"/>
+<text text-anchor="middle" x="882" y="-313.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">recalculate_auxField_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~recalculate_auxfield_dps&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge10" class="edge">
+<title>proc~recalculate_auxfield_dps&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M956.03,-308.39C978.98,-306 1004,-303.39 1025.82,-301.12"/>
+<polygon fill="#000000" stroke="#000000" points="1026.34,-304.58 1035.93,-300.06 1025.62,-297.62 1026.34,-304.58"/>
+</g>
+<!-- proc~test_generateelemlistline -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node12" class="node">
+<title>proc~test_generateelemlistline</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node12"><a xlink:href="../proc/test_generateelemlistline.html" xlink:title="test_generateElemListLine">
+<polygon fill="#d9534f" stroke="#d9534f" points="959,-160 805,-160 805,-136 959,-136 959,-160"/>
+<text text-anchor="middle" x="882" y="-145.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test_generateElemListLine</text>
+</a>
+</g>
+</g>
+<!-- proc~test_generateelemlistline&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge11" class="edge">
+<title>proc~test_generateelemlistline&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M959.08,-152.56C973.48,-155.87 987.82,-161.04 1000,-169 1038.88,-194.41 1064.29,-244.6 1076.34,-273.37"/>
+<polygon fill="#000000" stroke="#000000" points="1073.2,-274.95 1080.18,-282.92 1079.7,-272.34 1073.2,-274.95"/>
+</g>
+<!-- proc~transfermomentumtofluid_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node13" class="node">
+<title>proc~transfermomentumtofluid_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node13"><a xlink:href="../proc/transfermomentumtofluid_dps.html" xlink:title="transferMomentumToFluid_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="971,-118 793,-118 793,-94 971,-94 971,-118"/>
+<text text-anchor="middle" x="882" y="-103.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">transferMomentumToFluid_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~transfermomentumtofluid_dps&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge12" class="edge">
+<title>proc~transfermomentumtofluid_dps&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M971.1,-112.52C981.47,-115.9 991.4,-120.58 1000,-127 1048.84,-163.46 1071.39,-236.08 1080.01,-272.74"/>
+<polygon fill="#000000" stroke="#000000" points="1076.68,-273.87 1082.26,-282.88 1083.51,-272.36 1076.68,-273.87"/>
+</g>
+<!-- proc~transfermomentumtofluid_dps_twoway -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node14" class="node">
+<title>proc~transfermomentumtofluid_dps_twoway</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node14"><a xlink:href="../proc/transfermomentumtofluid_dps_twoway.html" xlink:title="transferMomentumToFluid_DPS_twoway">
+<polygon fill="#d9534f" stroke="#d9534f" points="993.5,-76 770.5,-76 770.5,-52 993.5,-52 993.5,-76"/>
+<text text-anchor="middle" x="882" y="-61.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">transferMomentumToFluid_DPS_twoway</text>
+</a>
+</g>
+</g>
+<!-- proc~transfermomentumtofluid_dps_twoway&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge13" class="edge">
+<title>proc~transfermomentumtofluid_dps_twoway&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M986.27,-76.05C991.14,-78.59 995.76,-81.55 1000,-85 1059.31,-133.25 1077.28,-229.46 1082.48,-272.86"/>
+<polygon fill="#000000" stroke="#000000" points="1079.02,-273.36 1083.57,-282.92 1085.98,-272.61 1079.02,-273.36"/>
+</g>
+<!-- proc~updateexclusionlist -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node15" class="node">
+<title>proc~updateexclusionlist</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node15"><a xlink:href="../proc/updateexclusionlist.html" xlink:title="updateExclusionList">
+<polygon fill="#d9534f" stroke="#d9534f" points="941,-34 823,-34 823,-10 941,-10 941,-34"/>
+<text text-anchor="middle" x="882" y="-19.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">updateExclusionList</text>
+</a>
+</g>
+</g>
+<!-- proc~updateexclusionlist&#45;&gt;proc~getbaryofcoord -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge14" class="edge">
+<title>proc~updateexclusionlist&#45;&gt;proc~getbaryofcoord</title>
+<path fill="none" stroke="#000000" d="M941.18,-20.65C961.83,-22.99 983.91,-29.11 1000,-43 1069.82,-103.3 1082.12,-223.11 1084.16,-272.71"/>
+<polygon fill="#000000" stroke="#000000" points="1080.67,-273.07 1084.47,-282.95 1087.67,-272.85 1080.67,-273.07"/>
+</g>
+<!-- proc~demsubcycles_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node16" class="node">
+<title>proc~demsubcycles_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node16"><a xlink:href="../proc/demsubcycles_dps.html" xlink:title="DEMSubcycles_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="614,-349 498,-349 498,-325 614,-325 614,-349"/>
+<text text-anchor="middle" x="556" y="-334.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DEMSubcycles_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~demsubcycles_dps&#45;&gt;proc~incrementauxfield_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge17" class="edge">
+<title>proc~demsubcycles_dps&#45;&gt;proc~incrementauxfield_dps</title>
+<path fill="none" stroke="#000000" d="M614.18,-340.71C666.53,-344.1 744.49,-349.15 802.64,-352.92"/>
+<polygon fill="#000000" stroke="#000000" points="802.68,-356.43 812.89,-353.59 803.13,-349.45 802.68,-356.43"/>
+</g>
+<!-- proc~demsubcycles_dps&#45;&gt;proc~recalculate_auxfield_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge21" class="edge">
+<title>proc~demsubcycles_dps&#45;&gt;proc~recalculate_auxfield_dps</title>
+<path fill="none" stroke="#000000" d="M614.18,-333.29C665.08,-329.99 740.17,-325.13 797.74,-321.4"/>
+<polygon fill="#000000" stroke="#000000" points="798.16,-324.88 807.91,-320.74 797.7,-317.89 798.16,-324.88"/>
+</g>
+<!-- proc~initparticle_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node17" class="node">
+<title>proc~initparticle_mem</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node17"><a xlink:href="../proc/initparticle_mem.html" xlink:title="initParticle_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="605.5,-87 506.5,-87 506.5,-63 605.5,-63 605.5,-87"/>
+<text text-anchor="middle" x="556" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">initParticle_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~initparticle_mem&#45;&gt;proc~updateexclusionlist -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge22" class="edge">
+<title>proc~initparticle_mem&#45;&gt;proc~updateexclusionlist</title>
+<path fill="none" stroke="#000000" d="M605.51,-67.07C660.52,-58.07 750.64,-43.33 812.73,-33.17"/>
+<polygon fill="#000000" stroke="#000000" points="813.53,-36.58 822.83,-31.51 812.4,-29.68 813.53,-36.58"/>
+</g>
+<!-- proc~maptolattice -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node18" class="node">
+<title>proc~maptolattice</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node18"><a xlink:href="../proc/maptolattice.html" xlink:title="mapToLattice">
+<polygon fill="#d9534f" stroke="#d9534f" points="598,-34 514,-34 514,-10 598,-10 598,-34"/>
+<text text-anchor="middle" x="556" y="-19.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mapToLattice</text>
+</a>
+</g>
+</g>
+<!-- proc~maptolattice&#45;&gt;proc~updateexclusionlist -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge23" class="edge">
+<title>proc~maptolattice&#45;&gt;proc~updateexclusionlist</title>
+<path fill="none" stroke="#000000" d="M598.03,-22C652.02,-22 747.65,-22 812.64,-22"/>
+<polygon fill="#000000" stroke="#000000" points="812.8,-25.5 822.8,-22 812.8,-18.5 812.8,-25.5"/>
+</g>
+<!-- proc~mus_particles_dps_interpolatefluidproperties_onewaycoupled -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node19" class="node">
+<title>proc~mus_particles_dps_interpolatefluidproperties_onewaycoupled</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node19"><a xlink:href="../proc/mus_particles_dps_interpolatefluidproperties_onewaycoupled.html" xlink:title="mus_particles_DPS_interpolateFluidProperties_onewaycoupled">
+<polygon fill="#d9534f" stroke="#d9534f" points="728,-202 384,-202 384,-178 728,-178 728,-202"/>
+<text text-anchor="middle" x="556" y="-187.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_DPS_interpolateFluidProperties_onewaycoupled</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_dps_interpolatefluidproperties_onewaycoupled&#45;&gt;proc~interpolatefluidprops_onewaycoupled_old -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge20" class="edge">
+<title>proc~mus_particles_dps_interpolatefluidproperties_onewaycoupled&#45;&gt;proc~interpolatefluidprops_onewaycoupled_old</title>
+<path fill="none" stroke="#000000" d="M728.01,-190C736.56,-190 745.07,-190 753.45,-190"/>
+<polygon fill="#000000" stroke="#000000" points="753.6,-193.5 763.6,-190 753.6,-186.5 753.6,-193.5"/>
+</g>
+<!-- proc~mus_particles_initialize_communication -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node20" class="node">
+<title>proc~mus_particles_initialize_communication</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node20"><a xlink:href="../proc/mus_particles_initialize_communication.html" xlink:title="mus_particles_initialize_communication">
+<polygon fill="#d9534f" stroke="#d9534f" points="668,-496 444,-496 444,-472 668,-472 668,-496"/>
+<text text-anchor="middle" x="556" y="-481.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_initialize_communication</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_initialize_communication&#45;&gt;proc~find_particle_comm_procs4 -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge16" class="edge">
+<title>proc~mus_particles_initialize_communication&#45;&gt;proc~find_particle_comm_procs4</title>
+<path fill="none" stroke="#000000" d="M668.05,-484C708.74,-484 754.21,-484 792.65,-484"/>
+<polygon fill="#000000" stroke="#000000" points="792.78,-487.5 802.78,-484 792.78,-480.5 792.78,-487.5"/>
+</g>
+<!-- proc~mus_particles_updatefluidvolumefraction -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node21" class="node">
+<title>proc~mus_particles_updatefluidvolumefraction</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node21"><a xlink:href="../proc/mus_particles_updatefluidvolumefraction.html" xlink:title="mus_particles_updateFluidVolumeFraction">
+<polygon fill="#d9534f" stroke="#d9534f" points="674.5,-538 437.5,-538 437.5,-514 674.5,-514 674.5,-538"/>
+<text text-anchor="middle" x="556" y="-523.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_updateFluidVolumeFraction</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_updatefluidvolumefraction&#45;&gt;proc~distributeparticlevolume -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge15" class="edge">
+<title>proc~mus_particles_updatefluidvolumefraction&#45;&gt;proc~distributeparticlevolume</title>
+<path fill="none" stroke="#000000" d="M674.89,-526C716.57,-526 762.46,-526 800.34,-526"/>
+<polygon fill="#000000" stroke="#000000" points="800.8,-529.5 810.8,-526 800.8,-522.5 800.8,-529.5"/>
+</g>
+<!-- proc~test_interpolation_delta_dps_d2q9 -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node22" class="node">
+<title>proc~test_interpolation_delta_dps_d2q9</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node22"><a xlink:href="../proc/test_interpolation_delta_dps_d2q9.html" xlink:title="test_interpolation_delta_DPS_d2q9">
+<polygon fill="#d9534f" stroke="#d9534f" points="654,-297 458,-297 458,-273 654,-273 654,-297"/>
+<text text-anchor="middle" x="556" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test_interpolation_delta_DPS_d2q9</text>
+</a>
+</g>
+</g>
+<!-- proc~test_interpolation_delta_dps_d2q9&#45;&gt;proc~interpolatefluidprops -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge18" class="edge">
+<title>proc~test_interpolation_delta_dps_d2q9&#45;&gt;proc~interpolatefluidprops</title>
+<path fill="none" stroke="#000000" d="M654.21,-281.7C703.95,-280.01 763.44,-277.99 809,-276.44"/>
+<polygon fill="#000000" stroke="#000000" points="809.22,-279.94 819.1,-276.1 808.98,-272.94 809.22,-279.94"/>
+</g>
+<!-- proc~test_interpolation_delta_dps_d3q19 -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node23" class="node">
+<title>proc~test_interpolation_delta_dps_d3q19</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node23"><a xlink:href="../proc/test_interpolation_delta_dps_d3q19.html" xlink:title="test_interpolation_delta_DPS_d3q19">
+<polygon fill="#d9534f" stroke="#d9534f" points="657.5,-255 454.5,-255 454.5,-231 657.5,-231 657.5,-255"/>
+<text text-anchor="middle" x="556" y="-240.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test_interpolation_delta_DPS_d3q19</text>
+</a>
+</g>
+</g>
+<!-- proc~test_interpolation_delta_dps_d3q19&#45;&gt;proc~interpolatefluidprops -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge19" class="edge">
+<title>proc~test_interpolation_delta_dps_d3q19&#45;&gt;proc~interpolatefluidprops</title>
+<path fill="none" stroke="#000000" d="M657.74,-252.64C706.86,-257.34 764.78,-262.88 809.32,-267.14"/>
+<polygon fill="#000000" stroke="#000000" points="809.19,-270.65 819.48,-268.11 809.86,-263.68 809.19,-270.65"/>
+</g>
+<!-- proc~check_and_create_new_particles_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node24" class="node">
+<title>proc~check_and_create_new_particles_mem</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node24"><a xlink:href="../proc/check_and_create_new_particles_mem.html" xlink:title="check_and_create_new_particles_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="282.5,-150 65.5,-150 65.5,-126 282.5,-126 282.5,-150"/>
+<text text-anchor="middle" x="174" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check_and_create_new_particles_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~check_and_create_new_particles_mem&#45;&gt;proc~initparticle_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge25" class="edge">
+<title>proc~check_and_create_new_particles_mem&#45;&gt;proc~initparticle_mem</title>
+<path fill="none" stroke="#000000" d="M282.7,-126.27C304.37,-123.53 326.94,-120.41 348,-117 398.33,-108.85 455.05,-97.17 496.37,-88.19"/>
+<polygon fill="#000000" stroke="#000000" points="497.24,-91.58 506.27,-86.03 495.75,-84.74 497.24,-91.58"/>
+</g>
+<!-- proc~check_particles_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node25" class="node">
+<title>proc~check_particles_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node25"><a xlink:href="../proc/check_particles_dps.html" xlink:title="check_particles_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="234.5,-538 113.5,-538 113.5,-514 234.5,-514 234.5,-538"/>
+<text text-anchor="middle" x="174" y="-523.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check_particles_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~check_particles_dps&#45;&gt;proc~mus_particles_updatefluidvolumefraction -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge31" class="edge">
+<title>proc~check_particles_dps&#45;&gt;proc~mus_particles_updatefluidvolumefraction</title>
+<path fill="none" stroke="#000000" d="M234.79,-526C286.18,-526 362.04,-526 427.03,-526"/>
+<polygon fill="#000000" stroke="#000000" points="427.36,-529.5 437.36,-526 427.36,-522.5 427.36,-529.5"/>
+</g>
+<!-- proc~createnewparticle_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node26" class="node">
+<title>proc~createnewparticle_mem</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node26"><a xlink:href="../proc/createnewparticle_mem.html" xlink:title="createNewParticle_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="243.5,-108 104.5,-108 104.5,-84 243.5,-84 243.5,-108"/>
+<text text-anchor="middle" x="174" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">createNewParticle_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~createnewparticle_mem&#45;&gt;proc~initparticle_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge26" class="edge">
+<title>proc~createnewparticle_mem&#45;&gt;proc~initparticle_mem</title>
+<path fill="none" stroke="#000000" d="M243.82,-92.2C315.93,-88.21 428.03,-82.02 496.17,-78.25"/>
+<polygon fill="#000000" stroke="#000000" points="496.51,-81.74 506.3,-77.69 496.12,-74.75 496.51,-81.74"/>
+</g>
+<!-- proc~mus_particles_applyhydrodynamicforces_dps_onewaycoupled -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node27" class="node">
+<title>proc~mus_particles_applyhydrodynamicforces_dps_onewaycoupled</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node27"><a xlink:href="../proc/mus_particles_applyhydrodynamicforces_dps_onewaycoupled.html" xlink:title="mus_particles_applyHydrodynamicForces_DPS_onewaycoupled">
+<polygon fill="#d9534f" stroke="#d9534f" points="348,-202 0,-202 0,-178 348,-178 348,-202"/>
+<text text-anchor="middle" x="174" y="-187.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_applyHydrodynamicForces_DPS_onewaycoupled</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_applyhydrodynamicforces_dps_onewaycoupled&#45;&gt;proc~mus_particles_dps_interpolatefluidproperties_onewaycoupled -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge29" class="edge">
+<title>proc~mus_particles_applyhydrodynamicforces_dps_onewaycoupled&#45;&gt;proc~mus_particles_dps_interpolatefluidproperties_onewaycoupled</title>
+<path fill="none" stroke="#000000" d="M348.04,-190C356.63,-190 365.27,-190 373.88,-190"/>
+<polygon fill="#000000" stroke="#000000" points="373.97,-193.5 383.97,-190 373.97,-186.5 373.97,-193.5"/>
+</g>
+<!-- proc~mus_particles_applyhydrodynamicforces_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node28" class="node">
+<title>proc~mus_particles_applyhydrodynamicforces_mem</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node28"><a xlink:href="../proc/mus_particles_applyhydrodynamicforces_mem.html" xlink:title="mus_particles_applyHydrodynamicForces_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="305,-66 43,-66 43,-42 305,-42 305,-66"/>
+<text text-anchor="middle" x="174" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_applyHydrodynamicForces_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_applyhydrodynamicforces_mem&#45;&gt;proc~initparticle_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge27" class="edge">
+<title>proc~mus_particles_applyhydrodynamicforces_mem&#45;&gt;proc~initparticle_mem</title>
+<path fill="none" stroke="#000000" d="M305.24,-61.2C370.17,-64.79 445.45,-68.95 496.26,-71.75"/>
+<polygon fill="#000000" stroke="#000000" points="496.22,-75.26 506.4,-72.31 496.6,-68.27 496.22,-75.26"/>
+</g>
+<!-- proc~mus_particles_initialize -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node29" class="node">
+<title>proc~mus_particles_initialize</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node29"><a xlink:href="../proc/mus_particles_initialize.html" xlink:title="mus_particles_initialize">
+<polygon fill="#d9534f" stroke="#d9534f" points="242,-496 106,-496 106,-472 242,-472 242,-496"/>
+<text text-anchor="middle" x="174" y="-481.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_initialize</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_initialize&#45;&gt;proc~mus_particles_initialize_communication -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge30" class="edge">
+<title>proc~mus_particles_initialize&#45;&gt;proc~mus_particles_initialize_communication</title>
+<path fill="none" stroke="#000000" d="M242.06,-484C295.05,-484 370.4,-484 433.88,-484"/>
+<polygon fill="#000000" stroke="#000000" points="433.96,-487.5 443.96,-484 433.96,-480.5 433.96,-487.5"/>
+</g>
+<!-- proc~mus_particles_initialize&#45;&gt;proc~mus_particles_updatefluidvolumefraction -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge32" class="edge">
+<title>proc~mus_particles_initialize&#45;&gt;proc~mus_particles_updatefluidvolumefraction</title>
+<path fill="none" stroke="#000000" d="M242.06,-491.41C295.66,-497.34 372.12,-505.79 436.05,-512.85"/>
+<polygon fill="#000000" stroke="#000000" points="435.88,-516.35 446.2,-513.97 436.65,-509.4 435.88,-516.35"/>
+</g>
+<!-- proc~mus_particles_mapping_mem -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node30" class="node">
+<title>proc~mus_particles_mapping_mem</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node30"><a xlink:href="../proc/mus_particles_mapping_mem.html" xlink:title="mus_particles_mapping_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="258.5,-24 89.5,-24 89.5,0 258.5,0 258.5,-24"/>
+<text text-anchor="middle" x="174" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_mapping_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_mapping_mem&#45;&gt;proc~maptolattice -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge28" class="edge">
+<title>proc~mus_particles_mapping_mem&#45;&gt;proc~maptolattice</title>
+<path fill="none" stroke="#000000" d="M258.86,-14.21C333.71,-16.18 440.91,-19 503.7,-20.65"/>
+<polygon fill="#000000" stroke="#000000" points="503.67,-24.15 513.76,-20.91 503.86,-17.15 503.67,-24.15"/>
+</g>
+<!-- proc~mus_particles_move_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_node31" class="node">
+<title>proc~mus_particles_move_dps</title>
+<g id="a_proc~~getbaryofcoord~~CalledByGraph_node31"><a xlink:href="../proc/mus_particles_move_dps.html" xlink:title="mus_particles_move_DPS">
+<polygon fill="#d9534f" stroke="#d9534f" points="248,-349 100,-349 100,-325 248,-325 248,-349"/>
+<text text-anchor="middle" x="174" y="-334.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_move_DPS</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_move_dps&#45;&gt;proc~demsubcycles_dps -->
+<g id="proc~~getbaryofcoord~~CalledByGraph_edge24" class="edge">
+<title>proc~mus_particles_move_dps&#45;&gt;proc~demsubcycles_dps</title>
+<path fill="none" stroke="#000000" d="M248.27,-337C317.5,-337 420.5,-337 487.71,-337"/>
+<polygon fill="#000000" stroke="#000000" points="487.76,-340.5 497.76,-337 487.76,-333.5 487.76,-340.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panprocgetbaryofcoordCalledByGraph = svgPanZoom('#procgetbaryofcoordCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-04-24T09:44:22.475563+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

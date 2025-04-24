@@ -1,0 +1,722 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="A multi-level parallel lattice Boltzmann solver within the APES suite.">
+    <meta name="author" content="University of Siegen" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>computeWallPosSum_MEM &ndash; Musubi</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">Musubi </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../page/index.html">Documentation</a></li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/absint.html">Abstract Interfaces</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>computeWallPosSum_MEM
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.2% of total for procedures.">82 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/mus_particle_interactions_module.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_particle_interactions_module.f90.html'>mus_particle_interactions_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_particle_interactions_module.html'>mus_particle_interactions_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">computeWallPosSum_MEM</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>public  subroutine computeWallPosSum_MEM(this, BCinteraction, scheme, stencil, geometry, params, rmflag, foundWall, wallPosSum, nWallPos)  
+</h2>
+    
+
+    <p>computeWallPosSum computes the sum of the locations of wall boundaries in the
+area surrounding the particle. It also sets rmflag to true if an open boundary
+is detected, indicating that this particle should be removed from the global
+domain (in a different routine)</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~60"></span>
+              type(<a href='../type/mus_particle_mem_type.html'>mus_particle_MEM_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bcinteraction~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>BCinteraction</strong>(:)</td>
+            <td>
+                <p>Array of length nBCs which tells us how particles should interact with
+each boundary. Indexed using boundary ID!</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~198"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+                <p>Scheme for access to level descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stencil~73"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stencil</strong></td>
+            <td>
+                <p>Stencil for access to cq</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~83"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+                <p>Geometry information to determine TreeIDs of elements 'covered' by particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~137"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+                <p>Parameters for access to conversion factors between units</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rmflag~10"></span>
+              logical,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rmflag</strong></td>
+            <td>
+                <p>Flag to indicate whether particle should be removed because it just
+hit a non-wall BC</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-foundwall~2"></span>
+              logical,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>foundWall</strong></td>
+            <td>
+                <p>Flag to indicate whether we found a wall or not</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-wallpossum~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>wallPosSum</strong>(3)</td>
+            <td>
+                <p>Sum of locations (x,y,z) of the detected walls</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nwallpos~3"></span>
+              integer,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nWallPos</strong></td>
+            <td>
+                <p>Number of elements in wallPosSum</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Calls</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~computewallpossum_mem~~CallsGraph Pages: 1 -->
+<svg id="proccomputewallpossum_memCallsGraph" width="291pt" height="242pt"
+ viewBox="0.00 0.00 291.00 242.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~computewallpossum_mem~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 238)">
+<title>proc~~computewallpossum_mem~~CallsGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-238 287,-238 287,4 -4,4"/>
+<!-- proc~computewallpossum_mem -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node1" class="node">
+<title>proc~computewallpossum_mem</title>
+<polygon fill="none" stroke="black" points="154,-129 0,-129 0,-105 154,-105 154,-129"/>
+<text text-anchor="middle" x="77" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">computeWallPosSum_MEM</text>
+</g>
+<!-- baryoftotal -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node2" class="node">
+<title>baryoftotal</title>
+<polygon fill="#777777" stroke="#777777" points="272,-234 201,-234 201,-210 272,-210 272,-234"/>
+<text text-anchor="middle" x="236.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">baryoftotal</text>
+</g>
+<!-- proc~computewallpossum_mem&#45;&gt;baryoftotal -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_edge1" class="edge">
+<title>proc~computewallpossum_mem&#45;&gt;baryoftotal</title>
+<path fill="none" stroke="#000000" d="M92.16,-129.18C112.77,-146.52 152.64,-178.71 190,-201 192.45,-202.46 195.02,-203.9 197.64,-205.28"/>
+<polygon fill="#000000" stroke="#000000" points="196.12,-208.43 206.63,-209.79 199.26,-202.18 196.12,-208.43"/>
+</g>
+<!-- boundary_id -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node3" class="node">
+<title>boundary_id</title>
+<polygon fill="#777777" stroke="#777777" points="276,-192 197,-192 197,-168 276,-168 276,-192"/>
+<text text-anchor="middle" x="236.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">boundary_id</text>
+</g>
+<!-- proc~computewallpossum_mem&#45;&gt;boundary_id -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_edge2" class="edge">
+<title>proc~computewallpossum_mem&#45;&gt;boundary_id</title>
+<path fill="none" stroke="#000000" d="M108.37,-129.15C133.29,-139.11 168.76,-153.3 195.9,-164.16"/>
+<polygon fill="#000000" stroke="#000000" points="194.91,-167.53 205.49,-168 197.51,-161.03 194.91,-167.53"/>
+</g>
+<!-- nghelems -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node4" class="node">
+<title>nghelems</title>
+<polygon fill="#777777" stroke="#777777" points="269,-150 204,-150 204,-126 269,-126 269,-150"/>
+<text text-anchor="middle" x="236.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">nghelems</text>
+</g>
+<!-- proc~computewallpossum_mem&#45;&gt;nghelems -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_edge3" class="edge">
+<title>proc~computewallpossum_mem&#45;&gt;nghelems</title>
+<path fill="none" stroke="#000000" d="M154.44,-127.19C167.9,-128.99 181.45,-130.79 193.51,-132.4"/>
+<polygon fill="#000000" stroke="#000000" points="193.32,-135.91 203.69,-133.76 194.24,-128.97 193.32,-135.91"/>
+</g>
+<!-- property -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node5" class="node">
+<title>property</title>
+<polygon fill="#777777" stroke="#777777" points="265.5,-108 207.5,-108 207.5,-84 265.5,-84 265.5,-108"/>
+<text text-anchor="middle" x="236.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">property</text>
+</g>
+<!-- proc~computewallpossum_mem&#45;&gt;property -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_edge4" class="edge">
+<title>proc~computewallpossum_mem&#45;&gt;property</title>
+<path fill="none" stroke="#000000" d="M154.44,-106.81C169.41,-104.81 184.49,-102.8 197.51,-101.07"/>
+<polygon fill="#000000" stroke="#000000" points="198.02,-104.53 207.47,-99.74 197.1,-97.59 198.02,-104.53"/>
+</g>
+<!-- tem_IdOfCoord -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node6" class="node">
+<title>tem_IdOfCoord</title>
+<g id="a_proc~~computewallpossum_mem~~CallsGraph_node6"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_idofcoord.html" xlink:title="tem_IdOfCoord">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="283,-66 190,-66 190,-42 283,-42 283,-66"/>
+<text text-anchor="middle" x="236.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_IdOfCoord</text>
+</a>
+</g>
+</g>
+<!-- proc~computewallpossum_mem&#45;&gt;tem_IdOfCoord -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_edge5" class="edge">
+<title>proc~computewallpossum_mem&#45;&gt;tem_IdOfCoord</title>
+<path fill="none" stroke="#000000" d="M108.37,-104.85C133.29,-94.89 168.76,-80.7 195.9,-69.84"/>
+<polygon fill="#000000" stroke="#000000" points="197.51,-72.97 205.49,-66 194.91,-66.47 197.51,-72.97"/>
+</g>
+<!-- tem_PosOfId -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_node7" class="node">
+<title>tem_PosOfId</title>
+<g id="a_proc~~computewallpossum_mem~~CallsGraph_node7"><a xlink:href="https://apes-suite.github.io/treelm/proc/tem_posofid.html" xlink:title="tem_PosOfId">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="276,-24 197,-24 197,0 276,0 276,-24"/>
+<text text-anchor="middle" x="236.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">tem_PosOfId</text>
+</a>
+</g>
+</g>
+<!-- proc~computewallpossum_mem&#45;&gt;tem_PosOfId -->
+<g id="proc~~computewallpossum_mem~~CallsGraph_edge6" class="edge">
+<title>proc~computewallpossum_mem&#45;&gt;tem_PosOfId</title>
+<path fill="none" stroke="#000000" d="M92.16,-104.82C112.77,-87.48 152.64,-55.29 190,-33 192.45,-31.54 195.02,-30.1 197.64,-28.72"/>
+<polygon fill="#000000" stroke="#000000" points="199.26,-31.82 206.63,-24.21 196.12,-25.57 199.26,-31.82"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~computewallpossum_mem~~CalledByGraph Pages: 1 -->
+<svg id="proccomputewallpossum_memCalledByGraph" width="641pt" height="24pt"
+ viewBox="0.00 0.00 641.00 24.48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~computewallpossum_mem~~CalledByGraph" class="graph" transform="scale(0.76 0.76) rotate(0) translate(4 28)">
+<title>proc~~computewallpossum_mem~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 834,-28 834,4 -4,4"/>
+<!-- proc~computewallpossum_mem -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_node1" class="node">
+<title>proc~computewallpossum_mem</title>
+<polygon fill="none" stroke="black" points="830,-24 676,-24 676,0 830,0 830,-24"/>
+<text text-anchor="middle" x="753" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">computeWallPosSum_MEM</text>
+</g>
+<!-- interface~computewallpossum -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_node2" class="node">
+<title>interface~computewallpossum</title>
+<g id="a_proc~~computewallpossum_mem~~CalledByGraph_node2"><a xlink:href="../interface/computewallpossum.html" xlink:title="computeWallPosSum">
+<polygon fill="#a7506f" stroke="#a7506f" points="640,-24 516,-24 516,0 640,0 640,-24"/>
+<text text-anchor="middle" x="578" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">computeWallPosSum</text>
+</a>
+</g>
+</g>
+<!-- interface~computewallpossum&#45;&gt;proc~computewallpossum_mem -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_edge1" class="edge">
+<title>interface~computewallpossum&#45;&gt;proc~computewallpossum_mem</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M640.48,-12C648.72,-12 657.29,-12 665.85,-12"/>
+<polygon fill="#000000" stroke="#000000" points="665.88,-15.5 675.88,-12 665.88,-8.5 665.88,-15.5"/>
+</g>
+<!-- proc~dem_storewallpositions_mem -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_node3" class="node">
+<title>proc~dem_storewallpositions_mem</title>
+<g id="a_proc~~computewallpossum_mem~~CalledByGraph_node3"><a xlink:href="../proc/dem_storewallpositions_mem.html" xlink:title="DEM_storeWallPositions_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="480,-24 313,-24 313,0 480,0 480,-24"/>
+<text text-anchor="middle" x="396.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DEM_storeWallPositions_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~dem_storewallpositions_mem&#45;&gt;interface~computewallpossum -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_edge2" class="edge">
+<title>proc~dem_storewallpositions_mem&#45;&gt;interface~computewallpossum</title>
+<path fill="none" stroke="#000000" d="M480.16,-12C488.73,-12 497.38,-12 505.81,-12"/>
+<polygon fill="#000000" stroke="#000000" points="505.96,-15.5 515.96,-12 505.96,-8.5 505.96,-15.5"/>
+</g>
+<!-- proc~demsubcycles_mem -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_node4" class="node">
+<title>proc~demsubcycles_mem</title>
+<g id="a_proc~~computewallpossum_mem~~CalledByGraph_node4"><a xlink:href="../proc/demsubcycles_mem.html" xlink:title="DEMSubcycles_MEM">
+<polygon fill="#d9534f" stroke="#d9534f" points="277,-24 157,-24 157,0 277,0 277,-24"/>
+<text text-anchor="middle" x="217" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">DEMSubcycles_MEM</text>
+</a>
+</g>
+</g>
+<!-- proc~demsubcycles_mem&#45;&gt;proc~dem_storewallpositions_mem -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_edge3" class="edge">
+<title>proc~demsubcycles_mem&#45;&gt;proc~dem_storewallpositions_mem</title>
+<path fill="none" stroke="#000000" d="M277.1,-12C285.37,-12 294.02,-12 302.72,-12"/>
+<polygon fill="#000000" stroke="#000000" points="302.94,-15.5 312.94,-12 302.94,-8.5 302.94,-15.5"/>
+</g>
+<!-- proc~mus_particles_move -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_node5" class="node">
+<title>proc~mus_particles_move</title>
+<g id="a_proc~~computewallpossum_mem~~CalledByGraph_node5"><a xlink:href="../proc/mus_particles_move.html" xlink:title="mus_particles_move">
+<polygon fill="#d9534f" stroke="#d9534f" points="121,-24 0,-24 0,0 121,0 121,-24"/>
+<text text-anchor="middle" x="60.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mus_particles_move</text>
+</a>
+</g>
+</g>
+<!-- proc~mus_particles_move&#45;&gt;proc~demsubcycles_mem -->
+<g id="proc~~computewallpossum_mem~~CalledByGraph_edge4" class="edge">
+<title>proc~mus_particles_move&#45;&gt;proc~demsubcycles_mem</title>
+<path fill="none" stroke="#000000" d="M121.23,-12C129.56,-12 138.18,-12 146.67,-12"/>
+<polygon fill="#000000" stroke="#000000" points="146.93,-15.5 156.93,-12 146.93,-8.5 146.93,-15.5"/>
+</g>
+</g>
+</svg>
+</div>                <script>
+                  var panproccomputewallpossum_memCalledByGraph = svgPanZoom('#proccomputewallpossum_memCalledByGraph',
+                    {zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true,}
+                  );
+                </script>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Musubi
+ was developed by University of Siegen<br>              &copy; 2025 
+<br /><small>d01bb484473c</small></p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-04-24T09:44:22.475563+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

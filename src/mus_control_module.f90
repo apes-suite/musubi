@@ -1,7 +1,7 @@
 ! Copyright (c) 2011-2013 Manuel Hasert <m.hasert@grs-sim.de>
 ! Copyright (c) 2011-2017 Jiaxing Qi <jiaxing.qi@uni-siegen.de>
 ! Copyright (c) 2011-2021 Kannan Masilamani <kannan.masilamani@uni-siegen.de>
-! Copyright (c) 2011-2012, 2021 Harald Klimach <harald.klimach@uni-siegen.de>
+! Copyright (c) 2011-2012, 2021, 2025 Harald Klimach <harald.klimach@dlr.de>
 ! Copyright (c) 2011-2014 Simon Zimny <s.zimny@grs-sim.de>
 ! Copyright (c) 2011 Jan Hueckelheim <j.hueckelheim@grs-sim.de>
 ! Copyright (c) 2012-2014 Kartik Jain <kartik.jain@uni-siegen.de>
@@ -9,6 +9,7 @@
 ! Copyright (c) 2016-2017 Raphael Haupt <raphael.haupt@uni-siegen.de>
 ! Copyright (c) 2021 Gregorio Gerardo Spinelli <gregoriogerardo.spinelli@dlr.de>
 ! Copyright (c) 2022 Kannan Masilamani <kannan.masilamani@dlr.de>
+! Copyright (c) 2025 Tristan Vlogman <t.g.vlogman@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -71,6 +72,15 @@ module mus_control_module
     &                                      mus_intpAuxFieldCoarserAndExchange
   use mus_derVarPos_module,          only: mus_derVarPos_type
 
+  ! include particle musubi modules
+  use mus_particle_module,           only: mus_particle_group_type
+  use mus_particle_DPS_module,       only: mus_particles_updateFluidVolumeFraction
+  use mus_particle_logging_module,   only: mus_particles_logdata_DPS, &
+    &                                      mus_particles_logdata_MEM
+  use mus_particle_creator_module,   only: check_and_create_new_particles_DPS, &
+    &                                      check_and_create_new_particles_MEM, &
+    &                                      particle_creator
+
   implicit none
 
   private
@@ -80,26 +90,36 @@ module mus_control_module
 
   !> Datatype containing mapping of control routines to function pointers
   type mus_control_type
-    procedure( computation ), pointer :: do_computation => null()
+    type(mus_scheme_type),         pointer :: scheme => null()
+    type(mus_geom_type),           pointer :: geometry => null()
+    type(mus_param_type),          pointer :: params => null()
+    type(mus_particle_group_type), pointer :: particleGroup => null()
+
+    logical :: DPS_do_volfract = .false.
+    logical :: DPS_do_advance = .true.
+    integer :: curlvl = 0
+
+    procedure(computation), pointer :: do_computation => null()
+    procedure(update_particles_if), pointer :: check_particles => null()
+    procedure(update_particles_if), pointer :: advance_particles => null()
   end type mus_control_type
 
   abstract interface
     !> Interface describes the main control routine which does computation
     !! set boundary and check flow status
-    subroutine computation( me, scheme, geometry, params, iLevel)
-      import :: mus_scheme_type, mus_geom_type, mus_param_type, &
-        &       mus_control_type
+    subroutine computation( me, iLevel)
+      import :: mus_control_type
       !> self control type
-      class( mus_control_type ) :: me
-      !> container for the scheme
-      type( mus_scheme_type ), intent(inout) :: scheme
-      !> geometry infomation
-      type( mus_geom_type ), intent(inout) :: geometry
-      !> global parameters
-      type( mus_param_type ), intent(inout) :: params
+      class(mus_control_type) :: me
       !> Level counter variable
       integer, intent(in) :: iLevel
     end subroutine computation
+
+    subroutine update_particles_if(me)
+      import :: mus_control_type
+      !> self control type
+      class(mus_control_type) :: me
+    end subroutine update_particles_if
   end interface
 
   integer, save :: iStage = 0
@@ -126,12 +146,17 @@ contains
   !!
   !! - `multiLevel`: full multilevel, multiLevel routine
   !! - if nothing is given, the full multilevel, multiLevel routine is chosen
-  subroutine mus_init_control( controlRoutine, me, minLevel, maxLevel )
+  subroutine mus_init_control( controlRoutine, me, minLevel, &
+    &                          maxLevel, particle_kind       )
     ! -------------------------------------------------------------------- !
     character(len=labelLen), intent(in) :: controlRoutine
     !> contains function pointer to point control routine
-    type( mus_control_type ), intent(out) :: me
+    type(mus_control_type), intent(inout) :: me
     integer, intent(in) :: minLevel, maxLevel
+    !> string containing kind of solid particles for coupled LBM-DEM simulations
+    !! Can be fully resolved 'MEM' or unresolved 'DPS', 'DPS_twoway' 
+    !! or 'DPS_oneway'
+    character(len=labelLen), intent(in) :: particle_kind
     ! -------------------------------------------------------------------- !
 
     ! Select according to special need
@@ -151,6 +176,41 @@ contains
       if ( minLevel == maxLevel ) then
         me%do_computation => do_fast_singleLevel
         write(logUnit(5),"(A)") "Select fast single level control routine."
+
+        ! Choose control routine for coupled LBM-DEM simulations of particulate 
+        ! flows.
+        select case( trim( particle_kind) )
+        case ('MEM')
+          me%check_particles => check_particles_MEM
+          me%advance_particles => advance_particles_MEM
+          write(logUnit(5),"(A)") "Select fast single level control routine for ", &
+            & " fully coupled MEM particles"
+        case ('DPS')
+          ! TV: use alternate compute routine for particles!
+          me%DPS_do_VolFract = .true.
+          me%DPS_do_advance = .true.
+          me%check_particles => check_particles_DPS
+          me%advance_particles => advance_particles_DPS
+          write(logUnit(5),"(A)") "Select fast single level control routine for ", &
+            & " fully coupled DPS particles using the Generalized Navier-Stokes equations"
+        case ('DPS_twoway')
+          me%DPS_do_VolFract = .false.
+          me%DPS_do_advance = .true.
+          me%check_particles => check_particles_DPS
+          me%advance_particles => advance_particles_DPS
+          write(logUnit(5),"(A)") "Select fast single level control routine ", &
+            & "for two-way coupled DPS particles (neglecting the effect of local ", &
+            & "fluid volume fraction )."
+        case ('DPS_oneway')
+          me%DPS_do_VolFract = .false.
+          me%DPS_do_advance = .false.
+          me%check_particles => check_particles_DPS
+          me%advance_particles => advance_particles_DPS
+          write(logUnit(5),"(A)") "Select fast single level control routine ", &
+            & "for one-way coupled DPS particles."
+        case default
+          write(logUnit(5),"(A)") "Particulate flow simulations disabled!"
+        end select
       else
         me%do_computation => do_recursive_multiLevel
         write(logUnit(5),"(A)") "Select recursive multi level control routine."
@@ -179,17 +239,10 @@ contains
   !!     * intp Finer Ghost (iLevel+1) from my coarser (iLevel)
   !!     * exchange bufferFromCoarser at iLevel+1
   !!
-  recursive subroutine do_recursive_multiLevel( me, scheme, geometry, params, &
-    &                                           iLevel)
+  recursive subroutine do_recursive_multiLevel(me, iLevel)
     ! -------------------------------------------------------------------- !
     !> self control type
-    class( mus_control_type ) :: me
-    !> container for the scheme
-    type( mus_scheme_type ), intent(inout) :: scheme
-    !> geometry infomation
-    type( mus_geom_type ), intent(inout)      :: geometry
-    !> global parameters
-    type( mus_param_type ), intent(inout)  :: params
+    class(mus_control_type) :: me
     !> the current level
     integer, intent(in) :: iLevel
     ! -------------------------------------------------------------------- !
@@ -202,24 +255,24 @@ contains
     ! and auxField such that both auxField and apply_source uses same source in
     ! one multilevel cycle.
     write(logUnit(10), "(A)") 'Update source variables which depend on auxField'
-    call mus_update_sourceVars( nFields    = scheme%nFields,              &
-      &                         field      = scheme%field,                &
-      &                         globSrc    = scheme%globSrc,              &
-      &                         varSys     = scheme%varSys,               &
-      &                         iLevel     = iLevel,                      &
-      &                         auxField   = scheme%auxField(iLevel)%val, &
-      &                         phyConvFac = params%physics%fac(iLevel),  &
-      &                         derVarPos  = scheme%derVarPos             )
+    call mus_update_sourceVars( nFields    = me%scheme%nFields,              &
+      &                         field      = me%scheme%field,                &
+      &                         globSrc    = me%scheme%globSrc,              &
+      &                         varSys     = me%scheme%varSys,               &
+      &                         iLevel     = iLevel,                         &
+      &                         auxField   = me%scheme%auxField(iLevel)%val, &
+      &                         phyConvFac = me%params%physics%fac(iLevel),  &
+      &                         derVarPos  = me%scheme%derVarPos             )
 
     ! when not on finest level, go to next level
-    if( iLevel < geometry%tree%global%maxLevel ) then
+    if( iLevel < me%geometry%tree%global%maxLevel ) then
       ! Perform the number of nested time steps on the finer level L+1
       ! according to scaling type :
       !   diffusive: nNesting = 4
       !   acoustic:  nNesting = 2
-      do iNestingLoop = 1, params%nNesting
+      do iNestingLoop = 1, me%params%nNesting
         write(logUnit(10), "(A,I0)") 'Nesting loop ', iNestingloop
-        call me%do_computation( scheme, geometry, params, iLevel+1 )
+        call me%do_computation( iLevel+1 )
       end do
     end if
 
@@ -229,73 +282,73 @@ contains
     ! update the time counters. MH: checked. Please dont move
     ! Increasing with the smallest time step (maxLevel)
     ! KM: time is advanced here since new time is required to update sources.
-    if( iLevel == geometry%tree%global%maxLevel ) then
+    if( iLevel == me%geometry%tree%global%maxLevel ) then
       write(logUnit(10), "(A)") 'Advance time t+dt_maxLevel'
-      call tem_time_advance( me     = params%general%simControl%now, &
-        &                    sim_dt = params%physics%dtLvl( geometry &
-        &                                   %tree%global%maxLevel )  )
+      call tem_time_advance( me     = me%params%general%simControl%now,    &
+        &                    sim_dt = me%params%physics%dtLvl( me%geometry &
+        &                                   %tree%global%maxLevel )        )
     endif
 
     write(logUnit(10), "(A)") 'Set boundary condition'
-    ! set boundary for each field in current scheme
-    call set_boundary( field       = scheme%field,                  &
-      &                pdf         = scheme%pdf(iLevel),            &
-      &                state       = scheme%state(iLevel)%val,      &
-      &                levelDesc   = scheme%levelDesc(iLevel),      &
-      &                tree        = geometry%tree,                 &
-      &                iLevel      = iLevel,                        &
-      &                nBCs        = geometry%boundary%nBCtypes,    &
-      &                params      = params,                        &
-      &                layout      = scheme%layout,                 &
-      &                physics     = params%physics,                &
-      &                varSys      = scheme%varSys,                 &
-      &                mixture     = scheme%mixture,                &
-      &                derVarPos   = scheme%derVarPos,              &
-      &                globBC      = scheme%globBC                  )
+    ! set boundary for each field in current me%scheme
+    call set_boundary( field       = me%scheme%field,                  &
+      &                pdf         = me%scheme%pdf(iLevel),            &
+      &                state       = me%scheme%state(iLevel)%val,      &
+      &                levelDesc   = me%scheme%levelDesc(iLevel),      &
+      &                tree        = me%geometry%tree,                 &
+      &                iLevel      = iLevel,                           &
+      &                nBCs        = me%geometry%boundary%nBCtypes,    &
+      &                params      = me%params,                        &
+      &                layout      = me%scheme%layout,                 &
+      &                physics     = me%params%physics,                &
+      &                varSys      = me%scheme%varSys,                 &
+      &                mixture     = me%scheme%mixture,                &
+      &                derVarPos   = me%scheme%derVarPos,              &
+      &                globBC      = me%scheme%globBC                  )
     ! -------------------------------------------------------------------------
 
 
     write(logUnit(10), "(A)") 'Swap now and next'
     ! swap double buffer index for current level
-    call mus_swap_now_next( scheme%pdf( iLevel ) )
-    now  = scheme%pdf(iLevel)%nNow
-    next = scheme%pdf(iLevel)%nNext
+    call mus_swap_now_next( me%scheme%pdf( iLevel ) )
+    now  = me%scheme%pdf(iLevel)%nNow
+    next = me%scheme%pdf(iLevel)%nNext
 
     ! --------------------------------------------------------------------------
     ! Compute auxField from pre-collision state for fluid and ghostFromCoarser
     ! and exchange them if turbulence is active
     call tem_startTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
     write(logUnit(10), "(A)") 'Calculate auxField'
-    call mus_calcAuxFieldAndExchange(                             &
-      & auxField          = scheme%auxField(iLevel),              &
-      & calcAuxField      = scheme%calcAuxField,                  &
-      & state             = scheme%state(iLevel)%val(:, now),     &
-      & pdfData           = scheme%pdf(iLevel),                   &
-      & nFields           = scheme%nFields,                       &
-      & field             = scheme%field(:),                      &
-      & globSrc           = scheme%globSrc,                       &
-      & stencil           = scheme%layout%fStencil,               &
-      & varSys            = scheme%varSys,                        &
-      & derVarPos         = scheme%derVarPos,                     &
-      & general           = params%general,                       &
-      & phyConvFac        = params%physics%fac(iLevel),           &
-      & iLevel            = iLevel,                               &
-      & minLevel          = geometry%tree%global%minLevel,        &
-      & schemeHeader      = scheme%header,                        &
-      & quantities        = scheme%layout%quantities              )
+    call mus_calcAuxFieldAndExchange(                                &
+      & auxField          = me%scheme%auxField(iLevel),              &
+      & calcAuxField      = me%scheme%calcAuxField,                  &
+      & state             = me%scheme%state(iLevel)%val(:, now),     &
+      & pdfData           = me%scheme%pdf(iLevel),                   &
+      & nFields           = me%scheme%nFields,                       &
+      & field             = me%scheme%field(:),                      &
+      & globSrc           = me%scheme%globSrc,                       &
+      & stencil           = me%scheme%layout%fStencil,               &
+      & varSys            = me%scheme%varSys,                        &
+      & derVarPos         = me%scheme%derVarPos,                     &
+      & general           = me%params%general,                       &
+      & phyConvFac        = me%params%physics%fac(iLevel),           &
+      & iLevel            = iLevel,                                  &
+      & minLevel          = me%geometry%tree%global%minLevel,        &
+      & schemeHeader      = me%scheme%header,                        &
+      & quantities        = me%scheme%layout%quantities              )
 
-    if (iLevel < geometry%tree%global%maxLevel) then
+    if (iLevel < me%geometry%tree%global%maxLevel) then
       write(logUnit(10), "(A)") 'Interpolate and exchange auxField in ' &
         &                     //'ghostFromFiner'
-      call mus_intpAuxFieldCoarserAndExchange(     &
-        & intp        = scheme%intp,               &
-        & tAuxField   = scheme%auxField(iLevel),   &
-        & sAuxField   = scheme%auxField(iLevel+1), &
-        & tLevelDesc  = scheme%levelDesc(iLevel),  &
-        & stencil     = scheme%layout%fStencil,    &
-        & iLevel      = iLevel,                    &
-        & nAuxScalars = scheme%varSys%nAuxScalars, &
-        & general     = params%general             )
+      call mus_intpAuxFieldCoarserAndExchange(        &
+        & intp        = me%scheme%intp,               &
+        & tAuxField   = me%scheme%auxField(iLevel),   &
+        & sAuxField   = me%scheme%auxField(iLevel+1), &
+        & tLevelDesc  = me%scheme%levelDesc(iLevel),  &
+        & stencil     = me%scheme%layout%fStencil,    &
+        & iLevel      = iLevel,                       &
+        & nAuxScalars = me%scheme%varSys%nAuxScalars, &
+        & general     = me%params%general             )
     end if
 
     call tem_stopTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
@@ -305,12 +358,12 @@ contains
     ! --------------------------------------------------------------------------
     ! Update parameters, relaxation time .etc
     call tem_startTimer( timerHandle =  mus_timerHandles%relax(iLevel) )
-    call mus_update_relaxParams( scheme  = scheme,                        &
-      &                          iLevel  = iLevel,                        &
-      &                          tNow    = params%general%simControl%now, &
-      &                          physics = params%physics,                &
-      &                          lattice = params%lattice,                &
-      &                          nBCs    = geometry%boundary%nBCtypes     )
+    call mus_update_relaxParams( scheme  = me%scheme,                        &
+      &                          iLevel  = iLevel,                           &
+      &                          tNow    = me%params%general%simControl%now, &
+      &                          physics = me%params%physics,                &
+      &                          lattice = me%params%lattice,                &
+      &                          nBCs    = me%geometry%boundary%nBCtypes     )
     call tem_stopTimer( timerHandle =  mus_timerHandles%relax(iLevel) )
     ! --------------------------------------------------------------------------
 
@@ -320,19 +373,19 @@ contains
     call tem_startTimer( timerHandle =  mus_timerHandles%compute(iLevel) )
 
 !$omp parallel
-    call scheme%compute(                               &
-      &  fieldProp = scheme%field(:)%fieldProp,        &
-      &  inState   = scheme%state(iLevel)%val(:,Now),  &
-      &  outState  = scheme%state(iLevel)%val(:,Next), &
-      &  auxField  = scheme%auxField(ilevel)%val(:),   &
-      &  neigh     = scheme%pdf(iLevel)%neigh(:),      &
-      &  nElems    = scheme%pdf(iLevel)%nSize,         &
-      &  nSolve    = scheme%pdf(iLevel)%nElems_solve,  &
-      &  level     = iLevel,                           &
-      &  layout    = scheme%layout,                    &
-      &  params    = params,                           &
-      &  derVarPos = scheme%derVarPos,                 &
-      &  varSys    = scheme%varSys                     )
+    call me%scheme%compute(                               &
+      &  fieldProp = me%scheme%field(:)%fieldProp,        &
+      &  inState   = me%scheme%state(iLevel)%val(:,Now),  &
+      &  outState  = me%scheme%state(iLevel)%val(:,Next), &
+      &  auxField  = me%scheme%auxField(ilevel)%val(:),   &
+      &  neigh     = me%scheme%pdf(iLevel)%neigh(:),      &
+      &  nElems    = me%scheme%pdf(iLevel)%nSize,         &
+      &  nSolve    = me%scheme%pdf(iLevel)%nElems_solve,  &
+      &  level     = iLevel,                              &
+      &  layout    = me%scheme%layout,                    &
+      &  params    = me%params,                           &
+      &  derVarPos = me%scheme%derVarPos,                 &
+      &  varSys    = me%scheme%varSys                     )
 !$omp end parallel
 
     call tem_stopTimer( timerHandle =  mus_timerHandles%compute(iLevel) )
@@ -340,17 +393,17 @@ contains
 
     ! --------------------------------------------------------------------------
     write(logUnit(10), "(A)") 'Apply source'
-    call mus_apply_sourceTerms( field      = scheme%field(:),                &
-      &                         nFields    = scheme%nFields,                 &
-      &                         globSrc    = scheme%globSrc,                 &
-      &                         pdf        = scheme%pdf(iLevel),             &
-      &                         varSys     = scheme%varSys,                  &
-      &                         iLevel     = iLevel,                         &
-      &                         time       = params%general%simControl%now,  &
-      &                         state      = scheme%state(iLevel)%val,       &
-      &                         auxField   = scheme%auxField(iLevel)%val(:), &
-      &                         derVarPos  = scheme%derVarPos(:),            &
-      &                         phyConvFac = params%physics%fac(iLevel)      )
+    call mus_apply_sourceTerms( field      = me%scheme%field(:),                &
+      &                         nFields    = me%scheme%nFields,                 &
+      &                         globSrc    = me%scheme%globSrc,                 &
+      &                         pdf        = me%scheme%pdf(iLevel),             &
+      &                         varSys     = me%scheme%varSys,                  &
+      &                         iLevel     = iLevel,                            &
+      &                         time       = me%params%general%simControl%now,  &
+      &                         state      = me%scheme%state(iLevel)%val,       &
+      &                         auxField   = me%scheme%auxField(iLevel)%val(:), &
+      &                         derVarPos  = me%scheme%derVarPos(:),            &
+      &                         phyConvFac = me%params%physics%fac(iLevel)      )
 
     ! --------------------------------------------------------------------------
 
@@ -359,26 +412,26 @@ contains
     ! Communicate the halo elements of each scheme on current level
     call tem_startTimer( timerHandle =  mus_timerHandles%comm(iLevel) )
     ! communicate halo elements for Next
-    call params%general%commPattern%exchange_real(            &
-      &  send         = scheme%levelDesc(iLevel)%sendbuffer,  &
-      &  recv         = scheme%levelDesc(iLevel)%recvbuffer,  &
-      &  state        = scheme%state(iLevel)%val(:,Next),     &
-      &  message_flag = iLevel,                               &
-      &  comm         = params%general%proc%comm              )
+    call me%params%general%commPattern%exchange_real(            &
+      &  send         = me%scheme%levelDesc(iLevel)%sendbuffer,  &
+      &  recv         = me%scheme%levelDesc(iLevel)%recvbuffer,  &
+      &  state        = me%scheme%state(iLevel)%val(:,Next),     &
+      &  message_flag = iLevel,                                  &
+      &  comm         = me%params%general%proc%comm              )
 
     ! communicate turbulent viscosity, required for interpolation
-    if (trim(scheme%header%kind) == 'fluid' .or. &
-      & trim(scheme%header%kind) == 'fluid_incompressible') then
-      if (scheme%field(1)%fieldProp%fluid%turbulence%active) then
-        call params%general%commPattern%exchange_real(                &
-          & recv         = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%recvbuffer,       &
-          & send         = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%sendbuffer,       &
-          & state        = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%visc(:),          &
-          & message_flag = iLevel+100,                               &
-          & comm         = params%general%proc%comm                  )
+    if (trim(me%scheme%header%kind) == 'fluid' .or. &
+      & trim(me%scheme%header%kind) == 'fluid_incompressible') then
+      if (me%scheme%field(1)%fieldProp%fluid%turbulence%active) then
+        call me%params%general%commPattern%exchange_real(                &
+          & recv         = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%recvbuffer,          &
+          & send         = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%sendbuffer,          &
+          & state        = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%visc(:),             &
+          & message_flag = iLevel+100,                                   &
+          & comm         = me%params%general%proc%comm                   )
       end if
     end if
     call tem_stopTimer( timerHandle =  mus_timerHandles%comm(iLevel) )
@@ -386,32 +439,32 @@ contains
 
     ! -------------------------------------------------------------------------
     ! communicate my finer ghost element from coarse level
-    if ( iLevel > geometry%tree%global%minLevel ) then
+    if ( iLevel > me%geometry%tree%global%minLevel ) then
       write(logUnit(10), "(A)") 'Communicate ghostFromCoarser'
       call tem_startTimer( timerHandle                                &
         &                  = mus_timerHandles%commFromCoarser(iLevel) )
 
-      call params%general%commPattern%exchange_real(                  &
-        & send    = scheme%levelDesc(iLevel)%sendbufferFromCoarser,   &
-        & recv    = scheme%levelDesc(iLevel)%recvbufferFromCoarser,   &
-        & state   = scheme%state(iLevel)%val(:, Next),                &
-        & message_flag = iLevel,                                      &
-        & comm    = params%general%proc%comm             )
+      call me%params%general%commPattern%exchange_real(                &
+        & send    = me%scheme%levelDesc(iLevel)%sendbufferFromCoarser, &
+        & recv    = me%scheme%levelDesc(iLevel)%recvbufferFromCoarser, &
+        & state   = me%scheme%state(iLevel)%val(:, Next),              &
+        & message_flag = iLevel,                                       &
+        & comm    = me%params%general%proc%comm                        )
 
       ! communicate turbulent viscosity, required for interpolation
-      if (trim(scheme%header%kind) == 'fluid' .or. &
-        & trim(scheme%header%kind) == 'fluid_incompressible') then
+      if (trim(me%scheme%header%kind) == 'fluid' .or. &
+        & trim(me%scheme%header%kind) == 'fluid_incompressible') then
 
-        if (scheme%field(1)%fieldProp%fluid%turbulence%active) then
-          call params%general%commPattern%exchange_real(                     &
-            & recv         = scheme%field(1)%fieldProp%fluid%turbulence      &
+        if (me%scheme%field(1)%fieldProp%fluid%turbulence%active) then
+          call me%params%general%commPattern%exchange_real(                  &
+            & recv         = me%scheme%field(1)%fieldProp%fluid%turbulence   &
             &                      %dataOnLvl(iLevel)%recvBufferFromCoarser, &
-            & send         = scheme%field(1)%fieldProp%fluid%turbulence      &
+            & send         = me%scheme%field(1)%fieldProp%fluid%turbulence   &
             &                      %dataOnLvl(iLevel)%sendBufferFromCoarser, &
-            & state        = scheme%field(1)%fieldProp%fluid%turbulence      &
+            & state        = me%scheme%field(1)%fieldProp%fluid%turbulence   &
             &                      %dataOnLvl(iLevel)%visc(:),               &
             & message_flag = iLevel+200,                                     &
-            & comm         = params%general%proc%comm                        )
+            & comm         = me%params%general%proc%comm                     )
         end if
 
       end if
@@ -424,24 +477,380 @@ contains
     call stop_stageTimer()
 
     ! Interpolate ghost elements
-    if( iLevel < geometry%tree%global%maxLevel ) then
+    if( iLevel < me%geometry%tree%global%maxLevel ) then
       ! Fill my coarser element (L) from finer (L+1)
-      call do_intpFinerAndExchange( scheme, params, iLevel )
+      call do_intpFinerAndExchange( me%scheme, me%params, iLevel )
 
       ! Interpolate the ghost elements on the finer level(L+1) with data provided
       ! from current level(L).
-      call do_intpCoarserAndExchange( scheme, params, iLevel )
+      call do_intpCoarserAndExchange( me%scheme, me%params, iLevel )
     end if ! if not on finest level
    ! --------------------------------------------------------------------------
 
     ! --------------------------------------------------------------------------
-    if( iLevel == geometry%tree%global%minLevel ) then
+    if( iLevel == me%geometry%tree%global%minLevel ) then
       iStage = 0
       running = .false.
     end if
     ! --------------------------------------------------------------------------
 
   end subroutine do_recursive_multiLevel
+  ! ------------------------------------------------------------------------ !
+
+
+  ! ------------------------------------------------------------------------ !
+  !> Control routine for an optimized workflow with reduced functionality.
+  !!
+  !! No sources, no multilevel, no multiLevel.
+  !! Use for benchmarking
+  !!
+  subroutine do_fast_singleLevel( me, iLevel )
+    ! -------------------------------------------------------------------- !
+    !> self control type
+    !! dummy variable in this routine, required by interface
+    class(mus_control_type) :: me
+    !> Level counter variable
+    integer, intent(in) :: iLevel
+    ! -------------------------------------------------------------------- !
+    integer :: now, next
+    ! -------------------------------------------------------------------- !
+
+    me%curlvl = iLevel
+
+    ! Update auxField dependent source fields before adding source term to state
+    ! and auxField such that both auxField and apply_source uses same source.
+    call mus_update_sourceVars( nFields    = me%scheme%nFields,              &
+      &                         field      = me%scheme%field,                &
+      &                         globSrc    = me%scheme%globSrc,              &
+      &                         varSys     = me%scheme%varSys,               &
+      &                         iLevel     = iLevel,                         &
+      &                         auxField   = me%scheme%auxField(iLevel)%val, &
+      &                         phyConvFac = me%params%physics%fac(iLevel),  &
+      &                         derVarPos  = me%scheme%derVarPos             )
+
+    ! -------------------------------------------------------------------------
+    ! Increasing with the smallest time step (maxLevel)
+    ! KM: time is advanced here since new time is required to update sources and BCs
+    call tem_time_advance( me = me%params%general%simControl%now,   &
+      &                    sim_dt = me%params%physics%dtLvl(iLevel ))
+
+    ! --------------------------------------------------------------------------
+    !set boundary for each field in current me%scheme
+    call set_boundary( field       = me%scheme%field,                  &
+      &                pdf         = me%scheme%pdf(iLevel),            &
+      &                state       = me%scheme%state(iLevel)%val,      &
+      &                levelDesc   = me%scheme%levelDesc(iLevel),      &
+      &                tree        = me%geometry%tree,                 &
+      &                iLevel      = iLevel,                           &
+      &                nBCs        = me%geometry%boundary%nBCtypes,    &
+      &                params      = me%params,                        &
+      &                layout      = me%scheme%layout,                 &
+      &                physics     = me%params%physics,                &
+      &                varSys      = me%scheme%varSys,                 &
+      &                mixture     = me%scheme%mixture,                &
+      &                derVarPos   = me%scheme%derVarPos,              &
+      &                globBC      = me%scheme%globBC                  )
+    ! --------------------------------------------------------------------------
+
+    ! swap double buffer index for current level
+    call mus_swap_now_next( me%scheme%pdf( iLevel ) )
+    now  = me%scheme%pdf(iLevel)%nNow
+    next = me%scheme%pdf(iLevel)%nNext
+
+    ! --------------------------------------------------------------------------
+    ! Compute auxField from pre-collision state for fluid and ghostFromCoarser
+    ! and exchange them if turbulence is active
+    call tem_startTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
+    call mus_calcAuxFieldAndExchange(                            &
+      & auxField          = me%scheme%auxField(iLevel),          &
+      & calcAuxField      = me%scheme%calcAuxField,              &
+      & state             = me%scheme%state(iLevel)%val(:, now), &
+      & pdfData           = me%scheme%pdf(iLevel),               &
+      & nFields           = me%scheme%nFields,                   &
+      & field             = me%scheme%field(:),                  &
+      & globSrc           = me%scheme%globSrc,                   &
+      & stencil           = me%scheme%layout%fStencil,           &
+      & varSys            = me%scheme%varSys,                    &
+      & derVarPos         = me%scheme%derVarPos,                 &
+      & general           = me%params%general,                   &
+      & phyConvFac        = me%params%physics%fac(iLevel),       &
+      & iLevel            = iLevel,                              &
+      & minLevel          = me%geometry%tree%global%minLevel,    &
+      & schemeHeader      = me%scheme%header,                    &
+      & quantities        = me%scheme%layout%quantities          )
+    call tem_stopTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
+    ! --------------------------------------------------------------------------
+
+    if (me%particleGroup%nParticles > 0) then
+      call me%check_particles()
+    end if
+
+    ! --------------------------------------------------------------------------
+    ! Update parameters, relaxation time .etc
+    call tem_startTimer( timerHandle =  mus_timerHandles%relax(iLevel) )
+    call mus_update_relaxParams( scheme  = me%scheme,                        &
+      &                          iLevel  = iLevel,                           &
+      &                          tNow    = me%params%general%simControl%now, &
+      &                          physics = me%params%physics,                &
+      &                          lattice = me%params%lattice,                &
+      &                          nBCs    = me%geometry%boundary%nBCtypes     )
+    call tem_stopTimer( timerHandle =  mus_timerHandles%relax(iLevel) )
+    ! --------------------------------------------------------------------------
+
+    ! -------------------------------------------------------------------------
+    ! Compute current scheme of current level
+    call tem_startTimer( timerHandle =  mus_timerHandles%compute(iLevel) )
+
+!$omp parallel
+    call me%scheme%compute(                                        &
+      &           fieldProp = me%scheme%field(:)%fieldProp,        &
+      &           inState   = me%scheme%state(iLevel)%val(:,Now),  &
+      &           outState  = me%scheme%state(iLevel)%val(:,Next), &
+      &           auxField  = me%scheme%auxField(ilevel)%val(:),   &
+      &           neigh     = me%scheme%pdf(iLevel)%neigh(:),      &
+      &           nElems    = me%scheme%pdf(iLevel)%nSize,         &
+      &           nSolve    = me%scheme%pdf(iLevel)%nElems_solve,  &
+      &           level     = iLevel,                              &
+      &           layout    = me%scheme%layout,                    &
+      &           params    = me%params,                           &
+      &           derVarPos = me%scheme%derVarPos,                 &
+      &           varSys    = me%scheme%varSys                     )
+!$omp end parallel
+
+    call tem_stopTimer( timerHandle =  mus_timerHandles%compute(iLevel) )
+    ! --------------------------------------------------------------------------
+
+    ! --------------------------------------------------------------------------
+    call mus_apply_sourceTerms( field      = me%scheme%field(:),                &
+      &                         nFields    = me%scheme%nFields,                 &
+      &                         globSrc    = me%scheme%globSrc,                 &
+      &                         pdf        = me%scheme%pdf(iLevel),             &
+      &                         varSys     = me%scheme%varSys,                  &
+      &                         iLevel     = iLevel,                            &
+      &                         time       = me%params%general%simControl%now,  &
+      &                         state      = me%scheme%state(iLevel)%val,       &
+      &                         auxField   = me%scheme%auxField(iLevel)%val(:), &
+      &                         derVarPos  = me%scheme%derVarPos(:),            &
+      &                         phyConvFac = me%params%physics%fac(iLevel)      )
+    ! -------------------------------------------------------------------------
+
+    if (me%particleGroup%nParticles > 0) then
+      call me%advance_particles()
+    end if
+    ! Communicate the halo elements of each scheme on current level
+    ! KM: Communicate post-collision before set_boundary because nonEq_expol
+    ! BC depends on post-collision from neighbor at next time step
+    call tem_startTimer( timerHandle =  mus_timerHandles%comm(iLevel) )
+    call me%params%general%commPattern%exchange_real(             &
+      &    send    = me%scheme%levelDesc(iLevel)%sendbuffer,      &
+      &    recv    = me%scheme%levelDesc(iLevel)%recvbuffer,      &
+      &    state   = me%scheme%state(iLevel)%val(:,Next),         &
+      &    message_flag   = iLevel,                               &
+      &    comm    = me%params%general%proc%comm                  )
+
+    ! communicate turbulent viscosity, required for interpolation
+    if (trim(me%scheme%header%kind) == 'fluid' .or. &
+      & trim(me%scheme%header%kind) == 'fluid_incompressible') then
+      if (me%scheme%field(1)%fieldProp%fluid%turbulence%active) then
+        call me%params%general%commPattern%exchange_real(                &
+          & recv         = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%recvbuffer,          &
+          & send         = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%sendbuffer,          &
+          & state        = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%visc(:),             &
+          & message_flag = iLevel+100,                                   &
+          & comm         = me%params%general%proc%comm                   )
+      end if
+    end if
+    call tem_stopTimer( timerHandle =  mus_timerHandles%comm(iLevel) )
+
+    ! ... check if at least one of the IBMs is active
+    if ( me%geometry%globIBM%nIBMs > 0 ) then
+      call mus_buildBuffIBM(                                 &
+        &       me          = me%geometry%globIBM%IBM,       &
+        &       commPattern = me%params%general%commPattern, &
+        &       globTree    = me%geometry%tree,              &
+        &       params      = me%params,                     &
+        &       layout      = me%scheme%layout,              &
+        &       levelDesc   = me%scheme%levelDesc(iLevel),   &
+        &       iLevel      = iLevel                         )
+    end if
+
+    ! update the immersed boundaries if available
+    ! ... and over the schemes
+    ! ... check if at least one of the IBMs is active
+    if( me%geometry%globIBM%nIBMs > 0 )then
+      call mus_inamuro_IBM(                                       &
+        &      me          = me%geometry%globIBM%IBM,             &
+        &      commPattern = me%params%general%commPattern,       &
+        &      globTree    = me%geometry%tree,                    &
+        &      general     = me%params%general,                   &
+        &      pdf         = me%scheme%pdf(iLevel),               &
+        &      layout      = me%scheme%layout,                    &
+        &      levelDesc   = me%scheme%levelDesc(iLevel),         &
+        &      globSys     = me%scheme%varSys,                    &
+        &      stateVarMap = me%scheme%stateVarMap%varPos%val(:), &
+        &      convFac     = me%params%physics%fac(iLevel),       &
+        &      iField      = 1,                                   &
+        &      state       = me%scheme%state(iLevel)%val,         &
+        &      iLevel      = iLevel                               )
+    end if
+    ! -------------------------------------------------------------------------
+
+  end subroutine do_fast_singleLevel
+  ! ------------------------------------------------------------------------ !
+
+
+  ! ------------------------------------------------------------------------ !
+  subroutine do_benchmark(me,  iLevel)
+    ! -------------------------------------------------------------------- !
+    !> self control type
+    !! dummy variable in this routine, required by interface
+    class(mus_control_type) :: me
+    !> Level counter variable
+    integer, intent(in) :: iLevel
+    ! -------------------------------------------------------------------- !
+    integer :: now, next
+    ! -------------------------------------------------------------------- !
+
+    ! Update auxField dependent source fields before adding source term to state
+    ! and auxField such that both auxField and apply_source uses same source.
+    call mus_update_sourceVars( nFields    = me%scheme%nFields,              &
+      &                         field      = me%scheme%field,                &
+      &                         globSrc    = me%scheme%globSrc,              &
+      &                         varSys     = me%scheme%varSys,               &
+      &                         iLevel     = iLevel,                         &
+      &                         auxField   = me%scheme%auxField(iLevel)%val, &
+      &                         phyConvFac = me%params%physics%fac(iLevel),  &
+      &                         derVarPos  = me%scheme%derVarPos             )
+
+    ! Increasing with the smallest time step (maxLevel)
+    call tem_time_advance( me = me%params%general%simControl%now,   &
+      &                    sim_dt = me%params%physics%dtLvl(iLevel ))
+
+    ! --------------------------------------------------------------------------
+    !set boundary for each field in current me%scheme
+    call set_boundary( field       = me%scheme%field,               &
+      &                pdf         = me%scheme%pdf(iLevel),         &
+      &                state       = me%scheme%state(iLevel)%val,   &
+      &                levelDesc   = me%scheme%levelDesc(iLevel),   &
+      &                tree        = me%geometry%tree,              &
+      &                iLevel      = iLevel,                        &
+      &                nBCs        = me%geometry%boundary%nBCtypes, &
+      &                params      = me%params,                     &
+      &                layout      = me%scheme%layout,              &
+      &                physics     = me%params%physics,             &
+      &                varSys      = me%scheme%varSys,              &
+      &                mixture     = me%scheme%mixture,             &
+      &                derVarPos   = me%scheme%derVarPos,           &
+      &                globBC      = me%scheme%globBC               )
+    ! --------------------------------------------------------------------------
+
+    ! swap double buffer index for current level
+    call mus_swap_now_next( me%scheme%pdf( iLevel ) )
+    now  = me%scheme%pdf(iLevel)%nNow
+    next = me%scheme%pdf(iLevel)%nNext
+
+    ! --------------------------------------------------------------------------
+    ! Compute auxField from pre-collision state for fluid and ghostFromCoarser
+    ! and exchange them if turbulence is active
+    call tem_startTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
+    call mus_calcAuxFieldAndExchange(                                &
+      & auxField          = me%scheme%auxField(iLevel),              &
+      & calcAuxField      = me%scheme%calcAuxField,                  &
+      & state             = me%scheme%state(iLevel)%val(:, now),     &
+      & pdfData           = me%scheme%pdf(iLevel),                   &
+      & nFields           = me%scheme%nFields,                       &
+      & field             = me%scheme%field(:),                      &
+      & globSrc           = me%scheme%globSrc,                       &
+      & stencil           = me%scheme%layout%fStencil,               &
+      & varSys            = me%scheme%varSys,                        &
+      & derVarPos         = me%scheme%derVarPos,                     &
+      & general           = me%params%general,                       &
+      & phyConvFac        = me%params%physics%fac(iLevel),           &
+      & iLevel            = iLevel,                                  &
+      & minLevel          = me%geometry%tree%global%minLevel,        &
+      & schemeHeader      = me%scheme%header,                        &
+      & quantities        = me%scheme%layout%quantities              )
+    call tem_stopTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
+    ! --------------------------------------------------------------------------
+
+    ! --------------------------------------------------------------------------
+    ! Update parameters, relaxation time .etc
+    call mus_update_relaxParams( scheme  = me%scheme,                        &
+      &                          iLevel  = iLevel,                           &
+      &                          tNow    = me%params%general%simControl%now, &
+      &                          physics = me%params%physics,                &
+      &                          lattice = me%params%lattice,                &
+      &                          nBCs    = me%geometry%boundary%nBCtypes     )
+    ! --------------------------------------------------------------------------
+
+    ! --------------------------------------------------------------------------
+    ! Compute current scheme of current level
+    call tem_startTimer( timerHandle = mus_timerHandles%compute(iLevel) )
+
+!$omp parallel
+    call me%scheme%compute(                                        &
+      &           fieldProp = me%scheme%field(:)%fieldProp,        &
+      &           inState   = me%scheme%state(iLevel)%val(:,Now),  &
+      &           outState  = me%scheme%state(iLevel)%val(:,Next), &
+      &           auxField  = me%scheme%auxField(ilevel)%val(:),   &
+      &           neigh     = me%scheme%pdf(iLevel)%neigh(:),      &
+      &           nElems    = me%scheme%pdf(iLevel)%nSize,         &
+      &           nSolve    = me%scheme%pdf(iLevel)%nElems_solve,  &
+      &           level     = iLevel,                              &
+      &           layout    = me%scheme%layout,                    &
+      &           params    = me%params,                           &
+      &           derVarPos = me%scheme%derVarPos,                 &
+      &           varSys    = me%scheme%varSys                     )
+!$omp end parallel
+
+    call tem_stopTimer( timerHandle = mus_timerHandles%compute(iLevel) )
+    ! --------------------------------------------------------------------------
+
+    ! --------------------------------------------------------------------------
+    call mus_apply_sourceTerms( field      = me%scheme%field(:),                &
+      &                         nFields    = me%scheme%nFields,                 &
+      &                         globSrc    = me%scheme%globSrc,                 &
+      &                         pdf        = me%scheme%pdf(iLevel),             &
+      &                         varSys     = me%scheme%varSys,                  &
+      &                         iLevel     = iLevel,                            &
+      &                         time       = me%params%general%simControl%now,  &
+      &                         state      = me%scheme%state(iLevel)%val,       &
+      &                         auxField   = me%scheme%auxField(iLevel)%val(:), &
+      &                         derVarPos  = me%scheme%derVarPos(:),            &
+      &                         phyConvFac = me%params%physics%fac(iLevel)      )
+    ! --------------------------------------------------------------------------
+
+    ! Communicate the halo elements of each me%scheme on current level
+    call tem_startTimer( timerHandle = mus_timerHandles%comm(iLevel) )
+    call me%params%general%commPattern%exchange_real(                  &
+      &         send    = me%scheme%levelDesc(iLevel)%sendbuffer,      &
+      &         recv    = me%scheme%levelDesc(iLevel)%recvbuffer,      &
+      &         state   = me%scheme%state(iLevel)%val(:,Next),         &
+      &         message_flag   = iLevel,                               &
+      &         comm    = me%params%general%proc%comm                  )
+
+    ! communicate turbulent viscosity, required for interpolation
+    if (trim(me%scheme%header%kind) == 'fluid' .or. &
+      & trim(me%scheme%header%kind) == 'fluid_incompressible') then
+      if (me%scheme%field(1)%fieldProp%fluid%turbulence%active) then
+        call me%params%general%commPattern%exchange_real(                &
+          & recv         = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%recvbuffer,          &
+          & send         = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%sendbuffer,          &
+          & state        = me%scheme%field(1)%fieldProp%fluid%turbulence &
+          &                      %dataOnLvl(iLevel)%visc(:),             &
+          & message_flag = iLevel+100,                                   &
+          & comm         = me%params%general%proc%comm                   )
+      end if
+    end if
+    call tem_stopTimer( timerHandle = mus_timerHandles%comm(iLevel) )
+   ! -------------------------------------------------------------------------
+
+  end subroutine do_benchmark
   ! ------------------------------------------------------------------------ !
 
 
@@ -644,361 +1053,98 @@ contains
 
 
   ! ------------------------------------------------------------------------ !
-  !> Control routine for an optimized workflow with reduced functionality.
-  !!
-  !! No sources, no multilevel, no multiLevel.
-  !! Use for benchmarking
-  !!
-  subroutine do_fast_singleLevel( me, scheme, geometry, params, iLevel )
+  subroutine check_particles_MEM(me)
     ! -------------------------------------------------------------------- !
     !> self control type
-    !! dummy variable in this routine, required by interface
-    class( mus_control_type ) :: me
-    !> container for the scheme
-    type( mus_scheme_type ), intent(inout)  :: scheme
-    !> geometry infomation
-    type( mus_geom_type ), intent(inout)    :: geometry
-    !> global parameters
-    type( mus_param_type ), intent(inout)   :: params
-    !> Level counter variable
-    integer, intent(in) :: iLevel
+    class(mus_control_type) :: me
     ! -------------------------------------------------------------------- !
-    integer :: now, next
-    ! -------------------------------------------------------------------- !
+    call check_and_create_new_particles_MEM(                      &
+      & particle_creator = particle_creator,                      &
+      & iter             = me%params%general%simControl%now%iter, &
+      & particleGroup    = me%particleGroup,                      &
+      & scheme           = me%scheme,                             &
+      & geometry         = me%geometry,                           &
+      & params           = me%params,                             &
+      & myRank           = me%params%general%proc%rank            )
+  end subroutine check_particles_MEM
 
-    ! Update auxField dependent source fields before adding source term to state
-    ! and auxField such that both auxField and apply_source uses same source.
-    call mus_update_sourceVars( nFields    = scheme%nFields,              &
-      &                         field      = scheme%field,                &
-      &                         globSrc    = scheme%globSrc,              &
-      &                         varSys     = scheme%varSys,               &
-      &                         iLevel     = iLevel,                      &
-      &                         auxField   = scheme%auxField(iLevel)%val, &
-      &                         phyConvFac = params%physics%fac(iLevel),  &
-      &                         derVarPos  = scheme%derVarPos             )
-
-    ! -------------------------------------------------------------------------
-    ! Increasing with the smallest time step (maxLevel)
-    ! KM: time is advanced here since new time is required to update sources and BCs
-    call tem_time_advance( me = params%general%simControl%now,   &
-      &                    sim_dt = params%physics%dtLvl(iLevel ))
-
-    ! --------------------------------------------------------------------------
-    !set boundary for each field in current scheme
-    call set_boundary( field       = scheme%field,                  &
-      &                pdf         = scheme%pdf(iLevel),            &
-      &                state       = scheme%state(iLevel)%val,      &
-      &                levelDesc   = scheme%levelDesc(iLevel),      &
-      &                tree        = geometry%tree,                 &
-      &                iLevel      = iLevel,                        &
-      &                nBCs        = geometry%boundary%nBCtypes,    &
-      &                params      = params,                        &
-      &                layout      = scheme%layout,                 &
-      &                physics     = params%physics,                &
-      &                varSys      = scheme%varSys,                 &
-      &                mixture     = scheme%mixture,                &
-      &                derVarPos   = scheme%derVarPos,              &
-      &                globBC      = scheme%globBC                  )
-    ! --------------------------------------------------------------------------
-
-    ! swap double buffer index for current level
-    call mus_swap_now_next( scheme%pdf( iLevel ) )
-    now  = scheme%pdf(iLevel)%nNow
-    next = scheme%pdf(iLevel)%nNext
-
-    ! --------------------------------------------------------------------------
-    ! Compute auxField from pre-collision state for fluid and ghostFromCoarser
-    ! and exchange them if turbulence is active
-    call tem_startTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
-    call mus_calcAuxFieldAndExchange(                         &
-      & auxField          = scheme%auxField(iLevel),          &
-      & calcAuxField      = scheme%calcAuxField,              &
-      & state             = scheme%state(iLevel)%val(:, now), &
-      & pdfData           = scheme%pdf(iLevel),               &
-      & nFields           = scheme%nFields,                   &
-      & field             = scheme%field(:),                  &
-      & globSrc           = scheme%globSrc,                   &
-      & stencil           = scheme%layout%fStencil,           &
-      & varSys            = scheme%varSys,                    &
-      & derVarPos         = scheme%derVarPos,                 &
-      & general           = params%general,                   &
-      & phyConvFac        = params%physics%fac(iLevel),       &
-      & iLevel            = iLevel,                           &
-      & minLevel          = geometry%tree%global%minLevel,    &
-      & schemeHeader      = scheme%header,                        &
-      & quantities        = scheme%layout%quantities              )
-    call tem_stopTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
-    ! --------------------------------------------------------------------------
-
-    ! --------------------------------------------------------------------------
-    ! Update parameters, relaxation time .etc
-    call tem_startTimer( timerHandle =  mus_timerHandles%relax(iLevel) )
-    call mus_update_relaxParams( scheme  = scheme,                        &
-      &                          iLevel  = iLevel,                        &
-      &                          tNow    = params%general%simControl%now, &
-      &                          physics = params%physics,                &
-      &                          lattice = params%lattice,                &
-      &                          nBCs    = geometry%boundary%nBCtypes     )
-    call tem_stopTimer( timerHandle =  mus_timerHandles%relax(iLevel) )
-    ! --------------------------------------------------------------------------
-
-    ! -------------------------------------------------------------------------
-    ! Compute current scheme of current level
-    call tem_startTimer( timerHandle =  mus_timerHandles%compute(iLevel) )
-
-!$omp parallel
-    call scheme%compute(                                        &
-      &           fieldProp = scheme%field(:)%fieldProp,        &
-      &           inState   = scheme%state(iLevel)%val(:,Now),  &
-      &           outState  = scheme%state(iLevel)%val(:,Next), &
-      &           auxField  = scheme%auxField(ilevel)%val(:),   &
-      &           neigh     = scheme%pdf(iLevel)%neigh(:),      &
-      &           nElems    = scheme%pdf(iLevel)%nSize,         &
-      &           nSolve    = scheme%pdf(iLevel)%nElems_solve,  &
-      &           level     = iLevel,                           &
-      &           layout    = scheme%layout,                    &
-      &           params    = params,                           &
-      &           derVarPos = scheme%derVarPos,                 &
-      &           varSys    = scheme%varSys                     )
-!$omp end parallel
-
-    call tem_stopTimer( timerHandle =  mus_timerHandles%compute(iLevel) )
-    ! --------------------------------------------------------------------------
-
-    ! --------------------------------------------------------------------------
-    call mus_apply_sourceTerms( field      = scheme%field(:),                &
-      &                         nFields    = scheme%nFields,                 &
-      &                         globSrc    = scheme%globSrc,                 &
-      &                         pdf        = scheme%pdf(iLevel),             &
-      &                         varSys     = scheme%varSys,                  &
-      &                         iLevel     = iLevel,                         &
-      &                         time       = params%general%simControl%now,  &
-      &                         state      = scheme%state(iLevel)%val,       &
-      &                         auxField   = scheme%auxField(iLevel)%val(:), &
-      &                         derVarPos  = scheme%derVarPos(:),            &
-      &                         phyConvFac = params%physics%fac(iLevel)      )
-    ! -------------------------------------------------------------------------
-
-    ! Communicate the halo elements of each scheme on current level
-    ! KM: Communicate post-collision before set_boundary because nonEq_expol
-    ! BC depends on post-collision from neighbor at next time step
-    call tem_startTimer( timerHandle =  mus_timerHandles%comm(iLevel) )
-    call params%general%commPattern%exchange_real(             &
-      &    send    = scheme%levelDesc(iLevel)%sendbuffer,      &
-      &    recv    = scheme%levelDesc(iLevel)%recvbuffer,      &
-      &    state   = scheme%state(iLevel)%val(:,Next),         &
-      &    message_flag   = iLevel,                            &
-      &    comm    = params%general%proc%comm                  )
-
-    ! communicate turbulent viscosity, required for interpolation
-    if (trim(scheme%header%kind) == 'fluid' .or. &
-      & trim(scheme%header%kind) == 'fluid_incompressible') then
-      if (scheme%field(1)%fieldProp%fluid%turbulence%active) then
-        call params%general%commPattern%exchange_real(                &
-          & recv         = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%recvbuffer,       &
-          & send         = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%sendbuffer,       &
-          & state        = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%visc(:),          &
-          & message_flag = iLevel+100,                               &
-          & comm         = params%general%proc%comm                  )
-      end if
-    end if
-    call tem_stopTimer( timerHandle =  mus_timerHandles%comm(iLevel) )
-
-    ! ... check if at least one of the IBMs is active
-    if ( geometry%globIBM%nIBMs > 0 ) then
-      call mus_buildBuffIBM(                              &
-        &       me          = geometry%globIBM%IBM,       &
-        &       commPattern = params%general%commPattern, &
-        &       globTree    = geometry%tree,              &
-        &       params      = params,                     &
-        &       layout      = scheme%layout,              &
-        &       levelDesc   = scheme%levelDesc(iLevel),   &
-        &       iLevel      = iLevel                      )
-    end if
-
-    ! update the immersed boundaries if available
-    ! ... and over the schemes
-    ! ... check if at least one of the IBMs is active
-    if( geometry%globIBM%nIBMs > 0 )then
-      call mus_inamuro_IBM(                                    &
-        &      me          = geometry%globIBM%IBM,             &
-        &      commPattern = params%general%commPattern,       &
-        &      globTree    = geometry%tree,                    &
-        &      general     = params%general,                   &
-        &      pdf         = scheme%pdf(iLevel),               &
-        &      layout      = scheme%layout,                    &
-        &      levelDesc   = scheme%levelDesc(iLevel),         &
-        &      globSys     = scheme%varSys,                    &
-        &      stateVarMap = scheme%stateVarMap%varPos%val(:), &
-        &      convFac     = params%physics%fac(iLevel),       &
-        &      iField      = 1,                                &
-        &      state       = scheme%state(iLevel)%val,         &
-        &      iLevel      = iLevel                            )
-    end if
-    ! -------------------------------------------------------------------------
-
-  end subroutine do_fast_singleLevel
-  ! ------------------------------------------------------------------------ !
-
-
-  ! ------------------------------------------------------------------------ !
-  subroutine do_benchmark( me, scheme, geometry, params, iLevel )
+  subroutine advance_particles_MEM(me)
     ! -------------------------------------------------------------------- !
     !> self control type
-    !! dummy variable in this routine, required by interface
-    class( mus_control_type ) :: me
-    !> containers for the different schemes
-    type( mus_scheme_type ), intent(inout)  :: scheme
-    !> geometry infomation
-    type( mus_geom_type ), intent(inout)    :: geometry
-    !> global parameters
-    type( mus_param_type ), intent(inout)   :: params
-    !> Level counter variable
-    integer, intent(in) :: iLevel
+    class(mus_control_type) :: me
     ! -------------------------------------------------------------------- !
-    integer :: now, next
+    ! Update particles
+    call me%particleGroup%moveParticles( &
+      &    scheme   = me%scheme,         &
+      &    geometry = me%geometry,       &
+      &    params   = me%params          )
+
+    call mus_particles_logdata_MEM( particleGroup = me%particleGroup, &
+      &                             params        = me%params         )
+
+    call me%particleGroup%mapParticles( &
+      &    scheme   = me%scheme,        &
+      &    geometry = me%geometry,      &
+      &    params   = me%params         )
+
+    call me%particleGroup%applyHydrodynamicForces( &
+      &    scheme   = me%scheme,                   &
+      &    geometry = me%geometry,                 &
+      &    params   = me%params                    )
+
+    call me%particleGroup%transferMomentumToFluid( &
+      &    scheme   = me%scheme,                   &
+      &    geometry = me%geometry,                 &
+      &    params   = me%params                    )
+
+  end subroutine advance_particles_MEM
+
+  subroutine check_particles_DPS(me)
     ! -------------------------------------------------------------------- !
+    !> self control type
+    class(mus_control_type) :: me
+    ! -------------------------------------------------------------------- !
+    ! Check if new particles should be created at this time step
+    call check_and_create_new_particles_DPS(                         &
+      &    particle_creator = particle_creator,                      &
+      &    iter             = me%params%general%simControl%now%iter, &
+      &    particleGroup    = me%particleGroup,                      &
+      &    scheme           = me%scheme,                             &
+      &    geometry         = me%geometry,                           &
+      &    params           = me%params,                             &
+      &    myRank           = me%params%general%proc%rank            )
 
-    ! Update auxField dependent source fields before adding source term to state
-    ! and auxField such that both auxField and apply_source uses same source.
-    call mus_update_sourceVars( nFields    = scheme%nFields,              &
-      &                         field      = scheme%field,                &
-      &                         globSrc    = scheme%globSrc,              &
-      &                         varSys     = scheme%varSys,               &
-      &                         iLevel     = iLevel,                      &
-      &                         auxField   = scheme%auxField(iLevel)%val, &
-      &                         phyConvFac = params%physics%fac(iLevel),  &
-      &                         derVarPos  = scheme%derVarPos             )
-
-    ! Increasing with the smallest time step (maxLevel)
-    call tem_time_advance( me = params%general%simControl%now,   &
-      &                    sim_dt = params%physics%dtLvl(iLevel ))
-
-    ! --------------------------------------------------------------------------
-    !set boundary for each field in current scheme
-    call set_boundary( field       = scheme%field,               &
-      &                pdf         = scheme%pdf(iLevel),         &
-      &                state       = scheme%state(iLevel)%val,   &
-      &                levelDesc   = scheme%levelDesc(iLevel),   &
-      &                tree        = geometry%tree,              &
-      &                iLevel      = iLevel,                     &
-      &                nBCs        = geometry%boundary%nBCtypes, &
-      &                params      = params,                     &
-      &                layout      = scheme%layout,              &
-      &                physics     = params%physics,             &
-      &                varSys      = scheme%varSys,              &
-      &                mixture     = scheme%mixture,             &
-      &                derVarPos   = scheme%derVarPos,           &
-      &                globBC      = scheme%globBC               )
-    ! --------------------------------------------------------------------------
-
-    ! swap double buffer index for current level
-    call mus_swap_now_next( scheme%pdf( iLevel ) )
-    now  = scheme%pdf(iLevel)%nNow
-    next = scheme%pdf(iLevel)%nNext
-
-    ! --------------------------------------------------------------------------
-    ! Compute auxField from pre-collision state for fluid and ghostFromCoarser
-    ! and exchange them if turbulence is active
-    call tem_startTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
-    call mus_calcAuxFieldAndExchange(                             &
-      & auxField          = scheme%auxField(iLevel),              &
-      & calcAuxField      = scheme%calcAuxField,                  &
-      & state             = scheme%state(iLevel)%val(:, now),     &
-      & pdfData           = scheme%pdf(iLevel),                   &
-      & nFields           = scheme%nFields,                       &
-      & field             = scheme%field(:),                      &
-      & globSrc           = scheme%globSrc,                       &
-      & stencil           = scheme%layout%fStencil,               &
-      & varSys            = scheme%varSys,                        &
-      & derVarPos         = scheme%derVarPos,                     &
-      & general           = params%general,                       &
-      & phyConvFac        = params%physics%fac(iLevel),           &
-      & iLevel            = iLevel,                               &
-      & minLevel          = geometry%tree%global%minLevel,        &
-      & schemeHeader      = scheme%header,                        &
-      & quantities        = scheme%layout%quantities              )
-    call tem_stopTimer( timerHandle =  mus_timerHandles%aux(iLevel) )
-    ! --------------------------------------------------------------------------
-
-    ! --------------------------------------------------------------------------
-    ! Update parameters, relaxation time .etc
-    call mus_update_relaxParams( scheme  = scheme,                        &
-      &                          iLevel  = iLevel,                        &
-      &                          tNow    = params%general%simControl%now, &
-      &                          physics = params%physics,                &
-      &                          lattice = params%lattice,                &
-      &                          nBCs    = geometry%boundary%nBCtypes     )
-    ! --------------------------------------------------------------------------
-
-    ! --------------------------------------------------------------------------
-    ! Compute current scheme of current level
-    call tem_startTimer( timerHandle = mus_timerHandles%compute(iLevel) )
-
-!$omp parallel
-    call scheme%compute(                                        &
-      &           fieldProp = scheme%field(:)%fieldProp,        &
-      &           inState   = scheme%state(iLevel)%val(:,Now),  &
-      &           outState  = scheme%state(iLevel)%val(:,Next), &
-      &           auxField  = scheme%auxField(ilevel)%val(:),   &
-      &           neigh     = scheme%pdf(iLevel)%neigh(:),      &
-      &           nElems    = scheme%pdf(iLevel)%nSize,         &
-      &           nSolve    = scheme%pdf(iLevel)%nElems_solve,  &
-      &           level     = iLevel,                           &
-      &           layout    = scheme%layout,                    &
-      &           params    = params,                           &
-      &           derVarPos = scheme%derVarPos,                 &
-      &           varSys    = scheme%varSys                     )
-!$omp end parallel
-
-    call tem_stopTimer( timerHandle = mus_timerHandles%compute(iLevel) )
-    ! --------------------------------------------------------------------------
-
-    ! --------------------------------------------------------------------------
-    call mus_apply_sourceTerms( field      = scheme%field(:),                &
-      &                         nFields    = scheme%nFields,                 &
-      &                         globSrc    = scheme%globSrc,                 &
-      &                         pdf        = scheme%pdf(iLevel),             &
-      &                         varSys     = scheme%varSys,                  &
-      &                         iLevel     = iLevel,                         &
-      &                         time       = params%general%simControl%now,  &
-      &                         state      = scheme%state(iLevel)%val,       &
-      &                         auxField   = scheme%auxField(iLevel)%val(:), &
-      &                         derVarPos  = scheme%derVarPos(:),            &
-      &                         phyConvFac = params%physics%fac(iLevel)      )
-    ! --------------------------------------------------------------------------
-
-    ! Communicate the halo elements of each scheme on current level
-    call tem_startTimer( timerHandle = mus_timerHandles%comm(iLevel) )
-    call params%general%commPattern%exchange_real(                  &
-      &         send    = scheme%levelDesc(iLevel)%sendbuffer,      &
-      &         recv    = scheme%levelDesc(iLevel)%recvbuffer,      &
-      &         state   = scheme%state(iLevel)%val(:,Next),         &
-      &         message_flag   = iLevel,                            &
-      &         comm    = params%general%proc%comm                  )
-
-    ! communicate turbulent viscosity, required for interpolation
-    if (trim(scheme%header%kind) == 'fluid' .or. &
-      & trim(scheme%header%kind) == 'fluid_incompressible') then
-      if (scheme%field(1)%fieldProp%fluid%turbulence%active) then
-        call params%general%commPattern%exchange_real(                &
-          & recv         = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%recvbuffer,       &
-          & send         = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%sendbuffer,       &
-          & state        = scheme%field(1)%fieldProp%fluid%turbulence &
-          &                      %dataOnLvl(iLevel)%visc(:),          &
-          & message_flag = iLevel+100,                               &
-          & comm         = params%general%proc%comm                  )
-      end if
+    if (me%DPS_do_VolFract) then
+      ! Update the local fluid volume fraction in auxField
+      call mus_particles_updateFluidVolumeFraction(                & 
+        &    particleGroup = me%particleGroup,                     &
+        &    scheme        = me%scheme,                            &
+        &    geometry      = me%geometry,                          &
+        &    params        = me%params,                            &
+        &    nElems        = me%scheme%pdf(me%curlvl)%nElems_local )
     end if
-    call tem_stopTimer( timerHandle = mus_timerHandles%comm(iLevel) )
-   ! -------------------------------------------------------------------------
 
-  end subroutine do_benchmark
+    ! Update positions and velocities of particles
+    call me%particleGroup%moveParticles( scheme        = me%scheme,   &
+      &                                  geometry      = me%geometry, &
+      &                                  params        = me%params    )   
+                                  
+    call mus_particles_logdata_DPS( particleGroup = me%particleGroup, &
+      &                             params        = me%params         )
+  end subroutine check_particles_DPS
+
+  subroutine advance_particles_DPS(me)
+    ! -------------------------------------------------------------------- !
+    !> self control type
+    class(mus_control_type) :: me
+    ! -------------------------------------------------------------------- !
+    if (me%DPS_do_advance) then
+      call me%particleGroup%transferMomentumToFluid( &
+        &    scheme   = me%scheme,                   &
+        &    geometry = me%geometry,                 &
+        &    params   = me%params                    )
+    end if
+  end subroutine advance_particles_DPS
   ! ------------------------------------------------------------------------ !
 
 

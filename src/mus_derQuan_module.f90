@@ -239,6 +239,7 @@ module mus_derQuan_module
   public :: applySrc_absorbLayerDyn
   public :: applySrc_absorbLayerDyn_MRT
   public :: applySrc_force
+  public :: applySrc_force_GNS
   public :: applySrc_force_MRT
   public :: applySrc_force_MRT_d2q9
   public :: applySrc_force_MRT_d3q19
@@ -3061,6 +3062,134 @@ contains
     end do !iElem
 
   end subroutine applySrc_force
+! ****************************************************************************** !
+  ! ****************************************************************************** !
+  !> Update state with source variable "force" for Generalized Navier-Stokes equations.
+  !! The implementation is taken from "Lattice Boltzmann model for incompressible flows
+  !! through porous media" by Z. Guo and T.S. Zhao (2002) Physical Review E.
+  !!
+  !! This subroutine's interface must match the abstract interface definition
+  !! [[proc_apply_source]] in derived/[[mus_source_var_module]].f90 in order to
+  !! be callable via [[mus_source_op_type:applySrc]] function pointer.
+  subroutine applySrc_force_GNS( fun, inState, outState, neigh, auxField,    &
+    &                            nPdfSize, iLevel, varSys, time, phyConvFac, &
+    &                            derVarPos                                   )
+    ! -------------------------------------------------------------------- !
+    !> Description of method to apply source terms
+    class(mus_source_op_type), intent(in) :: fun
+
+    !> input  pdf vector
+    real(kind=rk), intent(in) :: inState(:)
+
+    !> output pdf vector
+    real(kind=rk), intent(inout) :: outState(:)
+
+    !> connectivity Array corresponding to state vector
+    integer,intent(in) :: neigh(:)
+
+    !> auxField array
+    real(kind=rk), intent(in) :: auxField(:)
+
+    !> number of elements in state Array
+    integer, intent(in) :: nPdfSize
+
+    !> current level
+    integer, intent(in) :: iLevel
+
+    !> variable system
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> Physics conversion factor for current level
+    type(mus_convertFac_type), intent(in) :: phyConvFac
+
+    !> position of derived quantities in varsys
+    type(mus_derVarPos_type), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: forceField(fun%elemLvl(iLevel)%nElems*3)
+    real(kind=rk) :: G(3), velocity(3), ucx, uMinusCX(3), forceTerm
+    integer :: nElems, iElem, iDir, QQ, nScalars, posInTotal, statePos, elemOff
+    integer :: vel_pos(3), vol_frac_pos
+    real(kind=rk) :: eps_f, eps_f_inv          ! Inverse of local fluid volume fraction for GNS
+    real(kind=rk) :: omega, omega_fac
+    ! ---------------------------------------------------------------------------
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%srcTerm_varPos )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+
+    ! Number of elements to apply source terms
+    nElems = fun%elemLvl(iLevel)%nElems
+
+    ! Get force which is refered in config file either its
+    ! spacetime variable or operation variable
+    call varSys%method%val(fun%data_varPos)%get_valOfIndex( &
+      & varSys  = varSys,                                   &
+      & time    = time,                                     &
+      & iLevel  = iLevel,                                   &
+      & idx     = fun%elemLvl(iLevel)%idx(1:nElems),        &
+      & nVals   = nElems,                                   &
+      & res     = forceField                                )
+
+    ! convert physical to lattice
+    forceField = forceField / fPtr%solverData%physics%fac(iLevel)%body_force
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+    nScalars = varSys%nScalars
+    ! Position of velocity variable in auxField
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+    vol_frac_pos = varSys%method%val(derVarPos(1)%vol_frac)%auxField_varPos(1)
+
+    do iElem = 1, nElems
+      posInTotal = fun%elemLvl(iLevel)%posInTotal(iElem)
+
+      ! element offset
+      elemoff = (posInTotal-1)*varSys%nAuxScalars
+      ! obtain velocity from auxField
+      velocity(1) = auxField(elemOff + vel_pos(1))
+      velocity(2) = auxField(elemOff + vel_pos(2))
+      velocity(3) = auxField(elemOff + vel_pos(3))
+      eps_f       = auxField(elemOff + vol_frac_pos)
+      eps_f_inv   = 1.0_rk / eps_f
+
+      ! force field on current element
+      ! For incompressible model: this forceField should be divided by rho0.
+      ! Since rho0 =1, this term is also valid for incompressible model
+      G = forceField((iElem-1)*3+1 : iElem*3)
+
+      ! get the correct omega value
+      omega = scheme%field(1)%fieldProp%fluid%viscKine              &
+        &                              %omLvl(iLevel)%val(posInTotal)
+      omega_fac = 1.0_rk - omega * 0.5_rk
+
+      ! force term:
+      ! F_i = w_i( (\vec{e}_i-\vec{u}*)/cs2 +
+      !       (\vec{e}_i \cdot \vec{u}*)\vec{e}_i/cs4) \cdot \vec{F}
+      do iDir = 1, QQ
+        ucx = dot_product( scheme%layout%fStencil%cxDirRK(:, iDir), &
+          &                velocity )
+        uMinusCx = scheme%layout%fStencil%cxDirRK(:, iDir) - velocity * eps_f_inv
+
+        forceTerm = dot_product( uMinusCx * cs2inv               &
+          &       + ucx * scheme%layout%fStencil%cxDirRK(:,iDir) &
+          &       * eps_f_inv * cs4inv, G*eps_f )
+
+        ! position in state array
+        statePos = ( posintotal-1)* nscalars+idir+( 1-1)* qq
+        ! update outstate
+        outState(statePos) = outState(statePos)                         &
+          & + omega_fac * scheme%layout%weight( iDir ) * forceTerm
+
+      end do
+
+    end do !iElem
+
+  end subroutine applySrc_force_GNS
 ! ****************************************************************************** !
 
 ! ****************************************************************************** !
