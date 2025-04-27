@@ -1964,8 +1964,8 @@ contains
     real(kind=rk) :: default_vel(6)
     real(kind=rk) :: force(6)
     real(kind=rk) :: velocity(6)
-    real(kind=rk) :: radius
-    real(kind=rk) :: mass
+    real(kind=rk) :: radius = 0.0_rk
+    real(kind=rk) :: mass = 0.0_rk
     logical :: has_init_velocity
     ! ---------------------------------------------------- !
     default_force = 0.0_rk

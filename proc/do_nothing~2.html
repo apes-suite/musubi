@@ -95,20 +95,20 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.0% of total for procedures.">21 statements</a>
+                 title=" 0.0% of total for procedures.">20 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/mus_bc_fluid_wall_module.f90"> Source File</a>
+              <a href="../src/mus_interpolate_debug_module.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/mus_bc_fluid_wall_module.f90.html'>mus_bc_fluid_wall_module.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/mus_bc_fluid_wall_module.html'>mus_bc_fluid_wall_module</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_interpolate_debug_module.f90.html'>mus_interpolate_debug_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_interpolate_debug_module.html'>mus_interpolate_debug_module</a></li>
             <li class="breadcrumb-item active" aria-current="page">do_nothing</li>
           </ol>
         </nav>
@@ -156,18 +156,14 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public  subroutine do_nothing(me, state, bcBuffer, globBC, levelDesc, tree, nSize, iLevel, sim_time, neigh, layout, fieldProp, varPos, nScalars, varSys, derVarPos, physics, iField, mixture)  
+    <h2>public  subroutine do_nothing(method, fieldProp, tLevelDesc, level, sState, sNeigh, snSize, sAuxField, tState, tNeigh, tnSize, layout, nTargets, targetList, physics, time, varSys, derVarPos)  
 </h2>
     
 
-    <p>No comment yet!</p>
-<div class="alert alert-success">
-<p class="alert-title h4">Todo</p>
-<p>add comment</p>
-</div>
+    <p>Fill GhostFromFiner elements on my level with debug value</p>
 <p>This subroutine's interface must match the abstract interface definition
-<a href="../interface/boundaryroutine.html">boundaryRoutine</a> in bc/<a href="../module/mus_bc_header_module.html">mus_bc_header_module</a>.f90 in order to be
-callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> function pointer.</p>
+<a href="../interface/intproutine.html">intpRoutine</a> in intp/<a href="../module/mus_interpolate_header_module.html">mus_interpolate_header_module</a>.f90 in order to
+be callable via <a href="../type/mus_interpolation_method_type.html#variable-do_intp">do_intp</a> function pointer.</p>
 
 
     <h3>Arguments</h3>
@@ -183,67 +179,37 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~203"></span>
-              class(<a href='../type/boundary_type.html'>boundary_type</a>)
-            </td>
-<td></td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>me</strong></td>
-            <td>
-                <p>global boundary type</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-state~123"></span>
-              real(kind=rk),
+              <span class="anchor" id="variable-method~15"></span>
+              class(<a href='../type/mus_interpolation_method_type.html'>mus_interpolation_method_type</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>state</strong>(:)</td>
+            <td><strong>method</strong></td>
             <td>
-                <p>Current state vector of iLevel</p>
+                
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-bcbuffer~61"></span>
-              real(kind=rk),
+              <span class="anchor" id="variable-fieldprop~163"></span>
+              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
             </td>
-<td>intent(in)</td>
+<td>intent(in),</td>
               <td></td>            <td>
-              
+              target
             </td>
             <td>::</td>
-            <td><strong>bcBuffer</strong>(:)</td>
+            <td><strong>fieldProp</strong>(:)</td>
             <td>
-                <p>state values of boundary elements of all fields of iLevel</p>
+                <p>Array of field properties (fluid or species)</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-globbc~83"></span>
-              type(<a href='../type/glob_boundary_type.html'>glob_boundary_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>globBC</strong></td>
-            <td>
-                <p>scheme global boundary type</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-leveldesc~98"></span>
+              <span class="anchor" id="variable-tleveldesc~15"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_leveldesc_type.html'>tem_levelDesc_type</a>),
             </td>
 <td>intent(in)</td>
@@ -251,29 +217,14 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>levelDesc</strong></td>
+            <td><strong>tLevelDesc</strong></td>
             <td>
-                <p>iLevel descriptor</p>
+                <p>level descriptor on target level</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-tree~182"></span>
-              type(<a href='https://apes-suite.github.io/treelm/type/treelmesh_type.html'>treelmesh_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>tree</strong></td>
-            <td>
-                <p>Treelm Mesh</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nsize~123"></span>
+              <span class="anchor" id="variable-level~114"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -281,14 +232,29 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>nSize</strong></td>
+            <td><strong>level</strong></td>
             <td>
-                <p>size of state array ( in terms of elements )</p>
+                <p>my refinement level</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ilevel~317"></span>
+              <span class="anchor" id="variable-sstate~8"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sState</strong>(:)</td>
+            <td>
+                <p>State vector of SOURCE FLUID elements</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-sneigh~8"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -296,29 +262,14 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>iLevel</strong></td>
+            <td><strong>sNeigh</strong>(:)</td>
             <td>
-                <p>the level On which this boundary was invoked</p>
+                
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-sim_time~57"></span>
-              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>sim_time</strong></td>
-            <td>
-                <p>global time information</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-neigh~207"></span>
+              <span class="anchor" id="variable-snsize~8"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -326,14 +277,74 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>neigh</strong>(:)</td>
+            <td><strong>snSize</strong></td>
             <td>
-                <p>connectivity array corresponding to state vector</p>
+                
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~234"></span>
+              <span class="anchor" id="variable-sauxfield~10"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>sAuxField</strong>(:)</td>
+            <td>
+                <p>AuxField variable to read rho and vel from source elements</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tstate~8"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tState</strong>(:)</td>
+            <td>
+                <p>State vector of TARGET GHOST elements</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tneigh~8"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tNeigh</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-tnsize~8"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>tnSize</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~277"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(in)</td>
@@ -343,27 +354,12 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
             <td>::</td>
             <td><strong>layout</strong></td>
             <td>
-                <p>stencil layout information</p>
+                <p>the layout used</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-fieldprop~136"></span>
-              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>fieldProp</strong></td>
-            <td>
-                <p>fluid parameters and properties</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-varpos~82"></span>
+              <span class="anchor" id="variable-ntargets~13"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -371,14 +367,14 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>varPos</strong>(:)</td>
+            <td><strong>nTargets</strong></td>
             <td>
-                <p>pointer to field variable in the state vector</p>
+                <p>List of target elements ( their position in depSource list )</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nscalars~192"></span>
+              <span class="anchor" id="variable-targetlist~13"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -386,14 +382,52 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>nScalars</strong></td>
+            <td><strong>targetList</strong>(nTargets)</td>
             <td>
-                <p>number of Scalars in the scheme var system</p>
+                
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~393"></span>
+              <span class="anchor" id="variable-physics~113"></span>
+              type(<a href='../type/mus_physics_type.html'>mus_physics_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>physics</strong></td>
+            <td>
+                <p>physics type to convert lattice to physics SI unit and vice versa</p>
+<div class="alert alert-success">
+<dl>
+<dt>Todo</dt>
+<dd>
+<p>This can be replaced by scale factor by level</p>
+</dd>
+</dl>
+</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-time~203"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time</strong></td>
+            <td>
+                <p>time required to compute viscosity on target element barycenter</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~439"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -408,7 +442,7 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~215"></span>
+              <span class="anchor" id="variable-dervarpos~245"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -416,54 +450,9 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
               
             </td>
             <td>::</td>
-            <td><strong>derVarPos</strong></td>
+            <td><strong>derVarPos</strong>(:)</td>
             <td>
-                <p>position of derived quantities in varsys</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-physics~78"></span>
-              type(<a href='../type/mus_physics_type.html'>mus_physics_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>physics</strong></td>
-            <td>
-                <p>scheme global boundary type</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-ifield~202"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>iField</strong></td>
-            <td>
-                <p>current field</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-mixture~62"></span>
-              type(<a href='../type/mus_mixture_type.html'>mus_mixture_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>mixture</strong></td>
-            <td>
-                <p>mixture info</p>
+                <p>position of all derive variable in varSys for all fields</p>
             </td>
         </tr>
     </tbody>
@@ -494,13 +483,13 @@ callable via <a href="../type/boundary_type.html#variable-fnct">fnct</a> functio
             <p>
               Musubi
  was developed by University of Siegen<br>              &copy; 2025 
-<br /><small>d01bb484473c</small></p>
+<br /><small>9967fabbcbbc</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-24T09:44:22.475563+0000             </p>
+ on 2025-04-27T16:39:32.037806+0000             </p>
           </div>
         </div>
         <br>
