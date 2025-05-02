@@ -38,6 +38,7 @@ def build(bld):
         bld.recurse('aotus')
         bld.recurse('tem')
     else:
+        bld.load('coco')
         bld(rule='cp ${SRC} ${TGT}',
             source = bld.path.find_node(['tem', 'source', 'arrayMacros.inc']),
             target = bld.path.find_or_declare('arrayMacros.inc'))
