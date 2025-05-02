@@ -21,55 +21,27 @@ def configure(conf):
     import os
     conf.recurse('aotus', 'subconf')
     conf.recurse('bin', 'preconfigure')
-    # Initialize the coco preprocessing tool
-    conf.load('coco')
-    conf.env['COCOSET'] = 'default.coco'
-    if not conf.options.coco_reports:
-      # Make coco silent, if not explicitly asked for reports:
-      if conf.env.COCOFLAGS:
-        conf.env.COCOFLAGS.insert(0, '-s')
-        conf.env.COCOFLAGS.append('-ad')
-      else:
-        conf.env.COCOFLAGS = ['-s', '-ad']
+    # Use default.coco as coco settings file by default
+    if not conf.options.coco_set:
+        conf.options.coco_set = 'default.coco'
     conf.recurse('tem')
     conf.recurse('mus')
+    conf.recurse('bin', 'postconfigure')
 
 
 def build(bld):
     '''Build the Musubi project'''
     from revision_module import fill_revision_string
     bld.recurse('bin')
+    fill_revision_string(bld, subdir='mus')
     if not (bld.cmd == 'docu' and bld.env.fordonline):
         bld.recurse('aotus')
-    fill_revision_string(bld, subdir='mus')
-    bld(rule='cp ${SRC} ${TGT}', source=bld.env.COCOSET, target='coco.set')
-    if not (bld.cmd == 'docu' and bld.env.fordonline):
         bld.recurse('tem')
     else:
         bld(rule='cp ${SRC} ${TGT}',
             source = bld.path.find_node(['tem', 'source', 'arrayMacros.inc']),
             target = bld.path.find_or_declare('arrayMacros.inc'))
-        bld.add_group()
     bld.recurse('mus')
-
-    if not (bld.cmd == 'docu'):
-        bld.add_group()
-
-        bld(
-            rule = 'cp ${SRC} ${TGT[0].abspath()}',
-            source = bld.path.find_or_declare('mus/musubi'),
-            target = 'musubi'
-        )
-        bld(
-            rule = 'cp ${SRC} ${TGT[0].abspath()}',
-            source = bld.path.find_or_declare('mus/mus_harvesting'),
-            target = 'mus_harvesting'
-        )
-        bld(
-            rule = 'cp ${SRC} ${TGT[0].abspath()}',
-            source = bld.path.find_or_declare('aotus/lua'),
-            target = 'lua'
-        )
 
 #clean build directory and coco completely to create the build from scratch
 def cleanall(ctx):
