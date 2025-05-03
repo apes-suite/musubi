@@ -303,23 +303,23 @@
 stop the code before reaching the maximum time.
 Convergence sensors are actually objects part of the <code>sim_control</code> table with
 an additional <code>abort_criteria</code> table.</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">sim_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">...</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nv">abort_criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">...</span>
-<span class="w">    </span><span class="nv">convergence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">variable</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="p">{...},</span>
-<span class="w">      </span><span class="nv">shape</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="p">{...},</span>
-<span class="w">      </span><span class="nv">time_control</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">{...},</span>
-<span class="w">      </span><span class="nv">reduction</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">{...},</span>
-<span class="w">      </span><span class="nv">norm</span><span class="w">          </span><span class="o">=</span><span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="c1">-- &#39;simple&#39; or &#39;average&#39;</span>
-<span class="w">      </span><span class="nv">nvals</span><span class="w">         </span><span class="o">=</span><span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="p">,</span>
-<span class="w">      </span><span class="nv">absolute</span><span class="w">      </span><span class="o">=</span><span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="c1">-- &#39;true&#39; or &#39;false&#39;</span>
-<span class="w">      </span><span class="nv">condition</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="p">{...},</span><span class="w"> </span><span class="c1">-- nConditions == nVariables</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="n">sim_control</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">},</span>
+  <span class="n">abort_criteria</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="n">convergence</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">variable</span>      <span class="o">=</span> <span class="p">{...},</span>
+      <span class="n">shape</span>         <span class="o">=</span> <span class="p">{...},</span>
+      <span class="n">time_control</span>  <span class="o">=</span> <span class="p">{...},</span>
+      <span class="n">reduction</span>     <span class="o">=</span> <span class="p">{...},</span>
+      <span class="n">norm</span>          <span class="o">=</span>  <span class="p">...</span> <span class="p">,</span> <span class="c1">-- &#39;simple&#39; or &#39;average&#39;</span>
+      <span class="n">nvals</span>         <span class="o">=</span>  <span class="p">...</span> <span class="p">,</span>
+      <span class="n">absolute</span>      <span class="o">=</span>  <span class="p">...</span> <span class="p">,</span> <span class="c1">-- &#39;true&#39; or &#39;false&#39;</span>
+      <span class="n">condition</span>     <span class="o">=</span> <span class="p">{...},</span> <span class="c1">-- nConditions == nVariables</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -331,45 +331,45 @@ an additional <code>abort_criteria</code> table.</p>
 If we now want to add a convergence sensor to the simulation, we add the table
 <code>abort_criteria</code> to <code>sim_control</code>.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Simulation Control]</span>
-<span class="nv">sim_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">sim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">sim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">interval_phy</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3600</span><span class="w"> </span><span class="c1">--s</span>
-<span class="w">   </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Abort conditions for simulation</span>
-<span class="w">  </span><span class="nv">abort_criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">-- Abort if file with the name &#39;stop&#39; exist</span>
-<span class="w">    </span><span class="nv">stop_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stop&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">-- Abort if steady state is reached with condition defined in convergence</span>
-<span class="w">    </span><span class="c1">-- table</span>
-<span class="w">    </span><span class="nv">steady_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">-- Convergence condition for steady state check</span>
-<span class="w">    </span><span class="nv">convergence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">-- Variables to check</span>
-<span class="w">      </span><span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
-<span class="w">      </span><span class="c1">-- Check only point in middle of domain</span>
-<span class="w">      </span><span class="nv">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">}</span><span class="w"> </span><span class="p">}}</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="c1">-- Reduce variables values in space to single average value</span>
-<span class="w">      </span><span class="nv">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;average&#39;</span><span class="p">},</span>
-<span class="w">      </span><span class="c1">-- How often to do convergence?</span>
-<span class="w">      </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span><span class="w">  </span><span class="c1">-- Start convergence check after half sim. time</span>
-<span class="w">        </span><span class="nv">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="p">,</span><span class="w">      </span><span class="c1">-- DO convergence until end of simulation</span>
-<span class="w">        </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="nv">dt</span><span class="w">     </span><span class="c1">-- Do convernce check every 10*dt [s]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">norm</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">nvals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">absolute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="c1">-- Condition to statisfy to every variable</span>
-<span class="w">      </span><span class="nv">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nv">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.e-5</span><span class="p">,</span><span class="w"> </span><span class="nv">operator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;=&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="n">sim_control</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="p">{</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">tmax_phy</span> <span class="p">},</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">interval_phy</span> <span class="p">},</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="mi">3600</span> <span class="c1">--s</span>
+   <span class="p">},</span>
+  <span class="c1">-- Abort conditions for simulation</span>
+  <span class="n">abort_criteria</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">-- Abort if file with the name &#39;stop&#39; exist</span>
+    <span class="n">stop_file</span> <span class="o">=</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span>
+    <span class="c1">-- Abort if steady state is reached with condition defined in convergence</span>
+    <span class="c1">-- table</span>
+    <span class="n">steady_state</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">-- Convergence condition for steady state check</span>
+    <span class="n">convergence</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">-- Variables to check</span>
+      <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
+      <span class="c1">-- Check only point in middle of domain</span>
+      <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{{</span><span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">}</span> <span class="p">}}</span>
+      <span class="p">},</span>
+      <span class="c1">-- Reduce variables values in space to single average value</span>
+      <span class="n">reduction</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;average&#39;</span><span class="p">},</span>
+      <span class="c1">-- How often to do convergence?</span>
+      <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">min</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="c1">-- Start convergence check after half sim. time</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="p">,</span>      <span class="c1">-- DO convergence until end of simulation</span>
+        <span class="n">interval</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span>     <span class="c1">-- Do convernce check every 10*dt [s]</span>
+      <span class="p">},</span>
+      <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span>
+      <span class="n">nvals</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+      <span class="n">absolute</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="c1">-- Condition to statisfy to every variable</span>
+      <span class="n">condition</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">{</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.e-5</span><span class="p">,</span> <span class="n">operator</span> <span class="o">=</span> <span class="s1">&#39;&lt;=&#39;</span> <span class="p">},</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">--! [Simulation control]</span>
 </code></pre></div>
@@ -407,15 +407,15 @@ It should therefore be ensured that <em>Musubi</em> terminates cleanly upon reac
 such a time limit. You can define maximum wall clock limits, upon which
 <em>Musubi</em> then stops. In the time object, you just have to give the maximum
 number of seconds as:</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">sim_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tEnd</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">interval</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3600</span><span class="w"> </span><span class="c1">--s</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nv">abort_criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">...</span>
-<span class="w">  </span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="n">sim_control</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="n">tEnd</span><span class="p">,</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="n">interval</span><span class="p">,</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="mi">3600</span> <span class="c1">--s</span>
+  <span class="p">},</span>
+  <span class="n">abort_criteria</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -441,7 +441,7 @@ file. If encountered, <em>Musubi</em> terminates cleanly.</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-27T16:39:32.037806+0000             </p>
+ on 2025-05-03T12:42:00.509606+0000             </p>
           </div>
         </div>
         <br>

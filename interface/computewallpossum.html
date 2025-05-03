@@ -596,7 +596,7 @@ domain (in a different routine)</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~34"></span>
+              <span class="anchor" id="variable-this~12"></span>
               type(<a href='../type/mus_particle_mem_type.html'>mus_particle_MEM_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -611,7 +611,7 @@ domain (in a different routine)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-bcinteraction"></span>
+              <span class="anchor" id="variable-bcinteraction~2"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -627,7 +627,7 @@ each boundary. Indexed using boundary ID!</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-scheme~87"></span>
+              <span class="anchor" id="variable-scheme~53"></span>
               type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -642,7 +642,7 @@ each boundary. Indexed using boundary ID!</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~32"></span>
+              <span class="anchor" id="variable-stencil~36"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(in)</td>
@@ -657,7 +657,7 @@ each boundary. Indexed using boundary ID!</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-geometry~31"></span>
+              <span class="anchor" id="variable-geometry~29"></span>
               type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
             </td>
 <td>intent(in)</td>
@@ -672,7 +672,7 @@ each boundary. Indexed using boundary ID!</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-params~54"></span>
+              <span class="anchor" id="variable-params~41"></span>
               type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
             </td>
 <td>intent(in)</td>
@@ -687,7 +687,187 @@ each boundary. Indexed using boundary ID!</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rmflag~3"></span>
+              <span class="anchor" id="variable-rmflag~6"></span>
+              logical,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rmflag</strong></td>
+            <td>
+<p>Flag to indicate whether particle should be removed because it just
+hit a non-wall BC</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-foundwall"></span>
+              logical,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>foundWall</strong></td>
+            <td>
+<p>Flag to indicate whether we found a wall or not</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-wallpossum"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>wallPosSum</strong>(3)</td>
+            <td>
+<p>Sum of locations (x,y,z) of the detected walls</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nwallpos"></span>
+              integer,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nWallPos</strong></td>
+            <td>
+<p>Number of elements in wallPosSum</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+            <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-computewallpossum_dps"></span> <h3>public  subroutine <a href='../proc/computewallpossum_dps.html'>computeWallPosSum_DPS</a>(this, BCinteraction, scheme, stencil, geometry, params, rmflag, foundWall, wallPosSum, nWallPos)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>computeWallPosSum computes the sum of the locations of wall boundaries in the
+area surrounding the particle. It also sets rmflag to true if an open boundary
+is detected, indicating that this particle should be removed from the global
+domain (in a different routine)</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~13"></span>
+              type(<a href='../type/mus_particle_dps_type.html'>mus_particle_DPS_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-bcinteraction~3"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>BCinteraction</strong>(:)</td>
+            <td>
+<p>Array of length nBCs which tells us how particles should interact with
+each boundary. Indexed using boundary ID!</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-scheme~54"></span>
+              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>scheme</strong></td>
+            <td>
+<p>Scheme for access to level descriptor</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-stencil~37"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>stencil</strong></td>
+            <td>
+<p>Stencil for access to cq</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-geometry~30"></span>
+              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>geometry</strong></td>
+            <td>
+<p>Geometry information to determine TreeIDs of elements 'covered' by particle</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~42"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>Parameters for access to conversion factors between units</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rmflag~7"></span>
               logical,
             </td>
 <td>intent(out)</td>
@@ -733,187 +913,7 @@ hit a non-wall BC</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nwallpos~4"></span>
-              integer,
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nWallPos</strong></td>
-            <td>
-<p>Number of elements in wallPosSum</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-            <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-computewallpossum_dps"></span> <h3>public  subroutine <a href='../proc/computewallpossum_dps.html'>computeWallPosSum_DPS</a>(this, BCinteraction, scheme, stencil, geometry, params, rmflag, foundWall, wallPosSum, nWallPos)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>computeWallPosSum computes the sum of the locations of wall boundaries in the
-area surrounding the particle. It also sets rmflag to true if an open boundary
-is detected, indicating that this particle should be removed from the global
-domain (in a different routine)</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~35"></span>
-              type(<a href='../type/mus_particle_dps_type.html'>mus_particle_DPS_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-bcinteraction~2"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>BCinteraction</strong>(:)</td>
-            <td>
-<p>Array of length nBCs which tells us how particles should interact with
-each boundary. Indexed using boundary ID!</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-scheme~88"></span>
-              type(<a href='../type/mus_scheme_type.html'>mus_scheme_type</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>scheme</strong></td>
-            <td>
-<p>Scheme for access to level descriptor</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-stencil~33"></span>
-              type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>stencil</strong></td>
-            <td>
-<p>Stencil for access to cq</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-geometry~32"></span>
-              type(<a href='../type/mus_geom_type.html'>mus_geom_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>geometry</strong></td>
-            <td>
-<p>Geometry information to determine TreeIDs of elements 'covered' by particle</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-params~55"></span>
-              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>params</strong></td>
-            <td>
-<p>Parameters for access to conversion factors between units</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rmflag~4"></span>
-              logical,
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>rmflag</strong></td>
-            <td>
-<p>Flag to indicate whether particle should be removed because it just
-hit a non-wall BC</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-foundwall~3"></span>
-              logical,
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>foundWall</strong></td>
-            <td>
-<p>Flag to indicate whether we found a wall or not</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-wallpossum~3"></span>
-              real(kind=rk),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>wallPosSum</strong>(3)</td>
-            <td>
-<p>Sum of locations (x,y,z) of the detected walls</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nwallpos~5"></span>
+              <span class="anchor" id="variable-nwallpos~2"></span>
               integer,
             </td>
 <td>intent(out)</td>
@@ -950,7 +950,7 @@ hit a non-wall BC</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-27T16:39:32.037806+0000             </p>
+ on 2025-05-03T12:42:00.509606+0000             </p>
           </div>
         </div>
         <br>

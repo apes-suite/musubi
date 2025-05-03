@@ -182,13 +182,13 @@ author: Kannan Masilamani</p>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
+                  <li class="list-inline-item"><a href='mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
                   <li class="list-inline-item"><a href='mus_turbulence_module.html'>mus_turbulence_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_compileconf_module.html'>tem_compileconf_module</a></li>
                   <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
-                  <li class="list-inline-item"><a href='mus_graddata_module.html'>mus_gradData_module</a></li>
-                  <li class="list-inline-item"><a href='mus_derivedquantities_module2.html'>mus_derivedQuantities_module2</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_compileconf_module.html'>tem_compileconf_module</a></li>
+                  <li class="list-inline-item"><a href='mus_graddata_module.html'>mus_gradData_module</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -1313,6 +1313,358 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
     <tbody>
         <tr>
             <td>
+              <span class="anchor" id="variable-turbvisc"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>turbVisc</strong>(:)</td>
+            <td>
+<p>output: turbulent viscosity</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-turbconfig~2"></span>
+              type(<a href='../type/mus_turbulence_config_type.html'>mus_turbulence_config_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>turbConfig</strong></td>
+            <td>
+<p>Contains turbulenct coefficients</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-graddata~4"></span>
+              type(<a href='../type/mus_graddata_type.html'>mus_gradData_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gradData</strong></td>
+            <td>
+<p>gradient data</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~32"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~32"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dxl"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dxL</strong></td>
+            <td>
+<p>current level lattice element size</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dtl"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dtL</strong></td>
+            <td>
+<p>current level lattice time step size</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-grad"></span>
+              type(<a href='../type/mus_grad_type.html'>mus_Grad_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Grad</strong></td>
+            <td>
+<p>Object that contains pointers to calculate gradients</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromgradu2d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromgradu2d.html'>mus_turbVisc_Smagorinsky_fromGradU2D</a>(turbVisc, turbConfig, gradData, auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate eddy viscosity with smagorinsky model for compressible model
+using gradient of velocity for 2D layout</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-turbvisc~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>turbVisc</strong>(:)</td>
+            <td>
+<p>output: turbulent viscosity</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-turbconfig~3"></span>
+              type(<a href='../type/mus_turbulence_config_type.html'>mus_turbulence_config_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>turbConfig</strong></td>
+            <td>
+<p>Contains turbulenct coefficients</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-graddata~5"></span>
+              type(<a href='../type/mus_graddata_type.html'>mus_gradData_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>gradData</strong></td>
+            <td>
+<p>gradient data</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~33"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+<p>Auxiliary field variable array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>velPos</strong>(3)</td>
+            <td>
+<p>position of velocity components in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~33"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>Number of element to solve in this level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~12"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nAuxScalars</strong></td>
+            <td>
+<p>number of scalars in auxField array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dxl~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dxL</strong></td>
+            <td>
+<p>current level lattice element size</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dtl~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dtL</strong></td>
+            <td>
+<p>current level lattice time step size</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-grad~2"></span>
+              type(<a href='../type/mus_grad_type.html'>mus_Grad_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>Grad</strong></td>
+            <td>
+<p>Object that contains pointers to calculate gradients</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromgradu3d_incomp"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromgradu3d_incomp.html'>mus_turbVisc_Smagorinsky_fromGradU3D_incomp</a>(turbVisc, turbConfig, gradData, auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
+using gradient of velocity</p>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
               <span class="anchor" id="variable-turbvisc~3"></span>
               real(kind=rk),
             </td>
@@ -1343,7 +1695,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-graddata~7"></span>
+              <span class="anchor" id="variable-graddata~6"></span>
               type(<a href='../type/mus_graddata_type.html'>mus_gradData_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1358,7 +1710,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~82"></span>
+              <span class="anchor" id="variable-auxfield~34"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1373,7 +1725,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velpos~8"></span>
+              <span class="anchor" id="variable-velpos~13"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1388,7 +1740,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~45"></span>
+              <span class="anchor" id="variable-nsolve~34"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1403,7 +1755,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nauxscalars~5"></span>
+              <span class="anchor" id="variable-nauxscalars~13"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1418,7 +1770,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dxl~5"></span>
+              <span class="anchor" id="variable-dxl~3"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1433,7 +1785,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dtl~5"></span>
+              <span class="anchor" id="variable-dtl~3"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1448,7 +1800,7 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-grad~4"></span>
+              <span class="anchor" id="variable-grad~3"></span>
               type(<a href='../type/mus_grad_type.html'>mus_Grad_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1469,11 +1821,11 @@ a = C_e/delta, b=2/3 tr(dev(Strain)), c = 2 C_k delta (dev(Strain):Strain)</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromgradu2d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromgradu2d.html'>mus_turbVisc_Smagorinsky_fromGradU2D</a>(turbVisc, turbConfig, gradData, auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromgradu2d_incomp"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromgradu2d_incomp.html'>mus_turbVisc_Smagorinsky_fromGradU2D_incomp</a>(turbVisc, turbConfig, gradData, auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)  
 </h3></div>
     <div class="card-body">
           
-  <p>Calculate eddy viscosity with smagorinsky model for compressible model
+  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
 using gradient of velocity for 2D layout</p>
 
   <h4>Arguments</h4>
@@ -1519,7 +1871,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-graddata~8"></span>
+              <span class="anchor" id="variable-graddata~7"></span>
               type(<a href='../type/mus_graddata_type.html'>mus_gradData_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1534,7 +1886,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~83"></span>
+              <span class="anchor" id="variable-auxfield~35"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1549,7 +1901,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velpos~9"></span>
+              <span class="anchor" id="variable-velpos~14"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1564,7 +1916,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~46"></span>
+              <span class="anchor" id="variable-nsolve~35"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1579,7 +1931,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nauxscalars~6"></span>
+              <span class="anchor" id="variable-nauxscalars~14"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1594,7 +1946,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dxl~6"></span>
+              <span class="anchor" id="variable-dxl~4"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1609,7 +1961,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dtl~6"></span>
+              <span class="anchor" id="variable-dtl~4"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1624,7 +1976,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-grad~5"></span>
+              <span class="anchor" id="variable-grad~4"></span>
               type(<a href='../type/mus_grad_type.html'>mus_Grad_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1645,12 +1997,15 @@ using gradient of velocity for 2D layout</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromgradu3d_incomp"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromgradu3d_incomp.html'>mus_turbVisc_Smagorinsky_fromGradU3D_incomp</a>(turbVisc, turbConfig, gradData, auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_3d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_3d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_3D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
 </h3></div>
     <div class="card-body">
           
-  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
-using gradient of velocity</p>
+  <p>Calculate eddy viscosity with smagorinsky model for compressible model
+using pre-collision PDF.
+Schneider, A. (2015). A Consistent Large Eddy Approach for Lattice
+Boltzmann Methods and its Application to Complex Flows.
+Technical University Kaiserslautern.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1695,22 +2050,37 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-graddata~9"></span>
-              type(<a href='../type/mus_graddata_type.html'>mus_gradData_type</a>),
+              <span class="anchor" id="variable-state~24"></span>
+              real(kind=rk),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>gradData</strong></td>
+            <td><strong>state</strong>(:)</td>
             <td>
-<p>gradient data</p>
+<p>state array</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~84"></span>
+              <span class="anchor" id="variable-neigh~42"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~36"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1725,7 +2095,22 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velpos~10"></span>
+              <span class="anchor" id="variable-denspos~8"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~15"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1740,7 +2125,22 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~47"></span>
+              <span class="anchor" id="variable-nsize~28"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~36"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1755,7 +2155,22 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nauxscalars~7"></span>
+              <span class="anchor" id="variable-nscalars~37"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~15"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1770,7 +2185,22 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dxl~7"></span>
+              <span class="anchor" id="variable-layout~47"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dxl~5"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1785,7 +2215,7 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dtl~7"></span>
+              <span class="anchor" id="variable-dtl~5"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1800,17 +2230,17 @@ using gradient of velocity</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-grad~6"></span>
-              type(<a href='../type/mus_grad_type.html'>mus_Grad_type</a>),
+              <span class="anchor" id="variable-visckine~9"></span>
+              real(kind=rk),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>Grad</strong></td>
+            <td><strong>viscKine</strong>(:)</td>
             <td>
-<p>Object that contains pointers to calculate gradients</p>
+<p>Background kinematic viscosity in lattice divided by dtL</p>
             </td>
         </tr>
     </tbody>
@@ -1821,12 +2251,15 @@ using gradient of velocity</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromgradu2d_incomp"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromgradu2d_incomp.html'>mus_turbVisc_Smagorinsky_fromGradU2D_incomp</a>(turbVisc, turbConfig, gradData, auxField, velPos, nSolve, nAuxScalars, dxL, dtL, Grad)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_2d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_2d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_2D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
 </h3></div>
     <div class="card-body">
           
-  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
-using gradient of velocity for 2D layout</p>
+  <p>Calculate eddy viscosity with smagorinsky model for compressible model
+using pre-collision PDF.
+Schneider, A. (2015). A Consistent Large Eddy Approach for Lattice
+Boltzmann Methods and its Application to Complex Flows.
+Technical University Kaiserslautern.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1871,22 +2304,37 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-graddata~10"></span>
-              type(<a href='../type/mus_graddata_type.html'>mus_gradData_type</a>),
+              <span class="anchor" id="variable-state~25"></span>
+              real(kind=rk),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>gradData</strong></td>
+            <td><strong>state</strong>(:)</td>
             <td>
-<p>gradient data</p>
+<p>state array</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~85"></span>
+              <span class="anchor" id="variable-neigh~43"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+<p>neigh array to obtain precollision pdf</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~37"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1901,7 +2349,22 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velpos~11"></span>
+              <span class="anchor" id="variable-denspos~9"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>densPos</strong></td>
+            <td>
+<p>position of density in auxField</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-velpos~16"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1916,7 +2379,22 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~48"></span>
+              <span class="anchor" id="variable-nsize~29"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSize</strong></td>
+            <td>
+<p>number of elements in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~37"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1931,7 +2409,22 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nauxscalars~8"></span>
+              <span class="anchor" id="variable-nscalars~38"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nScalars</strong></td>
+            <td>
+<p>number of scalars in state array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nauxscalars~16"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1946,7 +2439,22 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dxl~8"></span>
+              <span class="anchor" id="variable-layout~48"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>scheme layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dxl~6"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1961,7 +2469,7 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dtl~8"></span>
+              <span class="anchor" id="variable-dtl~6"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1976,17 +2484,17 @@ using gradient of velocity for 2D layout</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-grad~7"></span>
-              type(<a href='../type/mus_grad_type.html'>mus_Grad_type</a>),
+              <span class="anchor" id="variable-visckine~10"></span>
+              real(kind=rk),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>Grad</strong></td>
+            <td><strong>viscKine</strong>(:)</td>
             <td>
-<p>Object that contains pointers to calculate gradients</p>
+<p>Background kinematic viscosity in lattice divided by dtL</p>
             </td>
         </tr>
     </tbody>
@@ -1997,15 +2505,12 @@ using gradient of velocity for 2D layout</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_3d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_3d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_3D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_incomp_3D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
 </h3></div>
     <div class="card-body">
           
-  <p>Calculate eddy viscosity with smagorinsky model for compressible model
-using pre-collision PDF.
-Schneider, A. (2015). A Consistent Large Eddy Approach for Lattice
-Boltzmann Methods and its Application to Complex Flows.
-Technical University Kaiserslautern.</p>
+  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
+using pre-collision PDF</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2050,7 +2555,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~107"></span>
+              <span class="anchor" id="variable-state~26"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2065,7 +2570,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~145"></span>
+              <span class="anchor" id="variable-neigh~44"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2080,7 +2585,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~86"></span>
+              <span class="anchor" id="variable-auxfield~38"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2095,7 +2600,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-denspos~4"></span>
+              <span class="anchor" id="variable-denspos~10"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2110,7 +2615,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velpos~12"></span>
+              <span class="anchor" id="variable-velpos~17"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2125,7 +2630,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~105"></span>
+              <span class="anchor" id="variable-nsize~30"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2140,7 +2645,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~49"></span>
+              <span class="anchor" id="variable-nsolve~38"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2155,7 +2660,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nscalars~131"></span>
+              <span class="anchor" id="variable-nscalars~39"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2170,7 +2675,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nauxscalars~9"></span>
+              <span class="anchor" id="variable-nauxscalars~17"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2185,7 +2690,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~128"></span>
+              <span class="anchor" id="variable-layout~49"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2200,7 +2705,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dxl~9"></span>
+              <span class="anchor" id="variable-dxl~7"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2215,7 +2720,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dtl~9"></span>
+              <span class="anchor" id="variable-dtl~7"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2230,7 +2735,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-visckine~13"></span>
+              <span class="anchor" id="variable-visckine~11"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2251,15 +2756,12 @@ Technical University Kaiserslautern.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_2d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_2d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_2D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_incomp_2d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_incomp_2d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_incomp_2D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
 </h3></div>
     <div class="card-body">
           
-  <p>Calculate eddy viscosity with smagorinsky model for compressible model
-using pre-collision PDF.
-Schneider, A. (2015). A Consistent Large Eddy Approach for Lattice
-Boltzmann Methods and its Application to Complex Flows.
-Technical University Kaiserslautern.</p>
+  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
+using pre-collision PDF</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2304,7 +2806,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-state~108"></span>
+              <span class="anchor" id="variable-state~27"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2319,7 +2821,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~146"></span>
+              <span class="anchor" id="variable-neigh~45"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2334,7 +2836,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~87"></span>
+              <span class="anchor" id="variable-auxfield~39"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2349,7 +2851,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-denspos~5"></span>
+              <span class="anchor" id="variable-denspos~11"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2364,7 +2866,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-velpos~13"></span>
+              <span class="anchor" id="variable-velpos~18"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2379,7 +2881,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsize~106"></span>
+              <span class="anchor" id="variable-nsize~31"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2394,7 +2896,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~50"></span>
+              <span class="anchor" id="variable-nsolve~39"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2409,7 +2911,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nscalars~132"></span>
+              <span class="anchor" id="variable-nscalars~40"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2424,7 +2926,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nauxscalars~10"></span>
+              <span class="anchor" id="variable-nauxscalars~18"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2439,7 +2941,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~129"></span>
+              <span class="anchor" id="variable-layout~50"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(in)</td>
@@ -2454,7 +2956,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dxl~10"></span>
+              <span class="anchor" id="variable-dxl~8"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2469,7 +2971,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dtl~10"></span>
+              <span class="anchor" id="variable-dtl~8"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -2484,509 +2986,7 @@ Technical University Kaiserslautern.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-visckine~14"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>viscKine</strong>(:)</td>
-            <td>
-<p>Background kinematic viscosity in lattice divided by dtL</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_incomp_3d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_incomp_3D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
-using pre-collision PDF</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-turbvisc~9"></span>
-              real(kind=rk),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>turbVisc</strong>(:)</td>
-            <td>
-<p>output: turbulent viscosity</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-turbconfig~10"></span>
-              type(<a href='../type/mus_turbulence_config_type.html'>mus_turbulence_config_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>turbConfig</strong></td>
-            <td>
-<p>Contains turbulenct coefficients</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-state~109"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>state</strong>(:)</td>
-            <td>
-<p>state array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-neigh~147"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>neigh</strong>(:)</td>
-            <td>
-<p>neigh array to obtain precollision pdf</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-auxfield~88"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>auxField</strong>(:)</td>
-            <td>
-<p>Auxiliary field variable array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-denspos~6"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>densPos</strong></td>
-            <td>
-<p>position of density in auxField</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-velpos~14"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>velPos</strong>(3)</td>
-            <td>
-<p>position of velocity components in auxField</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nsize~107"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nSize</strong></td>
-            <td>
-<p>number of elements in state array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nsolve~51"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nSolve</strong></td>
-            <td>
-<p>Number of element to solve in this level</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nscalars~133"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nScalars</strong></td>
-            <td>
-<p>number of scalars in state array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nauxscalars~11"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nAuxScalars</strong></td>
-            <td>
-<p>number of scalars in auxField array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-layout~130"></span>
-              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>layout</strong></td>
-            <td>
-<p>scheme layout</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-dxl~11"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>dxL</strong></td>
-            <td>
-<p>current level lattice element size</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-dtl~11"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>dtL</strong></td>
-            <td>
-<p>current level lattice time step size</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-visckine~15"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>viscKine</strong>(:)</td>
-            <td>
-<p>Background kinematic viscosity in lattice divided by dtL</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_turbvisc_smagorinsky_fromprecolpdf_incomp_2d"></span> <h3>public  subroutine <a href='../proc/mus_turbvisc_smagorinsky_fromprecolpdf_incomp_2d.html'>mus_turbVisc_Smagorinsky_fromPreColPDF_incomp_2D</a>(turbVisc, turbConfig, state, neigh, auxField, densPos, velPos, nSize, nSolve, nScalars, nAuxScalars, layout, dxL, dtL, viscKine)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Calculate eddy viscosity with smagorinsky model for incompressible model
-using pre-collision PDF</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-turbvisc~10"></span>
-              real(kind=rk),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>turbVisc</strong>(:)</td>
-            <td>
-<p>output: turbulent viscosity</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-turbconfig~11"></span>
-              type(<a href='../type/mus_turbulence_config_type.html'>mus_turbulence_config_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>turbConfig</strong></td>
-            <td>
-<p>Contains turbulenct coefficients</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-state~110"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>state</strong>(:)</td>
-            <td>
-<p>state array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-neigh~148"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>neigh</strong>(:)</td>
-            <td>
-<p>neigh array to obtain precollision pdf</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-auxfield~89"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>auxField</strong>(:)</td>
-            <td>
-<p>Auxiliary field variable array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-denspos~7"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>densPos</strong></td>
-            <td>
-<p>position of density in auxField</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-velpos~15"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>velPos</strong>(3)</td>
-            <td>
-<p>position of velocity components in auxField</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nsize~108"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nSize</strong></td>
-            <td>
-<p>number of elements in state array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nsolve~52"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nSolve</strong></td>
-            <td>
-<p>Number of element to solve in this level</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nscalars~134"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nScalars</strong></td>
-            <td>
-<p>number of scalars in state array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nauxscalars~12"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nAuxScalars</strong></td>
-            <td>
-<p>number of scalars in auxField array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-layout~131"></span>
-              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>layout</strong></td>
-            <td>
-<p>scheme layout</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-dxl~12"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>dxL</strong></td>
-            <td>
-<p>current level lattice element size</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-dtl~12"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>dtL</strong></td>
-            <td>
-<p>current level lattice time step size</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-visckine~16"></span>
+              <span class="anchor" id="variable-visckine~12"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -3029,7 +3029,7 @@ using pre-collision PDF</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-27T16:39:32.037806+0000             </p>
+ on 2025-05-03T12:42:00.509606+0000             </p>
           </div>
         </div>
         <br>

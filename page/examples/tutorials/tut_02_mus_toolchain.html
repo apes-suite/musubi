@@ -328,20 +328,20 @@ Some parts will be explained in more depths later.</p>
 / global variables like sizes and the refinement levels of the mesh.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Global variables]</span>
 <span class="c1">-- Height of the channel [m]</span>
-<span class="nv">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="c1">-- Length to height ratio</span>
-<span class="nv">l_h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8.0</span>
+<span class="n">l_h</span> <span class="o">=</span> <span class="mf">8.0</span>
 <span class="c1">-- Length of the channel [m]</span>
-<span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">l_h</span><span class="o">*</span><span class="nv">height</span>
+<span class="n">length</span> <span class="o">=</span> <span class="n">l_h</span><span class="o">*</span><span class="n">height</span>
 <span class="c1">-- Depth of the channel [m]</span>
-<span class="nv">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">length</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="n">length</span>
 <span class="c1">-- General level of mesh refinement</span>
-<span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">8</span>
+<span class="n">level</span> <span class="o">=</span>  <span class="mi">8</span>
 <span class="c1">-- Special levels for local refinement. Set to 0 to make refinement optional.</span>
 <span class="c1">-- If it should be used, activate useRefine in the &#39;Geometry definition&#39;. The</span>
 <span class="c1">-- refinmentLevels will be increased then.</span>
-<span class="nv">refinementLevel</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
-<span class="nv">refinementLevel2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="n">refinementLevel</span>  <span class="o">=</span> <span class="mi">0</span>
+<span class="n">refinementLevel2</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="c1">--outputpreview = true</span>
 <span class="c1">--! [Global variables]</span>
 </code></pre></div>
@@ -351,14 +351,14 @@ activate or deactivate some parts of the script which give us some flexiblity to
 easily modify the case. With this script we can have a look at the effect of
 qvalues, periodic boundaries and the use of different STL files.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Geometry definition]</span>
-<span class="nv">case2d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">           </span><span class="c1">-- Creates a 2D channel if set to true</span>
-<span class="nv">usePeriodic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">       </span><span class="c1">-- Activates periodic boundaries</span>
-<span class="nv">qValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">           </span><span class="c1">-- Activates qvalues</span>
-<span class="nv">useObstacle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">      </span><span class="c1">-- Activates obstacle in the channel</span>
-<span class="nv">fixHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">         </span><span class="c1">-- Channel&#39;s height is fixed and is used to compute dx</span>
-<span class="nv">useRefine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">        </span><span class="c1">-- Activate refinement, increase levels by 1 and 2.</span>
-<span class="nv">smoothlevels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">     </span><span class="c1">-- False avoids refinement of single elements.</span>
-<span class="nv">smoothbounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">     </span><span class="c1">-- False avoids refinement of single elements.</span>
+<span class="n">case2d</span> <span class="o">=</span> <span class="kc">false</span>           <span class="c1">-- Creates a 2D channel if set to true</span>
+<span class="n">usePeriodic</span> <span class="o">=</span> <span class="kc">true</span>       <span class="c1">-- Activates periodic boundaries</span>
+<span class="n">qValues</span> <span class="o">=</span> <span class="kc">true</span>           <span class="c1">-- Activates qvalues</span>
+<span class="n">useObstacle</span> <span class="o">=</span> <span class="kc">false</span>      <span class="c1">-- Activates obstacle in the channel</span>
+<span class="n">fixHeight</span> <span class="o">=</span> <span class="kc">true</span>         <span class="c1">-- Channel&#39;s height is fixed and is used to compute dx</span>
+<span class="n">useRefine</span> <span class="o">=</span> <span class="kc">false</span>        <span class="c1">-- Activate refinement, increase levels by 1 and 2.</span>
+<span class="n">smoothlevels</span> <span class="o">=</span> <span class="kc">false</span>     <span class="c1">-- False avoids refinement of single elements.</span>
+<span class="n">smoothbounds</span> <span class="o">=</span> <span class="kc">false</span>     <span class="c1">-- False avoids refinement of single elements.</span>
 <span class="c1">--! [Geometry definition]</span>
 </code></pre></div>
 
@@ -366,31 +366,31 @@ qvalues, periodic boundaries and the use of different STL files.</p>
 <code>dx</code> is computed by the specified height of the channel. Else <code>dx</code> is computed
 defining the length of the channel first.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [dx computed by height]</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">fixHeight</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="c1">-- Number of elements in the height</span>
-<span class="w">  </span><span class="nv">nHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="nv">level</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
-<span class="w">  </span><span class="c1">-- Element size [m]</span>
-<span class="w">  </span><span class="nv">dx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">height</span><span class="o">/</span><span class="nv">nHeight</span>
-<span class="w">  </span><span class="c1">-- Number of elements in bounding cube</span>
-<span class="w">  </span><span class="c1">-- = number of elements in channel + inlet + outlet</span>
-<span class="w">  </span><span class="nv">nLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">nHeight</span><span class="o">*</span><span class="nv">l_h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span>
-<span class="w">  </span><span class="c1">-- Level required to reach computed dx</span>
-<span class="w">  </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">math.ceil</span><span class="p">(</span><span class="w"> </span><span class="nb">math.log</span><span class="p">(</span><span class="nv">nLength</span><span class="p">)</span><span class="o">/</span><span class="nb">math.log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="w">  </span><span class="c1">-- Length of the bounding cube</span>
-<span class="w">  </span><span class="nv">length_bnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="nv">level</span><span class="p">)</span><span class="o">*</span><span class="nv">dx</span>
+<span class="kr">if</span> <span class="n">fixHeight</span> <span class="kr">then</span>
+  <span class="c1">-- Number of elements in the height</span>
+  <span class="n">nHeight</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">level</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+  <span class="c1">-- Element size [m]</span>
+  <span class="n">dx</span> <span class="o">=</span> <span class="n">height</span><span class="o">/</span><span class="n">nHeight</span>
+  <span class="c1">-- Number of elements in bounding cube</span>
+  <span class="c1">-- = number of elements in channel + inlet + outlet</span>
+  <span class="n">nLength</span> <span class="o">=</span> <span class="n">nHeight</span><span class="o">*</span><span class="n">l_h</span> <span class="o">+</span> <span class="mi">2</span>
+  <span class="c1">-- Level required to reach computed dx</span>
+  <span class="n">level</span> <span class="o">=</span> <span class="nb">math.ceil</span><span class="p">(</span> <span class="nb">math.log</span><span class="p">(</span><span class="n">nLength</span><span class="p">)</span><span class="o">/</span><span class="nb">math.log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+  <span class="c1">-- Length of the bounding cube</span>
+  <span class="n">length_bnd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">level</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span>
 <span class="c1">--! [dx computed by height]</span>
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [dx computed by length]</span>
 <span class="kr">else</span>
-<span class="w">  </span><span class="c1">-- Length of the bounding cube</span>
-<span class="w">  </span><span class="nv">length_bnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">length</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="mi">2</span><span class="o">^</span><span class="nv">level</span><span class="p">)</span>
-<span class="w">  </span><span class="c1">-- Element size [m]</span>
-<span class="w">  </span><span class="nv">dx</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">length_bnd</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">^</span><span class="nv">level</span><span class="p">)</span>
-<span class="w">  </span><span class="c1">-- Number of elements in height</span>
-<span class="w">  </span><span class="nv">nHeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="nb">math.floor</span><span class="p">(</span><span class="nv">length</span><span class="o">/</span><span class="p">(</span><span class="nv">dx</span><span class="o">*</span><span class="mf">2.0</span><span class="o">*</span><span class="nv">l_h</span><span class="p">))</span>
-<span class="w">  </span><span class="c1">-- Height of the channel</span>
-<span class="w">  </span><span class="nv">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">nHeight</span><span class="o">*</span><span class="nv">dx</span>
+  <span class="c1">-- Length of the bounding cube</span>
+  <span class="n">length_bnd</span> <span class="o">=</span> <span class="n">length</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">2.0</span><span class="o">/</span><span class="mi">2</span><span class="o">^</span><span class="n">level</span><span class="p">)</span>
+  <span class="c1">-- Element size [m]</span>
+  <span class="n">dx</span>  <span class="o">=</span> <span class="n">length_bnd</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">^</span><span class="n">level</span><span class="p">)</span>
+  <span class="c1">-- Number of elements in height</span>
+  <span class="n">nHeight</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">*</span><span class="nb">math.floor</span><span class="p">(</span><span class="n">length</span><span class="o">/</span><span class="p">(</span><span class="n">dx</span><span class="o">*</span><span class="mf">2.0</span><span class="o">*</span><span class="n">l_h</span><span class="p">))</span>
+  <span class="c1">-- Height of the channel</span>
+  <span class="n">height</span> <span class="o">=</span> <span class="n">nHeight</span><span class="o">*</span><span class="n">dx</span>
 <span class="kr">end</span>
 <span class="c1">--! [dx computed by length]</span>
 </code></pre></div>
@@ -400,53 +400,53 @@ channel. You might change them and compare the effects later on in Paraview.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Reference values]</span>
 <span class="c1">-- A minimum level, by which all parts in the computational domain should at</span>
 <span class="c1">-- least be resolved with. Default is 0. Here, set it to value calcualted above.</span>
-<span class="nv">minlevel</span><span class="o">=</span><span class="nv">level</span>
+<span class="n">minlevel</span><span class="o">=</span><span class="n">level</span>
 <span class="c1">-- A maximum level, which is reached on finest level of refinement.</span>
-<span class="nv">maxLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">level</span><span class="o">+</span><span class="nb">math.max</span><span class="p">(</span><span class="nv">refinementLevel</span><span class="p">,</span><span class="w"> </span><span class="nv">refinementLevel2</span><span class="p">)</span>
+<span class="n">maxLevel</span> <span class="o">=</span> <span class="n">level</span><span class="o">+</span><span class="nb">math.max</span><span class="p">(</span><span class="n">refinementLevel</span><span class="p">,</span> <span class="n">refinementLevel2</span><span class="p">)</span>
 <span class="c1">-- Smallest element size (on finest level) [m]</span>
-<span class="nv">dxMin</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">length_bnd</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="nv">maxLevel</span><span class="p">)</span>
+<span class="n">dxMin</span>  <span class="o">=</span> <span class="n">length_bnd</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">maxLevel</span><span class="p">)</span>
 <span class="c1">-- Half of element size on finest level [m]</span>
-<span class="nv">dx_half</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">dxMin</span>
+<span class="n">dx_half</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dxMin</span>
 <span class="c1">-- Smallest possible element size</span>
-<span class="nv">dx_eps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">length_bnd</span><span class="o">/</span><span class="mi">2</span><span class="o">^</span><span class="mi">20</span>
+<span class="n">dx_eps</span> <span class="o">=</span> <span class="n">length_bnd</span><span class="o">/</span><span class="mi">2</span><span class="o">^</span><span class="mi">20</span>
 </code></pre></div>
 
 <p>The next section is about refinement at selected positions.
 The usage of refinements is explained in <a href="tut_09_mus_multilevel.html">[chapter 09]</a>.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">-- Increase refinement levels, if useRefine is active.</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">useRefine</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nv">refinementLevel</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">refinementLevel</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">  </span><span class="c1">-- Refinement level 2 can only be one larger than 1, otherwise level jump is</span>
-<span class="w">  </span><span class="c1">-- too big.</span>
-<span class="w">  </span><span class="nv">refinementLevel2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">refinementLevel</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="kr">if</span> <span class="n">useRefine</span> <span class="kr">then</span>
+  <span class="n">refinementLevel</span>  <span class="o">=</span> <span class="n">refinementLevel</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="c1">-- Refinement level 2 can only be one larger than 1, otherwise level jump is</span>
+  <span class="c1">-- too big.</span>
+  <span class="n">refinementLevel2</span> <span class="o">=</span> <span class="n">refinementLevel</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="kr">end</span>
 
 <span class="c1">--! [Refinement box 1]</span>
 <span class="c1">-- Size of refinement box 1 in x-direction</span>
-<span class="nv">size_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.75</span><span class="o">*</span><span class="nv">length</span>
+<span class="n">size_x</span> <span class="o">=</span> <span class="mf">0.75</span><span class="o">*</span><span class="n">length</span>
 <span class="c1">-- Start of refinement box 1 (x)  based on length</span>
-<span class="nv">start_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.425</span><span class="o">*</span><span class="nv">length</span>
+<span class="n">start_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.425</span><span class="o">*</span><span class="n">length</span>
 <span class="c1">-- Size of refinement box 1 in y-direction</span>
-<span class="nv">size_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span>
+<span class="n">size_y</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">height</span>
 <span class="c1">-- Start of refinement box 1 (y)  based on height</span>
-<span class="nv">start_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="nv">height</span>
+<span class="n">start_y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">height</span>
 <span class="c1">-- Size of refinement box 1 in y-direction</span>
-<span class="nv">size_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span>
+<span class="n">size_z</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">height</span>
 <span class="c1">-- Start of refinement box 1 (z)  based on height</span>
-<span class="nv">start_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="nv">height</span>
+<span class="n">start_z</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.25</span><span class="o">*</span><span class="n">height</span>
 <span class="c1">--! [Refinement box 1]</span>
 
 
 <span class="c1">--! [Refinement box 2]</span>
 <span class="c1">-- Size of refinement box 2 in x-direction and start of it</span>
-<span class="nv">start2_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.375</span><span class="o">*</span><span class="nv">length</span>
-<span class="nv">size2_x</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">size_x</span>
+<span class="n">start2_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.375</span><span class="o">*</span><span class="n">length</span>
+<span class="n">size2_x</span>  <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">size_x</span>
 <span class="c1">-- Size of refinement box 2 in y-direction and start of it</span>
-<span class="nv">size2_y</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">size_y</span>
-<span class="nv">start2_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="w"> </span><span class="nv">size2_y</span>
+<span class="n">size2_y</span>  <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">size_y</span>
+<span class="n">start2_y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span> <span class="n">size2_y</span>
 <span class="c1">-- Size of refinement box 2 in z-direction and start of it</span>
-<span class="nv">size2_z</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">size2_y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_half</span>
-<span class="nv">start2_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">start2_y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">dx_half</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="n">size2_z</span>  <span class="o">=</span> <span class="n">size2_y</span> <span class="o">-</span> <span class="n">dx_half</span>
+<span class="n">start2_z</span> <span class="o">=</span> <span class="n">start2_y</span> <span class="o">+</span> <span class="n">dx_half</span><span class="o">/</span><span class="mf">2.0</span>
 <span class="c1">--! [Refinement box 2]</span>
 
 
@@ -458,9 +458,9 @@ simulation domain. It must be large enough, otherwise it just truncates all
 geometries that go beyond this cube.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Bounding cube]</span>
 <span class="c1">-- Bounding_cube: two entries (origin and length in this order, if no keys used)</span>
-<span class="nv">bounding_cube</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length_bnd</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length_bnd</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length_bnd</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">length_bnd</span>
+<span class="n">bounding_cube</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length_bnd</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length_bnd</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length_bnd</span> <span class="p">},</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="n">length_bnd</span>
 <span class="p">}</span>
 <span class="c1">--! [Bounding cube]</span>
 </code></pre></div>
@@ -469,129 +469,129 @@ geometries that go beyond this cube.</p>
 and some refinements. If <code>useRefine = false</code> the <code>level</code> of our refinement boxes
 will be the same as the rest of our mesh and so no refinement will be added.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Spatial objects]</span>
-<span class="nv">spatial_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;seed&#39;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">dx_half</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
+<span class="n">spatial_object</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;seed&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">dx_half</span> <span class="p">},</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
 <span class="c1">--! [Refinement box 1 &amp; 2]</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">refinementLevel</span><span class="o">+</span><span class="nv">level</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;box1&#39;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">start_x</span><span class="p">,</span><span class="w"> </span><span class="nv">start_y</span><span class="p">,</span><span class="w"> </span><span class="nv">start_z</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nv">size_x</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">size_y</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">size_z</span><span class="w"> </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">refinementLevel2</span><span class="o">+</span><span class="nv">level</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;box2&#39;</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">start2_x</span><span class="p">,</span><span class="w"> </span><span class="nv">start2_y</span><span class="p">,</span><span class="w"> </span><span class="nv">start2_z</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="nv">size2_x</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="nv">size2_y</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">size2_z</span><span class="w"> </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="n">refinementLevel</span><span class="o">+</span><span class="n">level</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;box1&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">,</span> <span class="n">start_z</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="n">size_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size_y</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size_z</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;refinement&#39;</span><span class="p">,</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="n">refinementLevel2</span><span class="o">+</span><span class="n">level</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;box2&#39;</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="n">start2_x</span><span class="p">,</span> <span class="n">start2_y</span><span class="p">,</span> <span class="n">start2_z</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="n">size2_x</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span><span class="n">size2_y</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">size2_z</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
 <span class="c1">--! [Refinement box 1 &amp; 2]</span>
 </code></pre></div>
 
 <p>Here we can define our boundaries the <code>inlet</code> and the <code>outlet</code> of the channel.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Inlet and outlet boundary conditions]</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;east&#39;</span><span class="w"> </span><span class="c1">-- outlet</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="o">+</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="o">-</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">depth</span><span class="o">-</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;west&#39;</span><span class="w"> </span><span class="c1">-- inlet</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="o">-</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="o">-</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">depth</span><span class="o">-</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">},</span>
-<span class="w">        </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;east&#39;</span> <span class="c1">-- outlet</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">+</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+      <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;west&#39;</span> <span class="c1">-- inlet</span>
+    <span class="p">},</span>
+    <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
 <span class="c1">--! [Inlet and outlet boundary conditions]</span>
 </code></pre></div>
 
 <p>Here we can define our boundaries <code>north</code> and <code>south</code> of the channel.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Walls]</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;north&#39;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="o">-</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="o">+</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">depth</span><span class="o">-</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">}</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="s1">&#39;south&#39;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="o">-</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="o">-</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">depth</span><span class="o">-</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">},</span>
-<span class="w">          </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="w"> </span><span class="p">}</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;north&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">+</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+          <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;south&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span><span class="o">-</span><span class="n">dx_eps</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span><span class="o">-</span><span class="n">dx_eps</span> <span class="p">},</span>
+          <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span> <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
 <span class="c1">--! [Walls]</span>
 <span class="p">}</span>
 <span class="c1">--! [Spatial objects]</span>
@@ -610,43 +610,43 @@ table.</p>
 <span class="c1">-- If usePeriodic is active, periodic boundary conditions are used in depth,</span>
 <span class="c1">-- which means in z-direction in this case. This is one way of creating a quasi-</span>
 <span class="c1">-- 2D domain.</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">usePeriodic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nv">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dx</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;periodic&#39;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nv">plane1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">-- top plane</span>
-<span class="w">            </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">              </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">               </span><span class="nv">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">dx_half</span><span class="o">/</span><span class="mf">4.0</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nv">plane2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">-- bottom plane</span>
-<span class="w">            </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">              </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">              </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_half</span><span class="o">/</span><span class="mf">4.0</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">}</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">)</span>
+<span class="kr">if</span> <span class="n">usePeriodic</span> <span class="o">==</span> <span class="kc">true</span> <span class="kr">then</span>
+  <span class="n">depth</span> <span class="o">=</span> <span class="n">dx</span>
+  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;periodic&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;periodic&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;periodic&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">plane1</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">-- top plane</span>
+            <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span> <span class="o">-</span> <span class="n">dx_eps</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span> <span class="o">-</span> <span class="n">dx_eps</span><span class="p">,</span>
+               <span class="n">depth</span> <span class="o">+</span> <span class="n">dx_half</span><span class="o">/</span><span class="mf">4.0</span>
+            <span class="p">},</span>
+            <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+              <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="n">plane2</span> <span class="o">=</span> <span class="p">{</span> <span class="c1">-- bottom plane</span>
+            <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span> <span class="o">+</span> <span class="n">dx_eps</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span> <span class="o">+</span> <span class="n">dx_eps</span><span class="p">,</span>
+              <span class="o">-</span> <span class="n">dx_half</span><span class="o">/</span><span class="mf">4.0</span>
+            <span class="p">},</span>
+            <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+              <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
 <span class="c1">--! [Use periodic boundaries]</span>
 </code></pre></div>
 
@@ -660,56 +660,56 @@ a rectangular channel, where the depth is equal to the height.</p>
 <span class="c1">-- create a quasi-2D channel: a channel with 1 element in depth. If not, we</span>
 <span class="c1">-- create a 3D channel.</span>
 <span class="kr">else</span>
-<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="nv">case2d</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">    </span><span class="nv">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dx</span>
-<span class="w">  </span><span class="kr">else</span>
-<span class="w">    </span><span class="nv">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">height</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;top&#39;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">            </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">             </span><span class="mf">0.5</span><span class="o">*</span><span class="nv">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">dx_eps</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="c1">-- object</span>
-<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="c1">-- geometry</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">-- spatial object</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bottom&#39;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">            </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">height</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span><span class="p">,</span>
-<span class="w">            </span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="nv">depth</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">dx_eps</span>
-<span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nv">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="nv">dx_eps</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">}</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">},</span><span class="c1">-- object</span>
-<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="c1">-- geometry</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">-- spatial object</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="kr">end</span><span class="w"> </span><span class="c1">--periodic</span>
+  <span class="kr">if</span> <span class="n">case2d</span> <span class="kr">then</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">dx</span>
+  <span class="kr">else</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">height</span>
+  <span class="kr">end</span>
+  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;top&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span> <span class="o">-</span> <span class="n">dx_eps</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span> <span class="o">-</span> <span class="n">dx_eps</span><span class="p">,</span>
+             <span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span> <span class="o">+</span> <span class="n">dx_eps</span>
+          <span class="p">},</span>
+          <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="c1">-- object</span>
+      <span class="p">}</span> <span class="c1">-- geometry</span>
+    <span class="p">}</span> <span class="c1">-- spatial object</span>
+  <span class="p">)</span>
+  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bottom&#39;</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">length</span> <span class="o">-</span> <span class="n">dx_eps</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">height</span> <span class="o">-</span> <span class="n">dx_eps</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="n">depth</span> <span class="o">-</span> <span class="n">dx_eps</span>
+          <span class="p">},</span>
+          <span class="n">vec</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">height</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">dx_eps</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">},</span><span class="c1">-- object</span>
+      <span class="p">}</span> <span class="c1">-- geometry</span>
+    <span class="p">}</span> <span class="c1">-- spatial object</span>
+  <span class="p">)</span>
+<span class="kr">end</span> <span class="c1">--periodic</span>
 <span class="c1">--! [Non-periodic]</span>
 </code></pre></div>
 
@@ -722,45 +722,45 @@ refine the mesh at i.e. circular boundaries. This is done with
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Use of obstacles]</span>
 <span class="c1">-- If obstacle is true, we distinguish between 2D (cylinder) and 3D (sphere)</span>
 <span class="c1">-- case.</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">useObstacle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="nv">case2d</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">    </span><span class="nv">stlfile</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stl/cylinder.stl&#39;</span>
-<span class="w">    </span><span class="nv">stlLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cylinder&#39;</span>
-<span class="w">  </span><span class="kr">else</span>
-<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">usePeriodic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">      </span><span class="nv">stlfile</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stl/cylinder.stl&#39;</span>
-<span class="w">      </span><span class="nv">stlLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cylinder&#39;</span>
-<span class="w">    </span><span class="kr">else</span>
-<span class="w">      </span><span class="nv">stlfile</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stl/sphere.stl&#39;</span>
-<span class="w">      </span><span class="nv">stlLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;sphere&#39;</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="c1">-- If we use an obstacle, we can make use of qValues. Here, we also</span>
-<span class="w">  </span><span class="c1">-- distinguish between 2D (cylinder) and 3D (sphere). If we don&#39;t want to use</span>
-<span class="w">  </span><span class="c1">-- them.</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="nv">spatial_object</span><span class="p">,</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">attribute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">maxLevel</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stlLabel</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">calc_dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">qValues</span><span class="p">,</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">geometry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stl&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nv">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stlfile</span><span class="p">,</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">transformation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">-- Deformation factor to scale the obstacle. Here: 1 --&gt; remains the same.</span>
-<span class="w">        </span><span class="nv">deformation</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="c1">-- In this case, we do not have to move the geometry.</span>
-<span class="w">        </span><span class="nv">translation</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="kr">end</span><span class="w"> </span><span class="c1">-- useObstacle</span>
+<span class="kr">if</span> <span class="n">useObstacle</span> <span class="o">==</span> <span class="kc">true</span> <span class="kr">then</span>
+  <span class="kr">if</span> <span class="n">case2d</span> <span class="o">==</span> <span class="kc">true</span> <span class="kr">then</span>
+    <span class="n">stlfile</span>  <span class="o">=</span> <span class="s1">&#39;stl/cylinder.stl&#39;</span>
+    <span class="n">stlLabel</span> <span class="o">=</span> <span class="s1">&#39;cylinder&#39;</span>
+  <span class="kr">else</span>
+    <span class="kr">if</span> <span class="n">usePeriodic</span> <span class="o">==</span> <span class="kc">true</span> <span class="kr">then</span>
+      <span class="n">stlfile</span>  <span class="o">=</span> <span class="s1">&#39;stl/cylinder.stl&#39;</span>
+      <span class="n">stlLabel</span> <span class="o">=</span> <span class="s1">&#39;cylinder&#39;</span>
+    <span class="kr">else</span>
+      <span class="n">stlfile</span>  <span class="o">=</span> <span class="s1">&#39;stl/sphere.stl&#39;</span>
+      <span class="n">stlLabel</span> <span class="o">=</span> <span class="s1">&#39;sphere&#39;</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+  <span class="c1">-- If we use an obstacle, we can make use of qValues. Here, we also</span>
+  <span class="c1">-- distinguish between 2D (cylinder) and 3D (sphere). If we don&#39;t want to use</span>
+  <span class="c1">-- them.</span>
+  <span class="nb">table.insert</span><span class="p">(</span><span class="n">spatial_object</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="n">attribute</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;boundary&#39;</span><span class="p">,</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">maxLevel</span><span class="p">,</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">stlLabel</span><span class="p">,</span>
+        <span class="n">calc_dist</span> <span class="o">=</span> <span class="n">qValues</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="n">geometry</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;stl&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="n">filename</span> <span class="o">=</span> <span class="n">stlfile</span><span class="p">,</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="n">transformation</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">-- Deformation factor to scale the obstacle. Here: 1 --&gt; remains the same.</span>
+        <span class="n">deformation</span> <span class="o">=</span>  <span class="mi">1</span><span class="p">,</span>
+        <span class="c1">-- In this case, we do not have to move the geometry.</span>
+        <span class="n">translation</span> <span class="o">=</span>  <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+<span class="kr">end</span> <span class="c1">-- useObstacle</span>
 <span class="c1">--! [Use of obstacles]</span>
 </code></pre></div>
 
@@ -775,10 +775,10 @@ possibilities have a look at the
 <div class="codehilite"><pre><span></span><code><span class="c1">-- Mesh to visualize, this is the common mesh definition, as found in</span>
 <span class="c1">-- treelm/config.lua.</span>
 <span class="c1">-- Either a predefined mesh, or the prefix for a mesh on disk.</span>
-<span class="nv">mesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mesh/&#39;</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="s1">&#39;mesh/&#39;</span>
 
 <span class="c1">-- If restart table and mesh are present then priority is given to restart</span>
-<span class="nv">restart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="n">restart</span> <span class="o">=</span> <span class="p">{</span>
 <span class="c1">--   read = &#39;debug/final100_restart_ProtoData_header_100.lua&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -787,19 +787,19 @@ possibilities have a look at the
 <div class="codehilite"><pre><span></span><code><span class="c1">-- To dump complete mesh or restart file with out any tracking table</span>
 <span class="c1">-- just default output table with basename, format as shown below</span>
 <span class="c1">-- Configuration for the output to produce</span>
-<span class="nv">output_folder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;debug/&#39;</span><span class="w">    </span><span class="c1">-- Prefix to use for the produced files,</span>
-<span class="w">                            </span><span class="c1">-- if it ends in a &#39;/&#39;, this is a directory,</span>
-<span class="w">                            </span><span class="c1">-- which needs to exist!</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="s1">&#39;debug/&#39;</span>    <span class="c1">-- Prefix to use for the produced files,</span>
+                            <span class="c1">-- if it ends in a &#39;/&#39;, this is a directory,</span>
+                            <span class="c1">-- which needs to exist!</span>
 
-<span class="nv">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">format</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;vtk&#39;</span><span class="p">,</span><span class="w">     </span><span class="c1">-- Visualization file format, defaults to &#39;vtk&#39;</span>
-<span class="w">                        </span><span class="c1">-- Currently only vtk is supported here.</span>
-<span class="w">  </span><span class="nv">dataform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;binary&#39;</span><span class="p">,</span><span class="w">  </span><span class="c1">-- Form to write data in:</span>
-<span class="w">                        </span><span class="c1">--   - &#39;binary&#39;,  or</span>
-<span class="w">                        </span><span class="c1">--   - &#39;ascii&#39;</span>
-<span class="w">                        </span><span class="c1">-- Default is &#39;binary&#39;</span>
-<span class="w">  </span><span class="nv">write_pvd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w">     </span><span class="c1">-- write pvd file containing all timesteps</span>
-<span class="w">                        </span><span class="c1">-- Default is true</span>
+<span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">format</span>   <span class="o">=</span> <span class="s1">&#39;vtk&#39;</span><span class="p">,</span>     <span class="c1">-- Visualization file format, defaults to &#39;vtk&#39;</span>
+                        <span class="c1">-- Currently only vtk is supported here.</span>
+  <span class="n">dataform</span> <span class="o">=</span> <span class="s1">&#39;binary&#39;</span><span class="p">,</span>  <span class="c1">-- Form to write data in:</span>
+                        <span class="c1">--   - &#39;binary&#39;,  or</span>
+                        <span class="c1">--   - &#39;ascii&#39;</span>
+                        <span class="c1">-- Default is &#39;binary&#39;</span>
+  <span class="n">write_pvd</span> <span class="o">=</span> <span class="kc">false</span>     <span class="c1">-- write pvd file containing all timesteps</span>
+                        <span class="c1">-- Default is true</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -839,27 +839,27 @@ For the simulation you need to define:</p>
 </ol>
 <h3 id="1-basic-information">1. Basic Information</h3>
 <p>First we need to include <code>seeder.lua</code> to acess all geometric variables.</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">require</span><span class="w"> </span><span class="s2">&quot;seeder&quot;</span><span class="w"> </span><span class="c1">-- Tells musubi.lua to use defined variables from seeder.lua</span>
-<span class="nv">simulation_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">simName</span>
+<div class="codehilite"><pre><span></span><code><span class="nb">require</span> <span class="s2">&quot;seeder&quot;</span> <span class="c1">-- Tells musubi.lua to use defined variables from seeder.lua</span>
+<span class="n">simulation_name</span> <span class="o">=</span> <span class="n">simName</span>
 </code></pre></div>
 
 <p>We define local variables that we need to turn off or on a few features:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">-- Initialization of channel, for true --&gt; values&gt;0, false --&gt; initalized with 0</span>
-<span class="nv">initChannel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="n">initChannel</span> <span class="o">=</span> <span class="kc">false</span>
 </code></pre></div>
 
 <p>Next we define some variables:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Variables]</span>
 <span class="c1">-- Collision Model (bgk, trt, mrt)</span>
-<span class="nv">relaxationModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bgk&#39;</span>
+<span class="n">relaxationModel</span> <span class="o">=</span> <span class="s1">&#39;bgk&#39;</span>
 <span class="c1">-- Stencil (d1q3, d2q9, d3q6, d3q7, d3q19, d3q27)</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">case2d</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nv">stencil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;d2q9&#39;</span><span class="w"> </span><span class="c1">-- use 2D stencil</span>
+<span class="kr">if</span> <span class="n">case2d</span> <span class="kr">then</span>
+  <span class="n">stencil</span> <span class="o">=</span> <span class="s1">&#39;d2q9&#39;</span> <span class="c1">-- use 2D stencil</span>
 <span class="kr">else</span>
-<span class="w">  </span><span class="nv">stencil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;d3q19&#39;</span><span class="w"> </span><span class="c1">--use 3D stencil</span>
+  <span class="n">stencil</span> <span class="o">=</span> <span class="s1">&#39;d3q19&#39;</span> <span class="c1">--use 3D stencil</span>
 <span class="kr">end</span>
 <span class="c1">-- Physics (fluid, fluid_incompressible)</span>
-<span class="nv">physicsModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;fluid_incompressible&#39;</span>
+<span class="n">physicsModel</span> <span class="o">=</span> <span class="s1">&#39;fluid_incompressible&#39;</span>
 <span class="c1">--! [Variables]</span>
 </code></pre></div>
 
@@ -867,11 +867,11 @@ For the simulation you need to define:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Local variables]</span>
 <span class="c1">-- Flow parameters</span>
 <span class="c1">-- Density of the fluid [kg/m^3]</span>
-<span class="nv">rho0_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="n">rho0_phy</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="c1">-- Reynolds number of the flow</span>
-<span class="nv">Re</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span>
+<span class="n">Re</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="c1">-- speed of sound in air [m/s]</span>
-<span class="nv">cs_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">343</span>
+<span class="n">cs_phy</span> <span class="o">=</span> <span class="mi">343</span>
 </code></pre></div>
 
 <p>Other flow parameters like Mach number and viscosity are defined below depending
@@ -881,39 +881,39 @@ for fixed viscosity and omega.
 Here are timestep calculation for acoustic and diffusive scaling.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">------------------------ Compute physical timestep -----------------------------</span>
 <span class="c1">-- Lattice speed of sound</span>
-<span class="nv">cs_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
-<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nv">scaling</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;acoustic&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="c1">-- In acoustic scaling, Ma is fixed</span>
-<span class="w">  </span><span class="c1">-- Mach number</span>
-<span class="w">  </span><span class="nv">Ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.05</span>
-<span class="w">  </span><span class="c1">-- Inflow velocity computed from Ma number [m/s]</span>
-<span class="w">  </span><span class="nv">vel_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Ma</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">cs_phy</span>
-<span class="w">  </span><span class="c1">-- Kinematic viscosity of the fluid calculated from Re [m^2/s]</span>
-<span class="w">  </span><span class="nv">nu_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">vel_phy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">Re</span>
-<span class="w">  </span><span class="c1">-- Lattice velocity</span>
-<span class="w">  </span><span class="nv">vel_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Ma</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">cs_lat</span>
-<span class="w">  </span><span class="c1">-- Physical timestep computed from physical and lattice speed of sound</span>
-<span class="w">  </span><span class="nv">dt</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">cs_lat</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">cs_phy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">dx</span>
-<span class="w">  </span><span class="c1">-- Lattice viscosity</span>
-<span class="w">  </span><span class="nv">nu_lat</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">nu_phy</span><span class="o">*</span><span class="nv">dt</span><span class="w"> </span><span class="o">/</span><span class="nv">dx</span><span class="w"> </span><span class="o">/</span><span class="nv">dx</span>
-<span class="w">  </span><span class="c1">-- Relaxation parameter</span>
-<span class="w">  </span><span class="nv">omega</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="nv">nu_lat</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">cs_lat</span> <span class="o">=</span> <span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="kr">if</span> <span class="p">(</span><span class="n">scaling</span> <span class="o">==</span> <span class="s1">&#39;acoustic&#39;</span><span class="p">)</span> <span class="kr">then</span>
+  <span class="c1">-- In acoustic scaling, Ma is fixed</span>
+  <span class="c1">-- Mach number</span>
+  <span class="n">Ma</span> <span class="o">=</span> <span class="mf">0.05</span>
+  <span class="c1">-- Inflow velocity computed from Ma number [m/s]</span>
+  <span class="n">vel_phy</span> <span class="o">=</span> <span class="n">Ma</span> <span class="o">*</span> <span class="n">cs_phy</span>
+  <span class="c1">-- Kinematic viscosity of the fluid calculated from Re [m^2/s]</span>
+  <span class="n">nu_phy</span> <span class="o">=</span> <span class="n">vel_phy</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="n">Re</span>
+  <span class="c1">-- Lattice velocity</span>
+  <span class="n">vel_lat</span> <span class="o">=</span> <span class="n">Ma</span> <span class="o">*</span> <span class="n">cs_lat</span>
+  <span class="c1">-- Physical timestep computed from physical and lattice speed of sound</span>
+  <span class="n">dt</span>  <span class="o">=</span> <span class="n">cs_lat</span> <span class="o">/</span> <span class="n">cs_phy</span> <span class="o">*</span> <span class="n">dx</span>
+  <span class="c1">-- Lattice viscosity</span>
+  <span class="n">nu_lat</span>  <span class="o">=</span> <span class="n">nu_phy</span><span class="o">*</span><span class="n">dt</span> <span class="o">/</span><span class="n">dx</span> <span class="o">/</span><span class="n">dx</span>
+  <span class="c1">-- Relaxation parameter</span>
+  <span class="n">omega</span>   <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">nu_lat</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="kr">else</span>
-<span class="w">  </span><span class="c1">-- In diffusive scaling, Kinematic viscosity and omega are fixed</span>
-<span class="w">  </span><span class="c1">-- Kinematic viscosity of the fluid [m^2/s]</span>
-<span class="w">  </span><span class="nv">nu_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.285</span>
-<span class="w">  </span><span class="c1">-- Inflow velocity is computed from Re and viscosity [m/s]</span>
-<span class="w">  </span><span class="nv">vel_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Re</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">nu_phy</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">height</span>
-<span class="w">  </span><span class="c1">-- Relaxation parameter</span>
-<span class="w">  </span><span class="nv">omega</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">1.7</span>
-<span class="w">  </span><span class="c1">-- Lattice viscosity</span>
-<span class="w">  </span><span class="nv">nu_lat</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="nv">omega</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0</span>
-<span class="w">  </span><span class="c1">-- Physical timestep computed from physical and lattice velocity</span>
-<span class="w">  </span><span class="nv">dt</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nv">nu_lat</span><span class="o">/</span><span class="nv">nu_phy</span><span class="o">*</span><span class="nv">dx</span><span class="o">*</span><span class="nv">dx</span>
-<span class="w">  </span><span class="c1">-- Lattice velocity</span>
-<span class="w">  </span><span class="nv">vel_lat</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="nv">vel_phy</span><span class="o">*</span><span class="nv">dt</span><span class="o">/</span><span class="nv">dx</span>
-<span class="w">  </span><span class="c1">-- Mach number</span>
-<span class="w">  </span><span class="nv">Ma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">vel_lat</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">cs_lat</span>
+  <span class="c1">-- In diffusive scaling, Kinematic viscosity and omega are fixed</span>
+  <span class="c1">-- Kinematic viscosity of the fluid [m^2/s]</span>
+  <span class="n">nu_phy</span> <span class="o">=</span> <span class="mf">0.285</span>
+  <span class="c1">-- Inflow velocity is computed from Re and viscosity [m/s]</span>
+  <span class="n">vel_phy</span> <span class="o">=</span> <span class="n">Re</span> <span class="o">*</span> <span class="n">nu_phy</span> <span class="o">/</span> <span class="n">height</span>
+  <span class="c1">-- Relaxation parameter</span>
+  <span class="n">omega</span>   <span class="o">=</span> <span class="mf">1.7</span>
+  <span class="c1">-- Lattice viscosity</span>
+  <span class="n">nu_lat</span>  <span class="o">=</span> <span class="p">(</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">omega</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="p">)</span> <span class="o">/</span> <span class="mf">3.0</span>
+  <span class="c1">-- Physical timestep computed from physical and lattice velocity</span>
+  <span class="n">dt</span>      <span class="o">=</span> <span class="n">nu_lat</span><span class="o">/</span><span class="n">nu_phy</span><span class="o">*</span><span class="n">dx</span><span class="o">*</span><span class="n">dx</span>
+  <span class="c1">-- Lattice velocity</span>
+  <span class="n">vel_lat</span>     <span class="o">=</span> <span class="n">vel_phy</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span>
+  <span class="c1">-- Mach number</span>
+  <span class="n">Ma</span> <span class="o">=</span> <span class="n">vel_lat</span> <span class="o">*</span> <span class="n">cs_lat</span>
 <span class="kr">end</span>
 <span class="c1">--------------------------------------------------------------------------------</span>
 </code></pre></div>
@@ -923,8 +923,8 @@ phsical speed of sound (<code>cs</code>), which is especially for acoustic scali
 where this is fixed independently of the mesh cell sizes.</p>
 <p>The bulk viscosity for weakly-compressible model:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">-- Bulk viscosity</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">physicsModel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;fluid&#39;</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nv">bulk_visc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="o">/</span><span class="mf">3.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">nu_phy</span>
+<span class="kr">if</span> <span class="n">physicsModel</span> <span class="o">==</span> <span class="s1">&#39;fluid&#39;</span> <span class="kr">then</span>
+  <span class="n">bulk_visc</span> <span class="o">=</span> <span class="mf">2.0</span><span class="o">/</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">nu_phy</span>
 <span class="kr">end</span>
 </code></pre></div>
 
@@ -932,30 +932,30 @@ where this is fixed independently of the mesh cell sizes.</p>
 previous defined ones:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Reference LB values]</span>
 <span class="c1">-- Square of lattice speed of sound</span>
-<span class="nv">cs2_lat</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span>
+<span class="n">cs2_lat</span>  <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span>
 <span class="c1">-- Lattice density</span>
-<span class="nv">rho0_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span>
+<span class="n">rho0_lat</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="c1">--! [Reference LB values]</span>
 
 
 <span class="c1">--! [Reference pressure in physical unit]</span>
-<span class="nv">press_ambient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">rho0_phy</span><span class="o">*</span><span class="nv">cs_phy</span><span class="o">^</span><span class="mi">2</span>
+<span class="n">press_ambient</span> <span class="o">=</span> <span class="n">rho0_phy</span><span class="o">*</span><span class="n">cs_phy</span><span class="o">^</span><span class="mi">2</span>
 <span class="c1">--! [Reference pressure in physical unit]</span>
 </code></pre></div>
 
 <p>The last block defines some neccessery runtime variables:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">----------------------------- Time settings ------------------------------------</span>
 <span class="c1">-- Physical simulation end time [s]</span>
-<span class="nv">tmax_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span>
+<span class="n">tmax_phy</span> <span class="o">=</span> <span class="mf">10.0</span>
 <span class="c1">-- Number of iterations required to reach physical simulation end time.</span>
 <span class="c1">-- tmax_iter is also number of lattice iterations</span>
-<span class="nv">tmax_iter</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="nb">math.ceil</span><span class="p">(</span><span class="nv">tmax_phy</span><span class="o">/</span><span class="nv">dt</span><span class="p">)</span>
+<span class="n">tmax_iter</span> <span class="o">=</span>  <span class="nb">math.ceil</span><span class="p">(</span><span class="n">tmax_phy</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
 <span class="c1">-- Interval to check status of the simulation [s]</span>
-<span class="nv">interval_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="o">/</span><span class="mf">10.0</span>
+<span class="n">interval_phy</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="o">/</span><span class="mf">10.0</span>
 <span class="c1">-- Starting time for tracking output [s]</span>
-<span class="nv">trac_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="n">trac_start</span> <span class="o">=</span> <span class="mf">0.0</span>
 <span class="c1">-- Starting time for restart output [s]</span>
-<span class="nv">rest_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="o">/</span><span class="mf">4.0</span>
+<span class="n">rest_start</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="o">/</span><span class="mf">4.0</span>
 <span class="c1">------------------------- End of time settings ---------------------------------</span>
 <span class="c1">--! [Local variables]</span>
 </code></pre></div>
@@ -965,90 +965,90 @@ previous defined ones:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">---------------------------- Lua functions -------------------------------------</span>
 <span class="c1">--! [Pressure function]</span>
 <span class="c1">-- Pressure drop across the channel length for Poiseuille flow</span>
-<span class="nv">press_drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">vel_phy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">rho0_phy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">nu_phy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nv">height</span><span class="o">^</span><span class="mi">2</span>
-<span class="kr">function</span><span class="w"> </span><span class="nf">pressureRef</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="kr">return</span><span class="w"> </span><span class="nv">press_ambient</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">press_drop</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">x</span><span class="o">/</span><span class="nv">length</span><span class="p">)</span>
+<span class="n">press_drop</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">vel_phy</span> <span class="o">*</span> <span class="n">rho0_phy</span> <span class="o">*</span> <span class="n">nu_phy</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="n">height</span><span class="o">^</span><span class="mi">2</span>
+<span class="kr">function</span> <span class="nf">pressureRef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="kr">return</span> <span class="n">press_ambient</span> <span class="o">+</span> <span class="n">press_drop</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">x</span><span class="o">/</span><span class="n">length</span><span class="p">)</span>
 <span class="kr">end</span>
 <span class="c1">--! [Pressure function]</span>
 
 
 <span class="c1">--! [Boundary pressure]</span>
 <span class="c1">-- Pressure at inlet</span>
-<span class="nv">pressureIn</span><span class="o">=</span><span class="nf">pressureRef</span><span class="p">(</span><span class="o">-</span><span class="nv">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">pressureIn</span><span class="o">=</span><span class="n">pressureRef</span><span class="p">(</span><span class="o">-</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="c1">-- Pressure at outlet</span>
-<span class="nv">pressureOut</span><span class="o">=</span><span class="nf">pressureRef</span><span class="p">(</span><span class="nv">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">pressureOut</span><span class="o">=</span><span class="n">pressureRef</span><span class="p">(</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">)</span>
 <span class="c1">--! [Boundary pressure]</span>
 
 
 <span class="c1">-- Reference values for the flow state in the 2d stationary channel at laminar</span>
 <span class="c1">-- flow state</span>
 <span class="c1">--! [Velocity function]</span>
-<span class="kr">function</span><span class="w"> </span><span class="nf">velX</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="nv">velX_phy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">vel_phy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="nv">y</span><span class="o">/</span><span class="nv">height</span><span class="w"> </span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="p">)</span>
-<span class="w">  </span><span class="kr">return</span><span class="w"> </span><span class="nv">velX_phy</span>
+<span class="kr">function</span> <span class="nf">velX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">velX_phy</span> <span class="o">=</span> <span class="n">vel_phy</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="n">height</span> <span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="p">)</span>
+  <span class="kr">return</span> <span class="n">velX_phy</span>
 <span class="kr">end</span>
 <span class="c1">--! [Velocity function]</span>
 
 
-<span class="kr">function</span><span class="w"> </span><span class="nf">Sxx</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="kr">return</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="kr">function</span> <span class="nf">Sxx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="kr">return</span> <span class="mf">0.0</span>
 <span class="kr">end</span>
 
-<span class="kr">function</span><span class="w"> </span><span class="nf">Syy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="kr">return</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="kr">function</span> <span class="nf">Syy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="kr">return</span> <span class="mf">0.0</span>
 <span class="kr">end</span>
 
 <span class="c1">--! [Shear Stress Function]</span>
-<span class="kr">function</span><span class="w"> </span><span class="nf">Sxy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="nv">tauxy</span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="nv">nu_phy</span><span class="o">*</span><span class="nv">rho0_phy</span><span class="o">*</span><span class="mf">8.</span><span class="o">/</span><span class="nv">height</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="nv">vel_phy</span><span class="o">*</span><span class="nv">y</span>
-<span class="w">  </span><span class="nv">S_xy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tauxy</span><span class="o">/</span><span class="nv">nu_phy</span><span class="o">/</span><span class="nv">rho0_phy</span>
-<span class="w">  </span><span class="kr">return</span><span class="w"> </span><span class="nv">S_xy</span>
+<span class="kr">function</span> <span class="nf">Sxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">tauxy</span><span class="o">=</span> <span class="o">-</span><span class="n">nu_phy</span><span class="o">*</span><span class="n">rho0_phy</span><span class="o">*</span><span class="mf">8.</span><span class="o">/</span><span class="n">height</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">vel_phy</span><span class="o">*</span><span class="n">y</span>
+  <span class="n">S_xy</span> <span class="o">=</span> <span class="n">tauxy</span><span class="o">/</span><span class="n">nu_phy</span><span class="o">/</span><span class="n">rho0_phy</span>
+  <span class="kr">return</span> <span class="n">S_xy</span>
 <span class="kr">end</span>
 <span class="c1">--! [Shear Stress Function]</span>
 
 <span class="c1">-- Reference shear stress</span>
-<span class="kr">function</span><span class="w"> </span><span class="nf">stressRef</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="kr">return</span><span class="w"> </span><span class="nf">Sxy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span><span class="o">*</span><span class="nv">rho0_phy</span><span class="o">*</span><span class="nv">nu_phy</span>
+<span class="kr">function</span> <span class="nf">stressRef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="kr">return</span> <span class="n">Sxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">rho0_phy</span><span class="o">*</span><span class="n">nu_phy</span>
 <span class="kr">end</span>
 
 <span class="c1">-- Consistent initial conditions for the channel</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">initChannel</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_velX</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">velX</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_pressure</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">if</span><span class="p">(</span><span class="w"> </span><span class="nv">physicsModel</span><span class="o">==</span><span class="s1">&#39;fluid&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">      </span><span class="kr">return</span><span class="w"> </span><span class="nf">pressureRef</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">rho0_phy</span><span class="o">*</span><span class="nv">cs2</span><span class="o">*</span><span class="nv">dx</span><span class="o">/</span><span class="nv">dt</span>
-<span class="w">    </span><span class="kr">else</span>
-<span class="w">      </span><span class="kr">return</span><span class="w"> </span><span class="nf">pressureRef</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_Sxx</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">Sxx</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_Syy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">Syy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_Sxy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nf">Sxy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">end</span>
+<span class="kr">if</span> <span class="n">initChannel</span> <span class="kr">then</span>
+  <span class="kr">function</span> <span class="nf">ic_velX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">velX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+  <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_pressure</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">if</span><span class="p">(</span> <span class="n">physicsModel</span><span class="o">==</span><span class="s1">&#39;fluid&#39;</span><span class="p">)</span> <span class="kr">then</span>
+      <span class="kr">return</span> <span class="n">pressureRef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span> <span class="o">+</span> <span class="n">rho0_phy</span><span class="o">*</span><span class="n">cs2</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="n">dt</span>
+    <span class="kr">else</span>
+      <span class="kr">return</span> <span class="n">pressureRef</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">end</span>
+    <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_Sxx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">Sxx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_Syy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">Syy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_Sxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">Sxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">end</span>
 <span class="kr">else</span>
-<span class="w">  </span><span class="c1">-- Initialize with 0</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_velX</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="mf">0.</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_pressure</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="nv">press_ambient</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_Sxx</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="mf">0.</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_Syy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="mf">0.</span>
-<span class="w">  </span><span class="kr">end</span>
-<span class="w">  </span><span class="kr">function</span><span class="w"> </span><span class="nf">ic_Sxy</span><span class="p">(</span><span class="nv">x</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="nv">z</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">return</span><span class="w"> </span><span class="mf">0.</span>
-<span class="w">  </span><span class="kr">end</span>
+  <span class="c1">-- Initialize with 0</span>
+  <span class="kr">function</span> <span class="nf">ic_velX</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="mf">0.</span>
+  <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_pressure</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="n">press_ambient</span>
+  <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_Sxx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="mf">0.</span>
+  <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_Syy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="mf">0.</span>
+  <span class="kr">end</span>
+  <span class="kr">function</span> <span class="nf">ic_Sxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+    <span class="kr">return</span> <span class="mf">0.</span>
+  <span class="kr">end</span>
 <span class="kr">end</span>
 <span class="c1">---------------------------- Lua functions -------------------------------------</span>
 </code></pre></div>
@@ -1056,27 +1056,27 @@ previous defined ones:</p>
 <h3 id="3-musubi-related-variables">3. Musubi Related Variables</h3>
 <p>Here we define some variables used to control musubi's behavior:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">-- Simulation name used in tracking and restart outputs</span>
-<span class="nv">simulation_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;channel&#39;</span>
+<span class="n">simulation_name</span> <span class="o">=</span> <span class="s1">&#39;channel&#39;</span>
 <span class="c1">-- Print runtime information like memory usage at the end of the simulation</span>
-<span class="nv">printRuntimeInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="n">printRuntimeInfo</span> <span class="o">=</span> <span class="kc">false</span>
 <span class="c1">-- file to write measurement time of simulation for each solver step</span>
-<span class="nv">timing_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mus_timing.res&#39;</span>
+<span class="n">timing_file</span> <span class="o">=</span> <span class="s1">&#39;mus_timing.res&#39;</span>
 <span class="c1">-- Location of mesh files</span>
-<span class="nv">mesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;./mesh/&#39;</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="s1">&#39;./mesh/&#39;</span>
 <span class="c1">-- Logging output from simulation</span>
-<span class="nv">logging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">  </span><span class="c1">--filename = &#39;log&#39; -- filename to write logging output</span>
+<span class="n">logging</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">level</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="c1">--filename = &#39;log&#39; -- filename to write logging output</span>
 <span class="p">}</span>
 <span class="c1">-- Interpolation method for multilevel simulation (linear, quadratic)</span>
-<span class="nv">interpolation_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;quadratic&#39;</span>
+<span class="n">interpolation_method</span> <span class="o">=</span> <span class="s1">&#39;quadratic&#39;</span>
 <span class="c1">-- Debug outputs to write additional information</span>
-<span class="nv">NOdebug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">logging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;dbg&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">root_only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="c1">-- all involved MPI processes writes output</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="n">NOdebug</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">logging</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;dbg&#39;</span><span class="p">,</span>
+    <span class="n">root_only</span> <span class="o">=</span> <span class="kc">false</span> <span class="c1">-- all involved MPI processes writes output</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1085,45 +1085,45 @@ previous defined ones:</p>
 information about <code>time_control</code> <a href="https://apes-suite.github.io/treelm/module/tem_timecontrol_module.html">tem_timeControl_module</a> and
 <code>abort_criteria</code> <a href="https://apes-suite.github.io/treelm/module/tem_abortcriteria_module.html">tem_abortCriteria_module</a>.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Simulation Control]</span>
-<span class="nv">sim_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">sim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">sim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">interval_phy</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3600</span><span class="w"> </span><span class="c1">--s</span>
-<span class="w">   </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Abort conditions for simulation</span>
-<span class="w">  </span><span class="nv">abort_criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">-- Abort if file with the name &#39;stop&#39; exist</span>
-<span class="w">    </span><span class="nv">stop_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;stop&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">-- Abort if steady state is reached with condition defined in convergence</span>
-<span class="w">    </span><span class="c1">-- table</span>
-<span class="w">    </span><span class="nv">steady_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">-- Convergence condition for steady state check</span>
-<span class="w">    </span><span class="nv">convergence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="c1">-- Variables to check</span>
-<span class="w">      </span><span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
-<span class="w">      </span><span class="c1">-- Check only point in middle of domain</span>
-<span class="w">      </span><span class="nv">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">}</span><span class="w"> </span><span class="p">}}</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="c1">-- Reduce variables values in space to single average value</span>
-<span class="w">      </span><span class="nv">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;average&#39;</span><span class="p">},</span>
-<span class="w">      </span><span class="c1">-- How often to do convergence?</span>
-<span class="w">      </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span><span class="w">  </span><span class="c1">-- Start convergence check after half sim. time</span>
-<span class="w">        </span><span class="nv">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="p">,</span><span class="w">      </span><span class="c1">-- DO convergence until end of simulation</span>
-<span class="w">        </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="nv">dt</span><span class="w">     </span><span class="c1">-- Do convernce check every 10*dt [s]</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nv">norm</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">nvals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">absolute</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">      </span><span class="c1">-- Condition to statisfy to every variable</span>
-<span class="w">      </span><span class="nv">condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nv">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.e-5</span><span class="p">,</span><span class="w"> </span><span class="nv">operator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;=&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="n">sim_control</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="p">{</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">tmax_phy</span> <span class="p">},</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span> <span class="n">sim</span> <span class="o">=</span> <span class="n">interval_phy</span> <span class="p">},</span>
+    <span class="n">clock</span> <span class="o">=</span> <span class="mi">3600</span> <span class="c1">--s</span>
+   <span class="p">},</span>
+  <span class="c1">-- Abort conditions for simulation</span>
+  <span class="n">abort_criteria</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">-- Abort if file with the name &#39;stop&#39; exist</span>
+    <span class="n">stop_file</span> <span class="o">=</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span>
+    <span class="c1">-- Abort if steady state is reached with condition defined in convergence</span>
+    <span class="c1">-- table</span>
+    <span class="n">steady_state</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">-- Convergence condition for steady state check</span>
+    <span class="n">convergence</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">-- Variables to check</span>
+      <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
+      <span class="c1">-- Check only point in middle of domain</span>
+      <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+        <span class="n">object</span> <span class="o">=</span> <span class="p">{{</span><span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">}</span> <span class="p">}}</span>
+      <span class="p">},</span>
+      <span class="c1">-- Reduce variables values in space to single average value</span>
+      <span class="n">reduction</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;average&#39;</span><span class="p">},</span>
+      <span class="c1">-- How often to do convergence?</span>
+      <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">min</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>  <span class="c1">-- Start convergence check after half sim. time</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">tmax_phy</span><span class="p">,</span>      <span class="c1">-- DO convergence until end of simulation</span>
+        <span class="n">interval</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">dt</span>     <span class="c1">-- Do convernce check every 10*dt [s]</span>
+      <span class="p">},</span>
+      <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">,</span>
+      <span class="n">nvals</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+      <span class="n">absolute</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="c1">-- Condition to statisfy to every variable</span>
+      <span class="n">condition</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">{</span> <span class="n">threshold</span> <span class="o">=</span> <span class="mf">1.e-5</span><span class="p">,</span> <span class="n">operator</span> <span class="o">=</span> <span class="s1">&#39;&lt;=&#39;</span> <span class="p">},</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">--! [Simulation control]</span>
 </code></pre></div>
@@ -1133,18 +1133,18 @@ information about <code>time_control</code> <a href="https://apes-suite.github.i
 These have been explained in <a href="tut_01_mus_config.html">[chapter 01]</a>.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Physics parameters]</span>
 <span class="c1">-- Required to convert physical unit to lattice unit</span>
-<span class="nv">physics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dt</span><span class="p">,</span>
-<span class="w">  </span><span class="nv">rho0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">rho0_phy</span>
+<span class="n">physics</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span><span class="p">,</span>
+  <span class="n">rho0</span> <span class="o">=</span> <span class="n">rho0_phy</span>
 <span class="p">}</span>
 <span class="c1">--! [Physics parameters]</span>
 
 
 <span class="c1">--! [Scheme identifier]</span>
-<span class="nv">identify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stencil</span><span class="p">,</span>
-<span class="w">  </span><span class="nv">relaxation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">relaxationModel</span><span class="p">,</span>
-<span class="w">  </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">physicsModel</span>
+<span class="n">identify</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">layout</span> <span class="o">=</span> <span class="n">stencil</span><span class="p">,</span>
+  <span class="n">relaxation</span> <span class="o">=</span> <span class="n">relaxationModel</span><span class="p">,</span>
+  <span class="n">kind</span> <span class="o">=</span> <span class="n">physicsModel</span>
 <span class="p">}</span>
 <span class="c1">--! [Scheme identifier]</span>
 
@@ -1153,15 +1153,15 @@ These have been explained in <a href="tut_01_mus_config.html">[chapter 01]</a>.<
 <span class="c1">-- For both, incompressible and compressible kinematic viscosity has to be</span>
 <span class="c1">-- defined. While for the first one, default values are stored for bulk</span>
 <span class="c1">-- viscosity,, the user has to explicitly give them for compr. fluid.</span>
-<span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nv">physicsModel</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;fluid&#39;</span><span class="p">)</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nv">fluid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">kinematic_viscosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">nu_phy</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">bulk_viscosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">bulk_visc</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="kr">if</span> <span class="p">(</span><span class="n">physicsModel</span> <span class="o">==</span> <span class="s1">&#39;fluid&#39;</span><span class="p">)</span> <span class="kr">then</span>
+  <span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="n">nu_phy</span><span class="p">,</span>
+    <span class="n">bulk_viscosity</span> <span class="o">=</span> <span class="n">bulk_visc</span>
+  <span class="p">}</span>
 <span class="kr">else</span>
-<span class="w">  </span><span class="nv">fluid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kinematic_viscosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">nu_phy</span><span class="p">,</span>
-<span class="w">    </span><span class="p">}</span>
+  <span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kinematic_viscosity</span> <span class="o">=</span> <span class="n">nu_phy</span><span class="p">,</span>
+    <span class="p">}</span>
 <span class="kr">end</span>
 <span class="c1">--! [Fluid]</span>
 </code></pre></div>
@@ -1169,14 +1169,14 @@ These have been explained in <a href="tut_01_mus_config.html">[chapter 01]</a>.<
 <h3 id="6-initial-condition">6. Initial Condition</h3>
 <p>Here we define the initial conditions for the simulation.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Initial conditions]</span>
-<span class="nv">initial_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">pressure</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_pressure</span><span class="p">,</span>
-<span class="w">                      </span><span class="nv">velocityX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_velX</span><span class="p">,</span>
-<span class="w">                      </span><span class="nv">velocityY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
-<span class="w">                      </span><span class="nv">velocityZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
-<span class="w">                      </span><span class="nv">Sxx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_Sxx</span><span class="p">,</span>
-<span class="w">                      </span><span class="nv">Syy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_Syy</span><span class="p">,</span>
-<span class="w">                      </span><span class="nv">Sxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">ic_Sxy</span>
-<span class="w">                      </span><span class="p">}</span>
+<span class="n">initial_condition</span> <span class="o">=</span> <span class="p">{</span> <span class="n">pressure</span>  <span class="o">=</span> <span class="n">ic_pressure</span><span class="p">,</span>
+                      <span class="n">velocityX</span> <span class="o">=</span> <span class="n">ic_velX</span><span class="p">,</span>
+                      <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                      <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                      <span class="n">Sxx</span> <span class="o">=</span> <span class="n">ic_Sxx</span><span class="p">,</span>
+                      <span class="n">Syy</span> <span class="o">=</span> <span class="n">ic_Syy</span><span class="p">,</span>
+                      <span class="n">Sxy</span> <span class="o">=</span> <span class="n">ic_Sxy</span>
+                      <span class="p">}</span>
 <span class="c1">--! [Initial conditions]</span>
 </code></pre></div>
 
@@ -1185,49 +1185,49 @@ These have been explained in <a href="tut_01_mus_config.html">[chapter 01]</a>.<
 in <code>seeder.lua</code>.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">-- Label is a boundary identifier and it should be same as in seeder</span>
 <span class="c1">-- configuration.</span>
-<span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;north&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;south&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;west&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressureIn&#39;</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;east&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">kind</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">pressure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pressureOut&#39;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+     <span class="n">pressure</span> <span class="o">=</span> <span class="s1">&#39;pressureIn&#39;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span><span class="p">,</span>
+     <span class="n">kind</span>  <span class="o">=</span> <span class="s1">&#39;pressure_expol&#39;</span><span class="p">,</span>
+     <span class="n">pressure</span> <span class="o">=</span> <span class="s1">&#39;pressureOut&#39;</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">-- If we deactivated usePeriodic in seeder.lua, we have to add boundaries for</span>
 <span class="c1">-- top and bottom.</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">usePeriodic</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="w"> </span><span class="nv">boundary_condition</span><span class="p">,</span>
-<span class="w">  </span><span class="p">{</span><span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
-<span class="w">     </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="w"> </span><span class="nv">boundary_condition</span><span class="p">,</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="p">)</span>
+<span class="kr">if</span> <span class="n">usePeriodic</span> <span class="o">==</span> <span class="kc">false</span> <span class="kr">then</span>
+  <span class="nb">table.insert</span><span class="p">(</span> <span class="n">boundary_condition</span><span class="p">,</span>
+  <span class="p">{</span>  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;top&#39;</span><span class="p">,</span>
+     <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">}</span>
+  <span class="p">)</span>
+  <span class="nb">table.insert</span><span class="p">(</span> <span class="n">boundary_condition</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span>
+  <span class="p">}</span>
+  <span class="p">)</span>
 <span class="kr">end</span>
 
 <span class="c1">-- If we activated useObstacle in seeder.lua, we have to add a boundary for it,</span>
 <span class="c1">-- too. Label depends on 2D (cylinder) or 3D (sphere).</span>
-<span class="kr">if</span><span class="w"> </span><span class="nv">useObstacle</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">  </span><span class="nb">table.insert</span><span class="p">(</span><span class="w"> </span><span class="nv">boundary_condition</span><span class="p">,</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stlLabel</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall_libb&#39;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="w"> </span><span class="kr">end</span>
+<span class="kr">if</span> <span class="n">useObstacle</span> <span class="o">==</span> <span class="kc">true</span> <span class="kr">then</span>
+  <span class="nb">table.insert</span><span class="p">(</span> <span class="n">boundary_condition</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">stlLabel</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall_libb&#39;</span>
+  <span class="p">}</span>
+  <span class="p">)</span>
+ <span class="kr">end</span>
 <span class="c1">--! [Boundary conditions]</span>
 </code></pre></div>
 
@@ -1239,61 +1239,61 @@ that is explained <a href="https://apes-suite.github.io/treelm//page/features/va
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [User defined variables]</span>
 <span class="c1">-- Mainly used for tracking.</span>
 <span class="c1">-- This variable can be refered to as variable in boundary condition and source</span>
-<span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">-- Reference pressure dependent on physicsModel</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;pressureRef&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">pressureRef</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Background pressure</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;pressure0&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">press_ambient</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Pressure at inlet</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;pressureIn&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">pressureIn</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Pressure at outlet</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;pressureOut&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">pressureOut</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Reference shear stress</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;stressRef&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">st_fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">stressRef</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Difference between numerical pressure and reference pressure</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;press_error&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;operation&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">operation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;difference&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">input_varname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pressureRef&#39;</span><span class="p">,},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Difference between numerical pressure and background pressure</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;press_fluc&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">vartype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;operation&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">operation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;difference&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">input_varname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pressure0&#39;</span><span class="p">,},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">  </span><span class="p">},</span>
+<span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">-- Reference pressure dependent on physicsModel</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressureRef&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">pressureRef</span>
+  <span class="p">},</span>
+  <span class="c1">-- Background pressure</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressure0&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">press_ambient</span>
+  <span class="p">},</span>
+  <span class="c1">-- Pressure at inlet</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressureIn&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">pressureIn</span>
+  <span class="p">},</span>
+  <span class="c1">-- Pressure at outlet</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pressureOut&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">pressureOut</span>
+  <span class="p">},</span>
+  <span class="c1">-- Reference shear stress</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;stressRef&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;st_fun&#39;</span><span class="p">,</span>
+    <span class="n">st_fun</span> <span class="o">=</span> <span class="n">stressRef</span> <span class="p">},</span>
+  <span class="c1">-- Difference between numerical pressure and reference pressure</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;press_error&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;operation&#39;</span><span class="p">,</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;difference&#39;</span><span class="p">,</span>
+      <span class="n">input_varname</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;pressure_phy&#39;</span><span class="p">,</span> <span class="s1">&#39;pressureRef&#39;</span><span class="p">,},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="c1">-- Difference between numerical pressure and background pressure</span>
+  <span class="p">{</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;press_fluc&#39;</span><span class="p">,</span>
+    <span class="n">ncomponents</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vartype</span> <span class="o">=</span> <span class="s1">&#39;operation&#39;</span><span class="p">,</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;difference&#39;</span><span class="p">,</span>
+      <span class="n">input_varname</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;pressure_phy&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure0&#39;</span><span class="p">,},</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
 <span class="p">}</span>
 <span class="c1">--! [User defined variables]</span>
 </code></pre></div>
@@ -1302,22 +1302,22 @@ that is explained <a href="https://apes-suite.github.io/treelm//page/features/va
 example <code>musubi.lua</code> a lot more trackings can be found. The next
 <a href="tut_03_tracking.html">[chapter 03]</a> will explain the tracking in more detail.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Tracking example]</span>
-<span class="nv">tracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">-- Track pressure at the center of the channel over time.</span>
-<span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;probeAtCenter&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="c1">--label = &#39;probePressure&#39;,</span>
-<span class="w">    </span><span class="nv">folder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;tracking/&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
-<span class="w">    </span><span class="nv">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="nv">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nv">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nv">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nv">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ascii&#39;</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">},</span>
+<span class="n">tracking</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">-- Track pressure at the center of the channel over time.</span>
+  <span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;probeAtCenter&#39;</span><span class="p">,</span>
+    <span class="c1">--label = &#39;probePressure&#39;,</span>
+    <span class="n">folder</span> <span class="o">=</span> <span class="s1">&#39;tracking/&#39;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pressure_phy&#39;</span><span class="p">},</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;canoND&#39;</span><span class="p">,</span>
+      <span class="n">object</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span> <span class="n">min</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">},</span> <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span><span class="n">iter</span><span class="o">=</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{</span> <span class="n">format</span> <span class="o">=</span> <span class="s1">&#39;ascii&#39;</span> <span class="p">},</span>
+  <span class="p">},</span>
 <span class="c1">--! [Tracking example]</span>
 </code></pre></div>
 
@@ -1328,14 +1328,14 @@ exist, no restart files will be created. Find more information in
 <div class="codehilite"><pre><span></span><code><span class="c1">--! [Restart]</span>
 <span class="c1">-- Without timeControl restart will be dumped by default at end</span>
 <span class="c1">-- of simulation when write restart is set.</span>
-<span class="nv">restart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">NOread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;restart/channel2D_lastHeader.lua&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nv">write</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;restart/&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nv">time_control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nv">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">rest_start</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tmax_phy</span><span class="w"> </span><span class="p">},</span>
-<span class="w">    </span><span class="nv">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">interval_phy</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="n">restart</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">NOread</span> <span class="o">=</span> <span class="s1">&#39;restart/channel2D_lastHeader.lua&#39;</span><span class="p">,</span>
+  <span class="n">write</span> <span class="o">=</span> <span class="s1">&#39;restart/&#39;</span><span class="p">,</span>
+  <span class="n">time_control</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">min</span> <span class="o">=</span> <span class="p">{</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">rest_start</span> <span class="p">},</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="p">{</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">tmax_phy</span> <span class="p">},</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="p">{</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">interval_phy</span> <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 <span class="c1">--! [Restart]</span>
 </code></pre></div>
@@ -1365,7 +1365,7 @@ Here, you can see a possible output from Paraview:</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-27T16:39:32.037806+0000             </p>
+ on 2025-05-03T12:42:00.509606+0000             </p>
           </div>
         </div>
         <br>

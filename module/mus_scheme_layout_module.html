@@ -246,57 +246,57 @@
 </ul>
 <p>The following example shows how to define the standard D3Q19 as a new
  layout:</p>
-<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="c1">-- Scheme</span>
-<span class="w"> </span><span class="nv">scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nv">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;new_stencil&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="c1">-- Initial condition</span>
-<span class="w">  </span><span class="nv">initial_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                       </span><span class="nv">density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
-<span class="w">                       </span><span class="nv">velocityX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
-<span class="w">                       </span><span class="nv">velocityY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
-<span class="w">                       </span><span class="nv">velocityZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Boundary conditions</span>
-<span class="w">  </span><span class="nv">boundary_condition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;velocity_bounceback&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">velocityX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span><span class="w"> </span><span class="nv">velocityY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">velocityZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nv">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">kind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;wall&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nv">velocityX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">velocityY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="nv">velocityZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nv">fluid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nv">relaxation_scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BGK&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="nv">omega</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span>
-<span class="w">            </span><span class="nv">rho0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="c1">-- Defining the new Stencil</span>
-<span class="w">  </span><span class="nv">stencil</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">             </span><span class="nv">QQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span>
-<span class="w">             </span><span class="nv">disc_vel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">}</span>
-<span class="w">             </span><span class="p">},</span>
-<span class="w">             </span><span class="nv">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),</span>
-<span class="w">              </span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),</span>
-<span class="w">              </span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
-<span class="w">             </span><span class="p">},</span>
-<span class="w">             </span><span class="nv">inv_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                         </span><span class="mi">4</span><span class="p">,</span><span class="w">  </span><span class="mi">5</span><span class="p">,</span><span class="w">  </span><span class="mi">6</span><span class="p">,</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">  </span><span class="mi">9</span><span class="p">,</span><span class="w">  </span><span class="mi">8</span><span class="p">,</span>
-<span class="w">                         </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-<span class="w">                        </span><span class="mi">19</span>
-<span class="w">             </span><span class="p">},</span>
-<span class="w">             </span><span class="nv">prev_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">},</span>
-<span class="w">              </span><span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">}</span>
-<span class="w">             </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="w"> </span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><code> <span class="c1">-- Scheme</span>
+ <span class="n">scheme</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span>
+  <span class="n">layout</span> <span class="o">=</span> <span class="s1">&#39;new_stencil&#39;</span><span class="p">,</span>
+  <span class="c1">-- Initial condition</span>
+  <span class="n">initial_condition</span> <span class="o">=</span> <span class="p">{</span>
+                       <span class="n">density</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+                       <span class="n">velocityX</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                       <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+                       <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="p">},</span>
+  <span class="c1">-- Boundary conditions</span>
+  <span class="n">boundary_condition</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;velocity_bounceback&#39;</span><span class="p">,</span>
+    <span class="n">velocityX</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span> <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span><span class="p">,</span>
+    <span class="n">kind</span> <span class="o">=</span> <span class="s1">&#39;wall&#39;</span><span class="p">,</span>
+    <span class="n">velocityX</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">velocityY</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">velocityZ</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="n">fluid</span> <span class="o">=</span> <span class="p">{</span> <span class="n">relaxation_scheme</span> <span class="o">=</span> <span class="s1">&#39;BGK&#39;</span><span class="p">,</span>
+            <span class="n">omega</span> <span class="o">=</span> <span class="mf">1.8</span><span class="p">,</span>
+            <span class="n">rho0</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="p">},</span>
+  <span class="c1">-- Defining the new Stencil</span>
+  <span class="n">stencil</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="n">QQ</span> <span class="o">=</span> <span class="mi">19</span><span class="p">,</span>
+             <span class="n">disc_vel</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},</span>
+              <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">},</span>
+              <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">}</span>
+             <span class="p">},</span>
+             <span class="n">weight</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">18.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">36.0</span><span class="p">),</span>
+              <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+             <span class="p">},</span>
+             <span class="n">inv_dir</span> <span class="o">=</span> <span class="p">{</span>
+                         <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>
+                         <span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span>
+                        <span class="mi">19</span>
+             <span class="p">},</span>
+             <span class="n">prev_dir</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="p">{</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">},{</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">},</span>
+              <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
+              <span class="p">{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
+              <span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
+              <span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">)},</span>
+              <span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">},</span>
+              <span class="p">{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">},{</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">math.sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">),</span><span class="mf">0.</span><span class="p">}</span>
+             <span class="p">}</span>
+  <span class="p">}</span>
+ <span class="p">}</span>
 </code></pre></div>
 <br>          <div class="card mb-4">
       <h3 class="card-header card-title bg-light">Uses</h3>
@@ -304,21 +304,21 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aotus_module.html'>aotus_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_grow_array_module.html'>tem_grow_array_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aot_table_module.html'>aot_table_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_comm_env_module.html'>tem_comm_env_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_dyn_array_module.html'>tem_dyn_array_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_tools_module.html'>tem_tools_module</a></li>
-                  <li class="list-inline-item"><a href='mus_moments_type_module.html'>mus_moments_type_module</a></li>
-                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aot_out_module.html'>aot_out_module</a></li>
-                  <li class="list-inline-item"><a href='http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm'>mpi</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_stencil_module.html'>tem_stencil_module</a></li>
+                  <li class="list-inline-item"><a href='http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report/node410.htm'>mpi</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_aux_module.html'>tem_aux_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aot_table_module.html'>aot_table_module</a></li>
+                  <li class="list-inline-item"><a href='mus_moments_type_module.html'>mus_moments_type_module</a></li>
                   <li class="list-inline-item"><a href='mus_scheme_derived_quantities_module.html'>mus_scheme_derived_quantities_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_grow_array_module.html'>tem_grow_array_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aot_out_module.html'>aot_out_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_logging_module.html'>tem_logging_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_comm_env_module.html'>tem_comm_env_module</a></li>
+                  <li class="list-inline-item"><a href='https://apes-suite.github.io/aotus/module/aotus_module.html'>aotus_module</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -994,7 +994,7 @@ It is copied to stencil(:) and destroyed, where this is destroyed?</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~75"></span>
+              <span class="anchor" id="variable-stencil~87"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
               <td>public,</td>
@@ -1007,7 +1007,7 @@ It is copied to stencil(:) and destroyed, where this is destroyed?</p>
                 <td></td>
             <td>
 <p>The list of stencil types, the stencils for the individual schemes
-is ordered as follows:</p><a href="../type/mus_scheme_layout_type.html#variable-stencil~75" class="pull-right"><emph>Read more&hellip;</emph></a>
+is ordered as follows:</p><a href="../type/mus_scheme_layout_type.html#variable-stencil~87" class="pull-right"><emph>Read more&hellip;</emph></a>
             </td>
         </tr>
         <tr>
@@ -1047,7 +1047,7 @@ growing array of grwStencil</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-weight~32"></span>
+              <span class="anchor" id="variable-weight~40"></span>
               real(kind=rk),
             </td>
               <td>public,</td>
@@ -1182,7 +1182,7 @@ $\sum_i (weight_i<em>cx_i</em>cx_i) = c_s^2 I</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~242"></span>
+              <span class="anchor" id="variable-layout~267"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1232,7 +1232,7 @@ $\sum_i (weight_i<em>cx_i</em>cx_i) = c_s^2 I</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~229"></span>
+              <span class="anchor" id="variable-me~213"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>)
             </td>
 <td></td>
@@ -1262,7 +1262,7 @@ $\sum_i (weight_i<em>cx_i</em>cx_i) = c_s^2 I</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-conf~57"></span>
+              <span class="anchor" id="variable-conf~74"></span>
               type(<a href='https://apes-suite.github.io/aotus/type/flu_state.html'>flu_State</a>)
             </td>
 <td></td>
@@ -1302,7 +1302,7 @@ $\sum_i (weight_i<em>cx_i</em>cx_i) = c_s^2 I</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-me~230"></span>
+              <span class="anchor" id="variable-me~214"></span>
               real(kind=rk),
             </td>
 <td>intent(in)</td>
@@ -1317,7 +1317,7 @@ $\sum_i (weight_i<em>cx_i</em>cx_i) = c_s^2 I</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-conf~58"></span>
+              <span class="anchor" id="variable-conf~75"></span>
               type(<a href='https://apes-suite.github.io/aotus/type/aot_out_type.html'>aot_out_type</a>)
             </td>
 <td></td>
@@ -1357,7 +1357,7 @@ $\sum_i (weight_i<em>cx_i</em>cx_i) = c_s^2 I</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~231"></span>
+              <span class="anchor" id="variable-layout~256"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1398,7 +1398,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~232"></span>
+              <span class="anchor" id="variable-layout~257"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1458,7 +1458,7 @@ set stencil%nElems</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-proc~32"></span>
+              <span class="anchor" id="variable-proc~14"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_comm_env_type.html'>tem_comm_env_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1498,7 +1498,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-stencil~76"></span>
+              <span class="anchor" id="variable-stencil~88"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_stencilheader_type.html'>tem_stencilHeader_type</a>),
             </td>
 <td>intent(out),</td>
@@ -1538,7 +1538,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~233"></span>
+              <span class="anchor" id="variable-layout~258"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1568,7 +1568,7 @@ set stencil%nElems</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~246"></span>
+              <span class="anchor" id="variable-nelems~245"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1608,7 +1608,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~235"></span>
+              <span class="anchor" id="variable-layout~260"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1623,7 +1623,7 @@ set stencil%nElems</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~248"></span>
+              <span class="anchor" id="variable-nelems~247"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1663,7 +1663,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~15"></span>
+              <span class="anchor" id="variable-weights~16"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -1703,7 +1703,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~236"></span>
+              <span class="anchor" id="variable-layout~261"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1718,7 +1718,7 @@ set stencil%nElems</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~249"></span>
+              <span class="anchor" id="variable-nelems~248"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1758,7 +1758,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~16"></span>
+              <span class="anchor" id="variable-weights~17"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -1798,7 +1798,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~237"></span>
+              <span class="anchor" id="variable-layout~262"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1813,7 +1813,7 @@ set stencil%nElems</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~250"></span>
+              <span class="anchor" id="variable-nelems~249"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1853,7 +1853,7 @@ set stencil%nElems</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~17"></span>
+              <span class="anchor" id="variable-weights~18"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -1894,7 +1894,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~238"></span>
+              <span class="anchor" id="variable-layout~263"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -1909,7 +1909,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~251"></span>
+              <span class="anchor" id="variable-nelems~250"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -1949,7 +1949,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~18"></span>
+              <span class="anchor" id="variable-weights~19"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -1989,7 +1989,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~239"></span>
+              <span class="anchor" id="variable-layout~264"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2004,7 +2004,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~252"></span>
+              <span class="anchor" id="variable-nelems~251"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2044,7 +2044,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~19"></span>
+              <span class="anchor" id="variable-weights~20"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -2084,7 +2084,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~241"></span>
+              <span class="anchor" id="variable-layout~266"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2099,7 +2099,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~254"></span>
+              <span class="anchor" id="variable-nelems~253"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2139,7 +2139,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~21"></span>
+              <span class="anchor" id="variable-weights~22"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -2179,7 +2179,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~234"></span>
+              <span class="anchor" id="variable-layout~259"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2194,7 +2194,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~247"></span>
+              <span class="anchor" id="variable-nelems~246"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2234,7 +2234,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~14"></span>
+              <span class="anchor" id="variable-weights~15"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -2274,7 +2274,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~240"></span>
+              <span class="anchor" id="variable-layout~265"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(inout)</td>
@@ -2289,7 +2289,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~253"></span>
+              <span class="anchor" id="variable-nelems~252"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -2329,7 +2329,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-weights~20"></span>
+              <span class="anchor" id="variable-weights~21"></span>
               real(kind=rk)
             </td>
 <td></td>
@@ -2372,7 +2372,7 @@ layout%fStencil, used by the Flekkoy model of passive scalar transport.</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-04-27T16:39:32.037806+0000             </p>
+ on 2025-05-03T12:42:00.509606+0000             </p>
           </div>
         </div>
         <br>
