@@ -28,6 +28,15 @@ bin/waf install
 
 Run `bin/waf --help` to see all options.
 
+We support two methods to conveniently install a development environment
+with the APES tools:
+
+* via the Spack manager with the packages in [apes-spack](https://github.com/apes-suite/apes-spack)
+* via a Python virtual environment as provided in [apes-pyenv](https://github.com/apes-suite/apes-pyenv)
+
+Please see the respective READMEs on instructions on how to
+use one of these methods.
+
 Documentation
 -------------
 
@@ -38,7 +47,7 @@ Developing Musubi
 -----------------
 
 The actual sources of musubi are found in the mus subdirectory, which is a git
-submodule and thus has a repository (musubi-source) on its own.
+submodule and, thus, has a repository (musubi-source) on its own.
 To ease the work with this setup there is a `request` script that is meant to
 take care of dealing with the tight coupling between this repository and
 musubi-source.
