@@ -486,7 +486,7 @@ contains
       ! Function of u_tau
       fx = velSW / velTau_old - wall_function%get_uPlus(yPlus)
       ! derivative of function w.r.t u_tau
-      dfdx = -velSW / velTau_old**2 -                                &
+      dfdx = -velSW / velTau_old**2                                  &
         &    - (wall_function%get_d_uPlus_d_uTau( y = y,             &
         &                                         uTau = velTau_old, &
         &                                         nu = nu            ) )
