@@ -51,3 +51,24 @@ submodule and, thus, has a repository (musubi-source) on its own.
 To ease the work with this setup there is a `request` script that is meant to
 take care of dealing with the tight coupling between this repository and
 musubi-source.
+
+Testing
+-------
+
+The unit tests are automatically run during the compilation step, unless you
+tell waf to only build musubi itself or explicitly switch off test runs.
+The system tests are found in the `mus/examples` subdirectory and they can
+be run with the help of pysys-test.
+To obtain pysys-test and have it available, you can use the
+[apes-pyenv](https://github.com/apes-suite/apes-pyenv).
+
+While in the apes-pyenv environment install seeder and musubi as suggested
+into the `$VIRTUAL_ENV` prefix and then run `pysys.py run` in the `mus/examples`
+directory (or any of its subdirectories if you want to run only the
+tests within that directory).
+You can also list the available tests with `pysys.py ls` and see how to
+run selected tests in its help (`pysys.py run --help`).
+
+If you don't want to install Musubi into your `PATH`, you can also tell
+pysys-test where to find it by setting the environment variable `APES_MUSUBI`
+accordingly.

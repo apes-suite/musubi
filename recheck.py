@@ -1103,7 +1103,6 @@ shepherd_jobs.append(dict(executable = musubi_exe,
 ### end Turbulent channel single level
 #------------------------------------------------------------------------------#
 
-# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> TRANSFERRED <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< #
 
 #==============================================================================#
 #                Testcases tree: fluid/benchmark/absorbingLayer                #
