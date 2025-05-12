@@ -2146,7 +2146,7 @@ shepherd_jobs.append(dict(executable = musubi_exe,
     attachment = True,
     validation = True,
     val_method = 'difference',
-    val_ref_path = testcase_path+'resource/simulation_spc1_p00000_t10.000E+00.res',
+    val_ref_path = testcase_path+'reference/simulation_spc1_p00000_t10.000E+00.res',
     val_output_filename = 'tracking/simulation_spc1_p00000_t10.000E+00.res',
     ))
 ### end passive scalar cylinder2d testcase
