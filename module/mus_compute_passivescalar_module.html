@@ -177,15 +177,15 @@ BGK advection relaxation scheme.</p>
             <li class="list-group-item">
               <ul class="list-inline">
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_param_module.html'>tem_param_module</a></li>
-                  <li class="list-inline-item"><a href='mus_field_prop_module.html'>mus_field_prop_module</a></li>
-                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
+                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_c_binding'>iso_c_binding</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/tem_varsys_module.html'>tem_varSys_module</a></li>
+                  <li class="list-inline-item"><a href='mus_scheme_layout_module.html'>mus_scheme_layout_module</a></li>
                   <li class="list-inline-item"><a href='mus_scheme_type_module.html'>mus_scheme_type_module</a></li>
                   <li class="list-inline-item"><a href='mus_dervarpos_module.html'>mus_derVarPos_module</a></li>
-                  <li class="list-inline-item"><a href='mus_param_module.html'>mus_param_module</a></li>
                   <li class="list-inline-item"><a href='mus_varsys_module.html'>mus_varSys_module</a></li>
                   <li class="list-inline-item"><a href='https://apes-suite.github.io/treelm/module/env_module.html'>env_module</a></li>
-                  <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_c_binding'>iso_c_binding</a></li>
+                  <li class="list-inline-item"><a href='mus_field_prop_module.html'>mus_field_prop_module</a></li>
+                  <li class="list-inline-item"><a href='mus_param_module.html'>mus_param_module</a></li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -663,7 +663,217 @@ modules which it uses.
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fieldprop~13"></span>
+              <span class="anchor" id="variable-fieldprop~2"></span>
+              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>fieldProp</strong>(:)</td>
+            <td>
+<p>Array of field properties (fluid or species)</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-instate~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>inState</strong>(nElems*varSys%nScalars)</td>
+            <td>
+<p>input  pdf vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outstate~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outState</strong>(nElems*varSys%nScalars)</td>
+            <td>
+<p>output pdf vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~5"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(nElems*varSys%nAuxScalars)</td>
+            <td>
+<p>Auxiliary field computed from pre-collision state
+Is updated with correct velocity field for multicomponent models</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(nElems*layout%fStencil%QQ)</td>
+            <td>
+<p>connectivity vector</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nelems~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nElems</strong></td>
+            <td>
+<p>number of elements in state Array</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nsolve~4"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nSolve</strong></td>
+            <td>
+<p>number of elements solved in kernel</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-level~2"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>level</strong></td>
+            <td>
+<p>current level</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-layout~3"></span>
+              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>layout</strong></td>
+            <td>
+<p>current layout</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-params~2"></span>
+              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>params</strong></td>
+            <td>
+<p>global parameters</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~3"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+<p>variable system definition</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~3"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong>(:)</td>
+            <td>
+<p>position of derived quantities in varsys for all fields</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_advrel_kps_rbgk_v2nd_l"></span> <h3>public  subroutine <a href='../proc/mus_advrel_kps_rbgk_v2nd_l.html'>mus_advRel_kPS_rBGK_v2nd_l</a>(fieldProp, inState, outState, auxField, neigh, nElems, nSolve, level, layout, params, varSys, derVarPos)  
+</h3></div>
+    <div class="card-body">
+          
+  <p>Advection relaxation routine for the 2nd order diffusion model.
+A comparison to the previous flekkoy model can be found in
+Chopard, B., Falcone, J. &amp; Latt, J. "The lattice Boltzmann advection
+-diffusion model revisited." Eur. Phys. J. Spec. Top. 171, 245–249 (2009).
+https://doi.org/10.1140/epjst/e2009-01035-5</p><a href="../proc/mus_advrel_kps_rbgk_v2nd_l.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-fieldprop~3"></span>
               type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
             </td>
 <td>intent(in)</td>
@@ -708,7 +918,7 @@ modules which it uses.
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~31"></span>
+              <span class="anchor" id="variable-auxfield~6"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -724,7 +934,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~20"></span>
+              <span class="anchor" id="variable-neigh~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -739,7 +949,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~23"></span>
+              <span class="anchor" id="variable-nelems~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -754,7 +964,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~38"></span>
+              <span class="anchor" id="variable-nsolve~5"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -769,7 +979,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-level~9"></span>
+              <span class="anchor" id="variable-level~3"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -784,7 +994,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~26"></span>
+              <span class="anchor" id="variable-layout~4"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(in)</td>
@@ -799,7 +1009,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-params~37"></span>
+              <span class="anchor" id="variable-params~3"></span>
               type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
             </td>
 <td>intent(in)</td>
@@ -814,7 +1024,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~30"></span>
+              <span class="anchor" id="variable-varsys~4"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -829,7 +1039,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~13"></span>
+              <span class="anchor" id="variable-dervarpos~4"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -850,15 +1060,11 @@ Is updated with correct velocity field for multicomponent models</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_advrel_kps_rbgk_v2nd_l"></span> <h3>public  subroutine <a href='../proc/mus_advrel_kps_rbgk_v2nd_l.html'>mus_advRel_kPS_rBGK_v2nd_l</a>(fieldProp, inState, outState, auxField, neigh, nElems, nSolve, level, layout, params, varSys, derVarPos)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mus_advrel_kps_rtrt_vstdnoopt_l"></span> <h3>public  subroutine <a href='../proc/mus_advrel_kps_rtrt_vstdnoopt_l.html'>mus_advRel_kPS_rTRT_vStdNoOpt_l</a>(fieldProp, inState, outState, auxField, neigh, nElems, nSolve, level, layout, params, varSys, derVarPos)  
 </h3></div>
     <div class="card-body">
           
-  <p>Advection relaxation routine for the 2nd order diffusion model.
-A comparison to the previous flekkoy model can be found in
-Chopard, B., Falcone, J. &amp; Latt, J. "The lattice Boltzmann advection
--diffusion model revisited." Eur. Phys. J. Spec. Top. 171, 245–249 (2009).
-https://doi.org/10.1140/epjst/e2009-01035-5</p><a href="../proc/mus_advrel_kps_rbgk_v2nd_l.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+  <p>Advection relaxation routine for the TRT diffusion model.</p><a href="../proc/mus_advrel_kps_rtrt_vstdnoopt_l.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -873,7 +1079,7 @@ https://doi.org/10.1140/epjst/e2009-01035-5</p><a href="../proc/mus_advrel_kps_r
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-fieldprop~14"></span>
+              <span class="anchor" id="variable-fieldprop~4"></span>
               type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
             </td>
 <td>intent(in)</td>
@@ -918,7 +1124,7 @@ https://doi.org/10.1140/epjst/e2009-01035-5</p><a href="../proc/mus_advrel_kps_r
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-auxfield~32"></span>
+              <span class="anchor" id="variable-auxfield~7"></span>
               real(kind=rk),
             </td>
 <td>intent(inout)</td>
@@ -934,7 +1140,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-neigh~21"></span>
+              <span class="anchor" id="variable-neigh~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -949,7 +1155,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nelems~24"></span>
+              <span class="anchor" id="variable-nelems~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -964,7 +1170,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nsolve~39"></span>
+              <span class="anchor" id="variable-nsolve~6"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -979,7 +1185,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-level~10"></span>
+              <span class="anchor" id="variable-level~4"></span>
               integer,
             </td>
 <td>intent(in)</td>
@@ -994,7 +1200,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-layout~27"></span>
+              <span class="anchor" id="variable-layout~5"></span>
               type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1009,7 +1215,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-params~38"></span>
+              <span class="anchor" id="variable-params~4"></span>
               type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1024,7 +1230,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-varsys~31"></span>
+              <span class="anchor" id="variable-varsys~5"></span>
               type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1039,213 +1245,7 @@ Is updated with correct velocity field for multicomponent models</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-dervarpos~14"></span>
-              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>derVarPos</strong>(:)</td>
-            <td>
-<p>position of derived quantities in varsys for all fields</p>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mus_advrel_kps_rtrt_vstdnoopt_l"></span> <h3>public  subroutine <a href='../proc/mus_advrel_kps_rtrt_vstdnoopt_l.html'>mus_advRel_kPS_rTRT_vStdNoOpt_l</a>(fieldProp, inState, outState, auxField, neigh, nElems, nSolve, level, layout, params, varSys, derVarPos)  
-</h3></div>
-    <div class="card-body">
-          
-  <p>Advection relaxation routine for the TRT diffusion model.</p><a href="../proc/mus_advrel_kps_rtrt_vstdnoopt_l.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-fieldprop~15"></span>
-              type(<a href='../type/mus_field_prop_type.html'>mus_field_prop_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>fieldProp</strong>(:)</td>
-            <td>
-<p>Array of field properties (fluid or species)</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-instate~5"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>inState</strong>(nElems*varSys%nScalars)</td>
-            <td>
-<p>input  pdf vector</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-outstate~5"></span>
-              real(kind=rk),
-            </td>
-<td>intent(out)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>outState</strong>(nElems*varSys%nScalars)</td>
-            <td>
-<p>output pdf vector</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-auxfield~33"></span>
-              real(kind=rk),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>auxField</strong>(nElems*varSys%nAuxScalars)</td>
-            <td>
-<p>Auxiliary field computed from pre-collision state
-Is updated with correct velocity field for multicomponent models</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-neigh~22"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>neigh</strong>(nElems*layout%fStencil%QQ)</td>
-            <td>
-<p>connectivity vector</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nelems~25"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nElems</strong></td>
-            <td>
-<p>number of elements in state Array</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nsolve~40"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nSolve</strong></td>
-            <td>
-<p>number of elements solved in kernel</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-level~11"></span>
-              integer,
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>level</strong></td>
-            <td>
-<p>current level</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-layout~28"></span>
-              type(<a href='../type/mus_scheme_layout_type.html'>mus_scheme_layout_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>layout</strong></td>
-            <td>
-<p>current layout</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-params~39"></span>
-              type(<a href='../type/mus_param_type.html'>mus_param_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>params</strong></td>
-            <td>
-<p>global parameters</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-varsys~32"></span>
-              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>varSys</strong></td>
-            <td>
-<p>variable system definition</p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-dervarpos~15"></span>
+              <span class="anchor" id="variable-dervarpos~5"></span>
               type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
             </td>
 <td>intent(in)</td>
@@ -1282,13 +1282,13 @@ Is updated with correct velocity field for multicomponent models</p>
             <p>
               Musubi
  was developed by University of Siegen<br>              &copy; 2025 
-<br /><small>a7b3d1745ba9</small></p>
+<br /><small>64b1e032793c</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-05-12T17:42:40.672602+0000             </p>
+ on 2025-05-18T06:51:20.632862+0000             </p>
           </div>
         </div>
         <br>

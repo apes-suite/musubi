@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pysysproject>
+	<requires-pysys>2.2</requires-pysys>
+	<requires-python>3.9.2</requires-python>
+	
+	<!-- Pre-defined properties include: ${testRootDir}, ${outDirName}, ${os}, ${osfamily}, ${startDate}, ${startTime}, 
+		${hostname}, ${username}, ${/}, ${eval:*}, ${env:*}. 
+	-->
+	
+	<!-- Property identifying the home directory of the application build being tested. -->
+	<property name="appHome" value="${env.PYSYS_APP_HOME}" default="${testRootDir}/.." pathMustExist="true"/>
+
+	<!-- Add user-defined properties here (use lowerCamelCase for property names) -->
+	<property name="pythonIndentationSpacesPerTab" value="    " />
+	
+	<!-- Custom test framework plugins, if needed -->
+	<!--
+	<pythonpath value="./pysys-extensions" />
+	<test-plugin   classname="myorg.plugins.MyTestPlugin" alias="myorg"/>
+	<runner-plugin classname="myorg.plugins.MyRunnerPlugin" alias="myorg"/>
+	-->
+	<pythonpath value="${testRootDir}/../../pysys-extensions" />
+	
+	<writers>
+		<writer classname="pysys.writer.testoutput.TestOutputArchiveWriter">
+			<property name="destDir" value="__pysys_output_archives/"/>
+			<property name="maxTotalSizeMB" value="1024.0"/>
+		</writer>
+		
+		<writer classname="pysys.writer.outcomes.JUnitXMLResultsWriter">
+			<property name="outputDir" value="__pysys_junit_xml"/>
+		</writer>
+		
+		<writer classname="pysys.writer.outcomes.JSONResultsWriter">
+			<property name="file" value="__pysys_testsummary_${outDirName}.json"/>
+		</writer>
+		
+		<writer classname="pysys.writer.ci.GitHubActionsCIWriter"></writer>
+		<writer classname="pysys.writer.ci.TravisCIWriter"></writer>
+		
+		<writer classname="pysys.writer.console.ConsoleSummaryResultsWriter"></writer>
+	</writers>
+
+	<default-file-encodings>
+		<default-file-encoding pattern="run.log" encoding="utf-8"/>
+		
+		<default-file-encoding pattern="*.xml"  encoding="utf-8"/>
+		<default-file-encoding pattern="*.json" encoding="utf-8"/>
+		<default-file-encoding pattern="*.yaml" encoding="utf-8"/>
+	</default-file-encodings>	
+	
+	<pysysdirconfig>
+		<!-- Store input files alongside pysystest.py in the test directories (instead of a separate testDir/Input/ dir) -->
+		<input-dir>.</input-dir>
+		<output-dir>PS_Output</output-dir>
+		<reference-dir>reference</reference-dir>
+	</pysysdirconfig>
+	
+	<!-- Add project-specific text to be appended to the "pysys run -h". -->
+	<project-help>
+	</project-help>
+</pysysproject>
