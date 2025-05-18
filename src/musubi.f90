@@ -85,7 +85,6 @@ program musubi
 
   ! Initialize environment
   call tem_start(codeName   = 'Musubi',                 &
-    &            version    = params%version,           &
     &            general    = params%general,           &
     &            simControl = params%general%simControl )
 

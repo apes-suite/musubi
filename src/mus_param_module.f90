@@ -40,6 +40,7 @@ module mus_param_module
 
   ! include treelm modules
   use env_module,             only: labelLen, rk, globalMaxLevels
+  use soi_revision_module,    only: soi_solver_version
   use tem_logging_module,     only: logUnit
   use tem_general_module,     only: tem_general_type
   use tem_tools_module,       only: tem_horizontalSpacer
@@ -117,7 +118,7 @@ module mus_param_module
     integer :: reqInterval
     logical :: comm_reduced = .true. !< Communicate all links?
     !> need to set solver version in  general%solver%version
-    character(len=labelLen) :: version = 'v2.0'
+    character(len=labelLen) :: version = soi_solver_version
     !> active when restart is triggered by restart timeControl
     !! dump restart when simulation reached end only when
     !! restart is not triggered by its timeControl before

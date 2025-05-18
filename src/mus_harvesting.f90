@@ -95,7 +95,6 @@ program mus_harvesting
 
   ! Initialize environment.
   call tem_start( codeName = 'mus_harvesting', &
-    &             version  = '0.1',            &
     &             general  = params%general    )
 
   if (params%general%proc%rank == 0) then
