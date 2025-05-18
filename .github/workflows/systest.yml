@@ -1,0 +1,42 @@
+name: SystemTests
+
+on:
+  workflow_dispatch:
+    inputs:
+      SeederVersion:
+        description: "Seeder Version"
+        default: "v1.6-env.v2025.2-u24.04"
+        required: true
+  pull_request:
+    types: [ready_for_review,enqueued]
+    branches: [ "main" ]
+  merge_group:
+    types: [checks_requested]
+  
+jobs:
+  compileAndTest:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/apes-suite/seeder:${{ inputs.SeederVersion || vars.SEEDER_VERSION }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          path: 'musubi'
+          submodules: recursive
+
+      - name: Build Musubi
+        run: |
+          cd musubi && FC=mpif90 bin/waf --mpicmd 'mpiexec --oversubscribe' configure install --target=musubi --prefix=$VIRTUAL_ENV
+          
+      - name: Run System Tests
+        id: pysys
+        run: |
+          cd musubi/mus/examples && pysys.py run --ci --outdir=CItests
+          
+      - name: Upload archive artifacts for any test failures
+        uses: actions/upload-artifact@v4
+        if: always() && steps.pysys.outputs.artifact_TestOutputArchiveDir
+        with:
+          name: pysys_output
+          path: ${{ steps.pysys.outputs.artifact_TestOutputArchiveDir }}
