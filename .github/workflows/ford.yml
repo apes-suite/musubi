@@ -1,55 +1,16 @@
-name: Fordoc
+name: ForDoc
 
 on:
   push:
     branches:
       - 'main'
 
-permissions:
-  contents: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   documentation:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+    permissions:
+      contents: write
+    uses: apes-suite/reus/.github/workflows/ford.yml@v1.3.4
+    with:
+      name: Musubi
+      docdir: 'build/ford/mus'
 
-      - name: Install gfortran
-        run: |
-          sudo apt install -y gfortran
-
-      - name: Install Open MPI
-        run: |
-          sudo apt install -y openmpi-bin openmpi-common libopenmpi-dev
-
-      - name: Install Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-
-      - name: Install Graphviz
-        uses: ts-graphviz/setup-graphviz@v2
-
-      - name: Install FORD
-        run: |
-          python -m pip install --upgrade pip
-          pip install "pygments==2.18.0"
-          pip install ford
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Build FORD Documentation
-        run: |
-          FC=mpif90 bin/waf --fordonline distclean configure docu
-
-      - name: Deploy Documentation
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: build/ford/mus/docu
