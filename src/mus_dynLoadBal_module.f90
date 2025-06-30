@@ -49,7 +49,9 @@ module mus_dynLoadBal_module
   use tem_tools_module,        only: tem_horizontalSpacer
   use tem_dyn_array_module,    only: append
   use tem_stencil_module,      only: append
-  use tem_time_module,         only: tem_time_dump, tem_time_sim_stamp
+  use tem_time_module,         only: tem_time_dump
+  use tem_timeformatter_module, only: tem_timeformatter_type, &
+    &                                 tem_timeformatter_init
   use tem_construction_module, only: tem_levelDesc_type
   use tem_sparta_module,       only: tem_balance_sparta, tem_sparta_type,     &
     &                                tem_exchange_sparta,                     &
@@ -535,6 +537,7 @@ contains
     character(len=labelLen) :: timestamp
     ! weights for fluid elements
     real(kind=rk), allocatable :: weights(:)
+    type(tem_timeformatter_type) :: timeform
     ! --------------------------------------------------------------------------
     ! allocate weights
     allocate( weights( tree%nElems ) )
@@ -552,7 +555,8 @@ contains
       write(logUnit(3),"(A)") "Dump weight file onto disk"
       ! Dump the weights using the current sim time in the basename
       ! Weight file name can be: simulation_name_weight_t
-      timestamp = tem_time_sim_stamp( general%simControl%now )
+      timeform = tem_timeformatter_init()
+      timestamp = timeform%stamp( general%simControl%now )
       write(basename,'(a)')                                                 &
         &           './balance/'//trim(general%solver%simName)//'_weight_t' &
         &           //trim(timestamp)

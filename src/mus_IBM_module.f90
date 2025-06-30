@@ -68,47 +68,49 @@ module mus_IBM_module
 !$ use omp_lib
 
   ! include treelm modules
-  use env_module,               only: rk, long_k, LabelLen, globalMaxLevels,   &
+  use env_module,               only: rk, long_k, LabelLen, globalMaxLevels, &
     &                                 tem_connect_toNull, newunit, PathLen
-  use tem_spacetime_fun_module, only: tem_spacetime_fun_type,                  &
+  use tem_spacetime_fun_module, only: tem_spacetime_fun_type,             &
     &                                 tem_load_spacetime, tem_spacetime_for
   use tem_aux_module,           only: tem_abort
-  use tem_logging_module,       only: tem_logging_type, logUnit, tem_last_lu,  &
+  use tem_logging_module,       only: tem_logging_type, logUnit, tem_last_lu, &
     &                                 tem_logging_load
-  use tem_surfaceData_module,   only: tem_surfData_type,                       &
-    &                                 tem_load_surfData, tem_init_surfData,    &
-    &                                 tem_readAndUnify_surfData,               &
-    &                                 tem_freeSurfData,                        &
+  use tem_surfaceData_module,   only: tem_surfData_type,                    &
+    &                                 tem_load_surfData, tem_init_surfData, &
+    &                                 tem_readAndUnify_surfData,            &
+    &                                 tem_freeSurfData,                     &
     &                                 tem_update_surfPos, tem_calcTriaAreas
-  use tem_timer_module,         only: tem_labeledtimer_type, tem_startTimer,   &
-    &                                 tem_stopTimer, tem_addTimer,             &
+  use tem_timer_module,         only: tem_labeledtimer_type, tem_startTimer, &
+    &                                 tem_stopTimer, tem_addTimer,           &
     &                                 tem_getMaxTimerVal, tem_resetTimer
   use tem_stlb_io_module,       only: tem_dump_stlb
   use tem_stencil_module,       only: tem_stencilHeader_type
   use treelmesh_module,         only: treelmesh_type
   use tem_tools_module,         only: tem_horizontalSpacer
-  use tem_comm_module,          only: tem_commPattern_type,                    &
+  use tem_comm_module,          only: tem_commPattern_type, &
     &                                 tem_communication_type
   use tem_comm_env_module,      only: tem_comm_env_type
   use tem_param_module,         only: q__W, q__S, q__B, q__E, q__N, q__T
-  use tem_grow_array_module,    only: grw_intArray_type, grw_realArray_type,   &
-    &                                 grw_longArray_type,                      &
+  use tem_grow_array_module,    only: grw_intArray_type, grw_realArray_type, &
+    &                                 grw_longArray_type,                    &
     &                                 init, append, destroy, empty
-  use tem_dyn_array_module,     only: dyn_intArray_type, dyn_longArray_type,   &
-    &                                 PositionOfVal, init, append, expand,     &
+  use tem_dyn_array_module,     only: dyn_intArray_type, dyn_longArray_type, &
+    &                                 PositionOfVal, init, append, expand,   &
     &                                 destroy
-  use tem_construction_module,  only: tem_levelDesc_type, tem_treeIDinTotal,   &
+  use tem_construction_module,  only: tem_levelDesc_type, tem_treeIDinTotal, &
     &                                 tem_updateTree_properties
   use tem_math_module,          only: inamuroDelta3D
   use tem_geometry_module,      only: tem_baryOfId
   use tem_varSys_module,        only: tem_varSys_type
   use tem_general_module,       only: tem_general_type
   use tem_property_module,      only: prp_solid, prp_sendHalo
-  use tem_time_module,          only: tem_time_type, tem_time_sim_stamp,       &
+  use tem_time_module,          only: tem_time_type,                &
     &                                 tem_time_dump, tem_time_advance
-  use tem_topology_module,      only: tem_CoordOfId, tem_IdOfCoord,            &
+  use tem_timeformatter_module, only: tem_timeformatter_type, &
+    &                                 tem_timeformatter_init
+  use tem_topology_module,      only: tem_CoordOfId, tem_IdOfCoord, &
     &                                 tem_TreeIDComparison
-  use tem_element_module,       only: eT_minRelevant, eT_maxRelevant,          &
+  use tem_element_module,       only: eT_minRelevant, eT_maxRelevant, &
     &                                 eT_fluid, eT_halo
   use tem_timeControl_module,   only: tem_timeControl_check
   use tem_simControl_module,    only: tem_simControl_type
@@ -760,6 +762,7 @@ contains
     ! local sim control
     type( tem_simControl_type ) :: loc_simControl
     integer :: loc_level
+    type(tem_timeformatter_type) :: timeform
     ! --------------------------------------------------------------------------
     loc_level = iLevel
 
@@ -770,9 +773,11 @@ contains
 
     loc_simControl = params%general%simControl
 
+    timeform = tem_timeformatter_init()
+
     write(IBM_logUnit(3),*)'Starting to build communicators for all IBM ' //   &
       &                    'for time: '                                   //   &
-      &                    trim(tem_time_sim_stamp(loc_simControl%now))
+      &                    trim(timeform%stamp(loc_simControl%now))
 
     ! loop over the IBMs in this field
     do iIBM = 1, size(me)
@@ -951,13 +956,15 @@ contains
     real(kind=rk) :: maxVel_X_ini
     real(kind=rk) :: maxVel_Xk
     real(kind=rk) :: maxForce_xk
+    type(tem_timeformatter_type) :: timeform
     ! --------------------------------------------------------------------------
 
     forceunit = newunit()
 !! !$omp single
 
-    write(IBM_logUnit(3),*)'Starting to process all IBM for time: '//          &
-      &                  trim(tem_time_sim_stamp(general%simControl%now))
+    timeform = tem_timeformatter_init()
+    write(IBM_logUnit(3),*)'Starting to process all IBM for time: ' // &
+      &                  trim(timeform%stamp(general%simControl%now))
 
 !! !$omp end single
 
@@ -995,11 +1002,11 @@ contains
       write(IBM_logUnit(3),*)'   Done updating the surface areas!'
 
 
-      call tem_timeControl_check(                                              &
-        &               me     = me( iIBM )%surfData%timeControl,              &
-        &               now    = general%simControl%now,                &
-        &               comm   = general%proc%comm,                     &
-        &               triggered = triggered )
+      call tem_timeControl_check(                                 &
+        &               me     = me( iIBM )%surfData%timeControl, &
+        &               now    = general%simControl%now,          &
+        &               comm   = general%proc%comm,               &
+        &               triggered = triggered                     )
 
       ! @todo: IBM: use a sim_control table to set timings%timedat
       !             in which the stl should be dumped
@@ -1012,15 +1019,15 @@ contains
         if( me(iIBM)%surfData%dumpForce )then
           write(rankstamp, '(a1,I6.6)') '.',general%proc%rank
           write(forceName,'(a)')'IBMdeb/force'
-          timestamp = trim(tem_time_sim_stamp(general%simControl%now))
+          timestamp = trim(timeform%stamp(general%simControl%now))
           open( unit = forceunit,                                              &
             &   file = trim(forceName)//trim(rankstamp)//'_'//trim(timestamp))
         end if
-        call tem_dump_stlb( outprefix = trim(me(iIBM)%surfData%outprefix),     &
-          &                 nodes     = me(iIBM)%surfData%pointCoords,         &
-          &                 triangles = me(iIBM)%surfData%trias,               &
-          &                 proc      = general%proc,                          &
-          &                 time      = general%simControl%now )
+        call tem_dump_stlb( outprefix = trim(me(iIBM)%surfData%outprefix), &
+          &                 nodes     = me(iIBM)%surfData%pointCoords,     &
+          &                 triangles = me(iIBM)%surfData%trias,           &
+          &                 proc      = general%proc,                      &
+          &                 time      = general%simControl%now             )
       end if
 
       write(IBM_logUnit(3),*)'   Filling the initial force and velocity '//    &
@@ -3657,6 +3664,7 @@ contains
     character(len=PathLen) :: filename
     ! timestamp for the filename
     character(len=16)     :: timeStamp
+    type(tem_timeformatter_type) :: timeform
     ! --------------------------------------------------------------------------
 
     do iIBM = 1, me%nIBMs
@@ -3678,7 +3686,8 @@ contains
         ! get a new unit and ...
         iUnit = newunit()
         if( useTime )then
-          timestamp = trim(tem_time_sim_stamp( params%general%simControl%now ))
+          timeform = tem_timeformatter_init()
+          timestamp = trim(timeform%stamp(params%general%simControl%now))
           ! ... construct the filename using the timestamp and ...
           write( filename, '(i4.4,a,i2.2,a)')params%general%proc%comm_size,    &
             &               '_',iIBM,'_IBM_MAXTimings_'//trim(timestamp)//'.res'

@@ -223,8 +223,6 @@ program mus_harvesting
        ! on output vis_kind
        call hvs_output_open(                                             &
          &         out_file = scheme%track%instance(iTrack)%output_file, &
-         &         use_iter = scheme%track%config(iConfig)%output_config &
-         &                                           %vtk%iter_filename, &
          &         mesh     = geometry%tree,                             &
          &         varSys   = scheme%varSys,                             &
          &         time     = params%general%simControl%now              )
@@ -246,8 +244,6 @@ program mus_harvesting
        ! on output vis_kind
        call hvs_output_open(                                             &
          &         out_file = scheme%track%instance(iTrack)%output_file, &
-         &         use_iter = scheme%track%config(iConfig)%output_config &
-         &                                           %vtk%iter_filename, &
          &         mesh     = geometry%tree,                             &
          &         varSys   = scheme%varSys,                             &
          &         subTree  = scheme%track%instance(iTrack)%subTree,     &
@@ -295,11 +291,10 @@ program mus_harvesting
       &                  solver      = params%general%solver     )
 
     ! Open output file handle
-    call hvs_output_open( out_file   = out_file,                        &
-      &                   use_iter   = config%output%vtk%iter_filename, &
-      &                   mesh       = geometry%tree,                   &
-      &                   varsys     = scheme%varsys,                   &
-      &                   time       = params%general%simControl%now    )
+    call hvs_output_open( out_file   = out_file,                     &
+      &                   mesh       = geometry%tree,                &
+      &                   varsys     = scheme%varsys,                &
+      &                   time       = params%general%simControl%now )
 
     ! Fill output files with data.
     call hvs_output_write( out_file = out_file,      &
