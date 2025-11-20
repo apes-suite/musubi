@@ -568,7 +568,7 @@ contains
       vel_normal = dot_product(velSW, normal)
       dens_bnd = 0.0_rk
       f_pre = me%neigh(iLevel)%computeNeighBuf( (iElem-1)*QQ+1: iElem*QQ )
-      do iDir = 1, layout%fStencil%QQ
+      do iDir = 1, layout%fStencil%QQN
         if ( globBC%elemLvl(iLevel)%bitmask%val( iDir, iElem )) then
           dens_bnd = dens_bnd + f_pre(layout%fStencil%cxDirInv(iDir))
         else
@@ -878,7 +878,7 @@ contains
       vel_normal = dot_product(velSW, normal)
       dens_bnd = 0.0_rk
       f_pre = me%neigh(iLevel)%computeNeighBuf( (iElem-1)*QQ+1: iElem*QQ )
-      do iDir = 1, layout%fStencil%QQ
+      do iDir = 1, layout%fStencil%QQN
         if ( globBC%elemLvl(iLevel)%bitmask%val( iDir, iElem )) then
           dens_bnd = dens_bnd + f_pre(layout%fStencil%cxDirInv(iDir))
         else

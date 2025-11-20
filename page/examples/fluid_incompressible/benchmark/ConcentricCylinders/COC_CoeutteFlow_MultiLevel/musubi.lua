@@ -40,7 +40,7 @@ dt = dx * vel_lat / vel_phy
 
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time [s]
-tmax_phy = 200
+tmax_phy = 0.1
 -- Interval to check status of the simulation [s]
 interval_phy = 5
 -- Starting time for tracking output [s]

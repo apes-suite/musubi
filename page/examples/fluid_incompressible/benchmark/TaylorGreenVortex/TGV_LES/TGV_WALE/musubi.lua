@@ -62,7 +62,7 @@ press_ambient =  rho0_phy * cs_phy^2
 
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time [s]
-tmax_phy = 10.0
+tmax_phy = 1.0
 -- Number of iterations required to reach physical simulation end time.
 -- tmax_iter is also number of lattice iterations
 tmax_iter =  math.ceil(tmax_phy/dt)

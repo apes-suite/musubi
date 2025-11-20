@@ -616,19 +616,23 @@ contains
     if (.not. allocated(me%geom_utau(1)%canoND)) then
       allocate(me%geom_utau(1)%canoND(0))
     end if
+    if (.not. allocated(me%geom_utau(1)%bcLabels)) then
+      allocate(me%geom_utau(1)%bcLabels(0))
+    end if
 
-    if (size(me%geom_utau(1)%canoND) == 0      &
+    if (size(me%geom_utau(1)%canoND) == 0        &
       & .and. size(me%geom_utau(1)%bcLabels) == 0) then
-      write(logUnit(1),*) 'Error: Requires single shape for turb_channel_force'
+      write(logUnit(1),*) 'Error: Requires canond or boundary shape for u_tau'
       call tem_abort()
     end if
 
-    if (.not. allocated(me%geom_umean(1)%canoND)) &
-      & allocate(me%geom_umean(1)%canoND(0))
+    if (.not. allocated(me%geom_umean(1)%canoND)) then
+      allocate(me%geom_umean(1)%canoND(0))
+    end if
 
     if (size(me%geom_umean(1)%canoND) == 0         &
       & .and. trim(me%geom_umean(1)%kind) /= 'all' ) then
-      write(logUnit(1),*) 'Error: Requires single shape for turb_channel_force'
+      write(logUnit(1),*) 'Error: Requires canond or all shape for u_mean'
       call tem_abort()
     end if
 

@@ -57,7 +57,7 @@ omega = 1.0 / ( nu_lat/cs_lat^2.0 + 0.5 )
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time [s]
 if shepherd then
-  tmax_phy = T_star/2
+  tmax_phy = T_star/4
 elseif run_initial_period then
   tmax_phy = 3*T_star
 else

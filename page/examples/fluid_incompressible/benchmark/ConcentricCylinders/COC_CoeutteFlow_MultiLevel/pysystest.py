@@ -24,11 +24,11 @@ class PySysTest(ApesHelper, pysys.basetest.BaseTest):
         self.apes.runSeeder()
 
     def execute(self):
-        musrun = self.apes.runMusubi(np = 8)
+        musrun = self.apes.runMusubi(np = 4)
 
     def validate(self):
         self.apes.checkMusLog()
-        trackfile = 'concentricCylinder_line_p00000_t1.488E+00.res'
+        trackfile = 'concentricCylinder_line_p00000_t100.021E-03.res'
         self.assertPathExists('tracking/' + trackfile, abortOnError = True)
         self.apes.assertIsClose(trackfile, dir = 'tracking')
 

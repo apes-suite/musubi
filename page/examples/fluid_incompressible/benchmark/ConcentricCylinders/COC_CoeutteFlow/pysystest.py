@@ -26,7 +26,7 @@ class PySysTest(ApesHelper, pysys.basetest.BaseTest):
 
 
     def execute(self):
-        musrun = self.apes.runMusubi(np = 8)
+        musrun = self.apes.runMusubi(np = 4)
 
     def validate(self):
         self.apes.checkMusLog()

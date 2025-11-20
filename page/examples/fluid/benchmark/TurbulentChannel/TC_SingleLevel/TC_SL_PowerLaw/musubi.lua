@@ -28,7 +28,7 @@ T_c = length/vel_bulk_phy
 wallclock = 24*60*60 - 10*60
 -- Physical simulation end time [s]
 if shepherd then
-  tmax_phy = 25*T_c --s
+  tmax_phy = 3*T_c --s
 else
   tmax_phy = 600*T_c --s
 end
