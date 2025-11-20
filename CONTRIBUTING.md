@@ -12,6 +12,32 @@ The source code of the solver resides in the
 submodule musubi-source, which is linked to here
 in the `mus` subdiectory.
 
+To ease the manual process below, we provide a small
+script, utilizing the [github cli](https://cli.github.com/):
+
+```
+bin/request
+```
+
+The idea is to use that in the `mus` subdirectory
+instead of `git push` directly.
+
+To create a new pull request for code changes to
+the musubi-source the workflow looks like this:
+
+```
+cd mus
+git checkout -b <yourbranchname>
+# work on your changes
+../bin/request
+# commit further changes and address review feedback
+../bin/request # use instead of "git push"
+```
+
+
+manual
+------
+
 To contribute code, please open a new branch in
 both, the repository in `mus` and here in the
 parent repository, i.e.:
