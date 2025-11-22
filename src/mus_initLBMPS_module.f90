@@ -1,6 +1,7 @@
 ! Copyright (c) 2013 Kannan Masilamani <kannan.masilamani@uni-siegen.de>
 ! Copyright (c) 2015 Jiaxing Qi <jiaxing.qi@uni-siegen.de>
 ! Copyright (c) 2016 Tobias Schneider <tobias1.schneider@student.uni-siegen.de>
+! Copyright (c) 2025 Mengyu Wang <m.wang-2@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -36,6 +37,13 @@ module mus_initLBMPS_module
   use mus_compute_passiveScalar_module, only: mus_advRel_kPS_rBGK_v1st_l,      &
     &                                         mus_advRel_kPS_rBGK_v2nd_l,      &
     &                                         mus_advRel_kPS_rTRT_vStdNoOpt_l
+  use mus_d3q19_module,                 only: mus_advRel_kPS_rBGK_vEmodel_lD3Q19, &
+    &                                         mus_advRel_kPS_rBGK_vEmodelCorr_lD3Q19, &
+    &                                         mus_advRel_kPS_rMRT_vEmodelCorr_lD3Q19, &
+    &                                         mus_advRel_kPS_rTRT_vEmodel_lD3Q19, &
+    &                                         mus_advRel_kPS_rTRT_vEmodelCorr_lD3Q19, &
+    &                                         mus_advRel_kPS_rTRT_vLmodel_lD3Q19
+
   use mus_scheme_type_module,           only: kernel
 
   implicit none
@@ -63,17 +71,82 @@ contains
     case( 'bgk' )
       select case( trim(relaxation_variant) )
       case( 'first' )
+        write(logUnit(1), *) 'Using bgk_advRel scheme with first order.'
         compute => mus_advRel_kPS_rBGK_v1st_l
       case( 'second' )
+        write(logUnit(1), *) 'Using bgk_advRel scheme with second order.'
         compute => mus_advRel_kPS_rBGK_v2nd_l
+      case( 'Emodel' )
+        write(logUnit(1), *) 'Using bgk_advRel scheme with E-model.'
+        select case( trim(layout) )
+        case( 'd3q19' )
+          compute => mus_advRel_kPS_rBGK_vEmodel_lD3Q19
+        case default
+          write(logUnit(1),*) 'The selected layout is not supported: ' &
+            &                  // trim(layout)
+          call tem_abort()
+        end select
+      case( 'EmodelCorr' )
+        write(logUnit(1), *) 'Using bgk_advRel scheme with E-model correction.'
+        select case( trim(layout) )
+        case( 'd3q19' )
+          compute => mus_advRel_kPS_rBGK_vEmodelCorr_lD3Q19
+        case default
+          write(logUnit(1),*) 'The selected layout is not supported: ' &
+            &                  // trim(layout)
+          call tem_abort()
+        end select
       case default
         write(logUnit(1),*) 'relaxation_variant '//trim(relaxation_variant)//   &
           &                 ' is not supported yet!'
         call tem_abort()
       end select
     case( 'trt' )
-      write(logUnit(1), *) 'Using trt_advRel scheme.'
-      compute => mus_advRel_kPS_rTRT_vStdNoOpt_l
+      select case( trim(relaxation_variant) )
+      case( 'Emodel' )
+        write(logUnit(1), *) 'Using trt_advRel scheme with E-model.'
+        select case( trim(layout) )
+        case( 'd3q19' )
+          compute => mus_advRel_kPS_rTRT_vEmodel_lD3Q19
+        case default
+          write(logUnit(1),*) 'The selected layout is not supported: ' &
+            &                  // trim(layout)
+          call tem_abort()
+        end select
+      case( 'EmodelCorr' )
+        write(logUnit(1), *) 'Using trt_advRel scheme with E-model correction.'
+        select case( trim(layout) )
+        case( 'd3q19' )
+          compute => mus_advRel_kPS_rTRT_vEmodelCorr_lD3Q19
+        case default
+          write(logUnit(1),*) 'The selected layout is not supported: ' &
+            &                  // trim(layout)
+          call tem_abort()
+        end select
+      case( 'Lmodel' )
+        write(logUnit(1), *) 'Using trt_advRel scheme with L-model.'
+        select case( trim(layout) )
+        case( 'd3q19' )
+          compute => mus_advRel_kPS_rTRT_vLmodel_lD3Q19
+        case default
+          write(logUnit(1),*) 'The selected layout is not supported: ' &
+            &                  // trim(layout)
+          call tem_abort()
+        end select
+      case default
+        write(logUnit(1),*) 'Using trt_advRel scheme with standard no optimization.'
+        compute => mus_advRel_kPS_rTRT_vStdNoOpt_l
+      end select
+    case( 'mrt' )
+      select case( trim(layout) )
+      case( 'd3q19' )
+        write(logUnit(1), *) 'Using mrt_advRel scheme with E-model correction.'
+        compute => mus_advRel_kPS_rMRT_vEmodelCorr_lD3Q19
+      case default
+        write(logUnit(1),*) 'The selected layout is not supported: ' &
+          &                  // trim(layout)
+        call tem_abort()
+      end select
     case default
       write(logUnit(1),*) 'The selected relaxation model is not supported: '// &
         &                  trim(relaxation)

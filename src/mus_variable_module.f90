@@ -11,6 +11,7 @@
 ! Copyright (c) 2017, 2020 Raphael Haupt <raphael.haupt@uni-siegen.de>
 ! Copyright (c) 2019 Seyfettin Bilgi <seyfettin.bilgi@student.uni-siegen.de>
 ! Copyright (c) 2021-2022 Gregorio Gerardo Spinelli <gregoriogerardo.spinelli@dlr.de>
+! Copyright (c) 2025 Mengyu Wang <m.wang-2@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -370,9 +371,9 @@ contains
           &                           fldLabel     = field(1)%label, &
           &                           derVarname   = derVarname      )
         select case (trim(schemeHeader%relaxHeader%variant))
-        case ('first')
+        case ('first', 'Emodel')
           derVarPos(1)%equilFromMacro => deriveEquilPS_FromMacro
-        case ('second')
+        case ('second', 'EmodelCorr', 'Lmodel')
           derVarPos(1)%equilFromMacro => deriveEquilPS2ndOrder_FromMacro
         case default
           derVarPos(1)%equilFromMacro => deriveEquilPS2ndOrder_FromMacro
