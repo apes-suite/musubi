@@ -19,10 +19,12 @@ authors:
     corresponding: true # (This is how to denote the corresponding author)
     affiliation: 1
 affiliations:
- - name: German Aerospace Center (DLR), Germany
+ - name: German Aerospace Center, DLR, Germany
    index: 1
+   ror: 04bwf3e34
  - name: University of Twente, Netherlands
    index: 2
+   ror: 006hf6230
 date: 26 November 2025
 bibliography: paper.bib
 ---
@@ -71,6 +73,6 @@ of Musubi Manuel Hasert.
 Not appearing in the list of authors is Sabine Roller, who enabled the development
 of this software in the first place and we are very grateful for this possibility.
 We thank our fellow contributors to this code basis Jiaxing Qi, Jens Zudrop,
-Simon Zimny, Tristan Vlogman and Mengyu Wang and the many students.
+Simon Zimny, Jana Gericke, Tristan Vlogman, Mengyu Wang and many students.
 
 # References
