@@ -37,7 +37,7 @@ dt = dx * vel_lat / vel_phy
 
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time [s]
-tmax_phy = length/vel_phy * 50
+tmax_phy = length/vel_phy * 10
 -- Number of iterations required to reach physical simulation end time.
 -- tmax_iter is also number of lattice iterations
 tmax_iter =  math.ceil(tmax_phy/dt)

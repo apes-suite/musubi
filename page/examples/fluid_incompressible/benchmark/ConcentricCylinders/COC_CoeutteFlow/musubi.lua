@@ -41,7 +41,7 @@ dt = dx * vel_lat / vel_phy
 
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time:
-tmax_phy = 10 -- [s]
+tmax_phy = 0.5 -- [s]
 
 -- Interval to check status of the simulation [s]
 interval_phy = 5

@@ -57,7 +57,7 @@ omega = 1.0 / ( nu_lat/cs_lat^2.0 + 0.5 )
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time [s]
 if shepherd then
-  tmax_phy = T_star/4
+  tmax_phy = T_star/8
 elseif run_initial_period then
   tmax_phy = 3*T_star
 else
@@ -67,7 +67,7 @@ end
 -- tmax_iter is also number of lattice iterations
 tmax_iter =  math.ceil(tmax_phy/dt)
 -- Interval to check status of the simulation [s]
-interval_phy = T_star/5
+interval_phy = T_star/8
 -- Starting time for tracking output [s]
 trac_start = 0
 -- Starting time for restart output [s]
