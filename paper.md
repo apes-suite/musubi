@@ -59,7 +59,7 @@ The interpolation and transformation between the involved levels for the local
 refinement are separated from the kernel, allowing for an implementation of the
 respective methods without encumberment by the interpolation between the different
 resolutions.
-This method was described in detail in [hasert:2013jc].
+This method was described in detail in [@hasert:2013jc].
 
 # Acknowlegements
 
