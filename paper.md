@@ -10,16 +10,14 @@ tags:
 authors:
   - name: Kannan Masilamani
     orcid: 0000-0002-3640-2154
-    equal-contrib: true
     affiliation: 1 # (Multiple affiliations must be quoted)
   - name: Kartik Jain
     orcid: 0000-0002-6540-9304
-    equal-contrib: true
     affiliation: 2
   - name: Harald Klimach
     orcid: 0000-0002-6054-5681
     corresponding: true # (This is how to denote the corresponding author)
-    affiliation: 3
+    affiliation: 1
 affiliations:
  - name: German Aerospace Center (DLR), Germany
    index: 1
@@ -51,6 +49,28 @@ Musubi implements the lattice Boltzmann method (LBM) with a Message Passing Inte
 bottlenecks on individual processors and enabling the scaling of the simulation to
 hundreds of thousands of MPI processes.
 
+# The lattice Boltzmann method
+
+# The Musubi implementation
+
+Musubi implements the lattice Boltzmann method in the form of kernels that can be
+run on individual refinement levels of an octree mesh.
+The interpolation and transformation between the involved levels for the local
+refinement are separated from the kernel, allowing for an implementation of the
+respective methods without encumberment by the interpolation between the different
+resolutions.
+This method was described in detail in [hasert:2013jc].
+
 # Acknowlegements
+
+This software has been written by many people over the years.
+The individual authors can be found in each file with the respective copyright
+statement.
+We want to thank all these contributors, especially the main original developer
+of Musubi Manuel Hasert.
+Not appearing in the list of authors is Sabine Roller, who enabled the development
+of this software in the first place and we are very grateful for this possibility.
+We thank our fellow contributors to this code basis Jiaxing Qi, Jens Zudrop,
+Simon Zimny, Tristan Vlogman and Mengyu Wang and the many students.
 
 # References
