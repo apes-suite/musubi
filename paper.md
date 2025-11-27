@@ -35,8 +35,10 @@ Musubi is a multi-level, parallel lattice Boltzmann solver and part of the APES 
 It is working on an octree mesh that is linearized by a (Morton) space-filling curve and
 uses efficient data structures allowing adaptive parallel simulations.
 
-Musubi offers several collision kernels (BGK, MRT, HRR, Cumulant) and is designed to deal
-with huge meshes (billions of lattices) efficiently.
+Musubi is designed to deal with huge meshes (billions of lattices) and complex geometries
+on large computing systems efficiently.
+It can be used for a wide range of application areas from electrodialysis [@Masilamani:2020]
+over biomedical problems [@Jain:2016] to aero-acoustic simulations [@Hasert:2013].
 
 It is written in Fortran, with language constructs from Fortran 2003.
 
@@ -53,6 +55,22 @@ hundreds of thousands of MPI processes.
 
 # The lattice Boltzmann method
 
+The lattice Boltzmann method utilizes ideas of cellular automata and represents at its
+core a basic two step algorithm.
+The state of the fluid is represented by particle density functions (PDF) in a discrete
+velocity field.
+These PDFs reside on the lattices and are exchanged along the discrete velocity directions.
+The two steps of the algorithm are now the streaming of the PDF information along
+the velocity directions, followed by the so-called collision, computing the new
+PDF on each lattice.
+This modeling with discrete velocities also allows for a straight forward handling of
+complicated wall boundaries, as a simple line intersection with the wall geometry
+can be used to accurately model the surface.
+Due to these properties the method has gained popularity in the field of computational
+fluid dynamics over the last decades.
+Other Open Source solvers that utilize this method are for example Palabos [@Palabos2020],
+OpenLB [@olbPaper2021] and waLBerla [@BAUER2021478].
+
 # The Musubi implementation
 
 Musubi implements the lattice Boltzmann method in the form of kernels that can be
@@ -62,6 +80,10 @@ refinement are separated from the kernel, allowing for an implementation of the
 respective methods without encumberment by the interpolation between the different
 resolutions.
 This method was described in detail in [@hasert:2013jc].
+There are various collision schemes implemented (BGK, MRT, HRR, Cumulants) which can
+be used on a range for stencil configurations (discrete velocity directions).
+It is also possible to consider the transport of particles and passive scalars in
+the flow.
 
 # Acknowlegements
 
@@ -72,7 +94,14 @@ We want to thank all these contributors, especially the main original developer
 of Musubi Manuel Hasert.
 Not appearing in the list of authors is Sabine Roller, who enabled the development
 of this software in the first place and we are very grateful for this possibility.
-We thank our fellow contributors to this code basis Jiaxing Qi, Jens Zudrop,
-Simon Zimny, Jana Gericke, Tristan Vlogman, Mengyu Wang and many students.
+We thank our fellow contributors to this code basis Jiaxing Qi [@Qi:2017],
+Jens Zudrop [@Zudrop:2015], Simon Zimny [@Zimny:2015], Peter Vitt, Jana Gericke,
+Tristan Vlogman [@Vlogman:2025], Mengyu Wang and many students.
+The development of Musubi was partially funded by the German Federal Ministry of Education and Research
+(Bundesministerium für Bildung und Forschung, BMBF) in the framework of the HPC software initiative in
+the project HISEEM and by the European Commission in the Seventh Framework Programme in the area of
+Virtual Physiological Human (THROMBUS project, ICT-2009.5.3, project reference 269966).
+We are grateful for the computing time provided by LRZ in Munich and by HLRS in Stuttgart who
+also contributed performance evaluations within the POP project.
 
 # References
