@@ -43,7 +43,7 @@ uses efficient data structures allowing adaptive parallel simulations.
 Musubi is designed to deal with huge meshes (billions of lattices) and complex geometries
 on large computing systems efficiently.
 It can be used for a wide range of application areas from electrodialysis [@Masilamani:2020]
-over biomedical problems [@Jain:2016] and aero-dynamic setups [@Spinellis:2024] to aero-acoustic
+over biomedical problems [@Jain:2016] and aero-dynamic setups [@Spinelli:2024] to aero-acoustic
 simulations [@Hasert:2013].
 
 It is written in Fortran, with language constructs from Fortran 2003.
