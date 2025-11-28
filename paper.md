@@ -93,6 +93,12 @@ There are various collision schemes implemented (BGK, MRT, HRR, Cumulants) [@Spi
 which can be used on a range for stencil configurations (discrete velocity directions).
 It is also possible to consider the transport of particles and passive scalars in
 the flow.
+Musubi has a minimal set of dependencies and has been deployed on a wide range of
+supercomputing infrastructure ranging from IBM's BlueGene systems to NEC's SX vector
+systems [@Qi:2016].
+The user interface is realized via the Lua [@Ierusalimschy:2016] scripting language,
+which is used to configure the simulation setups and allows for great flexibility in
+the setup definition.
 
 # Acknowlegements
 
