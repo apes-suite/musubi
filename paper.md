@@ -11,6 +11,9 @@ authors:
   - name: Kannan Masilamani
     orcid: 0000-0002-3640-2154
     affiliation: 1 # (Multiple affiliations must be quoted)
+  - name: Gregorio Gerardo Spinelli
+    orcid: 0000-0001-6578-2494
+    affiliation: 4
   - name: Kartik Jain
     orcid: 0000-0002-6540-9304
     affiliation: 2
@@ -27,9 +30,12 @@ affiliations:
  - name: University of Twente, Netherlands
    index: 2
    ror: 006hf6230
- - name: Festo SE & Co. KG
+ - name: Festo SE & Co. KG, Germany
    index: 3
    ror: 03ga8q162
+ - name: MBDA (Germany), Germany
+   index: 4
+   ror: 05nz79105
 date: 28 November 2025
 bibliography: paper.bib
 ---
