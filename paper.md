@@ -89,7 +89,7 @@ refinement are separated from the kernel, allowing for an implementation of the
 respective methods without encumberment by the interpolation between the different
 resolutions.
 This method was described in detail in [@hasert:2013jc].
-There are various collision schemes implemented (BGK, MRT, HRR, Cumulants [@Spinelli:2023]),
+There are various collision schemes implemented (BGK, MRT, HRR, Cumulants) [@Spinelli:2023],
 which can be used on a range for stencil configurations (discrete velocity directions).
 It is also possible to consider the transport of particles and passive scalars in
 the flow.
@@ -106,8 +106,10 @@ Jens Zudrop [@Zudrop:2015], Simon Zimny [@Zimny:2015], Peter Vitt, Jana Gericke,
 Tristan Vlogman [@Vlogman:2025], Mengyu Wang and many students.
 The development of Musubi was partially funded by the German Federal Ministry of Education and Research
 (Bundesministerium für Bildung und Forschung, BMBF) in the framework of the HPC software initiative in
-the project HISEEM and by the European Commission in the Seventh Framework Programme in the area of
-Virtual Physiological Human (THROMBUS project, ICT-2009.5.3, project reference 269966).
+the project HISEEM, by the European Commission in the Seventh Framework Programme in the area of
+Virtual Physiological Human (THROMBUS project, ICT-2009.5.3, project reference 269966), by the
+German Research School of Simulation Sciences, the University of Siegen, the University of Twente
+and the German Aerospace Center, DLR.
 We are grateful for the computing time provided by LRZ in Munich and by HLRS in Stuttgart who
 also contributed performance evaluations within the POP project.
 
