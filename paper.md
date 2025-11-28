@@ -1,5 +1,5 @@
 ---
-title: 'Musubi: Octree based Lattice-Boltzmann solver for multi-pyhsics'
+title: 'Musubi: Octree based Lattice-Boltzmann solver for multi-physics'
 tags:
   - Fortran
   - fluid dynamics
