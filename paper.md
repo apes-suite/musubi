@@ -80,8 +80,8 @@ complicated wall boundaries, as a simple line intersection with the wall geometr
 can be used to accurately model the surface.
 Due to these properties the method has gained popularity in the field of computational
 fluid dynamics over the last decades.
-Other Open Source solvers that utilize this method are for example Palabos [@Palabos2020],
-OpenLB [@olbPaper2021] and waLBerla [@BAUER2021478].
+Other Open Source solvers that utilize this method are, for example, Palabos [@Palabos2020],
+OpenLB [@olbPaper2021], waLBerla [@BAUER2021478] and VirtualFluids [@Geier:2025].
 
 # The Musubi implementation
 
@@ -103,8 +103,7 @@ Musubi has a minimal set of dependencies and has been deployed on a wide range o
 supercomputing infrastructure ranging from IBM's BlueGene systems to NEC's SX vector
 systems [@Qi:2016].
 The user interface is realized via the Lua [@Ierusalimschy:2016] scripting language,
-which is used to configure the simulation setups and allows for great flexibility in
-the setup definition.
+which is used to configure the simulation setups and allows for great flexibility.
 
 # Acknowlegements
 
