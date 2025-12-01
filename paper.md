@@ -64,6 +64,8 @@ Musubi implements the lattice Boltzmann method (LBM) with a Message Passing Inte
 (MPI) parallelization with a fully distributed handling of the mesh data, avoiding
 bottlenecks on individual processors and enabling the scaling of the simulation to
 hundreds of thousands of MPI processes.
+Musubi is utilized to solve flow problems in the ultrasound simulator PROTEUS developed at
+the University of Twente [@Blanken:2025].
 
 # The lattice Boltzmann method
 
