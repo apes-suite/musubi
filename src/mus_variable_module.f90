@@ -116,6 +116,8 @@ module mus_variable_module
     &                                   derive_HRRCorrection_d2q9,        &
     &                                   derive_HRRCorrection_d3q19,       &
     &                                   derive_HRRCorrection_d3q27,       &
+    &                                   derive_brinkmanForce,             &
+    &                                   derive_brinkmanForce_TRT,         &
     &                                   applySrc_absorbLayer,             &
     &                                   applySrc_absorbLayer_MRT,         &
     &                                   applySrc_absorbLayerDyn,          &
@@ -131,19 +133,23 @@ module mus_variable_module
     &                                   applySrc_turbChanForce_MRT_d2q9,  &
     &                                   applySrc_turbChanForce_MRT_d3q19, &
     &                                   applySrc_turbChanForce_MRT_d3q27, &
-    &                                   applySrc_force1stOrd
+    &                                   applySrc_force1stOrd,             &       
+    &                                   applySrc_brinkmanForce,           &
+    &                                   applySrc_brinkmanForce_TRT
   use mus_derQuanIncomp_module,   only: mus_append_derVar_fluidIncomp,     &
     &                                   derive_absorbLayerIncomp,          &
     &                                   applySrc_absorbLayerIncomp
   use mus_derQuanPS_module,       only: mus_append_derVar_lbmPS, &
     &                                   deriveEquilPS_FromMacro, &
     &                                   deriveEquilPS2ndOrder_FromMacro,   &
-    &                                   derive_equalInjectionPS, &
-    &                                   deriveAuxPS_fromState,   &
-    &                                   deriveEquilPS_fromAux,   &
-    &                                   derive_injectionPS,      &
-    &                                   applySrc_injectionPS,    &
-    &                                   applySrc_equalInjectionPS
+    &                                   derive_equalInjectionPS,   &
+    &                                   deriveAuxPS_fromState,     &
+    &                                   deriveEquilPS_fromAux,     &
+    &                                   derive_injectionPS,        &
+    &                                   derive_psSourceCoeff,      &
+    &                                   applySrc_injectionPS,      &
+    &                                   applySrc_equalInjectionPS, &
+    &                                   applySrc_psSourceCoeff
   use mus_derQuanMSGas_module,    only: mus_append_derVar_MSGas,         &
     &                                   deriveAuxMSGas_fromState,        &
     &                                   deriveEquilMSGas_fromAux,        &
@@ -205,7 +211,8 @@ module mus_variable_module
     &                                       mus_auxFieldVar_fromIndex,           &
     &                                       mus_addTurbChanForceToAuxField_fluid,&
     &                                       mus_addHRRCorrToAuxField_fluid_2D,   &
-    &                                       mus_addHRRCorrToAuxField_fluid_3D
+    &                                       mus_addHRRCorrToAuxField_fluid_3D,   &
+    &                                       mus_addBrinkmanToAuxField_fluidIncomp
   use mus_turbulence_var_module,      only: mus_append_turbVar
   use mus_material_var_module,        only: mus_append_materialVar
   use mus_bc_var_module,              only: mus_append_bcVar
@@ -1168,6 +1175,27 @@ contains
             &            //trim(schemeHeader%kind)              )
           end if
 
+        case ('brinkman')
+          ! \phi = 1 is assumed in this model
+          select case (trim(schemeHeader%kind))
+            case ('fluid')
+              call tem_abort('Brinkman model for compressible '    &
+                &             //'fluid has not been supported yet.')
+            case ('fluid_incompressible')
+              select case (trim(schemeHeader%relaxation))
+              case ('bgk')
+                get_element => derive_brinkmanForce
+                me%method(iSrc)%applySrc => applySrc_brinkmanForce
+              case ('trt')
+                get_element => derive_brinkmanForce_TRT
+                me%method(iSrc)%applySrc => applySrc_brinkmanForce_TRT
+              case default
+                call tem_abort('Brinkman model not supported for '  &
+                  &            //trim(schemeHeader%relaxation)      )
+              end select
+              me%method(iSrc)%addSrcToAuxField => mus_addBrinkmanToAuxField_fluidIncomp
+            end select
+
         case default
           call tem_abort('Unknown source variable for ' &
             &            //trim(schemeHeader%kind)      )
@@ -1285,6 +1313,9 @@ contains
         case ('equal_injection')
           get_element => derive_equalInjectionPS
           me%method(iSrc)%applySrc => applySrc_equalInjectionPS
+        case ('ps_sourceCoeff')
+          get_element => derive_psSourceCoeff
+          me%method(iSrc)%applySrc => applySrc_psSourceCoeff
         case default
           call tem_abort('Unknown source variable for ' &
             &            //trim(schemeHeader%kind)      )

@@ -169,10 +169,12 @@ module mus_derQuanPS_module
   ! source variable
   public :: derive_injectionPS
   public :: derive_equalInjectionPS
+  public :: derive_psSourceCoeff
 
   ! source update
   public :: applySrc_injectionPS
   public :: applySrc_equalInjectionPS
+  public :: applySrc_psSourceCoeff
 
 contains
 
@@ -686,6 +688,110 @@ contains
   end subroutine derive_equalInjectionPS
 ! ****************************************************************************** !
 
+! ************************************************************************** !
+   !> Derive external source variable defined as a source term.
+   !!
+   !! The source in advection diffusion equation for passive scalar is
+   !! \( S = \alpha C \)
+   !! It evaluates spacetime function defined in lua file for the source
+   !! coefficient variable \( C \) and convert it to state value which is
+   !! to be added to the state
+   !!
+   !! Reference:
+   !!   Irina Ginzburg (2005), "Equilibrium-type and link-type lattice
+   !!   Boltzmann models for generic advection and anisotropic-dispersion
+   !!   equation", Advances in Water Resources, Volume 28, Issue 11
+  recursive subroutine derive_psSourceCoeff(fun, varsys, elempos, time, tree, &
+    &                                        nElems, nDofs, res               )
+    ! -------------------------------------------------------------------- !
+    !> Description of the method to obtain the variables, here some preset
+    !! values might be stored, like the space time function to use or the
+    !! required variables.
+    class(tem_varSys_op_type), intent(in) :: fun
+
+    !> The variable system to obtain the variable from.
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Position of the TreeID of the element to get the variable for in the
+    !! global treeID list.
+    integer, intent(in) :: elempos(:)
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> global treelm mesh info
+    type(treelmesh_type), intent(in) :: tree
+
+    !> Number of values to obtain for this variable (vectorized access).
+    integer, intent(in) :: nElems
+
+    !> Number of degrees of freedom within an element.
+    integer, intent(in) :: nDofs
+
+    !> Resulting values for the requested variable.
+    !!
+    !! Linearized array dimension:
+    !! (n requested entries) x (nComponents of this variable)
+    !! x (nDegrees of freedom)
+    !! Access: (iElem-1)*fun%nComponents*nDofs +
+    !!         (iDof-1)*fun%nComponents + iComp
+    real(kind=rk), intent(out) :: res(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: psSourceCoeff(nElems)
+    integer :: iElem, iDir, QQ, nScalars, posInTotal, elemOff
+    integer :: den_pos, iLevel
+    real(kind=rk) :: density, coeff_L
+    ! -------------------------------------------------------------------- !
+
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%input_varPos(1) )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+    ! Get source which is refered in config file either its
+    ! spacetime variable or operation variable
+    call varSys%method%val(fun%input_varPos(2))%get_element( &
+      & varSys  = varSys,                                    &
+      & elemPos = elemPos,                                   &
+      & time    = time,                                      &
+      & tree    = tree,                                      &
+      & nElems  = nElems,                                    &
+      & nDofs   = nDofs,                                     &
+      & res     = psSourceCoeff                              )
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+
+    nScalars = varSys%nScalars
+    ! Position of density variable in auxField
+    den_pos = varSys%method%val(scheme%derVarPos(1)%density)%auxField_varPos(1)
+
+    do iElem = 1, nElems
+      ! get iLevel for element
+      iLevel = tem_levelOf( tree%treeID( elemPos(iElem ) ) )
+      posInTotal = fPtr%solverData%geometry%levelPointer( elemPos(iElem) )
+
+      ! element offset
+      elemoff = (posInTotal - 1) * varSys%nAuxScalars
+      ! obtain density from auxField
+      density = scheme%auxField(iLevel)%val(elemOff + den_pos)
+
+      coeff_L = psSourceCoeff(iElem) &
+        &        / fPtr%solverData%physics%fac(iLevel)%sourceCoeff
+
+      ! source term:
+      ! S_i = w_i * S
+      do iDir = 1, QQ
+        res( (iElem - 1) * fun%nComponents + iDir ) = scheme%layout%weight(iDir) &
+          &                                            * coeff_L * density
+      end do
+
+    end do !iElem
+
+  end subroutine derive_psSourceCoeff
+! ************************************************************************** !
+
 ! ****************************************************************************** !
   !> Update state with source variable "injection"
   !! Similar to derive routine but it updates the state whereas derive
@@ -919,6 +1025,113 @@ contains
     end do !iElem
   end subroutine applySrc_equalInjectionPS
 ! ****************************************************************************** !
+
+! ************************************************************************** !
+   !> Update state with source variable "ps_sourceCoeff".
+   !!
+   !! The source in advection diffusion equation for passive scalar is
+   !! \( S = \alpha C \)
+   !! It evaluates spacetime function defined in lua file for the source
+   !! coefficient variable \( C \) and convert it to state value which is
+   !! to be added to the state
+   !!
+   !! Reference:
+   !!   Irina Ginzburg (2005), "Equilibrium-type and link-type lattice
+   !!   Boltzmann models for generic advection and anisotropic-dispersion
+   !!   equation", Advances in Water Resources, Volume 28, Issue 11
+  subroutine applySrc_psSourceCoeff( fun, inState, outState, neigh, auxField, &
+    &                                nPdfSize, iLevel, varSys, time,          &
+    &                                phyConvFac, derVarPos                    )
+    ! -------------------------------------------------------------------- !
+    !> Description of method to apply source terms
+    class(mus_source_op_type), intent(in) :: fun
+
+    !> input  pdf vector
+    real(kind=rk), intent(in) :: inState(:)
+
+    !> output pdf vector
+    real(kind=rk), intent(inout) :: outState(:)
+
+    !> connectivity Array corresponding to state vector
+    integer,intent(in) :: neigh(:)
+
+    !> auxField array
+    real(kind=rk), intent(in) :: auxField(:)
+
+    !> number of elements in state Array
+    integer, intent(in) :: nPdfSize
+
+    !> current level
+    integer, intent(in) :: iLevel
+
+    !> variable system
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> Physics conversion factor for current level
+    type(mus_convertFac_type), intent(in) :: phyConvFac
+
+    !> position of derived quantities in varsys
+    type(mus_derVarPos_type), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: psSourceCoeff(fun%elemLvl(iLevel)%nElems)
+    integer :: nElems, iElem, iDir, QQ, nScalars
+    integer :: posInTotal, den_pos, elemoff
+    real(kind=rk) :: density
+    ! ---------------------------------------------------------------------- !
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%srcTerm_varPos )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+
+    ! Number of elements to apply source terms
+    nElems = fun%elemLvl(iLevel)%nElems
+
+    ! Get force which is refered in config file either its
+    ! spacetime variable or operation variable
+    call varSys%method%val(fun%data_varPos)%get_valOfIndex( &
+      & varSys  = varSys,                                   &
+      & time    = time,                                     &
+      & iLevel  = iLevel,                                   &
+      & idx     = fun%elemLvl(iLevel)%idx(1:nElems),        &
+      & nVals   = nElems,                                   &
+      & res     = psSourceCoeff                             )
+
+    ! convert physical to lattice
+    psSourceCoeff = psSourceCoeff &
+      &              / fPtr%solverData%physics%fac(iLevel)%sourceCoeff
+
+    ! Position of density variable in auxField
+    den_pos = varSys%method%val( derVarPos(1)%density )%auxField_varPos(1)
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+    nScalars = varSys%nScalars
+
+    do iElem = 1, nElems
+      ! to access level wise state array
+      posInTotal = fun%elemLvl(iLevel)%posInTotal(iElem)
+
+      ! element offset
+      elemoff = (posInTotal - 1) * varSys%nAuxScalars
+      ! obtain velocity from auxField
+      density = scheme%auxField(iLevel)%val(elemOff + den_pos)
+
+      do iDir = 1, QQ
+
+        outState( (posintotal-1)*nscalars+idir+(1-1)*qq )       &
+          & = outState( (posintotal-1)*nscalars+idir+(1-1)*qq ) &
+          &    + scheme%layout%weight( iDir ) * psSourceCoeff(iElem) * density
+
+      end do
+
+    end do !iElem
+  end subroutine applySrc_psSourceCoeff
+! ************************************************************************** !
 
 
 end module mus_derQuanPS_module

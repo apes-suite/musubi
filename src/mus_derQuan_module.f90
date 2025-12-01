@@ -10,6 +10,7 @@
 ! Copyright (c) 2016-2017 Raphael Haupt <raphael.haupt@uni-siegen.de>
 ! Copyright (c) 2019-2020 Peter Vitt <peter.vitt2@uni-siegen.de>
 ! Copyright (c) 2021-2022 Gregorio Gerardo Spinelli <gregoriogerardo.spinelli@dlr.de>
+! Copyright (c) 2025 Mengyu Wang <m.wang-2@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -232,6 +233,8 @@ module mus_derQuan_module
   public :: derive_HRRCorrection_d2q9
   public :: derive_HRRCorrection_d3q19
   public :: derive_HRRCorrection_d3q27
+  public :: derive_brinkmanForce
+  public :: derive_brinkmanForce_TRT
 
   ! Apply source add source term to state
   public :: applySrc_absorbLayer
@@ -250,6 +253,8 @@ module mus_derQuan_module
   public :: applySrc_turbChanForce_MRT_d3q19
   public :: applySrc_turbChanForce_MRT_d3q27
   public :: applySrc_force1stOrd
+  public :: applySrc_brinkmanForce
+  public :: applySrc_brinkmanForce_TRT
 
 contains
 
@@ -2312,6 +2317,239 @@ contains
 
   end subroutine derive_HRRCorrection_d3q27
 ! ****************************************************************************** !
+
+! ****************************************************************************** !
+   !> Derive the Brinkman force variable defined as a source term.
+   !!
+   !! It multiplies the Brinkman coefficient variable as defined by the user
+   !! with the negative velocity field to obtain the force term.
+   !! This force term is then converted to a state value that is to be added to the
+   !! state.
+   !!
+   !! Reference:
+   !! 1) Zhaoli Guo and T. S. Zhao. “Lattice Boltzmann Model for Incompressible
+   !!    Flows through Porous Media”. In: Physical Review E 66.3 (2002), p. 036304.
+   !!    doi: 10.1103/PhysRevE.66.036304.
+   !! 2) Irina Ginzburg. “Consistent lattice Boltzmann schemes for the Brinkman
+   !!    model of porous flow and infinite Chapman-Enskog expansion”. In: Phys.
+   !!    Rev. E 77 (6 June 2008), p. 066704. doi: 10.1103/PhysRevE.77.066704.
+  recursive subroutine derive_brinkmanForce(fun, varsys, elempos, time, tree, &
+    &                                        nElems, nDofs, res               )
+    ! -------------------------------------------------------------------- !
+    !> Description of the method to obtain the variables, here some preset
+    !! values might be stored, like the space time function to use or the
+    !! required variables.
+    class(tem_varSys_op_type), intent(in) :: fun
+
+    !> The variable system to obtain the variable from.
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Position of the TreeID of the element to get the variable for in the
+    !! global treeID list.
+    integer, intent(in) :: elempos(:)
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> global treelm mesh info
+    type(treelmesh_type), intent(in) :: tree
+
+    !> Number of values to obtain for this variable (vectorized access).
+    integer, intent(in) :: nElems
+
+    !> Number of degrees of freedom within an element.
+    integer, intent(in) :: nDofs
+
+    !> Resulting values for the requested variable.
+    !!
+    !! Linearized array dimension:
+    !! (n requested entries) x (nComponents of this variable)
+    !! x (nDegrees of freedom)
+    !! Access: (iElem-1)*fun%nComponents*nDofs +
+    !!         (iDof-1)*fun%nComponents + iComp
+    real(kind=rk), intent(out) :: res(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: bCoeffField(nElems), bCoeffTerm
+    real(kind=rk) :: velocity(3), ucx
+    integer :: iElem, iDir, QQ, nScalars, posInTotal, elemOff
+    integer :: vel_pos(3), iLevel
+    real(kind=rk) :: omegaKine
+    ! -------------------------------------------------------------------- !
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%input_varPos(1) )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+
+    ! Obtain the Brinkman coefficient from the respective variable
+    ! defined in the configuration for all requested elements.
+    call varSys%method%val(fun%input_varPos(2))%get_element( &
+      & varSys  = varSys,                                    &
+      & elemPos = elemPos,                                   &
+      & time    = time,                                      &
+      & tree    = tree,                                      &
+      & nElems  = nElems,                                    &
+      & nDofs   = nDofs,                                     &
+      & res     = bCoeffField                                )
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+
+    nScalars = varSys%nScalars
+    ! Position of velocity variable in auxField
+    vel_pos = varSys%method%val(scheme%derVarPos(1)%velocity)%auxField_varPos(1:3)
+
+    do iElem = 1, nElems
+      ! get iLevel for element
+      iLevel = tem_levelOf( tree%treeID( elemPos(iElem) ) )
+      posInTotal = fPtr%solverData%geometry%levelPointer( elemPos(iElem) )
+
+      ! element offset
+      elemoff = (posInTotal - 1) * varSys%nAuxScalars
+      ! obtain velocity from auxField
+      velocity = scheme%auxField(iLevel)%val(elemOff + vel_pos)
+
+      ! get the correct omega value
+      omegaKine = scheme%field(1)%fieldProp%fluid%viscKine          &
+        &                              %omLvl(iLevel)%val(posInTotal)
+
+      bCoeffTerm = bCoeffField(iElem) &
+        &           / fPtr%solverData%physics%fac(iLevel)%sourceCoeff
+
+      ! Brinkman force term:
+      ! B_i = w_i \vec{e}_i/cs2 \cdot \vec{B}
+      do iDir = 1, QQ
+        ucx = dot_product( scheme%layout%fStencil%cxDirRK(:, iDir), &
+          &                velocity )
+
+        res( (iElem-1) * fun%nComponents + iDir ) = (omegaKine / 2.0_rk - 1.0_rk)     &
+          &                                        * scheme%layout%weight(iDir)       &
+          &                                        * cs2inv * bCoeffField(iElem) * ucx * rho0
+
+      end do
+
+    end do !iElem
+
+  end subroutine derive_brinkmanForce
+! ****************************************************************************** !
+
+
+! ****************************************************************************** !
+   !> Derive Brinkman force variable defined as a source term with TRT operator.
+   !! It evaluates spacetime function defined in lua file for Brinkman coefficient
+   !! variable and multiplies it with negative velocity to obtain the force term.
+   !! This force term is then converted to state value which is to be added to the
+   !! state with respect to TRT operator.
+   !! Reference:
+   !! 1) Zhaoli Guo and T. S. Zhao. “Lattice Boltzmann Model for Incompressible
+   !!    Flows through Porous Media”. In: Physical Review E 66.3 (2002), p. 036304.
+   !!    doi: 10.1103/PhysRevE.66.036304.
+   !! 2) Irina Ginzburg. “Consistent lattice Boltzmann schemes for the Brinkman
+   !!    model of porous flow and infinite Chapman-Enskog expansion”. In: Phys.
+   !!    Rev. E 77 (6 June 2008), p. 066704. doi: 10.1103/PhysRevE.77.066704.
+  recursive subroutine derive_brinkmanForce_TRT(fun, varsys, elempos, time, tree, &
+    &                                            nElems, nDofs, res               )
+    ! -------------------------------------------------------------------- !
+    !> Description of the method to obtain the variables, here some preset
+    !! values might be stored, like the space time function to use or the
+    !! required variables.
+    class(tem_varSys_op_type), intent(in) :: fun
+
+    !> The variable system to obtain the variable from.
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Position of the TreeID of the element to get the variable for in the
+    !! global treeID list.
+    integer, intent(in) :: elempos(:)
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> global treelm mesh info
+    type(treelmesh_type), intent(in) :: tree
+
+    !> Number of values to obtain for this variable (vectorized access).
+    integer, intent(in) :: nElems
+
+    !> Number of degrees of freedom within an element.
+    integer, intent(in) :: nDofs
+
+    !> Resulting values for the requested variable.
+    !!
+    !! Linearized array dimension:
+    !! (n requested entries) x (nComponents of this variable)
+    !! x (nDegrees of freedom)
+    !! Access: (iElem-1)*fun%nComponents*nDofs +
+    !!         (iDof-1)*fun%nComponents + iComp
+    real(kind=rk), intent(out) :: res(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: bCoeffField(nElems), bCoeffTerm
+    real(kind=rk) :: velocity(3), ucx
+    integer :: iElem, iDir, QQ, nScalars, posInTotal, elemOff
+    integer :: vel_pos(3), iLevel
+    real(kind=rk) :: omegaKine, omegaMinus
+    ! -------------------------------------------------------------------- !
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%input_varPos(1) )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+    ! Get Brinkman coefficient which is refered in config file either
+    ! its spacetime variable or operation variable
+    call varSys%method%val(fun%input_varPos(2))%get_element( &
+      & varSys  = varSys,                                    &
+      & elemPos = elemPos,                                   &
+      & time    = time,                                      &
+      & tree    = tree,                                      &
+      & nElems  = nElems,                                    &
+      & nDofs   = nDofs,                                     &
+      & res     = bCoeffField                                )
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+
+    nScalars = varSys%nScalars
+    ! Position of velocity variable in auxField
+    vel_pos = varSys%method%val(scheme%derVarPos(1)%velocity)%auxField_varPos(1:3)
+
+    do iElem = 1, nElems
+      ! get iLevel for element
+      iLevel = tem_levelOf( tree%treeID( elemPos(iElem) ) )
+      posInTotal = fPtr%solverData%geometry%levelPointer( elemPos(iElem) )
+
+      ! element offset
+      elemoff = (posInTotal-1)*varSys%nAuxScalars
+      ! obtain velocity from auxField
+      velocity = scheme%auxField(iLevel)%val(elemOff + vel_pos)
+
+      ! get the correct omega value
+      omegaKine = scheme%field(1)%fieldProp%fluid%viscKine          &
+        &                              %omLvl(iLevel)%val(posInTotal)
+      omegaMinus = 1.0_rk / ( scheme%field(1)%fieldProp%fluid%lambda  &
+        &                    / (1.0_rk / omegaKine - 0.5_rk) + 0.5_rk )
+
+      bCoeffTerm = bCoeffField(iElem) &
+        &           / fPtr%solverData%physics%fac(iLevel)%sourceCoeff
+
+      ! force term:
+      ! B_i = w_i \vec{e}_i/cs2 \cdot \vec{B}
+      do iDir = 1, QQ
+        ucx = dot_product( scheme%layout%fStencil%cxDirRK(:, iDir), &
+          &                velocity )
+
+        res( (iElem - 1) * fun%nComponents + iDir ) = (omegaMinus / 2.0_rk - 1.0_rk)    &
+          &                                          * scheme%layout%weight(iDir)       &
+          &                                          * cs2inv * bCoeffField(iElem) * ucx * rho0
+
+      end do
+
+    end do !iElem
+
+  end subroutine derive_brinkmanForce_TRT
+! ****************************************************************************** !
+
 
 
 ! **************************************************************************** !
@@ -4648,6 +4886,248 @@ contains
     end do !iElem
 
   end subroutine applySrc_turbChanForce_MRT_d2q9
+! ****************************************************************************** !
+
+! ****************************************************************************** !
+  !> Update state with source variable Brinkman force obtained from Brinkman
+  !! coefficient.
+  !!
+  !! Reference:
+  !! 1) Zhaoli Guo and T. S. Zhao. “Lattice Boltzmann Model for Incompressible
+  !!    Flows through Porous Media”. In: Physical Review E 66.3 (2002), p. 036304.
+  !!    doi: 10.1103/PhysRevE.66.036304.
+  !! 2) Irina Ginzburg. “Consistent lattice Boltzmann schemes for the Brinkman
+  !!    model of porous flow and infinite Chapman-Enskog expansion”. In: Phys.
+  !!    Rev. E 77 (6 June 2008), p. 066704. doi: 10.1103/PhysRevE.77.066704.
+  !!
+  !! Similar to derive routine but it updates the state whereas derive
+  !! is used for tracking.
+  !!
+  !! This subroutine's interface must match the abstract interface definition
+  !! [[proc_apply_source]] in derived/[[mus_source_var_module]].f90 in order to
+  !! be callable via [[mus_source_op_type:applySrc]] function pointer.
+  subroutine applySrc_brinkmanForce( fun, inState, outState, neigh, auxField, &
+    &                                 nPdfSize, iLevel, varSys, time,         &
+    &                                 phyConvFac, derVarPos                   )
+    ! -------------------------------------------------------------------- !
+    !> Description of method to apply source terms
+    class(mus_source_op_type), intent(in) :: fun
+
+    !> input  pdf vector
+    real(kind=rk), intent(in) :: inState(:)
+
+    !> output pdf vector
+    real(kind=rk), intent(inout) :: outState(:)
+
+    !> connectivity Array corresponding to state vector
+    integer,intent(in) :: neigh(:)
+
+    !> auxField array
+    real(kind=rk), intent(in) :: auxField(:)
+
+    !> number of elements in state Array
+    integer, intent(in) :: nPdfSize
+
+    !> current level
+    integer, intent(in) :: iLevel
+
+    !> variable system
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> Physics conversion factor for current level
+    type(mus_convertFac_type), intent(in) :: phyConvFac
+
+    !> position of derived quantities in varsys
+    type(mus_derVarPos_type), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: bCoeffField(fun%elemLvl(iLevel)%nElems)
+    real(kind=rk) :: velocity(3), ucx
+    integer :: nElems, iElem, iDir, QQ, nScalars, posInTotal, statePos, elemOff
+    integer :: vel_pos(3)
+    real(kind=rk) :: omega, omega_fac
+    ! ---------------------------------------------------------------------------
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%srcTerm_varPos )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+
+    ! Number of elements to apply source terms
+    nElems = fun%elemLvl(iLevel)%nElems
+
+    ! Get force which is refered in config file either its
+    ! spacetime variable or operation variable
+    call varSys%method%val(fun%data_varPos)%get_valOfIndex( &
+      & varSys  = varSys,                                   &
+      & time    = time,                                     &
+      & iLevel  = iLevel,                                   &
+      & idx     = fun%elemLvl(iLevel)%idx(1:nElems),        &
+      & nVals   = nElems,                                   &
+      & res     = bCoeffField                               )
+
+    bCoeffField = bCoeffField / fPtr%solverData%physics%fac(iLevel)%sourceCoeff
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+    nScalars = varSys%nScalars
+    ! Position of velocity variable in auxField
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+
+    do iElem = 1, nElems
+      posInTotal = fun%elemLvl(iLevel)%posInTotal(iElem)
+
+      ! element offset
+      elemoff = (posInTotal - 1) * varSys%nAuxScalars
+      ! obtain velocity from auxField
+      velocity = auxField(elemOff + vel_pos)
+
+      ! get the correct omega value
+      omega = scheme%field(1)%fieldProp%fluid%viscKine              &
+        &                              %omLvl(iLevel)%val(posInTotal)
+      omega_fac = 1.0_rk - omega * 0.5_rk
+
+      do iDir = 1, QQ
+        ucx = dot_product( scheme%layout%fStencil%cxDirRK(:, iDir), &
+          &                velocity )
+
+        ! position in state array
+        statePos = ( posintotal-1)* nscalars+idir+( 1-1)* qq
+        ! update outstate
+        outState(statePos) = outState(statePos)                                &
+          &                   - omega_fac * scheme%layout%weight( iDir ) * ucx &
+          &                   * cs2inv * bCoeffField(iElem) * rho0
+
+      end do
+
+    end do !iElem
+
+  end subroutine applySrc_brinkmanForce
+! ****************************************************************************** !
+
+! ****************************************************************************** !
+  !> Update state with source variable Brinkman force obtained from Brinkman
+  !! coefficient. The force update is for TRT collision model.
+  !!
+  !! Reference:
+  !! 1) Zhaoli Guo and T. S. Zhao. “Lattice Boltzmann Model for Incompressible
+  !!    Flows through Porous Media”. In: Physical Review E 66.3 (2002), p. 036304.
+  !!    doi: 10.1103/PhysRevE.66.036304.
+  !! 2) Irina Ginzburg. “Consistent lattice Boltzmann schemes for the Brinkman
+  !!    model of porous flow and infinite Chapman-Enskog expansion”. In: Phys.
+  !!    Rev. E 77 (6 June 2008), p. 066704. doi: 10.1103/PhysRevE.77.066704.
+  !!
+  !! Simuilar to derive routine but it updates the state whereas derive
+  !! is used for tracking.
+  !!
+  !! This subroutine's interface must match the abstract interface definition
+  !! [[proc_apply_source]] in derived/[[mus_source_var_module]].f90 in order to
+  !! be callable via [[mus_source_op_type:applySrc]] function pointer.
+  subroutine applySrc_brinkmanForce_TRT( fun, inState, outState, neigh,       &
+    &                                     auxField, nPdfSize, iLevel, varSys, &
+    &                                     time, phyConvFac, derVarPos         )
+    ! -------------------------------------------------------------------- !
+    !> Description of method to apply source terms
+    class(mus_source_op_type), intent(in) :: fun
+
+    !> input  pdf vector
+    real(kind=rk), intent(in) :: inState(:)
+
+    !> output pdf vector
+    real(kind=rk), intent(inout) :: outState(:)
+
+    !> connectivity Array corresponding to state vector
+    integer,intent(in) :: neigh(:)
+
+    !> auxField array
+    real(kind=rk), intent(in) :: auxField(:)
+
+    !> number of elements in state Array
+    integer, intent(in) :: nPdfSize
+
+    !> current level
+    integer, intent(in) :: iLevel
+
+    !> variable system
+    type(tem_varSys_type), intent(in) :: varSys
+
+    !> Point in time at which to evaluate the variable.
+    type(tem_time_type), intent(in)  :: time
+
+    !> Physics conversion factor for current level
+    type(mus_convertFac_type), intent(in) :: phyConvFac
+
+    !> position of derived quantities in varsys
+    type(mus_derVarPos_type), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    type(mus_varSys_data_type), pointer :: fPtr
+    type(mus_scheme_type), pointer :: scheme
+    real(kind=rk) :: bCoeffField(fun%elemLvl(iLevel)%nElems)
+    real(kind=rk) :: velocity(3), ucx
+    integer :: nElems, iElem, iDir, QQ, nScalars, posInTotal, statePos, elemOff
+    integer :: vel_pos(3)
+    real(kind=rk) :: omega, omega_fac, omegaMinus
+    ! ---------------------------------------------------------------------------
+    ! convert c pointer to solver type fortran pointer
+    call c_f_pointer( varSys%method%val( fun%srcTerm_varPos )%method_data, &
+      &               fPtr )
+    scheme => fPtr%solverData%scheme
+
+    ! Number of elements to apply source terms
+    nElems = fun%elemLvl(iLevel)%nElems
+
+    ! Get force which is refered in config file either its
+    ! spacetime variable or operation variable
+    call varSys%method%val(fun%data_varPos)%get_valOfIndex( &
+      & varSys  = varSys,                                   &
+      & time    = time,                                     &
+      & iLevel  = iLevel,                                   &
+      & idx     = fun%elemLvl(iLevel)%idx(1:nElems),        &
+      & nVals   = nElems,                                   &
+      & res     = bCoeffField                               )
+
+    bCoeffField = bCoeffField / fPtr%solverData%physics%fac(iLevel)%sourceCoeff
+
+    ! constant parameter
+    QQ = scheme%layout%fStencil%QQ
+    nScalars = varSys%nScalars
+    ! Position of velocity variable in auxField
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+
+    do iElem = 1, nElems
+      posInTotal = fun%elemLvl(iLevel)%posInTotal(iElem)
+
+      ! element offset
+      elemoff = (posInTotal - 1) * varSys%nAuxScalars
+      ! obtain velocity from auxField
+      velocity = auxField(elemOff + vel_pos)
+
+      ! get the correct omega value
+      omega = scheme%field(1)%fieldProp%fluid%viscKine              &
+        &                              %omLvl(iLevel)%val(posInTotal)
+      omegaMinus = 1.0_rk / ( scheme%field(1)%fieldProp%fluid%lambda &
+        &                    / (1.0_rk / omega - 0.5_rk) + 0.5_rk )
+      omega_fac = 1.0_rk - omegaMinus * 0.5_rk
+
+      do iDir = 1, QQ
+        ucx = dot_product( scheme%layout%fStencil%cxDirRK(:, iDir), &
+          &                velocity )
+
+        ! position in state array
+        statePos = ( posintotal-1)* nscalars+idir+( 1-1)* qq
+        ! update outstate
+        outState(statePos) = outState(statePos)                          &
+          &                   - omega_fac * scheme%layout%weight(iDir)   &
+          &                   * ucx * cs2inv * bCoeffField(iElem) * rho0
+
+      end do
+
+    end do !iElem
+
+  end subroutine applySrc_brinkmanForce_TRT
 ! ****************************************************************************** !
 
 

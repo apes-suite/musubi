@@ -147,6 +147,8 @@ module mus_physics_module
     real(kind=rk) :: gasConst
     !> Potential (V) (kg m^2/(C*S^2))
     real(kind=rk) :: potential
+    !> sourceCoeff (1/s) = 1/dt
+    real(kind=rk) :: sourceCoeff
   end type mus_convertFac_type
 
   !> This type contains the reference values as defined in the physics
@@ -569,6 +571,8 @@ contains
       ! Potential
       me%fac( iLevel )%potential = me%rho0*me%dxLvl( iLevel )**5  &
         &                     / me%dtLvl( iLevel )**2 / me%coulomb0
+      ! SourceCoeff
+      me%fac( iLevel )%sourceCoeff = 1.0_rk / me%dtLvl( iLevel )
 
     end do
 
