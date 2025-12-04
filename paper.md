@@ -117,6 +117,7 @@ of this software in the first place and we are very grateful for this possibilit
 We especially thank our fellow contributors to this code basis Jiaxing Qi [@Qi:2017],
 Jens Zudrop [@Zudrop:2015], Simon Zimny [@Zimny:2015], Peter Vitt, Jana Gericke,
 Tristan Vlogman [@Vlogman:2025], Mengyu Wang and many students.
+Many thanks to Christian Siebert, who advised us on parallel algorithms and data structures.
 The development of Musubi was partially funded by the German Federal Ministry of Education and Research
 (Bundesministerium für Bildung und Forschung, BMBF) in the framework of the HPC software initiative in
 the project HISEEM, by the European Commission in the Seventh Framework Programme in the area of
