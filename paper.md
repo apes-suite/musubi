@@ -44,7 +44,7 @@ bibliography: paper.bib
 
 Musubi is a multi-level, parallel lattice Boltzmann solver and part of the APES suite.
 It is working on an octree mesh that is linearized by a (Morton) space-filling curve and
-uses efficient data structures allowing adaptive parallel simulations.
+uses efficient data structures allowing for adaptive, distributed parallel simulations.
 
 Musubi is designed to deal with huge meshes (billions of lattices) and complex geometries
 on large computing systems efficiently.
@@ -52,7 +52,7 @@ It can be used for a wide range of application areas from electrodialysis [@Masi
 over biomedical problems [@Jain:2016] and aero-dynamic setups [@Spinelli:2024] to aero-acoustic
 simulations [@Hasert:2013].
 
-It is written in Fortran, with language constructs from Fortran 2003.
+It is written in Fortran, requiring a compiler that provides at least the Fortran 2003 standard.
 
 # Statement of need
 
@@ -61,7 +61,7 @@ Due to the nonlinearity and the large amount of degrees of freedom to consider i
 problems, these simulations require significant computational resources, which typically
 are only available in distributed parallel systems.
 Musubi implements the lattice Boltzmann method (LBM) with a Message Passing Interface
-(MPI) parallelization with a fully distributed handling of the mesh data, avoiding
+(MPI) parallelization and a fully distributed handling of the data, avoiding
 bottlenecks on individual processors and enabling the scaling of the simulation to
 hundreds of thousands of MPI processes.
 Musubi is utilized to solve flow problems in the ultrasound simulator PROTEUS developed at
@@ -69,13 +69,13 @@ the University of Twente [@Blanken:2025].
 
 # The lattice Boltzmann method
 
-The lattice Boltzmann method utilizes ideas of cellular automata and represents at its
-core a basic two step algorithm.
-The state of the fluid is represented by particle density functions (PDF) in a discrete
+The lattice Boltzmann method employs ideas of cellular automata and can be represented
+at its core as a basic two step algorithm.
+The state of the fluid is represented by particle density functions (PDF) of a discrete
 velocity field.
 These PDFs reside on the lattices and are exchanged along the discrete velocity directions.
-The two steps of the algorithm are now the streaming of the PDF information along
-the velocity directions, followed by the so-called collision, computing the new
+The two steps of the algorithm are the streaming of the PDF information along
+velocity directions, followed by the so-called collision, computing a new
 PDF on each lattice.
 This modeling with discrete velocities also allows for a straight forward handling of
 complicated wall boundaries, as a simple line intersection with the wall geometry
@@ -92,32 +92,34 @@ run on individual refinement levels of an octree mesh.
 It is developed within the APES-Suite [@Klimach:2014] of simulation tools based on the central
 Treelm library [@Klimach:2012vi] that provides the handling of this octree mesh on distributed
 parallel systems.
+The dedicated meshing tool Seeder [@Harlacher:2012] provides this octree mesh in a format that
+enables the distributed parallel reading of mesh partitions by all processes.
 The interpolation and transformation between the involved levels for the local
 refinement are separated from the kernel, allowing for an implementation of the
 respective methods without encumberment by the interpolation between the different
 resolutions.
 This method was described in detail in [@hasert:2013jc].
 There are various collision schemes implemented (BGK, MRT, HRR, Cumulants) [@Spinelli:2023],
-which can be used on a range for stencil configurations (discrete velocity directions).
-It is also possible to consider the transport of particles and passive scalars in
-the flow.
-Musubi has a minimal set of dependencies and has been deployed on a wide range of
-supercomputing infrastructure ranging from IBM's BlueGene systems to NEC's SX vector
-systems [@Qi:2016].
+which can be used on a range of stencil configurations (discrete velocity directions).
+It is also possible to consider the transport of particles [@Vlogman:2025] and passive
+scalars in the flow.
+Musubi has a minimal set of dependencies and has been deployed on a varity of
+supercomputing systems ranging from IBM's BlueGene to NEC's SX vector systems [@Qi:2016].
 The user interface is realized via the Lua [@Ierusalimschy:2016] scripting language,
-which is used to configure the simulation setups and allows for great flexibility.
+which is used to configure the simulation setups and allows for great flexibility in
+problem definitions.
 
 # Acknowlegements
 
 This software has been written by many people over the years.
 The individual authors can be found in each file with the respective copyright
 statement.
-Not appearing in the list of authors is Sabine Roller, who enabled the development
+Not appearing in those lists of authors is Sabine Roller, who enabled the development
 of this software in the first place and we are very grateful for this possibility.
 We especially thank our fellow contributors to this code basis Jiaxing Qi [@Qi:2017],
 Jens Zudrop [@Zudrop:2015], Simon Zimny [@Zimny:2015], Peter Vitt, Jana Gericke,
-Tristan Vlogman [@Vlogman:2025], Mengyu Wang and many students.
-Many thanks to Christian Siebert, who advised us on parallel algorithms and data structures.
+Tristan Vlogman, Mengyu Wang and many students.
+Further, we thank Christian Siebert, who advised us on parallel algorithms and data structures.
 The development of Musubi was partially funded by the German Federal Ministry of Education and Research
 (Bundesministerium für Bildung und Forschung, BMBF) in the framework of the HPC software initiative in
 the project HISEEM, by the European Commission in the Seventh Framework Programme in the area of
