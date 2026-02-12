@@ -67,6 +67,71 @@ hundreds of thousands of MPI processes.
 Musubi is utilized to solve flow problems in the ultrasound simulator PROTEUS developed at
 the University of Twente [@Blanken:2025].
 
+# State of the field
+
+There is a wide range of computational fluid dynamic methods, of which the lattice Boltzmann
+method represents an attractive option, due to its low number of operations and straight
+forward explicit implementation.
+
+Other Open Source solvers that utilize this method are, for example, Palabos [@Palabos2020],
+OpenLB [@olbPaper2021], waLBerla [@BAUER2021478] and VirtualFluids [@Geier:2025].
+They all aim at scale-resolved simulations of fluids.
+Musubi was developed (since 2011) in parallel or predated some of those projects
+due to a ground-up orientation to make use of octree meshes on massively parallel computing systems
+with a dedicated mesh format that allows for a distributed parallel reading from the file
+system.
+This approach allows for an automated multi-level mesh generation and avoids parallelisation
+bottlenecks between the mesh generation step and the simulation.
+
+A specific domain that is addressed in Musubi and not covered by other Open Source LBM solvers,
+is the simulation of the Maxwell-Stefan equation for multiple species [@Masilamani:2017] as needed
+in diffusion processes that appear for example in electrodialysis applications.
+
+# Software design
+
+Musubi is developed in the Apes-Suite framework, which revolves around a central octree
+mesh representation.
+This central part is implemented in a separate library, shared by the different
+tools in the framework.
+Though there still is a tight development dependency that is expressed by the use
+of git submodules.
+The application is designed towards deployment on a wide range of high-performance
+computing systems, including more exotic architectures like IBM's BlueGene or NEC's
+SX vector systems.
+Hence, dependencies are kept to a minimum and utilized Fortran language features are those,
+that are commonly supported.
+As user interface in this environment, the scripting language Lua is chosen, which allows
+for a flexible configuration of simulation setups but does not introduce complicated
+dependencies, as Lua is implemented in standard ANSI C and is compiled along with the
+project.
+
+Musubi separates the kernels, implementing the lattice-Boltzmann method on a single
+mesh refinement level from the supporting infrastructure that takes care of interpolation
+and communication.
+The goal here is to enable rapid implementation of new methods unperturbed by the
+infrastructure details.
+
+# Research impact statement
+
+Musubi has been successfully deployed in the simulation of scale-resolved fluid
+problems for a variety of problems.
+Originally, a main funding source for the software was the German HISEEM project that
+aimed at the investigation of effective electrodialysis processes for seawater
+desalination [@Johannink:2015].
+Another main focus in the development is put on biomedical application [@JainCaF:2016],
+which was originally supported by the European THROMBUS project [@Zimny:2013].
+In the biodmedical domain Musubi now is also used as the fluid simulation tool in
+the ultrasound simulator PROTEUS developed at the University of Twente [@Blanken:2025].
+
+While the two aforementioned application domains primarily are concerned with
+the simulation of liquids, there are also applications to gaseous fluids,
+for example in the simulation of human upper airway aerodynamics [@Hebbink:2022].
+Musubi's application extends beyond these domains and has been used in
+general aerodynamic simulations [@Spinelli:2024], aswell as in the domain of
+aero-acoustics [@Qi:2015], where the resolution of multiple spatial scales plays an
+important role.
+
+
 # The lattice Boltzmann method
 
 The lattice Boltzmann method employs ideas of cellular automata and can be represented
@@ -82,8 +147,6 @@ complicated wall boundaries, as a simple line intersection with the wall geometr
 can be used to accurately model the surface.
 Due to these properties the method has gained popularity in the field of computational
 fluid dynamics over the last decades.
-Other Open Source solvers that utilize this method are, for example, Palabos [@Palabos2020],
-OpenLB [@olbPaper2021], waLBerla [@BAUER2021478] and VirtualFluids [@Geier:2025].
 
 # The Musubi implementation
 
@@ -108,6 +171,11 @@ supercomputing systems ranging from IBM's BlueGene to NEC's SX vector systems [@
 The user interface is realized via the Lua [@Ierusalimschy:2016] scripting language,
 which is used to configure the simulation setups and allows for great flexibility in
 problem definitions.
+
+# AI usage disclosure
+
+No generative AI tools were used in the development of this software, the writing of this
+manuscript, or the preparation of supporting materials.
 
 # Acknowlegements
 
