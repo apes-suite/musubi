@@ -177,7 +177,7 @@ problem definitions.
 No generative AI tools were used in the development of this software, the writing of this
 manuscript, or the preparation of supporting materials.
 
-# Acknowlegements
+# Acknowledgements
 
 This software has been written by many people over the years.
 The individual authors can be found in each file with the respective copyright
