@@ -54,6 +54,7 @@ simulations [@Hasert:2013].
 
 It is written in Fortran, requiring a compiler that provides at least the Fortran 2003 standard.
 
+
 # Statement of need
 
 Highly resolved fluid simulations are an integral part in many scientifc application areas.
@@ -66,6 +67,24 @@ bottlenecks on individual processors and enabling the scaling of the simulation 
 hundreds of thousands of MPI processes.
 Musubi is utilized to solve flow problems in the ultrasound simulator PROTEUS developed at
 the University of Twente [@Blanken:2025].
+
+
+# The lattice Boltzmann method
+
+The lattice Boltzmann method employs ideas of cellular automata and can be represented
+at its core as a basic two step algorithm.
+The state of the fluid is represented by particle density functions (PDF) of a discrete
+velocity field.
+These PDFs reside on the lattices and are exchanged along the discrete velocity directions.
+The two steps of the algorithm are the streaming of the PDF information along
+velocity directions, followed by the so-called collision, computing a new
+PDF on each lattice.
+This modeling with discrete velocities also allows for a straight forward handling of
+complicated wall boundaries, as a simple line intersection with the wall geometry
+can be used to accurately model the surface.
+Due to these properties the method has gained popularity in the field of computational
+fluid dynamics over the last decades.
+
 
 # State of the field
 
@@ -87,29 +106,41 @@ A specific domain that is addressed in Musubi and not covered by other Open Sour
 is the simulation of the Maxwell-Stefan equation for multiple species [@Masilamani:2017] as needed
 in diffusion processes that appear for example in electrodialysis applications.
 
+
 # Software design
 
-Musubi is developed in the Apes-Suite framework, which revolves around a central octree
-mesh representation.
+Musubi implements the lattice Boltzmann method in the form of kernels that can be
+run on individual refinement levels of an octree mesh.
+It is developed within the APES-Suite [@Klimach:2014] of simulation tools revolving around a central
+Treelm library [@Klimach:2012vi] that provides the handling of this octree mesh on distributed
+parallel systems.
 This central part is implemented in a separate library, shared by the different
 tools in the framework.
 Though there still is a tight development dependency that is expressed by the use
 of git submodules.
+
+The dedicated meshing tool Seeder [@Harlacher:2012] provides this octree mesh in a format that
+enables the distributed parallel reading of mesh partitions by all processes.
+The interpolation and transformation between the involved levels for the local
+refinement are separated from the kernel, allowing for an implementation of the
+respective methods without encumberment by the interpolation between the different
+resolutions.
+This method was described in detail in [@hasert:2013jc] and enables the rapid
+implementation of new numerical kernels.
+There are various collision schemes implemented (BGK, MRT, HRR, Cumulants) [@Spinelli:2023],
+which can be used on a range of stencil configurations (discrete velocity directions).
+It is also possible to consider the transport of particles [@Vlogman:2025] and passive
+scalars in the flow.
+
 The application is designed towards deployment on a wide range of high-performance
-computing systems, including more exotic architectures like IBM's BlueGene or NEC's
-SX vector systems.
-Hence, dependencies are kept to a minimum and utilized Fortran language features are those,
-that are commonly supported.
-As user interface in this environment, the scripting language Lua is chosen, which allows
-for a flexible configuration of simulation setups but does not introduce complicated
+computing systems.
+To facilitate this, Musubi is designed with a minimal set of dependencies allowing for deployment
+on a varity of supercomputing systems ranging from IBM's BlueGene to NEC's SX vector systems [@Qi:2016].
+As user interface in this environment, the scripting language Lua [@Ierusalimschy:2016] is chosen,
+which allows for a flexible configuration of simulation setups but does not introduce complicated
 dependencies, as Lua is implemented in standard ANSI C and is compiled along with the
 project.
 
-Musubi separates the kernels, implementing the lattice-Boltzmann method on a single
-mesh refinement level from the supporting infrastructure that takes care of interpolation
-and communication.
-The goal here is to enable rapid implementation of new methods unperturbed by the
-infrastructure details.
 
 # Research impact statement
 
@@ -130,52 +161,15 @@ Musubi's application extends beyond these domains and has been used in
 general aerodynamic simulations [@Spinelli:2024], aswell as in the domain of
 aero-acoustics [@Qi:2015], where the resolution of multiple spatial scales plays an
 important role.
+The distributed handling of octree meshes is well suited in these settings as
+it allows for the resolution of the scales that need to be resolved.
 
-
-# The lattice Boltzmann method
-
-The lattice Boltzmann method employs ideas of cellular automata and can be represented
-at its core as a basic two step algorithm.
-The state of the fluid is represented by particle density functions (PDF) of a discrete
-velocity field.
-These PDFs reside on the lattices and are exchanged along the discrete velocity directions.
-The two steps of the algorithm are the streaming of the PDF information along
-velocity directions, followed by the so-called collision, computing a new
-PDF on each lattice.
-This modeling with discrete velocities also allows for a straight forward handling of
-complicated wall boundaries, as a simple line intersection with the wall geometry
-can be used to accurately model the surface.
-Due to these properties the method has gained popularity in the field of computational
-fluid dynamics over the last decades.
-
-# The Musubi implementation
-
-Musubi implements the lattice Boltzmann method in the form of kernels that can be
-run on individual refinement levels of an octree mesh.
-It is developed within the APES-Suite [@Klimach:2014] of simulation tools based on the central
-Treelm library [@Klimach:2012vi] that provides the handling of this octree mesh on distributed
-parallel systems.
-The dedicated meshing tool Seeder [@Harlacher:2012] provides this octree mesh in a format that
-enables the distributed parallel reading of mesh partitions by all processes.
-The interpolation and transformation between the involved levels for the local
-refinement are separated from the kernel, allowing for an implementation of the
-respective methods without encumberment by the interpolation between the different
-resolutions.
-This method was described in detail in [@hasert:2013jc].
-There are various collision schemes implemented (BGK, MRT, HRR, Cumulants) [@Spinelli:2023],
-which can be used on a range of stencil configurations (discrete velocity directions).
-It is also possible to consider the transport of particles [@Vlogman:2025] and passive
-scalars in the flow.
-Musubi has a minimal set of dependencies and has been deployed on a varity of
-supercomputing systems ranging from IBM's BlueGene to NEC's SX vector systems [@Qi:2016].
-The user interface is realized via the Lua [@Ierusalimschy:2016] scripting language,
-which is used to configure the simulation setups and allows for great flexibility in
-problem definitions.
 
 # AI usage disclosure
 
 No generative AI tools were used in the development of this software, the writing of this
 manuscript, or the preparation of supporting materials.
+
 
 # Acknowledgements
 
