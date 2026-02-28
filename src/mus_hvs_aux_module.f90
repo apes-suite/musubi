@@ -1,6 +1,7 @@
 ! Copyright (c) 2015-2016, 2018-2020 Kannan Masilamani <kannan.masilamani@uni-siegen.de>
 ! Copyright (c) 2016 Tobias Schneider <tobias1.schneider@student.uni-siegen.de>
 ! Copyright (c) 2016 Jiaxing Qi <jiaxing.qi@uni-siegen.de>
+! Copyright (c) 2025 Mengyu Wang <m.wang-2@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -40,6 +41,7 @@ module mus_hvs_aux_module
   use mus_fluid_module,              only: mus_init_fluid
   use mus_gradData_module,           only: mus_init_gradData
   use mus_tracking_module,           only: mus_init_tracker
+  use mus_auxField_module,           only: mus_auxField_configure_from_tracking
   use mus_bndForce_module,           only: mus_init_BndForce
 
   ! include treelm modules
@@ -148,6 +150,11 @@ contains
     call mus_init_tracker( scheme    = scheme,   &
       &                    geometry  = geometry, &
       &                    params    = params    )
+
+    call mus_auxField_configure_from_tracking( &
+      &    auxField   = scheme%auxField,       &
+      &    track      = scheme%track,          &
+      &    schemeKind = scheme%header%kind     )
 
     if( minLevel /= maxlevel ) then
       write(logUnit(1),*) 'Initializing interpolation...'

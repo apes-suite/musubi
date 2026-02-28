@@ -211,13 +211,13 @@ by particles on the fluid</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/allocateprocessmasks.html'>allocateProcessMasks</a></td>
-                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
+                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
                  <td>Interface</td>
                  <td></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/allocateprocessmasks~2.html'>allocateProcessMasks</a></td>
-                 <td><a href='../module/mus_particle_mem_type_module.html'>mus_particle_MEM_type_module</a></td>
+                 <td><a href='../module/mus_particle_dps_type_module.html'>mus_particle_DPS_type_module</a></td>
                  <td>Interface</td>
                  <td></td>
                </tr>
@@ -675,6 +675,12 @@ Run over all the elements with the property boundary
 and check each direction.
 Assign all common boundaries to the level-wise representation
 3rd step in build_BCLists</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/aux_tracking_needs_velocity_gradient.html'>aux_tracking_needs_velocity_gradient</a></td>
+                 <td><a href='../module/mus_auxfield_module.html'>mus_auxField_module</a></td>
+                 <td>Function</td>
+                 <td><p>Check if active tracking requests velocity-gradient based quantities.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/bc_pdf.html'>bc_pdf</a></td>
@@ -3553,19 +3559,19 @@ that the properties of these elements can be printed</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_d_uplus_d_utau.html'>get_d_uPlus_d_uTau</a></td>
-                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
-                 <td>Function</td>
-                 <td><p>function to get the derivative of uPlus with respect to uTau</p></td>
-               </tr>
-			   <tr>
-                 <td><a href='../proc/get_d_uplus_d_utau~2.html'>get_d_uPlus_d_uTau</a></td>
                  <td><a href='../module/mus_wall_function_schmitt_module.html'>mus_wall_function_schmitt_module</a></td>
                  <td>Function</td>
                  <td><p>function to get the derivative of uPlus with respect to uTau</p></td>
                </tr>
 			   <tr>
-                 <td><a href='../proc/get_d_uplus_d_utau~3.html'>get_d_uPlus_d_uTau</a></td>
+                 <td><a href='../proc/get_d_uplus_d_utau~2.html'>get_d_uPlus_d_uTau</a></td>
                  <td><a href='../module/mus_wall_function_reichardt_module.html'>mus_wall_function_reichardt_module</a></td>
+                 <td>Function</td>
+                 <td><p>function to get the derivative of uPlus with respect to uTau</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/get_d_uplus_d_utau~3.html'>get_d_uPlus_d_uTau</a></td>
+                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
                  <td>Function</td>
                  <td><p>function to get the derivative of uPlus with respect to uTau</p></td>
                </tr>
@@ -3829,19 +3835,19 @@ which contains the values of \f$p, q, r\f$</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/get_uplus.html'>get_uPlus</a></td>
-                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
-                 <td>Function</td>
-                 <td><p>function to get uPlus</p></td>
-               </tr>
-			   <tr>
-                 <td><a href='../proc/get_uplus~2.html'>get_uPlus</a></td>
                  <td><a href='../module/mus_wall_function_schmitt_module.html'>mus_wall_function_schmitt_module</a></td>
                  <td>Function</td>
                  <td><p>function to get uPlus</p></td>
                </tr>
 			   <tr>
-                 <td><a href='../proc/get_uplus~3.html'>get_uPlus</a></td>
+                 <td><a href='../proc/get_uplus~2.html'>get_uPlus</a></td>
                  <td><a href='../module/mus_wall_function_reichardt_module.html'>mus_wall_function_reichardt_module</a></td>
+                 <td>Function</td>
+                 <td><p>function to get uPlus</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/get_uplus~3.html'>get_uPlus</a></td>
+                 <td><a href='../module/mus_wall_function_musker_module.html'>mus_wall_function_musker_module</a></td>
                  <td>Function</td>
                  <td><p>function to get uPlus</p></td>
                </tr>
@@ -5680,6 +5686,14 @@ different way.</p></td>
 based on turbulence model and scheme header definition</p></td>
                </tr>
 			   <tr>
+                 <td><a href='../proc/mus_auxfield_configure_from_tracking.html'>mus_auxField_configure_from_tracking</a></td>
+                 <td><a href='../module/mus_auxfield_module.html'>mus_auxField_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Configure auxField halo communication once tracking information is known.
+Uses the initialization default as baseline and only enables additional
+communication when velocity-gradient tracking variables are requested.</p></td>
+               </tr>
+			   <tr>
                  <td><a href='../proc/mus_auxfieldvar_forpoint.html'>mus_auxFieldVar_forPoint</a></td>
                  <td><a href='../module/mus_auxfieldvar_module.html'>mus_auxFieldVar_module</a></td>
                  <td>Subroutine</td>
@@ -5773,28 +5787,28 @@ on boundary order in seeder configuration</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/mus_calc_ms_diffmatrix.html'>mus_calc_MS_DiffMatrix</a></td>
-                 <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
+                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
                  <td>Interface</td>
                  <td></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/mus_calc_ms_diffmatrix~2.html'>mus_calc_MS_DiffMatrix</a></td>
-                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
+                 <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
                  <td>Interface</td>
                  <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_calc_ms_diffmatrix_single.html'>mus_calc_MS_DiffMatrix_single</a></td>
+                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Dummy routine which sets diffusivity coeff matrix to diagonal matrix</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_calc_ms_diffmatrix_single~2.html'>mus_calc_MS_DiffMatrix_single</a></td>
                  <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
                  <td>Subroutine</td>
                  <td><p>This routine calculates Diffusivity coefficients matrix for given mole_frac
 of all species for single element</p></td>
-               </tr>
-			   <tr>
-                 <td><a href='../proc/mus_calc_ms_diffmatrix_single~2.html'>mus_calc_MS_DiffMatrix_single</a></td>
-                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
-                 <td>Subroutine</td>
-                 <td><p>Dummy routine which sets diffusivity coeff matrix to diagonal matrix</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_calc_nelems.html'>mus_calc_nElems</a></td>
@@ -5804,28 +5818,28 @@ of all species for single element</p></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/mus_calc_thermfactor.html'>mus_calc_thermFactor</a></td>
-                 <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
+                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
                  <td>Interface</td>
                  <td></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/mus_calc_thermfactor~2.html'>mus_calc_thermFactor</a></td>
-                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
+                 <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
                  <td>Interface</td>
                  <td></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_calc_thermfactor_single.html'>mus_calc_thermFactor_single</a></td>
+                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Dummy routine which sets thermodynamic factor matrix to diagonal matrix</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_calc_thermfactor_single~2.html'>mus_calc_thermFactor_single</a></td>
                  <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
                  <td>Subroutine</td>
                  <td><p>This routine calculates thermodynamic factor for given mole_frac
 of all species for single element</p></td>
-               </tr>
-			   <tr>
-                 <td><a href='../proc/mus_calc_thermfactor_single~2.html'>mus_calc_thermFactor_single</a></td>
-                 <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
-                 <td>Subroutine</td>
-                 <td><p>Dummy routine which sets thermodynamic factor matrix to diagonal matrix</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_calcauxfield_dummy.html'>mus_calcAuxField_dummy</a></td>
@@ -6650,15 +6664,15 @@ kind.</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_init_enrtl.html'>mus_init_eNRTL</a></td>
-                 <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
-                 <td>Function</td>
-                 <td><p>This function loads property file using external c-function</p></td>
-               </tr>
-			   <tr>
-                 <td><a href='../proc/mus_init_enrtl~2.html'>mus_init_eNRTL</a></td>
                  <td><a href='../module/mus_enrtl_module.html'>mus_eNRTL_module</a></td>
                  <td>Function</td>
                  <td><p>Dummy function to init_enrtl</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mus_init_enrtl~2.html'>mus_init_eNRTL</a></td>
+                 <td><a href='../module/mus_enrtl_module~2.html'>mus_eNRTL_module</a></td>
+                 <td>Function</td>
+                 <td><p>This function loads property file using external c-function</p></td>
                </tr>
 			   <tr>
                  <td><a href='../proc/mus_init_flow.html'>mus_init_flow</a></td>
@@ -9452,18 +9466,18 @@ new fluid elements which were particle elements in the previous time step.</p></
                </tr>
 			   <tr>
                  <td><a href='../proc/updateparticleowner.html'>updateParticleOwner</a></td>
+                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/updateparticleowner~2.html'>updateParticleOwner</a></td>
                  <td><a href='../module/mus_particle_dps_module.html'>mus_particle_DPS_module</a></td>
                  <td>Subroutine</td>
                  <td><p>UpdateParticleOwner updates the "owner process" of each particle,
 which is the process responsible for performing operations
 (e.g. modifying velocity and position) on the particle and sending
 updates to other processes.</p></td>
-               </tr>
-			   <tr>
-                 <td><a href='../proc/updateparticleowner~2.html'>updateParticleOwner</a></td>
-                 <td><a href='../module/mus_particle_mem_module.html'>mus_particle_MEM_module</a></td>
-                 <td>Subroutine</td>
-                 <td></td>
                </tr>
 			   <tr>
                  <td><a href='../interface/updatepositioneuler.html'>updatePositionEuler</a></td>
@@ -9715,13 +9729,13 @@ account periodicity</p></td>
             <p>
               Musubi
  was developed by University of Siegen<br>              &copy; 2026 
-<br /><small>330d7dab7084</small></p>
+<br /><small>81f8c4f13772</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2026-02-24T07:59:18.408191+0000             </p>
+ on 2026-02-28T17:26:30.432047+0000             </p>
           </div>
         </div>
         <br>

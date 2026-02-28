@@ -13,6 +13,7 @@
 ! Copyright (c) 2016 Peter Vitt <peter.vitt2@uni-siegen.de>
 ! Copyright (c) 2016-2017 Raphael Haupt <raphael.haupt@uni-siegen.de>
 ! Copyright (c) 2022 Gregorio Gerardo Spinelli <gregoriogerardo.spinelli@dlr.de>
+! Copyright (c) 2025 Mengyu Wang <m.wang-2@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -63,6 +64,7 @@ module mus_aux_module
   use mus_turbulence_module,         only: mus_turb_updateViscOfTurbWall
   use mus_field_module,              only: setParameters_multispecies
   use mus_tracking_module,           only: mus_init_tracker
+  use mus_auxField_module,           only: mus_auxField_configure_from_tracking
   use mus_restart_module,            only: mus_writeRestart
   use mus_timer_module,              only: mus_timerHandles
   use mus_physics_module,            only: mus_physics_type
@@ -375,6 +377,11 @@ contains
       &    scheme    = scheme,   &
       &    geometry  = geometry, &
       &    params    = params    )
+
+    call mus_auxField_configure_from_tracking( &
+      &    auxField   = scheme%auxField,       &
+      &    track      = scheme%track,          &
+      &    schemeKind = scheme%header%kind     )
 
     ! convergence objects
     if ( params%general%simControl%abortCriteria%steady_state ) then

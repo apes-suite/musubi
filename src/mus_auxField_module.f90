@@ -1,4 +1,5 @@
 ! Copyright (c) 2019-2020, 2022 Kannan Masilamani <kannan.masilamani@uni-siegen.de>
+! Copyright (c) 2025 Mengyu Wang <m.wang-2@utwente.nl>
 !
 ! Redistribution and use in source and binary forms, with or without
 ! modification, are permitted provided that the following conditions are met:
@@ -39,6 +40,8 @@ module mus_auxField_module
     &                           tem_comm_init
   use tem_construction_module, only: tem_levelDesc_type
   use tem_general_module,      only: tem_general_type
+  use tem_tracking_module,     only: tem_tracking_type
+  use tem_logging_module,      only: logUnit
 
   use mus_derVarPos_module,          only: mus_derVarPos_type
   use mus_scheme_header_module,      only: mus_scheme_header_type
@@ -60,6 +63,7 @@ module mus_auxField_module
   public :: mus_calcAuxFieldAndExchange
   public :: mus_intpAuxFieldCoarserAndExchange
   public :: mus_intpAuxFieldFinerAndExchange
+  public :: mus_auxField_configure_from_tracking
 
   !> Contains auxiliary field variable values per level and communication
   !! buffers
@@ -85,6 +89,8 @@ module mus_auxField_module
     type( tem_communication_type ) :: recvBufferFromCoarser
     !> My halos which are ghostFromFiner on remote processes
     type( tem_communication_type ) :: recvBufferFromFiner
+    !> Controls whether auxField halo exchange is required on this level.
+    logical :: needHaloComm = .false.
   end type mus_auxFieldVar_type
 
   abstract interface
@@ -127,12 +133,13 @@ module mus_auxField_module
   end interface
 
 
-
 contains
+
 
   ! ************************************************************************* !
   !> This routine initialize auxField var val array and communication buffers
-  subroutine mus_init_auxFieldArrays(me, levelDesc, pattern, nSize, nAuxScalars)
+  subroutine mus_init_auxFieldArrays(me, levelDesc, pattern, nSize, &
+    &                                nAuxScalars, needHaloComm      )
     ! --------------------------------------------------------------------- !
     !> Auxiliary field variable
     type(mus_auxFieldVar_type), intent(out) :: me
@@ -144,8 +151,14 @@ contains
     integer, intent(in) :: nSize
     !> Number of scalars in auxiliary variables
     integer, intent(in) :: nAuxScalars
+    !> Default for halo communication flag
+    logical, intent(in), optional :: needHaloComm
     ! --------------------------------------------------------------------- !
     ! --------------------------------------------------------------------- !
+    if (present(needHaloComm)) then
+      me%needHaloComm = needHaloComm
+    end if
+
     allocate(me%val(nSize * nAuxScalars))
     me%val(:) = -1000000.0_rk
 
@@ -223,7 +236,8 @@ contains
   !! PDF initialized by IC
   subroutine mus_initAuxFieldFluidAndExchange(auxField, state, neigh, nElems,  &
     &                                         nSize, nFields, stencil, varSys, &
-    &                                         derVarPos, iLevel, general, quantities)
+    &                                         derVarPos, iLevel, general,      &
+    &                                         quantities)
     !---------------------------------------------------------------------------
     !> auxilary field array
     type(mus_auxFieldVar_type), intent(inout) :: auxField
@@ -269,12 +283,14 @@ contains
     ! communicate velocity field. Requires for tubulence to compute ShearRate
     ! from velocity gradient.
     ! exchange velocity halo on current level
-    call general%commpattern%exchange_real(   &
-      &  send         = auxField%sendBuffer,  &
-      &  recv         = auxField%recvBuffer, &
-      &  state        = auxField%val(:),      &
-      &  message_flag = iLevel+100,           &
-      &  comm         = general%proc%comm     )
+    if (auxField%needHaloComm) then
+      call general%commpattern%exchange_real(  &
+        &  send         = auxField%sendBuffer, &
+        &  recv         = auxField%recvBuffer, &
+        &  state        = auxField%val(:),     &
+        &  message_flag = iLevel+100,          &
+        &  comm         = general%proc%comm    )
+    end if
 
   end subroutine mus_initAuxFieldFluidAndExchange
   ! ************************************************************************** !
@@ -285,7 +301,7 @@ contains
   !! halos
   subroutine mus_calcAuxFieldAndExchange(auxField, calcAuxField, state, &
     &  pdfData, nFields, field, globSrc, stencil, varSys, derVarPos,    &
-    &  phyConvFac, general, iLevel, minLevel, schemeHeader, quantities)
+    &  phyConvFac, general, iLevel, minLevel, schemeHeader, quantities  )
     ! -------------------------------------------------------------------- !
     !> auxilary field array
     type(mus_auxFieldVar_type), intent(inout) :: auxField
@@ -378,15 +394,17 @@ contains
     ! communicate velocity field. Requires for tubulence to compute ShearRate
     ! from velocity gradient.
     ! exchange velocity halo on current level
-    call general%commpattern%exchange_real(   &
-      &  send         = auxField%sendBuffer,  &
-      &  recv         = auxField%recvBuffer , &
-      &  state        = auxField%val(:),      &
-      &  message_flag = iLevel+100,           &
-      &  comm         = general%proc%comm     )
+    if (auxField%needHaloComm) then
+        call general%commpattern%exchange_real(   &
+          &  send         = auxField%sendBuffer,  &
+          &  recv         = auxField%recvBuffer , &
+          &  state        = auxField%val(:),      &
+          &  message_flag = iLevel+100,           &
+          &  comm         = general%proc%comm     )
+    end if
 
     ! communicate ghost halos from coarser
-    if (iLevel > minLevel) then
+    if (auxField%needHaloComm .and. iLevel > minLevel) then
        call general%commpattern%exchange_real(             &
         &  send         = auxField%sendBufferFromCoarser,  &
         &  recv         = auxField%recvBufferFromCoarser , &
@@ -403,7 +421,7 @@ contains
   !! halos
   subroutine mus_intpAuxFieldCoarserAndExchange(intp, tAuxField, sAuxField,  &
     &                                           tLevelDesc, stencil, iLevel, &
-    &                                           nAuxScalars,  general)
+    &                                           nAuxScalars, general         )
     ! -------------------------------------------------------------------- !
     !> Interpolation type
     type(mus_interpolation_type), intent(inout) :: intp
@@ -434,12 +452,14 @@ contains
 
     ! exchange velocity halo fromFiner, required to compute velocity
     ! gradient
-    call general%commPattern%exchange_real(            &
-      &  send         = tAuxField%sendBufferFromFiner, &
-      &  recv         = tAuxField%recvBufferFromFiner, &
-      &  state        = tAuxField%val(:),              &
-      &  message_flag = iLevel+300,                    &
-      &  comm         = general%proc%comm              )
+    if (tAuxField%needHaloComm) then
+      call general%commPattern%exchange_real(            &
+        &  send         = tAuxField%sendBufferFromFiner, &
+        &  recv         = tAuxField%recvBufferFromFiner, &
+        &  state        = tAuxField%val(:),              &
+        &  message_flag = iLevel+300,                    &
+        &  comm         = general%proc%comm              )
+    end if
 
   end subroutine mus_intpAuxFieldCoarserAndExchange
   ! ************************************************************************* !
@@ -449,7 +469,7 @@ contains
   !! halos
   subroutine mus_intpAuxFieldFinerAndExchange(intp, tAuxField, sAuxField,  &
     &                                         tLevelDesc, stencil, iLevel, &
-    &                                         nAuxScalars, general)
+    &                                         nAuxScalars, general         )
     ! -------------------------------------------------------------------- !
     !> Interpolation type
     type(mus_interpolation_type), intent(inout) :: intp
@@ -484,14 +504,91 @@ contains
 
     ! exchange velocity halo fromFiner, required to compute velocity
     ! gradient
-    call general%commPattern%exchange_real(              &
-      &  send         = tAuxField%sendBufferFromCoarser, &
-      &  recv         = tAuxField%recvBufferFromCoarser, &
-      &  state        = tAuxField%val(:),                &
-      &  message_flag = iLevel+200,                      &
-      &  comm         = general%proc%comm                )
+    if (tAuxField%needHaloComm) then
+      call general%commPattern%exchange_real(              &
+        &  send         = tAuxField%sendBufferFromCoarser, &
+        &  recv         = tAuxField%recvBufferFromCoarser, &
+        &  state        = tAuxField%val(:),                &
+        &  message_flag = iLevel+200,                      &
+        &  comm         = general%proc%comm                )
+    end if
 
   end subroutine mus_intpAuxFieldFinerAndExchange
   ! ************************************************************************* !
-end module mus_auxField_module
 
+
+  ! ************************************************************************* !
+  !> Configure auxField halo communication once tracking information is known.
+  !! Uses the initialization default as baseline and only enables additional
+  !! communication when velocity-gradient tracking variables are requested.
+  subroutine mus_auxField_configure_from_tracking(auxField, track, schemeKind)
+    ! -------------------------------------------------------------------- !
+    type(mus_auxFieldVar_type), intent(inout) :: auxField(:)
+    type(tem_tracking_type), intent(in) :: track
+    character(len=*), intent(in) :: schemeKind
+    ! -------------------------------------------------------------------- !
+    integer :: iLevel
+    logical :: needHaloComm
+    ! -------------------------------------------------------------------- !
+
+    if (size(auxField) == 0) return
+
+    needHaloComm = auxField(lbound(auxField, 1))%needHaloComm
+    needHaloComm = needHaloComm                               &
+      &            .or. aux_tracking_needs_velocity_gradient( &
+      &                   track      = track,                 &
+      &                   schemeKind = schemeKind             )
+
+    do iLevel = lbound(auxField, 1), ubound(auxField, 1)
+      auxField(iLevel)%needHaloComm = needHaloComm
+    end do
+
+    if (needHaloComm) then
+      write(logUnit(1),*) 'Auxiliary field halo communication activated.'
+    else
+      write(logUnit(1),*) 'Auxiliary field halo communication DEACTIVATED.'
+    end if
+
+  end subroutine mus_auxField_configure_from_tracking
+  ! ************************************************************************* !
+
+
+  ! ************************************************************************* !
+  !> Check if active tracking requests velocity-gradient based quantities.
+  function aux_tracking_needs_velocity_gradient(track, schemeKind) &
+    &        result(needed)
+    ! -------------------------------------------------------------------- !
+    type(tem_tracking_type), intent(in) :: track
+    character(len=*), intent(in) :: schemeKind
+    logical :: needed
+    ! -------------------------------------------------------------------- !
+    integer :: iTrack, iConfig, iVar
+    ! -------------------------------------------------------------------- !
+
+    needed = .false.
+
+    if (.not. track%control%active) return
+
+    select case (trim(schemeKind))
+    case ('fluid', 'fluid_incompressible')
+      continue
+    case default
+      return
+    end select
+
+    do iTrack = 1, track%control%nActive
+      iConfig = track%instance(iTrack)%pntConfig
+      do iVar = 1, size(track%config(iConfig)%varName)
+        select case(trim(track%config(iConfig)%varName(iVar)))
+        case ('grad_velocity', 'vorticity', 'q_criterion',           &
+          &   'grad_velocity_phy', 'vorticity_phy', 'q_criterion_phy')
+          needed = .true.
+          return
+        end select
+      end do
+    end do
+
+  end function aux_tracking_needs_velocity_gradient
+  ! ************************************************************************* !
+
+end module mus_auxField_module
