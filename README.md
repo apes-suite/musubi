@@ -1,14 +1,15 @@
 Musubi
 ======
 
-Octree based Lattice-Boltzmann solver with support for multiple species.
-The actual sources are found in the musubi-source repository, which is
+Octree based Lattice-Boltzmann solver with support for multi-physics.
+The actual sources are found in the
+[musubi-source repository](https://github.com/apes-suite/musubi-source), which is
 included here in the `mus` subdirectory.
 Additionally all the other parts required for compilation of the solver
 are included in this repository.
 
 Use `git clone --recurse-submodules` when cloning this repository to fetch the
-gathered subdirectories from the various repositories.
+gathered submodules from the various repositories.
 
 Prerequisite for building the solver is an installed Python, Fortran compiler
 and MPI library. For compilation you need to point `FC` to the appropiate MPI
@@ -47,10 +48,11 @@ Developing Musubi
 -----------------
 
 The actual sources of musubi are found in the mus subdirectory, which is a git
-submodule and, thus, has a repository (musubi-source) on its own.
-To ease the work with this setup there is a `request` script that is meant to
-take care of dealing with the tight coupling between this repository and
-musubi-source.
+submodule and, thus, has a repository
+([musubi-source](https://github.com/apes-suite/musubi-source)) on its own.
+To ease the work with this setup there is a `request` script in the `bin` subdirectory
+that is meant to take care of dealing with the tight coupling between this repository
+and musubi-source.
 
 Testing
 -------
