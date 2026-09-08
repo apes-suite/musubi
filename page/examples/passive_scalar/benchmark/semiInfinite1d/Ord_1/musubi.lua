@@ -38,7 +38,8 @@ transport_velocity = 'velocity_fluid'
 
 glob_source = {
   varname = 'ps_sink',
-  ps_sourceCoeff = 'lambda'
+  ps_sourceCoeff = 'lambda',
+  ps_sourceCoeff_order = 1
 }
 
 variable = {

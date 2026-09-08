@@ -115,6 +115,7 @@ module mus_bgk_module
   private
 
   public :: mus_advRel_kCFD_rBGK_vStdNoOpt_l
+  public :: mus_advRel_kFluidIncomp_rTRT_vStdNoOpt_l
 
 contains
 
@@ -212,6 +213,116 @@ contains
   end subroutine mus_advRel_kCFD_rBGK_vStdNoOpt_l
 ! ****************************************************************************** !
 
+! ****************************************************************************** !
+  !> Advection relaxation routine for the generic incompressible
+  !! TRT model with an explicit calculation of all equilibrium
+  !! quantities. Slow and simple. This routine should only be
+  !! used for testing purposes
+  !!
+  !! This subroutine interface must match the abstract interface definition
+  !! [[kernel]] in scheme/[[mus_scheme_type_module]].f90 in order to be callable
+  !! via [[mus_scheme_type:compute]] function pointer.
+  subroutine mus_advRel_kFluidIncomp_rTRT_vStdNoOpt_l( fieldProp, inState, &
+    &                                   outState, auxField, neigh, nElems, &
+    &                                   nSolve, level, layout, params,     &
+    &                                   varSys, derVarPos                  )
+    ! -------------------------------------------------------------------- !
+    !> Array of field properties (fluid or species)
+    type(mus_field_prop_type), intent(in) :: fieldProp(:)
+    !> variable system definition
+    type(tem_varSys_type), intent(in) :: varSys
+    !> current layout
+    type(mus_scheme_layout_type), intent(in) :: layout
+    !> number of elements in state Array
+    integer, intent(in) :: nElems
+    !> input  pdf vector
+    real(kind=rk), intent(in)  ::  inState(nElems * varSys%nScalars)
+    !> output pdf vector
+    real(kind=rk), intent(out) :: outState(nElems * varSys%nScalars)
+    !> Auxiliary field computed from pre-collision state
+    !! Is updated with correct velocity field for multicomponent models
+    real(kind=rk), intent(inout) :: auxField(nElems * varSys%nAuxScalars)
+    !> connectivity vector
+    integer, intent(in) :: neigh(nElems * layout%fStencil%QQ)
+    !> number of elements solved in kernel
+    integer, intent(in) :: nSolve
+    !> current level
+    integer,intent(in) :: level
+    !> global parameters
+    type(mus_param_type),intent(in) :: params
+    !> position of derived quantities in varsys for all fields
+    type( mus_derVarPos_type ), intent(in) :: derVarPos(:)
+    ! -------------------------------------------------------------------- !
+    integer :: iElem, iDir                       ! voxel element counter
+    integer :: QQ, nScalars
+    ! temporary distribution variables
+    real(kind=rk) pdfTmp(layout%fStencil%QQ)
+    real(kind=rk) ux(3)   ! local velocity
+    real(kind=rk) rho     ! local density
+    real(kind=rk) usq      ! square velocity
+    ! derived constants
+    ! equilibrium calculation variables
+    real(kind=rk) ucx
+    real(kind=rk) feqPlus, feqMinus, fPlus, fMinus
+    real(kind=rk) omega, aux_omega, lambda
+    integer :: dens_pos, vel_pos(3), elemOff, invDir
+    ! ---------------------------------------------------------------------------
+    dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
+    vel_pos = varSys%method%val(derVarPos(1)%velocity)%auxField_varPos(1:3)
+
+    QQ = layout%fStencil%QQ
+    nScalars = varSys%nScalars
+
+    nodeloop: do iElem = 1, nSolve
+      do iDir = 1, QQ
+        pdfTmp( iDir ) = inState( neigh((idir-1)* nelems+ ielem)+( 1-1)* qq+ nscalars*0)
+      end do
+
+      ! element offset for auxField array
+      elemOff = (iElem-1)*varSys%nAuxScalars
+      ! local density
+      rho = auxField(elemOff + dens_pos)
+      ! local x-, y- and z-velocity
+      ux(1) = auxField(elemOff + vel_pos(1))
+      ux(2) = auxField(elemOff + vel_pos(2))
+      ux(3) = auxField(elemOff + vel_pos(3))
+
+      ! square velocity and derived constants
+      usq = ux(1)*ux(1) + ux(2)*ux(2) + ux(3)*ux(3)
+
+      !> relaxation parameter
+      omega = fieldProp(1)%fluid%viscKine%omLvl(level)%val(iElem)
+      lambda = fieldProp(1)%fluid%lambda
+      aux_omega = 1.0_rk / (lambda / (1.0_rk / omega - 0.5_rk) + 0.5_rk)
+
+      do iDir = 1,QQ
+
+        !> Pre-calculate velocitiy terms
+        ucx = layout%fStencil%cxDir( 1, iDir )*ux(1) &
+          & + layout%fStencil%cxDir( 2, iDir )*ux(2) &
+          & + layout%fStencil%cxDir( 3, iDir )*ux(3)
+
+        ! compute the symmetric and antisymmetric parts of the equilibrium
+        feqPlus = layout%weight( iDir ) * (rho   &
+          &        +  rho0*(9._rk*ucx*ucx*0.5_rk &
+          &                  - usq*0.5_rk*3._rk) )
+
+        feqMinus = rho0 * layout%weight( iDir ) * 3._rk * ucx
+
+        invDir = layout%fStencil%cxDirInv(iDir)
+        fPlus = 0.5_rk * (pdfTmp(iDir) + pdfTmp(invDir))
+        fMinus = 0.5_rk * (pdfTmp(iDir) - pdfTmp(invDir))
+
+        outstate( (ielem-1)*varsys%nscalars+ idir+(1-1)*layout%fstencil%qq ) &
+          & = pdfTmp( iDir ) + aux_omega * ( feqMinus - fMinus) &
+          &   + omega * (feqPlus - fPlus)
+
+      end do ! iDir
+
+    end do nodeloop
+
+  end subroutine mus_advRel_kFluidIncomp_rTRT_vStdNoOpt_l
+! ****************************************************************************** !
 
 end module mus_bgk_module
 ! ****************************************************************************** !

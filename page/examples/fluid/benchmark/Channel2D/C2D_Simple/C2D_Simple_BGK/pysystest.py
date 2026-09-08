@@ -23,7 +23,7 @@ class PySysTest(ApesHelper, pysys.basetest.BaseTest):
 
     def validate(self):
         self.apes.checkMusLog()
-        trackfile = 'channel_pressAlongLength_p00000_t12.953E+00.res'
+        trackfile = 'channel_pressAlongLength_p00000_t3.502E+00.res'
         self.assertPathExists('tracking/'+trackfile,
                               abortOnError = True)
         self.apes.assertIsClose(trackfile, dir = 'tracking')

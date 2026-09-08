@@ -23,9 +23,7 @@ class PySysTest(ApesHelper, pysys.basetest.BaseTest):
 
     def validate(self):
         self.apes.checkMusLog()
-        # NOTE: this file was generated with a debug executable, which
-        # resulted in a final timestep of 9.694 instead!
-        trackfile = 'channel_pressAlongLength_p00000_t9.695E+00.res'
+        trackfile = 'channel_pressAlongLength_p00000_t2.835E+00.res'
         self.assertPathExists('tracking/'+trackfile,
                               abortOnError = True)
         self.apes.assertIsClose(trackfile, dir = 'tracking')

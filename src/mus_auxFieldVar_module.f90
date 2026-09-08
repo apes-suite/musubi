@@ -151,6 +151,7 @@ module mus_auxFieldVar_module
   public :: mus_addHRRCorrToAuxField_fluid_2D
   public :: mus_addHRRCorrToAuxField_fluid_3D
   public :: mus_addBrinkmanToAuxField_fluidIncomp
+  public :: mus_addPSSourceCoeffDensityToAuxField
 
 contains
 
@@ -2303,6 +2304,68 @@ contains
     end do
 
   end subroutine mus_addBrinkmanToAuxField_fluidIncomp
+  ! ************************************************************************** !
+
+  ! ************************************************************************** !
+  !> This routine adds Brinkman (porous-media) damping to the velocity stored
+  !! in the auxField for the incompressible fluid model.
+  !! Reference:
+  !!   Dominique d’Humières, Irina Ginzburg, (2009), "Viscosity independent
+  !!   numerical errors for Lattice Boltzmann models: From recurrence equations
+  !!   to “magic” collision numbers", Computers & Mathematics with Applications,
+  !!   Volume 58, Issue 5, Pages 823-840
+  subroutine mus_addPSSourceCoeffDensityToAuxField(fun, auxField, iLevel,     &
+    &                                               time, varSys, phyConvFac, &
+    &                                               derVarPos)
+    ! ------------------------------------------------------------------------ !
+    !> Description of method to update source
+    class(mus_source_op_type), intent(inout) :: fun
+    !> output auxField array
+    real(kind=rk), intent(inout)         :: auxField(:)
+    !> current level
+    integer, intent(in)                :: iLevel
+    !> current timing information
+    type(tem_time_type), intent(in)    :: time
+    !> variable system definition
+    type(tem_varSys_type), intent(in) :: varSys
+    !> Physics conversion factor for current level
+    type(mus_convertFac_type), intent(in) :: phyConvFac
+    !> position of derived quantities in varsys
+    type(mus_derVarPos_type), intent(in) :: derVarPos(:)
+    ! ------------------------------------------------------------------------ !
+    integer :: den_pos, elemOff
+    integer :: iElem, nElems, posInTotal
+    real(kind=rk) :: coeff(fun%elemLvl(iLevel)%nElems)
+    ! ------------------------------------------------------------------------ !
+    ! position of density field in auxField
+    den_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
+    ! Number of elements to apply source terms
+    nElems = fun%elemLvl(iLevel)%nElems
+    ! Get the force variable from the configuration for each element
+    call varSys%method%val(fun%data_varPos)%get_valOfIndex( &
+      & varSys  = varSys,                                   &
+      & time    = time,                                     &
+      & iLevel  = iLevel,                                   &
+      & idx     = fun%elemLvl(iLevel)%idx(1:nElems),        &
+      & nVals   = nElems,                                   &
+      & res     = coeff                                     )
+
+    ! Convert physical to lattice unit and multiply with factor
+    coeff = coeff / phyConvFac%sourceCoeff
+
+!$omp parallel do schedule(static), private( posInTotal, elemOff )
+    !NEC$ ivdep
+    do iElem = 1, nElems
+      posInTotal = fun%elemLvl(iLevel)%posInTotal(iElem)
+      ! element offset
+      elemoff = (posInTotal - 1) * varSys%nAuxScalars
+      ! add source to density
+      auxfield( elemoff + den_pos ) = auxfield( elemoff + den_pos )    &
+        &                             * 2.0_rk / (2.0_rk - coeff(iElem))
+
+    end do
+
+  end subroutine mus_addPSSourceCoeffDensityToAuxField
   ! ************************************************************************** !
 
 

@@ -10,7 +10,7 @@
     <meta name="author" content="University of Siegen" >
     <link rel="icon" href="../../../../../favicon.png">
 
-    <title>Advection-diffusion-reaction benchmark: Semi-infinite 1D domain &ndash; Musubi</title>
+    <title>Semi-infinite 1D domain with different source schemes &ndash; Musubi</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -84,7 +84,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>Advection-diffusion-reaction benchmark: Semi-infinite 1D domain</h1>
+    <h1>Semi-infinite 1D domain with different source schemes</h1>
     <div class="container p-2 mb-4 bg-light border rounded-3">
       <div class="row align-items-center justify-content-between">
         <div class="col">
@@ -98,7 +98,7 @@
                 <li class="breadcrumb-item"><a href='../../../index.html'>Examples</a></li>
                 <li class="breadcrumb-item"><a href='../../index.html'>Passive Scalar Transport Examples</a></li>
                 <li class="breadcrumb-item"><a href='../index.html'>Benchmark</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Advection-diffusion-reaction benchmark: Semi-infinite 1D domain</li>
+              <li class="breadcrumb-item active" aria-current="page">Semi-infinite 1D domain with different source schemes</li>
             </ol>
           </nav>
         </div>
@@ -209,7 +209,9 @@
                                 <a class="nav-link" href="../../../fluid_incompressible/benchmark/BrinkmanChannel2D/index.html">Brinkman Channel 2D Example with different collision operators</a>
                 <nav class="nav nav-pills flex-column">
                                 <a class="nav-link" href="../../../fluid_incompressible/benchmark/BrinkmanChannel2D/BGK/index.html">Brinkman Channel 2D Example with BGK operator</a>
+              <a class="nav-link" href="../../../fluid_incompressible/benchmark/BrinkmanChannel2D/BGK_H2/index.html">Brinkman Channel 2D Example with BGK operator and H2 Brinkman force</a>
               <a class="nav-link" href="../../../fluid_incompressible/benchmark/BrinkmanChannel2D/TRT/index.html">Brinkman Channel 2D Example with TRT operator</a>
+              <a class="nav-link" href="../../../fluid_incompressible/benchmark/BrinkmanChannel2D/TRT_H2/index.html">Brinkman Channel 2D Example with TRT operator and H2 Brinkman force</a>
 
                 </nav>
               <a class="nav-link" href="../../../fluid_incompressible/benchmark/Channel2D/index.html">Channel 2D</a>
@@ -287,7 +289,12 @@
               <a class="nav-link" href="../gaussian2d/isotropic/index.html">Advection-diffusion of a Gaussian Hill</a>
 
                 </nav>
-              <a class="nav-link active disabled" href="index.html">Advection-diffusion-reaction benchmark: Semi-infinite 1D domain</a>
+              <a class="nav-link active disabled" href="index.html">Semi-infinite 1D domain with different source schemes</a>
+                <nav class="nav nav-pills flex-column">
+                                <a class="nav-link" href="Ord_1/index.html">Advection-diffusion-reaction benchmark: Semi-infinite 1D domain with 1st order accuracy source</a>
+              <a class="nav-link" href="Ord_2/index.html">Advection-diffusion-reaction benchmark: Semi-infinite 1D domain with 2nd order accuracy source</a>
+
+                </nav>
 
                 </nav>
 
@@ -327,54 +334,11 @@
       </div>
 
     <div class="col-9" id='text'>
-      <h1 id="ex_semi_infinite_1d">Advection-diffusion-reaction benchmark: Semi-infinite 1D domain</h1>
-<p>The movement of a tracer in a semi-infinite column is a classical benchmark problem in transport phenomena and porous media hydrology.</p>
-<p>References:
-  Jacob Bear. Dynamics of Fluids in Porous Media. New York: Elsevier,
-  1972. isbn: 978-0-486-65675-5.</p>
-<p>It serves to validate the accuracy of the LBM framework for solving advection-diffusion-reaction (ADR) equations. 
-The setup considers a tracer initially injected at the inlet of a semi-infinite column, 
-which then advects, diffuses, and reacts along the flow direction. </p>
-<p>The governing ADR equation is</p>
-<p>
-<script type="math/tex; mode=display">
-  \partial_t c + U \,\partial_x c = D \,\partial_{xx} c - \lambda c, \label{adr}
-</script>
-</p>
-<p>where $c(x,t)$ is the concentration, $U$ the advective velocity, $D$ the molecular diffusion coefficient, 
-and $\lambda$ the reaction rate. </p>
-<p>The boundary and initial conditions are</p>
-<p>
-<script type="math/tex; mode=display">
-  c(x,0) = 0, \qquad c(0,t) = C_0, \qquad c(\infty,t) = 0, \label{adr_bc}
-</script>
-</p>
-<p>corresponding to a constant concentration injection at the inlet. </p>
-<p>The analytical solution for this problem is given as</p>
-<p>
-<script type="math/tex; mode=display">
-\begin{split}
-  C(x,t) = \frac{C_0}{2} \exp\!\left(\frac{Ux}{2D}\right)
-  \Bigg[
-  & \exp(-\beta x)\, \mathrm{erfc}\!\left(\frac{x - \sqrt{U^2 + 4 \lambda D}\, t}{2\sqrt{Dt}}\right) \\
-  +\, & \exp(\beta x)\, \mathrm{erfc}\!\left(\frac{x + \sqrt{U^2 + 4 \lambda D}\, t}{2\sqrt{Dt}}\right)
-  \Bigg],
-\end{split}
-\label{adr_solution}
-</script>
-</p>
-<p>with $\beta^2 = \tfrac{U^2 + 4\lambda}{4D}$ and $\mathrm{erfc}(x) = 1 - \mathrm{erf}(x)$ 
-the complementary error function. </p>
-<p>In this benchmark, the simulation parameters are set in <code>params.lua</code>, and the analytical solution is implemented in <code>func.lua</code>. 
-To view the profile of the concentration along the column at a specific time, run the example and plot with GNUplot:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">gnu</span><span class="k">plot</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s">&quot;</span>
-<span class="w">    </span><span class="n">plot</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="n">printf</span><span class="w"> </span><span class="s">&quot;&#39;%s&#39; &quot;</span><span class="w"> </span><span class="n">tracking</span><span class="o">/*.</span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="nb">using</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span><span class="w"> </span><span class="nb">title</span><span class="w"> </span><span class="s">&#39;calculated&#39;</span><span class="w"> </span><span class="nb">with</span><span class="w"> </span><span class="n">points</span><span class="o">,</span>
-<span class="w">         </span><span class="err">$(print</span><span class="k">f</span><span class="w"> </span><span class="s">&quot;&#39;%s&#39; &quot;</span><span class="w"> </span><span class="n">tracking</span><span class="o">/*.</span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="nb">using</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="w"> </span><span class="nb">title</span><span class="w"> </span><span class="s">&#39;analytical&#39;</span><span class="w"> </span><span class="nb">with</span><span class="w"> </span><span class="n">lines</span>
-<span class="err">&quot;</span>
-</code></pre></div>
-
-<p>This will generate a plot comparing the calculated concentration profile from the LBM simulation against the analytical solution at the specified time.</p>
-<p>If your parameters are set as in the provided <code>params.lua</code>, you should observe the same results as shown in <code>media/reference.png</code>.</p>
+      <h2 ex_semi_infinite_1d id="semi-infinite-1d-domain-with-different-source-schemes">Semi-infinite 1D domain with different source schemes</h2>
+<ul>
+<li><a href="Ord_1/index.html">Semi-infinite 1D domain with 1st order accuracy source</a></li>
+<li><a href="Ord_2/index.html">Semi-infinite 1D domain with 2nd order accuracy source</a></li>
+</ul>
     </div>
   </div>
       <hr>
@@ -386,13 +350,13 @@ To view the profile of the concentration along the column at a specific time, ru
             <p>
               Musubi
  was developed by University of Siegen<br>              &copy; 2026 
-<br /><small>81f8c4f13772</small></p>
+<br /><small>ffe8d8acca68</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2026-02-28T17:26:30.432047+0000             </p>
+ on 2026-09-08T21:16:20.397157+0000             </p>
           </div>
         </div>
         <br>

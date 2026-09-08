@@ -116,6 +116,9 @@ module mus_scheme_header_module
   !!> |                            | **block**                     |
   !!> |                            | **mrt**                       |
   !!> |------------------------------------------------------------|
+  !!> | aux_field_halo_exchange | **true** (default)               |
+  !!> |                         | false                            |
+  !!> |------------------------------------------------------------|
   type mus_scheme_header_type
     !> scheme kind, Ex: fluid, fluid_incompressible, multispecies_gas,
     !! multispecies_liquid, poisson, poisson_boltzmann_linear,
@@ -127,6 +130,9 @@ module mus_scheme_header_module
     character(len=labelLen) :: relaxation
     !> Variant and additional options for a relaxation
     type(mus_relaxation_header_type) :: relaxHeader
+    !> Exchange auxiliary-field halos. Disable only if the complete solver
+    !! setup does not access neighboring auxiliary values.
+    logical :: auxFieldHaloExchange = .true.
   end type mus_scheme_header_type
 
 contains
@@ -167,6 +173,7 @@ contains
     me%kind = 'fluid'
     me%layout = 'd3q19'
     me%relaxation = 'bgk'
+    me%auxFieldHaloExchange = .true.
 
     call aot_table_open( L       = conf,      &
       &                  parent  = parent,    &
@@ -189,6 +196,13 @@ contains
         &               val     = me%layout, &
         &               default = 'd3q19',   &
         &               ErrCode = iError     )
+
+      call aot_get_val( L       = conf,                     &
+        &               thandle = thandle,                  &
+        &               key     = 'aux_field_halo_exchange', &
+        &               val     = me%auxFieldHaloExchange,  &
+        &               default = .true.,                   &
+        &               ErrCode = iError                    )
 
       ! Load relaxation as table to load additional information for relaxation.
       ! if not a table then variant is set to default.
@@ -231,6 +245,11 @@ contains
     write(logUnit(1), '(A)') 'relaxation: '// trim(me%relaxation)
     write(logUnit(1), '(A)') '  variant: ' //           &
       &                      trim(me%relaxHeader%variant)
+    write(logUnit(1), '(A,L1)') 'Aux-field halo exchange: ', &
+      &                         me%auxFieldHaloExchange
+    if (.not. me%auxFieldHaloExchange) then
+      write(logUnit(1), '(A)') 'WARNING: Auxiliary-field halo exchange is disabled.'
+    end if
     call tem_horizontalSpacer(fUnit = logUnit(1))
 
   end subroutine mus_load_scheme_header
@@ -295,6 +314,9 @@ contains
     call aot_out_val( put_conf = conf,            &
       &               vname    = 'layout',        &
       &               val      = trim( me%layout ))
+    call aot_out_val( put_conf = conf,                        &
+      &               vname    = 'aux_field_halo_exchange',  &
+      &               val      = me%auxFieldHaloExchange     )
     call aot_out_close_table(put_conf = conf)
   end subroutine mus_scheme_header_out
   ! ************************************************************************** !

@@ -35,7 +35,8 @@ module mus_initFluidIncomp_module
   use tem_logging_module, only: logUnit
 
   ! include musubi modules
-  use mus_bgk_module,   only: mus_advRel_kCFD_rBGK_vStdNoOpt_l
+  use mus_bgk_module,   only: mus_advRel_kCFD_rBGK_vStdNoOpt_l, &
+    &                         mus_advRel_kFluidIncomp_rTRT_vStdNoOpt_l
   use mus_d3q19_module, only: mus_advRel_kFluidIncomp_rBGK_vStd_lD3Q19, &
     &                         mus_advRel_kFluidIncomp_rTRT_vStd_lD3Q19, &
     &                         mus_advRel_kFluidIncompGNS_rBGK_vStd_lD3Q19
@@ -84,8 +85,7 @@ contains
         case ('d3q19')
           compute => mus_advRel_kFluidIncomp_rTRT_vStd_lD3Q19
         case default
-          call tem_abort('Unsupported layout "'//trim(layout)//'" for ' &
-            &            // 'relaxation "'//trim(relaxation)//'"')
+          compute => mus_advRel_kFluidIncomp_rTRT_vStdNoOpt_l
         end select
       case default
         call tem_abort('Unsupported variant "'//trim(variant)//'" for ' &

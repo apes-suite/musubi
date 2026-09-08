@@ -29,7 +29,7 @@ identify = {
   label      = 'fluid_2D',
   kind       = 'fluid_incompressible',
   relaxation = 'trt',
-  layout     = 'd3q19'
+  layout     = 'd2q9'
 }
 initial_condition = {
   pressure  = press_phy,
@@ -55,7 +55,8 @@ boundary_condition = {
 }
 glob_source = {
   varname = 'channelForce',
-  brinkman = Fc
+  brinkman = Fc,
+  brinkman_order = 1
 }
 
 variable = {

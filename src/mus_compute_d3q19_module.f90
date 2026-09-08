@@ -2856,10 +2856,12 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
     real(kind=rk) :: P_e, P_xx, P_ww, P_xy, P_xz, P_yz
     integer :: vel_varPos ! position of transport velocity variable in varSys
     real(kind=rk) :: inv_vel, u_fluid(3)
+    integer :: dens_pos, elemOff
     ! --------------------------------------------------------------------------
     ! access scheme via 1st variable method data which is a state variable
     call C_F_POINTER( varSys%method%val(derVarPos(1)%pdf)%method_Data, fPtr )
     scheme => fPtr%solverData%scheme
+    dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
 
     ! passive scalar has only one transport Variable
     vel_varPos = scheme%transVar%method(1)%data_varPos
@@ -2906,7 +2908,10 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
           &  neigh((idir-1)* nelems+ ielem)+( 1-1)* layout%fstencil%qq+ varsys%nscalars*0 &
           &                   )
       end do
-      rho = sum( pdfTmp )
+      ! element offset for auxField array
+      elemOff = (iElem - 1) * varSys%nAuxScalars
+      ! local density
+      rho = auxField(elemOff + dens_pos)
 
       do iDir = 1, layout%fStencil%QQ
         ! compute c_i * u
@@ -3004,10 +3009,12 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
       real(kind=rk) :: P_e, P_xx, P_ww, P_xy, P_xz, P_yz
       integer :: vel_varPos ! position of transport velocity variable in varSys
       real(kind=rk) :: inv_vel, u_fluid(3)
+      integer :: dens_pos, elemOff
       ! --------------------------------------------------------------------------
       ! access scheme via 1st variable method data which is a state variable
       call C_F_POINTER( varSys%method%val(derVarPos(1)%pdf)%method_Data, fPtr )
       scheme => fPtr%solverData%scheme
+      dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
 
       ! passive scalar has only one transport Variable
       vel_varPos = scheme%transVar%method(1)%data_varPos
@@ -3058,7 +3065,10 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
             &  neigh((idir-1)* nelems+ ielem)+( 1-1)* layout%fstencil%qq+ varsys%nscalars*0 &
             &                   )
         end do
-        rho = sum( pdfTmp )
+        ! element offset for auxField array
+        elemOff = (iElem - 1) * varSys%nAuxScalars
+        ! local density
+        rho = auxField(elemOff + dens_pos)
 
         do iDir = 1, layout%fStencil%QQ
           ! compute c_i * u
@@ -3167,10 +3177,12 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
     real(kind=rk) :: P_e, P_xx, P_ww, P_xy, P_xz, P_yz
     integer :: vel_varPos ! position of transport velocity variable in varSys
     real(kind=rk) :: inv_vel, u_fluid(3)
+    integer :: dens_pos, elemOff
     ! --------------------------------------------------------------------------
     ! access scheme via 1st variable method data which is a state variable
     call C_F_POINTER( varSys%method%val(derVarPos(1)%pdf)%method_Data, fPtr )
     scheme => fPtr%solverData%scheme
+    dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
 
     ! passive scalar has only one transport Variable
     vel_varPos = scheme%transVar%method(1)%data_varPos
@@ -3217,7 +3229,10 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
           &  neigh((idir-1)* nelems+ ielem)+( 1-1)* layout%fstencil%qq+ varsys%nscalars*0 &
           &                   )
       end do
-      rho = sum( pdfTmp )
+      ! element offset for auxField array
+      elemOff = (iElem - 1) * varSys%nAuxScalars
+      ! local density
+      rho = auxField(elemOff + dens_pos)
 
       do iDir = 1, layout%fStencil%QQ
         ! compute c_i * u
@@ -3322,10 +3337,12 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
       real(kind=rk) :: P_e, P_xx, P_ww, P_xy, P_xz, P_yz
       integer :: vel_varPos ! position of transport velocity variable in varSys
       real(kind=rk) :: inv_vel, u_fluid(3)
+      integer :: dens_pos, elemOff
       ! --------------------------------------------------------------------------
       ! access scheme via 1st variable method data which is a state variable
       call C_F_POINTER( varSys%method%val(derVarPos(1)%pdf)%method_Data, fPtr )
       scheme => fPtr%solverData%scheme
+      dens_pos = varSys%method%val(derVarPos(1)%density)%auxField_varPos(1)
 
       ! passive scalar has only one transport Variable
       vel_varPos = scheme%transVar%method(1)%data_varPos
@@ -3376,7 +3393,10 @@ end subroutine f_f_eq_regularized_4th_ord_d3q19
             &  neigh((idir-1)* nelems+ ielem)+( 1-1)* layout%fstencil%qq+ varsys%nscalars*0 &
             &                   )
         end do
-        rho = sum( pdfTmp )
+        ! element offset for auxField array
+        elemOff = (iElem - 1) * varSys%nAuxScalars
+        ! local density
+        rho = auxField(elemOff + dens_pos)
 
         do iDir = 1, layout%fStencil%QQ
           ! compute c_i * u

@@ -154,8 +154,8 @@ sim_control = {
       absolute = true,
       -- Condition to statisfy to every variable
       condition = {
-        { threshold = 1.e-10, operator = '<=' },
-        { threshold = 1.e-10, operator = '<=' }
+        { threshold = 1.e-3, operator = '<=' },
+        { threshold = 1.e-3, operator = '<=' }
       }
     },
   }

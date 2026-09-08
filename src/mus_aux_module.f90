@@ -64,7 +64,6 @@ module mus_aux_module
   use mus_turbulence_module,         only: mus_turb_updateViscOfTurbWall
   use mus_field_module,              only: setParameters_multispecies
   use mus_tracking_module,           only: mus_init_tracker
-  use mus_auxField_module,           only: mus_auxField_configure_from_tracking
   use mus_restart_module,            only: mus_writeRestart
   use mus_timer_module,              only: mus_timerHandles
   use mus_physics_module,            only: mus_physics_type
@@ -377,11 +376,6 @@ contains
       &    scheme    = scheme,   &
       &    geometry  = geometry, &
       &    params    = params    )
-
-    call mus_auxField_configure_from_tracking( &
-      &    auxField   = scheme%auxField,       &
-      &    track      = scheme%track,          &
-      &    schemeKind = scheme%header%kind     )
 
     ! convergence objects
     if ( params%general%simControl%abortCriteria%steady_state ) then

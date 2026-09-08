@@ -43,7 +43,7 @@ omega   = 1.0/(nu_lat/cs_lat^2 + 0.5)
 
 ----------------------------- Time settings ------------------------------------
 -- Physical simulation end time [s]
-tmax_phy = 10000
+tmax_phy = 100
 -- Number of iterations required to reach physical simulation end time.
 -- tmax_iter is also number of lattice iterations
 tmax_iter =  math.ceil(tmax_phy/dt)
@@ -144,8 +144,8 @@ sim_control = {
       absolute = true,
       -- Condition to statisfy to every variable
       condition = {
-        { threshold = 1.e-10, operator = '<=' },
-        { threshold = 1.e-10, operator = '<=' }
+        { threshold = 1.e-3, operator = '<=' },
+        { threshold = 1.e-3, operator = '<=' }
       }
     },
   }

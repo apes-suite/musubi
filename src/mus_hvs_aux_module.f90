@@ -41,7 +41,6 @@ module mus_hvs_aux_module
   use mus_fluid_module,              only: mus_init_fluid
   use mus_gradData_module,           only: mus_init_gradData
   use mus_tracking_module,           only: mus_init_tracker
-  use mus_auxField_module,           only: mus_auxField_configure_from_tracking
   use mus_bndForce_module,           only: mus_init_BndForce
 
   ! include treelm modules
@@ -150,11 +149,6 @@ contains
     call mus_init_tracker( scheme    = scheme,   &
       &                    geometry  = geometry, &
       &                    params    = params    )
-
-    call mus_auxField_configure_from_tracking( &
-      &    auxField   = scheme%auxField,       &
-      &    track      = scheme%track,          &
-      &    schemeKind = scheme%header%kind     )
 
     if( minLevel /= maxlevel ) then
       write(logUnit(1),*) 'Initializing interpolation...'

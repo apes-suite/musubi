@@ -10,7 +10,7 @@
     <meta name="author" content="University of Siegen" >
     <link rel="icon" href="../favicon.png">
 
-    <title>aux_tracking_needs_velocity_gradient &ndash; Musubi</title>
+    <title>applySrc_force_TRT &ndash; Musubi</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -84,8 +84,8 @@
 
     <div class="container">
   <div class="row">
-    <h1>aux_tracking_needs_velocity_gradient
-      <small>Function</small>
+    <h1>applySrc_force_TRT
+      <small>Subroutine</small>
       
     </h1>
       <div class="container p-2 mb-4 bg-light border rounded-3">
@@ -95,21 +95,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 0.0% of total for procedures.">24 statements</a>
+                 title=" 0.1% of total for procedures.">51 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/mus_auxField_module.f90"> Source File</a>
+              <a href="../src/mus_derQuan_module.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/mus_auxfield_module.f90.html'>mus_auxField_module.f90</a></li>
-                <li class="breadcrumb-item"><a href='../module/mus_auxfield_module.html'>mus_auxField_module</a></li>
-            <li class="breadcrumb-item active" aria-current="page">aux_tracking_needs_velocity_gradient</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/mus_derquan_module.f90.html'>mus_derQuan_module.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/mus_derquan_module.html'>mus_derQuan_module</a></li>
+            <li class="breadcrumb-item active" aria-current="page">applySrc_force_TRT</li>
           </ol>
         </nav>
       </div>
@@ -156,11 +156,14 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>private  function aux_tracking_needs_velocity_gradient(track, schemeKind) result(needed)  
+    <h2>public  subroutine applySrc_force_TRT(fun, inState, outState, neigh, auxField, nPdfSize, iLevel, varSys, time, phyConvFac, derVarPos)  
 </h2>
     
 
-    <p>Check if active tracking requests velocity-gradient based quantities.</p>
+    <p>Update state with the second-order Guo force for TRT collision.</p>
+<p>The first-order Hermite contribution is odd and therefore has to be weighted
+with the antisymmetric TRT relaxation rate. The second-order contribution is
+even and uses the symmetric relaxation rate.</p>
 
 
     <h3>Arguments</h3>
@@ -176,30 +179,165 @@
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-track~3"></span>
-              type(<a href='https://apes-suite.github.io/treelm/type/tem_tracking_type.html'>tem_tracking_type</a>),
+              <span class="anchor" id="variable-fun~43"></span>
+              class(<a href='../type/mus_source_op_type.html'>mus_source_op_type</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>track</strong></td>
+            <td><strong>fun</strong></td>
             <td>
                 
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-schemekind~3"></span>
-              character(len=*),
+              <span class="anchor" id="variable-instate~22"></span>
+              real(kind=rk),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>schemeKind</strong></td>
+            <td><strong>inState</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-outstate~22"></span>
+              real(kind=rk),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>outState</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-neigh~36"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>neigh</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-auxfield~34"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>auxField</strong>(:)</td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-npdfsize~11"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nPdfSize</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ilevel~45"></span>
+              integer,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>iLevel</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-varsys~72"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_varsys_type.html'>tem_varSys_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>varSys</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-time~49"></span>
+              type(<a href='https://apes-suite.github.io/treelm/type/tem_time_type.html'>tem_time_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-phyconvfac~12"></span>
+              type(<a href='../type/mus_convertfac_type.html'>mus_convertFac_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>phyConvFac</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dervarpos~36"></span>
+              type(<a href='../type/mus_dervarpos_type.html'>mus_derVarPos_type</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>derVarPos</strong>(:)</td>
             <td>
                 
             </td>
@@ -207,13 +345,6 @@
     </tbody>
   </table>
 
-      <h3>Return Value
-        <small>
-          <span class="anchor" id="variable-needed"></span>
-          logical
-        </small>
-      </h3>
-      
     <br>
 
 
@@ -239,13 +370,13 @@
             <p>
               Musubi
  was developed by University of Siegen<br>              &copy; 2026 
-<br /><small>81f8c4f13772</small></p>
+<br /><small>ffe8d8acca68</small></p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2026-02-28T17:26:30.432047+0000             </p>
+ on 2026-09-08T21:16:20.397157+0000             </p>
           </div>
         </div>
         <br>

@@ -98,8 +98,7 @@ module mus_dynLoadBal_module
     &                                      mus_pdf_serialize
   use mus_weights_module,            only: mus_getWeights, mus_dumpWeights
   use mus_auxField_module,           only: mus_calcAuxFieldAndExchange,        &
-    &                                      mus_intpAuxFieldCoarserAndExchange, &
-    &                                      mus_auxField_configure_from_tracking
+    &                                      mus_intpAuxFieldCoarserAndExchange
 
 
   implicit none
@@ -373,10 +372,6 @@ contains
       &                    geometry  = geometry, &
       &                    params    = params    )
 
-    call mus_auxField_configure_from_tracking(          &
-      &    auxField   = scheme%auxField,                &
-      &    track      = scheme%track,                   &
-      &    schemeKind = scheme%header%kind              )
     ! ------------------------------------------------------------------------
     !                  Reinitialize the tracking objects                     !
     ! ------------------------------------------------------------------------
