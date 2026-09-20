@@ -42,9 +42,10 @@ bibliography: paper.bib
 
 # Summary
 
-Musubi is a multi-level, parallel lattice Boltzmann solver and part of the APES suite.
-It is working on an octree mesh that is linearized by a (Morton) space-filling curve and
-uses efficient data structures allowing for adaptive, distributed parallel simulations.
+Musubi is a multi-level, parallel lattice Boltzmann solver and part of the
+"Adaptable Poly-Engineering Simulator" (APES) suite [@APES].
+It is working on an octree mesh that is linearized by a (Morton) space-filling curve [@Sagan:1994]
+and uses efficient data structures allowing for adaptive, distributed parallel simulations.
 
 Musubi is designed to deal with huge meshes (billions of lattices) and complex geometries
 on large computing systems efficiently.
@@ -53,6 +54,8 @@ over biomedical problems [@Jain:2016] and aero-dynamic setups [@Spinelli:2024] t
 simulations [@Hasert:2013].
 
 It is written in Fortran, requiring a compiler that provides at least the Fortran 2003 standard.
+Parallel execution is achieved via the Message Passing Interface (MPI) of which at least the
+MPI-3 standard [@MPI3:2012] is required to support non-blocking collectives.
 
 
 # Statement of need
@@ -71,8 +74,8 @@ the University of Twente [@Blanken:2025].
 
 # The lattice Boltzmann method
 
-The lattice Boltzmann method employs ideas of cellular automata and can be represented
-at its core as a basic two step algorithm.
+The lattice Boltzmann method [@Krueger:2016] employs ideas of cellular automata and can be
+represented at its core as a basic two step algorithm.
 The state of the fluid is represented by particle density functions (PDF) of a discrete
 velocity field.
 These PDFs reside on the lattices and are exchanged along the discrete velocity directions.
